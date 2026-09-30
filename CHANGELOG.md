@@ -2,6 +2,15 @@
 
 All notable project changes are recorded here. Governance decisions and operational events belong in `AUDIT_LOG.md`.
 
+## [Unreleased]
+
+### Added
+
+- Project-aware copy-quality pass for the starter, The Rider, and Cassia email skills.
+- Audit-only mode that reports evidence without guessing AI authorship.
+- Contextual vocabulary watchlist, portability test, email-specific checks, and behavioral evaluation cases.
+- Third-party research notices for the public editorial resources that informed the design.
+
 ## [0.1.0] - 2026-09-30
 
 ### Added

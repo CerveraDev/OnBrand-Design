@@ -54,6 +54,7 @@ The generator creates a complete project folder from `templates/project-starter/
 - [Contribution workflow](CONTRIBUTING.md)
 - [Authorship](AUTHORS.md)
 - [Legal notice](NOTICE)
+- [Third-party research notices](THIRD_PARTY_NOTICES.md)
 - [Apache License 2.0](LICENSE)
 
 ## Shared Tooling

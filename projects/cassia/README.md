@@ -15,4 +15,4 @@ Distribute this entire project folder when sharing the implementation. Do not in
 
 ## License And Attribution
 
-The OnBrand Design source framework in this package is licensed under Apache-2.0. Retain `LICENSE`, `NOTICE`, and `AUTHORS.md` when redistributing it. Cassia logos, photographs, renderings, templates, and campaign assets may be subject to separate rights.
+The OnBrand Design source framework in this package is licensed under Apache-2.0. Retain `LICENSE`, `NOTICE`, `AUTHORS.md`, and `THIRD_PARTY_NOTICES.md` when redistributing it. Cassia logos, photographs, renderings, templates, and campaign assets may be subject to separate rights.

@@ -15,7 +15,7 @@ OnBrand Design supports an unbounded number of isolated real estate projects. Th
 Every `projects/<slug>/` directory must contain:
 
 - `project.json` with framework, owner, author, lifecycle, calibration, and skill-ID metadata.
-- `LICENSE`, `NOTICE`, and `AUTHORS.md` so the package retains its license and attribution when distributed independently.
+- `LICENSE`, `NOTICE`, `AUTHORS.md`, and `THIRD_PARTY_NOTICES.md` so the package retains its license and attribution when distributed independently.
 - `skills/onbrand-<slug>-email/` for strategy, copy, asset selection, HTML, variants, packaging, and QA.
 - `skills/onbrand-<slug>-image/` for separately invoked image generation and editing.
 - A project README explaining invocation and calibration status.

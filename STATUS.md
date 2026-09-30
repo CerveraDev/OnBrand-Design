@@ -20,6 +20,7 @@
 - Defined campaign modes, required modules, variants, packaging, and QA foundations.
 - Created and live-tested the Dropbox master-manifest synchronizer for The Rider.
 - Added local `.env` handling without distributing credentials.
+- Added a contextual copy-quality pass, audit mode, and evaluation cases.
 - Added PRD, phased specs, status, roadmap, audit, changelog, attribution, and versioning.
 
 ## Project Portfolio
@@ -33,7 +34,7 @@
 
 - Wire The Rider email skill to read its master Dropbox `manifest.json`.
 - Define deterministic asset filtering, ranking, preview, and selection.
-- Validate the project generator and project isolation contract.
+- Calibrate copy voice and watchlist exceptions from each project's approved materials.
 
 ## Waiting On Project Inputs
 

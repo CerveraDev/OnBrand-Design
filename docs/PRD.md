@@ -91,6 +91,7 @@ An authorized maintainer runs the shared Dropbox manifest synchronizer against a
 | FR-018 | Project packages remain portable across Codex and Claude Code. |
 | FR-019 | The registry records every maintained project and its lifecycle status. |
 | FR-020 | Repository metadata attributes ownership to Cervera Real Estate, Inc. and authorship to Felix Mendoza. |
+| FR-021 | Every project email skill runs a contextual copy-quality pass that preserves approved voice, reports unsupported claims, and does not claim to detect authorship. |
 
 ## Non-Functional Requirements
 

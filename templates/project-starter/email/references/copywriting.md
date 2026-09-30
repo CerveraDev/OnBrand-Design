@@ -39,3 +39,5 @@ Prefer clear action labels. Examples:
 - RSVP
 
 Match CTA to campaign goal. Do not invent contact details or URLs; use supplied values or leave placeholders.
+
+After drafting, run [copy-quality.md](copy-quality.md) before presenting final copy for approval or building HTML. Copy-quality guidance supplements the approved project voice; it does not replace it.

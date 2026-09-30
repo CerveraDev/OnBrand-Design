@@ -10,13 +10,14 @@ project-slug/
 |-- LICENSE
 |-- NOTICE
 |-- AUTHORS.md
+|-- THIRD_PARTY_NOTICES.md
 |-- project.json
 `-- skills/
     |-- onbrand-project-slug-email/
     `-- onbrand-project-slug-image/
 ```
 
-The email and image skill IDs must include the same project slug. Both skills must remain explicit-only. Every standalone package retains the Apache-2.0 license, notice, and authorship files. Project-specific brands, asset manifests, templates, footer partials, campaign examples, and generated outputs belong inside or alongside that project package; they must not be copied into another project.
+The email and image skill IDs must include the same project slug. Both skills must remain explicit-only. Every standalone package retains the Apache-2.0 license, notice, authorship, and research-attribution files. Project-specific brands, asset manifests, templates, footer partials, campaign examples, and generated outputs belong inside or alongside that project package; they must not be copied into another project.
 
 ## Add A Project
 

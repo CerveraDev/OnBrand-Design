@@ -13,6 +13,17 @@ Run QA before delivery.
 - Package contains both the campaign folder and matching ZIP.
 - Asset manifest accounts for every image reference in every delivered HTML file.
 
+## Copy Checks
+
+- Copy passed [copy-quality.md](copy-quality.md) after the campaign direction was selected.
+- Subject line, preview text, headline, body, and CTA support one coherent action.
+- Preview text adds information instead of repeating the subject line.
+- Generic luxury language was replaced with supported project detail where possible.
+- Watchlist words were reviewed in context rather than removed mechanically.
+- No invented or unsupported facts, urgency, superlatives, quotations, testimonials, statistics, pricing, dates, or availability remain.
+- Copy cleanup did not alter supplied legal language, approved terminology, or the intended meaning.
+- No internal editing notes, AI-authorship claims, detector scores, or process commentary appear in campaign output.
+
 ## Footer Variant Checks
 
 - Branded version uses branded footer.

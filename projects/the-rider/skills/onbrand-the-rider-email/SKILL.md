@@ -20,11 +20,12 @@ This first draft is provisional. The user will later provide a Beefree-generated
 2. Load the relevant references, not the whole skill corpus.
 3. Confirm only missing essentials.
 4. Draft the campaign strategy, module plan, subject lines, preview text, copy, CTA, and image direction.
-5. If generated or edited imagery is needed, hand off to `onbrand-the-rider-image` before building HTML.
-6. Build the email body using Rider modules and Beefree-style, table-based email structure.
-7. Append locked footer partials to produce the required output variants.
-8. Assemble the campaign distribution package with all HTML variants and every final image they use.
-9. Run QA, create a ZIP archive, and deliver both the package folder and ZIP.
+5. Run the project-aware copy-quality pass before presenting copy for approval or building HTML.
+6. If generated or edited imagery is needed, hand off to `onbrand-the-rider-image` before building HTML.
+7. Build the email body using Rider modules and Beefree-style, table-based email structure.
+8. Append locked footer partials to produce the required output variants.
+9. Assemble the campaign distribution package with all HTML variants and every final image they use.
+10. Run QA, create a ZIP archive, and deliver both the package folder and ZIP.
 
 ## Intake Modes
 
@@ -86,6 +87,7 @@ The broker-neutral version does not remove Rider project identity. It removes sa
 - [references/intake.md](references/intake.md): directed and concept-development intake
 - [references/campaign-types.md](references/campaign-types.md): campaign category rules
 - [references/copywriting.md](references/copywriting.md): copy, CTA, headline, subject-line rules
+- [references/copy-quality.md](references/copy-quality.md): project-aware editorial pass and audit mode
 - [references/modules.md](references/modules.md): required and optional email modules
 - [references/footers.md](references/footers.md): locked footer variants and output set
 - [references/asset-selection.md](references/asset-selection.md): approved image selection rules

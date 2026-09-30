@@ -7,7 +7,7 @@ The roadmap applies to the framework and is executed independently for each proj
 | 0 | Multi-project foundation and governance | Complete | Registered | Scaffolded |
 | 1 | Asset catalog and selection | In progress | In progress | Not started |
 | 2 | Beefree, brand, and template calibration | Ready | Waiting on assets | Waiting on assets |
-| 3 | Campaign strategy and copy system | Planned | Drafted | Provisional |
+| 3 | Campaign strategy and copy system | Drafted | Drafted | Provisional |
 | 4 | Image-generation specialist | Drafted | Drafted | Provisional |
 | 5 | HTML assembly and footer variants | Planned | Waiting on Phase 2 | Waiting on Phase 2 |
 | 6 | Distribution packaging and QA | Partially specified | Planned | Planned |
