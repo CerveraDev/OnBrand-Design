@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use OnBrand Design, cite the project and its author."
+title: "OnBrand Design"
+type: software
+authors:
+  - family-names: "Mendoza"
+    given-names: "Felix"
+    affiliation: "Cervera Real Estate"
+version: "0.1.0"
+date-released: "2026-09-30"
+abstract: "A reusable framework for project-specific real estate email-production skills."
+license: "Apache-2.0"

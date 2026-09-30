@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "framework": "OnBrand Design",
+  "project_name": "Cassia",
+  "project_slug": "cassia",
+  "owner": "Cervera Real Estate, Inc.",
+  "author": "Felix Mendoza",
+  "license": "Apache-2.0",
+  "status": "scaffold",
+  "skills": {
+    "email": "onbrand-cassia-email",
+    "image": "onbrand-cassia-image"
+  },
+  "brand_calibration": "pending_project_materials",
+  "footer_calibration": "pending_locked_partials",
+  "asset_manifest": "pending_configuration"
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "framework": "OnBrand Design",
+  "projects": [
+    {
+      "name": "Cassia",
+      "slug": "cassia",
+      "status": "scaffold",
+      "path": "projects/cassia"
+    },
+    {
+      "name": "The Rider",
+      "slug": "the-rider",
+      "status": "in_progress",
+      "path": "projects/the-rider"
+    }
+  ]
+}

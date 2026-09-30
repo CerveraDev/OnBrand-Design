@@ -1,0 +1,6 @@
+interface:
+  display_name: "OnBrand Design: Cassia"
+  short_description: "Build complete Cassia email campaign packages"
+  default_prompt: "Use $onbrand-cassia-email to create a Cassia email campaign package."
+policy:
+  allow_implicit_invocation: false
