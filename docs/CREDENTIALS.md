@@ -61,6 +61,18 @@ DROPBOX_ROOT=
 DROPBOX_MANIFEST_PATH=manifest.json
 ```
 
+Create or rotate the refresh token with the repository helper:
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r tools/dropbox-manifest/requirements.txt
+.venv/bin/python tools/dropbox-manifest/authorize_dropbox.py
+```
+
+The helper requests offline access, opens the Dropbox approval page, accepts the one-time authorization code with hidden input, verifies account access, and writes the refresh token directly to the selected `.env`. It does not print the refresh token. After successful verification, it clears `DROPBOX_ACCESS_TOKEN` so the manifest script uses refresh authentication.
+
+Before authorization, confirm the Dropbox app has only the scopes required by the manifest workflow: `files.metadata.read`, `files.content.read`, `sharing.read`, and `sharing.write`. Permission changes require a new authorization grant.
+
 Only authorized maintainers need these values. Normal campaign generation should consume a validated public manifest and approved public asset URLs without Dropbox credentials. A project package must continue from a validated local cache or request maintainer action if its public manifest is unavailable; it must not request or expose the maintainer's refresh token.
 
 ## Team And Automation

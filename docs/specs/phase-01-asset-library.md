@@ -15,7 +15,9 @@ Allow each explicitly invoked project email skill to discover, rank, select, and
 - Stable matching preserves curated metadata.
 - Atomic writes and `.bak` recovery are implemented.
 - Local `.env` configuration is supported.
+- A local authorization helper obtains, verifies, and stores an offline refresh token without printing it.
 - The Rider live synchronization validated 195 assets and preserved 191 curated records.
+- Refresh-token authentication completed a second live synchronization with 195 records preserved, zero additions or removals, and no stored access token.
 
 ## Remaining Requirements
 
@@ -29,6 +31,7 @@ Allow each explicitly invoked project email skill to discover, rank, select, and
 - ASSET-008: Define PDF behavior: package/link or render an approved page as an image.
 - ASSET-009: Continue gracefully from a validated local cache if the public manifest is unavailable.
 - ASSET-010: Keep manifest refresh separate from normal campaign generation unless explicitly requested.
+- ASSET-011: Refresh-token authorization must update only the ignored local `.env` after successful Dropbox verification.
 
 ## Acceptance Criteria
 

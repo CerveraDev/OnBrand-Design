@@ -11,6 +11,12 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Contextual vocabulary watchlist, portability test, email-specific checks, and behavioral evaluation cases.
 - Third-party research notices for the public editorial resources that informed the design.
 - Credential policy covering persistent GitHub SSH access, Dropbox refresh configuration, CI secrets, team handling, and rotation.
+- Secure Dropbox offline-authorization helper that verifies and stores refresh tokens without printing them.
+
+### Validated
+
+- Refresh-token authentication completed a live Dropbox synchronization with no stored access token.
+- The refresh-authenticated synchronization preserved all 195 records, including 191 records with curated `category` and `approved_for` values, with zero additions or removals.
 
 ## [0.1.0] - 2026-09-30
 
