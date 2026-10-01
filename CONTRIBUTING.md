@@ -16,6 +16,8 @@ Keep commits focused and use imperative subjects. Suggested prefixes:
 
 Never commit `.env`, Dropbox credentials, virtual environments, generated campaign packages, or private campaign inputs.
 
+Follow [docs/CREDENTIALS.md](docs/CREDENTIALS.md) for GitHub authentication, Dropbox refresh configuration, automation secrets, and rotation.
+
 ## Project Folders
 
 Create new developments with `scripts/create_project.py`. Do not duplicate and hand-rename an existing project folder, because that can leak project-specific brand rules or produce invocation collisions.

@@ -20,6 +20,7 @@
 - Defined campaign modes, required modules, variants, packaging, and QA foundations.
 - Created and live-tested the Dropbox master-manifest synchronizer for The Rider.
 - Added local `.env` handling without distributing credentials.
+- Documented persistent GitHub SSH authentication, Dropbox refresh credentials, CI secrets, and rotation boundaries.
 - Added a contextual copy-quality pass, audit mode, and evaluation cases.
 - Added PRD, phased specs, status, roadmap, audit, changelog, attribution, and versioning.
 

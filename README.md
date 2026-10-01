@@ -50,6 +50,7 @@ The generator creates a complete project folder from `templates/project-starter/
 - [Versioning policy](VERSIONING.md)
 - [Project registry](projects/registry.json)
 - [Project folder contract](docs/PROJECT_STRUCTURE.md)
+- [Credential policy](docs/CREDENTIALS.md)
 - [Project package guide](projects/README.md)
 - [Contribution workflow](CONTRIBUTING.md)
 - [Authorship](AUTHORS.md)

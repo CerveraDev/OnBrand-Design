@@ -10,6 +10,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Audit-only mode that reports evidence without guessing AI authorship.
 - Contextual vocabulary watchlist, portability test, email-specific checks, and behavioral evaluation cases.
 - Third-party research notices for the public editorial resources that informed the design.
+- Credential policy covering persistent GitHub SSH access, Dropbox refresh configuration, CI secrets, team handling, and rotation.
 
 ## [0.1.0] - 2026-09-30
 
