@@ -5,16 +5,17 @@
 Use this mode when the user already knows the campaign, audience, CTA, and desired output.
 
 1. Confirm campaign type, audience, CTA, and output format.
-2. Identify whether approved images are enough or whether the image-generation workflow is needed.
-3. Propose a concise module plan.
-4. Draft subject lines, preview text, headline, optional subheading, body copy, and CTA language.
-5. Run [copy-quality.md](copy-quality.md), preserving approved facts and project voice.
-6. Present final copy for approval when the request or campaign sensitivity calls for it.
-7. Build final HTML only after any required copy, creative, or image approvals.
-8. Generate all required footer variants.
-9. Copy every final image used into the campaign package.
-10. Create the asset manifest, verify the HTML references, and run QA.
-11. Deliver the campaign folder and matching ZIP.
+2. Identify existing-asset needs and whether the image-generation workflow is needed.
+3. For existing assets, load the configured master manifest, run [asset-selection.md](asset-selection.md), and present materially different top candidates for approval.
+4. Propose a concise module plan.
+5. Draft subject lines, preview text, headline, optional subheading, body copy, and CTA language.
+6. Run [copy-quality.md](copy-quality.md), preserving approved facts and project voice.
+7. Present final copy for approval when the request or campaign sensitivity calls for it.
+8. Build final HTML only after any required copy, creative, or image approvals.
+9. Generate all required footer variants.
+10. Copy every final approved image used into the campaign package.
+11. Create the asset manifest, verify the HTML references, and run QA.
+12. Deliver the campaign folder and matching ZIP.
 
 ## Concept Development
 
@@ -41,6 +42,7 @@ A campaign is not complete when only HTML files have been generated. Complete th
 Use approval checkpoints when:
 
 - Generated or edited imagery is proposed.
+- The asset selector returns `review_required` or several materially different top candidates.
 - The CTA is ambiguous.
 - The user asked for options.
 - The campaign carries higher brand, broker, or compliance sensitivity.

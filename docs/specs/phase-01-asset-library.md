@@ -18,14 +18,15 @@ Allow each explicitly invoked project email skill to discover, rank, select, and
 - A local authorization helper obtains, verifies, and stores an offline refresh token without printing it.
 - The Rider live synchronization validated 195 assets and preserved 191 curated records.
 - Refresh-token authentication completed a second live synchronization with 195 records preserved, zero additions or removals, and no stored access token.
+- Shared `tools.asset_selection` validates local master manifests without Dropbox credentials.
+- Asset selection rejects malformed `category` or `approved_for` metadata instead of coercing it.
+- Candidate filtering supports media type, required `approved_for` values, category overlap, and orientation when available.
+- Candidate ranking is deterministic and returns transparent scoring reasons plus a compact shortlist.
+- The Rider email skill and neutral project starter now instruct campaign work to run selector-based manifest selection and present materially different top candidates for approval.
 
 ## Remaining Requirements
 
 - ASSET-001: Configure a stable public URL or local fallback for each project's master manifest.
-- ASSET-002: Validate manifest schema before selection.
-- ASSET-003: Filter by media type, `approved_for`, category overlap, orientation, and campaign needs.
-- ASSET-004: Rank candidates and explain recommendations without inventing metadata.
-- ASSET-005: Ask for approval when several materially different candidates remain.
 - ASSET-006: Download only selected assets into the campaign workspace.
 - ASSET-007: Preserve filename provenance and record source identity in campaign output.
 - ASSET-008: Define PDF behavior: package/link or render an approved page as an image.
@@ -38,9 +39,9 @@ Allow each explicitly invoked project email skill to discover, rank, select, and
 - A realistic campaign brief returns relevant candidates from the manifest.
 - Hero selection never uses an asset lacking the required approval classification.
 - Duplicate filenames are distinguished by Dropbox identity/path.
-- Selected files download successfully and checksum or size validation catches incomplete transfers.
+- Selected files download successfully and checksum or size validation catches incomplete transfers. (Pending.)
 - The source master manifest is never altered during campaign generation.
-- A campaign package contains only final selected assets and records their provenance.
+- A campaign package contains only final selected assets and records their provenance. (Pending.)
 
 ## Risks
 

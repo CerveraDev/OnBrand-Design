@@ -62,6 +62,8 @@ The generator creates a complete project folder from `templates/project-starter/
 
 `tools/dropbox-manifest/` maintains a project's master image/PDF catalog. Credentials remain in an untracked local `.env`. The tool is shared at the repository level; project-specific runtime skills consume their configured public manifest without receiving private Dropbox credentials.
 
+`tools/asset_selection/` validates a local master manifest and returns deterministic, explained asset shortlists for project email skills. It does not refresh Dropbox, require credentials, download source assets, or choose a final campaign image without approval when top candidates are materially different.
+
 ## Security
 
 Never commit `.env`, Dropbox tokens, app secrets, virtual environments, generated campaign packages, private campaign inputs, or unapproved project assets.

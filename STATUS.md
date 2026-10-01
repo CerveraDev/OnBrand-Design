@@ -4,8 +4,8 @@
 **Owner:** Cervera Real Estate, Inc.  
 **Author:** Felix Mendoza  
 **Version:** 0.1.0  
-**Updated:** 2026-09-30  
-**Overall status:** Multi-project foundation complete; Rider asset integration in progress
+**Updated:** 2026-10-01
+**Overall status:** Multi-project foundation complete; Rider manifest selection integration in progress
 
 ## Completed
 
@@ -24,18 +24,20 @@
 - Verified live Dropbox manifest synchronization with refresh-token authentication and no stored access token.
 - Added a contextual copy-quality pass, audit mode, and evaluation cases.
 - Added PRD, phased specs, status, roadmap, audit, changelog, attribution, and versioning.
+- Added a dependency-light manifest validator and deterministic asset shortlist selector.
+- Wired The Rider email skill and starter references to load the manifest, filter and rank approved candidates, and require approval when top candidates are materially different.
 
 ## Project Portfolio
 
 | Project | Status | Next requirement |
 |---|---|---|
-| The Rider | In progress | Runtime asset-manifest integration and canonical HTML/footers |
+| The Rider | In progress | Public manifest/cache configuration, asset download packaging, and canonical HTML/footers |
 | Cassia | Scaffold | Cassia brand materials, asset catalog, HTML, and footers |
 
 ## In Progress
 
-- Wire The Rider email skill to read its master Dropbox `manifest.json`.
-- Define deterministic asset filtering, ranking, preview, and selection.
+- Configure The Rider's stable public manifest URL or validated local cache fallback.
+- Add approved-asset download/copy behavior for final campaign packages.
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 
 ## Waiting On Project Inputs
@@ -50,4 +52,4 @@
 
 ## Next Milestone
 
-Complete The Rider Phase 1 asset-catalog integration, then use the resulting implementation and tests to harden the shared project starter before onboarding additional developments.
+Complete The Rider Phase 1 asset retrieval and campaign-package provenance, then use the resulting implementation and tests to harden the shared project starter before onboarding additional developments.

@@ -21,11 +21,12 @@ This first draft is provisional. The user will later provide a Beefree-generated
 3. Confirm only missing essentials.
 4. Draft the campaign strategy, module plan, subject lines, preview text, copy, CTA, and image direction.
 5. Run the project-aware copy-quality pass before presenting copy for approval or building HTML.
-6. If generated or edited imagery is needed, hand off to `onbrand-the-rider-image` before building HTML.
-7. Build the email body using Rider modules and Beefree-style, table-based email structure.
-8. Append locked footer partials to produce the required output variants.
-9. Assemble the campaign distribution package with all HTML variants and every final image they use.
-10. Run QA, create a ZIP archive, and deliver both the package folder and ZIP.
+6. For existing imagery, load the configured Rider manifest and run deterministic asset selection before choosing images.
+7. If generated or edited imagery is needed, hand off to `onbrand-the-rider-image` before building HTML.
+8. Build the email body using Rider modules and Beefree-style, table-based email structure.
+9. Append locked footer partials to produce the required output variants.
+10. Assemble the campaign distribution package with all HTML variants and every final image they use.
+11. Run QA, create a ZIP archive, and deliver both the package folder and ZIP.
 
 ## Intake Modes
 
@@ -51,6 +52,8 @@ Read [references/footers.md](references/footers.md) before creating final output
 Simple selection from approved Rider assets can stay in this skill. Generated, composited, or edited imagery must be treated as a separate image-generation workflow.
 
 Read [references/asset-selection.md](references/asset-selection.md) for ordinary image choice.
+
+Ordinary image choice must consume a configured, validated master manifest and approved public asset URLs. Do not run `tools/dropbox-manifest/build_manifest.py` during campaign generation unless the user explicitly requests a manifest refresh.
 
 Invoke or follow the separate `onbrand-the-rider-image` skill when:
 

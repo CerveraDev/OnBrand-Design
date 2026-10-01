@@ -12,11 +12,18 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Third-party research notices for the public editorial resources that informed the design.
 - Credential policy covering persistent GitHub SSH access, Dropbox refresh configuration, CI secrets, team handling, and rotation.
 - Secure Dropbox offline-authorization helper that verifies and stores refresh tokens without printing them.
+- Dependency-light `tools.asset_selection` manifest validator and deterministic asset candidate selector.
+- Focused asset-selection tests for schema strictness, approval exclusion, category overlap, deterministic ordering, duplicate filenames, and missing optional metadata.
+
+### Changed
+
+- The Rider email skill and neutral project starter now describe manifest-backed asset selection, shortlist approval, and the boundary between existing assets and the separate image-generation workflow.
 
 ### Validated
 
 - Refresh-token authentication completed a live Dropbox synchronization with no stored access token.
 - The refresh-authenticated synchronization preserved all 195 records, including 191 records with curated `category` and `approved_for` values, with zero additions or removals.
+- Asset-selection unit tests pass with Python stdlib `unittest`.
 
 ## [0.1.0] - 2026-09-30
 
