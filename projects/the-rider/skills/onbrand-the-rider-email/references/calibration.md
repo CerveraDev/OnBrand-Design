@@ -1,40 +1,37 @@
 # Calibration From Supplied HTML
 
-Use this workflow when the user provides the Beefree-generated Rider HTML sample.
+The supplied Beefree scaffold has been calibrated.
 
-## Analyze
+## Current Source Truth
 
-Extract:
+- Immutable source copy: `templates/scaffold/rider-scaffolding.source.html`
+- Runtime canonical copy: `templates/scaffold/rider-scaffolding.canonical.html`
+- Top-level rows: 90
+- Valid marker pairs: 13
+- Runtime typo corrections: `REQUEST MORE INFORMATION` and `ARTS`
+- Former unbranded footer terminology: outside-broker customizable footer
 
-- Color palette
-- Font stack and typography scale
-- Container width
-- Section rhythm and spacing
-- Hero structure
-- Image handling
-- Button markup
-- Footer boundary
-- Responsive behavior
-- Outlook-specific or conditional markup
-- Reusable row/module patterns
+## Current Extracted References
 
-## Update References
-
-Update:
+The current calibration updates:
 
 - `brand.md`
 - `email-design-system.md`
 - `beefree-html-structure.md`
 - `html-email.md`
-- `modules.md`, if the sample reveals concrete module structures
-- `footers.md`, if footer partial boundaries are provided
+- `modules.md`
+- `footers.md`
+- `qa.md`
 
-## Preserve Source Truth
+## Future Recalibration
 
-Do not overwrite the supplied sample. Save it as:
+When a new approved Beefree scaffold is supplied:
 
-```text
-templates/master-email.html
-```
+1. Preserve the old source and canonical files or archive them with versioned names.
+2. Save the new source copy without modification.
+3. Create a corrected canonical runtime copy.
+4. Re-run scaffold parsing and marker-pair validation.
+5. Re-count production colors and typography usage.
+6. Update module inventory, footer boundaries, and tests together.
 
-If multiple samples are supplied, keep meaningful names and document which sample is canonical.
+Do not overwrite provenance files casually, and do not claim full HTML generation or campaign packaging unless the runtime assembler and package output have been implemented and verified.

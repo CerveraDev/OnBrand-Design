@@ -7,7 +7,7 @@ Self-contained OnBrand Design implementation for The Rider.
 - `$onbrand-the-rider-email`: campaign strategy, copy, asset selection, HTML variants, packaging, and QA.
 - `$onbrand-the-rider-image`: separately invoked image-generation and editing workflow.
 
-Both skills are explicit-only. The project remains provisional until its canonical Beefree HTML and locked footer partials are supplied and calibrated.
+Both skills are explicit-only. The Rider email scaffold is calibrated from the supplied Beefree export. Runtime HTML assembly, campaign packaging, and final production QA remain to be implemented before completed campaign delivery can be claimed.
 
 ## Download Boundary
 

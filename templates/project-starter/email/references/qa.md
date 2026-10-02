@@ -27,7 +27,7 @@ Run QA before delivery.
 ## Footer Variant Checks
 
 - Branded version uses branded footer.
-- Broker-neutral version removes sales attribution and direct contact ownership.
+- Outside-broker customizable version preserves project/legal content and uses supplied broker personalization or clear placeholders.
 - Each in-house agent version uses the correct agent footer.
 - Locked footer HTML was not rewritten unless requested.
 

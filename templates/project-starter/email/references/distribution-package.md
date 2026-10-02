@@ -8,7 +8,7 @@ Every completed __PROJECT_NAME__ campaign must be delivered as both an ordinary 
 campaign-slug/
 |-- html/
 |   |-- campaign-slug-branded.html
-|   |-- campaign-slug-broker-neutral.html
+|   |-- campaign-slug-outside-broker-customizable.html
 |   `-- campaign-slug-agent-name.html
 |-- images/
 |   |-- hero.jpg

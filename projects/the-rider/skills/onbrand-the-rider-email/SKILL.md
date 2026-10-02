@@ -12,7 +12,7 @@ Run this skill only when the user explicitly invokes `$onbrand-the-rider-email` 
 
 Use this skill for Rider Residences email marketing only. Do not generalize it into a reusable real estate skill. If another property needs the same type of support, create a separate property-specific skill.
 
-This first draft is provisional. The user will later provide a Beefree-generated Rider HTML sample and locked footer partials. Until those arrive, keep brand, design-system, HTML, and footer details explicit about what is known versus pending.
+The canonical Beefree scaffold is available at [templates/scaffold/rider-scaffolding.canonical.html](templates/scaffold/rider-scaffolding.canonical.html). Treat it as the source of structure, module boundaries, brand styling, legal copy, and footer layouts. Keep the immutable provenance copy at [templates/scaffold/rider-scaffolding.source.html](templates/scaffold/rider-scaffolding.source.html) unchanged.
 
 ## Core Workflow
 
@@ -23,10 +23,11 @@ This first draft is provisional. The user will later provide a Beefree-generated
 5. Run the project-aware copy-quality pass before presenting copy for approval or building HTML.
 6. For existing imagery, load the configured Rider manifest and run deterministic asset selection before choosing images.
 7. If generated or edited imagery is needed, hand off to `onbrand-the-rider-image` before building HTML.
-8. Build the email body using Rider modules and Beefree-style, table-based email structure.
-9. Append locked footer partials to produce the required output variants.
-10. Assemble the campaign distribution package with all HTML variants and every final image they use.
-11. Run QA, create a ZIP archive, and deliver both the package folder and ZIP.
+8. Build the email body by composing validated rows from the canonical Rider scaffold, preserving head styles, Outlook/VML conditionals, row classes, table structure, and responsive behavior.
+9. Exclude authoring marker rows from generated emails.
+10. Add the appropriate scaffold footer module to produce required output variants.
+11. Assemble the campaign distribution package with all HTML variants and every final image they use.
+12. Run QA, create a ZIP archive, and deliver both the package folder and ZIP.
 
 ## Intake Modes
 
@@ -43,7 +44,7 @@ Every email must include:
 - Hero module
 - Footer module
 
-Read [references/modules.md](references/modules.md) before designing modules or deciding whether hero text should be live HTML or baked into an image.
+Read [references/modules.md](references/modules.md) before designing modules, selecting scaffold row ranges, or deciding whether hero text should be live HTML or baked into an image.
 
 Read [references/footers.md](references/footers.md) before creating final output variants. Footers are locked HTML partials by default.
 
@@ -66,23 +67,23 @@ That image skill is also explicit-only. Ask the user to invoke `$onbrand-the-rid
 
 ## HTML Output
 
-Use Beefree as the structural compatibility benchmark. Prefer conservative HTML email patterns: table-based layout, inline CSS, stable image blocks, spacer rows, Outlook-safe structure, and simple responsive behavior.
+Use the canonical Beefree scaffold as the structural compatibility benchmark. Prefer conservative HTML email patterns already present in the scaffold: table-based layout, inline CSS, stable image blocks, spacer rows, Outlook-safe structure, and simple responsive behavior.
 
 Read [references/beefree-html-structure.md](references/beefree-html-structure.md) and [references/html-email.md](references/html-email.md) before producing final HTML.
 
 Read [references/distribution-package.md](references/distribution-package.md) before final delivery. Every completed campaign must be a portable folder plus a matching ZIP containing all HTML variants, the final images used by those files, and an asset manifest. Never move or modify source images in the Rider corpus; copy them into the campaign package.
-
-After the user provides the Beefree-generated Rider sample HTML, perform the calibration workflow in [references/calibration.md](references/calibration.md) and update the provisional references.
 
 ## Output Variants
 
 Unless the user explicitly narrows the deliverable, a completed Rider campaign should produce:
 
 - Branded Rider version
-- Broker-neutral outside-agent version
-- One in-house agent version for each provided Rider agent footer
+- Outside-broker customizable version
+- One in-house agent version for each active Rider agent record
 
-The broker-neutral version does not remove Rider project identity. It removes sales attribution and direct contact ownership, such as phone numbers, email addresses, web addresses, sales team logos, and agent details that would prevent an outside broker from using the piece.
+The outside-broker customizable version does not remove Rider project identity, developer/legal content, or the campaign footer framework. It replaces in-house contact ownership with placeholders or supplied outside-broker data for headshot, name, title, phone, and email.
+
+In-house agent variants load factual records from [data/agents](data/agents). Each in-house agent has one JSON record; [data/agents/index.json](data/agents/index.json) defines the active set and deterministic output order. Do not invent missing agent facts.
 
 ## References
 
@@ -94,10 +95,10 @@ The broker-neutral version does not remove Rider project identity. It removes sa
 - [references/modules.md](references/modules.md): required and optional email modules
 - [references/footers.md](references/footers.md): locked footer variants and output set
 - [references/asset-selection.md](references/asset-selection.md): approved image selection rules
-- [references/brand.md](references/brand.md): provisional Rider brand guidance
-- [references/email-design-system.md](references/email-design-system.md): provisional visual rules
+- [references/brand.md](references/brand.md): calibrated Rider brand guidance
+- [references/email-design-system.md](references/email-design-system.md): calibrated visual rules
 - [references/beefree-html-structure.md](references/beefree-html-structure.md): Beefree-style compatibility benchmark
 - [references/html-email.md](references/html-email.md): final HTML assembly rules
 - [references/distribution-package.md](references/distribution-package.md): portable campaign folder and ZIP requirements
 - [references/qa.md](references/qa.md): pre-delivery review
-- [references/calibration.md](references/calibration.md): future update from supplied Beefree HTML
+- [references/calibration.md](references/calibration.md): calibration history and future recalibration guidance

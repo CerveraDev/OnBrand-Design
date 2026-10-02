@@ -6,8 +6,8 @@ Expected structure:
 
 ```text
 branded-footer.html
-broker-neutral-footer.html
+outside-broker-customizable-footer.html
 agents/
 ```
 
-The skill should treat these as source-of-truth HTML.
+The canonical scaffold now owns footer structure. Store supplemental locked footer partials here only when they are explicitly supplied or approved.

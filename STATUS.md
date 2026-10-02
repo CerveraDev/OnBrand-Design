@@ -4,8 +4,8 @@
 **Owner:** Cervera Real Estate, Inc.  
 **Author:** Felix Mendoza  
 **Version:** 0.1.0  
-**Updated:** 2026-10-01
-**Overall status:** Multi-project foundation complete; Rider manifest selection integration in progress
+**Updated:** 2026-10-02
+**Overall status:** Multi-project foundation complete; Rider scaffold calibration and manifest selection foundations in progress
 
 ## Completed
 
@@ -26,23 +26,27 @@
 - Added PRD, phased specs, status, roadmap, audit, changelog, attribution, and versioning.
 - Added a dependency-light manifest validator and deterministic asset shortlist selector.
 - Wired The Rider email skill and starter references to load the manifest, filter and rank approved candidates, and require approval when top candidates are materially different.
+- Preserved the supplied Rider Beefree scaffold as an immutable source copy and added a corrected canonical runtime copy.
+- Formalized 13 Rider scaffold module boundaries, marker exclusion rules, brand palette, typography, and footer contracts.
+- Added one JSON record per in-house agent, a shared schema, and a deterministic active-agent index for Rider agent variants.
+- Renamed the former unbranded footer workflow to outside-broker customizable and preserved Rider/legal footer content.
 
 ## Project Portfolio
 
 | Project | Status | Next requirement |
 |---|---|---|
-| The Rider | In progress | Public manifest/cache configuration, asset download packaging, and canonical HTML/footers |
+| The Rider | In progress | Public manifest/cache configuration, asset download packaging, and runtime HTML assembly |
 | Cassia | Scaffold | Cassia brand materials, asset catalog, HTML, and footers |
 
 ## In Progress
 
 - Configure The Rider's stable public manifest URL or validated local cache fallback.
 - Add approved-asset download/copy behavior for final campaign packages.
+- Implement the runtime HTML assembler/package generator that composes scaffold rows and produces verified variants.
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 
 ## Waiting On Project Inputs
 
-- The Rider canonical Beefree HTML and locked footer partials.
 - Confirmed public URL for The Rider's canonical Dropbox manifest.
 - Cassia brand standards, canonical HTML, footers, logos, and asset catalog.
 
@@ -52,4 +56,4 @@
 
 ## Next Milestone
 
-Complete The Rider Phase 1 asset retrieval and campaign-package provenance, then use the resulting implementation and tests to harden the shared project starter before onboarding additional developments.
+Complete The Rider runtime HTML assembly and campaign-package provenance, then use the resulting implementation and tests to harden the shared project starter before onboarding additional developments.

@@ -1,37 +1,34 @@
 # Beefree HTML Structure
 
-Use Beefree as the structural benchmark for cross-compatible HTML email output.
+Use `templates/scaffold/rider-scaffolding.canonical.html` as the canonical Rider compatibility reference.
 
-## Provisional Compatibility Rules
+## Required Preservation
 
-Prefer:
+Generated Rider emails must preserve:
 
-- Table-based layout
-- Inline CSS
-- Presentation tables
-- Explicit image dimensions where appropriate
-- Stable spacer rows
-- Conservative responsive patterns
-- Outlook-safe structure
-- Flattened images for complex overlays
+- `<!DOCTYPE html>` and root attributes.
+- Head metadata.
+- Google font links.
+- Global CSS and mobile overrides.
+- Outlook/VML conditional blocks.
+- Outer wrapper tables.
+- Beefree `row row-N`, `row-content`, `column`, and `block-N` classes.
+- Inline styles on scaffold elements.
+- Spacer, divider, image, paragraph, heading, list, and button block structures.
 
-Avoid:
+Do not reimplement modules in a separate handcrafted HTML system.
 
-- Fragile live overlays unless the structure is proven safe
-- Complex CSS positioning
-- Unsupported CSS that breaks common email clients
-- Depending on external stylesheets
-- Rebuilding locked Beefree-generated footers from memory
+## Row Model
 
-## Calibration Required
+Top-level modules are row-table ranges. A row table is identified by class tokens `row` and `row-N`.
 
-When the user provides the Beefree-generated Rider sample, compare this provisional guidance against the real HTML and update this file with observed patterns:
+Marker rows use colored backgrounds and text labels to define module boundaries. They are part of the authoring scaffold only and must be removed from generated output.
 
-- Wrapper tables
-- Row and column structure
-- Mobile classes
-- Spacer technique
-- Button markup
-- Image block markup
-- Conditional Outlook code
-- Footer attachment point
+Runtime extraction must use structured HTML parsing. Regular-expression splitting is not acceptable for production row extraction because it risks breaking nested tables, Outlook conditionals, and Beefree class structure.
+
+## Source Files
+
+- `templates/scaffold/rider-scaffolding.source.html`: immutable provenance copy of the supplied Beefree export.
+- `templates/scaffold/rider-scaffolding.canonical.html`: runtime source with typo corrections and outside-broker marker terminology.
+
+The Desktop source file supplied by the user is not modified.

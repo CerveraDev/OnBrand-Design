@@ -24,10 +24,10 @@ Footer insertion points must be calibrated from the supplied sample HTML and foo
 Use clear variant labels:
 
 - branded
-- broker-neutral
+- outside-broker-customizable
 - agent name or agent number
 
-Avoid ambiguous labels such as "unbranded" in internal filenames when "broker-neutral" is more precise.
+Avoid ambiguous labels such as "unbranded" in internal filenames.
 
 ## Portability
 

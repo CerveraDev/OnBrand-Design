@@ -27,13 +27,17 @@ Run QA before delivery.
 ## Footer Variant Checks
 
 - Branded version uses branded footer.
-- Broker-neutral version removes sales attribution and direct contact ownership.
-- Each in-house agent version uses the correct agent footer.
-- Locked footer HTML was not rewritten unless requested.
+- Outside-broker customizable version preserves Rider branding/legal content and exposes broker headshot, name, title, phone, and email fields.
+- Each in-house agent version uses an active JSON record from `data/agents/index.json`.
+- No invented agent or outside-broker contact data appears.
+- Footer scaffold markup was not rewritten unless requested.
 
 ## HTML Checks
 
-- Uses Beefree-style table structure.
+- Uses the canonical Beefree scaffold table structure.
+- The canonical typo corrections are present: `REQUEST MORE INFORMATION` and `ARTS`.
+- No generated output contains marker rows, marker labels, `#55ebb9`, `#ff81fb`, or marker-only `#393d47`.
+- Row 1 shared custom CSS, head CSS, linked fonts, Outlook/VML conditionals, outer wrapper, responsive behavior, original row classes, and complete table structures are preserved.
 - Avoids fragile CSS where possible.
 - Complex overlays are flattened into images unless a safe live structure is known.
 - Footer insertion did not break document structure.

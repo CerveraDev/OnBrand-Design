@@ -1,51 +1,45 @@
 # Footers
 
-Footer HTML is locked by default. Do not rewrite, restyle, or reinterpret footer partials unless the user explicitly requests it.
+Footer HTML is scaffold-owned by default. Do not rewrite, restyle, or reinterpret footer modules unless the user explicitly requests it.
 
 ## Footer Types
 
-1. Branded Rider Residences footer
-2. Broker-neutral outside-agent footer
-3. Individual in-house agent footers
+1. Branded Rider footer: content rows 62-69.
+2. Outside-broker customizable footer: content rows 72-79.
+3. In-house agent footer: content rows 82-89.
 
-## Broker-Neutral Definition
+The paired marker rows identify module boundaries but must never ship in generated emails.
 
-Broker-neutral does not mean removing Rider project identity from the entire email.
+## Outside-Broker Customizable Definition
 
-It means removing sales attribution and direct contact ownership that would prevent an outside broker from using the email as their own marketing piece, including:
+The former "unbranded footer" is now the outside-broker customizable footer.
 
-- Phone numbers
-- Email addresses
-- Web addresses
-- Sales team logos
-- Agent details
-- Any direct routing to an in-house sales team
+This footer is not a contact-free broker-neutral footer and does not remove Rider project identity, developer branding, Equal Housing Opportunity marks, pricing language, legal copy, or required disclaimers. It provides a personalization area for a non-in-house broker:
 
-## Expected Footer Files
+- Headshot
+- Name
+- Title
+- Phone
+- Email
 
-Place final footer partials here when available:
+If outside-broker data is not supplied, keep clear placeholders rather than inventing contact details.
 
-```text
-assets/footers/
-├── branded-footer.html
-├── broker-neutral-footer.html
-└── agents/
-    ├── agent-01-footer.html
-    ├── agent-02-footer.html
-    ├── agent-03-footer.html
-    ├── agent-04-footer.html
-    ├── agent-05-footer.html
-    └── agent-06-footer.html
-```
+## In-House Agent Data
 
-Agent filenames may be renamed to actual agent names once the team list is supplied.
+Use one JSON record per in-house agent in `data/agents/`. The shared schema is `data/agents/agent.schema.json`, and `data/agents/index.json` defines active agents and deterministic output order.
+
+Current factual record:
+
+- `jake-lecce.json`: Jake Lecce, Sales Director, `305 432 9969`, `jake@theriderresidences.com`, and the Beefree-hosted Jake headshot from the scaffold.
+
+Do not fabricate additional agents. Add future agents only from verified source material.
 
 ## Default Variant Set
 
 Unless the user says otherwise, deliver:
 
-- Branded version
-- Broker-neutral outside-agent version
-- One version per available in-house agent footer
+- Branded version.
+- Outside-broker customizable version.
+- One version per active in-house agent record.
 
 The email body should remain consistent across variants unless the user requests body-level differences.

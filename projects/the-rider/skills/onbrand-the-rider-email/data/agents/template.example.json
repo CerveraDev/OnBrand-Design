@@ -1,0 +1,11 @@
+{
+  "id": "first-last",
+  "display_name": "First Last",
+  "title": "Agent Title",
+  "phone": "000 000 0000",
+  "email": "agent@example.com",
+  "headshot": {
+    "src": "https://example.com/path/to/headshot.jpg",
+    "alt": "First Last"
+  }
+}

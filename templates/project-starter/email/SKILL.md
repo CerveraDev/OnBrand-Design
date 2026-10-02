@@ -79,10 +79,10 @@ After the user provides the Beefree-generated __PROJECT_NAME__ sample HTML, perf
 Unless the user explicitly narrows the deliverable, a completed __PROJECT_NAME__ campaign should produce:
 
 - Branded __PROJECT_NAME__ version
-- Broker-neutral outside-agent version
+- Outside-broker customizable version
 - One in-house agent version for each provided __PROJECT_NAME__ agent footer
 
-The broker-neutral version does not remove __PROJECT_NAME__ project identity. It removes sales attribution and direct contact ownership, such as phone numbers, email addresses, web addresses, sales team logos, and agent details that would prevent an outside broker from using the piece.
+The outside-broker customizable version does not remove __PROJECT_NAME__ project identity, project branding, or required legal content. It replaces in-house contact ownership with supplied outside-broker personalization or clear placeholders for headshot, name, title, phone, and email.
 
 ## References
 

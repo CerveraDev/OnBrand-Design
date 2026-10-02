@@ -12,10 +12,11 @@ Use this mode when the user already knows the campaign, audience, CTA, and desir
 6. Run [copy-quality.md](copy-quality.md), preserving approved facts and project voice.
 7. Present final copy for approval when the request or campaign sensitivity calls for it.
 8. Build final HTML only after any required copy, creative, or image approvals.
-9. Generate all required footer variants.
-10. Copy every final approved image used into the campaign package.
-11. Create the asset manifest, verify the HTML references, and run QA.
-12. Deliver the campaign folder and matching ZIP.
+9. Compose approved rows from the canonical scaffold and remove marker rows.
+10. Generate all required footer variants: branded, outside-broker customizable, and active in-house agents.
+11. Copy every final approved image used into the campaign package.
+12. Create the asset manifest, verify the HTML references, and run QA.
+13. Deliver the campaign folder and matching ZIP.
 
 ## Concept Development
 
@@ -37,6 +38,8 @@ After the user chooses or revises a direction, continue as a directed build. App
 
 A campaign is not complete when only HTML files have been generated. Complete the portable distribution package described in [distribution-package.md](distribution-package.md), including all HTML variants, final used images, an asset manifest, and a matching ZIP archive.
 
+HTML generation/packaging is still a workflow contract until the runtime assembler is implemented. Do not claim an end-to-end campaign package exists unless the files have actually been generated and verified.
+
 ## Approval Checkpoints
 
 Use approval checkpoints when:
@@ -48,3 +51,15 @@ Use approval checkpoints when:
 - The campaign carries higher brand, broker, or compliance sensitivity.
 
 Do not require approval for every small copy adjustment unless the user asks for that workflow.
+
+## Agent Variant Workflow
+
+For in-house agent variants:
+
+1. Read `data/agents/index.json`.
+2. Load each active record in `output_order`.
+3. Validate the JSON shape against `data/agents/agent.schema.json`.
+4. Populate only the agent fields represented in the scaffold footer.
+5. Do not invent missing headshots, names, titles, phone numbers, or emails.
+
+For outside-broker customizable variants, use supplied outside-broker data when available. Otherwise keep placeholders for the broker headshot, name, title, phone, and email while preserving Rider project branding and legal content.

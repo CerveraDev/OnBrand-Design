@@ -6,7 +6,7 @@ Expected structure:
 
 ```text
 branded-footer.html
-broker-neutral-footer.html
+outside-broker-customizable-footer.html
 agents/
 ```
 

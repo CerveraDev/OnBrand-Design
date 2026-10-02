@@ -8,7 +8,7 @@ Every completed Rider campaign must be delivered as both an ordinary folder and 
 campaign-slug/
 |-- html/
 |   |-- campaign-slug-branded.html
-|   |-- campaign-slug-broker-neutral.html
+|   |-- campaign-slug-outside-broker-customizable.html
 |   `-- campaign-slug-agent-name.html
 |-- images/
 |   |-- hero.jpg
@@ -16,7 +16,7 @@ campaign-slug/
 `-- asset-manifest.json
 ```
 
-Create one agent HTML file for each available in-house agent footer. Use concise lowercase filenames with hyphens. The final ZIP must be named `campaign-slug.zip` and contain the top-level `campaign-slug/` directory.
+Create one agent HTML file for each active in-house agent record. Use concise lowercase filenames with hyphens. The final ZIP must be named `campaign-slug.zip` and contain the top-level `campaign-slug/` directory.
 
 ## Image Collection
 

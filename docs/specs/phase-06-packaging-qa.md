@@ -25,4 +25,4 @@ Deliver a complete, traceable campaign folder and ZIP that the user's team can d
 - Unzipping on another computer preserves the expected folder structure.
 - Every manifest entry maps to a real file or documented external URL.
 - No secret, source-corpus path, temporary path, or rejected image is present.
-- Branded, broker-neutral, and all agent variants pass footer and CTA checks.
+- Branded, outside-broker customizable, and all agent variants pass footer and CTA checks.

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://onbrand.design/projects/the-rider/email/agent.schema.json",
+  "title": "Rider In-House Agent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "display_name",
+    "title",
+    "phone",
+    "email",
+    "headshot"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "phone": {
+      "type": "string",
+      "minLength": 1
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "headshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "src",
+        "alt"
+      ],
+      "properties": {
+        "src": {
+          "type": "string",
+          "minLength": 1
+        },
+        "alt": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
