@@ -84,6 +84,8 @@ Unless the user explicitly narrows the deliverable, a completed __PROJECT_NAME__
 
 The outside-broker customizable version does not remove __PROJECT_NAME__ project identity, project branding, or required legal content. It replaces in-house contact ownership with supplied outside-broker personalization or clear placeholders for headshot, name, title, phone, and email.
 
+In-house agent variants load one factual JSON record per active agent. Resolve each stable headshot asset ID through the validated project manifest and enforce the configured media type, approval label, and agent-assets path before rendering or packaging it.
+
 ## References
 
 - [references/workflow.md](references/workflow.md): end-to-end campaign flow

@@ -1,6 +1,12 @@
 import unittest
 
-from tools.asset_selection import ManifestError, SelectionNeeds, select_candidates, validate_manifest
+from tools.asset_selection import (
+    ManifestError,
+    SelectionNeeds,
+    resolve_manifest_asset,
+    select_candidates,
+    validate_manifest,
+)
 
 
 def asset(
@@ -25,6 +31,57 @@ def asset(
 
 
 class AssetSelectionTests(unittest.TestCase):
+    def test_resolves_approved_asset_with_runtime_boundaries(self):
+        manifest = validate_manifest(
+            [
+                asset(
+                    "agent.jpg",
+                    "id:agent",
+                    "/20. people/in-house agents/agent.jpg",
+                    category=["people", "in-house-agent", "headshot"],
+                    approved_for=["agent-footer"],
+                )
+            ]
+        )
+
+        resolved = resolve_manifest_asset(
+            manifest,
+            "id:agent",
+            media_type="image",
+            required_approval="agent-footer",
+            required_path_prefix="/20. People/In-house Agents",
+        )
+
+        self.assertEqual(resolved["filename"], "agent.jpg")
+
+    def test_asset_resolution_rejects_wrong_approval_or_path(self):
+        manifest = validate_manifest(
+            [
+                asset(
+                    "developer.jpg",
+                    "id:developer",
+                    "/20. people/diego ojeda/developer.jpg",
+                    category=["people", "developer", "likeness-reference"],
+                    approved_for=["image-generation-reference"],
+                )
+            ]
+        )
+
+        with self.assertRaisesRegex(ManifestError, "not approved for agent-footer"):
+            resolve_manifest_asset(
+                manifest,
+                "id:developer",
+                media_type="image",
+                required_approval="agent-footer",
+            )
+        with self.assertRaisesRegex(ManifestError, "outside required path"):
+            resolve_manifest_asset(
+                manifest,
+                "id:developer",
+                media_type="image",
+                required_path_prefix="/20. People/In-house Agents",
+            )
+
     def test_valid_selection_scores_and_shortlists_candidates(self):
         manifest = validate_manifest(
             [

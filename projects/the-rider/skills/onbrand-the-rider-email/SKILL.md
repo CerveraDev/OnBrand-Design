@@ -83,7 +83,7 @@ Unless the user explicitly narrows the deliverable, a completed Rider campaign s
 
 The outside-broker customizable version does not remove Rider project identity, developer/legal content, or the campaign footer framework. It replaces in-house contact ownership with placeholders or supplied outside-broker data for headshot, name, title, phone, and email.
 
-In-house agent variants load factual records from [data/agents](data/agents). Each in-house agent has one JSON record; [data/agents/index.json](data/agents/index.json) defines the active set and deterministic output order. Do not invent missing agent facts.
+In-house agent variants load factual records from [data/agents](data/agents). Each in-house agent has one JSON record; [data/agents/index.json](data/agents/index.json) defines the active set and deterministic output order. Resolve each `headshot.asset_id` through the validated manifest and require an image under `/20. People/In-house Agents/` approved for `agent-footer`. Do not invent missing agent facts or substitute images by filename.
 
 ## References
 

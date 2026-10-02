@@ -30,12 +30,14 @@
 - Formalized 13 Rider scaffold module boundaries, marker exclusion rules, brand palette, typography, and footer contracts.
 - Added one JSON record per in-house agent, a shared schema, and a deterministic active-agent index for Rider agent variants.
 - Renamed the former unbranded footer workflow to outside-broker customizable and preserved Rider/legal footer content.
+- Synchronized the reorganized `20. People` Dropbox library and registered all six verified Rider in-house agents with manifest-backed headshots.
+- Restricted in-house headshots to `agent-footer` approval and Diego Ojeda likeness references to the explicit image-generation workflow.
 
 ## Project Portfolio
 
 | Project | Status | Next requirement |
 |---|---|---|
-| The Rider | In progress | Public manifest/cache configuration, asset download packaging, and runtime HTML assembly |
+| The Rider | In progress | Public manifest/cache configuration, headshot download packaging, and runtime HTML assembly |
 | Cassia | Scaffold | Cassia brand materials, asset catalog, HTML, and footers |
 
 ## In Progress

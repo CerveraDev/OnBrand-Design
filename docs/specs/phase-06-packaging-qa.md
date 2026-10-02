@@ -19,6 +19,7 @@ Deliver a complete, traceable campaign folder and ZIP that the user's team can d
 - PACKAGE-007: Open representative HTML files and verify assets render.
 - PACKAGE-008: Create the ZIP only after folder validation passes.
 - PACKAGE-009: Report limitations rather than calling a package self-contained when external assets remain.
+- PACKAGE-010: Copy each resolved agent headshot into the package and record its canonical manifest identity and variant usage.
 
 ## Acceptance Criteria
 

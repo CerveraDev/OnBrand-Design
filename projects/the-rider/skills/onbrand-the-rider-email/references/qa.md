@@ -30,6 +30,8 @@ Run QA before delivery.
 - Outside-broker customizable version preserves Rider branding/legal content and exposes broker headshot, name, title, phone, and email fields.
 - Each in-house agent version uses an active JSON record from `data/agents/index.json`.
 - No invented agent or outside-broker contact data appears.
+- Every in-house headshot resolves by exact manifest `dropbox_id` to an image under `/20. People/In-house Agents/` approved for `agent-footer`.
+- Diego Ojeda likeness references never appear in an agent footer.
 - Footer scaffold markup was not rewritten unless requested.
 
 ## HTML Checks

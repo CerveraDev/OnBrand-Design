@@ -59,7 +59,11 @@ For in-house agent variants:
 1. Read `data/agents/index.json`.
 2. Load each active record in `output_order`.
 3. Validate the JSON shape against `data/agents/agent.schema.json`.
-4. Populate only the agent fields represented in the scaffold footer.
-5. Do not invent missing headshots, names, titles, phone numbers, or emails.
+4. Resolve `headshot.asset_id` through the validated master manifest.
+5. Require an image under `/20. People/In-house Agents/` with `agent-footer` in `approved_for`.
+6. Download the resolved headshot into the campaign package and record its manifest identity and source URL.
+7. Populate only the agent fields represented in the scaffold footer.
+8. Fail clearly if the record or asset is missing, ambiguous, the wrong media type, outside the required folder, or not approved.
+9. Do not invent missing headshots, names, titles, phone numbers, or emails.
 
 For outside-broker customizable variants, use supplied outside-broker data when available. Otherwise keep placeholders for the broker headshot, name, title, phone, and email while preserving Rider project branding and legal content.

@@ -16,7 +16,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Focused asset-selection tests for schema strictness, approval exclusion, category overlap, deterministic ordering, duplicate filenames, and missing optional metadata.
 - Rider Beefree scaffold source/canonical template files, with canonical typo corrections for `REQUEST MORE INFORMAITON` and `ARTTS`.
 - `tools.email_scaffold` parser utilities for row parsing, marker pairing, marker exclusion, canonical text correction, and color analysis.
-- Rider agent JSON schema, active-agent index, Jake Lecce factual record, and neutral future-agent template.
+- Rider agent JSON schema, six-agent active index and factual roster, and neutral future-agent template.
 - Focused Rider scaffold and agent-data tests.
 
 ### Changed
@@ -24,6 +24,8 @@ All notable project changes are recorded here. Governance decisions and operatio
 - The Rider email skill and neutral project starter now describe manifest-backed asset selection, shortlist approval, and the boundary between existing assets and the separate image-generation workflow.
 - The former unbranded/broker-neutral footer workflow is now the outside-broker customizable footer workflow.
 - Rider brand, email design system, module, footer, Beefree structure, HTML assembly, QA, and calibration references are calibrated from the supplied scaffold.
+- Agent headshots now use canonical manifest `dropbox_id` references instead of direct URLs, with explicit path, media-type, and `agent-footer` approval requirements.
+- The reorganized `20. People` manifest entries distinguish in-house footer headshots from Diego Ojeda likeness references reserved for explicit image generation.
 
 ### Validated
 
@@ -31,6 +33,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 - The refresh-authenticated synchronization preserved all 195 records, including 191 records with curated `category` and `approved_for` values, with zero additions or removals.
 - Asset-selection unit tests pass with Python stdlib `unittest`.
 - Rider scaffold and agent-data unit tests pass with Python stdlib `unittest`.
+- Live Dropbox synchronization found 205 assets: 10 added, zero removed, and 195 preserved.
 
 ## [0.1.0] - 2026-09-30
 

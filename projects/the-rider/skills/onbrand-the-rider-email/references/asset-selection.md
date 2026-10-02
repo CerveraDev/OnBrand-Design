@@ -27,6 +27,8 @@ python3 -m tools.asset_selection.select_assets \
 
 The selector validates the manifest before returning candidates. It rejects malformed curated metadata, including non-array `category` or `approved_for` values, so manual classifications are fixed intentionally rather than coerced.
 
+Agent headshots are resolved by exact `dropbox_id`, not shortlisted by filename. Require `media_type=image`, `approved_for=agent-footer`, and the `/20. People/In-house Agents/` path boundary. Diego Ojeda likeness references use `image-generation-reference` and are never valid agent-footer assets.
+
 ## Selection Criteria
 
 Choose images that support:

@@ -5,7 +5,7 @@
   "phone": "000 000 0000",
   "email": "agent@example.com",
   "headshot": {
-    "src": "https://example.com/path/to/headshot.jpg",
-    "alt": "First Last"
+    "asset_id": "id:replace-with-dropbox-id",
+    "alt": "First Last, Agent Title"
   }
 }

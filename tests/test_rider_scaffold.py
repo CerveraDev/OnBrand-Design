@@ -81,14 +81,20 @@ class RiderScaffoldTests(unittest.TestCase):
 
 
 class RiderAgentDataTests(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        cls.canonical_html = (SCAFFOLD_DIR / "rider-scaffolding.canonical.html").read_text()
+    EXPECTED = {
+        "jake-lecce": ("Jake Lecce", "Sales Director", "+1 917 510 6255", "Jake@TheRiderResidences.com", "id:31E0v0XEN2IAAAAAAAABjw"),
+        "angelica-cruz": ("Angelica Cruz", "In-house Sales Agent", "+1 786 329 1549", "Angelica@TheRiderResidences.com", "id:31E0v0XEN2IAAAAAAAABkQ"),
+        "julian-oliveros": ("Julian Oliveros", "In-house Sales Agent", "+1 917 510 6255", "Julian@TheRiderResidences.com", "id:31E0v0XEN2IAAAAAAAABkg"),
+        "omar-santana": ("Omar Santana", "In-house Sales Agent", "+1 305 797 6337", "Omar@TheRiderResidences.com", "id:31E0v0XEN2IAAAAAAAABlA"),
+        "pablo-rodriguez": ("Pablo Rodriguez", "In-house Sales Agent", "+1 561 980 6876", "Pablo@TheRiderResidences.com", "id:31E0v0XEN2IAAAAAAAABkA"),
+        "yessika-arevalo": ("Yessika Arevalo", "In-house Sales Agent", "+1 786 277 6103", "Yessika@TheRiderResidences.com", "id:31E0v0XEN2IAAAAAAAABkw"),
+    }
 
     def test_agent_index_is_deterministic_and_references_existing_records(self):
         index = json.loads((AGENTS_DIR / "index.json").read_text())
-        self.assertEqual(index["active_agent_ids"], ["jake-lecce"])
-        self.assertEqual(index["output_order"], ["jake-lecce"])
+        expected_order = list(self.EXPECTED)
+        self.assertEqual(index["active_agent_ids"], expected_order)
+        self.assertEqual(index["output_order"], expected_order)
         for agent_id in index["output_order"]:
             self.assertIn(agent_id, index["active_agent_ids"])
             self.assertTrue((AGENTS_DIR / f"{agent_id}.json").exists())
@@ -106,16 +112,22 @@ class RiderAgentDataTests(unittest.TestCase):
             self.assertLessEqual(required, set(agent), path.name)
             self.assertRegex(agent["id"], r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
             self.assertRegex(agent["email"], email_re)
-            self.assertIsInstance(agent["headshot"]["src"], str)
-            self.assertTrue(agent["headshot"]["src"])
+            self.assertRegex(agent["headshot"]["asset_id"], r"^id:.+")
+            self.assertNotIn("src", agent["headshot"])
 
-    def test_jake_record_uses_only_scaffold_facts(self):
-        agent = json.loads((AGENTS_DIR / "jake-lecce.json").read_text())
-        self.assertEqual(agent["display_name"], "Jake Lecce")
-        self.assertEqual(agent["title"], "Sales Director")
-        self.assertEqual(agent["phone"], "305 432 9969")
-        self.assertEqual(agent["email"], "jake@theriderresidences.com")
-        self.assertIn(agent["headshot"]["src"], self.canonical_html)
+    def test_agent_records_match_verified_roster(self):
+        for agent_id, expected in self.EXPECTED.items():
+            agent = json.loads((AGENTS_DIR / f"{agent_id}.json").read_text())
+            actual = (
+                agent["display_name"],
+                agent["title"],
+                agent["phone"],
+                agent["email"],
+                agent["headshot"]["asset_id"],
+            )
+            self.assertEqual(actual, expected)
+        julian = json.loads((AGENTS_DIR / "julian-oliveros.json").read_text())
+        self.assertEqual(julian["headshot"]["alt"], "Julian Oliveros, In-house Sales Agent")
 
 
 if __name__ == "__main__":

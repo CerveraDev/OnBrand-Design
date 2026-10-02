@@ -45,6 +45,6 @@ Every Rider email must include:
 - At least one hero/header module appropriate to the campaign.
 - One footer module: branded, outside-broker customizable, or in-house agent.
 
-For in-house agent variants, populate the agent area from `data/agents/index.json` and one JSON record per active agent. The current factual scaffold record is Jake Lecce only.
+For in-house agent variants, populate the agent area from `data/agents/index.json` and one JSON record per active agent. The active roster contains six user-verified records. Resolve each headshot by canonical manifest `dropbox_id` and enforce the agent-footer approval and folder boundary.
 
 For outside-broker variants, expose customization fields for headshot, name, title, phone, and email. Keep Rider project branding, developer/legal content, Equal Housing Opportunity marks, and footer legal copy intact.

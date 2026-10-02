@@ -18,6 +18,7 @@ Assemble approved content and assets into Beefree-compatible project HTML, then 
 - HTML-006: Keep project branding and required legal content in outside-broker customizable variants while replacing in-house contact ownership with supplied broker personalization or placeholders.
 - HTML-007: Produce deterministic, descriptive filenames.
 - HTML-008: Use relative packaged asset paths for review and documented hosted URLs for deployment when available.
+- HTML-009: Resolve each in-house agent headshot by exact manifest `dropbox_id` and require an image under the configured in-house-agent path approved for the footer role.
 
 ## Acceptance Criteria
 
@@ -25,3 +26,4 @@ Assemble approved content and assets into Beefree-compatible project HTML, then 
 - Footer markup remains byte-identical to its approved partial where insertion permits.
 - HTML contains no absolute local paths or invented destinations.
 - Representative desktop/mobile rendering and Outlook-oriented structural checks pass.
+- Every active-agent variant resolves exactly one approved headshot; likeness-reference assets cannot enter footer variants.

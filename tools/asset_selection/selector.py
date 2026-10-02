@@ -216,6 +216,45 @@ def select_candidates(assets, needs):
     }
 
 
+def resolve_manifest_asset(
+    assets,
+    asset_id,
+    *,
+    media_type="any",
+    required_approval="",
+    required_path_prefix="",
+):
+    """Resolve one manifest asset and enforce its intended runtime boundary."""
+
+    matches = [asset for asset in assets if asset["dropbox_id"] == asset_id]
+    if not matches:
+        raise ManifestError(f"Manifest asset not found: {asset_id}")
+    if len(matches) > 1:
+        raise ManifestError(f"Manifest asset identity is ambiguous: {asset_id}")
+
+    asset = matches[0]
+    if media_type != "any" and asset["media_type"] != media_type:
+        raise ManifestError(
+            f"Manifest asset {asset_id} has media type {asset['media_type']}, not {media_type}"
+        )
+
+    if required_approval:
+        approval = normalize_value(required_approval)
+        if approval not in normalize_values(asset["approved_for"]):
+            raise ManifestError(
+                f"Manifest asset {asset_id} is not approved for {required_approval}"
+            )
+
+    if required_path_prefix:
+        prefix = required_path_prefix.rstrip("/").lower() + "/"
+        if not asset["dropbox_path"].lower().startswith(prefix):
+            raise ManifestError(
+                f"Manifest asset {asset_id} is outside required path {required_path_prefix}"
+            )
+
+    return asset
+
+
 def exclusion_reason(asset, media_type, required_approvals, wanted_categories, wanted_orientation):
     if media_type != "any" and asset["media_type"] != media_type:
         return f"media type is {asset['media_type']}, not {media_type}"
