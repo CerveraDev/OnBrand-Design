@@ -5,7 +5,7 @@
 **Author:** Felix Mendoza  
 **Version:** 0.1.0  
 **Updated:** 2026-10-02
-**Overall status:** Multi-project foundation complete; Rider scaffold calibration and manifest selection foundations in progress
+**Overall status:** Multi-project foundation complete; Rider campaign runtime implemented and smoke-tested
 
 ## Completed
 
@@ -32,19 +32,22 @@
 - Renamed the former unbranded footer workflow to outside-broker customizable and preserved Rider/legal footer content.
 - Synchronized the reorganized `20. People` Dropbox library and registered all six verified Rider in-house agents with manifest-backed headshots.
 - Restricted in-house headshots to `agent-footer` approval and Diego Ojeda likeness references to the explicit image-generation workflow.
+- Added the Rider campaign JSON schema, deterministic scaffold slot map, module composer, footer renderer, portable asset downloader, package generator, and blocking QA runtime.
+- Completed a non-production smoke build with branded, outside-broker customizable, and six agent variants.
+- Verified 221 runtime QA checks, 18 packaged assets (17 images and one PDF), eight HTML files, and a self-contained ZIP.
 
 ## Project Portfolio
 
 | Project | Status | Next requirement |
 |---|---|---|
-| The Rider | In progress | Public manifest/cache configuration, headshot download packaging, and runtime HTML assembly |
+| The Rider | Runtime ready for pilot campaigns | Public manifest/cache configuration and human compatibility review |
 | Cassia | Scaffold | Cassia brand materials, asset catalog, HTML, and footers |
 
 ## In Progress
 
 - Configure The Rider's stable public manifest URL or validated local cache fallback.
-- Add approved-asset download/copy behavior for final campaign packages.
-- Implement the runtime HTML assembler/package generator that composes scaffold rows and produces verified variants.
+- Run the first user-approved campaign through the Rider runtime.
+- Perform representative visual and email-client compatibility review beyond structural QA.
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 
 ## Waiting On Project Inputs
@@ -54,8 +57,8 @@
 
 ## Release Blockers
 
-- Choose GitHub organization/owner, repository URL, visibility, support contact, and CODEOWNERS identities.
+- Choose support contact and CODEOWNERS identities.
 
 ## Next Milestone
 
-Complete The Rider runtime HTML assembly and campaign-package provenance, then use the resulting implementation and tests to harden the shared project starter before onboarding additional developments.
+Pilot the Rider runtime with approved campaign content, then generalize the proven architecture into the shared project starter before onboarding additional developments.

@@ -1,6 +1,6 @@
 # Phase 6: Distribution Packaging And QA
 
-**Status:** Partially specified  
+**Status:** Implemented for The Rider
 **Target:** 0.7.0  
 **Depends on:** Phase 5
 
@@ -27,3 +27,7 @@ Deliver a complete, traceable campaign folder and ZIP that the user's team can d
 - Every manifest entry maps to a real file or documented external URL.
 - No secret, source-corpus path, temporary path, or rejected image is present.
 - Branded, outside-broker customizable, and all agent variants pass footer and CTA checks.
+
+## Rider Implementation
+
+The Rider runtime downloads only images referenced by rendered variants, gives each file a deterministic checksum-based name, rewrites review HTML to portable relative paths, records source identity and variant usage in `asset-manifest.json`, writes `qa-report.json`, and creates the ZIP only when every blocking check passes. The non-production smoke fixture generates eight variants and uses the ignored `campaign-output/` directory.

@@ -9,8 +9,8 @@ The roadmap applies to the framework and is executed independently for each proj
 | 2 | Beefree, brand, and template calibration | Ready | Scaffold calibrated | Waiting on assets |
 | 3 | Campaign strategy and copy system | Drafted | Drafted | Provisional |
 | 4 | Image-generation specialist | Drafted | Drafted | Provisional |
-| 5 | HTML assembly and footer variants | Planned | Contract defined | Waiting on Phase 2 |
-| 6 | Distribution packaging and QA | Partially specified | Planned | Planned |
+| 5 | HTML assembly and footer variants | Rider implementation complete | Implemented and tested | Waiting on Phase 2 |
+| 6 | Distribution packaging and QA | Rider implementation complete | Implemented and smoke-tested | Planned |
 | 7 | Portability, release, and team distribution | Planned | Planned | Planned |
 
 ## Framework Gate

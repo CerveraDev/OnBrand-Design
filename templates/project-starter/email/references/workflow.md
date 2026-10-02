@@ -37,6 +37,8 @@ After the user chooses or revises a direction, continue as a directed build. App
 
 A campaign is not complete when only HTML files have been generated. Complete the portable distribution package described in [distribution-package.md](distribution-package.md), including all HTML variants, final used images, an asset manifest, and a matching ZIP archive.
 
+If the calibrated project supplies a strict campaign schema and runtime, encode the approved campaign in that schema and require the runtime's blocking QA to pass. Do not substitute manual global replacements for typed project slots.
+
 ## Approval Checkpoints
 
 Use approval checkpoints when:

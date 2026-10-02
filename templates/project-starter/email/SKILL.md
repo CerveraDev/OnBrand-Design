@@ -28,6 +28,8 @@ This first draft is provisional. The user will later provide a Beefree-generated
 10. Assemble the campaign distribution package with all HTML variants and every final image they use.
 11. Run QA, create a ZIP archive, and deliver both the package folder and ZIP.
 
+When a calibrated project provides a runtime assembler and campaign schema, use that runtime as the required HTML and packaging path. Do not bypass a failed build with ad hoc string replacement or manual ZIP creation.
+
 ## Intake Modes
 
 Use directed build when the user already provides campaign type, audience, CTA, and output needs. Move quickly from brief to layout and HTML.

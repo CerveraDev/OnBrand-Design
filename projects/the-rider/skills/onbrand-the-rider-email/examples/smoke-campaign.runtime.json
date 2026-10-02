@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "campaign": {
+    "slug": "rider-runtime-smoke",
+    "title": "Rider Runtime Smoke Campaign",
+    "output_dir": "campaign-output/rider-runtime-smoke",
+    "subject": "Internal smoke test only",
+    "preview_text": "Non-production validation of the Rider runtime package."
+  },
+  "manifest": {
+    "path": "tools/dropbox-manifest/manifest.json"
+  },
+  "modules": [
+    {
+      "id": "TWO-COLUMN HEADER",
+      "variant": "default",
+      "slots": {
+        "headline": {
+          "kind": "text",
+          "value": "INTERNAL SMOKE TEST FOR THE RIDER RUNTIME"
+        },
+        "logo_link": {
+          "kind": "url",
+          "href": "https://theriderresidences.com"
+        }
+      }
+    },
+    {
+      "id": "HERO - DARK FRAMED LAYOUT",
+      "variant": "default",
+      "slots": {
+        "headline": {
+          "kind": "safe_rich_text",
+          "value": "INTERNAL REVIEW<br>DO NOT SEND"
+        }
+      }
+    },
+    {
+      "id": "BODY - DARK THEN LIGHT LAYOUT",
+      "variant": "default",
+      "slots": {
+        "primary_cta": {
+          "kind": "text",
+          "value": "REQUEST INTERNAL REVIEW"
+        }
+      }
+    }
+  ],
+  "variants": {
+    "branded": true,
+    "outside_broker": true,
+    "agents": "all"
+  },
+  "outside_broker": {
+    "name": "[OUTSIDE BROKER NAME]",
+    "title": "[OUTSIDE BROKER TITLE]",
+    "phone": "[OUTSIDE BROKER PHONE]",
+    "email": "[OUTSIDE BROKER EMAIL]",
+    "social": "[OUTSIDE BROKER SOCIAL]"
+  },
+  "documents": [
+    {
+      "asset_id": "id:31E0v0XEN2IAAAAAAAAA9Q",
+      "role": "internal-smoke-supporting-pdf"
+    }
+  ],
+  "deployment": {
+    "asset_mode": "relative-review"
+  }
+}

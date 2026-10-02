@@ -18,6 +18,9 @@ All notable project changes are recorded here. Governance decisions and operatio
 - `tools.email_scaffold` parser utilities for row parsing, marker pairing, marker exclusion, canonical text correction, and color analysis.
 - Rider agent JSON schema, six-agent active index and factual roster, and neutral future-agent template.
 - Focused Rider scaffold and agent-data tests.
+- Strict Rider campaign JSON schema and deterministic scaffold slot map.
+- Rider module composer, typed slot renderer, branded/outside-broker/agent footer renderer, used-asset downloader, checksum manifest, blocking QA report, and ZIP generator.
+- Non-production Rider runtime smoke fixture and focused runtime regression tests.
 
 ### Changed
 
@@ -26,6 +29,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Rider brand, email design system, module, footer, Beefree structure, HTML assembly, QA, and calibration references are calibrated from the supplied scaffold.
 - Agent headshots now use canonical manifest `dropbox_id` references instead of direct URLs, with explicit path, media-type, and `agent-footer` approval requirements.
 - The reorganized `20. People` manifest entries distinguish in-house footer headshots from Diego Ojeda likeness references reserved for explicit image generation.
+- The Rider email skill now requires the validated runtime path for HTML variants and distribution packages.
 
 ### Validated
 
@@ -34,6 +38,8 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Asset-selection unit tests pass with Python stdlib `unittest`.
 - Rider scaffold and agent-data unit tests pass with Python stdlib `unittest`.
 - Live Dropbox synchronization found 205 assets: 10 added, zero removed, and 195 preserved.
+- Rider runtime unit suite passes 29 tests.
+- End-to-end smoke generation passes 221 QA checks and produces eight HTML variants, 17 packaged images, one selected PDF, campaign metadata, an asset manifest, a QA report, and a ZIP.
 
 ## [0.1.0] - 2026-09-30
 

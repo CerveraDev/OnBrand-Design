@@ -47,6 +47,7 @@ Run QA before delivery.
 - Every relative local image reference resolves to a file inside the package.
 - Shared images are packaged once and referenced consistently across variants.
 - Any external image URLs or deployment substitutions are identified in the manifest.
+- `qa-report.json` reports every blocking runtime check as passed before the ZIP is created.
 
 ## Image Checks
 

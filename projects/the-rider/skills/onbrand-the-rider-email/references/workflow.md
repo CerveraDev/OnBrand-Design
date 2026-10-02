@@ -12,11 +12,10 @@ Use this mode when the user already knows the campaign, audience, CTA, and desir
 6. Run [copy-quality.md](copy-quality.md), preserving approved facts and project voice.
 7. Present final copy for approval when the request or campaign sensitivity calls for it.
 8. Build final HTML only after any required copy, creative, or image approvals.
-9. Compose approved rows from the canonical scaffold and remove marker rows.
-10. Generate all required footer variants: branded, outside-broker customizable, and active in-house agents.
-11. Copy every final approved image used into the campaign package.
-12. Create the asset manifest, verify the HTML references, and run QA.
-13. Deliver the campaign folder and matching ZIP.
+9. Write a strict campaign JSON file using the runtime schema and Rider slot map.
+10. Run `python3 -m tools.rider_campaign_runtime.cli <campaign.json>` from the repository root.
+11. Inspect the CLI summary and generated `qa-report.json`.
+12. Deliver the generated folder and ZIP only when QA passes.
 
 ## Concept Development
 
@@ -38,7 +37,7 @@ After the user chooses or revises a direction, continue as a directed build. App
 
 A campaign is not complete when only HTML files have been generated. Complete the portable distribution package described in [distribution-package.md](distribution-package.md), including all HTML variants, final used images, an asset manifest, and a matching ZIP archive.
 
-HTML generation/packaging is still a workflow contract until the runtime assembler is implemented. Do not claim an end-to-end campaign package exists unless the files have actually been generated and verified.
+HTML generation and packaging are implemented by `tools/rider_campaign_runtime/`. Do not claim an end-to-end campaign package exists unless the runtime generated the files, blocking QA passed, and the ZIP exists.
 
 ## Approval Checkpoints
 

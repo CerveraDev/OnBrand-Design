@@ -13,10 +13,18 @@ campaign-slug/
 |-- images/
 |   |-- hero.jpg
 |   `-- supporting-image.jpg
-`-- asset-manifest.json
+|-- documents/
+|   `-- selected-supporting-document.pdf
+|-- asset-manifest.json
+|-- campaign-metadata.json
+`-- qa-report.json
 ```
 
 Create one agent HTML file for each active in-house agent record. Use concise lowercase filenames with hyphens. The final ZIP must be named `campaign-slug.zip` and contain the top-level `campaign-slug/` directory.
+
+`campaign-metadata.json` preserves the approved subject line, preview text, ordered modules, and complete variant list for handoff.
+
+Create `documents/` only when the approved campaign explicitly selects one or more PDFs by manifest asset ID. Each PDF must be approved for body use and is recorded in the same asset manifest with checksum provenance.
 
 ## Image Collection
 
@@ -38,15 +46,13 @@ Relative image paths are suitable for package review but usually must become hos
 
 Create `asset-manifest.json` with:
 
-- Campaign name and package creation date
+- Campaign slug and title
 - Each packaged image filename
 - Image role, such as hero, logo, gallery, or footer
-- Original source path or source identifier
-- Whether the image is original, selected, generated, or edited
+- Original source URL, canonical manifest identity, and Dropbox path when applicable
 - HTML variants that use it
 - Relative package path
-- Final hosted URL when known
-- Notes about licensing, approval, or required deployment replacement when relevant
+- SHA-256 checksum and byte size
 
 Use valid JSON and stable relative paths. Do not include secrets or inaccessible temporary URLs.
 
@@ -61,5 +67,7 @@ Before creating the ZIP:
 5. Confirm the manifest matches the files and usage.
 6. Open representative HTML variants from the package and verify that images render.
 7. Create the ZIP only after the folder passes these checks.
+
+The Rider runtime performs these checks and writes `qa-report.json`. A blocked report prevents ZIP creation. Generate the package with `python3 -m tools.rider_campaign_runtime.cli <campaign.json>` rather than assembling delivery files manually.
 
 If an external asset cannot legally or technically be copied, leave its approved external URL intact and identify it clearly in the manifest. Do not claim the package is fully self-contained in that case.

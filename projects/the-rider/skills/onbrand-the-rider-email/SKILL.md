@@ -23,11 +23,10 @@ The canonical Beefree scaffold is available at [templates/scaffold/rider-scaffol
 5. Run the project-aware copy-quality pass before presenting copy for approval or building HTML.
 6. For existing imagery, load the configured Rider manifest and run deterministic asset selection before choosing images.
 7. If generated or edited imagery is needed, hand off to `onbrand-the-rider-image` before building HTML.
-8. Build the email body by composing validated rows from the canonical Rider scaffold, preserving head styles, Outlook/VML conditionals, row classes, table structure, and responsive behavior.
-9. Exclude authoring marker rows from generated emails.
-10. Add the appropriate scaffold footer module to produce required output variants.
-11. Assemble the campaign distribution package with all HTML variants and every final image they use.
-12. Run QA, create a ZIP archive, and deliver both the package folder and ZIP.
+8. Encode the approved campaign as a JSON document that conforms to `tools/rider_campaign_runtime/campaign.schema.json` and uses only slots declared in the Rider scaffold sidecar map.
+9. Run `python3 -m tools.rider_campaign_runtime.cli <campaign.json>` from the repository root.
+10. Treat a nonzero exit or blocked QA report as a failed build; do not hand-assemble around it or create a ZIP manually.
+11. Deliver the generated campaign folder and ZIP only after reviewing the runtime summary and `qa-report.json`.
 
 ## Intake Modes
 
@@ -71,6 +70,8 @@ Use the canonical Beefree scaffold as the structural compatibility benchmark. Pr
 
 Read [references/beefree-html-structure.md](references/beefree-html-structure.md) and [references/html-email.md](references/html-email.md) before producing final HTML.
 
+Use [templates/scaffold/rider-scaffolding.slot-map.json](templates/scaffold/rider-scaffolding.slot-map.json) as the deterministic editable-slot contract. Do not add a new slot by searching and replacing arbitrary scaffold text. A new slot requires a unique anchor, a typed operation, and a regression test.
+
 Read [references/distribution-package.md](references/distribution-package.md) before final delivery. Every completed campaign must be a portable folder plus a matching ZIP containing all HTML variants, the final images used by those files, and an asset manifest. Never move or modify source images in the Rider corpus; copy them into the campaign package.
 
 ## Output Variants
@@ -84,6 +85,12 @@ Unless the user explicitly narrows the deliverable, a completed Rider campaign s
 The outside-broker customizable version does not remove Rider project identity, developer/legal content, or the campaign footer framework. It replaces in-house contact ownership with placeholders or supplied outside-broker data for headshot, name, title, phone, and email.
 
 In-house agent variants load factual records from [data/agents](data/agents). Each in-house agent has one JSON record; [data/agents/index.json](data/agents/index.json) defines the active set and deterministic output order. Resolve each `headshot.asset_id` through the validated manifest and require an image under `/20. People/In-house Agents/` approved for `agent-footer`. Do not invent missing agent facts or substitute images by filename.
+
+## Runtime Contract
+
+The runtime is Rider-specific and lives at `tools/rider_campaign_runtime/`. Its strict campaign schema rejects unknown fields and unsafe URL combinations. Its package builder downloads only rendered assets, verifies checksums, records provenance and variant usage, writes machine-readable QA, and creates a ZIP only after blocking checks pass.
+
+Use `projects/the-rider/skills/onbrand-the-rider-email/examples/smoke-campaign.runtime.json` only as an internal non-production example. Replace its sample copy and module selection with approved campaign content; never send or deploy the smoke output.
 
 ## References
 

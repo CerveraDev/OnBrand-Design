@@ -30,7 +30,7 @@ The technical IDs include the project slug so multiple OnBrand Design projects c
 
 ## Current Projects
 
-- **The Rider:** first implementation; workflow, Dropbox catalog foundations, canonical Beefree scaffold calibration, footer contracts, and agent data architecture are active. Runtime HTML assembly and campaign packaging remain pending.
+- **The Rider:** first implementation; workflow, Dropbox catalog, canonical Beefree scaffold calibration, deterministic HTML assembly, footer variants, portable asset packaging, and blocking QA are implemented.
 - **Cassia:** generated project scaffold awaiting Cassia-specific brand assets, templates, footers, and asset catalog.
 
 ## Create Another Project
@@ -64,6 +64,8 @@ The generator creates a complete project folder from `templates/project-starter/
 
 `tools/asset_selection/` validates a local master manifest and returns deterministic, explained asset shortlists for project email skills. It does not refresh Dropbox, require credentials, download source assets, or choose a final campaign image without approval when top candidates are materially different.
 
+`tools/rider_campaign_runtime/` validates Rider campaign JSON, composes approved scaffold modules, renders branded/outside-broker/agent variants, packages only used images, runs blocking QA, and creates a portable ZIP. See its [runtime guide](tools/rider_campaign_runtime/README.md).
+
 ## Security
 
 Never commit `.env`, Dropbox tokens, app secrets, virtual environments, generated campaign packages, private campaign inputs, or unapproved project assets.
@@ -72,6 +74,6 @@ Never commit `.env`, Dropbox tokens, app secrets, virtual environments, generate
 
 The OnBrand Design source framework is licensed under the [Apache License 2.0](LICENSE). Project names, trademarks, logos, photographs, renderings, templates, and other campaign assets may carry separate rights and are not automatically licensed merely because they appear in or are referenced by a project package. See [NOTICE](NOTICE).
 
-## GitHub Readiness
+## Repository
 
-The directory is structured for GitHub but has not been initialized, committed, connected to a remote, or pushed. Repository URL, visibility, support contact, and GitHub owner/organization remain release decisions.
+The public source repository is [CerveraDev/OnBrand-Design](https://github.com/CerveraDev/OnBrand-Design). Project trademarks and assets remain subject to the rights described in [NOTICE](NOTICE).

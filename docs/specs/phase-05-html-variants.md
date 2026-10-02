@@ -1,6 +1,6 @@
 # Phase 5: HTML Assembly And Footer Variants
 
-**Status:** Planned  
+**Status:** Implemented for The Rider
 **Target:** 0.6.0  
 **Depends on:** Phases 1-4, especially Phase 2
 
@@ -27,3 +27,7 @@ Assemble approved content and assets into Beefree-compatible project HTML, then 
 - HTML contains no absolute local paths or invented destinations.
 - Representative desktop/mobile rendering and Outlook-oriented structural checks pass.
 - Every active-agent variant resolves exactly one approved headshot; likeness-reference assets cannot enter footer variants.
+
+## Rider Implementation
+
+`tools/rider_campaign_runtime/` validates campaign JSON, composes selected scaffold rows, applies deterministic typed slots from the Rider sidecar slot map, and appends exactly one footer per output. The runtime preserves the canonical document head and row 1, rejects unknown modules and slots, and supports relative review or explicitly configured hosted deployment URLs.
