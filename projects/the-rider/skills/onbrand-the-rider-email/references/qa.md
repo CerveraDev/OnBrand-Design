@@ -11,6 +11,7 @@ Run QA before delivery.
 - Images have appropriate alt text when possible.
 - Output variant names are clear.
 - Build mode, representative variant, effective variant scope, changed surfaces, and expansion reason are recorded in `campaign-metadata.json` and `qa-report.json`.
+- Composition Preview and Release Build record the approved composition plan in `campaign-metadata.json` and `qa-report.json`.
 - Composition Preview and ordinary Smoke Test builds render one representative variant; Release Build renders the full internal matrix.
 - Package contains both the campaign folder and matching ZIP.
 - Asset manifest accounts for every image reference in every delivered HTML file.
@@ -57,6 +58,15 @@ Run QA before delivery.
 - Asset URL localization is the only permitted packaging transformation inside an included static block.
 - No standalone header appears beside a hero classified as including its own header.
 - Static marker colors `#ffd675` and `#75edff` never appear in generated output.
+
+## Composition Checks
+
+- Stable module codes resolve to known Rider scaffold modules.
+- Selected module codes match the campaign modules in exact order.
+- Every static block has exactly one include/exclude decision.
+- Included static block codes appear exactly once in the selected module order.
+- Excluded static block codes are absent from the selected module order.
+- Composition Preview and Release Build fail if the approved composition plan is missing.
 
 ## Image Checks
 

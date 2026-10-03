@@ -11,15 +11,16 @@ Use this mode when the user already knows the campaign, audience, CTA, and desir
 5. Draft subject lines, preview text, headline, optional subheading, body copy, and CTA language.
 6. Run [copy-quality.md](copy-quality.md), preserving approved facts and project voice.
 7. Present final copy for approval when the request or campaign sensitivity calls for it.
-8. Build final HTML only after any required copy, creative, or image approvals.
-9. Present all static-block summaries and record an explicit include/exclude decision for each one.
-10. Confirm the exact ordered position of every included static block.
-11. Select a compatible header/hero structure; do not combine a standalone header with a hero that includes one.
-12. Choose the build mode explicitly: Composition Preview for a user-facing Design Proof, Smoke Test for representative technical validation, or Release Build for the full internal matrix.
-13. Write a strict campaign JSON file using the runtime schema, module metadata, and Rider slot map.
-14. Run `python3 -m tools.rider_campaign_runtime.cli <campaign.json>` from the repository root.
-15. Inspect the CLI summary and generated `qa-report.json`.
-16. Deliver the generated folder and ZIP only when QA passes.
+8. Generate Composition Preview review artifacts with `python3 -m tools.rider_campaign_runtime.cli catalog --output <review-folder>` when the user needs to choose among scaffold modules.
+9. Ask the user to approve exact module codes, every static-block include/exclude decision, static-block placement, and representative variant.
+10. Create an approved composition plan with `python3 -m tools.rider_campaign_runtime.cli plan --selection <selection.json> --output <composition-plan.json>`.
+11. Build final HTML only after any required copy, creative, composition, or image approvals.
+12. Select a compatible header/hero structure; do not combine a standalone header with a hero that includes one.
+13. Choose the build mode explicitly: Composition Preview for a user-facing Design Proof, Smoke Test for representative technical validation, or Release Build for the full internal matrix.
+14. Write a strict campaign JSON file using the runtime schema, module metadata, Rider slot map, and approved composition plan.
+15. Run `python3 -m tools.rider_campaign_runtime.cli <campaign.json>` from the repository root.
+16. Inspect the CLI summary and generated `qa-report.json`.
+17. Deliver the generated folder and ZIP only when QA passes.
 
 ## Concept Development
 
@@ -44,6 +45,8 @@ A campaign is not complete when only HTML files have been generated. Complete th
 HTML generation and packaging are implemented by `tools/rider_campaign_runtime/`. Do not claim an end-to-end campaign package exists unless the runtime generated the files, blocking QA passed, and the ZIP exists.
 
 Composition Preview and ordinary Smoke Test builds are complete for their mode when the representative package passes QA. They are not full Release Builds. Release Build is the mode that renders branded, outside-broker customizable, and all active in-house agent variants.
+
+Composition Preview and Release Build require an embedded approved `composition` plan. A technical Smoke Test may omit it only when the user explicitly requested a diagnostic run or the fixture is a known internal smoke.
 
 Smoke Test expands to all authorized variants only when `variant_policy` is `all` or `changed-surface-expanded`. Use `changed_surfaces` values such as `agent-roster`, `agent-data`, `agent-footer-assets`, `footer-renderer`, `footer-data`, or `scaffold-footer-structure` when that broader validation is required.
 

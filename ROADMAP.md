@@ -12,7 +12,7 @@ The roadmap applies to the framework and is executed independently for each proj
 | 5 | HTML assembly and footer variants | Rider implementation complete | Implemented and tested | Waiting on Phase 2 |
 | 6 | Distribution packaging and QA | Rider implementation complete | Implemented and smoke-tested | Planned |
 | 7 | Build modes | Rider implementation complete | Implemented and tested | Planned |
-| 8 | Composition Preview | Approved spec, not implemented | Planned | Planned |
+| 8 | Composition Preview | Rider implementation complete | Implemented and tested | Planned |
 | 9 | Grounded image generation | Approved spec, not implemented | Planned | Planned |
 | 10 | Copy allocation QA | Approved spec, not implemented | Planned | Planned |
 | 11 | Cross-platform compatibility | Approved spec, not implemented | Codex current; Claude Code planned | Planned |
@@ -55,6 +55,7 @@ The roadmap applies to the framework and is executed independently for each proj
 - Stable module codes and compatibility metadata exist before user selection.
 - Users approve exact modules, static blocks, image requirements, copy slots, and representative variant before expensive image work starts.
 - User-facing language uses Composition Preview or Design Proof; automated validation may continue to use Smoke Test.
+- The Rider runtime provides portable catalog and approved-plan CLI artifacts and requires approved plans for Composition Preview and Release Build.
 
 ## Image Grounding Gate
 

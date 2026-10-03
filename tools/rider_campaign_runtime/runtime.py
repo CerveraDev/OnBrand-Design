@@ -11,6 +11,7 @@ from tools.asset_selection import load_manifest
 
 from .agents import load_agents
 from .assets import create_zip, package_documents, rewrite_and_package_assets, write_asset_manifest
+from .composition import validate_composition_contract
 from .footer import render_agent_footer, render_branded_footer, render_outside_broker_footer
 from .qa import QAResult, run_qa, write_qa_report
 from .scaffold import (
@@ -61,6 +62,7 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
     spec = _normalize_local_image_sources(spec, base_dir)
     scaffold = load_scaffold(SCAFFOLD_PATH, SLOT_MAP_PATH, MODULE_METADATA_PATH)
     available = catalog(scaffold)
+    composition_metadata = validate_composition_contract(spec, scaffold)
     manifest_path = _resolve_path(base_dir, spec["manifest"]["path"])
     assets = load_manifest(manifest_path)
     manifest_assets = {asset["dropbox_id"]: asset for asset in assets}
@@ -202,6 +204,7 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
                 "modules": requested_module_ids,
                 "static_blocks": spec["static_blocks"],
                 "build": build_metadata,
+                "composition": composition_metadata or {},
                 "variants": sorted(rewritten_html),
             },
             indent=2,
@@ -219,6 +222,7 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
         static_blocks=spec["static_blocks"],
         static_content=static_content,
         build_metadata=build_metadata,
+        composition_metadata=composition_metadata,
     )
     qa_report = write_qa_report(package_dir / "qa-report.json", qa)
     zip_path = None

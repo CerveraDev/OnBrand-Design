@@ -22,7 +22,7 @@ campaign-slug/
 
 Composition Preview and ordinary Smoke Test builds render one representative HTML file. Release Build renders the full internal matrix, including one agent HTML file for each active in-house agent record. Use concise lowercase filenames with hyphens. The final ZIP must be named `campaign-slug.zip` and contain the top-level `campaign-slug/` directory.
 
-`campaign-metadata.json` preserves the approved subject line, preview text, ordered modules, build mode, representative variant, effective variant scope, expansion reason, and complete rendered variant list for handoff.
+`campaign-metadata.json` preserves the approved subject line, preview text, ordered modules, approved composition plan summary, build mode, representative variant, effective variant scope, expansion reason, and complete rendered variant list for handoff.
 
 Create `documents/` only when the approved campaign explicitly selects one or more PDFs by manifest asset ID. Each PDF must be approved for body use and is recorded in the same asset manifest with checksum provenance.
 

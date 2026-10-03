@@ -14,6 +14,7 @@ class QAResult:
     passed: bool
     checks: list[dict]
     build: dict | None = None
+    composition: dict | None = None
 
 
 def run_qa(
@@ -25,6 +26,7 @@ def run_qa(
     static_blocks: list[dict] | None = None,
     static_content: dict[str, str] | None = None,
     build_metadata: dict | None = None,
+    composition_metadata: dict | None = None,
 ) -> QAResult:
     checks: list[dict] = []
     static_blocks = static_blocks or []
@@ -76,6 +78,12 @@ def run_qa(
             metadata.get("build") == build_metadata,
             "campaign metadata records effective build mode and variant scope",
         )
+        _check(
+            checks,
+            "campaign-metadata-composition",
+            metadata.get("composition", {}) == (composition_metadata or {}),
+            "campaign metadata records approved composition plan",
+        )
     _check(checks, "asset-manifest", manifest_path.is_file(), "asset manifest exists")
     if manifest_path.is_file():
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -109,13 +117,23 @@ def run_qa(
         _check(checks, "manifest-covers-assets", package_files == paths, "asset manifest matches packaged asset files")
         _check(checks, "manifest-checksums", all(item.get("sha256") and item.get("size_bytes", 0) > 0 for item in manifest.get("assets", [])), "assets have checksums and sizes")
         _check(checks, "no-agent-diego", not any("diego ojeda" in item.get("dropbox_path", "").lower() for item in manifest.get("assets", []) if "agent" in item.get("role", "")), "Diego likeness assets excluded from agent footers")
-    return QAResult(passed=all(item["passed"] for item in checks), checks=checks, build=build_metadata)
+    return QAResult(
+        passed=all(item["passed"] for item in checks),
+        checks=checks,
+        build=build_metadata,
+        composition=composition_metadata,
+    )
 
 
 def write_qa_report(path: Path, result: QAResult) -> Path:
     path.write_text(
         json.dumps(
-            {"passed": result.passed, "build": result.build or {}, "checks": result.checks},
+            {
+                "passed": result.passed,
+                "build": result.build or {},
+                "composition": result.composition or {},
+                "checks": result.checks,
+            },
             indent=2,
             ensure_ascii=False,
         )

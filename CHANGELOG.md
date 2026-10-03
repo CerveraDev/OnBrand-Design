@@ -27,6 +27,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Approved planning specs for Phase 7 build modes, Phase 8 Composition Preview, Phase 9 grounded image generation, Phase 10 copy allocation QA, Phase 11 cross-platform compatibility, and deferred Phase 12 distribution profiles.
 - Compatibility and distribution-security plans documenting canonical-core adapter expectations, planned Claude Code support, and deferred broker/private package separation.
 - Rider build-mode contract for Composition Preview, Smoke Test, and Release Build, including explicit representative selection, changed-surface smoke expansion, metadata, QA reporting, and a release-build fixture.
+- Rider Composition Preview catalog and approved-plan workflow with stable module codes, isolated preview artifacts, selection-plan fixtures, runtime validation, metadata, and QA reporting.
 
 ### Changed
 
@@ -42,6 +43,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Rider runtime image slots accept safe local generated assets for reproducible fixtures, then package them as relative review assets.
 - Roadmap, PRD, status, and versioning records now distinguish approved future specs from implemented runtime features.
 - Ordinary Rider smoke fixtures now render one branded representative variant; Release Build preserves the full internal matrix.
+- Composition Preview and Release Build now require an approved composition plan; technical Smoke Test remains the explicit diagnostic bypass.
 
 ### Validated
 
@@ -64,6 +66,9 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Ordinary Rider smoke passes as `smoke-test` with 1 branded variant, 54 QA checks, 9 packaged assets, no external image references, and a valid ZIP.
 - Rider wellness smoke passes as `smoke-test` with 1 branded variant, 55 QA checks, 9 packaged assets, no external image references, and a valid ZIP.
 - Rider release-build validation passes with 9 variants, 222 QA checks, 17 packaged assets, Diana Kosov present, Jake Lecce absent, no external image references, and a valid ZIP.
+- Full unittest discovery passes 55 tests.
+- Composition catalog generation produces 16 selectable non-footer entries plus review Markdown and isolated HTML preview snippets.
+- Approved release-build composition plan records 5 selected module codes, 3 required asset slots, 22 editable slots, and passes release-build package QA with 223 checks.
 
 ## [0.1.0] - 2026-09-30
 

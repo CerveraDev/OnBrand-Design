@@ -70,6 +70,100 @@
         }
       ]
     },
+    "composition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "plan_version",
+        "plan_id",
+        "status",
+        "approved_by",
+        "approved_at",
+        "representative_variant",
+        "selected_module_codes",
+        "static_block_decisions"
+      ],
+      "properties": {
+        "plan_version": { "const": "1.0" },
+        "plan_id": { "type": "string", "minLength": 1 },
+        "status": { "const": "approved" },
+        "approved_by": { "type": "string", "minLength": 1 },
+        "approved_at": { "type": "string", "minLength": 1 },
+        "representative_variant": {
+          "type": "string",
+          "pattern": "^(branded|outside-broker-customizable|agent-[a-z0-9]+(?:-[a-z0-9]+)*)$"
+        },
+        "selected_module_codes": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "selected_modules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["code", "scaffold_module_id", "module_type"],
+            "properties": {
+              "code": { "type": "string", "minLength": 1 },
+              "scaffold_module_id": { "type": "string", "minLength": 1 },
+              "module_type": { "enum": ["header", "hero", "body", "static"] },
+              "includes_header": { "type": "boolean" },
+              "locked": { "type": "boolean" }
+            }
+          }
+        },
+        "static_block_decisions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["code", "scaffold_module_id", "decision"],
+            "properties": {
+              "code": { "type": "string", "minLength": 1 },
+              "scaffold_module_id": { "type": "string", "minLength": 1 },
+              "decision": { "enum": ["include", "exclude"] }
+            }
+          }
+        },
+        "editable_slots": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["code", "scaffold_module_id", "slot", "slot_type", "operations", "required_approvals"],
+            "properties": {
+              "code": { "type": "string", "minLength": 1 },
+              "scaffold_module_id": { "type": "string", "minLength": 1 },
+              "slot": { "type": "string", "minLength": 1 },
+              "slot_type": { "type": "string", "minLength": 1 },
+              "operations": { "type": "array", "items": { "type": "string" } },
+              "required_approvals": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "required_assets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["code", "scaffold_module_id", "slot", "required_approvals", "image_aspect_ratio"],
+            "properties": {
+              "code": { "type": "string", "minLength": 1 },
+              "scaffold_module_id": { "type": "string", "minLength": 1 },
+              "slot": { "type": "string", "minLength": 1 },
+              "required_approvals": { "type": "array", "items": { "type": "string" } },
+              "image_aspect_ratio": { "type": "string" }
+            }
+          }
+        },
+        "compatibility": { "type": "object" },
+        "approval_required_before": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
     "campaign": {
       "type": "object",
       "additionalProperties": false,

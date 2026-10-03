@@ -14,6 +14,7 @@ SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 ALLOWED_TOP = {
     "schema_version",
     "build",
+    "composition",
     "campaign",
     "manifest",
     "modules",
@@ -29,6 +30,25 @@ ALLOWED_BUILD = {
     "variant_policy",
     "changed_surfaces",
 }
+ALLOWED_COMPOSITION = {
+    "plan_version",
+    "plan_id",
+    "status",
+    "approved_by",
+    "approved_at",
+    "representative_variant",
+    "selected_module_codes",
+    "selected_modules",
+    "static_block_decisions",
+    "editable_slots",
+    "required_assets",
+    "compatibility",
+    "approval_required_before",
+}
+ALLOWED_COMPOSITION_MODULE = {"code", "scaffold_module_id", "module_type", "includes_header", "locked"}
+ALLOWED_COMPOSITION_STATIC = {"code", "scaffold_module_id", "decision"}
+ALLOWED_COMPOSITION_SLOT = {"code", "scaffold_module_id", "slot", "slot_type", "operations", "required_approvals"}
+ALLOWED_COMPOSITION_ASSET = {"code", "scaffold_module_id", "slot", "required_approvals", "image_aspect_ratio"}
 ALLOWED_CAMPAIGN = {
     "slug",
     "title",
@@ -90,6 +110,8 @@ def validate_campaign_spec(data: object) -> None:
 
     build = _require(data, "build", dict, "campaign spec")
     _validate_build(build)
+    if "composition" in data:
+        _validate_composition(_require(data, "composition", dict, "campaign spec"))
 
     campaign = _require(data, "campaign", dict, "campaign spec")
     _reject_unknown(campaign, ALLOWED_CAMPAIGN, "campaign")
@@ -258,6 +280,52 @@ def _validate_build(build: dict) -> None:
         raise CampaignSpecError("build.changed_surfaces requires build.variant_policy changed-surface-expanded")
 
 
+def _validate_composition(composition: dict) -> None:
+    _reject_unknown(composition, ALLOWED_COMPOSITION, "composition")
+    if _require(composition, "plan_version", str, "composition") != "1.0":
+        raise CampaignSpecError("composition.plan_version must be '1.0'")
+    _require(composition, "plan_id", str, "composition")
+    if _require(composition, "status", str, "composition") != "approved":
+        raise CampaignSpecError("composition.status must be approved")
+    _require(composition, "approved_by", str, "composition")
+    _require(composition, "approved_at", str, "composition")
+    representative = _require(composition, "representative_variant", str, "composition")
+    if not REPRESENTATIVE_VARIANT_RE.match(representative):
+        raise CampaignSpecError(
+            "composition.representative_variant must be branded, outside-broker-customizable, or agent-<agent-id>"
+        )
+    _require_string_array(composition, "selected_module_codes", "composition")
+    for index, item in enumerate(_optional_array(composition, "selected_modules", "composition")):
+        _validate_object(item, ALLOWED_COMPOSITION_MODULE, f"composition.selected_modules[{index}]")
+        for field in ("code", "scaffold_module_id", "module_type"):
+            _require(item, field, str, f"composition.selected_modules[{index}]")
+        for field in ("includes_header", "locked"):
+            if field in item and not isinstance(item[field], bool):
+                raise CampaignSpecError(f"composition.selected_modules[{index}].{field} must be a boolean")
+    for index, item in enumerate(_require_array(composition, "static_block_decisions", "composition")):
+        _validate_object(item, ALLOWED_COMPOSITION_STATIC, f"composition.static_block_decisions[{index}]")
+        _require(item, "code", str, f"composition.static_block_decisions[{index}]")
+        _require(item, "scaffold_module_id", str, f"composition.static_block_decisions[{index}]")
+        decision = _require(item, "decision", str, f"composition.static_block_decisions[{index}]")
+        if decision not in {"include", "exclude"}:
+            raise CampaignSpecError(f"composition.static_block_decisions[{index}].decision must be include or exclude")
+    for field, allowed in (
+        ("editable_slots", ALLOWED_COMPOSITION_SLOT),
+        ("required_assets", ALLOWED_COMPOSITION_ASSET),
+    ):
+        for index, item in enumerate(_optional_array(composition, field, "composition")):
+            _validate_object(item, allowed, f"composition.{field}[{index}]")
+            for string_field in sorted(allowed - {"operations", "required_approvals"}):
+                _require(item, string_field, str, f"composition.{field}[{index}]")
+            for array_field in sorted(allowed & {"operations", "required_approvals"}):
+                allow_empty = array_field == "required_approvals"
+                _require_string_array(item, array_field, f"composition.{field}[{index}]", allow_empty=allow_empty)
+    if "approval_required_before" in composition:
+        _require_string_array(composition, "approval_required_before", "composition")
+    if "compatibility" in composition and not isinstance(composition["compatibility"], dict):
+        raise CampaignSpecError("composition.compatibility must be an object")
+
+
 def _validate_slot(slot: object, label: str) -> None:
     if not isinstance(slot, dict):
         raise CampaignSpecError(f"{label} must be an object")
@@ -303,3 +371,30 @@ def _reject_unknown(obj: dict, allowed: set[str], label: str) -> None:
     unknown = sorted(set(obj) - allowed)
     if unknown:
         raise CampaignSpecError(f"{label} has unknown field(s): {', '.join(unknown)}")
+
+
+def _validate_object(value: object, allowed: set[str], label: str) -> None:
+    if not isinstance(value, dict):
+        raise CampaignSpecError(f"{label} must be an object")
+    _reject_unknown(value, allowed, label)
+
+
+def _require_array(obj: dict, field: str, label: str) -> list:
+    value = obj.get(field)
+    if not isinstance(value, list):
+        raise CampaignSpecError(f"{label}.{field} must be an array")
+    return value
+
+
+def _optional_array(obj: dict, field: str, label: str) -> list:
+    if field not in obj:
+        return []
+    return _require_array(obj, field, label)
+
+
+def _require_string_array(obj: dict, field: str, label: str, *, allow_empty: bool = False) -> list[str]:
+    value = _require_array(obj, field, label)
+    if (not allow_empty and not value) or not all(isinstance(item, str) and item for item in value):
+        qualifier = "an array" if allow_empty else "a non-empty array"
+        raise CampaignSpecError(f"{label}.{field} must be {qualifier} of strings")
+    return value

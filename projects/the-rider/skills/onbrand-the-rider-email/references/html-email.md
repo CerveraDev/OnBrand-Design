@@ -9,11 +9,12 @@
 5. Preserve the full document head, global CSS, linked fonts, Outlook/VML conditionals, wrapper tables, row classes, and inline styles.
 6. Remove marker rows from generated outputs.
 7. Populate only declared typed slots; every anchor must resolve exactly as defined or the build fails.
-8. Resolve the effective variant set from the explicit build mode and populate only those selected footer variants.
-9. Copy every image used by any variant into the package `images/` directory.
-10. Make package-preview HTML reference copied files with portable relative paths such as `../images/hero.jpg`.
-11. Record source identity, checksum, role, and variant usage in the asset manifest.
-12. Run blocking QA and create the ZIP only after it passes.
+8. Validate the approved composition plan for Composition Preview and Release Build, including stable module codes, static-block decisions, and header/hero compatibility.
+9. Resolve the effective variant set from the explicit build mode and populate only those selected footer variants.
+10. Copy every image used by any variant into the package `images/` directory.
+11. Make package-preview HTML reference copied files with portable relative paths such as `../images/hero.jpg`.
+12. Record source identity, checksum, role, and variant usage in the asset manifest.
+13. Run blocking QA and create the ZIP only after it passes.
 
 ## Footer Assembly
 
@@ -36,6 +37,12 @@ Use `build.mode` to distinguish output intent:
 - `release-build`: full internal matrix.
 
 The default representative is `branded`. `representative_variant` may also be `outside-broker-customizable` or `agent-<agent-id>`. Use `variant_policy: "changed-surface-expanded"` with a non-empty `changed_surfaces` array when agent roster/data, footer renderer/data, footer asset resolution, or scaffold footer structure changes require full smoke coverage.
+
+## Composition Approval
+
+Use `python3 -m tools.rider_campaign_runtime.cli catalog --output <review-folder>` to produce `module_catalog.json`, `composition-review.md`, and isolated HTML snippets. Stable codes include standalone headers (`H-01`), non-header heroes (`HR-01`), header-bearing heroes (`HH-01`), AI image modules (`AI-01`), bodies (`B-01`), and static blocks (`S-01`).
+
+Use `python3 -m tools.rider_campaign_runtime.cli plan --selection <selection.json> --output <composition-plan.json>` after the user approves exact codes. The plan must be embedded in Composition Preview and Release Build campaign specs.
 
 ## Output Naming
 

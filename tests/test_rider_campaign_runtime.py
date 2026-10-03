@@ -4,6 +4,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
+from tools.rider_campaign_runtime.composition import create_composition_plan
 from tools.rider_campaign_runtime.agents import load_agents
 from tools.rider_campaign_runtime.assets import package_documents, rewrite_and_package_assets
 from tools.rider_campaign_runtime.runtime import (
@@ -436,6 +437,10 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
             spec["variants"] = {"branded": True, "outside_broker": True, "agents": "all"}
             spec["campaign"]["output_dir"] = str(tmp_path / "campaign-output")
             spec["manifest"]["path"] = str(write_manifest(tmp_path, asset))
+            spec["composition"] = approved_composition(
+                selected_codes=["HH-01"],
+                representative_variant="outside-broker-customizable",
+            )
             with patch("tools.rider_campaign_runtime.assets._read_asset") as read_asset:
                 read_asset.side_effect = lambda source: (asset.read_bytes(), Path(source).name or "asset.png")
                 result = build_campaign_from_spec(spec, base_dir=tmp_path)
@@ -595,6 +600,7 @@ def release_spec(tmp_path, asset):
     spec["campaign"]["output_dir"] = str(tmp_path / "campaign-output")
     spec["manifest"]["path"] = str(write_manifest(tmp_path, asset))
     spec["variants"] = {"branded": True, "outside_broker": True, "agents": "all"}
+    spec["composition"] = approved_composition(selected_codes=["HH-01"])
     spec["outside_broker"] = {
         "name": "[OUTSIDE BROKER NAME]",
         "title": "[OUTSIDE BROKER TITLE]",
@@ -603,6 +609,31 @@ def release_spec(tmp_path, asset):
         "social": "[OUTSIDE BROKER SOCIAL]",
     }
     return spec
+
+
+def approved_composition(*, selected_codes, representative_variant="branded"):
+    static_decisions = [
+        {"code": "S-01", "decision": "include" if "S-01" in selected_codes else "exclude"},
+        {"code": "S-02", "decision": "include" if "S-02" in selected_codes else "exclude"},
+        {"code": "S-03", "decision": "include" if "S-03" in selected_codes else "exclude"},
+        {"code": "S-04", "decision": "include" if "S-04" in selected_codes else "exclude"},
+    ]
+    return create_composition_plan(
+        load_scaffold(
+            ROOT / "projects/the-rider/skills/onbrand-the-rider-email/templates/scaffold/rider-scaffolding.canonical.html",
+            ROOT / "projects/the-rider/skills/onbrand-the-rider-email/templates/scaffold/rider-scaffolding.slot-map.json",
+            ROOT / "projects/the-rider/skills/onbrand-the-rider-email/templates/scaffold/rider-scaffolding.module-metadata.json",
+        ),
+        {
+            "plan_id": "unit-test-composition",
+            "status": "approved",
+            "approved_by": "unit test",
+            "approved_at": "2026-10-03",
+            "representative_variant": representative_variant,
+            "selected_module_codes": selected_codes,
+            "static_block_decisions": static_decisions,
+        },
+    )
 
 
 def write_png(path):

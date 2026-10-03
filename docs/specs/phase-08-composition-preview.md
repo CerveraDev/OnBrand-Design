@@ -1,6 +1,6 @@
 # Phase 8: Composition Preview
 
-**Status:** Approved specification, not implemented
+**Status:** Implemented for The Rider runtime
 **Target:** 0.8.0
 **Depends on:** Phase 7
 
@@ -29,6 +29,16 @@ Add a user-facing approval gate for module composition before expensive image ge
 - `module_catalog.json`: stable code, scaffold module ID, type, header inclusion, lock state, aspect ratio, and slot summary.
 - `composition_plan.json`: selected module codes, static-block decisions, copy-slot ownership, image requirements, and approval status.
 - Thumbnail artifacts or isolated preview HTML snippets for each eligible module.
+
+## Implementation Evidence
+
+- The Rider runtime CLI supports `catalog --output <review-folder>` to generate `module_catalog.json`, `composition-review.md`, and isolated HTML snippets.
+- Stable catalog codes distinguish standalone headers (`H-*`), non-header heroes (`HR-*`), header-bearing heroes (`HH-*`), AI image modules (`AI-*`), body modules (`B-*`), and static blocks (`S-*`).
+- The CLI supports `plan --selection <selection.json> --output <composition-plan.json>` and requires explicit approved selection metadata.
+- Composition Preview and Release Build require an embedded approved `composition` plan before runtime rendering.
+- Technical Smoke Test may omit `composition` only as an explicit diagnostic bypass.
+- Runtime validation rejects unknown codes, duplicate codes, missing approval, incompatible standalone-header/header-bearing-hero selections, selected static blocks without include decisions, and mismatches between approved codes and campaign module order.
+- `campaign-metadata.json` and `qa-report.json` record the approved composition summary.
 
 ## Workflow
 

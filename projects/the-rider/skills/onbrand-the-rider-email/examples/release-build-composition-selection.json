@@ -1,0 +1,32 @@
+{
+  "plan_id": "rider-runtime-release-build-composition",
+  "status": "approved",
+  "approved_by": "OnBrand Phase 8 fixture",
+  "approved_at": "2026-10-03",
+  "representative_variant": "branded",
+  "selected_module_codes": [
+    "H-02",
+    "HR-01",
+    "B-04",
+    "S-01",
+    "S-03"
+  ],
+  "static_block_decisions": [
+    {
+      "code": "S-01",
+      "decision": "include"
+    },
+    {
+      "code": "S-02",
+      "decision": "exclude"
+    },
+    {
+      "code": "S-03",
+      "decision": "include"
+    },
+    {
+      "code": "S-04",
+      "decision": "exclude"
+    }
+  ]
+}
