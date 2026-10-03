@@ -1,7 +1,6 @@
 ---
 name: onbrand-__PROJECT_SLUG__-image
 description: Explicitly invoked workflow for generating or editing __PROJECT_NAME__ campaign imagery from approved assets and returning approval-ready visual candidates.
-disable-model-invocation: true
 metadata:
   short-description: Create __PROJECT_NAME__ campaign image candidates
 ---

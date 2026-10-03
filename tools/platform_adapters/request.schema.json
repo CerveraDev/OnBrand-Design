@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OnBrand adapter request 1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version", "adapter_version", "core_version", "project",
+    "runtime", "runtime_version", "campaign_spec", "inputs", "invocation"
+  ],
+  "properties": {
+    "contract_version": {"const": "1.0"},
+    "adapter_version": {"const": "1.0"},
+    "core_version": {"const": "1.0"},
+    "project": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "runtime": {"enum": ["rider-campaign", null]},
+    "runtime_version": {"enum": ["1.0", null]},
+    "campaign_spec": {"type": "string", "minLength": 1},
+    "inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "brief": {"$ref": "#/$defs/input"},
+        "selection": {"$ref": "#/$defs/input"},
+        "composition": {"$ref": "#/$defs/input"},
+        "image": {"$ref": "#/$defs/input"},
+        "copy": {"$ref": "#/$defs/input"}
+      }
+    },
+    "invocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actor", "explicit"],
+      "properties": {"actor": {"const": "HUMAN"}, "explicit": {"const": true}}
+    }
+  },
+  "$defs": {
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    }
+  }
+}

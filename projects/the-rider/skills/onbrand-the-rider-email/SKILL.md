@@ -1,7 +1,6 @@
 ---
 name: onbrand-the-rider-email
 description: Explicitly invoked workflow for creating Rider Residences email marketing pieces with project-specific copy, modules, Beefree-style HTML structure, locked footer variants, and a complete distribution package.
-disable-model-invocation: true
 metadata:
   short-description: Build Rider Residences email campaigns
 ---
@@ -31,6 +30,10 @@ The canonical Beefree scaffold is available at [templates/scaffold/rider-scaffol
 13. Run `python3 -m tools.rider_campaign_runtime.cli <campaign.json>` from the repository root.
 14. Treat a nonzero exit or blocked QA report as a failed build; do not hand-assemble around it or create a ZIP manually.
 15. Deliver the generated campaign folder and ZIP only after reviewing the runtime summary and `qa-report.json`.
+
+## Cross-Platform Entry
+
+Use the thin workspace adapter for HUMAN-only platform invocation; see the [shared adapter contract](../../../../docs/COMPATIBILITY.md). Approved campaigns can use `python3 -m tools.platform_adapters.cli build --platform <cli|codex|claude> --request <request.json> --output <output-folder> --explicit`. The canonical runtime remains authoritative. Platform provenance stays outside campaign metadata and ZIPs.
 
 ## Intake Modes
 

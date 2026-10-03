@@ -6,6 +6,10 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Added
 
+- Phase 11 versioned project/request contracts, manual-only Codex/Claude workspace wrappers, shared dispatch, installer/generator integration, and 13-component blocking parity.
+- Realistic three-adapter Rider preview evidence at 100%, checksum-verified real asset transport, and separate live CLI limitations without changing credentials or Phase 7-10 rules.
+- Portable canonical frontmatter and accurate shared-core installation boundaries; Phase 12 restricted distribution remains deferred.
+
 - Explicit dependency conditions for all 16 limitation entries and the entry template, plus a dedicated responsive desktop/mobile copy fixture that passes allocation and package QA under one logical owner.
 
 - Phase 10 required approved copy allocation contract, stable content-unit/channel ownership, restricted phrase counts, exact/normalized and near-duplicate checks, declared baked-image text, scoped reuse exemptions, claim-reference gates, and metadata/QA evidence.

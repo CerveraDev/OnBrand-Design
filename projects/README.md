@@ -1,6 +1,6 @@
 # Project Packages
 
-Each directory in this folder is a self-contained OnBrand Design implementation for one real estate project. A project folder is the unit that can be distributed to a team or installed independently.
+Each directory is an isolated project-specific OnBrand Design pack. Campaign execution requires the shared core; a folder alone is not a standalone runtime. See [cross-platform installation](../docs/COMPATIBILITY.md). Restricted distribution profiles remain deferred.
 
 ## Required Structure
 
@@ -12,6 +12,7 @@ project-slug/
 |-- AUTHORS.md
 |-- THIRD_PARTY_NOTICES.md
 |-- project.json
+|-- adapter.json
 `-- skills/
     |-- onbrand-project-slug-email/
     `-- onbrand-project-slug-image/

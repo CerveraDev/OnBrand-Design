@@ -1,0 +1,5 @@
+interface:
+  display_name: "onbrand-the-rider-image"
+  short_description: "Explicit OnBrand the-rider image workflow"
+policy:
+  allow_implicit_invocation: false

@@ -5,7 +5,7 @@
 **Author:** Felix Mendoza  
 **Version:** 0.1.0  
 **Updated:** 2026-10-03
-**Overall status:** Multi-project foundation complete; Rider campaign runtime implemented through Phase 10 with build modes, composition approval, grounded images, copy allocation QA, and tested pilot packages
+**Overall status:** Rider runtime through Phase 10 plus Phase 11 deterministic Codex/Claude/CLI adapters and parity; live model invocation remains unverified
 
 ## Completed
 
@@ -16,7 +16,7 @@
 - Assigned collision-safe project-specific skill IDs.
 - Added complete The Rider and provisional Cassia project folders.
 - Added a reusable starter template and project generator.
-- Preserved explicit-only invocation policy in current skills while documenting Claude Code support as planned pending adapter parity validation.
+- Preserved explicit-only invocation through portable canonical skills and platform-specific workspace wrappers.
 - Defined campaign modes, required modules, variants, packaging, and QA foundations.
 - Created and live-tested the Dropbox master-manifest synchronizer for The Rider.
 - Added local `.env` handling without distributing credentials.
@@ -51,6 +51,7 @@
 - Implemented Phase 9 Grounded Image Generation for The Rider runtime with a validated local manifest-cache fallback, structured image workflow provenance, source/output validation, release gating, and QA/manifest reporting.
 - Added a root [limitations register](LIMITATIONS.md) so known limitations, scoring opportunities, deferred safeguards, and closure criteria remain discoverable before Phase 10 implementation.
 - Implemented Phase 10 approved copy inventory/ownership, cross-surface normalized repetition, transparent near-duplicate scoring, narrow reuse exemptions, claim-reference gating, and metadata/QA reporting without rewriting approved text.
+- Implemented Phase 11 versioned contracts, shared dispatch, manual-only wrappers, and 13-component blocking parity. Rider preview builds score 100 using real cached assets; live model invocation is unverified. See [evidence](docs/evals/phase-11-cross-platform-compatibility.md).
 
 ## Project Portfolio
 
@@ -61,14 +62,13 @@
 
 ## Approved Specs, Not Implemented
 
-- Phase 11: Cross-platform compatibility through a canonical core and thin Codex/Claude Code adapters.
 - Phase 12: Distribution profiles remain deferred until public core, private project packs, and sanitized broker packages are physically separated.
 
 ## In Progress
 
 - Perform representative visual and email-client compatibility review beyond structural QA.
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
-- Implement Phase 11 cross-platform adapters and parity validation against the canonical runtime contracts.
+- Obtain live manual invocation evidence on permitted authenticated hosts; deterministic parity does not establish model behavior.
 - Keep [LIMITATIONS.md](LIMITATIONS.md) current when audits, specs, QA runs, or implementation work discover new constraints.
 
 ## Waiting On Project Inputs
@@ -79,10 +79,10 @@
 ## Release Blockers
 
 - Choose support contact and CODEOWNERS identities.
-- Do not claim Claude Code support until Phase 11 adapter parity validation passes.
+- Do not claim authenticated live skill invocation or independent model-behavior parity until LIM-017 has evidence; deterministic adapter parity is implemented.
 - Do not distribute broker-restricted packages until Phase 12 physical source/package separation is implemented.
 - Do not treat generated-image visual faithfulness, email-client rendering, or legal/compliance review as automated approvals until their limitations are closed with committed evidence.
 
 ## Next Milestone
 
-Pilot broader Rider campaigns with approved composition, image, and copy allocation plans, then implement Phase 11 adapters and parity validation. Broader visual/client review and distribution safeguards remain required.
+Run live manual adapter checks and broader visual/email-client review. Phase 11 deterministic parity is complete; Phase 12 distribution stays deferred.

@@ -1,7 +1,6 @@
 ---
 name: onbrand-the-rider-image
 description: Explicitly invoked workflow for generating or editing Rider Residences campaign imagery from approved assets and returning approval-ready visual candidates.
-disable-model-invocation: true
 metadata:
   short-description: Create Rider campaign image candidates
 ---

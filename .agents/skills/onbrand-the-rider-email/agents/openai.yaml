@@ -1,0 +1,5 @@
+interface:
+  display_name: "onbrand-the-rider-email"
+  short_description: "Explicit OnBrand the-rider email workflow"
+policy:
+  allow_implicit_invocation: false

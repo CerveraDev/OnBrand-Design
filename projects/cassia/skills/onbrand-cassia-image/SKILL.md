@@ -1,7 +1,6 @@
 ---
 name: onbrand-cassia-image
 description: Explicitly invoked workflow for generating or editing Cassia campaign imagery from approved assets and returning approval-ready visual candidates.
-disable-model-invocation: true
 metadata:
   short-description: Create Cassia campaign image candidates
 ---

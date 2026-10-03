@@ -1,0 +1,5 @@
+interface:
+  display_name: "onbrand-cassia-email"
+  short_description: "Explicit OnBrand cassia email workflow"
+policy:
+  allow_implicit_invocation: false

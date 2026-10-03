@@ -19,7 +19,7 @@ Provide a scalable framework for creating self-contained, project-specific real 
 
 The repository is reusable; installed skills are project-specific. OnBrand Design must never blend brand rules or assets across projects merely because they share the framework.
 
-Runtime logic should live in a canonical core shared by thin platform adapters. Codex is the current implemented path. Claude Code support remains planned until its adapter writes the same canonical campaign specifications, calls the same runtime, and passes parity validation.
+Runtime logic lives in a canonical core shared by thin Codex/Claude/CLI adapters. Phase 11 deterministic artifact parity is implemented and recorded; live host/model invocation remains unverified under LIM-017.
 
 Each project folder contains a complete downloadable skill bundle with unique technical IDs:
 
@@ -99,7 +99,7 @@ An authorized maintainer runs the shared Dropbox manifest synchronizer against a
 | FR-015 | QA detects missing assets, private paths, incorrect variants, and unsupported invented facts. |
 | FR-016 | Dropbox catalog refresh preserves `category` and `approved_for` for matched records. |
 | FR-017 | Credentials remain outside distributable project folders and repository history. |
-| FR-018 | Project packages remain structured for portability, with Codex current and Claude Code support planned pending adapter parity validation. |
+| FR-018 | Project packs remain portable with shared-core dependencies and explicit Codex/Claude/CLI adapters; live model support claims require separate evidence. |
 | FR-019 | The registry records every maintained project and its lifecycle status. |
 | FR-020 | Repository metadata attributes ownership to Cervera Real Estate, Inc. and authorship to Felix Mendoza. |
 | FR-021 | Every project email skill runs a contextual copy-quality pass that preserves approved voice, reports unsupported claims, and does not claim to detect authorship. |
@@ -107,7 +107,7 @@ An authorized maintainer runs the shared Dropbox manifest synchronizer against a
 | FR-023 | Composition Preview records exact module choices, static-block decisions, image requirements, copy-slot ownership, and representative variant before image generation or release packaging. |
 | FR-024 | Generated project imagery is grounded in approved source assets and environment context, with real Rider exterior and arrival scenes defaulting to approved base imagery. |
 | FR-025 | Copy-allocation QA deduplicates restricted owner phrases and names across live text, baked imagery, alt text, and metadata before release. |
-| FR-026 | Cross-platform support uses a canonical core plus thin Codex and Claude Code adapters; Claude Code is planned only until parity validation is recorded. |
+| FR-026 | Cross-platform support uses a canonical core and thin manual-only adapters; deterministic parity is recorded separately from live agent/model behavior. |
 | FR-027 | Broker-only or sanitized distribution packages remain deferred until public core, private project packs, and broker packages are physically separated and validated. |
 
 FR-025 is implemented for The Rider in Phase 10. All runtime modes require approved copy allocation before rendering; successful metadata/QA retain exact approved units, ownership, claim references, exemptions, occurrence counts, and transparent similarity findings. Declared baked-image text is included; OCR execution and factual source verification remain external review tasks. The runtime never silently rewrites approved user copy.
@@ -153,7 +153,7 @@ Created per deliverable and limited to assets used by that campaign. It records 
 - The framework does not publish or send campaigns unless separately specified and authorized.
 - Public source reuse does not automatically grant reuse rights for project logos, photographs, renderings, templates, or campaign content.
 - The current repository and project packages are not broker-restricted distributions; sanitized broker profiles are a deferred planning item.
-- Claude Code support is not implemented until an adapter and parity validation are recorded.
+- Deterministic adapter parity is implemented; authenticated live Codex/Claude discovery/invocation and model-behavior parity stay unverified under LIM-017.
 
 ## Success Measures
 

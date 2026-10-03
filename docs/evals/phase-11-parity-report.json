@@ -1,0 +1,266 @@
+{
+  "aggregate_score": 100.0,
+  "asset_transport": "checksum-verified prior package cache",
+  "components": [
+    {
+      "critical": true,
+      "id": "campaign",
+      "matching_platforms": [
+        "cli",
+        "codex",
+        "claude"
+      ],
+      "passed": true,
+      "score": 100.0,
+      "sha256": {
+        "claude": "c811a289804a755848762c36dd945f5261c93fa9c827e16bf9eb2ea45a6c55e4",
+        "cli": "c811a289804a755848762c36dd945f5261c93fa9c827e16bf9eb2ea45a6c55e4",
+        "codex": "c811a289804a755848762c36dd945f5261c93fa9c827e16bf9eb2ea45a6c55e4"
+      }
+    },
+    {
+      "critical": true,
+      "id": "build",
+      "matching_platforms": [
+        "cli",
+        "codex",
+        "claude"
+      ],
+      "passed": true,
+      "score": 100.0,
+      "sha256": {
+        "claude": "62ab3f4e9d92dc317d0ba7df668974a2614cb4687031f90cd55ece981033d26d",
+        "cli": "62ab3f4e9d92dc317d0ba7df668974a2614cb4687031f90cd55ece981033d26d",
+        "codex": "62ab3f4e9d92dc317d0ba7df668974a2614cb4687031f90cd55ece981033d26d"
+      }
+    },
+    {
+      "critical": true,
+      "id": "variants",
+      "matching_platforms": [
+        "cli",
+        "codex",
+        "claude"
+      ],
+      "passed": true,
+      "score": 100.0,
+      "sha256": {
+        "claude": "a9d0221f9e28cdaad9dc604ad0573e1986e5d2290eac68a53700c12a99e0fb56",
+        "cli": "a9d0221f9e28cdaad9dc604ad0573e1986e5d2290eac68a53700c12a99e0fb56",
+        "codex": "a9d0221f9e28cdaad9dc604ad0573e1986e5d2290eac68a53700c12a99e0fb56"
+      }
+    },
+    {
+      "critical": true,
+      "id": "composition",
+      "matching_platforms": [
+        "cli",
+        "codex",
+        "claude"
+      ],
+      "passed": true,
+      "score": 100.0,
+      "sha256": {
+        "claude": "4ce8853e8960725cb574cd3be10a12f6a30c821cf3c55308ac7e83b352096c3d",
+        "cli": "4ce8853e8960725cb574cd3be10a12f6a30c821cf3c55308ac7e83b352096c3d",
+        "codex": "4ce8853e8960725cb574cd3be10a12f6a30c821cf3c55308ac7e83b352096c3d"
+      }
+    },
+    {
+      "critical": true,
+      "id": "image_workflow",
+      "matching_platforms": [
+        "cli",
+        "codex",
+        "claude"
+      ],
+      "passed": true,
+      "score": 100.0,
+      "sha256": {
+        "claude": "84273b738ac8ab79ab6200d7686b1812928e3e14a4db2edd835e09765d4f4582",
+        "cli": "84273b738ac8ab79ab6200d7686b1812928e3e14a4db2edd835e09765d4f4582",
+        "codex": "84273b738ac8ab79ab6200d7686b1812928e3e14a4db2edd835e09765d4f4582"
+      }
+    },
+    {
+      "critical": true,
+      "id": "copy_allocation",
+      "matching_platforms": [
+        "cli",
+        "codex",
+        "claude"
+      ],
+      "passed": true,
+      "score": 100.0,
+      "sha256": {
+        "claude": "fb4a5e151293999f29c4750335adcbd09999c9a250f068c9e53617fd06718a03",
+        "cli": "fb4a5e151293999f29c4750335adcbd09999c9a250f068c9e53617fd06718a03",
+        "codex": "fb4a5e151293999f29c4750335adcbd09999c9a250f068c9e53617fd06718a03"
+      }
+    },
+    {
+      "critical": true,
+      "id": "html",
+      "matching_platforms": [
+        "cli",
+        "codex",
+        "claude"
+      ],
+      "passed": true,
+      "score": 100.0,
+      "sha256": {
+        "claude": "a1af42452ae803e90d4136e5c2562e278eeb89d56c8ed7f7fa27b0041865aba9",
+        "cli": "a1af42452ae803e90d4136e5c2562e278eeb89d56c8ed7f7fa27b0041865aba9",
+        "codex": "a1af42452ae803e90d4136e5c2562e278eeb89d56c8ed7f7fa27b0041865aba9"
+      }
+    },
+    {
+      "critical": true,
+      "id": "assets",
+      "matching_platforms": [
+        "cli",
+        "codex",
+        "claude"
+      ],
+      "passed": true,
+      "score": 100.0,
+      "sha256": {
+        "claude": "dff8273e5caf2a480d1a763df4472e1deea00c025c224f1f404a27153ad9bce8",
+        "cli": "dff8273e5caf2a480d1a763df4472e1deea00c025c224f1f404a27153ad9bce8",
+        "codex": "dff8273e5caf2a480d1a763df4472e1deea00c025c224f1f404a27153ad9bce8"
+      }
+    },
+    {
+      "critical": true,
+      "id": "metadata",
+      "matching_platforms": [
+        "cli",
+        "codex",
+        "claude"
+      ],
+      "passed": true,
+      "score": 100.0,
+      "sha256": {
+        "claude": "c6a43229fc8be7c5044b10c5834f9d830e536f2969f5d3a64a3285abf3b77cf8",
+        "cli": "c6a43229fc8be7c5044b10c5834f9d830e536f2969f5d3a64a3285abf3b77cf8",
+        "codex": "c6a43229fc8be7c5044b10c5834f9d830e536f2969f5d3a64a3285abf3b77cf8"
+      }
+    },
+    {
+      "critical": true,
+      "id": "qa",
+      "matching_platforms": [
+        "cli",
+        "codex",
+        "claude"
+      ],
+      "passed": true,
+      "score": 100.0,
+      "sha256": {
+        "claude": "9320be7f43098cecd184938fe7be32161fe520f31c16e8e0ebf1a22ec2090313",
+        "cli": "9320be7f43098cecd184938fe7be32161fe520f31c16e8e0ebf1a22ec2090313",
+        "codex": "9320be7f43098cecd184938fe7be32161fe520f31c16e8e0ebf1a22ec2090313"
+      }
+    },
+    {
+      "critical": true,
+      "id": "zip_inventory",
+      "matching_platforms": [
+        "cli",
+        "codex",
+        "claude"
+      ],
+      "passed": true,
+      "score": 100.0,
+      "sha256": {
+        "claude": "e337ecdae16101d982786d2495c360fe16e17ebb4d4032949b3c1bf68d1c3aeb",
+        "cli": "e337ecdae16101d982786d2495c360fe16e17ebb4d4032949b3c1bf68d1c3aeb",
+        "codex": "e337ecdae16101d982786d2495c360fe16e17ebb4d4032949b3c1bf68d1c3aeb"
+      }
+    },
+    {
+      "critical": true,
+      "id": "integrity",
+      "matching_platforms": [
+        "cli",
+        "codex",
+        "claude"
+      ],
+      "passed": true,
+      "score": 100.0,
+      "sha256": {
+        "claude": "6622286ff2e5dc96240c4158863599baa7af4536eb66772c8a8a6d84becd9717",
+        "cli": "6622286ff2e5dc96240c4158863599baa7af4536eb66772c8a8a6d84becd9717",
+        "codex": "6622286ff2e5dc96240c4158863599baa7af4536eb66772c8a8a6d84becd9717"
+      }
+    },
+    {
+      "critical": true,
+      "id": "provenance",
+      "matching_platforms": [
+        "cli",
+        "codex",
+        "claude"
+      ],
+      "passed": true,
+      "score": 100.0,
+      "sha256": {
+        "claude": "63094db16a99b00510f1e6ada0806a3d306e2a8373d2efd1fb78986720435df3",
+        "cli": "63094db16a99b00510f1e6ada0806a3d306e2a8373d2efd1fb78986720435df3",
+        "codex": "63094db16a99b00510f1e6ada0806a3d306e2a8373d2efd1fb78986720435df3"
+      }
+    }
+  ],
+  "contract_version": "1.0",
+  "evidence_kind": "deterministic-adapter-runtime-parity",
+  "model_behavior_equivalence": "not established by this harness",
+  "normalizations": [
+    "campaign.campaign.output_dir: verified per-run output root -> <OUTPUT>",
+    "JSON object key order and whitespace: canonical JSON serialization",
+    "qa-report.json.checks: sort by unique check name (messages/outcomes preserved)",
+    "ZIP: compare member paths and uncompressed bytes, not timestamps/compression/container bytes",
+    "adapter-provenance.json.platform: verified actual platform -> <PLATFORM>; sidecar stays outside package"
+  ],
+  "passed": true,
+  "runs": {
+    "claude": {
+      "assets": 9,
+      "copy_units": 23,
+      "html_sha256": {
+        "html/rider-wellness-composition-preview-branded.html": "fcd0bed5e6ea6c5c2ca46ef76a130ecf0e3fee8c29f80cd8ecd9fcd4b867ad32"
+      },
+      "qa_checks": 86,
+      "variants": [
+        "branded"
+      ],
+      "zip_files": 13,
+      "zip_members": 16
+    },
+    "cli": {
+      "assets": 9,
+      "copy_units": 23,
+      "html_sha256": {
+        "html/rider-wellness-composition-preview-branded.html": "fcd0bed5e6ea6c5c2ca46ef76a130ecf0e3fee8c29f80cd8ecd9fcd4b867ad32"
+      },
+      "qa_checks": 86,
+      "variants": [
+        "branded"
+      ],
+      "zip_files": 13,
+      "zip_members": 16
+    },
+    "codex": {
+      "assets": 9,
+      "copy_units": 23,
+      "html_sha256": {
+        "html/rider-wellness-composition-preview-branded.html": "fcd0bed5e6ea6c5c2ca46ef76a130ecf0e3fee8c29f80cd8ecd9fcd4b867ad32"
+      },
+      "qa_checks": 86,
+      "variants": [
+        "branded"
+      ],
+      "zip_files": 13,
+      "zip_members": 16
+    }
+  }
+}

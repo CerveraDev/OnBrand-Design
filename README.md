@@ -9,7 +9,7 @@ OnBrand Design is an open, reusable framework for creating project-specific real
 
 ## Project Model
 
-OnBrand Design is the umbrella product. Every real estate development receives a self-contained folder under `projects/`:
+OnBrand Design is the umbrella product. Every development receives an isolated project pack under `projects/`, used with the shared repository core:
 
 ```text
 projects/
@@ -68,6 +68,8 @@ The generator creates a complete project folder from `templates/project-starter/
 `tools/asset_selection/` validates a local master manifest, validates project manifest-source configuration, and returns deterministic, explained asset shortlists for project email skills. It does not refresh Dropbox, require credentials, download source assets, or choose a final campaign image without approval when top candidates are materially different.
 
 `tools/rider_campaign_runtime/` validates Rider campaign JSON, generates Composition Preview catalog/plan artifacts, validates grounded image provenance and approved copy allocation, blocks unintended cross-surface repetition before rendering, composes approved scaffold modules, applies explicit build-mode variant policy, packages only used images, runs blocking QA, and creates a portable ZIP. See its [runtime guide](tools/rider_campaign_runtime/README.md).
+
+`tools/platform_adapters/` provides versioned HUMAN/manual requests, project-aware Codex/Claude wrappers, and CLI dispatch into that same runtime. The realistic Rider pilot passes all 13 deterministic parity components at 100%. Live model invocation remains unverified. See [installation, invocation, boundaries, and evidence](docs/COMPATIBILITY.md). Phase 12 restricted distribution stays deferred.
 
 ## Security
 

@@ -1,7 +1,6 @@
 ---
 name: onbrand-cassia-email
 description: Explicitly invoked workflow for creating Cassia email marketing pieces with project-specific copy, modules, Beefree-style HTML structure, locked footer variants, and a complete distribution package.
-disable-model-invocation: true
 metadata:
   short-description: Build Cassia email campaigns
 ---

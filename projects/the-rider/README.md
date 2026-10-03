@@ -1,6 +1,6 @@
 # OnBrand Design: The Rider
 
-Self-contained OnBrand Design implementation for The Rider.
+Project-specific OnBrand Design pack for The Rider, used with the shared core.
 
 ## Skills
 
@@ -11,9 +11,13 @@ Both skills are explicit-only. The Rider email scaffold is calibrated from the s
 
 ## Download Boundary
 
-Distribute this entire `the-rider/` folder when sharing the project-specific implementation. Do not include private `.env` files or Dropbox credentials.
+Keep this entire `the-rider/` folder with the shared core tools when sharing the implementation; it is not a standalone Python runtime. Do not include private `.env` files or Dropbox credentials. Phase 12 restricted package profiles stay deferred.
 
 Campaign generation should use The Rider's configured manifest source and approved public asset URLs. No stable public manifest URL is configured yet; the current supported path is the validated local-cache fallback recorded in `manifest-source.json`. Dropbox app credentials belong only in the framework maintainer's ignored `tools/dropbox-manifest/.env` and must not be copied into this package.
+
+## Cross-Platform Adapters
+
+Use the [compatibility guide](../../docs/COMPATIBILITY.md) for HUMAN-only Codex/Claude/CLI installation and invocation. `adapter.json` binds Rider to the canonical runtime. The [approved request](skills/onbrand-the-rider-email/examples/cross-platform.request.json) preserves composition, image, copy, and footer gates. Deterministic parity passes; live agent/model behavior is unverified under LIM-017.
 
 ## License And Attribution
 

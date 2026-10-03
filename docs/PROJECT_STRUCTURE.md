@@ -15,6 +15,7 @@ OnBrand Design supports an unbounded number of isolated real estate projects. Th
 Every `projects/<slug>/` directory must contain:
 
 - `project.json` with framework, owner, author, lifecycle, calibration, and skill-ID metadata.
+- `adapter.json` with versioned core/adapter/project/runtime binding; null-runtime scaffolds are reference-only.
 - `LICENSE`, `NOTICE`, `AUTHORS.md`, and `THIRD_PARTY_NOTICES.md` so the package retains its license and attribution when distributed independently.
 - `skills/onbrand-<slug>-email/` for strategy, copy, asset selection, HTML, variants, packaging, and QA.
 - `skills/onbrand-<slug>-image/` for separately invoked image generation and editing.
@@ -24,11 +25,11 @@ Project folders may later add approved brand assets, template fixtures, locked f
 
 ## Invocation Contract
 
-Skill IDs are globally unique because they include the project slug. Codex metadata must set `policy.allow_implicit_invocation: false`; Claude-compatible skill frontmatter must set `disable-model-invocation: true`. Ordinary email or image requests must not activate a project skill automatically.
+Skill IDs include the project slug. Canonical frontmatter remains portable. Codex workspace wrappers at `.agents/skills` set `policy.allow_implicit_invocation: false` in `agents/openai.yaml`; only Claude wrappers at `.claude/skills` set `disable-model-invocation: true`. Ordinary requests must not activate skills automatically. See [adapter installation](COMPATIBILITY.md).
 
 ## Distribution Contract
 
-A project folder is intended to be downloadable on its own. It must not depend on another project folder. Shared repository tools may prepare or validate a project, but runtime project behavior and project-specific references must travel with that project.
+A pack must not depend on another project folder, but campaign execution requires the shared core. Keep references with the project and runtime logic in the core; do not copy rules into adapters or claim a project folder includes the shared runtime. Phase 12 sanitized/restricted distribution stays deferred.
 
 ## Isolation Checks
 

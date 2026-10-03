@@ -15,12 +15,12 @@ The roadmap applies to the framework and is executed independently for each proj
 | 8 | Composition Preview | Rider implementation complete | Implemented and tested | Planned |
 | 9 | Grounded image generation | Rider implementation complete | Implemented and tested | Planned |
 | 10 | Copy allocation QA | Rider implementation complete | Implemented and tested | Planned |
-| 11 | Cross-platform compatibility | Approved spec, not implemented | Codex current; Claude Code planned | Planned |
+| 11 | Cross-platform compatibility | Deterministic adapters/parity complete; live agents unverified | 13/13 critical components at 100 | Reference adapters; runtime unavailable |
 | 12 | Distribution profiles | Deferred | Deferred | Deferred |
 
 ## Framework Gate
 
-- Project generator produces unique IDs and complete self-contained folders.
+- Project generator produces unique IDs and isolated packs with shared-core dependencies documented.
 - Registry and project metadata remain valid.
 - No project template contains another project's name, brand rules, or credentials.
 - Known limitations, scoring opportunities, and deferred safeguards are recorded in [LIMITATIONS.md](LIMITATIONS.md) before new phase implementation starts.
@@ -75,7 +75,7 @@ The roadmap applies to the framework and is executed independently for each proj
 ## Cross-Platform Gate
 
 - Codex and Claude Code adapters are thin wrappers around the same canonical references, JSON contracts, Python runtime, and QA.
-- Claude Code support is not claimed until a manual-invocation adapter has produced parity evidence against Codex.
+- Manual-only adapters pass deterministic parity against CLI; all 13 critical components require 100. Live model invocation stays unverified under LIM-017.
 - Platform-specific skill metadata remains outside shared canonical instructions.
 
 ## Public Release Gate
@@ -83,7 +83,7 @@ The roadmap applies to the framework and is executed independently for each proj
 - Apache-2.0 license and attribution files remain present in the repository and standalone project packages.
 - Ownership, authorship, support, repository, and maintainer metadata are complete.
 - No secrets, private paths, missing assets, or cross-project references remain.
-- Codex installation and explicit invocation are tested; Claude Code release claims wait for Phase 11 parity validation.
+- Adapter installation/manual policies and deterministic outputs are tested; live platform/model claims wait for LIM-017 evidence.
 - At least one representative project campaign passes human and compatibility review.
 - P0 and public-release-blocking P1 limitations in [LIMITATIONS.md](LIMITATIONS.md) are either closed or explicitly accepted by the owner with documented mitigations.
 

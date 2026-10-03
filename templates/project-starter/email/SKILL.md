@@ -1,7 +1,6 @@
 ---
 name: onbrand-__PROJECT_SLUG__-email
 description: Explicitly invoked workflow for creating __PROJECT_NAME__ email marketing pieces with project-specific copy, modules, Beefree-style HTML structure, locked footer variants, and a complete distribution package.
-disable-model-invocation: true
 metadata:
   short-description: Build __PROJECT_NAME__ email campaigns
 ---

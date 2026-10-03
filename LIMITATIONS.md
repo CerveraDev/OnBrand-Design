@@ -41,13 +41,14 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 | LIM-007 | Asset selection uses deterministic metadata scoring; sparse metadata still weakens ranking confidence | P2 | Mitigated | Asset library refinement |
 | LIM-008 | Composition preview produces isolated HTML snippets, not bitmap thumbnails or scored visual options | P3 | Mitigated | Phase 8 refinement |
 | LIM-009 | Review packages are not production-hosted send artifacts without explicit hosted asset URLs | P2 | Mitigated | Deployment handoff |
-| LIM-010 | Claude Code and other non-Codex adapters are planned but not implemented or parity-tested | P1 | Deferred | Phase 11 |
+| LIM-010 | Cross-platform adapters need layered deterministic and live evidence | P1 | Mitigated | Phase 11 |
 | LIM-011 | Public/private/sanitized distribution profiles are deferred; prompt rules are not a security boundary | P1 | Deferred | Phase 12 |
 | LIM-012 | Cassia and non-Rider projects remain uncalibrated relative to The Rider pilot | P2 | Open | Project onboarding |
 | LIM-013 | Public release support metadata, ownership contacts, and CODEOWNERS are unresolved | P2 | Open | Release governance |
 | LIM-014 | Phase 9 lacks committed conceptual environment fixtures and human visual QA artifacts | P2 | Open | Phase 9 refinement |
 | LIM-015 | Accessibility, contrast, readability, and alt-text quality checks are incomplete | P3 | Open | QA backlog |
 | LIM-016 | Legal, fair-housing, financial, and regulated-copy checks are human-review flags, not compliance proof | P1 | Mitigated | Compliance governance |
+| LIM-017 | Live agent invocation and model-behavior parity remain unverified | P1 | Open | Phase 11 live validation |
 
 ## Detailed Entries
 
@@ -177,19 +178,19 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 - Candidate metrics: Asset self-containment, external-reference count, hosted URL coverage, broken-link count, ZIP integrity, HTML size, and ESP import warnings.
 - Closure criteria: Choose the final deployment platform and image-hosting handoff, document send-ready requirements, and verify a hosted package through the target workflow.
 
-### LIM-010: Claude Code and other non-Codex adapters are planned but not implemented or parity-tested
+### LIM-010: Cross-platform adapters need layered deterministic and live evidence
 
 - Priority: P1
-- Status: Deferred
+- Status: Mitigated
 - Owner phase: Phase 11
 - Dependencies: Canonical Phase 7-10 JSON/CLI contracts, available target-platform execution environments, thin explicit-invocation adapters, and committed artifact/QA parity fixtures.
-- Evidence: [ROADMAP.md](ROADMAP.md), [STATUS.md](STATUS.md), [docs/PRD.md](docs/PRD.md), [docs/specs/phase-11-cross-platform-compatibility.md](docs/specs/phase-11-cross-platform-compatibility.md)
-- Current behavior: Codex is the validated execution environment. Cross-platform support is planned, but Claude Code adapter parity, invocation checks, and output parity fixtures have not been implemented.
-- Risk and impact: Public docs could overstate portability if they imply that non-Codex agents are already supported.
-- Current control: Current docs identify Phase 11 as planned and say not to claim adapter support until parity validation passes.
+- Evidence: [Compatibility](docs/COMPATIBILITY.md), [Phase 11 evaluation](docs/evals/phase-11-cross-platform-compatibility.md), [parity report](docs/evals/phase-11-parity-report.json), [adapter tests](tests/test_platform_adapters.py)
+- Current behavior: Thin Codex/Claude/CLI adapters, manual policies, versioned contracts, and independent realistic runtime builds pass all 13 critical parity components at 100. Live model invocation is not established.
+- Risk and impact: Deterministic adapter parity could be mistaken for observed live host behavior or independent model interpretation.
+- Current control: All critical components require 100; named normalizations cannot hide copy/asset/QA differences. Live claims remain gated by LIM-017.
 - Scoring could help: Yes, as parity evidence.
 - Candidate metrics: Fixture output parity, command-invocation compatibility, generated artifact diffs, QA result parity, and adapter-specific failure counts.
-- Closure criteria: Implement thin adapters, run parity fixtures, commit a parity report, and update release docs with supported environments.
+- Closure criteria: Deterministic implementation/report/docs criteria are met; obtain live manual host evidence under LIM-017 before closing the full cross-platform support gap.
 
 ### LIM-011: Public/private/sanitized distribution profiles are deferred; prompt rules are not a security boundary
 
@@ -275,6 +276,20 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 - Candidate metrics: Regulated-term hits, claim-risk category, protected-class language flags, pricing/availability claim extraction, required-disclaimer presence, and human legal-review status.
 - Closure criteria: Commit a compliance-review policy, required escalation paths, and explicit non-goals for automated legal determinations.
 
+### LIM-017: Live agent invocation and model-behavior parity remain unverified
+
+- Priority: P1
+- Status: Open
+- Owner phase: Phase 11 live validation
+- Dependencies: Installed authenticated CLIs, permitted local app-server/state access, explicit HUMAN invocation, and representative approved inputs; no forced login or permission bypass.
+- Evidence: [Phase 11 evaluation](docs/evals/phase-11-cross-platform-compatibility.md), [compatibility scope](docs/COMPATIBILITY.md)
+- Current behavior: Codex 0.160.0 is authenticated but its bounded read-only manual request fails before model execution due to local sandbox app-server/database restrictions. Claude Code 2.1.273 is installed but not authenticated; no login/model call was attempted. Deterministic runtime parity passes, not live agent/model behavior.
+- Risk and impact: Host skill discovery/manual-only behavior, tool permissions, and new-brief model interpretation can differ even when shared runtime outputs match.
+- Current control: No live success claim; no authentication changes, credentials copying, or sandbox bypass. Source/manual policy checks and deterministic artifact evidence are clearly labeled.
+- Scoring could help: Yes, only with separately observed live evidence.
+- Candidate metrics: Observed explicit skill discovery, absence of implicit invocation, request/spec hashes, tool execution outcomes, model-produced approval fidelity, and artifact parity by authenticated host.
+- Closure criteria: Commit permitted authenticated manual invocation evidence for both platforms, representative live artifact comparisons, and any remaining model-interpretation deviations. Keep legal/visual approval external.
+
 ## Entry Template
 
 Use this template for new limitations:
@@ -300,3 +315,4 @@ Use this template for new limitations:
 - 2026-10-03: Created root limitations register covering Phase 1 through Phase 12 findings before Phase 10 implementation.
 - 2026-10-03: Closed LIM-003 with committed Phase 10 runtime/test/pilot evidence; mitigated LIM-004 through declared claim-reference gating and transparent repetition scoring while keeping source verification, OCR, and calibration limitations explicit.
 - 2026-10-03: Added explicit dependency conditions to all 16 limitation entries and the entry template after completion audit; retained stable IDs, status, closure evidence, and prior history.
+- 2026-10-03: Mitigated LIM-010 with versioned thin adapters and 100% deterministic parity; added LIM-017 for precise unverified live agent/model behavior. Phase 12 remains deferred.

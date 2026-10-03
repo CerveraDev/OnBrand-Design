@@ -1,0 +1,23 @@
+{
+  "contract_version": "1.0",
+  "adapter_version": "1.0",
+  "core_version": "1.0",
+  "project": "the-rider",
+  "runtime": "rider-campaign",
+  "runtime_version": "1.0",
+  "campaign_spec": "rider-wellness-composition-preview.runtime.json",
+  "inputs": {
+    "composition": {
+      "path": "rider-wellness-composition-plan.json",
+      "sha256": "1856ee766db7b7c9a023f0fe6dede3e76caf7228af42a2d09e9eaabcdd3be9d6"
+    },
+    "selection": {
+      "path": "rider-wellness-composition-selection.json",
+      "sha256": "5c12f90e7917c3c7020e835ac172a8a1f86bda760e1671d48d64dde2facd6f64"
+    }
+  },
+  "invocation": {
+    "actor": "HUMAN",
+    "explicit": true
+  }
+}

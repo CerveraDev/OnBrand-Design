@@ -1,6 +1,6 @@
 # Phase 11: Cross-Platform Compatibility
 
-**Status:** Approved specification, not implemented
+**Status:** Deterministic implementation/parity complete; live Codex/Claude agent invocation unverified
 **Target:** 0.9.0
 **Depends on:** Phases 7-10
 
@@ -47,6 +47,20 @@ Create a vendor-neutral campaign-production core with thin Codex and Claude Code
 - Runtime output parity is verified for at least one representative campaign.
 - Claude Code documentation references official skill location and invocation controls without claiming unimplemented support.
 - Platform-specific metadata does not leak into shared portable skill content.
+- [Committed report](../evals/phase-11-parity-report.json) passes 13 critical components at 100; [evaluation](../evals/phase-11-cross-platform-compatibility.md) separates that evidence from unverified live behavior.
+
+### Reconciled Phase 11 Gates
+
+- COMPAT-009: Versioned request/project contracts identify core, adapter, project, runtime, and campaign schema; reject unsupported versions and unknown fields.
+- COMPAT-010: A HUMAN invocation record plus explicit dispatch flag is mandatory. This is an attestation, not an authentication/security boundary.
+- COMPAT-011: One approved campaign JSON is authoritative. Optional brief/selection/approval files are checksum-bound; separate composition/image/copy files must equal their embedded canonical sections. No approvals or text are synthesized.
+- COMPAT-012: Emit/build adapters use the shared runtime API; provenance stays in a separate sidecar outside the campaign folder and ZIP.
+- COMPAT-013: Codex wrappers live under `.agents/skills`, Claude wrappers under `.claude/skills`; canonical project skills contain no Claude-only fields. Project IDs remain collision-safe.
+- COMPAT-014: CLI, Codex, and Claude deterministic runs compare campaign, build, variants, composition, image provenance, copy owners/claims/reuse/scoring, HTML hashes, asset identity/checksums, complete metadata, QA checks/outcomes, ZIP inventory/bytes, integrity, and adapter provenance.
+- COMPAT-015: All critical components require 100%; a mean score cannot override a failure. Only named normalizations in the compatibility contract are allowed; missing components, extra fields, nonpassing QA, stale/tampered ZIPs, and unexplained differences fail.
+- COMPAT-016: Realistic evidence independently rebuilds the Phase 10 Rider preview with checksum-verified cached real asset bytes. Cached transport is evaluation-only, not mocked rendering/QA and not live model equivalence.
+- COMPAT-017: Installed CLI/authentication and bounded manual agent checks are reported separately. No installation, login, credential disclosure, or claim of unobserved live Claude behavior.
+- COMPAT-018: Cassia/future scaffolds install references but reject builds until their own runtime/calibration is registered. Phase 12 distribution remains deferred.
 
 ## Tests And Evidence Required
 

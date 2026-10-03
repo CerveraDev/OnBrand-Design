@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create a self-contained OnBrand Design project from the starter template."""
+"""Create an OnBrand Design project pack for use with the shared core."""
 
 import argparse
 import json
@@ -22,6 +22,8 @@ def valid_slug(value):
         raise argparse.ArgumentTypeError(
             "slug must contain lowercase letters, digits, and single hyphens"
         )
+    if len(f"onbrand-{value}-email") > 64:
+        raise argparse.ArgumentTypeError("slug produces a skill ID longer than 64 characters")
     return value
 
 
