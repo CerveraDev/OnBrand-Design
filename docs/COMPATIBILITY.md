@@ -73,6 +73,8 @@ Thirteen critical components compare campaign, build, variants, composition, ima
 
 Each component scores `100 * matching platforms / 3` against CLI. Every critical component requires 100 and a pass; the arithmetic mean cannot override a failure. Missing evidence, extra fields, failed QA, duplicate QA IDs, altered assets, stale ZIPs, duplicate/extra archive members, and unrecognized run artifacts fail.
 
+Approval/selection matching and all component comparisons use the shared type-sensitive JSON representation, also used for component hashes and JSON inventory hashes. Boolean, number, null, string, array, and object types are distinct recursively: `true` never equals `1`, nor `false` equals `0`. Object key order is irrelevant; array order, length, and object member presence remain significant.
+
 Only these normalizations are allowed:
 
 1. Verified per-run `campaign.output_dir` becomes `<OUTPUT>`.
@@ -80,6 +82,7 @@ Only these normalizations are allowed:
 3. Top-level QA checks sort by unique name; IDs, messages, outcomes, and nested content remain intact.
 4. ZIP timestamps/compression/container bytes are excluded. Directory/member names and uncompressed file bytes must match the package. Cross-platform QA JSON hashes use the same check-order normalization.
 5. Verified sidecar platform becomes `<PLATFORM>`; all other provenance fields must match and extra fields fail.
+6. JSON has one number type. Finite numbers compare by their parsed numeric value, without rounding tolerance: `1` equals `1.0`, and `0` equals `-0.0`. Integral floats normalize to integers; fractional parsed floats keep their values. Equivalent numbers receive identical semantic hashes. This uses the shared JSON parser's numeric precision, not arbitrary-precision decimal arithmetic. NaN/infinity and non-JSON values are rejected. Source-file checksum/provenance binding still uses original bytes/approved input serialization.
 
 There is no generic path/URL/text/timestamp/claim/score stripping. Use the same approved files and source root; differing local-source paths are not excused.
 

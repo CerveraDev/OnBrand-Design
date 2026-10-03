@@ -28,9 +28,23 @@ The [complete report](phase-11-parity-report.json) records per-component hashes 
 
 Tests cover contract/version/project rejection, exact HUMAN/manual booleans, unchanged emission, checksum/approval/selection drift, unrecognized-output preservation, single shared runtime binding, portable manual-only wrappers, installer collisions, generator scaffolds, all component mismatches, copy owners/claims/exemptions/scores, high-aggregate blocking, missing evidence, failed/duplicate QA, tampered assets, stale ZIPs, extra ZIP directories, provenance drift, and cache failure.
 
-Full discovery: 109 tests passing, including 30 Phase 11 tests. The Phase 7-10 runtime is unchanged. Final verification also parses JSON/YAML, validates local Markdown links/manual policies, reviews secret patterns, audits package/ZIP bytes, and checks whitespace.
+Full discovery after the audit correction: 124 tests passing, including 45 Phase 11 tests. The initial implementation passed 109 tests; the correction adds 15 focused regressions. The Phase 7-10 runtime is unchanged. Final verification also parses JSON/YAML, validates local Markdown links/manual policies, reviews secret patterns, audits package/ZIP bytes, and checks whitespace.
 
-Final checks parsed 35 JSON files and 24 YAML/frontmatter documents with manual policy checks; no high-confidence secret patterns or whitespace errors were found. Package snapshots reproduce the committed component hashes. The prior Phase 10 ZIP retains SHA-256 `3f6ec61261a361e26ed90a964a6200a42611aaa4fbfa099d931e73ea2481620b`.
+Correction checks parsed 35 JSON files (including 4 schema documents and 5 resolved internal schema references), 24 YAML/frontmatter documents with manual policy checks, and 222 local Markdown links. No high-confidence secret patterns or whitespace errors were found. Package snapshots reproduce the committed component hashes. The prior Phase 10 ZIP retains SHA-256 `3f6ec61261a361e26ed90a964a6200a42611aaa4fbfa099d931e73ea2481620b`.
+
+## Completion Audit Correction
+
+A read-only audit of `175a28468ca9d9808172910fcb64923459c296c5` found two P2 gaps: Python object equality allowed a campaign `true -> 1` change to report aggregate 100/pass despite differing hashes, and a checksum-consistent composition attachment with `includes_header: 1` matched approved boolean `true`.
+
+The shared [JSON-semantic helper](../../tools/platform_adapters/json_semantics.py) now preserves type distinctions recursively, compares finite numbers by parsed value, rejects non-JSON/non-finite values, and gives equivalent numbers identical hashes. Parity comparisons, JSON inventory hashes, composition/image/copy attachments, selection plans, and asset/cache size matching use that representation. Remaining direct comparisons were reviewed: version/identity/digest strings, string inventories, and exact boolean guards do not have the coercion defect. Canonical campaign rules and input byte/checksum binding are unchanged.
+
+New regressions cover the original campaign and composition reproductions, recursive object/array/scalar changes across all 13 components, adjacent boolean/number/null/string values, array/member significance, reordered objects, numeric equivalence/precision/no-tolerance cases, non-finite rejection, copy occurrence caps, selection matching, and one-byte boolean cache sizes.
+
+The campaign reproduction now reports failed campaign/variant components at 66.67 each, aggregate 94.87, and a blocked gate. The manipulated composition attachment is rejected for every platform even with its checksum updated. Equivalent `1/1.0` and `0/-0.0` cases pass with matching semantic hashes instead of contradictory hashes.
+
+The corrected realistic pilot independently rebuilt all three outputs at `campaign-output/phase-11-parity-strict-json/{cli,codex,claude}/` using the same approved request and verified real asset cache. All 13 components pass at 100, with the same 86 QA checks, 23 units, 9 assets, branded HTML hash, and 13 files/16 ZIP members. The committed report now records this corrected run and explicit numeric normalization. Original pilot artifacts remain untouched.
+
+Formal Draft 2020-12 validator tooling was unavailable in the installed/bundled Python and Node environments; no dependency was installed. JSON/schema documents are parsed, internal references are checked, and canonical/custom schema validators and contract rejection tests run. That is not a claim of independent standards-level schema validation. Accepted LIM-017 live invocation gaps remain unchanged; no authentication or app-server workaround was retried.
 
 ## Live CLI Evidence
 

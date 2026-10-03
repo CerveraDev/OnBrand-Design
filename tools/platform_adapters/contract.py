@@ -13,6 +13,8 @@ from tools.rider_campaign_runtime.runtime import (
 from tools.rider_campaign_runtime.scaffold import load_scaffold
 from tools.rider_campaign_runtime.schema import validate_campaign_spec
 
+from .json_semantics import json_semantic_equal
+
 
 VERSION = "1.0"
 PLATFORMS = ("cli", "codex", "claude")
@@ -127,11 +129,11 @@ def prepare(request_path: Path, platform: str, *, explicit: bool) -> dict:
             raise ValueError(f"Input checksum mismatch: {role}")
         value = read_json(path)
         key = ATTACHMENTS[role]
-        if key and value != spec.get(key):
+        if key and not json_semantic_equal(value, spec.get(key)):
             raise ValueError(f"Approval file differs from canonical campaign: {role}")
         if role == "selection":
             plan = selection_builder(value)
-            if plan != spec.get("composition"):
+            if not json_semantic_equal(plan, spec.get("composition")):
                 raise ValueError("Selection file differs from canonical composition")
         inputs[role] = digest
     return {

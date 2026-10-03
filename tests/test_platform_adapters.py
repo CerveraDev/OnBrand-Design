@@ -11,6 +11,7 @@ from tools.platform_adapters.contract import (
     PLATFORMS, ROOT, RUNTIMES, canonical_bytes, prepare, project_contract, run, sha256, write_json,
 )
 from tools.platform_adapters.install import install, installation_files
+from tools.platform_adapters.json_semantics import json_semantic_bytes, json_semantic_equal
 from tools.platform_adapters.parity import COMPONENTS, cache_reader, compare, evaluate, snapshot
 from tools.rider_campaign_runtime.runtime import build_campaign_from_spec
 from tests.test_rider_campaign_runtime import minimal_spec, refresh_copy_allocation, write_manifest, write_png
@@ -26,6 +27,54 @@ def request_for(spec_path):
         "campaign_spec": str(spec_path), "inputs": {},
         "invocation": {"actor": "HUMAN", "explicit": True},
     }
+
+
+class JsonSemanticTests(unittest.TestCase):
+    def test_primitive_type_and_numeric_equivalence_matrix(self):
+        groups = [(None,), (False,), (True,), (0, 0.0, -0.0), (1, 1.0), (1.5,),
+                  ("",), ("0",), ("1",), ("true",), ([],), ({},)]
+        for left_group, left_values in enumerate(groups):
+            for right_group, right_values in enumerate(groups):
+                for left in left_values:
+                    for right in right_values:
+                        with self.subTest(left=left, right=right):
+                            equal = json_semantic_equal(left, right)
+                            self.assertEqual(equal, left_group == right_group)
+                            self.assertEqual(json_semantic_bytes(left) == json_semantic_bytes(right), equal)
+
+    def test_object_key_order_and_nested_numeric_forms_are_equivalent(self):
+        left = {"a": {"items": [True, 1, None, "x"]}, "b": -0.0}
+        right = {"b": 0, "a": {"items": [True, 1.0, None, "x"]}}
+        self.assertTrue(json_semantic_equal(left, right))
+        self.assertEqual(sha256(json_semantic_bytes(left)), sha256(json_semantic_bytes(right)))
+
+    def test_nested_object_array_and_scalar_type_changes_are_distinct(self):
+        for left, right in ((True, 1), (False, 0), (None, ""), ("1", 1), ("true", True),
+                            ([], {}), (None, False), (1.5, "1.5")):
+            for wrap in (lambda value: value, lambda value: {"value": value},
+                         lambda value: [value], lambda value: {"nested": [{"value": [value]}]}):
+                with self.subTest(left=left, right=right):
+                    self.assertFalse(json_semantic_equal(wrap(left), wrap(right)))
+
+    def test_array_order_length_and_object_members_remain_significant(self):
+        for left, right in (([1, 2], [2, 1]), ([None], []),
+                            ({"a": None}, {}), ({"a": 1}, {"b": 1})):
+            self.assertFalse(json_semantic_equal(left, right))
+
+    def test_numeric_values_have_no_rounding_tolerance(self):
+        self.assertFalse(json_semantic_equal(0.1 + 0.2, 0.3))
+        self.assertFalse(json_semantic_equal(2 ** 53 + 1, float(2 ** 53 + 1)))
+        self.assertFalse(json_semantic_equal(1, 1.0000000000000002))
+        self.assertTrue(json_semantic_equal(2 ** 53, float(2 ** 53)))
+
+    def test_nonfinite_and_non_json_values_are_rejected_recursively(self):
+        for value in (float("nan"), float("inf"), -float("inf"), (1,), {1: "value"}):
+            for wrap in (lambda item: item, lambda item: {"nested": [item]}):
+                with self.subTest(value=value):
+                    with self.assertRaises(ValueError):
+                        json_semantic_equal(wrap(value), wrap(value))
+                    with self.assertRaises(ValueError):
+                        json_semantic_bytes(wrap(value))
 
 
 class AdapterContractTests(unittest.TestCase):
@@ -122,6 +171,54 @@ class AdapterContractTests(unittest.TestCase):
 
     def test_single_shared_runtime_entrypoint(self):
         self.assertIs(RUNTIMES["rider-campaign"][2], build_campaign_from_spec)
+
+    def test_composition_attachment_boolean_to_number_audit_reproduction(self):
+        request = json.loads((EXAMPLES / "cross-platform.request.json").read_text())
+        request["campaign_spec"] = str(EXAMPLES / request["campaign_spec"])
+        approval = json.loads((EXAMPLES / "rider-wellness-composition-plan.json").read_text())
+        self.assertIs(approval["selected_modules"][0]["includes_header"], True)
+        approval["selected_modules"][0]["includes_header"] = 1
+        path = self.root / "composition.json"
+        write_json(path, approval)
+        request["inputs"] = {"composition": {"path": path.name, "sha256": sha256(path.read_bytes())}}
+        write_json(self.request_path, request)
+        for platform in PLATFORMS:
+            with self.subTest(platform=platform):
+                with self.assertRaisesRegex(ValueError, "Approval file differs"):
+                    prepare(self.request_path, platform, explicit=True)
+
+    def test_copy_attachment_number_to_boolean_is_rejected(self):
+        approval = copy.deepcopy(self.spec["copy_allocation"])
+        approval["content_units"][0]["max_occurrences"] = True
+        path = self.root / "copy.json"
+        write_json(path, approval)
+        self.request["inputs"] = {"copy": {"path": path.name, "sha256": sha256(path.read_bytes())}}
+        self.rewrite()
+        with self.assertRaisesRegex(ValueError, "Approval file differs"):
+            prepare(self.request_path, "cli", explicit=True)
+
+    def test_approval_attachment_object_key_order_is_equivalent(self):
+        approval = self.spec["copy_allocation"]
+        path = self.root / "copy.json"
+        write_json(path, dict(reversed(list(approval.items()))))
+        self.request["inputs"] = {"copy": {"path": path.name, "sha256": sha256(path.read_bytes())}}
+        self.rewrite()
+        prepare(self.request_path, "cli", explicit=True)
+
+    def test_selection_plan_type_change_is_rejected(self):
+        request_path = EXAMPLES / "cross-platform.request.json"
+        request = json.loads(request_path.read_text())
+        request["campaign_spec"] = str(EXAMPLES / request["campaign_spec"])
+        request["inputs"] = {"selection": dict(request["inputs"]["selection"])}
+        request["inputs"]["selection"]["path"] = str(EXAMPLES / request["inputs"]["selection"]["path"])
+        self.request = request
+        self.rewrite()
+        plan = json.loads((EXAMPLES / "rider-wellness-composition-plan.json").read_text())
+        plan["selected_modules"][0]["includes_header"] = 1
+        version, validator, builder, _ = RUNTIMES["rider-campaign"]
+        with patch.dict(RUNTIMES, {"rider-campaign": (version, validator, builder, lambda value: plan)}):
+            with self.assertRaisesRegex(ValueError, "Selection file differs"):
+                prepare(self.request_path, "cli", explicit=True)
 
     def test_selection_must_match_canonical_composition(self):
         request = json.loads((EXAMPLES / "cross-platform.request.json").read_text())
@@ -249,6 +346,53 @@ class AdapterParityTests(unittest.TestCase):
                 self.assertGreater(report["aggregate_score"], 90)
                 self.assertFalse(next(item for item in report["components"] if item["id"] == component)["passed"])
 
+    def test_boolean_to_number_campaign_audit_reproduction_blocks_gate(self):
+        changed = copy.deepcopy(self.snapshots)
+        changed["claude"]["campaign"]["variants"]["branded"] = 1
+        report = compare(changed)
+        self.assertFalse(report["passed"])
+        self.assertLess(report["aggregate_score"], 100)
+        for component in ("campaign", "variants"):
+            result = next(item for item in report["components"] if item["id"] == component)
+            self.assertFalse(result["passed"])
+            self.assertEqual(result["score"], 66.67)
+            self.assertNotEqual(result["sha256"]["cli"], result["sha256"]["claude"])
+
+    def test_recursive_type_changes_block_every_component(self):
+        for component in COMPONENTS:
+            for left, right in ((True, 1), (False, 0), (None, ""), ("1", 1), ([], {})):
+                with self.subTest(component=component, left=left, right=right):
+                    changed = copy.deepcopy(self.snapshots)
+                    for value in changed.values():
+                        value[component]["audit_probe"] = {"nested": [{"items": [left]}]}
+                    changed["codex"][component]["audit_probe"]["nested"][0]["items"][0] = right
+                    report = compare(changed)
+                    result = next(item for item in report["components"] if item["id"] == component)
+                    self.assertFalse(report["passed"])
+                    self.assertLess(report["aggregate_score"], 100)
+                    self.assertFalse(result["passed"])
+                    self.assertEqual(result["score"], 66.67)
+                    self.assertNotEqual(result["sha256"]["cli"], result["sha256"]["codex"])
+
+    def test_equivalent_numbers_have_matching_hashes_in_every_component(self):
+        for component in COMPONENTS:
+            with self.subTest(component=component):
+                changed = copy.deepcopy(self.snapshots)
+                for value in changed.values():
+                    value[component]["audit_probe"] = {"nested": [1, 0]}
+                changed["claude"][component]["audit_probe"] = {"nested": [1.0, -0.0]}
+                report = compare(changed)
+                result = next(item for item in report["components"] if item["id"] == component)
+                self.assertTrue(report["passed"])
+                self.assertEqual(result["score"], 100)
+                self.assertEqual(len(set(result["sha256"].values())), 1)
+
+    def test_nonfinite_component_number_is_rejected(self):
+        changed = copy.deepcopy(self.snapshots)
+        changed["claude"]["campaign"]["audit_probe"] = {"nested": [float("nan")]}
+        with self.assertRaisesRegex(ValueError, "Non-finite"):
+            compare(changed)
+
     def test_copy_owners_claims_exemptions_and_scores_are_not_normalized(self):
         for key in ("owner", "claim_policy", "dedupe_exemptions", "similarity", "thresholds"):
             with self.subTest(key=key):
@@ -341,6 +485,18 @@ class AdapterParityTests(unittest.TestCase):
         self.assertEqual(sha256(data), record["sha256"])
         with self.assertRaisesRegex(ValueError, "Uncached"):
             reader("https://example.com/new.png")
+
+    def test_cache_size_boolean_cannot_match_one_byte_number(self):
+        with tempfile.TemporaryDirectory() as directory:
+            package = Path(directory)
+            asset = package / "one-byte.bin"
+            asset.write_bytes(b"x")
+            write_json(package / "asset-manifest.json", {"assets": [{
+                "source": "https://example.com/one-byte.bin", "package_path": asset.name,
+                "sha256": sha256(b"x"), "size_bytes": True,
+            }]})
+            with self.assertRaisesRegex(ValueError, "checksum/size"):
+                cache_reader(package)
 
     def test_provenance_stays_out_of_self_contained_zip(self):
         with ZipFile(self.root / "cli/runtime-test.zip") as archive:

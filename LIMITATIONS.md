@@ -187,7 +187,7 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 - Evidence: [Compatibility](docs/COMPATIBILITY.md), [Phase 11 evaluation](docs/evals/phase-11-cross-platform-compatibility.md), [parity report](docs/evals/phase-11-parity-report.json), [adapter tests](tests/test_platform_adapters.py)
 - Current behavior: Thin Codex/Claude/CLI adapters, manual policies, versioned contracts, and independent realistic runtime builds pass all 13 critical parity components at 100. Live model invocation is not established.
 - Risk and impact: Deterministic adapter parity could be mistaken for observed live host behavior or independent model interpretation.
-- Current control: All critical components require 100; named normalizations cannot hide copy/asset/QA differences. Live claims remain gated by LIM-017.
+- Current control: All critical components require 100; shared recursive JSON-semantic comparison and hashing prevent boolean/number coercion at parity, approval/selection, and asset-size boundaries. The initial 175a284 audit defects are corrected with type-sensitive regressions and a rebuilt realistic pilot. Finite numeric equivalence and parser-precision boundaries are explicit in the compatibility guide. Live claims remain gated by LIM-017.
 - Scoring could help: Yes, as parity evidence.
 - Candidate metrics: Fixture output parity, command-invocation compatibility, generated artifact diffs, QA result parity, and adapter-specific failure counts.
 - Closure criteria: Deterministic implementation/report/docs criteria are met; obtain live manual host evidence under LIM-017 before closing the full cross-platform support gap.
@@ -316,3 +316,4 @@ Use this template for new limitations:
 - 2026-10-03: Closed LIM-003 with committed Phase 10 runtime/test/pilot evidence; mitigated LIM-004 through declared claim-reference gating and transparent repetition scoring while keeping source verification, OCR, and calibration limitations explicit.
 - 2026-10-03: Added explicit dependency conditions to all 16 limitation entries and the entry template after completion audit; retained stable IDs, status, closure evidence, and prior history.
 - 2026-10-03: Mitigated LIM-010 with versioned thin adapters and 100% deterministic parity; added LIM-017 for precise unverified live agent/model behavior. Phase 12 remains deferred.
+- 2026-10-03: Completion audit found two P2 boolean/number coercion gaps in parity and composition approval matching at 175a284. Corrected shared JSON-semantic comparison/hashing and adjacent approval/selection/size boundaries; 15 new regressions and the rebuilt pilot close those defects. LIM-010 remains mitigated because LIM-017 live evidence is still open.

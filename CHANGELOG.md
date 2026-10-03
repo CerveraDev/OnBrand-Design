@@ -4,6 +4,11 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ## [Unreleased]
 
+### Fixed
+
+- Phase 11 completion-audit defects where Python equality treated JSON booleans as numbers in parity and approval matching. Shared recursive JSON-semantic comparison/hashing now preserves type distinctions, declares finite numeric equivalence, and rejects non-finite values; selection and asset-size boundaries use the same check.
+- Added 15 regressions and rebuilt realistic three-adapter parity evidence without changing campaign business logic, approvals, or accepted live invocation limitations.
+
 ### Added
 
 - Phase 11 versioned project/request contracts, manual-only Codex/Claude workspace wrappers, shared dispatch, installer/generator integration, and 13-component blocking parity.

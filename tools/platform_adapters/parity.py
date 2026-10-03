@@ -8,7 +8,8 @@ from zipfile import ZipFile
 
 from tools.rider_campaign_runtime.assets import _read_asset
 
-from .contract import PLATFORMS, VERSION, canonical_bytes, exact_fields, read_json, run, sha256
+from .contract import PLATFORMS, VERSION, exact_fields, read_json, run, sha256
+from .json_semantics import json_semantic_bytes, json_semantic_equal
 
 
 COMPONENTS = (
@@ -18,6 +19,7 @@ COMPONENTS = (
 NORMALIZATIONS = [
     "campaign.campaign.output_dir: verified per-run output root -> <OUTPUT>",
     "JSON object key order and whitespace: canonical JSON serialization",
+    "JSON finite numbers: equal parsed numeric values share representation (1 = 1.0; 0 = -0.0); boolean/string/null types remain distinct",
     "qa-report.json.checks: sort by unique check name (messages/outcomes preserved)",
     "ZIP: compare member paths and uncompressed bytes, not timestamps/compression/container bytes",
     "adapter-provenance.json.platform: verified actual platform -> <PLATFORM>; sidecar stays outside package",
@@ -69,7 +71,7 @@ def snapshot(output_root: Path, platform: str) -> dict:
         name = path.relative_to(package).as_posix()
         raw = path.read_bytes()
         raw_inventory[f"{package.name}/{name}"] = sha256(raw)
-        data = canonical_bytes(normalized_json(name, read_json(path))) if name.endswith(".json") else raw
+        data = json_semantic_bytes(normalized_json(name, read_json(path))) if name.endswith(".json") else raw
         inventory[name] = sha256(data)
     if not any(name.startswith("html/") for name in inventory):
         raise ValueError("Package contains no HTML")
@@ -77,7 +79,8 @@ def snapshot(output_root: Path, platform: str) -> dict:
         path = package / asset["package_path"]
         if package not in path.resolve().parents:
             raise ValueError("Asset escapes package")
-        if sha256(path.read_bytes()) != asset["sha256"] or path.stat().st_size != asset["size_bytes"]:
+        if (sha256(path.read_bytes()) != asset["sha256"]
+                or not json_semantic_equal(path.stat().st_size, asset["size_bytes"])):
             raise ValueError("Packaged asset checksum/size mismatch")
     zip_path = package.with_suffix(".zip")
     directories = [package.name + "/"]
@@ -118,8 +121,8 @@ def compare(snapshots: dict) -> dict:
         raise ValueError("Parity requires all platforms and every component")
     components = []
     for name in COMPONENTS:
-        baseline = snapshots["cli"][name]
-        matches = [platform for platform in PLATFORMS if snapshots[platform][name] == baseline]
+        values = {platform: json_semantic_bytes(snapshots[platform][name]) for platform in PLATFORMS}
+        matches = [platform for platform in PLATFORMS if values[platform] == values["cli"]]
         valid = True
         if name == "qa":
             valid = all(value[name].get("passed") is True and value[name].get("checks")
@@ -131,7 +134,7 @@ def compare(snapshots: dict) -> dict:
         components.append({
             "id": name, "critical": True, "score": round(100 * len(matches) / len(PLATFORMS), 2),
             "passed": len(matches) == len(PLATFORMS) and valid, "matching_platforms": matches,
-            "sha256": {platform: sha256(canonical_bytes(snapshots[platform][name])) for platform in PLATFORMS},
+            "sha256": {platform: sha256(values[platform]) for platform in PLATFORMS},
         })
     return {
         "contract_version": VERSION, "evidence_kind": "deterministic-adapter-runtime-parity",
@@ -151,7 +154,7 @@ def cache_reader(package: Path):
         if package.resolve() not in path.parents:
             raise ValueError("Cache path escapes package")
         data = path.read_bytes()
-        if sha256(data) != record["sha256"] or len(data) != record["size_bytes"]:
+        if sha256(data) != record["sha256"] or not json_semantic_equal(len(data), record["size_bytes"]):
             raise ValueError("Cache checksum/size mismatch")
         source = record["source"]
         parsed = urlparse(source)

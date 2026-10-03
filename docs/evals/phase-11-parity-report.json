@@ -217,6 +217,7 @@
   "normalizations": [
     "campaign.campaign.output_dir: verified per-run output root -> <OUTPUT>",
     "JSON object key order and whitespace: canonical JSON serialization",
+    "JSON finite numbers: equal parsed numeric values share representation (1 = 1.0; 0 = -0.0); boolean/string/null types remain distinct",
     "qa-report.json.checks: sort by unique check name (messages/outcomes preserved)",
     "ZIP: compare member paths and uncompressed bytes, not timestamps/compression/container bytes",
     "adapter-provenance.json.platform: verified actual platform -> <PLATFORM>; sidecar stays outside package"
