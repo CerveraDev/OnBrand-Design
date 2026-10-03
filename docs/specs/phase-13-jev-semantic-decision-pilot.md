@@ -1,6 +1,6 @@
 # Phase 13: Jev Semantic Decision Pilot
 
-**Status:** Dataset version 1 frozen; provider questions and integration not implemented
+**Status:** Dataset and question set version 1 frozen; provider integration not implemented
 **Target:** Post-Phase 11 refinement; independent of deferred Phase 12
 **Depends on:** Phase 10 copy allocation QA, versioned runtime contracts, and a labeled Rider evaluation set
 
@@ -122,3 +122,5 @@ Disabling the feature flag restores the existing Phase 10 behavior. Removing the
 - [Reviewer comparison](../evals/reviews/phase-13-review-comparison.v1.json)
 - [Adjudication record](../evals/reviews/phase-13-adjudication.v1.json)
 - [Frozen dataset](../evals/data/phase-13-rider-copy-pairs.v1.frozen.json)
+- [Calibration-locked question set](../evals/config/phase-13-jev-questions.v1.json)
+- [Calibration request batch](../evals/requests/phase-13-jev-calibration.v1.json)

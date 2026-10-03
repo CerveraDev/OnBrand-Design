@@ -63,7 +63,7 @@
 ## Approved Specs, Not Implemented
 
 - Phase 12: Distribution profiles remain deferred until public core, private project packs, and sanitized broker packages are physically separated.
-- Phase 13 provider integration: dataset version 1 is independently reviewed, adjudicated, and frozen, but no Jev question set, SDK, credentials, runtime calls, or blocking behavior exist.
+- Phase 13 provider integration: dataset and question set version 1 are frozen and a 17-case calibration batch exists, but no SDK, credentials, provider calls, runtime integration, or blocking behavior exist.
 
 ## In Progress
 
@@ -71,7 +71,7 @@
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 - Obtain live manual invocation evidence on permitted authenticated hosts; deterministic parity does not establish model behavior.
 - Keep [LIMITATIONS.md](LIMITATIONS.md) current when audits, specs, QA runs, or implementation work discover new constraints.
-- Design the first versioned Jev question set using only the 17 calibration cases. The 9 holdout cases remain untouched until the question set is locked.
+- Implement a no-production-effect provider adapter and recorded-response contract for the locked 17-case calibration batch. The 9 holdout cases remain ungenerated and untouched.
 
 ## Waiting On Project Inputs
 
@@ -87,4 +87,4 @@
 
 ## Next Milestone
 
-Design and lock the calibration-only Phase 13 Jev question set without changing deterministic QA or adding production blocking. Live manual adapter checks and broader visual/email-client review remain open; Phase 12 distribution stays deferred.
+Implement and test the optional Phase 13 provider/receipt boundary without making live calls or changing deterministic QA. Live manual adapter checks and broader visual/email-client review remain open; Phase 12 distribution stays deferred.

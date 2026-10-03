@@ -61,8 +61,11 @@ Two blinded reviews agree fully on 21 of 26 cases and agree on the semantic labe
 
 The frozen baseline remains 14/26 exact action matches. Adjudication changes one semantic taxonomy label but no expected action, and holdout text is unchanged. The frozen machine report is [phase-13-lexical-baseline.frozen.v1.json](phase-13-lexical-baseline.frozen.v1.json).
 
-1. Design atomic Jev questions using calibration cases only.
-2. Lock the first question-set version before evaluating the untouched holdout.
-3. Compare Jev with this baseline and record precision, recall, false positives, false negatives, review coverage, and overrides.
+The first [calibration-locked question set](config/phase-13-jev-questions.v1.json) now defines six atomic questions, pins `jev-1.13.0`, forbids evaluation labels and personal contact data from provider state, and has no production effect. Its generated [calibration request batch](requests/phase-13-jev-calibration.v1.json) contains exactly 17 records and no holdout cases.
+
+1. Add a provider adapter and recorded-response contract behind an optional flag.
+2. Run the 17 calibration cases only after API credentials and owner-approved data handling are available.
+3. Record calibration results without modifying question-set version 1.
+4. Compare the locked configuration with this baseline on the untouched holdout and record precision, recall, false positives, false negatives, review coverage, and overrides.
 
 Review evidence: [Reviewer A](reviews/phase-13-reviewer-a.v1.json), [Reviewer B](reviews/phase-13-reviewer-b.v1.json), and [comparison](reviews/phase-13-review-comparison.v1.json).

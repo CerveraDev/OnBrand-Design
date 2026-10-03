@@ -1,0 +1,743 @@
+{
+  "schema_version": "1.0",
+  "question_set_id": "onbrand-jev-semantic-v1",
+  "question_set_sha256": "4cfec4204f842666c4f9fa35167015503129e866864c2efff53f165f6e761122",
+  "dataset_id": "rider-semantic-decision-pilot-v1",
+  "dataset_status": "adjudicated",
+  "split": "calibration",
+  "record_count": 17,
+  "production_effect": "none",
+  "records": [
+    {
+      "case_id": "sim-cal-001",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "policy_context": {
+        "approved_reuse": false
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "left": "Same routine. Same membership.",
+          "right": "Same routine. Same membership.",
+          "context": "Two separate visible body modules in one email."
+        },
+        "questions": {
+          "copy_relation": {
+            "type": "choice",
+            "instructions": "Classify the semantic relationship between left and right in the supplied email context. Judge meaning and communicative job, not merely shared vocabulary or sentence shape.",
+            "criteria": {
+              "distinct": "The passages communicate different ideas or perform unrelated jobs; keeping both does not repeat a campaign message.",
+              "related-distinct": "The passages share a topic or campaign context but each contributes materially different information or serves a meaningfully different function.",
+              "equivalent": "The passages communicate substantially the same core message, claim, promise, or authority cue even when wording, tone, or metaphor differs."
+            }
+          },
+          "same_core_message": {
+            "type": "noul",
+            "instructions": "Do left and right communicate substantially the same core campaign message or claim?",
+            "criteria": {
+              "true": "A reader would understand both as making the same essential point, including paraphrases and metaphorical restatements.",
+              "false": "They merely share a topic, vocabulary, setting, or brand context while contributing different information or performing different jobs."
+            }
+          },
+          "second_adds_material_information": {
+            "type": "noul",
+            "instructions": "Does right add material information or a meaningfully different communication function beyond left?",
+            "criteria": {
+              "true": "Right adds a distinct fact, useful qualification, action, description, or communication function that earns separate placement.",
+              "false": "Right mainly restates, decorates, or rephrases the point already made by left."
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "sim-cal-002",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "policy_context": {
+        "approved_reuse": false
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "left": "The wellness routine now travels with you in Miami every day.",
+          "right": "The wellness routine now travels with you in Miami each day.",
+          "context": "Adjacent body sections."
+        },
+        "questions": {
+          "copy_relation": {
+            "type": "choice",
+            "instructions": "Classify the semantic relationship between left and right in the supplied email context. Judge meaning and communicative job, not merely shared vocabulary or sentence shape.",
+            "criteria": {
+              "distinct": "The passages communicate different ideas or perform unrelated jobs; keeping both does not repeat a campaign message.",
+              "related-distinct": "The passages share a topic or campaign context but each contributes materially different information or serves a meaningfully different function.",
+              "equivalent": "The passages communicate substantially the same core message, claim, promise, or authority cue even when wording, tone, or metaphor differs."
+            }
+          },
+          "same_core_message": {
+            "type": "noul",
+            "instructions": "Do left and right communicate substantially the same core campaign message or claim?",
+            "criteria": {
+              "true": "A reader would understand both as making the same essential point, including paraphrases and metaphorical restatements.",
+              "false": "They merely share a topic, vocabulary, setting, or brand context while contributing different information or performing different jobs."
+            }
+          },
+          "second_adds_material_information": {
+            "type": "noul",
+            "instructions": "Does right add material information or a meaningfully different communication function beyond left?",
+            "criteria": {
+              "true": "Right adds a distinct fact, useful qualification, action, description, or communication function that earns separate placement.",
+              "false": "Right mainly restates, decorates, or rephrases the point already made by left."
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "sim-cal-003",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "policy_context": {
+        "approved_reuse": false
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "left": "Keep the wellness membership you already use when you move to Miami.",
+          "right": "Your familiar club access can continue in your new city.",
+          "context": "Hero support line and concluding body line."
+        },
+        "questions": {
+          "copy_relation": {
+            "type": "choice",
+            "instructions": "Classify the semantic relationship between left and right in the supplied email context. Judge meaning and communicative job, not merely shared vocabulary or sentence shape.",
+            "criteria": {
+              "distinct": "The passages communicate different ideas or perform unrelated jobs; keeping both does not repeat a campaign message.",
+              "related-distinct": "The passages share a topic or campaign context but each contributes materially different information or serves a meaningfully different function.",
+              "equivalent": "The passages communicate substantially the same core message, claim, promise, or authority cue even when wording, tone, or metaphor differs."
+            }
+          },
+          "same_core_message": {
+            "type": "noul",
+            "instructions": "Do left and right communicate substantially the same core campaign message or claim?",
+            "criteria": {
+              "true": "A reader would understand both as making the same essential point, including paraphrases and metaphorical restatements.",
+              "false": "They merely share a topic, vocabulary, setting, or brand context while contributing different information or performing different jobs."
+            }
+          },
+          "second_adds_material_information": {
+            "type": "noul",
+            "instructions": "Does right add material information or a meaningfully different communication function beyond left?",
+            "criteria": {
+              "true": "Right adds a distinct fact, useful qualification, action, description, or communication function that earns separate placement.",
+              "false": "Right mainly restates, decorates, or rephrases the point already made by left."
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "sim-cal-004",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "policy_context": {
+        "approved_reuse": false
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "left": "A recovery-focused fitness space supports the start of the day.",
+          "right": "Valet arrival keeps the transition home simple.",
+          "context": "Separate amenity and arrival body modules."
+        },
+        "questions": {
+          "copy_relation": {
+            "type": "choice",
+            "instructions": "Classify the semantic relationship between left and right in the supplied email context. Judge meaning and communicative job, not merely shared vocabulary or sentence shape.",
+            "criteria": {
+              "distinct": "The passages communicate different ideas or perform unrelated jobs; keeping both does not repeat a campaign message.",
+              "related-distinct": "The passages share a topic or campaign context but each contributes materially different information or serves a meaningfully different function.",
+              "equivalent": "The passages communicate substantially the same core message, claim, promise, or authority cue even when wording, tone, or metaphor differs."
+            }
+          },
+          "same_core_message": {
+            "type": "noul",
+            "instructions": "Do left and right communicate substantially the same core campaign message or claim?",
+            "criteria": {
+              "true": "A reader would understand both as making the same essential point, including paraphrases and metaphorical restatements.",
+              "false": "They merely share a topic, vocabulary, setting, or brand context while contributing different information or performing different jobs."
+            }
+          },
+          "second_adds_material_information": {
+            "type": "noul",
+            "instructions": "Does right add material information or a meaningfully different communication function beyond left?",
+            "criteria": {
+              "true": "Right adds a distinct fact, useful qualification, action, description, or communication function that earns separate placement.",
+              "false": "Right mainly restates, decorates, or rephrases the point already made by left."
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "sim-cal-005",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "policy_context": {
+        "approved_reuse": false
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "left": "Soho House continues investing in its Beach House presence.",
+          "right": "Equinox is preparing a new Edgewater club nearby.",
+          "context": "Two list items supporting one neighborhood-wellness theme."
+        },
+        "questions": {
+          "copy_relation": {
+            "type": "choice",
+            "instructions": "Classify the semantic relationship between left and right in the supplied email context. Judge meaning and communicative job, not merely shared vocabulary or sentence shape.",
+            "criteria": {
+              "distinct": "The passages communicate different ideas or perform unrelated jobs; keeping both does not repeat a campaign message.",
+              "related-distinct": "The passages share a topic or campaign context but each contributes materially different information or serves a meaningfully different function.",
+              "equivalent": "The passages communicate substantially the same core message, claim, promise, or authority cue even when wording, tone, or metaphor differs."
+            }
+          },
+          "same_core_message": {
+            "type": "noul",
+            "instructions": "Do left and right communicate substantially the same core campaign message or claim?",
+            "criteria": {
+              "true": "A reader would understand both as making the same essential point, including paraphrases and metaphorical restatements.",
+              "false": "They merely share a topic, vocabulary, setting, or brand context while contributing different information or performing different jobs."
+            }
+          },
+          "second_adds_material_information": {
+            "type": "noul",
+            "instructions": "Does right add material information or a meaningfully different communication function beyond left?",
+            "criteria": {
+              "true": "Right adds a distinct fact, useful qualification, action, description, or communication function that earns separate placement.",
+              "false": "Right mainly restates, decorates, or rephrases the point already made by left."
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "sim-cal-006",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "policy_context": {
+        "approved_reuse": true
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "left": "Same routine.",
+          "right": "Same routine.",
+          "context": "A deliberately repeated campaign refrain with an approved exemption naming both placements."
+        },
+        "questions": {
+          "copy_relation": {
+            "type": "choice",
+            "instructions": "Classify the semantic relationship between left and right in the supplied email context. Judge meaning and communicative job, not merely shared vocabulary or sentence shape.",
+            "criteria": {
+              "distinct": "The passages communicate different ideas or perform unrelated jobs; keeping both does not repeat a campaign message.",
+              "related-distinct": "The passages share a topic or campaign context but each contributes materially different information or serves a meaningfully different function.",
+              "equivalent": "The passages communicate substantially the same core message, claim, promise, or authority cue even when wording, tone, or metaphor differs."
+            }
+          },
+          "same_core_message": {
+            "type": "noul",
+            "instructions": "Do left and right communicate substantially the same core campaign message or claim?",
+            "criteria": {
+              "true": "A reader would understand both as making the same essential point, including paraphrases and metaphorical restatements.",
+              "false": "They merely share a topic, vocabulary, setting, or brand context while contributing different information or performing different jobs."
+            }
+          },
+          "second_adds_material_information": {
+            "type": "noul",
+            "instructions": "Does right add material information or a meaningfully different communication function beyond left?",
+            "criteria": {
+              "true": "Right adds a distinct fact, useful qualification, action, description, or communication function that earns separate placement.",
+              "false": "Right mainly restates, decorates, or rephrases the point already made by left."
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "sim-cal-007",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "policy_context": {
+        "approved_reuse": false
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "left": "Wellness, minutes from home.",
+          "right": "See how familiar memberships can fit your Miami routine.",
+          "context": "Subject line and preview text; preview should extend rather than repeat the subject."
+        },
+        "questions": {
+          "copy_relation": {
+            "type": "choice",
+            "instructions": "Classify the semantic relationship between left and right in the supplied email context. Judge meaning and communicative job, not merely shared vocabulary or sentence shape.",
+            "criteria": {
+              "distinct": "The passages communicate different ideas or perform unrelated jobs; keeping both does not repeat a campaign message.",
+              "related-distinct": "The passages share a topic or campaign context but each contributes materially different information or serves a meaningfully different function.",
+              "equivalent": "The passages communicate substantially the same core message, claim, promise, or authority cue even when wording, tone, or metaphor differs."
+            }
+          },
+          "same_core_message": {
+            "type": "noul",
+            "instructions": "Do left and right communicate substantially the same core campaign message or claim?",
+            "criteria": {
+              "true": "A reader would understand both as making the same essential point, including paraphrases and metaphorical restatements.",
+              "false": "They merely share a topic, vocabulary, setting, or brand context while contributing different information or performing different jobs."
+            }
+          },
+          "second_adds_material_information": {
+            "type": "noul",
+            "instructions": "Does right add material information or a meaningfully different communication function beyond left?",
+            "criteria": {
+              "true": "Right adds a distinct fact, useful qualification, action, description, or communication function that earns separate placement.",
+              "false": "Right mainly restates, decorates, or rephrases the point already made by left."
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "sim-cal-008",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "policy_context": {
+        "approved_reuse": false
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "left": "Miami's new epicenter of wellness.",
+          "right": "MIAMI'S NEW EPICENTER OF WELLNESS",
+          "context": "Subject line and hero headline."
+        },
+        "questions": {
+          "copy_relation": {
+            "type": "choice",
+            "instructions": "Classify the semantic relationship between left and right in the supplied email context. Judge meaning and communicative job, not merely shared vocabulary or sentence shape.",
+            "criteria": {
+              "distinct": "The passages communicate different ideas or perform unrelated jobs; keeping both does not repeat a campaign message.",
+              "related-distinct": "The passages share a topic or campaign context but each contributes materially different information or serves a meaningfully different function.",
+              "equivalent": "The passages communicate substantially the same core message, claim, promise, or authority cue even when wording, tone, or metaphor differs."
+            }
+          },
+          "same_core_message": {
+            "type": "noul",
+            "instructions": "Do left and right communicate substantially the same core campaign message or claim?",
+            "criteria": {
+              "true": "A reader would understand both as making the same essential point, including paraphrases and metaphorical restatements.",
+              "false": "They merely share a topic, vocabulary, setting, or brand context while contributing different information or performing different jobs."
+            }
+          },
+          "second_adds_material_information": {
+            "type": "noul",
+            "instructions": "Does right add material information or a meaningfully different communication function beyond left?",
+            "criteria": {
+              "true": "Right adds a distinct fact, useful qualification, action, description, or communication function that earns separate placement.",
+              "false": "Right mainly restates, decorates, or rephrases the point already made by left."
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "sim-cal-009",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "policy_context": {
+        "approved_reuse": false
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "left": "From the creators of The Bond, a new address takes shape.",
+          "right": "The team behind The Bond introduces its next residential project.",
+          "context": "Two authority statements in separate modules."
+        },
+        "questions": {
+          "copy_relation": {
+            "type": "choice",
+            "instructions": "Classify the semantic relationship between left and right in the supplied email context. Judge meaning and communicative job, not merely shared vocabulary or sentence shape.",
+            "criteria": {
+              "distinct": "The passages communicate different ideas or perform unrelated jobs; keeping both does not repeat a campaign message.",
+              "related-distinct": "The passages share a topic or campaign context but each contributes materially different information or serves a meaningfully different function.",
+              "equivalent": "The passages communicate substantially the same core message, claim, promise, or authority cue even when wording, tone, or metaphor differs."
+            }
+          },
+          "same_core_message": {
+            "type": "noul",
+            "instructions": "Do left and right communicate substantially the same core campaign message or claim?",
+            "criteria": {
+              "true": "A reader would understand both as making the same essential point, including paraphrases and metaphorical restatements.",
+              "false": "They merely share a topic, vocabulary, setting, or brand context while contributing different information or performing different jobs."
+            }
+          },
+          "second_adds_material_information": {
+            "type": "noul",
+            "instructions": "Does right add material information or a meaningfully different communication function beyond left?",
+            "criteria": {
+              "true": "Right adds a distinct fact, useful qualification, action, description, or communication function that earns separate placement.",
+              "false": "Right mainly restates, decorates, or rephrases the point already made by left."
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "sim-cal-010",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "policy_context": {
+        "approved_reuse": false
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "left": "Miami's new epicenter of wellness.",
+          "right": "Woman seated on a yoga mat inside The Rider fitness room.",
+          "context": "Hero headline and descriptive image alt text."
+        },
+        "questions": {
+          "copy_relation": {
+            "type": "choice",
+            "instructions": "Classify the semantic relationship between left and right in the supplied email context. Judge meaning and communicative job, not merely shared vocabulary or sentence shape.",
+            "criteria": {
+              "distinct": "The passages communicate different ideas or perform unrelated jobs; keeping both does not repeat a campaign message.",
+              "related-distinct": "The passages share a topic or campaign context but each contributes materially different information or serves a meaningfully different function.",
+              "equivalent": "The passages communicate substantially the same core message, claim, promise, or authority cue even when wording, tone, or metaphor differs."
+            }
+          },
+          "same_core_message": {
+            "type": "noul",
+            "instructions": "Do left and right communicate substantially the same core campaign message or claim?",
+            "criteria": {
+              "true": "A reader would understand both as making the same essential point, including paraphrases and metaphorical restatements.",
+              "false": "They merely share a topic, vocabulary, setting, or brand context while contributing different information or performing different jobs."
+            }
+          },
+          "second_adds_material_information": {
+            "type": "noul",
+            "instructions": "Does right add material information or a meaningfully different communication function beyond left?",
+            "criteria": {
+              "true": "Right adds a distinct fact, useful qualification, action, description, or communication function that earns separate placement.",
+              "false": "Right mainly restates, decorates, or rephrases the point already made by left."
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "sim-cal-011",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "policy_context": {
+        "approved_reuse": false
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "left": "Recovery finds its own pace at home.",
+          "right": "The arrival experience begins at the porte cochere.",
+          "context": "Amenity and arrival sections in one campaign."
+        },
+        "questions": {
+          "copy_relation": {
+            "type": "choice",
+            "instructions": "Classify the semantic relationship between left and right in the supplied email context. Judge meaning and communicative job, not merely shared vocabulary or sentence shape.",
+            "criteria": {
+              "distinct": "The passages communicate different ideas or perform unrelated jobs; keeping both does not repeat a campaign message.",
+              "related-distinct": "The passages share a topic or campaign context but each contributes materially different information or serves a meaningfully different function.",
+              "equivalent": "The passages communicate substantially the same core message, claim, promise, or authority cue even when wording, tone, or metaphor differs."
+            }
+          },
+          "same_core_message": {
+            "type": "noul",
+            "instructions": "Do left and right communicate substantially the same core campaign message or claim?",
+            "criteria": {
+              "true": "A reader would understand both as making the same essential point, including paraphrases and metaphorical restatements.",
+              "false": "They merely share a topic, vocabulary, setting, or brand context while contributing different information or performing different jobs."
+            }
+          },
+          "second_adds_material_information": {
+            "type": "noul",
+            "instructions": "Does right add material information or a meaningfully different communication function beyond left?",
+            "criteria": {
+              "true": "Right adds a distinct fact, useful qualification, action, description, or communication function that earns separate placement.",
+              "false": "Right mainly restates, decorates, or rephrases the point already made by left."
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "sim-cal-012",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "policy_context": {
+        "approved_reuse": false
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "left": "Two membership destinations are expanding close to The Rider.",
+          "right": "The neighborhood is gaining new places for fitness and social time.",
+          "context": "Introductory and concluding body statements."
+        },
+        "questions": {
+          "copy_relation": {
+            "type": "choice",
+            "instructions": "Classify the semantic relationship between left and right in the supplied email context. Judge meaning and communicative job, not merely shared vocabulary or sentence shape.",
+            "criteria": {
+              "distinct": "The passages communicate different ideas or perform unrelated jobs; keeping both does not repeat a campaign message.",
+              "related-distinct": "The passages share a topic or campaign context but each contributes materially different information or serves a meaningfully different function.",
+              "equivalent": "The passages communicate substantially the same core message, claim, promise, or authority cue even when wording, tone, or metaphor differs."
+            }
+          },
+          "same_core_message": {
+            "type": "noul",
+            "instructions": "Do left and right communicate substantially the same core campaign message or claim?",
+            "criteria": {
+              "true": "A reader would understand both as making the same essential point, including paraphrases and metaphorical restatements.",
+              "false": "They merely share a topic, vocabulary, setting, or brand context while contributing different information or performing different jobs."
+            }
+          },
+          "second_adds_material_information": {
+            "type": "noul",
+            "instructions": "Does right add material information or a meaningfully different communication function beyond left?",
+            "criteria": {
+              "true": "Right adds a distinct fact, useful qualification, action, description, or communication function that earns separate placement.",
+              "false": "Right mainly restates, decorates, or rephrases the point already made by left."
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "claim-cal-001",
+      "task": "claim-support",
+      "split": "calibration",
+      "policy_context": {
+        "approved_reuse": false
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "claim": "The source describes a planned fitness club in Edgewater.",
+          "source_excerpt": "The approved project brief states that a new fitness club is planned for Edgewater.",
+          "context": "Ordinary neighborhood claim; synthetic evidence wording for evaluation only."
+        },
+        "questions": {
+          "claim_support_relation": {
+            "type": "choice",
+            "instructions": "Classify whether the source excerpt supports the claim exactly as stated. Do not supply outside knowledge or repair missing evidence.",
+            "criteria": {
+              "supported": "The source directly supports the claim with matching scope, certainty, timing, qualification, and comparison level.",
+              "unsupported": "The claim contradicts the source or adds certainty, scope, timing, ranking, guarantee, or absolutes that the source does not provide.",
+              "insufficient": "The source is relevant but does not contain enough information to confirm or reject the claim as stated."
+            }
+          },
+          "adds_unstated_certainty": {
+            "type": "noul",
+            "instructions": "Does the claim add certainty, guarantee, or definiteness that is absent or qualified in the source excerpt?",
+            "criteria": {
+              "true": "The claim turns plans, possibilities, eligibility, or conditions into certainty or removes a material qualification.",
+              "false": "The claim preserves the source's level of certainty and qualifications."
+            }
+          },
+          "adds_unstated_scope_timing_or_ranking": {
+            "type": "noul",
+            "instructions": "Does the claim add unsupported scope, timing, proximity, ranking, universality, or comparative status?",
+            "criteria": {
+              "true": "The claim expands who, where, when, how near, how many, or comparative rank beyond what the source states.",
+              "false": "The claim stays within the source's stated scope, timing, proximity, and comparison level."
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "claim-cal-002",
+      "task": "claim-support",
+      "split": "calibration",
+      "policy_context": {
+        "approved_reuse": false
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "claim": "The club is guaranteed to open this year.",
+          "source_excerpt": "The approved brief describes a club planned for a future opening; no guaranteed date is provided.",
+          "context": "Timing and certainty escalation; synthetic evidence wording."
+        },
+        "questions": {
+          "claim_support_relation": {
+            "type": "choice",
+            "instructions": "Classify whether the source excerpt supports the claim exactly as stated. Do not supply outside knowledge or repair missing evidence.",
+            "criteria": {
+              "supported": "The source directly supports the claim with matching scope, certainty, timing, qualification, and comparison level.",
+              "unsupported": "The claim contradicts the source or adds certainty, scope, timing, ranking, guarantee, or absolutes that the source does not provide.",
+              "insufficient": "The source is relevant but does not contain enough information to confirm or reject the claim as stated."
+            }
+          },
+          "adds_unstated_certainty": {
+            "type": "noul",
+            "instructions": "Does the claim add certainty, guarantee, or definiteness that is absent or qualified in the source excerpt?",
+            "criteria": {
+              "true": "The claim turns plans, possibilities, eligibility, or conditions into certainty or removes a material qualification.",
+              "false": "The claim preserves the source's level of certainty and qualifications."
+            }
+          },
+          "adds_unstated_scope_timing_or_ranking": {
+            "type": "noul",
+            "instructions": "Does the claim add unsupported scope, timing, proximity, ranking, universality, or comparative status?",
+            "criteria": {
+              "true": "The claim expands who, where, when, how near, how many, or comparative rank beyond what the source states.",
+              "false": "The claim stays within the source's stated scope, timing, proximity, and comparison level."
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "claim-cal-003",
+      "task": "claim-support",
+      "split": "calibration",
+      "policy_context": {
+        "approved_reuse": false
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "claim": "Every membership level is valid at every location.",
+          "source_excerpt": "Some membership types may provide access to participating locations, subject to membership terms.",
+          "context": "Membership portability; synthetic evidence wording."
+        },
+        "questions": {
+          "claim_support_relation": {
+            "type": "choice",
+            "instructions": "Classify whether the source excerpt supports the claim exactly as stated. Do not supply outside knowledge or repair missing evidence.",
+            "criteria": {
+              "supported": "The source directly supports the claim with matching scope, certainty, timing, qualification, and comparison level.",
+              "unsupported": "The claim contradicts the source or adds certainty, scope, timing, ranking, guarantee, or absolutes that the source does not provide.",
+              "insufficient": "The source is relevant but does not contain enough information to confirm or reject the claim as stated."
+            }
+          },
+          "adds_unstated_certainty": {
+            "type": "noul",
+            "instructions": "Does the claim add certainty, guarantee, or definiteness that is absent or qualified in the source excerpt?",
+            "criteria": {
+              "true": "The claim turns plans, possibilities, eligibility, or conditions into certainty or removes a material qualification.",
+              "false": "The claim preserves the source's level of certainty and qualifications."
+            }
+          },
+          "adds_unstated_scope_timing_or_ranking": {
+            "type": "noul",
+            "instructions": "Does the claim add unsupported scope, timing, proximity, ranking, universality, or comparative status?",
+            "criteria": {
+              "true": "The claim expands who, where, when, how near, how many, or comparative rank beyond what the source states.",
+              "false": "The claim stays within the source's stated scope, timing, proximity, and comparison level."
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "claim-cal-004",
+      "task": "claim-support",
+      "split": "calibration",
+      "policy_context": {
+        "approved_reuse": false
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "claim": "The venue is minutes from the property.",
+          "source_excerpt": "The venue and property are shown in the same neighborhood, but no travel time or distance is supplied.",
+          "context": "Proximity language; synthetic evidence wording."
+        },
+        "questions": {
+          "claim_support_relation": {
+            "type": "choice",
+            "instructions": "Classify whether the source excerpt supports the claim exactly as stated. Do not supply outside knowledge or repair missing evidence.",
+            "criteria": {
+              "supported": "The source directly supports the claim with matching scope, certainty, timing, qualification, and comparison level.",
+              "unsupported": "The claim contradicts the source or adds certainty, scope, timing, ranking, guarantee, or absolutes that the source does not provide.",
+              "insufficient": "The source is relevant but does not contain enough information to confirm or reject the claim as stated."
+            }
+          },
+          "adds_unstated_certainty": {
+            "type": "noul",
+            "instructions": "Does the claim add certainty, guarantee, or definiteness that is absent or qualified in the source excerpt?",
+            "criteria": {
+              "true": "The claim turns plans, possibilities, eligibility, or conditions into certainty or removes a material qualification.",
+              "false": "The claim preserves the source's level of certainty and qualifications."
+            }
+          },
+          "adds_unstated_scope_timing_or_ranking": {
+            "type": "noul",
+            "instructions": "Does the claim add unsupported scope, timing, proximity, ranking, universality, or comparative status?",
+            "criteria": {
+              "true": "The claim expands who, where, when, how near, how many, or comparative rank beyond what the source states.",
+              "false": "The claim stays within the source's stated scope, timing, proximity, and comparison level."
+            }
+          }
+        }
+      }
+    },
+    {
+      "case_id": "claim-cal-005",
+      "task": "claim-support",
+      "split": "calibration",
+      "policy_context": {
+        "approved_reuse": false
+      },
+      "request": {
+        "model": "jev-1.13.0",
+        "state": {
+          "claim": "The building offers a dedicated fitness room.",
+          "source_excerpt": "The approved amenity schedule lists a residents' fitness room.",
+          "context": "Project amenity claim; synthetic evidence wording."
+        },
+        "questions": {
+          "claim_support_relation": {
+            "type": "choice",
+            "instructions": "Classify whether the source excerpt supports the claim exactly as stated. Do not supply outside knowledge or repair missing evidence.",
+            "criteria": {
+              "supported": "The source directly supports the claim with matching scope, certainty, timing, qualification, and comparison level.",
+              "unsupported": "The claim contradicts the source or adds certainty, scope, timing, ranking, guarantee, or absolutes that the source does not provide.",
+              "insufficient": "The source is relevant but does not contain enough information to confirm or reject the claim as stated."
+            }
+          },
+          "adds_unstated_certainty": {
+            "type": "noul",
+            "instructions": "Does the claim add certainty, guarantee, or definiteness that is absent or qualified in the source excerpt?",
+            "criteria": {
+              "true": "The claim turns plans, possibilities, eligibility, or conditions into certainty or removes a material qualification.",
+              "false": "The claim preserves the source's level of certainty and qualifications."
+            }
+          },
+          "adds_unstated_scope_timing_or_ranking": {
+            "type": "noul",
+            "instructions": "Does the claim add unsupported scope, timing, proximity, ranking, universality, or comparative status?",
+            "criteria": {
+              "true": "The claim expands who, where, when, how near, how many, or comparative rank beyond what the source states.",
+              "false": "The claim stays within the source's stated scope, timing, proximity, and comparison level."
+            }
+          }
+        }
+      }
+    }
+  ]
+}

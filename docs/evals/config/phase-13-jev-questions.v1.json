@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "question_set_id": "onbrand-jev-semantic-v1",
+  "status": "calibration-locked",
+  "model": "jev-1.13.0",
+  "purpose": "Evaluate semantic copy relationships and claim-source support against the frozen Rider calibration split without affecting production output.",
+  "privacy": {
+    "allowed_state_fields": ["left", "right", "context", "claim", "source_excerpt"],
+    "forbidden_state_fields": ["expected", "reviewer_labels", "adjudication", "email", "phone", "credentials"],
+    "personal_contact_data": "forbidden"
+  },
+  "confidence_routing": {
+    "high": 0.8,
+    "medium": 0.55,
+    "low": 0.3,
+    "production_effect": "none"
+  },
+  "tasks": {
+    "copy-similarity": {
+      "state_fields": ["left", "right", "context"],
+      "questions": {
+        "copy_relation": {
+          "type": "choice",
+          "instructions": "Classify the semantic relationship between left and right in the supplied email context. Judge meaning and communicative job, not merely shared vocabulary or sentence shape.",
+          "criteria": {
+            "distinct": "The passages communicate different ideas or perform unrelated jobs; keeping both does not repeat a campaign message.",
+            "related-distinct": "The passages share a topic or campaign context but each contributes materially different information or serves a meaningfully different function.",
+            "equivalent": "The passages communicate substantially the same core message, claim, promise, or authority cue even when wording, tone, or metaphor differs."
+          }
+        },
+        "same_core_message": {
+          "type": "noul",
+          "instructions": "Do left and right communicate substantially the same core campaign message or claim?",
+          "criteria": {
+            "true": "A reader would understand both as making the same essential point, including paraphrases and metaphorical restatements.",
+            "false": "They merely share a topic, vocabulary, setting, or brand context while contributing different information or performing different jobs."
+          }
+        },
+        "second_adds_material_information": {
+          "type": "noul",
+          "instructions": "Does right add material information or a meaningfully different communication function beyond left?",
+          "criteria": {
+            "true": "Right adds a distinct fact, useful qualification, action, description, or communication function that earns separate placement.",
+            "false": "Right mainly restates, decorates, or rephrases the point already made by left."
+          }
+        }
+      },
+      "decision_policy": {
+        "production_effect": "none",
+        "evaluation_label": "Use copy_relation as the candidate semantic label. Compare companion nouls for consistency and route contradictions or low confidence to review.",
+        "action_policy": "Apply in code after evaluation: approved reuse allows; equivalent non-exempt copy blocks; distinct allows; related-distinct remains reviewable until calibration establishes a material-information threshold."
+      }
+    },
+    "claim-support": {
+      "state_fields": ["claim", "source_excerpt", "context"],
+      "questions": {
+        "claim_support_relation": {
+          "type": "choice",
+          "instructions": "Classify whether the source excerpt supports the claim exactly as stated. Do not supply outside knowledge or repair missing evidence.",
+          "criteria": {
+            "supported": "The source directly supports the claim with matching scope, certainty, timing, qualification, and comparison level.",
+            "unsupported": "The claim contradicts the source or adds certainty, scope, timing, ranking, guarantee, or absolutes that the source does not provide.",
+            "insufficient": "The source is relevant but does not contain enough information to confirm or reject the claim as stated."
+          }
+        },
+        "adds_unstated_certainty": {
+          "type": "noul",
+          "instructions": "Does the claim add certainty, guarantee, or definiteness that is absent or qualified in the source excerpt?",
+          "criteria": {
+            "true": "The claim turns plans, possibilities, eligibility, or conditions into certainty or removes a material qualification.",
+            "false": "The claim preserves the source's level of certainty and qualifications."
+          }
+        },
+        "adds_unstated_scope_timing_or_ranking": {
+          "type": "noul",
+          "instructions": "Does the claim add unsupported scope, timing, proximity, ranking, universality, or comparative status?",
+          "criteria": {
+            "true": "The claim expands who, where, when, how near, how many, or comparative rank beyond what the source states.",
+            "false": "The claim stays within the source's stated scope, timing, proximity, and comparison level."
+          }
+        }
+      },
+      "decision_policy": {
+        "production_effect": "none",
+        "evaluation_label": "Use claim_support_relation as the candidate support label. Companion nouls expose common unsupported-claim failure modes.",
+        "action_policy": "For evaluation only: supported may allow, unsupported blocks, and insufficient routes to review. Human factual, legal, and compliance review remains authoritative."
+      }
+    }
+  }
+}

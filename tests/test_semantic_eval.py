@@ -24,6 +24,12 @@ from tools.semantic_eval.adjudication import (
     freeze_dataset,
     validate_adjudication,
 )
+from tools.semantic_eval.jev_pilot import (
+    QuestionSetError,
+    build_request_batch,
+    question_set_sha256,
+    validate_question_set,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -31,6 +37,9 @@ DATASET_PATH = ROOT / "docs/evals/data/phase-13-rider-copy-pairs.v1.json"
 SCHEMA_PATH = ROOT / "tools/semantic_eval/dataset.schema.json"
 REVIEW_SCHEMA_PATH = ROOT / "tools/semantic_eval/review.schema.json"
 ADJUDICATION_PATH = ROOT / "docs/evals/reviews/phase-13-adjudication.v1.json"
+FROZEN_DATASET_PATH = ROOT / "docs/evals/data/phase-13-rider-copy-pairs.v1.frozen.json"
+QUESTION_SET_PATH = ROOT / "docs/evals/config/phase-13-jev-questions.v1.json"
+QUESTION_SET_SCHEMA_PATH = ROOT / "tools/semantic_eval/question_set.schema.json"
 
 
 class SemanticEvaluationDatasetTests(unittest.TestCase):
@@ -166,6 +175,46 @@ class SemanticEvaluationDatasetTests(unittest.TestCase):
         adjudication["comparison_sha256"] = "0" * 64
         with self.assertRaisesRegex(AdjudicationError, "comparison_sha256 does not match"):
             validate_adjudication(self.dataset, left, right, adjudication)
+
+    def test_question_set_is_pinned_locked_and_non_production(self):
+        question_set = json.loads(QUESTION_SET_PATH.read_text(encoding="utf-8"))
+        question_schema = json.loads(QUESTION_SET_SCHEMA_PATH.read_text(encoding="utf-8"))
+        summary = validate_question_set(question_set)
+        self.assertEqual(summary["model"], "jev-1.13.0")
+        self.assertEqual(summary["question_count"], 6)
+        self.assertEqual(len(question_set_sha256(question_set)), 64)
+        self.assertEqual(question_schema["properties"]["schema_version"]["const"], question_set["schema_version"])
+
+        alias = copy.deepcopy(question_set)
+        alias["model"] = "jev-latest"
+        with self.assertRaisesRegex(QuestionSetError, "pinned Jev version"):
+            validate_question_set(alias)
+
+    def test_calibration_batch_excludes_holdout_and_evaluation_labels(self):
+        frozen = json.loads(FROZEN_DATASET_PATH.read_text(encoding="utf-8"))
+        question_set = json.loads(QUESTION_SET_PATH.read_text(encoding="utf-8"))
+        batch = build_request_batch(frozen, question_set)
+        self.assertEqual(batch["record_count"], 17)
+        self.assertTrue(all(record["split"] == "calibration" for record in batch["records"]))
+        serialized = json.dumps(batch)
+        self.assertNotIn("sim-hold-", serialized)
+        self.assertNotIn('"expected"', serialized)
+        self.assertNotIn("reviewer_labels", serialized)
+        self.assertEqual(batch["production_effect"], "none")
+
+    def test_holdout_batch_requires_explicit_unlock(self):
+        frozen = json.loads(FROZEN_DATASET_PATH.read_text(encoding="utf-8"))
+        question_set = json.loads(QUESTION_SET_PATH.read_text(encoding="utf-8"))
+        with self.assertRaisesRegex(QuestionSetError, "explicit allow_holdout"):
+            build_request_batch(frozen, question_set, split="holdout")
+        batch = build_request_batch(frozen, question_set, split="holdout", allow_holdout=True)
+        self.assertEqual(batch["record_count"], 9)
+        self.assertTrue(all(record["split"] == "holdout" for record in batch["records"]))
+
+    def test_question_batch_requires_frozen_dataset(self):
+        question_set = json.loads(QUESTION_SET_PATH.read_text(encoding="utf-8"))
+        with self.assertRaisesRegex(QuestionSetError, "adjudicated frozen dataset"):
+            build_request_batch(self.dataset, question_set)
 
 
 def complete_review(dataset, reviewer_id):

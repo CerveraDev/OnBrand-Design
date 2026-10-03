@@ -17,7 +17,7 @@ The roadmap applies to the framework and is executed independently for each proj
 | 10 | Copy allocation QA | Rider implementation complete | Implemented and tested | Planned |
 | 11 | Cross-platform compatibility | Deterministic adapters/parity complete; live agents unverified | 13/13 critical components at 100 | Reference adapters; runtime unavailable |
 | 12 | Distribution profiles | Deferred | Deferred | Deferred |
-| 13 | Jev semantic decision pilot | Dataset v1 adjudicated/frozen; provider not implemented | Ready for calibration-only question design | Not planned until Rider evidence exists |
+| 13 | Jev semantic decision pilot | Dataset/question set v1 frozen; provider not implemented | 17-case calibration batch ready; no API calls | Not planned until Rider evidence exists |
 
 ## Framework Gate
 
@@ -88,6 +88,7 @@ The roadmap applies to the framework and is executed independently for each proj
 - Visual similarity stays with specialized image/OCR/render measurements; Jev may only route their structured evidence.
 - Production blocking is prohibited until the Phase 13 acceptance report demonstrates measurable improvement and owner-approved data handling.
 - Dataset v1 is frozen from two blinded reviews and explicit adjudication; provider questions and thresholds may use calibration cases only until the first question set is locked.
+- Question set v1 pins `jev-1.13.0`, carries no production effect, and generates 17 calibration requests without labels or holdout cases.
 
 ## Public Release Gate
 
