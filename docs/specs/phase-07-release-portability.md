@@ -1,12 +1,23 @@
-# Phase 7: Portability, Release, And Team Distribution
+# Legacy Spec: Portability, Release, And Team Distribution
 
-**Status:** Planned  
-**Target:** 0.9.0 through 1.0.0  
+**Status:** Superseded by Phase 11 cross-platform compatibility and Phase 12 distribution profiles
+
+**Target:** Historical planning record only
+
 **Depends on:** Phases 0-6
 
 ## Goal
 
 Release documented, versioned project packages that authorized collaborators can install and explicitly invoke in Codex or Claude Code.
+
+## Supersession Note
+
+This document is retained as a historical planning record. The active roadmap now splits this scope into:
+
+- Phase 11: Cross-platform compatibility through a canonical core and thin Codex/Claude Code adapters.
+- Phase 12: Deferred distribution profiles for public core, private project packs, and sanitized broker packages.
+
+Do not use this legacy document to claim Claude Code support or broker-safe distribution is implemented.
 
 ## Requirements
 

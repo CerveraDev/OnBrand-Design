@@ -16,7 +16,7 @@
 - Assigned collision-safe project-specific skill IDs.
 - Added complete The Rider and provisional Cassia project folders.
 - Added a reusable starter template and project generator.
-- Preserved explicit-only invocation in Codex and Claude Code.
+- Preserved explicit-only invocation policy in current skills while documenting Claude Code support as planned pending adapter parity validation.
 - Defined campaign modes, required modules, variants, packaging, and QA foundations.
 - Created and live-tested the Dropbox master-manifest synchronizer for The Rider.
 - Added local `.env` handling without distributing credentials.
@@ -44,6 +44,8 @@
 - Added Diana Kosov as a verified in-house sales agent after manifest synchronization discovered her approved headshot at `id:31E0v0XEN2IAAAAAAAABlg`.
 - Recorded the user-confirmed correction that Paulie Hankin is a woman; agent records continue to omit gender and pronouns because footer rendering does not require them.
 - Added and validated a separate Rider wellness smoke campaign with generated 16:9 hero art, approved wellness/arrival body assets, branded and outside-broker versions, seven in-house agent variants, a QA report, and a ZIP.
+- Recorded approved-but-unimplemented planning specifications for Phases 7 through 11 and a deferred Phase 12 distribution profile plan.
+- Added compatibility and distribution-security planning documents that keep Claude Code support and broker-only package claims explicitly unimplemented.
 
 ## Project Portfolio
 
@@ -52,11 +54,21 @@
 | The Rider | Runtime ready for pilot campaigns | Public manifest/cache configuration and broader client compatibility review |
 | Cassia | Scaffold | Cassia brand materials, asset catalog, HTML, and footers |
 
+## Approved Specs, Not Implemented
+
+- Phase 7: Build modes separating Composition Preview, Smoke Test, and Release Build.
+- Phase 8: Composition Preview with stable module codes and pre-generation approval.
+- Phase 9: Grounded image generation using approved base imagery and provenance.
+- Phase 10: Copy allocation QA for slot ownership, restricted phrase dedupe, and wellness repetition checks.
+- Phase 11: Cross-platform compatibility through a canonical core and thin Codex/Claude Code adapters.
+- Phase 12: Distribution profiles remain deferred until public core, private project packs, and sanitized broker packages are physically separated.
+
 ## In Progress
 
 - Configure The Rider's stable public manifest URL or validated local cache fallback.
 - Perform representative visual and email-client compatibility review beyond structural QA.
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
+- Implement the approved build-mode, composition-preview, grounded-image, copy-allocation, and cross-platform specifications after runtime contracts are scheduled.
 
 ## Waiting On Project Inputs
 
@@ -66,7 +78,9 @@
 ## Release Blockers
 
 - Choose support contact and CODEOWNERS identities.
+- Do not claim Claude Code support until Phase 11 adapter parity validation passes.
+- Do not distribute broker-restricted packages until Phase 12 physical source/package separation is implemented.
 
 ## Next Milestone
 
-Pilot the Rider runtime with approved campaign content, then generalize the proven architecture into the shared project starter before onboarding additional developments.
+Pilot the Rider runtime with approved campaign content, then implement the approved build-mode and Composition Preview contracts before expanding cross-platform or external distribution claims.

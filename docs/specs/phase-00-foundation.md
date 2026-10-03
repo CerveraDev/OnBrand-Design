@@ -13,7 +13,7 @@ Establish the multi-project product boundary, skill architecture, invocation pol
 - One main email and one isolated image-generation skill per project.
 - Collision-safe project-specific skill IDs.
 - Project registry, starter template, and generator.
-- Explicit-only invocation in Codex and Claude Code.
+- Explicit-only invocation policy, with Codex current and Claude Code support planned pending adapter parity validation.
 - Directed-build and concept-development modes.
 - Hero/footer module invariants and output variants.
 - PRD, roadmap, status, audit, versioning, and GitHub-ready layout.

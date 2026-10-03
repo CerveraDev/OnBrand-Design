@@ -51,6 +51,8 @@ The generator creates a complete project folder from `templates/project-starter/
 - [Project registry](projects/registry.json)
 - [Project folder contract](docs/PROJECT_STRUCTURE.md)
 - [Credential policy](docs/CREDENTIALS.md)
+- [Compatibility plan](docs/COMPATIBILITY.md)
+- [Distribution security plan](docs/DISTRIBUTION_SECURITY.md)
 - [Project package guide](projects/README.md)
 - [Contribution workflow](CONTRIBUTING.md)
 - [Authorship](AUTHORS.md)

@@ -9,7 +9,7 @@ OnBrand Design
 - Owner: Cervera Real Estate, Inc.
 - Author: Felix Mendoza
 - License: Apache-2.0
-- Intended distribution: publicly reusable under the repository license, subject to separate rights for project assets
+- Intended distribution: publicly reusable framework source under the repository license, subject to separate rights for project assets and deferred private/sanitized package profiles
 
 ## Vision
 
@@ -18,6 +18,8 @@ Provide a scalable framework for creating self-contained, project-specific real 
 ## Architecture Principle
 
 The repository is reusable; installed skills are project-specific. OnBrand Design must never blend brand rules or assets across projects merely because they share the framework.
+
+Runtime logic should live in a canonical core shared by thin platform adapters. Codex is the current implemented path. Claude Code support remains planned until its adapter writes the same canonical campaign specifications, calls the same runtime, and passes parity validation.
 
 Each project folder contains a complete downloadable skill bundle with unique technical IDs:
 
@@ -48,6 +50,9 @@ projects/<project-slug>/
 - Deliverables are traceable, portable, and reviewable.
 - Credentials and private configuration never travel with project packages.
 - New projects are generated from a maintained starter, then calibrated from approved project materials.
+- Composition selection happens before expensive generation or release packaging.
+- Real project imagery is grounded in approved source assets and environment context.
+- Prompt rules are guidance, not security; restricted distribution requires physically separate source/package profiles.
 
 ## Primary User Journeys
 
@@ -62,6 +67,10 @@ The user invokes one project's email skill and supplies campaign type, audience,
 ### Concept Development
 
 The user invokes a project skill with a broad idea. It proposes angles, headlines, subject lines, preview text, CTA options, visual direction, and modules before assembly.
+
+### Composition Preview And Release Build
+
+The user approves a representative Design Proof with exact modules, static-block decisions, image requirements, and copy-slot ownership before the runtime performs expensive image work or complete release packaging. Release Build remains the mode that generates every authorized internal distribution variant.
 
 ### Asset Library Maintenance
 
@@ -90,10 +99,16 @@ An authorized maintainer runs the shared Dropbox manifest synchronizer against a
 | FR-015 | QA detects missing assets, private paths, incorrect variants, and unsupported invented facts. |
 | FR-016 | Dropbox catalog refresh preserves `category` and `approved_for` for matched records. |
 | FR-017 | Credentials remain outside distributable project folders and repository history. |
-| FR-018 | Project packages remain portable across Codex and Claude Code. |
+| FR-018 | Project packages remain structured for portability, with Codex current and Claude Code support planned pending adapter parity validation. |
 | FR-019 | The registry records every maintained project and its lifecycle status. |
 | FR-020 | Repository metadata attributes ownership to Cervera Real Estate, Inc. and authorship to Felix Mendoza. |
 | FR-021 | Every project email skill runs a contextual copy-quality pass that preserves approved voice, reports unsupported claims, and does not claim to detect authorship. |
+| FR-022 | Campaign production distinguishes Composition Preview, Smoke Test, and Release Build modes, with representative-only output permitted only when recorded by policy. |
+| FR-023 | Composition Preview records exact module choices, static-block decisions, image requirements, copy-slot ownership, and representative variant before image generation or release packaging. |
+| FR-024 | Generated project imagery is grounded in approved source assets and environment context, with real Rider exterior and arrival scenes defaulting to approved base imagery. |
+| FR-025 | Copy-allocation QA deduplicates restricted owner phrases and names across live text, baked imagery, alt text, and metadata before release. |
+| FR-026 | Cross-platform support uses a canonical core plus thin Codex and Claude Code adapters; Claude Code is planned only until parity validation is recorded. |
+| FR-027 | Broker-only or sanitized distribution packages remain deferred until public core, private project packs, and broker packages are physically separated and validated. |
 
 ## Non-Functional Requirements
 
@@ -104,6 +119,7 @@ An authorized maintainer runs the shared Dropbox manifest synchronizer against a
 - Compatibility: HTML prioritizes major email clients and Outlook-safe patterns.
 - Maintainability: shared scaffolding changes deliberately; generated projects are reviewed independently.
 - Portability: local paths and credentials remain configuration rather than source assumptions.
+- Security: public source and prompt instructions are not access controls for broker or private distribution.
 
 ## Data Contracts
 
@@ -134,6 +150,8 @@ Created per deliverable and limited to assets used by that campaign. It records 
 - No pricing, availability, dates, contact details, or claims may be invented.
 - The framework does not publish or send campaigns unless separately specified and authorized.
 - Public source reuse does not automatically grant reuse rights for project logos, photographs, renderings, templates, or campaign content.
+- The current repository and project packages are not broker-restricted distributions; sanitized broker profiles are a deferred planning item.
+- Claude Code support is not implemented until an adapter and parity validation are recorded.
 
 ## Success Measures
 
@@ -150,3 +168,4 @@ Created per deliverable and limited to assets used by that campaign. It records 
 - Canonical public manifest URL and caching policy per project.
 - Final deployment platform and image-hosting handoff.
 - Supported email-client test matrix for version 1.0.
+- Business decision and hosting model for private project packs and sanitized broker packages.

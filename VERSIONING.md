@@ -33,5 +33,7 @@ A release must include:
 - `0.5.0`: image-generation handoff and approval workflow.
 - `0.6.0`: HTML variant assembly and locked footers.
 - `0.7.0`: complete campaign packaging and QA automation.
-- `0.9.0`: Codex and Claude Code release candidate.
+- `0.8.0`: build modes, Composition Preview, grounded image generation plans, and copy allocation QA.
+- `0.9.0`: cross-platform compatibility release candidate after Codex and Claude Code adapter parity validation.
 - `1.0.0`: validated team-ready release.
+- Post-`1.0.0` or separately approved private release: physically separated public core, private project packs, and sanitized broker distribution profiles.

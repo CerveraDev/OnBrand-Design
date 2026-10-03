@@ -24,6 +24,8 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Revised Rider scaffold source, legacy provenance fixture, module metadata catalog, and four nested static-block definitions.
 - Diana Kosov verified agent record and seven-agent Rider output order.
 - Separate Rider wellness smoke campaign fixture with generated 16:9 hero asset and approved recovery/arrival body imagery.
+- Approved planning specs for Phase 7 build modes, Phase 8 Composition Preview, Phase 9 grounded image generation, Phase 10 copy allocation QA, Phase 11 cross-platform compatibility, and deferred Phase 12 distribution profiles.
+- Compatibility and distribution-security plans documenting canonical-core adapter expectations, planned Claude Code support, and deferred broker/private package separation.
 
 ### Changed
 
@@ -37,6 +39,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Header and hero modules are classified separately; incompatible standalone-header/header-bearing-hero combinations are rejected.
 - Runtime output is built in a protected staging directory so failed asset downloads cannot replace the last valid package.
 - Rider runtime image slots accept safe local generated assets for reproducible fixtures, then package them as relative review assets.
+- Roadmap, PRD, status, and versioning records now distinguish approved future specs from implemented runtime features.
 
 ### Validated
 
