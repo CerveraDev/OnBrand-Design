@@ -1,0 +1,333 @@
+{
+  "plan_version": "1.0",
+  "plan_id": "rider-wellness-composition-preview",
+  "status": "approved",
+  "approved_by": "OnBrand Phase 9 pilot fixture",
+  "approved_at": "2026-10-03",
+  "representative_variant": "branded",
+  "selected_module_codes": [
+    "HH-01",
+    "B-04",
+    "S-02",
+    "S-01"
+  ],
+  "selected_modules": [
+    {
+      "code": "HH-01",
+      "scaffold_module_id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
+      "module_type": "hero",
+      "includes_header": true,
+      "locked": false
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "module_type": "body",
+      "includes_header": false,
+      "locked": false
+    },
+    {
+      "code": "S-02",
+      "scaffold_module_id": "STATIC BLOCK 2",
+      "module_type": "static",
+      "includes_header": false,
+      "locked": true
+    },
+    {
+      "code": "S-01",
+      "scaffold_module_id": "STATIC BLOCK 1",
+      "module_type": "static",
+      "includes_header": false,
+      "locked": true
+    }
+  ],
+  "static_block_decisions": [
+    {
+      "code": "S-01",
+      "scaffold_module_id": "STATIC BLOCK 1",
+      "decision": "include"
+    },
+    {
+      "code": "S-02",
+      "scaffold_module_id": "STATIC BLOCK 2",
+      "decision": "include"
+    },
+    {
+      "code": "S-03",
+      "scaffold_module_id": "STATIC BLOCK 3",
+      "decision": "exclude"
+    },
+    {
+      "code": "S-04",
+      "scaffold_module_id": "STATIC BLOCK 4",
+      "decision": "exclude"
+    }
+  ],
+  "editable_slots": [
+    {
+      "code": "HH-01",
+      "scaffold_module_id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
+      "slot": "background_image",
+      "slot_type": "image",
+      "operations": [
+        "replace_background_url"
+      ],
+      "required_approvals": [
+        "hero"
+      ]
+    },
+    {
+      "code": "HH-01",
+      "scaffold_module_id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
+      "slot": "headline",
+      "slot_type": "text",
+      "operations": [
+        "replace_text"
+      ],
+      "required_approvals": []
+    },
+    {
+      "code": "HH-01",
+      "scaffold_module_id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
+      "slot": "logo_link",
+      "slot_type": "url",
+      "operations": [
+        "replace_href"
+      ],
+      "required_approvals": []
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "amenity_kicker",
+      "slot_type": "text",
+      "operations": [
+        "replace_text"
+      ],
+      "required_approvals": []
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "amenity_statement",
+      "slot_type": "text",
+      "operations": [
+        "replace_text"
+      ],
+      "required_approvals": []
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "anchor_line",
+      "slot_type": "text",
+      "operations": [
+        "replace_text"
+      ],
+      "required_approvals": []
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "anchor_name",
+      "slot_type": "text",
+      "operations": [
+        "replace_text"
+      ],
+      "required_approvals": []
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "arrival_image",
+      "slot_type": "image",
+      "operations": [
+        "replace_image_src"
+      ],
+      "required_approvals": [
+        "body"
+      ]
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "gallery_image",
+      "slot_type": "image",
+      "operations": [
+        "replace_image_src"
+      ],
+      "required_approvals": [
+        "body"
+      ]
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "list_item_1",
+      "slot_type": "text",
+      "operations": [
+        "replace_text"
+      ],
+      "required_approvals": []
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "list_item_2",
+      "slot_type": "text",
+      "operations": [
+        "replace_text"
+      ],
+      "required_approvals": []
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "list_item_3",
+      "slot_type": "text",
+      "operations": [
+        "replace_text"
+      ],
+      "required_approvals": []
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "primary_cta",
+      "slot_type": "text",
+      "operations": [
+        "replace_text_in_context"
+      ],
+      "required_approvals": []
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "section_1_copy",
+      "slot_type": "text",
+      "operations": [
+        "replace_text"
+      ],
+      "required_approvals": []
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "section_1_heading",
+      "slot_type": "text",
+      "operations": [
+        "replace_text"
+      ],
+      "required_approvals": []
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "section_2_copy",
+      "slot_type": "text",
+      "operations": [
+        "replace_text"
+      ],
+      "required_approvals": []
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "section_2_heading",
+      "slot_type": "text",
+      "operations": [
+        "replace_text"
+      ],
+      "required_approvals": []
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "section_3_copy",
+      "slot_type": "text",
+      "operations": [
+        "replace_text"
+      ],
+      "required_approvals": []
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "section_3_heading",
+      "slot_type": "text",
+      "operations": [
+        "replace_text"
+      ],
+      "required_approvals": []
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "section_4_copy",
+      "slot_type": "text",
+      "operations": [
+        "replace_text"
+      ],
+      "required_approvals": []
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "section_4_heading",
+      "slot_type": "text",
+      "operations": [
+        "replace_text"
+      ],
+      "required_approvals": []
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "section_label",
+      "slot_type": "text",
+      "operations": [
+        "replace_text"
+      ],
+      "required_approvals": []
+    }
+  ],
+  "required_assets": [
+    {
+      "code": "HH-01",
+      "scaffold_module_id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
+      "slot": "background_image",
+      "required_approvals": [
+        "hero"
+      ],
+      "image_aspect_ratio": "module-native hero crop; approve exact crop before image generation"
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "arrival_image",
+      "required_approvals": [
+        "body"
+      ],
+      "image_aspect_ratio": "module-native body crop; approve exact crop before image selection"
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "gallery_image",
+      "required_approvals": [
+        "body"
+      ],
+      "image_aspect_ratio": "module-native body crop; approve exact crop before image selection"
+    }
+  ],
+  "compatibility": {
+    "standalone_header_count": 0,
+    "header_bearing_hero_count": 1,
+    "hero_count": 1
+  },
+  "approval_required_before": [
+    "image-generation",
+    "html-assembly",
+    "package-generation"
+  ]
+}

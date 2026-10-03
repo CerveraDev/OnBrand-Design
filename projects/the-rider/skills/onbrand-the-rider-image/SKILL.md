@@ -38,6 +38,8 @@ Ask only for missing details that materially affect image generation.
 - Prefer polished, premium, believable, architectural results.
 - Keep image-generation prompts grounded in the supplied campaign and base asset.
 - After approval, return the final image file and its provenance details to the email workflow so it can be copied into the campaign distribution package.
+- For real Rider environments such as gym, lobby, arrival, exterior, or amenity scenes, start from approved Rider manifest imagery by default. A conceptual environment is allowed only when explicitly approved and labeled conceptual.
+- Return provenance in the runtime `image_workflow` shape: image ID, intended module/slot/role, source asset IDs or checksummed scaffold paths, environment keywords, prompt record, output path/checksum/dimensions, placement constraints, approval status, approved by, and approved at.
 
 ## Hard Hat Tour Example
 
@@ -49,6 +51,10 @@ For a hard hat tour hero:
 - Keep the building unchanged.
 - Return visual candidates for approval.
 - Let the main email skill decide later whether headline text is live HTML or baked into the final hero.
+
+## Runtime Handoff
+
+After the user approves a candidate, provide a local image file and a JSON-ready `image_workflow.items[]` record. Codex ImageGen, Claude-compatible tools, or manual image editing can all fulfill the workflow as long as the record is complete and the output file checksum and dimensions match. The email skill will place the final image with an `image_workflow_id`; rejected or candidate images must not enter runtime builds.
 
 ## References
 

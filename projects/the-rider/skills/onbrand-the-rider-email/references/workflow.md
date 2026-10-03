@@ -14,10 +14,10 @@ Use this mode when the user already knows the campaign, audience, CTA, and desir
 8. Generate Composition Preview review artifacts with `python3 -m tools.rider_campaign_runtime.cli catalog --output <review-folder>` when the user needs to choose among scaffold modules.
 9. Ask the user to approve exact module codes, every static-block include/exclude decision, static-block placement, and representative variant.
 10. Create an approved composition plan with `python3 -m tools.rider_campaign_runtime.cli plan --selection <selection.json> --output <composition-plan.json>`.
-11. Build final HTML only after any required copy, creative, composition, or image approvals.
+11. Build final HTML only after any required copy, creative, composition, or image approvals. Generated or edited image approvals must be represented as `image_workflow` records before runtime assembly.
 12. Select a compatible header/hero structure; do not combine a standalone header with a hero that includes one.
 13. Choose the build mode explicitly: Composition Preview for a user-facing Design Proof, Smoke Test for representative technical validation, or Release Build for the full internal matrix.
-14. Write a strict campaign JSON file using the runtime schema, module metadata, Rider slot map, and approved composition plan.
+14. Write a strict campaign JSON file using the runtime schema, module metadata, Rider slot map, approved composition plan, and any approved image workflow provenance.
 15. Run `python3 -m tools.rider_campaign_runtime.cli <campaign.json>` from the repository root.
 16. Inspect the CLI summary and generated `qa-report.json`.
 17. Deliver the generated folder and ZIP only when QA passes.
@@ -48,6 +48,8 @@ Composition Preview and ordinary Smoke Test builds are complete for their mode w
 
 Composition Preview and Release Build require an embedded approved `composition` plan. A technical Smoke Test may omit it only when the user explicitly requested a diagnostic run or the fixture is a known internal smoke.
 
+Generated or edited images require an embedded approved `image_workflow` item and a matching image slot `image_workflow_id`. Existing approved corpus images selected by manifest ID remain ordinary `asset_id` slots and are not generation work.
+
 Smoke Test expands to all authorized variants only when `variant_policy` is `all` or `changed-surface-expanded`. Use `changed_surfaces` values such as `agent-roster`, `agent-data`, `agent-footer-assets`, `footer-renderer`, `footer-data`, or `scaffold-footer-structure` when that broader validation is required.
 
 ## Approval Checkpoints
@@ -61,6 +63,18 @@ Use approval checkpoints when:
 - The campaign carries higher brand, broker, or compliance sensitivity.
 
 Do not require approval for every small copy adjustment unless the user asks for that workflow.
+
+## Generated Image Handoff
+
+Use this file workflow in Codex, Claude Code, or a normal shell:
+
+1. Generate the Composition Preview catalog and approved plan first so the intended module and slot are known.
+2. Invoke the Rider image skill explicitly for generated or edited imagery.
+3. Select one or two approved source candidates from the manifest for real Rider environments; if a logo or reference comes from the scaffold instead of the manifest, record its repo path and checksum.
+4. Return a local output image, prompt record, source records, approval fields, crop/focal constraints, checksum, and dimensions.
+5. Add the record to campaign JSON under `image_workflow.items[]`.
+6. Set the rendered image slot to `{"kind": "image", "src": "...", "image_workflow_id": "...", "role": "..."}`.
+7. Run the runtime. It packages the local output and records the image workflow summary in campaign metadata, asset manifest, and QA report.
 
 ## Agent Variant Workflow
 

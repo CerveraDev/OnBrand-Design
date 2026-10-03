@@ -30,7 +30,7 @@ The technical IDs include the project slug so multiple OnBrand Design projects c
 
 ## Current Projects
 
-- **The Rider:** first implementation; revised Beefree scaffold calibration, separate header/hero metadata, locked optional static blocks, Composition Preview approval plans, deterministic HTML assembly, explicit build modes, footer variants, portable asset packaging, and blocking QA are implemented.
+- **The Rider:** first implementation; revised Beefree scaffold calibration, separate header/hero metadata, locked optional static blocks, Composition Preview approval plans, grounded generated-image provenance, deterministic HTML assembly, explicit build modes, footer variants, portable asset packaging, and blocking QA are implemented.
 - **Cassia:** generated project scaffold awaiting Cassia-specific brand assets, templates, footers, and asset catalog.
 
 ## Create Another Project
@@ -64,9 +64,9 @@ The generator creates a complete project folder from `templates/project-starter/
 
 `tools/dropbox-manifest/` maintains a project's master image/PDF catalog. Credentials remain in an untracked local `.env`. The tool is shared at the repository level; project-specific runtime skills consume their configured public manifest without receiving private Dropbox credentials.
 
-`tools/asset_selection/` validates a local master manifest and returns deterministic, explained asset shortlists for project email skills. It does not refresh Dropbox, require credentials, download source assets, or choose a final campaign image without approval when top candidates are materially different.
+`tools/asset_selection/` validates a local master manifest, validates project manifest-source configuration, and returns deterministic, explained asset shortlists for project email skills. It does not refresh Dropbox, require credentials, download source assets, or choose a final campaign image without approval when top candidates are materially different.
 
-`tools/rider_campaign_runtime/` validates Rider campaign JSON, generates Composition Preview catalog/plan artifacts, composes approved scaffold modules, applies explicit build-mode variant policy, packages only used images, runs blocking QA, and creates a portable ZIP. See its [runtime guide](tools/rider_campaign_runtime/README.md).
+`tools/rider_campaign_runtime/` validates Rider campaign JSON, generates Composition Preview catalog/plan artifacts, validates grounded generated/edited image provenance when present, composes approved scaffold modules, applies explicit build-mode variant policy, packages only used images, runs blocking QA, and creates a portable ZIP. See its [runtime guide](tools/rider_campaign_runtime/README.md).
 
 ## Security
 

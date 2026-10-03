@@ -1,6 +1,6 @@
 # Phase 9: Grounded Image Generation
 
-**Status:** Approved specification, not implemented
+**Status:** Implemented for The Rider runtime
 **Target:** 0.8.0
 **Depends on:** Phases 1, 4, and 8
 
@@ -27,9 +27,10 @@ Ground campaign imagery in approved project environments whenever the request im
 
 ## Anticipated Data And Contracts
 
-- `image_plan`: requested subject, approved base asset IDs, invariant regions, crop/aspect ratio, logo reference, and approval status.
-- `image_provenance`: base asset source, generation prompt, compositing notes, final path, dimensions, checksum, and reviewer approval.
-- `conceptual_environment_approved`: boolean with approval evidence when no real base asset is used.
+- `image_workflow`: runtime campaign object with `version: "1.0"` and one item per generated or edited image.
+- Each item records `image_id`, workflow type, approval status, approved-by/at, intended module/slot/role, environment type and keywords, source assets, prompt record, output path/checksum/dimensions, and placement constraints.
+- `source_assets` accepts approved manifest `asset_id` values or checked local/scaffold paths for logo/reference material. Manifest sources must resolve to images and satisfy required `approved_for` values.
+- Ordinary approved existing-image selection remains a normal slot with `asset_id`; it does not require or trigger `image_workflow`.
 
 ## Workflow
 
@@ -41,6 +42,17 @@ Ground campaign imagery in approved project environments whenever the request im
 6. Apply requested crop and aspect ratio.
 7. Perform visual approval before email assembly.
 8. Package the final image and provenance with the campaign.
+
+## Implementation Evidence
+
+- The Rider project now has `projects/the-rider/manifest-source.json`; because no stable public URL is configured, the supported current path is `active_source: "local-cache"` backed by `tools/dropbox-manifest/manifest.json`.
+- `python3 -m tools.asset_selection.manifest_source --config projects/the-rider/manifest-source.json --pretty` validates 206 local-cache assets and reports `public_url_configured: false`.
+- `tools/rider_campaign_runtime/grounded_images.py` validates generated/edited image workflow records before HTML assembly.
+- Runtime validation rejects unapproved workflow items, untracked source assets, real Rider environment claims not grounded in matching source metadata, output checksum/dimension mismatches, invalid focal points, duplicate workflow IDs, and image slots pointing to unknown workflow IDs.
+- `campaign-metadata.json`, `asset-manifest.json`, and `qa-report.json` record the approved image workflow summary.
+- `projects/the-rider/skills/onbrand-the-rider-email/examples/rider-wellness-composition-preview.runtime.json` is the Phase 8/9 pilot: approved composition plan plus a grounded wellness hero workflow tied to approved Rider gym source `id:31E0v0XEN2IAAAAAAAAAJA` and a checksummed scaffold logo reference.
+- The pilot package passes with 1 branded Composition Preview variant, 59 QA checks, 9 packaged assets, no external or missing image references, and a valid ZIP.
+- Full unittest discovery passes 61 tests.
 
 ## Acceptance Criteria
 
@@ -55,6 +67,8 @@ Ground campaign imagery in approved project environments whenever the request im
 - Provenance records for generated and edited assets.
 - Visual QA checklist covering invariants, crop, logo placement, and subject framing.
 - Regression note documenting the wellness-smoke lesson.
+
+Implemented tests cover approved existing asset selection without generation, grounded edit/generation provenance, manifest-source fallback validation, unapproved generated runtime use, untracked source assets, non-grounded real-environment claims, and package provenance reporting.
 
 ## Dependencies
 

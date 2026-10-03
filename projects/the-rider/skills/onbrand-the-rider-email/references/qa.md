@@ -12,6 +12,7 @@ Run QA before delivery.
 - Output variant names are clear.
 - Build mode, representative variant, effective variant scope, changed surfaces, and expansion reason are recorded in `campaign-metadata.json` and `qa-report.json`.
 - Composition Preview and Release Build record the approved composition plan in `campaign-metadata.json` and `qa-report.json`.
+- Generated or edited imagery records the approved image workflow summary in `campaign-metadata.json`, `asset-manifest.json`, and `qa-report.json`.
 - Composition Preview and ordinary Smoke Test builds render one representative variant; Release Build renders the full internal matrix.
 - Package contains both the campaign folder and matching ZIP.
 - Asset manifest accounts for every image reference in every delivered HTML file.
@@ -71,6 +72,9 @@ Run QA before delivery.
 ## Image Checks
 
 - Approved existing images remain accurate.
-- Generated or edited hero images received user approval when needed.
+- Generated or edited hero images received user approval and have matching `image_workflow` provenance.
+- Real Rider environments use approved source assets whose filename, path, or category matches the claimed environment, such as gym, lobby, arrival, exterior, or amenity.
+- Source assets are tracked by manifest ID or checksummed local/scaffold path.
+- Output checksum, dimensions, intended module/slot, role, crop, focal point, and text policy match the final packaged image.
 - Branded objects are used only when requested and approved.
 - Rejected and unused image candidates are excluded from the package unless explicitly requested.

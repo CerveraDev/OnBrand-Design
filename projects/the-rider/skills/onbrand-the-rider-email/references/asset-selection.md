@@ -68,3 +68,5 @@ Do not package rejected candidates, unused alternates, or the whole source folde
 ## When To Use The Image Workflow
 
 Hand off to `onbrand-the-rider-image` when an image must be created, composited, or edited. Generated or edited imagery remains a separate explicit workflow even when the email skill has already selected existing approved assets.
+
+When the image workflow returns an approved final output, record it in campaign JSON under `image_workflow`. The final image slot must use `src` plus `image_workflow_id`; do not disguise generated or edited imagery as an ordinary `asset_id` selection. Existing approved assets selected directly from the manifest remain `asset_id` slots and require no generation provenance.

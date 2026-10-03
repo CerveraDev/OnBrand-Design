@@ -1,0 +1,14 @@
+{
+  "plan_id": "rider-wellness-composition-preview",
+  "status": "approved",
+  "approved_by": "OnBrand Phase 9 pilot fixture",
+  "approved_at": "2026-10-03",
+  "representative_variant": "branded",
+  "selected_module_codes": ["HH-01", "B-04", "S-02", "S-01"],
+  "static_block_decisions": [
+    { "code": "S-01", "decision": "include" },
+    { "code": "S-02", "decision": "include" },
+    { "code": "S-03", "decision": "exclude" },
+    { "code": "S-04", "decision": "exclude" }
+  ]
+}

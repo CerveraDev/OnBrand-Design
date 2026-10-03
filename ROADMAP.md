@@ -13,7 +13,7 @@ The roadmap applies to the framework and is executed independently for each proj
 | 6 | Distribution packaging and QA | Rider implementation complete | Implemented and smoke-tested | Planned |
 | 7 | Build modes | Rider implementation complete | Implemented and tested | Planned |
 | 8 | Composition Preview | Rider implementation complete | Implemented and tested | Planned |
-| 9 | Grounded image generation | Approved spec, not implemented | Planned | Planned |
+| 9 | Grounded image generation | Rider implementation complete | Implemented and tested | Planned |
 | 10 | Copy allocation QA | Approved spec, not implemented | Planned | Planned |
 | 11 | Cross-platform compatibility | Approved spec, not implemented | Codex current; Claude Code planned | Planned |
 | 12 | Distribution profiles | Deferred | Deferred | Deferred |
@@ -62,6 +62,7 @@ The roadmap applies to the framework and is executed independently for each proj
 - Image generation plans start from approved project sources and recorded environment context.
 - Real Rider exterior, arrival, and architectural scenes default to approved base imagery rather than unconstrained generation.
 - Generated images carry provenance, approval status, and placement constraints into QA.
+- The Rider runtime validates `image_workflow` records, approved source assets, output checksums/dimensions, intended slots, and release eligibility before packaging generated or edited imagery.
 
 ## Copy Allocation Gate
 

@@ -15,6 +15,7 @@ class QAResult:
     checks: list[dict]
     build: dict | None = None
     composition: dict | None = None
+    image_workflow: dict | None = None
 
 
 def run_qa(
@@ -27,6 +28,7 @@ def run_qa(
     static_content: dict[str, str] | None = None,
     build_metadata: dict | None = None,
     composition_metadata: dict | None = None,
+    image_workflow_metadata: dict | None = None,
 ) -> QAResult:
     checks: list[dict] = []
     static_blocks = static_blocks or []
@@ -84,6 +86,12 @@ def run_qa(
             metadata.get("composition", {}) == (composition_metadata or {}),
             "campaign metadata records approved composition plan",
         )
+        _check(
+            checks,
+            "campaign-metadata-image-workflow",
+            metadata.get("image_workflow", {}) == (image_workflow_metadata or {}),
+            "campaign metadata records generated image provenance summary",
+        )
     _check(checks, "asset-manifest", manifest_path.is_file(), "asset manifest exists")
     if manifest_path.is_file():
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -117,11 +125,33 @@ def run_qa(
         _check(checks, "manifest-covers-assets", package_files == paths, "asset manifest matches packaged asset files")
         _check(checks, "manifest-checksums", all(item.get("sha256") and item.get("size_bytes", 0) > 0 for item in manifest.get("assets", [])), "assets have checksums and sizes")
         _check(checks, "no-agent-diego", not any("diego ojeda" in item.get("dropbox_path", "").lower() for item in manifest.get("assets", []) if "agent" in item.get("role", "")), "Diego likeness assets excluded from agent footers")
+        _check(
+            checks,
+            "manifest-image-workflow",
+            manifest.get("image_workflow", {}) == (image_workflow_metadata or {}),
+            "asset manifest records generated image provenance summary",
+        )
+        workflow_ids = {
+            item["image_id"]
+            for item in (image_workflow_metadata or {}).get("items", [])
+        }
+        packaged_workflow_ids = {
+            item.get("image_workflow_id", "")
+            for item in manifest.get("assets", [])
+            if item.get("image_workflow_id")
+        }
+        _check(
+            checks,
+            "manifest-image-workflow-assets",
+            packaged_workflow_ids == workflow_ids,
+            "packaged generated image assets match workflow items",
+        )
     return QAResult(
         passed=all(item["passed"] for item in checks),
         checks=checks,
         build=build_metadata,
         composition=composition_metadata,
+        image_workflow=image_workflow_metadata,
     )
 
 
@@ -132,6 +162,7 @@ def write_qa_report(path: Path, result: QAResult) -> Path:
                 "passed": result.passed,
                 "build": result.build or {},
                 "composition": result.composition or {},
+                "image_workflow": result.image_workflow or {},
                 "checks": result.checks,
             },
             indent=2,

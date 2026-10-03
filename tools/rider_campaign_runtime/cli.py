@@ -12,6 +12,7 @@ try:
     from .runtime import MODULE_METADATA_PATH, SCAFFOLD_PATH, SLOT_MAP_PATH
     from .scaffold import load_scaffold
     from .schema import CampaignSpecError
+    from .grounded_images import GroundedImageError
     from .slots import SlotError
     from .agents import AgentError
     from .assets import AssetPackageError
@@ -21,6 +22,7 @@ except ImportError:  # Allow direct execution: python3 tools/rider_campaign_runt
     from runtime import MODULE_METADATA_PATH, SCAFFOLD_PATH, SLOT_MAP_PATH
     from scaffold import load_scaffold
     from schema import CampaignSpecError
+    from grounded_images import GroundedImageError
     from slots import SlotError
     from agents import AgentError
     from assets import AssetPackageError
@@ -62,7 +64,16 @@ def main(argv=None):
             print(f"required assets: {len(plan['required_assets'])}")
             return 0
         result = build_campaign(Path(args.campaign_json))
-    except (RuntimeError, CampaignSpecError, SlotError, AgentError, AssetPackageError, CompositionError, ValueError) as err:
+    except (
+        RuntimeError,
+        CampaignSpecError,
+        SlotError,
+        AgentError,
+        AssetPackageError,
+        CompositionError,
+        GroundedImageError,
+        ValueError,
+    ) as err:
         print(f"rider campaign runtime error: {err}", file=sys.stderr)
         return 3
 

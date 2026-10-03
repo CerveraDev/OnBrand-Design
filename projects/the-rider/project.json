@@ -13,5 +13,5 @@
   },
   "brand_calibration": "pending_canonical_beefree_html",
   "footer_calibration": "pending_locked_partials",
-  "asset_manifest": "configured_externally"
+  "asset_manifest": "validated_local_cache_fallback"
 }

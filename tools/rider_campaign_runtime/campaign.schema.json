@@ -164,6 +164,140 @@
         }
       }
     },
+    "image_workflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "items"],
+      "properties": {
+        "version": { "const": "1.0" },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "image_id",
+              "workflow_type",
+              "status",
+              "intended_use",
+              "environment",
+              "source_assets",
+              "prompt_record",
+              "output",
+              "placement"
+            ],
+            "properties": {
+              "image_id": { "type": "string", "minLength": 1 },
+              "workflow_type": { "enum": ["grounded-edit", "grounded-generation", "conceptual-generation"] },
+              "status": { "enum": ["approved", "candidate", "rejected"] },
+              "approved_by": { "type": "string" },
+              "approved_at": { "type": "string" },
+              "approval_notes": { "type": "string" },
+              "intended_use": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["module_id", "slot", "role"],
+                "properties": {
+                  "module_id": { "type": "string", "minLength": 1 },
+                  "slot": { "type": "string", "minLength": 1 },
+                  "role": { "type": "string", "minLength": 1 },
+                  "variant_scope": { "enum": ["all", "representative"] }
+                }
+              },
+              "environment": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["type", "description", "keywords"],
+                "properties": {
+                  "type": { "enum": ["real-rider", "conceptual"] },
+                  "description": { "type": "string", "minLength": 1 },
+                  "keywords": {
+                    "type": "array",
+                    "items": { "type": "string", "minLength": 1 }
+                  },
+                  "conceptual_environment_approved": { "type": "boolean" }
+                }
+              },
+              "source_assets": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["role"],
+                  "properties": {
+                    "asset_id": { "type": "string", "minLength": 1 },
+                    "path": { "type": "string", "minLength": 1 },
+                    "sha256": { "type": "string", "minLength": 64, "maxLength": 64 },
+                    "role": {
+                      "enum": ["environment-base", "logo-reference", "likeness-reference", "style-reference"]
+                    },
+                    "required_approval": { "type": "string" },
+                    "preserve": {
+                      "type": "array",
+                      "items": { "type": "string", "minLength": 1 }
+                    }
+                  },
+                  "oneOf": [
+                    { "required": ["asset_id"], "not": { "required": ["path"] } },
+                    { "required": ["path", "sha256"], "not": { "required": ["asset_id"] } }
+                  ]
+                }
+              },
+              "prompt_record": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["tool", "prompt", "edit_steps", "text_policy"],
+                "properties": {
+                  "tool": { "type": "string", "minLength": 1 },
+                  "model": { "type": "string" },
+                  "prompt": { "type": "string", "minLength": 1 },
+                  "negative_prompt": { "type": "string" },
+                  "edit_steps": {
+                    "type": "array",
+                    "items": { "type": "string", "minLength": 1 }
+                  },
+                  "text_policy": { "enum": ["live-html", "baked-approved", "none"] }
+                }
+              },
+              "output": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["src", "sha256", "width", "height", "format"],
+                "properties": {
+                  "src": { "type": "string", "minLength": 1 },
+                  "sha256": { "type": "string", "minLength": 64, "maxLength": 64 },
+                  "width": { "type": "integer", "minimum": 1 },
+                  "height": { "type": "integer", "minimum": 1 },
+                  "format": { "enum": ["png", "jpg", "jpeg", "gif"] }
+                }
+              },
+              "placement": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["aspect_ratio", "crop", "focal_point"],
+                "properties": {
+                  "aspect_ratio": { "type": "string", "minLength": 1 },
+                  "crop": { "type": "string", "minLength": 1 },
+                  "focal_point": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["x", "y"],
+                    "properties": {
+                      "x": { "type": "number", "minimum": 0, "maximum": 1 },
+                      "y": { "type": "number", "minimum": 0, "maximum": 1 }
+                    }
+                  },
+                  "safe_area": { "type": "string" },
+                  "logo_overlay": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "campaign": {
       "type": "object",
       "additionalProperties": false,
@@ -208,7 +342,8 @@
                 "src": { "type": "string" },
                 "alt": { "type": "string" },
                 "title": { "type": "string" },
-                "role": { "type": "string" }
+                "role": { "type": "string" },
+                "image_workflow_id": { "type": "string" }
               },
               "oneOf": [
                 {
@@ -228,6 +363,16 @@
                     { "required": ["src"], "not": { "required": ["asset_id"] } }
                   ],
                   "not": { "anyOf": [{ "required": ["value"] }, { "required": ["href"] }] }
+                }
+              ],
+              "allOf": [
+                {
+                  "if": { "required": ["image_workflow_id"] },
+                  "then": {
+                    "properties": { "kind": { "const": "image" } },
+                    "required": ["src"],
+                    "not": { "required": ["asset_id"] }
+                  }
                 }
               ]
             }

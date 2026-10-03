@@ -15,6 +15,7 @@ ALLOWED_TOP = {
     "schema_version",
     "build",
     "composition",
+    "image_workflow",
     "campaign",
     "manifest",
     "modules",
@@ -49,6 +50,28 @@ ALLOWED_COMPOSITION_MODULE = {"code", "scaffold_module_id", "module_type", "incl
 ALLOWED_COMPOSITION_STATIC = {"code", "scaffold_module_id", "decision"}
 ALLOWED_COMPOSITION_SLOT = {"code", "scaffold_module_id", "slot", "slot_type", "operations", "required_approvals"}
 ALLOWED_COMPOSITION_ASSET = {"code", "scaffold_module_id", "slot", "required_approvals", "image_aspect_ratio"}
+ALLOWED_IMAGE_WORKFLOW = {"version", "items"}
+ALLOWED_IMAGE_WORKFLOW_ITEM = {
+    "image_id",
+    "workflow_type",
+    "status",
+    "approved_by",
+    "approved_at",
+    "intended_use",
+    "environment",
+    "source_assets",
+    "prompt_record",
+    "output",
+    "placement",
+    "approval_notes",
+}
+ALLOWED_IMAGE_INTENDED_USE = {"module_id", "slot", "role", "variant_scope"}
+ALLOWED_IMAGE_ENVIRONMENT = {"type", "description", "keywords", "conceptual_environment_approved"}
+ALLOWED_IMAGE_SOURCE = {"asset_id", "path", "sha256", "role", "required_approval", "preserve"}
+ALLOWED_IMAGE_PROMPT = {"tool", "model", "prompt", "negative_prompt", "edit_steps", "text_policy"}
+ALLOWED_IMAGE_OUTPUT = {"src", "sha256", "width", "height", "format"}
+ALLOWED_IMAGE_PLACEMENT = {"aspect_ratio", "crop", "focal_point", "safe_area", "logo_overlay"}
+ALLOWED_IMAGE_FOCAL = {"x", "y"}
 ALLOWED_CAMPAIGN = {
     "slug",
     "title",
@@ -68,6 +91,7 @@ ALLOWED_SLOT = {
     "alt",
     "title",
     "role",
+    "image_workflow_id",
 }
 ALLOWED_VARIANTS = {"branded", "outside_broker", "agents"}
 ALLOWED_OUTSIDE = {"headshot", "name", "title", "phone", "email", "social"}
@@ -112,6 +136,8 @@ def validate_campaign_spec(data: object) -> None:
     _validate_build(build)
     if "composition" in data:
         _validate_composition(_require(data, "composition", dict, "campaign spec"))
+    if "image_workflow" in data:
+        _validate_image_workflow(_require(data, "image_workflow", dict, "campaign spec"))
 
     campaign = _require(data, "campaign", dict, "campaign spec")
     _reject_unknown(campaign, ALLOWED_CAMPAIGN, "campaign")
@@ -326,6 +352,115 @@ def _validate_composition(composition: dict) -> None:
         raise CampaignSpecError("composition.compatibility must be an object")
 
 
+def _validate_image_workflow(workflow: dict) -> None:
+    _reject_unknown(workflow, ALLOWED_IMAGE_WORKFLOW, "image_workflow")
+    if _require(workflow, "version", str, "image_workflow") != "1.0":
+        raise CampaignSpecError("image_workflow.version must be '1.0'")
+    items = _require_array(workflow, "items", "image_workflow")
+    if not items:
+        raise CampaignSpecError("image_workflow.items must be a non-empty array")
+    seen_ids: set[str] = set()
+    for index, item in enumerate(items):
+        label = f"image_workflow.items[{index}]"
+        _validate_object(item, ALLOWED_IMAGE_WORKFLOW_ITEM, label)
+        image_id = _require(item, "image_id", str, label)
+        if image_id in seen_ids:
+            raise CampaignSpecError(f"Duplicate image_workflow image_id: {image_id}")
+        seen_ids.add(image_id)
+        workflow_type = _require(item, "workflow_type", str, label)
+        if workflow_type not in {"grounded-edit", "grounded-generation", "conceptual-generation"}:
+            raise CampaignSpecError(f"{label}.workflow_type is not supported")
+        status = _require(item, "status", str, label)
+        if status not in {"approved", "candidate", "rejected"}:
+            raise CampaignSpecError(f"{label}.status must be approved, candidate, or rejected")
+        for field in ("approved_by", "approved_at"):
+            if field in item and not isinstance(item[field], str):
+                raise CampaignSpecError(f"{label}.{field} must be a string")
+
+        intended = _require(item, "intended_use", dict, label)
+        _reject_unknown(intended, ALLOWED_IMAGE_INTENDED_USE, f"{label}.intended_use")
+        for field in ("module_id", "slot", "role"):
+            _require(intended, field, str, f"{label}.intended_use")
+        if "variant_scope" in intended and intended["variant_scope"] not in {"all", "representative"}:
+            raise CampaignSpecError(f"{label}.intended_use.variant_scope must be all or representative")
+
+        environment = _require(item, "environment", dict, label)
+        _reject_unknown(environment, ALLOWED_IMAGE_ENVIRONMENT, f"{label}.environment")
+        if _require(environment, "type", str, f"{label}.environment") not in {"real-rider", "conceptual"}:
+            raise CampaignSpecError(f"{label}.environment.type must be real-rider or conceptual")
+        _require(environment, "description", str, f"{label}.environment")
+        _require_string_array(environment, "keywords", f"{label}.environment")
+        if "conceptual_environment_approved" in environment and not isinstance(
+            environment["conceptual_environment_approved"], bool
+        ):
+            raise CampaignSpecError(f"{label}.environment.conceptual_environment_approved must be a boolean")
+
+        for source_index, source in enumerate(_require_array(item, "source_assets", label)):
+            source_label = f"{label}.source_assets[{source_index}]"
+            _validate_object(source, ALLOWED_IMAGE_SOURCE, source_label)
+            has_asset_id = "asset_id" in source
+            has_path = "path" in source
+            if has_asset_id == has_path:
+                raise CampaignSpecError(f"{source_label} must contain exactly one of asset_id or path")
+            if has_asset_id:
+                _require(source, "asset_id", str, source_label)
+            if has_path:
+                _require(source, "path", str, source_label)
+                _require(source, "sha256", str, source_label)
+            if _require(source, "role", str, source_label) not in {
+                "environment-base",
+                "logo-reference",
+                "likeness-reference",
+                "style-reference",
+            }:
+                raise CampaignSpecError(f"{source_label}.role is not supported")
+            if "required_approval" in source and not isinstance(source["required_approval"], str):
+                raise CampaignSpecError(f"{source_label}.required_approval must be a string")
+            if "preserve" in source:
+                _require_string_array(source, "preserve", source_label, allow_empty=True)
+
+        prompt = _require(item, "prompt_record", dict, label)
+        _reject_unknown(prompt, ALLOWED_IMAGE_PROMPT, f"{label}.prompt_record")
+        _require(prompt, "tool", str, f"{label}.prompt_record")
+        _require(prompt, "prompt", str, f"{label}.prompt_record")
+        _require_string_array(prompt, "edit_steps", f"{label}.prompt_record")
+        if _require(prompt, "text_policy", str, f"{label}.prompt_record") not in {
+            "live-html",
+            "baked-approved",
+            "none",
+        }:
+            raise CampaignSpecError(f"{label}.prompt_record.text_policy is not supported")
+        for field in ("model", "negative_prompt"):
+            if field in prompt and not isinstance(prompt[field], str):
+                raise CampaignSpecError(f"{label}.prompt_record.{field} must be a string")
+
+        output = _require(item, "output", dict, label)
+        _reject_unknown(output, ALLOWED_IMAGE_OUTPUT, f"{label}.output")
+        _require(output, "src", str, f"{label}.output")
+        _require(output, "sha256", str, f"{label}.output")
+        for field in ("width", "height"):
+            if not isinstance(output.get(field), int) or output[field] <= 0:
+                raise CampaignSpecError(f"{label}.output.{field} must be a positive integer")
+        if _require(output, "format", str, f"{label}.output") not in {"png", "jpg", "jpeg", "gif"}:
+            raise CampaignSpecError(f"{label}.output.format must be png, jpg, jpeg, or gif")
+
+        placement = _require(item, "placement", dict, label)
+        _reject_unknown(placement, ALLOWED_IMAGE_PLACEMENT, f"{label}.placement")
+        _require(placement, "aspect_ratio", str, f"{label}.placement")
+        _require(placement, "crop", str, f"{label}.placement")
+        focal = _require(placement, "focal_point", dict, f"{label}.placement")
+        _reject_unknown(focal, ALLOWED_IMAGE_FOCAL, f"{label}.placement.focal_point")
+        for axis in ("x", "y"):
+            value = focal.get(axis)
+            if not isinstance(value, (int, float)) or not (0 <= value <= 1):
+                raise CampaignSpecError(f"{label}.placement.focal_point.{axis} must be between 0 and 1")
+        for field in ("safe_area", "logo_overlay"):
+            if field in placement and not isinstance(placement[field], str):
+                raise CampaignSpecError(f"{label}.placement.{field} must be a string")
+        if "approval_notes" in item and not isinstance(item["approval_notes"], str):
+            raise CampaignSpecError(f"{label}.approval_notes must be a string")
+
+
 def _validate_slot(slot: object, label: str) -> None:
     if not isinstance(slot, dict):
         raise CampaignSpecError(f"{label} must be an object")
@@ -341,7 +476,7 @@ def _validate_slot(slot: object, label: str) -> None:
         href = _require(slot, "href", str, label)
         validate_href(href, f"{label}.href")
     elif kind == "image":
-        _reject_unknown(slot, {"kind", "asset_id", "src", "alt", "title", "role"}, label)
+        _reject_unknown(slot, {"kind", "asset_id", "src", "alt", "title", "role", "image_workflow_id"}, label)
         has_asset = "asset_id" in slot
         has_src = "src" in slot
         if has_asset == has_src:
@@ -354,6 +489,10 @@ def _validate_slot(slot: object, label: str) -> None:
         for field in ("alt", "title", "role"):
             if field in slot and not isinstance(slot[field], str):
                 raise CampaignSpecError(f"{label}.{field} must be a string")
+        if "image_workflow_id" in slot:
+            if not has_src:
+                raise CampaignSpecError(f"{label}.image_workflow_id requires a src image")
+            _require(slot, "image_workflow_id", str, label)
 
 
 def _require(obj: dict, field: str, expected_type: type, label: str):

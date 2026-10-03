@@ -13,6 +13,7 @@ from .agents import load_agents
 from .assets import create_zip, package_documents, rewrite_and_package_assets, write_asset_manifest
 from .composition import validate_composition_contract
 from .footer import render_agent_footer, render_branded_footer, render_outside_broker_footer
+from .grounded_images import validate_grounded_image_workflow
 from .qa import QAResult, run_qa, write_qa_report
 from .scaffold import (
     FOOTER_MODULES,
@@ -67,6 +68,12 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
     assets = load_manifest(manifest_path)
     manifest_assets = {asset["dropbox_id"]: asset for asset in assets}
     manifest_assets.update({f"id:{asset['dropbox_id'].removeprefix('id:')}": asset for asset in assets})
+    image_workflow_metadata = validate_grounded_image_workflow(
+        spec,
+        base_dir=base_dir,
+        manifest_assets=manifest_assets,
+        scaffold=scaffold,
+    )
     document_assets: list[UsedAsset] = []
     for document in spec.get("documents", []):
         asset_id = document["asset_id"]
@@ -183,7 +190,13 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
         hosted_asset_base_url=deployment.get("hosted_asset_base_url"),
     )
     packaged_assets.extend(package_documents(document_assets, package_dir))
-    asset_manifest = write_asset_manifest(package_dir, campaign, packaged_assets, asset_mode=asset_mode)
+    asset_manifest = write_asset_manifest(
+        package_dir,
+        campaign,
+        packaged_assets,
+        asset_mode=asset_mode,
+        image_workflow_metadata=image_workflow_metadata,
+    )
 
     html_files: dict[str, Path] = {}
     for variant, html in sorted(rewritten_html.items()):
@@ -205,6 +218,7 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
                 "static_blocks": spec["static_blocks"],
                 "build": build_metadata,
                 "composition": composition_metadata or {},
+                "image_workflow": image_workflow_metadata or {},
                 "variants": sorted(rewritten_html),
             },
             indent=2,
@@ -223,6 +237,7 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
         static_content=static_content,
         build_metadata=build_metadata,
         composition_metadata=composition_metadata,
+        image_workflow_metadata=image_workflow_metadata,
     )
     qa_report = write_qa_report(package_dir / "qa-report.json", qa)
     zip_path = None
@@ -332,6 +347,10 @@ def _normalize_local_image_sources(spec: dict, base_dir: Path) -> dict:
     outside_headshot = normalized.get("outside_broker", {}).get("headshot")
     if isinstance(outside_headshot, dict) and "src" in outside_headshot:
         outside_headshot["src"] = _normalize_local_image_source(base_dir, outside_headshot["src"])
+    for item in normalized.get("image_workflow", {}).get("items", []):
+        output = item.get("output", {})
+        if isinstance(output, dict) and "src" in output:
+            output["src"] = _normalize_local_image_source(base_dir, output["src"])
     return normalized
 
 

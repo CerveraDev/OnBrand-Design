@@ -32,6 +32,7 @@ class PackagedAsset:
     identity: str = ""
     filename: str = ""
     dropbox_path: str = ""
+    image_workflow_id: str = ""
 
 
 def rewrite_and_package_assets(
@@ -52,7 +53,7 @@ def rewrite_and_package_assets(
     for variant, hint in asset_hints:
         source_usage.setdefault(hint.source, set()).add(variant)
         roles.setdefault(hint.source, set()).add(hint.role)
-        if hint.identity or hint.filename or hint.dropbox_path:
+        if hint.identity or hint.filename or hint.dropbox_path or hint.image_workflow_id:
             identities[hint.source] = hint
 
     images_dir = package_dir / "images"
@@ -83,6 +84,7 @@ def rewrite_and_package_assets(
                 identity=hint.identity if hint else "",
                 filename=hint.filename if hint else original_name,
                 dropbox_path=hint.dropbox_path if hint else "",
+                image_workflow_id=hint.image_workflow_id if hint else "",
             )
         )
 
@@ -95,13 +97,21 @@ def rewrite_and_package_assets(
     return rewritten, packaged
 
 
-def write_asset_manifest(package_dir: Path, campaign: dict, packaged: list[PackagedAsset], *, asset_mode: str) -> Path:
+def write_asset_manifest(
+    package_dir: Path,
+    campaign: dict,
+    packaged: list[PackagedAsset],
+    *,
+    asset_mode: str,
+    image_workflow_metadata: dict | None = None,
+) -> Path:
     manifest = {
         "campaign": {
             "slug": campaign["slug"],
             "title": campaign["title"],
         },
         "asset_mode": asset_mode,
+        "image_workflow": image_workflow_metadata or {},
         "assets": [
             {
                 "source": asset.source,
@@ -113,6 +123,7 @@ def write_asset_manifest(package_dir: Path, campaign: dict, packaged: list[Packa
                 "size_bytes": asset.size_bytes,
                 "role": asset.role,
                 "variants": list(asset.variants),
+                **({"image_workflow_id": asset.image_workflow_id} if asset.image_workflow_id else {}),
             }
             for asset in packaged
         ],

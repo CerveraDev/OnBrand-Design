@@ -25,7 +25,7 @@ The canonical Beefree scaffold is available at [templates/scaffold/rider-scaffol
 7. Generate the Composition Preview catalog/review artifacts when the user needs to choose modules: `python3 -m tools.rider_campaign_runtime.cli catalog --output <review-folder>`.
 8. Ask the user to approve exact module codes, every static-block include/exclude decision, static-block placement in the module order, and representative variant before generated image work or final HTML assembly.
 9. Create the approved composition plan with `python3 -m tools.rider_campaign_runtime.cli plan --selection <selection.json> --output <composition-plan.json>`.
-10. If generated or edited imagery is needed, hand off to `onbrand-the-rider-image` only after the relevant hero/image module is approved.
+10. If generated or edited imagery is needed, hand off to `onbrand-the-rider-image` only after the relevant hero/image module is approved, then require an approved `image_workflow` provenance record before runtime assembly.
 11. Choose either a compatible standalone header plus hero or a hero that includes its own header. Never add a header automatically.
 12. Encode the approved campaign as a JSON document that conforms to `tools/rider_campaign_runtime/campaign.schema.json`, embeds the approved `composition` plan for Composition Preview or Release Build, and uses only slots declared in the Rider scaffold sidecar map.
 13. Run `python3 -m tools.rider_campaign_runtime.cli <campaign.json>` from the repository root.
@@ -72,6 +72,8 @@ Invoke or follow the separate `onbrand-the-rider-image` skill when:
 
 That image skill is also explicit-only. Ask the user to invoke `$onbrand-the-rider-image` in Codex or `/onbrand-the-rider-image` in Claude Code before beginning generated or edited image work.
 
+Generated or edited imagery must return a local output file plus an `image_workflow` item for the campaign JSON. The matching image slot must use `src` and `image_workflow_id`; ordinary approved existing-asset selections continue to use `asset_id` and do not need image workflow metadata. Runtime builds reject generated imagery whose workflow item is not approved, whose source assets are missing or unapproved, whose real Rider environment is not grounded in matching manifest metadata, or whose output checksum/dimensions do not match the local file.
+
 ## HTML Output
 
 Use the canonical Beefree scaffold as the structural compatibility benchmark. Prefer conservative HTML email patterns already present in the scaffold: table-based layout, inline CSS, stable image blocks, spacer rows, Outlook-safe structure, and simple responsive behavior.
@@ -108,7 +110,7 @@ In-house agent variants load factual records from [data/agents](data/agents). Ea
 
 The runtime is Rider-specific and lives at `tools/rider_campaign_runtime/`. Its strict campaign schema rejects unknown fields and unsafe URL combinations. Its package builder downloads only rendered assets, verifies checksums, records provenance and variant usage, writes machine-readable QA, and creates a ZIP only after blocking checks pass.
 
-The runtime also owns the portable Composition Preview workflow. `catalog` produces stable module codes and isolated HTML preview artifacts. `plan` consumes an explicit approved selection and writes a composition plan that the build step validates before rendering. This file workflow is usable from Codex, Claude Code, or a normal shell.
+The runtime also owns the portable Composition Preview and generated-image provenance workflow. `catalog` produces stable module codes and isolated HTML preview artifacts. `plan` consumes an explicit approved selection and writes a composition plan that the build step validates before rendering. `image_workflow` records generated/edited image provenance in the same campaign JSON. This file workflow is usable from Codex, Claude Code, or a normal shell.
 
 Use `projects/the-rider/skills/onbrand-the-rider-email/examples/smoke-campaign.runtime.json` only as an internal non-production example. Replace its sample copy and module selection with approved campaign content; never send or deploy the smoke output.
 

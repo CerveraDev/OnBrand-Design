@@ -22,6 +22,7 @@ class UsedAsset:
     identity: str = ""
     filename: str = ""
     dropbox_path: str = ""
+    image_workflow_id: str = ""
 
 
 def apply_module_slots(
@@ -146,7 +147,13 @@ def _apply_slot(
         else:
             src = value["src"]
             validate_image_url(src, f"{module_id}.{slot_name}.src")
-            used.append(UsedAsset(source=src, role=value.get("role", slot_name)))
+            used.append(
+                UsedAsset(
+                    source=src,
+                    role=value.get("role", slot_name),
+                    image_workflow_id=value.get("image_workflow_id", ""),
+                )
+            )
         image_src = src
         rendered_text = safe_attr(src)
     else:

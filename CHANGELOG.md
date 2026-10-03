@@ -28,6 +28,9 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Compatibility and distribution-security plans documenting canonical-core adapter expectations, planned Claude Code support, and deferred broker/private package separation.
 - Rider build-mode contract for Composition Preview, Smoke Test, and Release Build, including explicit representative selection, changed-surface smoke expansion, metadata, QA reporting, and a release-build fixture.
 - Rider Composition Preview catalog and approved-plan workflow with stable module codes, isolated preview artifacts, selection-plan fixtures, runtime validation, metadata, and QA reporting.
+- Rider grounded-image `image_workflow` contract for generated/edited imagery, including intended slot, approved source assets, prompt record, output checksum/dimensions, placement constraints, approval state, metadata, asset-manifest, and QA reporting.
+- The Rider manifest-source config at `projects/the-rider/manifest-source.json`, currently validating the repository local-cache fallback because no stable public manifest URL is configured.
+- Wellness Composition Preview pilot fixtures with approved Phase 8 module selection, approved composition plan, grounded gym-image provenance, and a generated hero tied to the Rider gym source plus scaffold logo reference.
 
 ### Changed
 
@@ -44,6 +47,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Roadmap, PRD, status, and versioning records now distinguish approved future specs from implemented runtime features.
 - Ordinary Rider smoke fixtures now render one branded representative variant; Release Build preserves the full internal matrix.
 - Composition Preview and Release Build now require an approved composition plan; technical Smoke Test remains the explicit diagnostic bypass.
+- Generated or edited Rider imagery now enters runtime builds only through explicit `image_workflow_id` provenance records; ordinary `asset_id` image slots remain the approved existing-asset path and do not trigger image generation.
 
 ### Validated
 
@@ -68,7 +72,10 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Rider release-build validation passes with 9 variants, 222 QA checks, 17 packaged assets, Diana Kosov present, Jake Lecce absent, no external image references, and a valid ZIP.
 - Full unittest discovery passes 55 tests.
 - Composition catalog generation produces 16 selectable non-footer entries plus review Markdown and isolated HTML preview snippets.
-- Approved release-build composition plan records 5 selected module codes, 3 required asset slots, 22 editable slots, and passes release-build package QA with 223 checks.
+- Approved release-build composition plan records 5 selected module codes, 3 required asset slots, 22 editable slots, and passes release-build package QA with 226 checks.
+- Full unittest discovery passes 61 tests.
+- Manifest-source validation passes for The Rider local-cache fallback with 206 validated manifest assets and no configured public URL.
+- Rider wellness Composition Preview pilot passes with 1 branded variant, approved composition plan `rider-wellness-composition-preview`, 1 grounded image workflow item, 59 QA checks, 9 packaged assets, no external or missing image references, and a valid ZIP.
 
 ## [0.1.0] - 2026-09-30
 
