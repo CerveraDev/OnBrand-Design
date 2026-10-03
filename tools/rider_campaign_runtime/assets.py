@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from html import escape
+from html import escape, unescape
 from html.parser import HTMLParser
 import hashlib
 import json
@@ -164,7 +164,7 @@ def extract_image_refs(html: str) -> set[str]:
     parser = _ImageRefParser()
     parser.feed(html)
     refs = set(parser.refs)
-    refs.update(match.group(1) for match in IMAGE_URL_RE.finditer(html))
+    refs.update(unescape(match.group(1)) for match in IMAGE_URL_RE.finditer(html))
     return {ref for ref in refs if _is_packaged_image_ref(ref)}
 
 

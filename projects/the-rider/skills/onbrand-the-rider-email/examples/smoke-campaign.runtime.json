@@ -12,13 +12,9 @@
   },
   "modules": [
     {
-      "id": "TWO-COLUMN HEADER",
+      "id": "ONE-COLUMN HEADER DARK",
       "variant": "default",
       "slots": {
-        "headline": {
-          "kind": "text",
-          "value": "INTERNAL SMOKE TEST FOR THE RIDER RUNTIME"
-        },
         "logo_link": {
           "kind": "url",
           "href": "https://theriderresidences.com"
@@ -26,12 +22,18 @@
       }
     },
     {
-      "id": "HERO - DARK FRAMED LAYOUT",
+      "id": "HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT",
       "variant": "default",
       "slots": {
         "headline": {
           "kind": "safe_rich_text",
           "value": "INTERNAL REVIEW<br>DO NOT SEND"
+        },
+        "background_image": {
+          "kind": "image",
+          "asset_id": "id:31E0v0XEN2IAAAAAAAAABg",
+          "alt": "The Rider tower exterior",
+          "role": "hero"
         }
       }
     },
@@ -42,8 +44,42 @@
         "primary_cta": {
           "kind": "text",
           "value": "REQUEST INTERNAL REVIEW"
+        },
+        "gallery_image": {
+          "kind": "image",
+          "asset_id": "id:31E0v0XEN2IAAAAAAAAAVw",
+          "alt": "The Rider near Wynwood Station",
+          "role": "body"
         }
       }
+    },
+    {
+      "id": "STATIC BLOCK 1",
+      "variant": "default",
+      "slots": {}
+    },
+    {
+      "id": "STATIC BLOCK 3",
+      "variant": "default",
+      "slots": {}
+    }
+  ],
+  "static_blocks": [
+    {
+      "id": "STATIC BLOCK 1",
+      "decision": "include"
+    },
+    {
+      "id": "STATIC BLOCK 2",
+      "decision": "exclude"
+    },
+    {
+      "id": "STATIC BLOCK 3",
+      "decision": "include"
+    },
+    {
+      "id": "STATIC BLOCK 4",
+      "decision": "exclude"
     }
   ],
   "variants": {

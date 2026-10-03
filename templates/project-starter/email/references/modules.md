@@ -54,3 +54,5 @@ Provisional modules to refine later:
 - Broker information block
 
 Add module rules only when a real campaign need appears.
+
+Calibrated projects may also define optional locked static blocks and machine-readable header/hero compatibility. Static blocks have no editable slots, require explicit include/exclude decisions, and retain their approved copy and structure. A standalone header must not be combined with a hero that already includes one.

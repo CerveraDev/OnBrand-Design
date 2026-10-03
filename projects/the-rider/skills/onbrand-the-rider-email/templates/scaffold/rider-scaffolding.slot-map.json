@@ -22,7 +22,15 @@
       }
     ]
   },
-  "HERO - DARK FRAMED LAYOUT": {
+  "ONE-COLUMN HEADER DARK": {
+    "logo_link": [
+      {
+        "operation": "replace_href",
+        "anchor": "https://theriderresidences.com"
+      }
+    ]
+  },
+  "HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT": {
     "headline": [
       {
         "operation": "replace_text",
@@ -37,7 +45,30 @@
       }
     ]
   },
-  "HERO - FULL-WIDTH WITH LIVE TEXT HEADING AND LOGO": {
+  "ONE-COLUMN HEADER LIGHT": {
+    "logo_link": [
+      {
+        "operation": "replace_href",
+        "anchor": "https://theriderresidences.com"
+      }
+    ]
+  },
+  "HERO - LIVE TEXT HEADING - LIGHT LAYOUT - FRAMED": {
+    "headline": [
+      {
+        "operation": "replace_text",
+        "anchor": "TAILORED FOR DIGITAL<br>NOMADS AND&nbsp;HODLERS."
+      }
+    ],
+    "background_image": [
+      {
+        "operation": "replace_background_url",
+        "anchor": "https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/kh2b02wi/rya/sbp/to7/bitcoin-hero.png",
+        "required_approval": "hero"
+      }
+    ]
+  },
+  "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH": {
     "headline": [
       {
         "operation": "replace_text",
@@ -49,13 +80,12 @@
         "operation": "replace_href",
         "anchor": "https://theriderresidences.com"
       }
-    ]
-  },
-  "HERO - LIGHT LAYOUT - FRAMED": {
-    "headline": [
+    ],
+    "background_image": [
       {
-        "operation": "replace_text",
-        "anchor": "TAILORED FOR DIGITAL<br>NOMADS AND&nbsp;HODLERS."
+        "operation": "replace_background_url",
+        "anchor": "https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/kh2b02wi/rya/sbp/to7/bitcoin-hero.png",
+        "required_approval": "hero"
       }
     ]
   },

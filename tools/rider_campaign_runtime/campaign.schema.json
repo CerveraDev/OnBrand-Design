@@ -4,7 +4,7 @@
   "title": "Rider Campaign Runtime Spec",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "campaign", "manifest", "modules", "variants"],
+  "required": ["schema_version", "campaign", "manifest", "modules", "static_blocks", "variants"],
   "properties": {
     "schema_version": { "const": "1.0" },
     "campaign": {
@@ -75,6 +75,18 @@
               ]
             }
           }
+        }
+      }
+    },
+    "static_blocks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "decision"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "decision": { "enum": ["include", "exclude"] }
         }
       }
     },

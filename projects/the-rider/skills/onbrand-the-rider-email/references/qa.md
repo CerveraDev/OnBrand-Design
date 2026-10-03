@@ -48,6 +48,12 @@ Run QA before delivery.
 - Shared images are packaged once and referenced consistently across variants.
 - Any external image URLs or deployment substitutions are identified in the manifest.
 - `qa-report.json` reports every blocking runtime check as passed before the ZIP is created.
+- Every scaffold static block has an explicit include/exclude decision.
+- Every included static block appears exactly once in the approved order and passed the pre-packaging byte lock.
+- Excluded static blocks are absent.
+- Asset URL localization is the only permitted packaging transformation inside an included static block.
+- No standalone header appears beside a hero classified as including its own header.
+- Static marker colors `#ffd675` and `#75edff` never appear in generated output.
 
 ## Image Checks
 

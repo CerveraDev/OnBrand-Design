@@ -9,7 +9,12 @@ from typing import Iterable
 
 START_MARKER_COLOR = "#55ebb9"
 END_MARKER_COLOR = "#ff81fb"
+STATIC_START_MARKER_COLOR = "#ffd675"
+STATIC_END_MARKER_COLOR = "#75edff"
 MARKER_TEXT_COLOR = "#393d47"
+START_MARKER_COLORS = {START_MARKER_COLOR, STATIC_START_MARKER_COLOR}
+END_MARKER_COLORS = {END_MARKER_COLOR, STATIC_END_MARKER_COLOR}
+MARKER_COLORS = START_MARKER_COLORS | END_MARKER_COLORS
 
 _HEX_COLOR_RE = re.compile(r"#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?\b")
 
@@ -39,7 +44,7 @@ class Row:
     @property
     def is_marker(self) -> bool:
         colors = set(self.style_colors)
-        has_marker_color = START_MARKER_COLOR in colors or END_MARKER_COLOR in colors
+        has_marker_color = bool(colors & MARKER_COLORS)
         return has_marker_color and self.marker_label is not None
 
 

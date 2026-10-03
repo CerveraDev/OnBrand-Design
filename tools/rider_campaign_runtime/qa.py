@@ -21,16 +21,31 @@ def run_qa(
     *,
     expected_variants: set[str],
     agent_variant_count: int,
+    static_blocks: list[dict] | None = None,
+    static_content: dict[str, str] | None = None,
 ) -> QAResult:
     checks: list[dict] = []
+    static_blocks = static_blocks or []
+    static_content = static_content or {}
     _check(checks, "variant-count", set(html_by_variant) == expected_variants, f"{len(html_by_variant)} variants rendered")
     _check(checks, "agent-variant-count", sum(1 for name in html_by_variant if name.startswith("agent-")) == agent_variant_count, f"{agent_variant_count} agent variants expected")
+    _check(
+        checks,
+        "static-decisions-accounted",
+        {item["id"] for item in static_blocks} == set(static_content),
+        "static block decisions match scaffold catalog",
+    )
     for variant, html in sorted(html_by_variant.items()):
         label = f"html:{variant}"
         _check(checks, f"{label}:row1", 'class="row row-1"' in html, "row 1 shared CSS row is present")
         _check(checks, f"{label}:head", "<head>" in html and "fonts.googleapis.com" in html, "head and linked fonts preserved")
         _check(checks, f"{label}:outlook", "<!--[if mso]>" in html and "urn:schemas-microsoft-com:vml" in html, "Outlook/VML conditionals preserved")
-        _check(checks, f"{label}:markers", all(token not in html for token in ("START - ", "END - ", "#55ebb9", "#ff81fb")), "authoring markers omitted")
+        _check(
+            checks,
+            f"{label}:markers",
+            all(token not in html for token in ("START - ", "END - ", "#55ebb9", "#ff81fb", "#ffd675", "#75edff")),
+            "authoring markers omitted",
+        )
         _check(checks, f"{label}:canonical-typos", "INFORMAITON" not in html and "ARTTS" not in html, "canonical typo regressions absent")
         _check(checks, f"{label}:placeholders", "{{" not in html and "}}" not in html, "template placeholders absent")
         _check(checks, f"{label}:unsafe-paths", not _has_unsafe_local_path(html), "no local corpus/temp paths leaked")

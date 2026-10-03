@@ -21,6 +21,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Strict Rider campaign JSON schema and deterministic scaffold slot map.
 - Rider module composer, typed slot renderer, branded/outside-broker/agent footer renderer, used-asset downloader, checksum manifest, blocking QA report, and ZIP generator.
 - Non-production Rider runtime smoke fixture and focused runtime regression tests.
+- Revised Rider scaffold source, legacy provenance fixture, module metadata catalog, and four nested static-block definitions.
 
 ### Changed
 
@@ -30,6 +31,9 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Agent headshots now use canonical manifest `dropbox_id` references instead of direct URLs, with explicit path, media-type, and `agent-footer` approval requirements.
 - The reorganized `20. People` manifest entries distinguish in-house footer headshots from Diego Ojeda likeness references reserved for explicit image generation.
 - The Rider email skill now requires the validated runtime path for HTML variants and distribution packages.
+- Rider campaign JSON now requires an explicit decision for every static block.
+- Header and hero modules are classified separately; incompatible standalone-header/header-bearing-hero combinations are rejected.
+- Runtime output is built in a protected staging directory so failed asset downloads cannot replace the last valid package.
 
 ### Validated
 
@@ -40,6 +44,9 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Live Dropbox synchronization found 205 assets: 10 added, zero removed, and 195 preserved.
 - Rider runtime unit suite passes 29 tests.
 - End-to-end smoke generation passes 221 QA checks and produces eight HTML variants, 17 packaged images, one selected PDF, campaign metadata, an asset manifest, a QA report, and a ZIP.
+- Revised-scaffold unit suite passes 35 tests, including preservation of the last passing package after a failed asset download.
+- Paulie Hankin replaces Jake Lecce in the active roster; the revised smoke package passes 200 QA checks across eight variants with 15 images, one PDF, and a valid ZIP.
+- Dropbox synchronization found 206 assets, added Paulie Hankin's headshot, and preserved the curated arrays of all 205 existing records.
 
 ## [0.1.0] - 2026-09-30
 

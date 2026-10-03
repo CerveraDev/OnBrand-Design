@@ -4,9 +4,9 @@ Footer HTML is scaffold-owned by default. Do not rewrite, restyle, or reinterpre
 
 ## Footer Types
 
-1. Branded Rider footer: content rows 62-69.
-2. Outside-broker customizable footer: content rows 72-79.
-3. In-house agent footer: content rows 82-89.
+1. Branded Rider footer: content rows 74-81.
+2. Outside-broker customizable footer: content rows 84-91.
+3. In-house agent footer: content rows 94-101.
 
 The paired marker rows identify module boundaries but must never ship in generated emails.
 
@@ -28,7 +28,7 @@ If outside-broker data is not supplied, keep clear placeholders rather than inve
 
 Use one JSON record per in-house agent in `data/agents/`. The shared schema is `data/agents/agent.schema.json`, and `data/agents/index.json` defines active agents and deterministic output order.
 
-The active index contains six user-verified agents: Jake Lecce, Angelica Cruz, Julian Oliveros, Omar Santana, Pablo Rodriguez, and Yessika Arevalo. Each record references its approved Dropbox headshot through a canonical manifest `dropbox_id`; it does not store a direct URL.
+The active index contains six user-verified agents: Paulie Hankin, Angelica Cruz, Julian Oliveros, Omar Santana, Pablo Rodriguez, and Yessika Arevalo. Jake Lecce's former record is archived and must not produce a variant. Each active record references its approved Dropbox headshot through a canonical manifest `dropbox_id`; it does not store a direct URL.
 
 Resolve each headshot through the validated manifest and require the `agent-footer` approval plus the `/20. People/In-house Agents/` path boundary. Assets under `/20. People/Diego Ojeda/` are likeness references for the separate image-generation workflow and must never qualify for footer rendering.
 

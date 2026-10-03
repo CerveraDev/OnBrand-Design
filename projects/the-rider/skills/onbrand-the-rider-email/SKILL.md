@@ -12,7 +12,7 @@ Run this skill only when the user explicitly invokes `$onbrand-the-rider-email` 
 
 Use this skill for Rider Residences email marketing only. Do not generalize it into a reusable real estate skill. If another property needs the same type of support, create a separate property-specific skill.
 
-The canonical Beefree scaffold is available at [templates/scaffold/rider-scaffolding.canonical.html](templates/scaffold/rider-scaffolding.canonical.html). Treat it as the source of structure, module boundaries, brand styling, legal copy, and footer layouts. Keep the immutable provenance copy at [templates/scaffold/rider-scaffolding.source.html](templates/scaffold/rider-scaffolding.source.html) unchanged.
+The canonical Beefree scaffold is available at [templates/scaffold/rider-scaffolding.canonical.html](templates/scaffold/rider-scaffolding.canonical.html). Treat it as the source of structure, module boundaries, brand styling, legal copy, static blocks, and footer layouts. Keep the latest immutable source at [templates/scaffold/rider-scaffolding.source.html](templates/scaffold/rider-scaffolding.source.html) unchanged; earlier supplied sources remain under `templates/scaffold/provenance/`.
 
 ## Core Workflow
 
@@ -23,10 +23,12 @@ The canonical Beefree scaffold is available at [templates/scaffold/rider-scaffol
 5. Run the project-aware copy-quality pass before presenting copy for approval or building HTML.
 6. For existing imagery, load the configured Rider manifest and run deterministic asset selection before choosing images.
 7. If generated or edited imagery is needed, hand off to `onbrand-the-rider-image` before building HTML.
-8. Encode the approved campaign as a JSON document that conforms to `tools/rider_campaign_runtime/campaign.schema.json` and uses only slots declared in the Rider scaffold sidecar map.
-9. Run `python3 -m tools.rider_campaign_runtime.cli <campaign.json>` from the repository root.
-10. Treat a nonzero exit or blocked QA report as a failed build; do not hand-assemble around it or create a ZIP manually.
-11. Deliver the generated campaign folder and ZIP only after reviewing the runtime summary and `qa-report.json`.
+8. Ask for an explicit include/exclude decision for every static block and place each included block in the approved module order.
+9. Choose either a compatible standalone header plus hero or a hero that includes its own header. Never add a header automatically.
+10. Encode the approved campaign as a JSON document that conforms to `tools/rider_campaign_runtime/campaign.schema.json` and uses only slots declared in the Rider scaffold sidecar map.
+11. Run `python3 -m tools.rider_campaign_runtime.cli <campaign.json>` from the repository root.
+12. Treat a nonzero exit or blocked QA report as a failed build; do not hand-assemble around it or create a ZIP manually.
+13. Deliver the generated campaign folder and ZIP only after reviewing the runtime summary and `qa-report.json`.
 
 ## Intake Modes
 
@@ -42,6 +44,10 @@ Every email must include:
 
 - Hero module
 - Footer module
+
+A standalone header is optional. Some hero modules include their own header and are incompatible with a separate header. Use `templates/scaffold/rider-scaffolding.module-metadata.json` to classify modules and enforce compatibility.
+
+Static blocks are optional locked modules, but the user must make an explicit include/exclude decision for every one. Included static blocks can be placed anywhere in the approved module order. Their copy and structure are not editable slots.
 
 Read [references/modules.md](references/modules.md) before designing modules, selecting scaffold row ranges, or deciding whether hero text should be live HTML or baked into an image.
 
@@ -71,6 +77,8 @@ Use the canonical Beefree scaffold as the structural compatibility benchmark. Pr
 Read [references/beefree-html-structure.md](references/beefree-html-structure.md) and [references/html-email.md](references/html-email.md) before producing final HTML.
 
 Use [templates/scaffold/rider-scaffolding.slot-map.json](templates/scaffold/rider-scaffolding.slot-map.json) as the deterministic editable-slot contract. Do not add a new slot by searching and replacing arbitrary scaffold text. A new slot requires a unique anchor, a typed operation, and a regression test.
+
+Use [templates/scaffold/rider-scaffolding.module-metadata.json](templates/scaffold/rider-scaffolding.module-metadata.json) for module type, header inclusion, lock state, and the user-facing static-block summaries.
 
 Read [references/distribution-package.md](references/distribution-package.md) before final delivery. Every completed campaign must be a portable folder plus a matching ZIP containing all HTML variants, the final images used by those files, and an asset manifest. Never move or modify source images in the Rider corpus; copy them into the campaign package.
 

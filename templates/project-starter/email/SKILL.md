@@ -23,10 +23,12 @@ This first draft is provisional. The user will later provide a Beefree-generated
 5. Run the project-aware copy-quality pass before presenting copy for approval or building HTML.
 6. For existing imagery, load the configured __PROJECT_NAME__ manifest and run deterministic asset selection before choosing images.
 7. If generated or edited imagery is needed, hand off to `onbrand-__PROJECT_SLUG__-image` before building HTML.
-8. Build the email body using __PROJECT_NAME__ modules and Beefree-style, table-based email structure.
-9. Append locked footer partials to produce the required output variants.
-10. Assemble the campaign distribution package with all HTML variants and every final image they use.
-11. Run QA, create a ZIP archive, and deliver both the package folder and ZIP.
+8. When project calibration defines static blocks, ask for an explicit include/exclude decision and ordered position for each one.
+9. Distinguish standalone headers from heroes and reject incompatible duplicate-header compositions.
+10. Build the email body using __PROJECT_NAME__ modules and Beefree-style, table-based email structure.
+11. Append locked footer partials to produce the required output variants.
+12. Assemble the campaign distribution package with all HTML variants and every final image they use.
+13. Run QA, create a ZIP archive, and deliver both the package folder and ZIP.
 
 When a calibrated project provides a runtime assembler and campaign schema, use that runtime as the required HTML and packaging path. Do not bypass a failed build with ad hoc string replacement or manual ZIP creation.
 

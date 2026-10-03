@@ -6,10 +6,13 @@ The supplied Beefree scaffold has been calibrated.
 
 - Immutable source copy: `templates/scaffold/rider-scaffolding.source.html`
 - Runtime canonical copy: `templates/scaffold/rider-scaffolding.canonical.html`
-- Top-level rows: 90
-- Valid marker pairs: 13
+- Top-level rows: 102
+- Catalog entries: 19, consisting of 15 ordinary modules and four nested static blocks
+- Module markers: `#55ebb9` start and `#ff81fb` end
+- Static-block markers: `#ffd675` start and `#75edff` end
 - Runtime typo corrections: `REQUEST MORE INFORMATION` and `ARTS`
 - Former unbranded footer terminology: outside-broker customizable footer
+- Previous supplied source: `templates/scaffold/provenance/rider-scaffolding.source.legacy-2026-09-30.html`
 
 ## Current Extracted References
 

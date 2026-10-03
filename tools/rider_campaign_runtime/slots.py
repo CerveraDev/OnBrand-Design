@@ -104,6 +104,7 @@ def _apply_slot(
         raise CampaignSpecError(f"{module_id}.{slot_name} slot value must be an object")
     kind = value.get("kind")
     rendered_text = ""
+    image_src = ""
     used: list[UsedAsset] = []
     if kind == "text":
         rendered_text = safe_text(value["value"])
@@ -146,6 +147,7 @@ def _apply_slot(
             src = value["src"]
             validate_image_url(src, f"{module_id}.{slot_name}.src")
             used.append(UsedAsset(source=src, role=value.get("role", slot_name)))
+        image_src = src
         rendered_text = safe_attr(src)
     else:
         raise CampaignSpecError(f"{module_id}.{slot_name} has unsupported kind {kind!r}")
@@ -176,7 +178,7 @@ def _apply_slot(
             html = rewrite_img_by_src(
                 html,
                 rule["anchor"],
-                new_src=rendered_text,
+                new_src=image_src,
                 alt=value.get("alt"),
                 title=value.get("title", value.get("alt")),
                 label=label,

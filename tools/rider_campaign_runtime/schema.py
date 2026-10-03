@@ -16,6 +16,7 @@ ALLOWED_TOP = {
     "campaign",
     "manifest",
     "modules",
+    "static_blocks",
     "variants",
     "outside_broker",
     "deployment",
@@ -30,6 +31,7 @@ ALLOWED_CAMPAIGN = {
 }
 ALLOWED_MANIFEST = {"path"}
 ALLOWED_MODULE = {"id", "variant", "slots"}
+ALLOWED_STATIC_BLOCK = {"id", "decision"}
 ALLOWED_SLOT = {
     "kind",
     "value",
@@ -100,6 +102,16 @@ def validate_campaign_spec(data: object) -> None:
             if not isinstance(slot_name, str) or not slot_name:
                 raise CampaignSpecError(f"modules[{index}].slots has an invalid key")
             _validate_slot(slot, f"modules[{index}].slots.{slot_name}")
+
+    static_blocks = _require(data, "static_blocks", list, "campaign spec")
+    for index, static_block in enumerate(static_blocks):
+        if not isinstance(static_block, dict):
+            raise CampaignSpecError(f"static_blocks[{index}] must be an object")
+        _reject_unknown(static_block, ALLOWED_STATIC_BLOCK, f"static_blocks[{index}]")
+        _require(static_block, "id", str, f"static_blocks[{index}]")
+        decision = _require(static_block, "decision", str, f"static_blocks[{index}]")
+        if decision not in {"include", "exclude"}:
+            raise CampaignSpecError(f"static_blocks[{index}].decision must be include or exclude")
 
     variants = _require(data, "variants", dict, "campaign spec")
     _reject_unknown(variants, ALLOWED_VARIANTS, "variants")

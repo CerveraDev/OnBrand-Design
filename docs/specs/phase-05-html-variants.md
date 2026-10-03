@@ -19,6 +19,8 @@ Assemble approved content and assets into Beefree-compatible project HTML, then 
 - HTML-007: Produce deterministic, descriptive filenames.
 - HTML-008: Use relative packaged asset paths for review and documented hosted URLs for deployment when available.
 - HTML-009: Resolve each in-house agent headshot by exact manifest `dropbox_id` and require an image under the configured in-house-agent path approved for the footer role.
+- HTML-010: Require an explicit include/exclude decision for every scaffold static block and preserve included static content unchanged before asset localization.
+- HTML-011: Distinguish standalone headers from heroes and reject a standalone header beside a hero that includes its own header.
 
 ## Acceptance Criteria
 
@@ -27,6 +29,7 @@ Assemble approved content and assets into Beefree-compatible project HTML, then 
 - HTML contains no absolute local paths or invented destinations.
 - Representative desktop/mobile rendering and Outlook-oriented structural checks pass.
 - Every active-agent variant resolves exactly one approved headshot; likeness-reference assets cannot enter footer variants.
+- Included static blocks appear exactly once in the requested order; excluded blocks are absent.
 
 ## Rider Implementation
 

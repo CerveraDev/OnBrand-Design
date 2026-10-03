@@ -12,6 +12,8 @@ Ask only for missing essentials that materially affect the email.
 - Output requested: concept only, copy only, layout map, final HTML, or full variant set
 - Deployment destination, if known
 
+When calibration defines optional locked static blocks, present each block and record an explicit include/exclude decision plus the ordered position of every included block. When headers and heroes are separate, confirm a compatible combination instead of adding a header automatically.
+
 ## Directed Prompt Example
 
 ```text

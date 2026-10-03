@@ -12,6 +12,18 @@ Ask only for missing essentials that materially affect the email.
 - Output requested: concept only, copy only, layout map, final HTML, or full variant set
 - Deployment destination, if known
 
+## Module Decisions
+
+Before building HTML:
+
+- Ask whether the campaign should use a standalone header or a hero that includes its own header.
+- Never add a standalone header automatically.
+- Present every static block using the summary in `templates/scaffold/rider-scaffolding.module-metadata.json`.
+- Record an explicit `include` or `exclude` decision for every static block.
+- Ask where each included static block belongs in the ordered module plan.
+
+Do not silently include all static blocks, silently omit them, or rewrite their locked brand copy.
+
 ## Directed Prompt Example
 
 ```text

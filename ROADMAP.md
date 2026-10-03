@@ -30,6 +30,7 @@ The roadmap applies to the framework and is executed independently for each proj
 - Canonical project HTML has been analyzed.
 - Brand and design tokens are documented per project.
 - Locked footer insertion boundaries are verified.
+- Header/hero compatibility and static-block lock boundaries are verified.
 
 ## Campaign Gate
 

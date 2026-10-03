@@ -1,6 +1,6 @@
 # Phase 2: Beefree, Brand, And Template Calibration
 
-**Status:** Waiting on user assets  
+**Status:** Implemented for The Rider; waiting on other project assets
 **Target:** 0.3.0  
 **Depends on:** Phase 0
 
@@ -25,6 +25,9 @@ Turn each project's canonical Beefree-generated HTML and locked footer partials 
 - TEMPLATE-005: Document locked versus campaign-editable markup.
 - TEMPLATE-006: Replace provisional brand and HTML assumptions with observed rules.
 - TEMPLATE-007: Render representative desktop and mobile previews.
+- TEMPLATE-008: Preserve every supplied scaffold revision as immutable provenance.
+- TEMPLATE-009: Classify headers, heroes, bodies, static blocks, and footers in machine-readable metadata.
+- TEMPLATE-010: Treat static blocks as locked optional content with explicit campaign decisions.
 
 ## Acceptance Criteria
 
@@ -32,3 +35,4 @@ Turn each project's canonical Beefree-generated HTML and locked footer partials 
 - Each footer variant can be swapped without modifying the shared body.
 - Brand tokens and module rules cite observed source patterns.
 - No unsupported CSS or invented design token remains in the calibrated references.
+- Header/hero compatibility and all static-block decisions are machine validated.

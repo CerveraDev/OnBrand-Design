@@ -6,7 +6,13 @@ from unittest.mock import patch
 
 from tools.rider_campaign_runtime.agents import load_agents
 from tools.rider_campaign_runtime.assets import package_documents, rewrite_and_package_assets
-from tools.rider_campaign_runtime.runtime import ROOT, RuntimeError, _resolve_path, build_campaign_from_spec
+from tools.rider_campaign_runtime.runtime import (
+    ROOT,
+    RuntimeError,
+    _resolve_path,
+    _validate_static_rendering,
+    build_campaign_from_spec,
+)
 from tools.rider_campaign_runtime.schema import CampaignSpecError, validate_campaign_spec
 from tools.rider_campaign_runtime.scaffold import catalog, load_scaffold
 from tools.rider_campaign_runtime.slots import SlotError, UsedAsset, apply_module_slots, safe_rich_text
@@ -28,6 +34,12 @@ class RiderCampaignSchemaTests(unittest.TestCase):
         spec = minimal_spec()
         spec["modules"][0]["slots"] = {"logo_link": {"kind": "url", "href": "javascript:alert(1)"}}
         with self.assertRaisesRegex(CampaignSpecError, "unsupported URL scheme"):
+            validate_campaign_spec(spec)
+
+    def test_requires_explicit_static_block_decisions(self):
+        spec = minimal_spec()
+        del spec["static_blocks"]
+        with self.assertRaisesRegex(CampaignSpecError, "static_blocks"):
             validate_campaign_spec(spec)
 
 
@@ -74,6 +86,22 @@ class RiderCampaignSlotTests(unittest.TestCase):
                 },
             )
 
+    def test_image_slot_escapes_query_string_once(self):
+        rendered, _ = apply_module_slots(
+            "TEST",
+            '<img src="old.jpg">',
+            {"image": [{"operation": "replace_image_src", "anchor": "old.jpg"}]},
+            {
+                "image": {
+                    "kind": "image",
+                    "src": "https://example.com/image.jpg?token=1&raw=1",
+                }
+            },
+            manifest_assets={},
+        )
+        self.assertIn("token=1&amp;raw=1", rendered)
+        self.assertNotIn("&amp;amp;", rendered)
+
     def test_contextual_text_rules_can_update_distinct_repeated_labels(self):
         rendered, _ = apply_module_slots(
             "TEST",
@@ -117,6 +145,35 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
                 build_campaign_from_spec(spec, base_dir=tmp_path)
             self.assertTrue((protected / "keep.txt").is_file())
 
+    def test_failed_asset_download_preserves_last_passing_package(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            asset = tmp_path / "pixel.png"
+            asset.write_bytes(b"image")
+            spec = minimal_spec()
+            spec["campaign"]["output_dir"] = str(tmp_path / "campaign-output")
+            spec["manifest"]["path"] = str(write_manifest(tmp_path, asset))
+
+            with patch(
+                "tools.rider_campaign_runtime.assets._read_asset",
+                return_value=(b"valid-image", "asset.png"),
+            ):
+                first = build_campaign_from_spec(spec, base_dir=tmp_path)
+
+            sentinel = first.package_dir / "last-passing-package.txt"
+            sentinel.write_text("preserve me", encoding="utf-8")
+            first_html = next(iter(first.html_files.values())).read_bytes()
+
+            with patch(
+                "tools.rider_campaign_runtime.assets._read_asset",
+                side_effect=OSError("simulated download failure"),
+            ):
+                with self.assertRaisesRegex(OSError, "simulated download failure"):
+                    build_campaign_from_spec(spec, base_dir=tmp_path)
+
+            self.assertEqual(sentinel.read_text(encoding="utf-8"), "preserve me")
+            self.assertEqual(next(iter(first.html_files.values())).read_bytes(), first_html)
+
     def test_asset_rewrite_handles_html_escaped_query_strings(self):
         source = "https://example.com/headshot.jpg?token=1&raw=1"
         html = f'<img src="https://example.com/headshot.jpg?token=1&amp;raw=1">'
@@ -158,31 +215,76 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
         scaffold = load_scaffold(
             ROOT / "projects/the-rider/skills/onbrand-the-rider-email/templates/scaffold/rider-scaffolding.canonical.html",
             ROOT / "projects/the-rider/skills/onbrand-the-rider-email/templates/scaffold/rider-scaffolding.slot-map.json",
+            ROOT / "projects/the-rider/skills/onbrand-the-rider-email/templates/scaffold/rider-scaffolding.module-metadata.json",
         )
         modules = catalog(scaffold)
-        self.assertEqual(len(modules), 13)
-        self.assertEqual(modules["BRANDED FOOTER"], (62, 63, 64, 65, 66, 67, 68, 69))
+        self.assertEqual(len(modules), 19)
+        self.assertEqual(modules["BRANDED FOOTER"], (74, 75, 76, 77, 78, 79, 80, 81))
+        self.assertEqual(modules["STATIC BLOCK 1"], (54,))
+        self.assertEqual(modules["STATIC BLOCK 2"], (58,))
+        self.assertEqual(modules["STATIC BLOCK 3"], (63,))
+        self.assertEqual(modules["STATIC BLOCK 4"], (66,))
+        self.assertEqual(
+            modules["BODY - DARK THEN LIGHT LAYOUT"],
+            (47, 48, 49, 50, 51, 52, 56, 60, 61, 68, 69, 70, 71),
+        )
         self.assertNotIn("#55ebb9", "".join(scaffold.rows[number - 1].html for number in modules["BRANDED FOOTER"]))
+        self.assertEqual(scaffold.metadata["HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH"].kind, "hero")
+        self.assertTrue(scaffold.metadata["HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH"].includes_header)
+        self.assertTrue(scaffold.metadata["STATIC BLOCK 1"].locked)
+
+    def test_static_block_decisions_must_match_ordered_modules(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            asset = tmp_path / "pixel.png"
+            asset.write_bytes(b"image")
+            spec = minimal_spec()
+            spec["campaign"]["output_dir"] = str(tmp_path / "campaign-output")
+            spec["manifest"]["path"] = str(write_manifest(tmp_path, asset))
+            spec["static_blocks"][0]["decision"] = "include"
+            with self.assertRaisesRegex(RuntimeError, "missing from modules"):
+                build_campaign_from_spec(spec, base_dir=tmp_path)
+
+    def test_static_lock_rejects_mutated_content_before_asset_rewrite(self):
+        decisions = [{"id": "STATIC BLOCK 1", "decision": "include"}]
+        with self.assertRaisesRegex(RuntimeError, "Static block lock failed"):
+            _validate_static_rendering(
+                decisions,
+                {"STATIC BLOCK 1": "<table>Locked copy</table>"},
+                {"branded": "<table>Changed copy</table>"},
+            )
+
+    def test_rejects_standalone_header_with_header_bearing_hero(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            asset = tmp_path / "pixel.png"
+            asset.write_bytes(b"image")
+            spec = minimal_spec()
+            spec["campaign"]["output_dir"] = str(tmp_path / "campaign-output")
+            spec["manifest"]["path"] = str(write_manifest(tmp_path, asset))
+            spec["modules"].insert(0, {"id": "ONE-COLUMN HEADER DARK", "slots": {}})
+            with self.assertRaisesRegex(RuntimeError, "incompatible"):
+                build_campaign_from_spec(spec, base_dir=tmp_path)
 
     def test_agent_loader_rejects_diego_reference_for_footer(self):
         manifest = [
             {
-                "filename": "jake.jpg",
-                "dropbox_id": "id:31E0v0XEN2IAAAAAAAABjw",
-                "dropbox_path": "/20. people/diego ojeda/jake.jpg",
+                "filename": "angelica.jpg",
+                "dropbox_id": "id:31E0v0XEN2IAAAAAAAABkQ",
+                "dropbox_path": "/20. people/diego ojeda/angelica.jpg",
                 "category": ["people", "developer", "likeness-reference"],
                 "orientation": "",
                 "approved_for": ["image-generation-reference"],
-                "public_url": "https://example.com/jake.jpg",
+                "public_url": "https://example.com/angelica.jpg",
                 "media_type": "image",
-                "stable_identity": "id:id:31E0v0XEN2IAAAAAAAABjw",
+                "stable_identity": "id:id:31E0v0XEN2IAAAAAAAABkQ",
             }
         ]
         with self.assertRaisesRegex(ValueError, "not approved for agent-footer"):
             load_agents(
                 ROOT / "projects/the-rider/skills/onbrand-the-rider-email/data/agents",
                 manifest,
-                ["jake-lecce"],
+                ["angelica-cruz"],
             )
 
     def test_builds_review_package_with_synthetic_file_assets(self):
@@ -239,7 +341,13 @@ def minimal_spec():
             "output_dir": "campaign-output/runtime-test",
         },
         "manifest": {"path": "manifest.json"},
-        "modules": [{"id": "TWO-COLUMN HEADER", "slots": {}}],
+        "modules": [{"id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH", "slots": {}}],
+        "static_blocks": [
+            {"id": "STATIC BLOCK 1", "decision": "exclude"},
+            {"id": "STATIC BLOCK 2", "decision": "exclude"},
+            {"id": "STATIC BLOCK 3", "decision": "exclude"},
+            {"id": "STATIC BLOCK 4", "decision": "exclude"}
+        ],
         "variants": {"branded": True, "outside_broker": False, "agents": []},
         "deployment": {"asset_mode": "relative-review"},
     }
@@ -249,7 +357,7 @@ def write_manifest(tmp_path, asset_path):
     manifest = tmp_path / "manifest.json"
     records = []
     agent_ids = {
-        "jake-lecce-headshot.jpg": "id:31E0v0XEN2IAAAAAAAABjw",
+        "paulie-hankin-headshot.jpeg": "id:31E0v0XEN2IAAAAAAAABlQ",
         "angelica-cruz-headshot.jpeg": "id:31E0v0XEN2IAAAAAAAABkQ",
         "julian-oliveros-headshot.jpeg": "id:31E0v0XEN2IAAAAAAAABkg",
         "omar-santana-headshot.jpeg": "id:31E0v0XEN2IAAAAAAAABlA",

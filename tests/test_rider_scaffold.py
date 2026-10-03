@@ -4,6 +4,8 @@ import re
 import unittest
 
 from tools.email_scaffold import (
+    STATIC_END_MARKER_COLOR,
+    STATIC_START_MARKER_COLOR,
     analyze_style_colors,
     apply_canonical_text_corrections,
     find_module_boundaries,
@@ -29,14 +31,16 @@ class RiderScaffoldTests(unittest.TestCase):
             apply_canonical_text_corrections(self.source_html),
             self.canonical_html,
         )
-        self.assertEqual(self.source_html.count("REQUEST MORE INFORMAITON"), 2)
-        self.assertEqual(self.source_html.count("ARTTS"), 3)
+        self.assertEqual(self.source_html.count("REQUEST MORE INFORMAITON"), 0)
+        self.assertEqual(self.source_html.count("ARTTS"), 0)
+        self.assertEqual(self.source_html.count("UNBRANDED FOOTER"), 2)
         self.assertNotIn("REQUEST MORE INFORMAITON", self.canonical_html)
         self.assertNotIn("ARTTS", self.canonical_html)
         self.assertNotIn("UNBRANDED FOOTER", self.canonical_html)
+        self.assertTrue((SCAFFOLD_DIR / "provenance/rider-scaffolding.source.legacy-2026-09-30.html").is_file())
 
     def test_scaffold_has_expected_marker_pairs(self):
-        self.assertEqual(len(self.rows), 90)
+        self.assertEqual(len(self.rows), 102)
         modules = find_module_boundaries(self.rows)
         self.assertEqual(
             [(module.label, module.start_marker_row, module.end_marker_row) for module in modules],
@@ -44,45 +48,66 @@ class RiderScaffoldTests(unittest.TestCase):
                 ("TWO-COLUMN HEADER", 2, 4),
                 ("AI GENERATED IMAGE BASED ON PROMPT", 5, 7),
                 ("BODY - MASONRY LAYOUT", 8, 12),
-                ("HERO - DARK FRAMED LAYOUT", 13, 16),
-                ("BODY - LIGHT THEN DARK LAYOUT", 17, 25),
-                ("INVITE - TWO-COLUMN HEADER - COLLABORATION", 26, 29),
-                ("INVITE - DARK BODY", 30, 34),
-                ("HERO - FULL-WIDTH WITH LIVE TEXT HEADING AND LOGO", 35, 37),
-                ("HERO - LIGHT LAYOUT - FRAMED", 38, 41),
-                ("BODY - DARK THEN LIGHT LAYOUT", 42, 60),
-                ("BRANDED FOOTER", 61, 70),
-                ("OUTSIDE-BROKER CUSTOMIZABLE FOOTER", 71, 80),
-                ("IN-HOUSE AGENT FOOTER", 81, 90),
+                ("ONE-COLUMN HEADER DARK", 13, 15),
+                ("HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT", 16, 18),
+                ("BODY - LIGHT THEN DARK LAYOUT", 19, 27),
+                ("INVITE - TWO-COLUMN HEADER - COLLABORATION", 28, 31),
+                ("INVITE - DARK BODY", 32, 36),
+                ("HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH", 37, 39),
+                ("ONE-COLUMN HEADER LIGHT", 40, 42),
+                ("HERO - LIVE TEXT HEADING - LIGHT LAYOUT - FRAMED", 43, 45),
+                ("STATIC BLOCK", 53, 55),
+                ("STATIC BLOCK", 57, 59),
+                ("STATIC BLOCK", 62, 64),
+                ("STATIC BLOCK", 65, 67),
+                ("BODY - DARK THEN LIGHT LAYOUT", 46, 72),
+                ("BRANDED FOOTER", 73, 82),
+                ("OUTSIDE-BROKER CUSTOMIZABLE FOOTER", 83, 92),
+                ("IN-HOUSE AGENT FOOTER", 93, 102),
             ],
         )
+        for module in modules:
+            if module.label == "STATIC BLOCK":
+                self.assertIn(
+                    STATIC_START_MARKER_COLOR,
+                    self.rows[module.start_marker_row - 1].style_colors,
+                )
+                self.assertIn(
+                    STATIC_END_MARKER_COLOR,
+                    self.rows[module.end_marker_row - 1].style_colors,
+                )
 
     def test_marker_rows_are_excluded_from_rendered_outputs(self):
         rendered = render_without_marker_rows(self.canonical_html)
         self.assertNotIn("#55ebb9", rendered.lower())
         self.assertNotIn("#ff81fb", rendered.lower())
+        self.assertNotIn("#ffd675", rendered.lower())
+        self.assertNotIn("#75edff", rendered.lower())
         self.assertNotIn("START - ", rendered)
         self.assertNotIn("END - ", rendered)
         self.assertIn("row-1", rendered)
         self.assertIn("row-3", rendered)
+        self.assertIn("row-54", rendered)
 
     def test_brand_color_analysis_excludes_authoring_marker_colors(self):
         colors = analyze_style_colors(self.rows)
         self.assertNotIn("#55ebb9", colors)
         self.assertNotIn("#ff81fb", colors)
+        self.assertNotIn("#ffd675", colors)
+        self.assertNotIn("#75edff", colors)
         self.assertNotIn("#393d47", colors)
         self.assertEqual(colors["#000000"], 156)
-        self.assertEqual(colors["#ffffff"], 102)
+        self.assertEqual(colors["#ffffff"], 101)
         self.assertEqual(colors["#dddddd"], 6)
         self.assertEqual(colors["#636565"], 3)
         self.assertEqual(colors["#999999"], 2)
+        self.assertEqual(colors["#f7f7f7"], 2)
         self.assertEqual(colors["#6b6b6b"], 1)
-        self.assertEqual(colors["#f7f7f7"], 1)
 
 
 class RiderAgentDataTests(unittest.TestCase):
     EXPECTED = {
-        "jake-lecce": ("Jake Lecce", "Sales Director", "+1 917 510 6255", "Jake@TheRiderResidences.com", "id:31E0v0XEN2IAAAAAAAABjw"),
+        "paulie-hankin": ("Paulie Hankin", "Sales Director", "+1 786 385 4450", "Paulie@TheRiderResidences.com", "id:31E0v0XEN2IAAAAAAAABlQ"),
         "angelica-cruz": ("Angelica Cruz", "In-house Sales Agent", "+1 786 329 1549", "Angelica@TheRiderResidences.com", "id:31E0v0XEN2IAAAAAAAABkQ"),
         "julian-oliveros": ("Julian Oliveros", "In-house Sales Agent", "+1 239 384 0836", "Julian@TheRiderResidences.com", "id:31E0v0XEN2IAAAAAAAABkg"),
         "omar-santana": ("Omar Santana", "In-house Sales Agent", "+1 305 797 6337", "Omar@TheRiderResidences.com", "id:31E0v0XEN2IAAAAAAAABlA"),
@@ -98,6 +123,9 @@ class RiderAgentDataTests(unittest.TestCase):
         for agent_id in index["output_order"]:
             self.assertIn(agent_id, index["active_agent_ids"])
             self.assertTrue((AGENTS_DIR / f"{agent_id}.json").exists())
+        self.assertNotIn("jake-lecce", index["active_agent_ids"])
+        self.assertFalse((AGENTS_DIR / "jake-lecce.json").exists())
+        self.assertTrue((AGENTS_DIR / "archived/jake-lecce.json").exists())
 
     def test_agent_records_match_required_schema_shape(self):
         schema = json.loads((AGENTS_DIR / "agent.schema.json").read_text())

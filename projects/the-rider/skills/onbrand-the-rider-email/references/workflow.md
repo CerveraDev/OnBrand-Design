@@ -12,10 +12,13 @@ Use this mode when the user already knows the campaign, audience, CTA, and desir
 6. Run [copy-quality.md](copy-quality.md), preserving approved facts and project voice.
 7. Present final copy for approval when the request or campaign sensitivity calls for it.
 8. Build final HTML only after any required copy, creative, or image approvals.
-9. Write a strict campaign JSON file using the runtime schema and Rider slot map.
-10. Run `python3 -m tools.rider_campaign_runtime.cli <campaign.json>` from the repository root.
-11. Inspect the CLI summary and generated `qa-report.json`.
-12. Deliver the generated folder and ZIP only when QA passes.
+9. Present all static-block summaries and record an explicit include/exclude decision for each one.
+10. Confirm the exact ordered position of every included static block.
+11. Select a compatible header/hero structure; do not combine a standalone header with a hero that includes one.
+12. Write a strict campaign JSON file using the runtime schema, module metadata, and Rider slot map.
+13. Run `python3 -m tools.rider_campaign_runtime.cli <campaign.json>` from the repository root.
+14. Inspect the CLI summary and generated `qa-report.json`.
+15. Deliver the generated folder and ZIP only when QA passes.
 
 ## Concept Development
 

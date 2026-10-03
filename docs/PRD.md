@@ -78,6 +78,8 @@ An authorized maintainer runs the shared Dropbox manifest synchronizer against a
 | FR-005 | Project-specific assets, templates, footers, and brand rules never cross project boundaries implicitly. |
 | FR-006 | Each email skill supports directed-build and concept-development modes. |
 | FR-007 | Every email contains a hero and one approved footer variant unless the calibrated project contract says otherwise. |
+| FR-007A | Calibrated projects classify standalone headers separately from heroes and reject incompatible duplicate-header compositions. |
+| FR-007B | Every locked static block receives an explicit include/exclude decision and an approved position before HTML generation. |
 | FR-008 | A campaign generates every variant configured for its project unless narrowed by the user. |
 | FR-009 | The skill reads its project's master asset manifest and filters by campaign relevance, classification, media type, and orientation. |
 | FR-010 | Selected assets are copied or downloaded without modifying originals. |

@@ -30,11 +30,16 @@
 - Formalized 13 Rider scaffold module boundaries, marker exclusion rules, brand palette, typography, and footer contracts.
 - Added one JSON record per in-house agent, a shared schema, and a deterministic active-agent index for Rider agent variants.
 - Renamed the former unbranded footer workflow to outside-broker customizable and preserved Rider/legal footer content.
-- Synchronized the reorganized `20. People` Dropbox library and registered all six verified Rider in-house agents with manifest-backed headshots.
+- Synchronized the reorganized `20. People` Dropbox library, archived former Sales Director Jake Lecce from the active runtime roster, and registered Paulie Hankin's replacement headshot.
 - Restricted in-house headshots to `agent-footer` approval and Diego Ojeda likeness references to the explicit image-generation workflow.
 - Added the Rider campaign JSON schema, deterministic scaffold slot map, module composer, footer renderer, portable asset downloader, package generator, and blocking QA runtime.
 - Completed a non-production smoke build with branded, outside-broker customizable, and six agent variants.
 - Verified 221 runtime QA checks, 18 packaged assets (17 images and one PDF), eight HTML files, and a self-contained ZIP.
+- Imported the revised 102-row Rider scaffold while preserving the prior source as provenance.
+- Added four explicit-decision static blocks and machine-readable header/hero/body/static/footer metadata.
+- Added header/hero compatibility checks and static-content locking before portable asset localization.
+- Registered Paulie Hankin's manifest headshot as an approved in-house-agent footer asset while preserving all 205 existing curated records.
+- Added Paulie Hankin as the verified Sales Director and restored the complete eight-variant smoke package with Paulie replacing Jake Lecce.
 
 ## Project Portfolio
 
@@ -48,6 +53,7 @@
 - Configure The Rider's stable public manifest URL or validated local cache fallback.
 - Run the first user-approved campaign through the Rider runtime.
 - Perform representative visual and email-client compatibility review beyond structural QA.
+- Enable Dropbox `files.content.write`, reauthorize `rider_ai_context`, and remove Jake Lecce's verified former headshot.
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 
 ## Waiting On Project Inputs
@@ -58,6 +64,7 @@
 ## Release Blockers
 
 - Choose support contact and CODEOWNERS identities.
+- Dropbox deletion remains blocked until the app receives `files.content.write` and the refresh authorization is renewed.
 
 ## Next Milestone
 

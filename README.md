@@ -30,7 +30,7 @@ The technical IDs include the project slug so multiple OnBrand Design projects c
 
 ## Current Projects
 
-- **The Rider:** first implementation; workflow, Dropbox catalog, canonical Beefree scaffold calibration, deterministic HTML assembly, footer variants, portable asset packaging, and blocking QA are implemented.
+- **The Rider:** first implementation; revised Beefree scaffold calibration, separate header/hero metadata, locked optional static blocks, deterministic HTML assembly, footer variants, portable asset packaging, and blocking QA are implemented.
 - **Cassia:** generated project scaffold awaiting Cassia-specific brand assets, templates, footers, and asset catalog.
 
 ## Create Another Project
