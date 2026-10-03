@@ -57,8 +57,11 @@ These results do not establish Jev quality. They establish only that a semantic 
 
 ## Next Gate
 
-1. Collect independent labels through the blind worksheet.
-2. Adjudicate disagreements and update case status without changing the holdout texts.
-3. Freeze dataset version 1 for the first provider comparison.
-4. Design atomic Jev questions using calibration cases only.
-5. Compare Jev with this baseline on the untouched holdout and record precision, recall, false positives, false negatives, review coverage, and overrides.
+Two blinded reviews are now committed. They agree fully on 21 of 26 cases, agree on the semantic label for 25 of 26, and leave five cases requiring adjudication. Four disputes share the `equivalent` label and differ only between `review` and `block`; one shares `allow` and differs between `distinct` and `related-distinct`.
+
+1. Adjudicate the five recorded disagreements without changing holdout text.
+2. Freeze dataset version 1 for the first provider comparison.
+3. Design atomic Jev questions using calibration cases only.
+4. Compare Jev with this baseline on the untouched holdout and record precision, recall, false positives, false negatives, review coverage, and overrides.
+
+Review evidence: [Reviewer A](reviews/phase-13-reviewer-a.v1.json), [Reviewer B](reviews/phase-13-reviewer-b.v1.json), and [comparison](reviews/phase-13-review-comparison.v1.json).

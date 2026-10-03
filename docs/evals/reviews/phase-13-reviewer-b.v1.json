@@ -1,0 +1,193 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "rider-semantic-decision-pilot-v1",
+  "dataset_sha256": "50154d8cf3c4efa9531d0dd5e1abfdb0e04e6fc9b9616f4b3c7505ffa8e4d8c2",
+  "reviewer_id": "reviewer-b",
+  "reviewed_at": "2026-10-03",
+  "status": "complete",
+  "instructions": "Complete independently without consulting provisional expected labels. Set one label and action per case, then change status to complete and add reviewed_at.",
+  "labels": [
+    {
+      "case_id": "sim-cal-001",
+      "label": "equivalent",
+      "action": "block",
+      "intentional_refrain": false,
+      "notes": "Exact repeated copy in separate visible modules without approved reuse."
+    },
+    {
+      "case_id": "sim-cal-002",
+      "label": "equivalent",
+      "action": "block",
+      "intentional_refrain": false,
+      "notes": "Only every/each changes; the sentence meaning is otherwise the same."
+    },
+    {
+      "case_id": "sim-cal-003",
+      "label": "equivalent",
+      "action": "block",
+      "intentional_refrain": false,
+      "notes": "Different wording repeats the same membership-continuity promise."
+    },
+    {
+      "case_id": "sim-cal-004",
+      "label": "distinct",
+      "action": "allow",
+      "intentional_refrain": false,
+      "notes": ""
+    },
+    {
+      "case_id": "sim-cal-005",
+      "label": "related-distinct",
+      "action": "allow",
+      "intentional_refrain": false,
+      "notes": "Sibling neighborhood-wellness facts share a theme but describe different brands and actions."
+    },
+    {
+      "case_id": "sim-cal-006",
+      "label": "equivalent",
+      "action": "allow",
+      "intentional_refrain": true,
+      "notes": "Approved refrain context explicitly permits the repeated phrase."
+    },
+    {
+      "case_id": "sim-cal-007",
+      "label": "related-distinct",
+      "action": "allow",
+      "intentional_refrain": false,
+      "notes": "The preview extends the subject with membership-specific detail rather than restating it."
+    },
+    {
+      "case_id": "sim-cal-008",
+      "label": "equivalent",
+      "action": "block",
+      "intentional_refrain": false,
+      "notes": "Case and punctuation do not change the duplicated headline copy."
+    },
+    {
+      "case_id": "sim-cal-009",
+      "label": "equivalent",
+      "action": "block",
+      "intentional_refrain": false,
+      "notes": "Both lines convey the same creator/team-behind authority claim."
+    },
+    {
+      "case_id": "sim-cal-010",
+      "label": "related-distinct",
+      "action": "allow",
+      "intentional_refrain": false,
+      "notes": "Shared wellness context, but one is a positioning headline and the other is descriptive alt text."
+    },
+    {
+      "case_id": "sim-cal-011",
+      "label": "distinct",
+      "action": "allow",
+      "intentional_refrain": false,
+      "notes": ""
+    },
+    {
+      "case_id": "sim-cal-012",
+      "label": "related-distinct",
+      "action": "review",
+      "intentional_refrain": false,
+      "notes": "The second line generalizes the first; close enough in purpose to merit review."
+    },
+    {
+      "case_id": "sim-hold-001",
+      "label": "equivalent",
+      "action": "block",
+      "intentional_refrain": false,
+      "notes": "Both lines promise preserving an existing club routine after moving south."
+    },
+    {
+      "case_id": "sim-hold-002",
+      "label": "related-distinct",
+      "action": "review",
+      "intentional_refrain": false,
+      "notes": "Parallel construction is very close, though calm and energy are different benefits."
+    },
+    {
+      "case_id": "sim-hold-003",
+      "label": "equivalent",
+      "action": "block",
+      "intentional_refrain": false,
+      "notes": "Both taglines make the same keep-your-club-routine point without approved refrain context."
+    },
+    {
+      "case_id": "sim-hold-004",
+      "label": "related-distinct",
+      "action": "allow",
+      "intentional_refrain": false,
+      "notes": "Sibling list items share the neighborhood theme but make different brand-specific claims."
+    },
+    {
+      "case_id": "sim-hold-005",
+      "label": "distinct",
+      "action": "allow",
+      "intentional_refrain": false,
+      "notes": ""
+    },
+    {
+      "case_id": "sim-hold-006",
+      "label": "equivalent",
+      "action": "block",
+      "intentional_refrain": false,
+      "notes": "Different phrasing repeats the same city-changes/routine-stays message."
+    },
+    {
+      "case_id": "claim-cal-001",
+      "label": "supported",
+      "action": "allow",
+      "intentional_refrain": "not-applicable",
+      "notes": ""
+    },
+    {
+      "case_id": "claim-cal-002",
+      "label": "unsupported",
+      "action": "block",
+      "intentional_refrain": "not-applicable",
+      "notes": "The source provides a future plan but no guaranteed year."
+    },
+    {
+      "case_id": "claim-cal-003",
+      "label": "unsupported",
+      "action": "block",
+      "intentional_refrain": "not-applicable",
+      "notes": "The claim overstates qualified access as universal access."
+    },
+    {
+      "case_id": "claim-cal-004",
+      "label": "insufficient",
+      "action": "review",
+      "intentional_refrain": "not-applicable",
+      "notes": "Same-neighborhood evidence does not establish a minutes-based proximity claim."
+    },
+    {
+      "case_id": "claim-cal-005",
+      "label": "supported",
+      "action": "allow",
+      "intentional_refrain": "not-applicable",
+      "notes": ""
+    },
+    {
+      "case_id": "claim-hold-001",
+      "label": "supported",
+      "action": "allow",
+      "intentional_refrain": "not-applicable",
+      "notes": ""
+    },
+    {
+      "case_id": "claim-hold-002",
+      "label": "unsupported",
+      "action": "block",
+      "intentional_refrain": "not-applicable",
+      "notes": "Wellness amenities and nearby clubs do not support a number-one ranking."
+    },
+    {
+      "case_id": "claim-hold-003",
+      "label": "insufficient",
+      "action": "review",
+      "intentional_refrain": "not-applicable",
+      "notes": "Both are forthcoming, but the source gives no relative completion timing."
+    }
+  ]
+}

@@ -9,6 +9,8 @@ The reviewer packet consists only of:
 - [Blind worksheet](phase-13-rider-copy-review-worksheet.md)
 - One reviewer-specific JSON response form from [reviews](reviews/)
 
+Fresh response forms are generated with `python3 -m tools.semantic_eval.review_dataset template`; completed responses are renamed from `.template.json` to a versioned evidence filename before commit.
+
 Do not provide reviewers with `data/phase-13-rider-copy-pairs.v1.json`, the lexical baseline report, another reviewer's response, or proposed Jev questions before they finish.
 
 ## Reviewer Instructions

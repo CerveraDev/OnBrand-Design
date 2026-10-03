@@ -1,0 +1,193 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "rider-semantic-decision-pilot-v1",
+  "dataset_sha256": "50154d8cf3c4efa9531d0dd5e1abfdb0e04e6fc9b9616f4b3c7505ffa8e4d8c2",
+  "reviewer_id": "reviewer-a",
+  "reviewed_at": "2026-10-03",
+  "status": "complete",
+  "instructions": "Complete independently without consulting provisional expected labels. Set one label and action per case, then change status to complete and add reviewed_at.",
+  "labels": [
+    {
+      "case_id": "sim-cal-001",
+      "label": "equivalent",
+      "action": "block",
+      "intentional_refrain": false,
+      "notes": "Exact unapproved repetition across visible body modules."
+    },
+    {
+      "case_id": "sim-cal-002",
+      "label": "equivalent",
+      "action": "block",
+      "intentional_refrain": false,
+      "notes": "Only everyday/each day changes; the sentence remains materially the same."
+    },
+    {
+      "case_id": "sim-cal-003",
+      "label": "equivalent",
+      "action": "review",
+      "intentional_refrain": false,
+      "notes": "Paraphrases the same membership-portability message in different wording."
+    },
+    {
+      "case_id": "sim-cal-004",
+      "label": "distinct",
+      "action": "allow",
+      "intentional_refrain": false,
+      "notes": ""
+    },
+    {
+      "case_id": "sim-cal-005",
+      "label": "related-distinct",
+      "action": "allow",
+      "intentional_refrain": false,
+      "notes": "Same neighborhood-wellness list context, but different entities and facts."
+    },
+    {
+      "case_id": "sim-cal-006",
+      "label": "equivalent",
+      "action": "allow",
+      "intentional_refrain": true,
+      "notes": "Exact refrain is explicitly approved for reuse."
+    },
+    {
+      "case_id": "sim-cal-007",
+      "label": "related-distinct",
+      "action": "allow",
+      "intentional_refrain": false,
+      "notes": "Preview copy extends the subject rather than restating it."
+    },
+    {
+      "case_id": "sim-cal-008",
+      "label": "equivalent",
+      "action": "block",
+      "intentional_refrain": false,
+      "notes": "Case change only; unapproved duplicate headline text."
+    },
+    {
+      "case_id": "sim-cal-009",
+      "label": "equivalent",
+      "action": "review",
+      "intentional_refrain": false,
+      "notes": "Different wording repeats the same provenance/authority statement."
+    },
+    {
+      "case_id": "sim-cal-010",
+      "label": "distinct",
+      "action": "allow",
+      "intentional_refrain": false,
+      "notes": ""
+    },
+    {
+      "case_id": "sim-cal-011",
+      "label": "distinct",
+      "action": "allow",
+      "intentional_refrain": false,
+      "notes": ""
+    },
+    {
+      "case_id": "sim-cal-012",
+      "label": "related-distinct",
+      "action": "review",
+      "intentional_refrain": false,
+      "notes": "General concluding language overlaps the same nearby-membership theme without exact equivalence."
+    },
+    {
+      "case_id": "sim-hold-001",
+      "label": "equivalent",
+      "action": "review",
+      "intentional_refrain": false,
+      "notes": "Restates the same routine-portability idea in broader wording."
+    },
+    {
+      "case_id": "sim-hold-002",
+      "label": "related-distinct",
+      "action": "review",
+      "intentional_refrain": false,
+      "notes": "Near-identical construction, but calm and energy signal different benefits."
+    },
+    {
+      "case_id": "sim-hold-003",
+      "label": "equivalent",
+      "action": "block",
+      "intentional_refrain": false,
+      "notes": "Both taglines carry the same membership-continuity refrain without approval."
+    },
+    {
+      "case_id": "sim-hold-004",
+      "label": "related-distinct",
+      "action": "allow",
+      "intentional_refrain": false,
+      "notes": "Sibling list items share category context but identify different developments."
+    },
+    {
+      "case_id": "sim-hold-005",
+      "label": "distinct",
+      "action": "allow",
+      "intentional_refrain": false,
+      "notes": ""
+    },
+    {
+      "case_id": "sim-hold-006",
+      "label": "equivalent",
+      "action": "review",
+      "intentional_refrain": false,
+      "notes": "Different surface language repeats the same ritual/routine-continuity message."
+    },
+    {
+      "case_id": "claim-cal-001",
+      "label": "supported",
+      "action": "allow",
+      "intentional_refrain": "not-applicable",
+      "notes": ""
+    },
+    {
+      "case_id": "claim-cal-002",
+      "label": "unsupported",
+      "action": "block",
+      "intentional_refrain": "not-applicable",
+      "notes": ""
+    },
+    {
+      "case_id": "claim-cal-003",
+      "label": "unsupported",
+      "action": "block",
+      "intentional_refrain": "not-applicable",
+      "notes": "Universal access claim overstates qualified membership language."
+    },
+    {
+      "case_id": "claim-cal-004",
+      "label": "insufficient",
+      "action": "review",
+      "intentional_refrain": "not-applicable",
+      "notes": "Same-neighborhood evidence does not establish minutes-away proximity."
+    },
+    {
+      "case_id": "claim-cal-005",
+      "label": "supported",
+      "action": "allow",
+      "intentional_refrain": "not-applicable",
+      "notes": ""
+    },
+    {
+      "case_id": "claim-hold-001",
+      "label": "supported",
+      "action": "allow",
+      "intentional_refrain": "not-applicable",
+      "notes": ""
+    },
+    {
+      "case_id": "claim-hold-002",
+      "label": "unsupported",
+      "action": "block",
+      "intentional_refrain": "not-applicable",
+      "notes": ""
+    },
+    {
+      "case_id": "claim-hold-003",
+      "label": "insufficient",
+      "action": "review",
+      "intentional_refrain": "not-applicable",
+      "notes": "The excerpt provides no comparative completion dates."
+    }
+  ]
+}

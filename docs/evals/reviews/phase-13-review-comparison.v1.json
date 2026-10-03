@@ -1,0 +1,485 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "rider-semantic-decision-pilot-v1",
+  "dataset_sha256": "50154d8cf3c4efa9531d0dd5e1abfdb0e04e6fc9b9616f4b3c7505ffa8e4d8c2",
+  "reviewers": [
+    "reviewer-a",
+    "reviewer-b"
+  ],
+  "case_count": 26,
+  "label_agreement_count": 25,
+  "label_agreement_rate": 0.962,
+  "full_agreement_count": 21,
+  "full_agreement_rate": 0.808,
+  "adjudication_required_count": 5,
+  "cases": [
+    {
+      "case_id": "sim-cal-001",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "label_agreement": true,
+      "full_agreement": true,
+      "reviewer_a": {
+        "label": "equivalent",
+        "action": "block",
+        "intentional_refrain": false
+      },
+      "reviewer_b": {
+        "label": "equivalent",
+        "action": "block",
+        "intentional_refrain": false
+      },
+      "adjudication_required": false
+    },
+    {
+      "case_id": "sim-cal-002",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "label_agreement": true,
+      "full_agreement": true,
+      "reviewer_a": {
+        "label": "equivalent",
+        "action": "block",
+        "intentional_refrain": false
+      },
+      "reviewer_b": {
+        "label": "equivalent",
+        "action": "block",
+        "intentional_refrain": false
+      },
+      "adjudication_required": false
+    },
+    {
+      "case_id": "sim-cal-003",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "label_agreement": true,
+      "full_agreement": false,
+      "reviewer_a": {
+        "label": "equivalent",
+        "action": "review",
+        "intentional_refrain": false
+      },
+      "reviewer_b": {
+        "label": "equivalent",
+        "action": "block",
+        "intentional_refrain": false
+      },
+      "adjudication_required": true
+    },
+    {
+      "case_id": "sim-cal-004",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "label_agreement": true,
+      "full_agreement": true,
+      "reviewer_a": {
+        "label": "distinct",
+        "action": "allow",
+        "intentional_refrain": false
+      },
+      "reviewer_b": {
+        "label": "distinct",
+        "action": "allow",
+        "intentional_refrain": false
+      },
+      "adjudication_required": false
+    },
+    {
+      "case_id": "sim-cal-005",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "label_agreement": true,
+      "full_agreement": true,
+      "reviewer_a": {
+        "label": "related-distinct",
+        "action": "allow",
+        "intentional_refrain": false
+      },
+      "reviewer_b": {
+        "label": "related-distinct",
+        "action": "allow",
+        "intentional_refrain": false
+      },
+      "adjudication_required": false
+    },
+    {
+      "case_id": "sim-cal-006",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "label_agreement": true,
+      "full_agreement": true,
+      "reviewer_a": {
+        "label": "equivalent",
+        "action": "allow",
+        "intentional_refrain": true
+      },
+      "reviewer_b": {
+        "label": "equivalent",
+        "action": "allow",
+        "intentional_refrain": true
+      },
+      "adjudication_required": false
+    },
+    {
+      "case_id": "sim-cal-007",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "label_agreement": true,
+      "full_agreement": true,
+      "reviewer_a": {
+        "label": "related-distinct",
+        "action": "allow",
+        "intentional_refrain": false
+      },
+      "reviewer_b": {
+        "label": "related-distinct",
+        "action": "allow",
+        "intentional_refrain": false
+      },
+      "adjudication_required": false
+    },
+    {
+      "case_id": "sim-cal-008",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "label_agreement": true,
+      "full_agreement": true,
+      "reviewer_a": {
+        "label": "equivalent",
+        "action": "block",
+        "intentional_refrain": false
+      },
+      "reviewer_b": {
+        "label": "equivalent",
+        "action": "block",
+        "intentional_refrain": false
+      },
+      "adjudication_required": false
+    },
+    {
+      "case_id": "sim-cal-009",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "label_agreement": true,
+      "full_agreement": false,
+      "reviewer_a": {
+        "label": "equivalent",
+        "action": "review",
+        "intentional_refrain": false
+      },
+      "reviewer_b": {
+        "label": "equivalent",
+        "action": "block",
+        "intentional_refrain": false
+      },
+      "adjudication_required": true
+    },
+    {
+      "case_id": "sim-cal-010",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "label_agreement": false,
+      "full_agreement": false,
+      "reviewer_a": {
+        "label": "distinct",
+        "action": "allow",
+        "intentional_refrain": false
+      },
+      "reviewer_b": {
+        "label": "related-distinct",
+        "action": "allow",
+        "intentional_refrain": false
+      },
+      "adjudication_required": true
+    },
+    {
+      "case_id": "sim-cal-011",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "label_agreement": true,
+      "full_agreement": true,
+      "reviewer_a": {
+        "label": "distinct",
+        "action": "allow",
+        "intentional_refrain": false
+      },
+      "reviewer_b": {
+        "label": "distinct",
+        "action": "allow",
+        "intentional_refrain": false
+      },
+      "adjudication_required": false
+    },
+    {
+      "case_id": "sim-cal-012",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "label_agreement": true,
+      "full_agreement": true,
+      "reviewer_a": {
+        "label": "related-distinct",
+        "action": "review",
+        "intentional_refrain": false
+      },
+      "reviewer_b": {
+        "label": "related-distinct",
+        "action": "review",
+        "intentional_refrain": false
+      },
+      "adjudication_required": false
+    },
+    {
+      "case_id": "sim-hold-001",
+      "task": "copy-similarity",
+      "split": "holdout",
+      "label_agreement": true,
+      "full_agreement": false,
+      "reviewer_a": {
+        "label": "equivalent",
+        "action": "review",
+        "intentional_refrain": false
+      },
+      "reviewer_b": {
+        "label": "equivalent",
+        "action": "block",
+        "intentional_refrain": false
+      },
+      "adjudication_required": true
+    },
+    {
+      "case_id": "sim-hold-002",
+      "task": "copy-similarity",
+      "split": "holdout",
+      "label_agreement": true,
+      "full_agreement": true,
+      "reviewer_a": {
+        "label": "related-distinct",
+        "action": "review",
+        "intentional_refrain": false
+      },
+      "reviewer_b": {
+        "label": "related-distinct",
+        "action": "review",
+        "intentional_refrain": false
+      },
+      "adjudication_required": false
+    },
+    {
+      "case_id": "sim-hold-003",
+      "task": "copy-similarity",
+      "split": "holdout",
+      "label_agreement": true,
+      "full_agreement": true,
+      "reviewer_a": {
+        "label": "equivalent",
+        "action": "block",
+        "intentional_refrain": false
+      },
+      "reviewer_b": {
+        "label": "equivalent",
+        "action": "block",
+        "intentional_refrain": false
+      },
+      "adjudication_required": false
+    },
+    {
+      "case_id": "sim-hold-004",
+      "task": "copy-similarity",
+      "split": "holdout",
+      "label_agreement": true,
+      "full_agreement": true,
+      "reviewer_a": {
+        "label": "related-distinct",
+        "action": "allow",
+        "intentional_refrain": false
+      },
+      "reviewer_b": {
+        "label": "related-distinct",
+        "action": "allow",
+        "intentional_refrain": false
+      },
+      "adjudication_required": false
+    },
+    {
+      "case_id": "sim-hold-005",
+      "task": "copy-similarity",
+      "split": "holdout",
+      "label_agreement": true,
+      "full_agreement": true,
+      "reviewer_a": {
+        "label": "distinct",
+        "action": "allow",
+        "intentional_refrain": false
+      },
+      "reviewer_b": {
+        "label": "distinct",
+        "action": "allow",
+        "intentional_refrain": false
+      },
+      "adjudication_required": false
+    },
+    {
+      "case_id": "sim-hold-006",
+      "task": "copy-similarity",
+      "split": "holdout",
+      "label_agreement": true,
+      "full_agreement": false,
+      "reviewer_a": {
+        "label": "equivalent",
+        "action": "review",
+        "intentional_refrain": false
+      },
+      "reviewer_b": {
+        "label": "equivalent",
+        "action": "block",
+        "intentional_refrain": false
+      },
+      "adjudication_required": true
+    },
+    {
+      "case_id": "claim-cal-001",
+      "task": "claim-support",
+      "split": "calibration",
+      "label_agreement": true,
+      "full_agreement": true,
+      "reviewer_a": {
+        "label": "supported",
+        "action": "allow",
+        "intentional_refrain": "not-applicable"
+      },
+      "reviewer_b": {
+        "label": "supported",
+        "action": "allow",
+        "intentional_refrain": "not-applicable"
+      },
+      "adjudication_required": false
+    },
+    {
+      "case_id": "claim-cal-002",
+      "task": "claim-support",
+      "split": "calibration",
+      "label_agreement": true,
+      "full_agreement": true,
+      "reviewer_a": {
+        "label": "unsupported",
+        "action": "block",
+        "intentional_refrain": "not-applicable"
+      },
+      "reviewer_b": {
+        "label": "unsupported",
+        "action": "block",
+        "intentional_refrain": "not-applicable"
+      },
+      "adjudication_required": false
+    },
+    {
+      "case_id": "claim-cal-003",
+      "task": "claim-support",
+      "split": "calibration",
+      "label_agreement": true,
+      "full_agreement": true,
+      "reviewer_a": {
+        "label": "unsupported",
+        "action": "block",
+        "intentional_refrain": "not-applicable"
+      },
+      "reviewer_b": {
+        "label": "unsupported",
+        "action": "block",
+        "intentional_refrain": "not-applicable"
+      },
+      "adjudication_required": false
+    },
+    {
+      "case_id": "claim-cal-004",
+      "task": "claim-support",
+      "split": "calibration",
+      "label_agreement": true,
+      "full_agreement": true,
+      "reviewer_a": {
+        "label": "insufficient",
+        "action": "review",
+        "intentional_refrain": "not-applicable"
+      },
+      "reviewer_b": {
+        "label": "insufficient",
+        "action": "review",
+        "intentional_refrain": "not-applicable"
+      },
+      "adjudication_required": false
+    },
+    {
+      "case_id": "claim-cal-005",
+      "task": "claim-support",
+      "split": "calibration",
+      "label_agreement": true,
+      "full_agreement": true,
+      "reviewer_a": {
+        "label": "supported",
+        "action": "allow",
+        "intentional_refrain": "not-applicable"
+      },
+      "reviewer_b": {
+        "label": "supported",
+        "action": "allow",
+        "intentional_refrain": "not-applicable"
+      },
+      "adjudication_required": false
+    },
+    {
+      "case_id": "claim-hold-001",
+      "task": "claim-support",
+      "split": "holdout",
+      "label_agreement": true,
+      "full_agreement": true,
+      "reviewer_a": {
+        "label": "supported",
+        "action": "allow",
+        "intentional_refrain": "not-applicable"
+      },
+      "reviewer_b": {
+        "label": "supported",
+        "action": "allow",
+        "intentional_refrain": "not-applicable"
+      },
+      "adjudication_required": false
+    },
+    {
+      "case_id": "claim-hold-002",
+      "task": "claim-support",
+      "split": "holdout",
+      "label_agreement": true,
+      "full_agreement": true,
+      "reviewer_a": {
+        "label": "unsupported",
+        "action": "block",
+        "intentional_refrain": "not-applicable"
+      },
+      "reviewer_b": {
+        "label": "unsupported",
+        "action": "block",
+        "intentional_refrain": "not-applicable"
+      },
+      "adjudication_required": false
+    },
+    {
+      "case_id": "claim-hold-003",
+      "task": "claim-support",
+      "split": "holdout",
+      "label_agreement": true,
+      "full_agreement": true,
+      "reviewer_a": {
+        "label": "insufficient",
+        "action": "review",
+        "intentional_refrain": "not-applicable"
+      },
+      "reviewer_b": {
+        "label": "insufficient",
+        "action": "review",
+        "intentional_refrain": "not-applicable"
+      },
+      "adjudication_required": false
+    }
+  ]
+}

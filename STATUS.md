@@ -71,7 +71,7 @@
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 - Obtain live manual invocation evidence on permitted authenticated hosts; deterministic parity does not establish model behavior.
 - Keep [LIMITATIONS.md](LIMITATIONS.md) current when audits, specs, QA runs, or implementation work discover new constraints.
-- Collect and compare two blinded reviews of the 26-case, de-identified Rider semantic dataset, then adjudicate disagreements before designing provider questions or thresholds. Bound response templates and validation tooling are ready.
+- Adjudicate five disagreements from two completed blinded reviews of the 26-case Rider semantic dataset. Reviewers reached 21/26 full agreement and 25/26 label agreement; provider questions and thresholds remain blocked until adjudication and freeze.
 
 ## Waiting On Project Inputs
 
@@ -87,4 +87,4 @@
 
 ## Next Milestone
 
-Complete independent review of the Phase 13 dataset, then freeze version 1 and design calibration-only Jev questions without changing deterministic QA. Live manual adapter checks and broader visual/email-client review remain open; Phase 12 distribution stays deferred.
+Adjudicate the five Phase 13 review disagreements, freeze dataset version 1, and then design calibration-only Jev questions without changing deterministic QA. Live manual adapter checks and broader visual/email-client review remain open; Phase 12 distribution stays deferred.

@@ -119,3 +119,4 @@ Disabling the feature flag restores the existing Phase 10 behavior. Removing the
 - [Machine-readable baseline](../evals/phase-13-lexical-baseline.v1.json)
 - [Dataset validator tests](../../tests/test_semantic_eval.py)
 - [Reviewer response schema](../../tools/semantic_eval/review.schema.json)
+- [Reviewer comparison](../evals/reviews/phase-13-review-comparison.v1.json)
