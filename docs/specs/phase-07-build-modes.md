@@ -1,6 +1,6 @@
 # Phase 7: Build Modes
 
-**Status:** Approved specification, not implemented
+**Status:** Implemented for The Rider runtime
 **Target:** 0.8.0
 **Depends on:** Phases 5 and 6
 
@@ -26,10 +26,20 @@ Separate campaign production into explicit build modes so routine composition wo
 
 ## Anticipated Data And Contracts
 
-- `build_mode`: `composition-preview`, `smoke-test`, or `release-build`.
-- `representative_variant`: branded, outside-broker customizable, or one selected active agent.
+- `build.mode`: `composition-preview`, `smoke-test`, or `release-build`.
+- `build.representative_variant`: `branded`, `outside-broker-customizable`, or `agent-<agent-id>`.
 - `variant_policy`: `single`, `all`, or `changed-surface-expanded`.
+- `changed_surfaces`: explicit values such as `agent-roster`, `agent-data`, `agent-footer-assets`, `footer-renderer`, `footer-data`, or `scaffold-footer-structure`.
 - `expansion_reason`: human-readable reason when a non-release build expands to all variants.
+
+## Implementation Evidence
+
+- The Rider runtime schema requires an explicit `build` object.
+- Composition Preview and ordinary Smoke Test render one representative variant by default.
+- The default representative is `branded`; callers can explicitly choose `outside-broker-customizable` or `agent-<agent-id>`.
+- Smoke Test expands to all authorized variants only with `variant_policy: "all"` or `variant_policy: "changed-surface-expanded"` plus a non-empty valid `changed_surfaces` array.
+- Release Build requires the full internal matrix and renders branded, outside-broker customizable, and one variant per active in-house agent.
+- `campaign-metadata.json` and `qa-report.json` record mode, representative variant, effective variant scope, changed surfaces, expansion reason, and rendered variants.
 
 ## Workflow
 

@@ -5,7 +5,7 @@
 **Author:** Felix Mendoza  
 **Version:** 0.1.0  
 **Updated:** 2026-10-03
-**Overall status:** Multi-project foundation complete; Rider campaign runtime implemented and pilot smoke-tested
+**Overall status:** Multi-project foundation complete; Rider campaign runtime implemented with explicit build modes and pilot smoke-tested
 
 ## Completed
 
@@ -46,6 +46,7 @@
 - Added and validated a separate Rider wellness smoke campaign with generated 16:9 hero art, approved wellness/arrival body assets, branded and outside-broker versions, seven in-house agent variants, a QA report, and a ZIP.
 - Recorded approved-but-unimplemented planning specifications for Phases 7 through 11 and a deferred Phase 12 distribution profile plan.
 - Added compatibility and distribution-security planning documents that keep Claude Code support and broker-only package claims explicitly unimplemented.
+- Implemented Phase 7 build modes for The Rider runtime: Composition Preview, Smoke Test, and Release Build with explicit variant policy, representative selection, metadata, QA reporting, and release-matrix validation.
 
 ## Project Portfolio
 
@@ -56,7 +57,6 @@
 
 ## Approved Specs, Not Implemented
 
-- Phase 7: Build modes separating Composition Preview, Smoke Test, and Release Build.
 - Phase 8: Composition Preview with stable module codes and pre-generation approval.
 - Phase 9: Grounded image generation using approved base imagery and provenance.
 - Phase 10: Copy allocation QA for slot ownership, restricted phrase dedupe, and wellness repetition checks.
@@ -68,7 +68,7 @@
 - Configure The Rider's stable public manifest URL or validated local cache fallback.
 - Perform representative visual and email-client compatibility review beyond structural QA.
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
-- Implement the approved build-mode, composition-preview, grounded-image, copy-allocation, and cross-platform specifications after runtime contracts are scheduled.
+- Implement the approved Composition Preview, grounded-image, copy-allocation, and cross-platform specifications after runtime contracts are scheduled.
 
 ## Waiting On Project Inputs
 
@@ -83,4 +83,4 @@
 
 ## Next Milestone
 
-Pilot the Rider runtime with approved campaign content, then implement the approved build-mode and Composition Preview contracts before expanding cross-platform or external distribution claims.
+Pilot the Rider runtime with approved campaign content, then implement the approved Composition Preview contract before expanding cross-platform or external distribution claims.

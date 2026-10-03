@@ -1,5 +1,10 @@
 {
   "schema_version": "1.0",
+  "build": {
+    "mode": "smoke-test",
+    "representative_variant": "branded",
+    "variant_policy": "single"
+  },
   "campaign": {
     "slug": "rider-wellness-smoke",
     "title": "Rider Wellness Smoke Campaign",

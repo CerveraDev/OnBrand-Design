@@ -1,16 +1,15 @@
 {
   "schema_version": "1.0",
   "build": {
-    "mode": "smoke-test",
-    "representative_variant": "branded",
-    "variant_policy": "single"
+    "mode": "release-build",
+    "variant_policy": "all"
   },
   "campaign": {
-    "slug": "rider-runtime-smoke",
-    "title": "Rider Runtime Smoke Campaign",
-    "output_dir": "campaign-output/rider-runtime-smoke",
-    "subject": "Internal smoke test only",
-    "preview_text": "Non-production validation of the Rider runtime package."
+    "slug": "rider-runtime-release-build",
+    "title": "Rider Runtime Release Build Validation",
+    "output_dir": "campaign-output/rider-runtime-release-build",
+    "subject": "Internal release build validation only",
+    "preview_text": "Non-production validation of the full Rider runtime variant matrix."
   },
   "manifest": {
     "path": "tools/dropbox-manifest/manifest.json"
@@ -32,7 +31,7 @@
       "slots": {
         "headline": {
           "kind": "safe_rich_text",
-          "value": "INTERNAL REVIEW<br>DO NOT SEND"
+          "value": "INTERNAL RELEASE BUILD<br>DO NOT SEND"
         },
         "background_image": {
           "kind": "image",
@@ -102,7 +101,7 @@
   "documents": [
     {
       "asset_id": "id:31E0v0XEN2IAAAAAAAAA9Q",
-      "role": "internal-smoke-supporting-pdf"
+      "role": "internal-release-validation-supporting-pdf"
     }
   ],
   "deployment": {

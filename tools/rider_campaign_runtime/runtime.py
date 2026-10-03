@@ -114,7 +114,8 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
         content_rows.append(rows)
         content_asset_hints.extend(used)
 
-    variants = spec["variants"]
+    build_plan = _effective_build_plan(spec)
+    variants = build_plan["variants"]
     agents = load_agents(AGENTS_DIR, assets, variants.get("agents", "all")) if variants.get("agents", "all") else []
     html_by_variant: dict[str, str] = {}
     asset_hints: list[tuple[str, UsedAsset]] = []
@@ -188,6 +189,9 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
         path.write_text(html, encoding="utf-8")
         html_files[variant] = path
 
+    build_metadata = dict(build_plan["metadata"])
+    build_metadata["rendered_variants"] = sorted(rewritten_html)
+
     (package_dir / "campaign-metadata.json").write_text(
         json.dumps(
             {
@@ -197,6 +201,7 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
                 "preview_text": campaign.get("preview_text", ""),
                 "modules": requested_module_ids,
                 "static_blocks": spec["static_blocks"],
+                "build": build_metadata,
                 "variants": sorted(rewritten_html),
             },
             indent=2,
@@ -213,6 +218,7 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
         agent_variant_count=len(agents),
         static_blocks=spec["static_blocks"],
         static_content=static_content,
+        build_metadata=build_metadata,
     )
     qa_report = write_qa_report(package_dir / "qa-report.json", qa)
     zip_path = None
@@ -234,6 +240,71 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
         html_files=html_files,
         asset_manifest=asset_manifest,
     )
+
+
+def _effective_build_plan(spec: dict) -> dict:
+    build = spec["build"]
+    mode = build["mode"]
+    variant_policy = build["variant_policy"]
+    representative_variant = build.get("representative_variant", "branded")
+    changed_surfaces = tuple(build.get("changed_surfaces", []))
+    authorized = _authorized_variants(spec["variants"])
+
+    if mode == "release-build":
+        if authorized != {"branded": True, "outside_broker": True, "agents": "all"}:
+            raise RuntimeError("release-build requires the full authorized internal variant set")
+        variant_scope = "all"
+        effective_variants = dict(authorized)
+        expansion_reason = "release build renders every authorized internal variant"
+    elif variant_policy == "all":
+        variant_scope = "all"
+        effective_variants = dict(authorized)
+        expansion_reason = "explicit variant_policy=all requested broad validation"
+    elif variant_policy == "changed-surface-expanded":
+        variant_scope = "all"
+        effective_variants = dict(authorized)
+        expansion_reason = "changed surfaces require full footer and agent validation: " + ", ".join(changed_surfaces)
+    else:
+        variant_scope = "single"
+        effective_variants = _representative_variants(representative_variant, authorized)
+        expansion_reason = "representative-only build"
+
+    return {
+        "metadata": {
+            "mode": mode,
+            "representative_variant": representative_variant,
+            "variant_policy": variant_policy,
+            "variant_scope": variant_scope,
+            "changed_surfaces": list(changed_surfaces),
+            "expansion_reason": expansion_reason,
+        },
+        "variants": effective_variants,
+    }
+
+
+def _authorized_variants(variants: dict) -> dict:
+    return {
+        "branded": variants.get("branded", True),
+        "outside_broker": variants.get("outside_broker", True),
+        "agents": variants.get("agents", "all"),
+    }
+
+
+def _representative_variants(representative_variant: str, authorized: dict) -> dict:
+    if representative_variant == "branded":
+        if not authorized["branded"]:
+            raise RuntimeError("Representative variant branded is not authorized by variants.branded")
+        return {"branded": True, "outside_broker": False, "agents": []}
+    if representative_variant == "outside-broker-customizable":
+        if not authorized["outside_broker"]:
+            raise RuntimeError("Representative variant outside-broker-customizable is not authorized by variants.outside_broker")
+        return {"branded": False, "outside_broker": True, "agents": []}
+
+    agent_id = representative_variant.removeprefix("agent-")
+    authorized_agents = authorized["agents"]
+    if authorized_agents != "all" and agent_id not in authorized_agents:
+        raise RuntimeError(f"Representative variant {representative_variant} is not authorized by variants.agents")
+    return {"branded": False, "outside_broker": False, "agents": [agent_id]}
 
 
 def _resolve_path(base_dir: Path, value: str) -> Path:

@@ -9,6 +9,7 @@ from tools.rider_campaign_runtime.assets import package_documents, rewrite_and_p
 from tools.rider_campaign_runtime.runtime import (
     ROOT,
     RuntimeError,
+    _effective_build_plan,
     _resolve_path,
     _validate_static_rendering,
     build_campaign_from_spec,
@@ -40,6 +41,43 @@ class RiderCampaignSchemaTests(unittest.TestCase):
         spec = minimal_spec()
         del spec["static_blocks"]
         with self.assertRaisesRegex(CampaignSpecError, "static_blocks"):
+            validate_campaign_spec(spec)
+
+    def test_requires_explicit_build_mode_contract(self):
+        spec = minimal_spec()
+        del spec["build"]
+        with self.assertRaisesRegex(CampaignSpecError, "build"):
+            validate_campaign_spec(spec)
+
+    def test_rejects_invalid_build_mode_policy_combinations(self):
+        spec = minimal_spec()
+        spec["build"]["mode"] = "composition-preview"
+        spec["build"]["variant_policy"] = "all"
+        with self.assertRaisesRegex(CampaignSpecError, "composition-preview requires"):
+            validate_campaign_spec(spec)
+
+        spec = minimal_spec()
+        spec["build"]["mode"] = "release-build"
+        spec["build"]["variant_policy"] = "single"
+        with self.assertRaisesRegex(CampaignSpecError, "release-build requires"):
+            validate_campaign_spec(spec)
+
+        spec = minimal_spec()
+        spec["build"] = {
+            "mode": "smoke-test",
+            "variant_policy": "changed-surface-expanded",
+            "changed_surfaces": ["unknown"],
+        }
+        with self.assertRaisesRegex(CampaignSpecError, "unknown value"):
+            validate_campaign_spec(spec)
+
+        spec = minimal_spec()
+        spec["build"] = {
+            "mode": "smoke-test",
+            "variant_policy": "changed-surface-expanded",
+            "changed_surfaces": [],
+        }
+        with self.assertRaisesRegex(CampaignSpecError, "requires at least one"):
             validate_campaign_spec(spec)
 
 
@@ -144,6 +182,60 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, "Refusing to replace non-runtime"):
                 build_campaign_from_spec(spec, base_dir=tmp_path)
             self.assertTrue((protected / "keep.txt").is_file())
+
+    def test_build_plan_defaults_to_branded_representative(self):
+        spec = minimal_spec()
+        spec["variants"] = {"branded": True, "outside_broker": True, "agents": "all"}
+        plan = _effective_build_plan(spec)
+        self.assertEqual(plan["variants"], {"branded": True, "outside_broker": False, "agents": []})
+        self.assertEqual(plan["metadata"]["mode"], "smoke-test")
+        self.assertEqual(plan["metadata"]["representative_variant"], "branded")
+        self.assertEqual(plan["metadata"]["variant_scope"], "single")
+
+    def test_build_plan_allows_explicit_outside_broker_representative(self):
+        spec = minimal_spec()
+        spec["build"]["mode"] = "composition-preview"
+        spec["build"]["representative_variant"] = "outside-broker-customizable"
+        spec["build"]["variant_policy"] = "single"
+        spec["variants"] = {"branded": True, "outside_broker": True, "agents": "all"}
+        plan = _effective_build_plan(spec)
+        self.assertEqual(plan["variants"], {"branded": False, "outside_broker": True, "agents": []})
+        self.assertEqual(plan["metadata"]["mode"], "composition-preview")
+
+    def test_build_plan_allows_explicit_agent_representative(self):
+        spec = minimal_spec()
+        spec["build"]["representative_variant"] = "agent-diana-kosov"
+        spec["variants"] = {"branded": True, "outside_broker": True, "agents": "all"}
+        plan = _effective_build_plan(spec)
+        self.assertEqual(plan["variants"], {"branded": False, "outside_broker": False, "agents": ["diana-kosov"]})
+
+    def test_build_plan_rejects_unauthorized_representative(self):
+        spec = minimal_spec()
+        spec["build"]["representative_variant"] = "outside-broker-customizable"
+        spec["variants"] = {"branded": True, "outside_broker": False, "agents": []}
+        with self.assertRaisesRegex(RuntimeError, "not authorized"):
+            _effective_build_plan(spec)
+
+    def test_smoke_changed_surface_expands_to_full_authorized_set(self):
+        spec = minimal_spec()
+        spec["build"] = {
+            "mode": "smoke-test",
+            "representative_variant": "branded",
+            "variant_policy": "changed-surface-expanded",
+            "changed_surfaces": ["agent-roster", "footer-renderer"],
+        }
+        spec["variants"] = {"branded": True, "outside_broker": True, "agents": "all"}
+        plan = _effective_build_plan(spec)
+        self.assertEqual(plan["variants"], {"branded": True, "outside_broker": True, "agents": "all"})
+        self.assertEqual(plan["metadata"]["variant_scope"], "all")
+        self.assertIn("agent-roster", plan["metadata"]["expansion_reason"])
+
+    def test_release_build_requires_full_internal_authorized_set(self):
+        spec = minimal_spec()
+        spec["build"] = {"mode": "release-build", "variant_policy": "all"}
+        spec["variants"] = {"branded": True, "outside_broker": True, "agents": []}
+        with self.assertRaisesRegex(RuntimeError, "full authorized internal"):
+            _effective_build_plan(spec)
 
     def test_failed_asset_download_preserves_last_passing_package(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -331,6 +423,71 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
             self.assertNotIn("START - ", html)
             self.assertIn("../images/", html)
 
+    def test_composition_preview_build_renders_one_representative_variant(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            asset = write_png(tmp_path / "pixel.png")
+            spec = minimal_spec()
+            spec["build"] = {
+                "mode": "composition-preview",
+                "representative_variant": "outside-broker-customizable",
+                "variant_policy": "single",
+            }
+            spec["variants"] = {"branded": True, "outside_broker": True, "agents": "all"}
+            spec["campaign"]["output_dir"] = str(tmp_path / "campaign-output")
+            spec["manifest"]["path"] = str(write_manifest(tmp_path, asset))
+            with patch("tools.rider_campaign_runtime.assets._read_asset") as read_asset:
+                read_asset.side_effect = lambda source: (asset.read_bytes(), Path(source).name or "asset.png")
+                result = build_campaign_from_spec(spec, base_dir=tmp_path)
+            self.assertEqual(set(result.html_files), {"outside-broker-customizable"})
+            metadata = json.loads((result.package_dir / "campaign-metadata.json").read_text())
+            self.assertEqual(metadata["build"]["mode"], "composition-preview")
+            self.assertEqual(metadata["build"]["variant_scope"], "single")
+            self.assertEqual(metadata["build"]["rendered_variants"], ["outside-broker-customizable"])
+            qa = json.loads(result.qa_report.read_text())
+            self.assertEqual(qa["build"], metadata["build"])
+
+    def test_smoke_build_policy_all_renders_full_authorized_set(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            asset = write_png(tmp_path / "pixel.png")
+            spec = release_spec(tmp_path, asset)
+            spec["build"] = {
+                "mode": "smoke-test",
+                "representative_variant": "branded",
+                "variant_policy": "all",
+            }
+            with patch("tools.rider_campaign_runtime.assets._read_asset") as read_asset:
+                read_asset.side_effect = lambda source: (asset.read_bytes(), Path(source).name or "asset.png")
+                result = build_campaign_from_spec(spec, base_dir=tmp_path)
+            self.assertEqual(len(result.html_files), 9)
+            metadata = json.loads((result.package_dir / "campaign-metadata.json").read_text())
+            self.assertEqual(metadata["build"]["mode"], "smoke-test")
+            self.assertEqual(metadata["build"]["variant_policy"], "all")
+            self.assertEqual(metadata["build"]["variant_scope"], "all")
+
+    def test_release_build_renders_full_current_internal_matrix(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            asset = write_png(tmp_path / "pixel.png")
+            spec = release_spec(tmp_path, asset)
+            with patch("tools.rider_campaign_runtime.assets._read_asset") as read_asset:
+                read_asset.side_effect = lambda source: (asset.read_bytes(), Path(source).name or "asset.png")
+                result = build_campaign_from_spec(spec, base_dir=tmp_path)
+            self.assertTrue(result.qa.passed)
+            self.assertTrue(result.zip_path.is_file())
+            self.assertEqual(len(result.html_files), 9)
+            self.assertIn("branded", result.html_files)
+            self.assertIn("outside-broker-customizable", result.html_files)
+            self.assertIn("agent-diana-kosov", result.html_files)
+            self.assertNotIn("agent-jake-lecce", result.html_files)
+            self.assertEqual(sum(1 for name in result.html_files if name.startswith("agent-")), 7)
+            metadata = json.loads((result.package_dir / "campaign-metadata.json").read_text())
+            self.assertEqual(metadata["build"]["mode"], "release-build")
+            self.assertEqual(metadata["build"]["variant_policy"], "all")
+            self.assertEqual(metadata["build"]["variant_scope"], "all")
+            self.assertEqual(set(metadata["build"]["rendered_variants"]), set(result.html_files))
+
     def test_relative_local_image_slot_is_packaged_for_review(self):
         with tempfile.TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
@@ -383,6 +540,10 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
                 "STATIC BLOCK 4": "exclude",
             },
         )
+        self.assertEqual(
+            spec["build"],
+            {"mode": "smoke-test", "representative_variant": "branded", "variant_policy": "single"},
+        )
         self.assertEqual(spec["variants"], {"branded": True, "outside_broker": True, "agents": "all"})
         self.assertEqual(
             spec["modules"][1]["slots"]["gallery_image"]["asset_id"],
@@ -393,10 +554,23 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
             "id:31E0v0XEN2IAAAAAAAAAFw",
         )
 
+    def test_release_build_fixture_declares_full_matrix(self):
+        fixture = ROOT / "projects/the-rider/skills/onbrand-the-rider-email/examples/release-build.runtime.json"
+        spec = json.loads(fixture.read_text(encoding="utf-8"))
+        validate_campaign_spec(spec)
+        self.assertEqual(spec["campaign"]["slug"], "rider-runtime-release-build")
+        self.assertEqual(spec["build"], {"mode": "release-build", "variant_policy": "all"})
+        self.assertEqual(spec["variants"], {"branded": True, "outside_broker": True, "agents": "all"})
+
 
 def minimal_spec():
     return {
         "schema_version": "1.0",
+        "build": {
+            "mode": "smoke-test",
+            "representative_variant": "branded",
+            "variant_policy": "single",
+        },
         "campaign": {
             "slug": "runtime-test",
             "title": "Runtime Test",
@@ -413,6 +587,31 @@ def minimal_spec():
         "variants": {"branded": True, "outside_broker": False, "agents": []},
         "deployment": {"asset_mode": "relative-review"},
     }
+
+
+def release_spec(tmp_path, asset):
+    spec = minimal_spec()
+    spec["build"] = {"mode": "release-build", "variant_policy": "all"}
+    spec["campaign"]["output_dir"] = str(tmp_path / "campaign-output")
+    spec["manifest"]["path"] = str(write_manifest(tmp_path, asset))
+    spec["variants"] = {"branded": True, "outside_broker": True, "agents": "all"}
+    spec["outside_broker"] = {
+        "name": "[OUTSIDE BROKER NAME]",
+        "title": "[OUTSIDE BROKER TITLE]",
+        "phone": "[OUTSIDE BROKER PHONE]",
+        "email": "[OUTSIDE BROKER EMAIL]",
+        "social": "[OUTSIDE BROKER SOCIAL]",
+    }
+    return spec
+
+
+def write_png(path):
+    path.write_bytes(
+        b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01"
+        b"\x08\x06\x00\x00\x00\x1f\x15\xc4\x89\x00\x00\x00\nIDATx\x9cc\x00\x01"
+        b"\x00\x00\x05\x00\x01\r\n-\xb4\x00\x00\x00\x00IEND\xaeB`\x82"
+    )
+    return path
 
 
 def write_manifest(tmp_path, asset_path):

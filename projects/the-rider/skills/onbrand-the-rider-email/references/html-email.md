@@ -9,7 +9,7 @@
 5. Preserve the full document head, global CSS, linked fonts, Outlook/VML conditionals, wrapper tables, row classes, and inline styles.
 6. Remove marker rows from generated outputs.
 7. Populate only declared typed slots; every anchor must resolve exactly as defined or the build fails.
-8. Populate the selected footer variant.
+8. Resolve the effective variant set from the explicit build mode and populate only those selected footer variants.
 9. Copy every image used by any variant into the package `images/` directory.
 10. Make package-preview HTML reference copied files with portable relative paths such as `../images/hero.jpg`.
 11. Record source identity, checksum, role, and variant usage in the asset manifest.
@@ -26,6 +26,16 @@ Use scaffold footer modules:
 The outside-broker customizable footer has a broker personalization area. It is not a branding-free footer.
 
 For in-house variants, load active records from `data/agents/index.json` in `output_order`. Each record must pass `data/agents/agent.schema.json`.
+
+## Build Modes
+
+Use `build.mode` to distinguish output intent:
+
+- `composition-preview`: one representative Design Proof for user review.
+- `smoke-test`: one representative technical validation variant unless `variant_policy` explicitly expands it.
+- `release-build`: full internal matrix.
+
+The default representative is `branded`. `representative_variant` may also be `outside-broker-customizable` or `agent-<agent-id>`. Use `variant_policy: "changed-surface-expanded"` with a non-empty `changed_surfaces` array when agent roster/data, footer renderer/data, footer asset resolution, or scaffold footer structure changes require full smoke coverage.
 
 ## Output Naming
 

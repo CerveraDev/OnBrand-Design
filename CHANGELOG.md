@@ -26,6 +26,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Separate Rider wellness smoke campaign fixture with generated 16:9 hero asset and approved recovery/arrival body imagery.
 - Approved planning specs for Phase 7 build modes, Phase 8 Composition Preview, Phase 9 grounded image generation, Phase 10 copy allocation QA, Phase 11 cross-platform compatibility, and deferred Phase 12 distribution profiles.
 - Compatibility and distribution-security plans documenting canonical-core adapter expectations, planned Claude Code support, and deferred broker/private package separation.
+- Rider build-mode contract for Composition Preview, Smoke Test, and Release Build, including explicit representative selection, changed-surface smoke expansion, metadata, QA reporting, and a release-build fixture.
 
 ### Changed
 
@@ -40,6 +41,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Runtime output is built in a protected staging directory so failed asset downloads cannot replace the last valid package.
 - Rider runtime image slots accept safe local generated assets for reproducible fixtures, then package them as relative review assets.
 - Roadmap, PRD, status, and versioning records now distinguish approved future specs from implemented runtime features.
+- Ordinary Rider smoke fixtures now render one branded representative variant; Release Build preserves the full internal matrix.
 
 ### Validated
 
@@ -58,6 +60,10 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Full unittest discovery passes 37 tests.
 - Existing Rider runtime smoke passes 9 variants after Diana's activation.
 - Rider wellness smoke passes 230 QA checks, produces 9 HTML variants, 17 packaged images, no external image references in relative-review mode, and a valid ZIP.
+- Full unittest discovery passes 49 tests.
+- Ordinary Rider smoke passes as `smoke-test` with 1 branded variant, 54 QA checks, 9 packaged assets, no external image references, and a valid ZIP.
+- Rider wellness smoke passes as `smoke-test` with 1 branded variant, 55 QA checks, 9 packaged assets, no external image references, and a valid ZIP.
+- Rider release-build validation passes with 9 variants, 222 QA checks, 17 packaged assets, Diana Kosov present, Jake Lecce absent, no external image references, and a valid ZIP.
 
 ## [0.1.0] - 2026-09-30
 

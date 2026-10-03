@@ -13,6 +13,7 @@ class CampaignSpecError(ValueError):
 SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 ALLOWED_TOP = {
     "schema_version",
+    "build",
     "campaign",
     "manifest",
     "modules",
@@ -21,6 +22,12 @@ ALLOWED_TOP = {
     "outside_broker",
     "deployment",
     "documents",
+}
+ALLOWED_BUILD = {
+    "mode",
+    "representative_variant",
+    "variant_policy",
+    "changed_surfaces",
 }
 ALLOWED_CAMPAIGN = {
     "slug",
@@ -50,6 +57,17 @@ ALLOWED_DOCUMENT = {"asset_id", "role"}
 SLOT_KINDS = {"text", "safe_rich_text", "url", "image"}
 URL_SCHEMES = {"http", "https", "mailto", "tel"}
 IMAGE_SCHEMES = {"http", "https", "file"}
+BUILD_MODES = {"composition-preview", "smoke-test", "release-build"}
+VARIANT_POLICIES = {"single", "all", "changed-surface-expanded"}
+CHANGED_SURFACES = {
+    "agent-roster",
+    "agent-data",
+    "agent-footer-assets",
+    "footer-renderer",
+    "footer-data",
+    "scaffold-footer-structure",
+}
+REPRESENTATIVE_VARIANT_RE = re.compile(r"^(branded|outside-broker-customizable|agent-[a-z0-9]+(?:-[a-z0-9]+)*)$")
 
 
 def load_campaign_spec(path: Path) -> dict:
@@ -69,6 +87,9 @@ def validate_campaign_spec(data: object) -> None:
     _require(data, "schema_version", str, "campaign spec")
     if data["schema_version"] != "1.0":
         raise CampaignSpecError("schema_version must be '1.0'")
+
+    build = _require(data, "build", dict, "campaign spec")
+    _validate_build(build)
 
     campaign = _require(data, "campaign", dict, "campaign spec")
     _reject_unknown(campaign, ALLOWED_CAMPAIGN, "campaign")
@@ -197,6 +218,44 @@ def validate_image_url(value: str, label: str) -> None:
         raise CampaignSpecError(f"{label} must include a host")
     if parsed.scheme == "file" and not parsed.path:
         raise CampaignSpecError(f"{label} file URL must include a path")
+
+
+def _validate_build(build: dict) -> None:
+    _reject_unknown(build, ALLOWED_BUILD, "build")
+    mode = _require(build, "mode", str, "build")
+    if mode not in BUILD_MODES:
+        raise CampaignSpecError("build.mode must be composition-preview, smoke-test, or release-build")
+    variant_policy = _require(build, "variant_policy", str, "build")
+    if variant_policy not in VARIANT_POLICIES:
+        raise CampaignSpecError("build.variant_policy must be single, all, or changed-surface-expanded")
+
+    representative_variant = build.get("representative_variant", "branded")
+    if not isinstance(representative_variant, str) or not REPRESENTATIVE_VARIANT_RE.match(representative_variant):
+        raise CampaignSpecError(
+            "build.representative_variant must be branded, outside-broker-customizable, or agent-<agent-id>"
+        )
+
+    changed_surfaces = build.get("changed_surfaces", [])
+    if not isinstance(changed_surfaces, list) or not all(isinstance(item, str) for item in changed_surfaces):
+        raise CampaignSpecError("build.changed_surfaces must be an array of strings")
+    unknown_surfaces = sorted(set(changed_surfaces) - CHANGED_SURFACES)
+    if unknown_surfaces:
+        raise CampaignSpecError("build.changed_surfaces has unknown value(s): " + ", ".join(unknown_surfaces))
+    if len(set(changed_surfaces)) != len(changed_surfaces):
+        raise CampaignSpecError("build.changed_surfaces must not contain duplicates")
+
+    if mode == "composition-preview" and variant_policy != "single":
+        raise CampaignSpecError("composition-preview requires build.variant_policy single")
+    if mode == "release-build" and variant_policy != "all":
+        raise CampaignSpecError("release-build requires build.variant_policy all")
+    if mode != "smoke-test" and changed_surfaces:
+        raise CampaignSpecError("build.changed_surfaces is only valid for smoke-test builds")
+    if variant_policy == "changed-surface-expanded" and mode != "smoke-test":
+        raise CampaignSpecError("changed-surface-expanded is only valid for smoke-test builds")
+    if variant_policy == "changed-surface-expanded" and not changed_surfaces:
+        raise CampaignSpecError("changed-surface-expanded requires at least one build.changed_surfaces value")
+    if variant_policy != "changed-surface-expanded" and changed_surfaces:
+        raise CampaignSpecError("build.changed_surfaces requires build.variant_policy changed-surface-expanded")
 
 
 def _validate_slot(slot: object, label: str) -> None:

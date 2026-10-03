@@ -4,9 +4,72 @@
   "title": "Rider Campaign Runtime Spec",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "campaign", "manifest", "modules", "static_blocks", "variants"],
+  "required": ["schema_version", "build", "campaign", "manifest", "modules", "static_blocks", "variants"],
   "properties": {
     "schema_version": { "const": "1.0" },
+    "build": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "variant_policy"],
+      "properties": {
+        "mode": { "enum": ["composition-preview", "smoke-test", "release-build"] },
+        "representative_variant": {
+          "type": "string",
+          "pattern": "^(branded|outside-broker-customizable|agent-[a-z0-9]+(?:-[a-z0-9]+)*)$",
+          "default": "branded"
+        },
+        "variant_policy": { "enum": ["single", "all", "changed-surface-expanded"] },
+        "changed_surfaces": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "agent-roster",
+              "agent-data",
+              "agent-footer-assets",
+              "footer-renderer",
+              "footer-data",
+              "scaffold-footer-structure"
+            ]
+          },
+          "default": []
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "mode": { "const": "composition-preview" } }, "required": ["mode"] },
+          "then": {
+            "properties": { "variant_policy": { "const": "single" } },
+            "not": { "required": ["changed_surfaces"], "properties": { "changed_surfaces": { "minItems": 1 } } }
+          }
+        },
+        {
+          "if": { "properties": { "mode": { "const": "release-build" } }, "required": ["mode"] },
+          "then": {
+            "properties": { "variant_policy": { "const": "all" } },
+            "not": { "required": ["changed_surfaces"], "properties": { "changed_surfaces": { "minItems": 1 } } }
+          }
+        },
+        {
+          "if": { "properties": { "variant_policy": { "const": "changed-surface-expanded" } }, "required": ["variant_policy"] },
+          "then": {
+            "properties": { "mode": { "const": "smoke-test" }, "changed_surfaces": { "minItems": 1 } },
+            "required": ["changed_surfaces"]
+          }
+        },
+        {
+          "if": {
+            "not": {
+              "properties": { "variant_policy": { "const": "changed-surface-expanded" } },
+              "required": ["variant_policy"]
+            }
+          },
+          "then": {
+            "not": { "required": ["changed_surfaces"], "properties": { "changed_surfaces": { "minItems": 1 } } }
+          }
+        }
+      ]
+    },
     "campaign": {
       "type": "object",
       "additionalProperties": false,

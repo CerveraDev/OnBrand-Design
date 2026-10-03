@@ -80,11 +80,19 @@ Use [templates/scaffold/rider-scaffolding.slot-map.json](templates/scaffold/ride
 
 Use [templates/scaffold/rider-scaffolding.module-metadata.json](templates/scaffold/rider-scaffolding.module-metadata.json) for module type, header inclusion, lock state, and the user-facing static-block summaries.
 
-Read [references/distribution-package.md](references/distribution-package.md) before final delivery. Every completed campaign must be a portable folder plus a matching ZIP containing all HTML variants, the final images used by those files, and an asset manifest. Never move or modify source images in the Rider corpus; copy them into the campaign package.
+Read [references/distribution-package.md](references/distribution-package.md) before final delivery. Every completed runtime build must be a portable folder plus a matching ZIP containing its rendered HTML variants, the final images used by those files, and an asset manifest. Never move or modify source images in the Rider corpus; copy them into the campaign package.
 
 ## Output Variants
 
-Unless the user explicitly narrows the deliverable, a completed Rider campaign should produce:
+Choose a runtime build mode explicitly:
+
+- Composition Preview: user-facing Design Proof for selecting/reviewing a representative version. It renders one variant.
+- Smoke Test: automated technical validation. It renders one representative variant unless the campaign explicitly requests all variants or declares a changed surface that requires full footer/agent validation.
+- Release Build: final internal output. It renders the full authorized internal matrix.
+
+The default representative variant is `branded`. A caller may choose `outside-broker-customizable` or `agent-<agent-id>` as `representative_variant` without enabling every variant.
+
+A Release Build produces:
 
 - Branded Rider version
 - Outside-broker customizable version

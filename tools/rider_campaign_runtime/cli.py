@@ -31,6 +31,8 @@ def main(argv=None):
 
     failed = [check for check in result.qa.checks if not check["passed"]]
     print(f"package: {result.package_dir}")
+    if result.qa.build:
+        print(f"build mode: {result.qa.build['mode']} ({result.qa.build['variant_scope']})")
     print(f"html variants: {len(result.html_files)}")
     print(f"asset manifest: {result.asset_manifest}")
     print(f"qa report: {result.qa_report}")

@@ -10,6 +10,8 @@ Run QA before delivery.
 - No invented phone numbers, email addresses, URLs, deadlines, pricing, or availability.
 - Images have appropriate alt text when possible.
 - Output variant names are clear.
+- Build mode, representative variant, effective variant scope, changed surfaces, and expansion reason are recorded in `campaign-metadata.json` and `qa-report.json`.
+- Composition Preview and ordinary Smoke Test builds render one representative variant; Release Build renders the full internal matrix.
 - Package contains both the campaign folder and matching ZIP.
 - Asset manifest accounts for every image reference in every delivered HTML file.
 
@@ -26,6 +28,7 @@ Run QA before delivery.
 
 ## Footer Variant Checks
 
+- Full footer/agent validation runs for Release Build and for Smoke Test builds with `variant_policy` set to `all` or `changed-surface-expanded`.
 - Branded version uses branded footer.
 - Outside-broker customizable version preserves Rider branding/legal content and exposes broker headshot, name, title, phone, and email fields.
 - Each in-house agent version uses an active JSON record from `data/agents/index.json`.

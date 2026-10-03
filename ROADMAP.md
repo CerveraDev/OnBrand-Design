@@ -11,7 +11,7 @@ The roadmap applies to the framework and is executed independently for each proj
 | 4 | Image-generation specialist | Drafted | Drafted | Provisional |
 | 5 | HTML assembly and footer variants | Rider implementation complete | Implemented and tested | Waiting on Phase 2 |
 | 6 | Distribution packaging and QA | Rider implementation complete | Implemented and smoke-tested | Planned |
-| 7 | Build modes | Approved spec, not implemented | Planned | Planned |
+| 7 | Build modes | Rider implementation complete | Implemented and tested | Planned |
 | 8 | Composition Preview | Approved spec, not implemented | Planned | Planned |
 | 9 | Grounded image generation | Approved spec, not implemented | Planned | Planned |
 | 10 | Copy allocation QA | Approved spec, not implemented | Planned | Planned |
@@ -48,6 +48,7 @@ The roadmap applies to the framework and is executed independently for each proj
 - Composition Preview, Smoke Test, and Release Build are distinct modes.
 - Representative-only builds record the selected variant and expansion policy.
 - Footer, roster, and scaffold-footer changes still expand validation to every affected variant.
+- The Rider runtime requires `build.mode` and records effective variant scope in metadata and QA.
 
 ## Composition Preview Gate
 
