@@ -1,0 +1,164 @@
+{
+  "schema_version": "1.0",
+  "campaign": {
+    "slug": "rider-wellness-smoke",
+    "title": "Rider Wellness Smoke Campaign",
+    "output_dir": "campaign-output/rider-wellness-smoke",
+    "subject": "Miami’s new epicenter of wellness",
+    "preview_text": "Soho House and Equinox are minutes from The Rider."
+  },
+  "manifest": {
+    "path": "tools/dropbox-manifest/manifest.json"
+  },
+  "modules": [
+    {
+      "id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
+      "variant": "default",
+      "slots": {
+        "headline": {
+          "kind": "safe_rich_text",
+          "value": "MIAMI’S NEW EPICENTER<br>OF WELLNESS."
+        },
+        "logo_link": {
+          "kind": "url",
+          "href": "https://theriderresidences.com"
+        },
+        "background_image": {
+          "kind": "image",
+          "src": "projects/the-rider/skills/onbrand-the-rider-email/examples/assets/rider-wellness-smoke/rider-wellness-hero.png",
+          "alt": "Woman seated on a charcoal-gray yoga mat with The Rider logo engraved into the mat",
+          "role": "hero"
+        }
+      }
+    },
+    {
+      "id": "BODY - DARK THEN LIGHT LAYOUT",
+      "variant": "default",
+      "slots": {
+        "section_label": {
+          "kind": "text",
+          "value": "Soho House and Equinox are minutes from The Rider — and your NY or California membership may travel with you."
+        },
+        "section_1_heading": {
+          "kind": "safe_rich_text",
+          "value": "Two of the names that define members’ health and social life are landing right here,"
+        },
+        "section_1_copy": {
+          "kind": "text",
+          "value": "Soho House, pouring capital into its Beach House, and a new dedicated health club nearby, and Equinox, with a new club coming to Edgewater minutes away."
+        },
+        "section_2_heading": {
+          "kind": "text",
+          "value": "For anyone relocating from New York or California,"
+        },
+        "section_2_copy": {
+          "kind": "text",
+          "value": "that’s the quiet luxury: the membership you already have works in Miami, too."
+        },
+        "section_3_heading": {
+          "kind": "text",
+          "value": "Same routine."
+        },
+        "section_3_copy": {
+          "kind": "text",
+          "value": "Same membership."
+        },
+        "section_4_heading": {
+          "kind": "text",
+          "value": "New city,"
+        },
+        "section_4_copy": {
+          "kind": "text",
+          "value": "with The Rider at the center of it."
+        },
+        "list_item_1": {
+          "kind": "safe_rich_text",
+          "value": "<em>Same routine.</em>"
+        },
+        "list_item_2": {
+          "kind": "safe_rich_text",
+          "value": "<em>Same membership.</em>"
+        },
+        "list_item_3": {
+          "kind": "safe_rich_text",
+          "value": "<em>New city, with The Rider at the center of it.</em>"
+        },
+        "amenity_statement": {
+          "kind": "safe_rich_text",
+          "value": "Same routine.<br>Same membership.<br>New city, with The Rider at the center of it."
+        },
+        "amenity_kicker": {
+          "kind": "text",
+          "value": "New city, with The Rider at the center of it."
+        },
+        "arrival_image": {
+          "kind": "image",
+          "asset_id": "id:31E0v0XEN2IAAAAAAAAAFw",
+          "alt": "The Rider lobby arrival and valet",
+          "role": "body-arrival-context"
+        },
+        "anchor_line": {
+          "kind": "safe_rich_text",
+          "value": "<em>New city,</em><br><em>with The Rider at the center of it.</em>"
+        },
+        "anchor_name": {
+          "kind": "text",
+          "value": "THE RIDER RESIDENCES."
+        },
+        "primary_cta": {
+          "kind": "text",
+          "value": "REQUEST MORE INFORMATION"
+        },
+        "gallery_image": {
+          "kind": "image",
+          "asset_id": "id:31E0v0XEN2IAAAAAAAAAIA",
+          "alt": "The Rider recovery spa",
+          "role": "body-wellness-recovery"
+        }
+      }
+    },
+    {
+      "id": "STATIC BLOCK 2",
+      "variant": "default",
+      "slots": {}
+    },
+    {
+      "id": "STATIC BLOCK 1",
+      "variant": "default",
+      "slots": {}
+    }
+  ],
+  "static_blocks": [
+    {
+      "id": "STATIC BLOCK 1",
+      "decision": "include"
+    },
+    {
+      "id": "STATIC BLOCK 2",
+      "decision": "include"
+    },
+    {
+      "id": "STATIC BLOCK 3",
+      "decision": "exclude"
+    },
+    {
+      "id": "STATIC BLOCK 4",
+      "decision": "exclude"
+    }
+  ],
+  "variants": {
+    "branded": true,
+    "outside_broker": true,
+    "agents": "all"
+  },
+  "outside_broker": {
+    "name": "[OUTSIDE BROKER NAME]",
+    "title": "[OUTSIDE BROKER TITLE]",
+    "phone": "[OUTSIDE BROKER PHONE]",
+    "email": "[OUTSIDE BROKER EMAIL]",
+    "social": "[OUTSIDE BROKER SOCIAL]"
+  },
+  "deployment": {
+    "asset_mode": "relative-review"
+  }
+}

@@ -49,7 +49,7 @@ ALLOWED_DEPLOYMENT = {"asset_mode", "hosted_asset_base_url"}
 ALLOWED_DOCUMENT = {"asset_id", "role"}
 SLOT_KINDS = {"text", "safe_rich_text", "url", "image"}
 URL_SCHEMES = {"http", "https", "mailto", "tel"}
-IMAGE_SCHEMES = {"http", "https"}
+IMAGE_SCHEMES = {"http", "https", "file"}
 
 
 def load_campaign_spec(path: Path) -> dict:
@@ -186,8 +186,17 @@ def validate_href(value: str, label: str) -> None:
 
 def validate_image_url(value: str, label: str) -> None:
     parsed = urlparse(value)
-    if parsed.scheme not in IMAGE_SCHEMES or not parsed.netloc:
-        raise CampaignSpecError(f"{label} must be an http(s) image URL")
+    if not parsed.scheme:
+        path = parsed.path
+        if not path or path.startswith("/") or ".." in path.split("/"):
+            raise CampaignSpecError(f"{label} must be an http(s), file, or safe relative image URL")
+        return
+    if parsed.scheme not in IMAGE_SCHEMES:
+        raise CampaignSpecError(f"{label} must be an http(s), file, or safe relative image URL")
+    if parsed.scheme in {"http", "https"} and not parsed.netloc:
+        raise CampaignSpecError(f"{label} must include a host")
+    if parsed.scheme == "file" and not parsed.path:
+        raise CampaignSpecError(f"{label} file URL must include a path")
 
 
 def _validate_slot(slot: object, label: str) -> None:

@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+import copy
 from dataclasses import dataclass
 import json
 import shutil
 from pathlib import Path
+from urllib.parse import urlparse
 
 from tools.asset_selection import load_manifest
 
@@ -56,6 +58,7 @@ def build_campaign(spec_path: Path) -> BuildResult:
 
 def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
     validate_campaign_spec(spec)
+    spec = _normalize_local_image_sources(spec, base_dir)
     scaffold = load_scaffold(SCAFFOLD_PATH, SLOT_MAP_PATH, MODULE_METADATA_PATH)
     available = catalog(scaffold)
     manifest_path = _resolve_path(base_dir, spec["manifest"]["path"])
@@ -243,6 +246,25 @@ def _resolve_path(base_dir: Path, value: str) -> Path:
     if candidate.exists():
         return candidate
     return (ROOT / path).resolve()
+
+
+def _normalize_local_image_sources(spec: dict, base_dir: Path) -> dict:
+    normalized = copy.deepcopy(spec)
+    for module in normalized.get("modules", []):
+        for slot in module.get("slots", {}).values():
+            if slot.get("kind") == "image" and "src" in slot:
+                slot["src"] = _normalize_local_image_source(base_dir, slot["src"])
+    outside_headshot = normalized.get("outside_broker", {}).get("headshot")
+    if isinstance(outside_headshot, dict) and "src" in outside_headshot:
+        outside_headshot["src"] = _normalize_local_image_source(base_dir, outside_headshot["src"])
+    return normalized
+
+
+def _normalize_local_image_source(base_dir: Path, value: str) -> str:
+    parsed = urlparse(value)
+    if parsed.scheme in {"http", "https", "file"}:
+        return value
+    return _resolve_path(base_dir, value).as_uri()
 
 
 def _validate_static_decisions(spec: dict, scaffold, requested_module_ids: list[str]) -> None:

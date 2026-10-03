@@ -28,7 +28,9 @@ If outside-broker data is not supplied, keep clear placeholders rather than inve
 
 Use one JSON record per in-house agent in `data/agents/`. The shared schema is `data/agents/agent.schema.json`, and `data/agents/index.json` defines active agents and deterministic output order.
 
-The active index contains six user-verified agents: Paulie Hankin, Angelica Cruz, Julian Oliveros, Omar Santana, Pablo Rodriguez, and Yessika Arevalo. Jake Lecce's former record is archived and must not produce a variant. Each active record references its approved Dropbox headshot through a canonical manifest `dropbox_id`; it does not store a direct URL.
+The active index contains seven user-verified agents: Paulie Hankin, Angelica Cruz, Diana Kosov, Julian Oliveros, Omar Santana, Pablo Rodriguez, and Yessika Arevalo. Jake Lecce's former record is archived and must not produce a variant. Each active record references its approved Dropbox headshot through a canonical manifest `dropbox_id`; it does not store a direct URL.
+
+Paulie Hankin has a user-confirmed factual correction: Paulie is a woman. Footer rendering does not need gender or pronouns, and agent records should not add inferred fields.
 
 Resolve each headshot through the validated manifest and require the `agent-footer` approval plus the `/20. People/In-house Agents/` path boundary. Assets under `/20. People/Diego Ojeda/` are likeness references for the separate image-generation workflow and must never qualify for footer rendering.
 

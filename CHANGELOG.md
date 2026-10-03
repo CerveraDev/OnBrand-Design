@@ -22,6 +22,8 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Rider module composer, typed slot renderer, branded/outside-broker/agent footer renderer, used-asset downloader, checksum manifest, blocking QA report, and ZIP generator.
 - Non-production Rider runtime smoke fixture and focused runtime regression tests.
 - Revised Rider scaffold source, legacy provenance fixture, module metadata catalog, and four nested static-block definitions.
+- Diana Kosov verified agent record and seven-agent Rider output order.
+- Separate Rider wellness smoke campaign fixture with generated 16:9 hero asset and approved recovery/arrival body imagery.
 
 ### Changed
 
@@ -34,6 +36,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Rider campaign JSON now requires an explicit decision for every static block.
 - Header and hero modules are classified separately; incompatible standalone-header/header-bearing-hero combinations are rejected.
 - Runtime output is built in a protected staging directory so failed asset downloads cannot replace the last valid package.
+- Rider runtime image slots accept safe local generated assets for reproducible fixtures, then package them as relative review assets.
 
 ### Validated
 
@@ -48,6 +51,10 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Paulie Hankin replaces Jake Lecce in the active roster; the revised smoke package passes 200 QA checks across eight variants with 15 images, one PDF, and a valid ZIP.
 - Dropbox synchronization found 206 assets, added Paulie Hankin's headshot, and preserved the curated arrays of all 205 existing records.
 - After Dropbox write authorization was renewed, Jake Lecce's retired headshot was deleted; synchronization removed only his asset and preserved all curated fields across the 205 surviving records.
+- Dropbox synchronization found Diana Kosov as the sole addition at `id:31E0v0XEN2IAAAAAAAABlg`; only her new record was curated for `agent-footer`, and all 205 surviving manual `category` and `approved_for` arrays were preserved.
+- Full unittest discovery passes 37 tests.
+- Existing Rider runtime smoke passes 9 variants after Diana's activation.
+- Rider wellness smoke passes 230 QA checks, produces 9 HTML variants, 17 packaged images, no external image references in relative-review mode, and a valid ZIP.
 
 ## [0.1.0] - 2026-09-30
 

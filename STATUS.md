@@ -4,8 +4,8 @@
 **Owner:** Cervera Real Estate, Inc.  
 **Author:** Felix Mendoza  
 **Version:** 0.1.0  
-**Updated:** 2026-10-02
-**Overall status:** Multi-project foundation complete; Rider campaign runtime implemented and smoke-tested
+**Updated:** 2026-10-03
+**Overall status:** Multi-project foundation complete; Rider campaign runtime implemented and pilot smoke-tested
 
 ## Completed
 
@@ -41,18 +41,20 @@
 - Registered Paulie Hankin's manifest headshot as an approved in-house-agent footer asset while preserving all 205 existing curated records.
 - Added Paulie Hankin as the verified Sales Director and restored the complete eight-variant smoke package with Paulie replacing Jake Lecce.
 - Deleted Jake Lecce's retired headshot from Dropbox and synchronized the manifest from 206 to 205 records without changing any surviving curated arrays.
+- Added Diana Kosov as a verified in-house sales agent after manifest synchronization discovered her approved headshot at `id:31E0v0XEN2IAAAAAAAABlg`.
+- Recorded the user-confirmed correction that Paulie Hankin is a woman; agent records continue to omit gender and pronouns because footer rendering does not require them.
+- Added and validated a separate Rider wellness smoke campaign with generated 16:9 hero art, approved wellness/arrival body assets, branded and outside-broker versions, seven in-house agent variants, a QA report, and a ZIP.
 
 ## Project Portfolio
 
 | Project | Status | Next requirement |
 |---|---|---|
-| The Rider | Runtime ready for pilot campaigns | Public manifest/cache configuration and human compatibility review |
+| The Rider | Runtime ready for pilot campaigns | Public manifest/cache configuration and broader client compatibility review |
 | Cassia | Scaffold | Cassia brand materials, asset catalog, HTML, and footers |
 
 ## In Progress
 
 - Configure The Rider's stable public manifest URL or validated local cache fallback.
-- Run the first user-approved campaign through the Rider runtime.
 - Perform representative visual and email-client compatibility review beyond structural QA.
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 

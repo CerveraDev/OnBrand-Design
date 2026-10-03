@@ -90,6 +90,109 @@
     ]
   },
   "BODY - DARK THEN LIGHT LAYOUT": {
+    "section_label": [
+      {
+        "operation": "replace_text",
+        "anchor": "BIG MOVES IN THE AREA"
+      }
+    ],
+    "section_1_heading": [
+      {
+        "operation": "replace_text",
+        "anchor": "AMAZON"
+      }
+    ],
+    "section_1_copy": [
+      {
+        "operation": "replace_text",
+        "anchor": "75,000 SQFT of offices + Whole Foods, one block away."
+      }
+    ],
+    "section_2_heading": [
+      {
+        "operation": "replace_text",
+        "anchor": "KEN GRIFFIN"
+      }
+    ],
+    "section_2_copy": [
+      {
+        "operation": "replace_text",
+        "anchor": "Paid $180M for 545Wyn, right up the street."
+      }
+    ],
+    "section_3_heading": [
+      {
+        "operation": "replace_text",
+        "anchor": "SOHO HOUSE, SONY MUSIC,<br>SPOTIFY, LIVE NATION:"
+      }
+    ],
+    "section_3_copy": [
+      {
+        "operation": "replace_text",
+        "anchor": "The culture moved first."
+      }
+    ],
+    "section_4_heading": [
+      {
+        "operation": "replace_text",
+        "anchor": "FOUNDERS FUND, RIPPLE,<br>MAX SAPPHIRE, GEMINI:"
+      }
+    ],
+    "section_4_copy": [
+      {
+        "operation": "replace_text",
+        "anchor": "Miami's FinTech row, blocks away."
+      }
+    ],
+    "list_item_1": [
+      {
+        "operation": "replace_text",
+        "anchor": "<em>1</em><em>5 million visitors a year.</em>"
+      }
+    ],
+    "list_item_2": [
+      {
+        "operation": "replace_text",
+        "anchor": "<em>$590 million spent.</em>"
+      }
+    ],
+    "list_item_3": [
+      {
+        "operation": "replace_text",
+        "anchor": "<em>One street connecting it all.</em>"
+      }
+    ],
+    "amenity_statement": [
+      {
+        "operation": "replace_text",
+        "anchor": "FROM OUTDOOR INFRARED SAUNAS AND COLD PLUNGE POOLS TO MOTORCYCLE RENTALS AND D.J. LISTENING ROOMS."
+      }
+    ],
+    "amenity_kicker": [
+      {
+        "operation": "replace_text",
+        "anchor": "THAT IS DIFFERENT."
+      }
+    ],
+    "arrival_image": [
+      {
+        "operation": "replace_image_src",
+        "anchor": "https://media.beefree.cloud/pub/bfra/9dgc1zff/au4/qxf/nnu/37e1ce0b-0cad-4712-8c00-e57377eef994.jpg",
+        "required_approval": "body"
+      }
+    ],
+    "anchor_line": [
+      {
+        "operation": "replace_text",
+        "anchor": "<em>AND AT 94 NE 29TH STREET,</em><br><em>RIGHT AT THE CENTER OF IT,</em>"
+      }
+    ],
+    "anchor_name": [
+      {
+        "operation": "replace_text",
+        "anchor": "THE RIDER RESIDENCES."
+      }
+    ],
     "primary_cta": [
       {
         "operation": "replace_text_in_context",

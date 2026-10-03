@@ -109,6 +109,7 @@ class RiderAgentDataTests(unittest.TestCase):
     EXPECTED = {
         "paulie-hankin": ("Paulie Hankin", "Sales Director", "+1 786 385 4450", "Paulie@TheRiderResidences.com", "id:31E0v0XEN2IAAAAAAAABlQ"),
         "angelica-cruz": ("Angelica Cruz", "In-house Sales Agent", "+1 786 329 1549", "Angelica@TheRiderResidences.com", "id:31E0v0XEN2IAAAAAAAABkQ"),
+        "diana-kosov": ("Diana Kosov", "In-house Sales Agent", "+1 917 662 8265", "DianaK@TheRiderResidences.com", "id:31E0v0XEN2IAAAAAAAABlg"),
         "julian-oliveros": ("Julian Oliveros", "In-house Sales Agent", "+1 239 384 0836", "Julian@TheRiderResidences.com", "id:31E0v0XEN2IAAAAAAAABkg"),
         "omar-santana": ("Omar Santana", "In-house Sales Agent", "+1 305 797 6337", "Omar@TheRiderResidences.com", "id:31E0v0XEN2IAAAAAAAABlA"),
         "pablo-rodriguez": ("Pablo Rodriguez", "In-house Sales Agent", "+1 561 980 6876", "Pablo@TheRiderResidences.com", "id:31E0v0XEN2IAAAAAAAABkA"),

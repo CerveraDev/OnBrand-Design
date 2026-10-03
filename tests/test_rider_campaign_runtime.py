@@ -331,6 +331,68 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
             self.assertNotIn("START - ", html)
             self.assertIn("../images/", html)
 
+    def test_relative_local_image_slot_is_packaged_for_review(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            (tmp_path / "assets").mkdir()
+            asset = tmp_path / "assets" / "local-hero.png"
+            asset.write_bytes(
+                b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01"
+                b"\x08\x06\x00\x00\x00\x1f\x15\xc4\x89\x00\x00\x00\nIDATx\x9cc\x00\x01"
+                b"\x00\x00\x05\x00\x01\r\n-\xb4\x00\x00\x00\x00IEND\xaeB`\x82"
+            )
+            spec = minimal_spec()
+            spec["campaign"]["output_dir"] = str(tmp_path / "campaign-output")
+            spec["manifest"]["path"] = str(write_manifest(tmp_path, asset))
+            spec["modules"][0]["slots"] = {
+                "background_image": {
+                    "kind": "image",
+                    "src": "assets/local-hero.png",
+                    "alt": "Local generated hero",
+                    "role": "hero",
+                }
+            }
+            with patch("tools.rider_campaign_runtime.assets._read_asset") as read_asset:
+                read_asset.side_effect = lambda source: (asset.read_bytes(), Path(source).name or "asset.png")
+                result = build_campaign_from_spec(spec, base_dir=tmp_path)
+            html = next(iter(result.html_files.values())).read_text()
+            self.assertTrue(result.qa.passed)
+            self.assertIn("../images/local-hero-", html)
+            self.assertNotIn(str(tmp_path), html)
+
+    def test_wellness_smoke_fixture_schema_and_static_choices(self):
+        fixture = ROOT / "projects/the-rider/skills/onbrand-the-rider-email/examples/rider-wellness-smoke.runtime.json"
+        spec = json.loads(fixture.read_text(encoding="utf-8"))
+        validate_campaign_spec(spec)
+        self.assertEqual(spec["campaign"]["slug"], "rider-wellness-smoke")
+        self.assertEqual(
+            [module["id"] for module in spec["modules"]],
+            [
+                "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
+                "BODY - DARK THEN LIGHT LAYOUT",
+                "STATIC BLOCK 2",
+                "STATIC BLOCK 1",
+            ],
+        )
+        self.assertEqual(
+            {item["id"]: item["decision"] for item in spec["static_blocks"]},
+            {
+                "STATIC BLOCK 1": "include",
+                "STATIC BLOCK 2": "include",
+                "STATIC BLOCK 3": "exclude",
+                "STATIC BLOCK 4": "exclude",
+            },
+        )
+        self.assertEqual(spec["variants"], {"branded": True, "outside_broker": True, "agents": "all"})
+        self.assertEqual(
+            spec["modules"][1]["slots"]["gallery_image"]["asset_id"],
+            "id:31E0v0XEN2IAAAAAAAAAIA",
+        )
+        self.assertEqual(
+            spec["modules"][1]["slots"]["arrival_image"]["asset_id"],
+            "id:31E0v0XEN2IAAAAAAAAAFw",
+        )
+
 
 def minimal_spec():
     return {
@@ -359,6 +421,7 @@ def write_manifest(tmp_path, asset_path):
     agent_ids = {
         "paulie-hankin-headshot.jpeg": "id:31E0v0XEN2IAAAAAAAABlQ",
         "angelica-cruz-headshot.jpeg": "id:31E0v0XEN2IAAAAAAAABkQ",
+        "diana-kosov-headshot.jpeg": "id:31E0v0XEN2IAAAAAAAABlg",
         "julian-oliveros-headshot.jpeg": "id:31E0v0XEN2IAAAAAAAABkg",
         "omar-santana-headshot.jpeg": "id:31E0v0XEN2IAAAAAAAABlA",
         "pablo-rodriguez-headshot.jpeg": "id:31E0v0XEN2IAAAAAAAABkA",

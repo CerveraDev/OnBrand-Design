@@ -30,4 +30,4 @@ Deliver a complete, traceable campaign folder and ZIP that the user's team can d
 
 ## Rider Implementation
 
-The Rider runtime downloads only images referenced by rendered variants, gives each file a deterministic checksum-based name, rewrites review HTML to portable relative paths, records source identity and variant usage in `asset-manifest.json`, writes `qa-report.json`, and creates the ZIP only when every blocking check passes. The non-production smoke fixture generates eight variants and uses the ignored `campaign-output/` directory.
+The Rider runtime downloads only images referenced by rendered variants, gives each file a deterministic checksum-based name, rewrites review HTML to portable relative paths, records source identity and variant usage in `asset-manifest.json`, writes `qa-report.json`, and creates the ZIP only when every blocking check passes. Current non-production smoke fixtures generate nine variants after Diana Kosov's activation and use the ignored `campaign-output/` directory.
