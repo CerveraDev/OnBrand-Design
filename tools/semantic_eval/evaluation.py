@@ -18,9 +18,10 @@ def evaluate_calibration(
     dataset: dict[str, Any],
     receipt: dict[str, Any],
     lexical_baseline: dict[str, Any],
-    *,
-    high_confidence: float = 0.8,
+    policy: dict[str, Any],
 ) -> dict[str, Any]:
+    _validate_policy(policy)
+    high_confidence = policy["high_confidence"]
     cases = [case for case in dataset.get("cases", []) if case.get("split") == "calibration"]
     expected_ids = {case["id"] for case in cases}
     records = receipt.get("records")
@@ -41,7 +42,7 @@ def evaluate_calibration(
         record = by_id[case["id"]]
         if record.get("status") != "completed" or record.get("model") != "jev-1.13.0":
             raise EvaluationError(f"{case['id']} is not a completed pinned-model result")
-        result = _evaluate_case(case, record, high_confidence)
+        result = _evaluate_case(case, record, policy)
         results.append(result)
 
     label_matches = sum(result["label_matched"] for result in results)
@@ -68,14 +69,9 @@ def evaluate_calibration(
         "split": "calibration",
         "acceptance_evidence": False,
         "production_effect": "none",
-        "policy": {
-            "name": "jev-calibration-candidate-v1",
-            "model": "jev-1.13.0",
-            "high_confidence": high_confidence,
-            "low_confidence_action": "review",
-            "contradiction_action": "review",
-            "approved_reuse_precedence": True,
-        },
+        "policy_id": policy["policy_id"],
+        "policy_sha256": document_sha256(policy),
+        "policy": policy,
         "case_count": len(results),
         "metrics": {
             "semantic_label_agreement": _ratio(label_matches, len(results)),
@@ -104,7 +100,8 @@ def evaluate_calibration(
     }
 
 
-def _evaluate_case(case: dict[str, Any], record: dict[str, Any], threshold: float) -> dict[str, Any]:
+def _evaluate_case(case: dict[str, Any], record: dict[str, Any], policy: dict[str, Any]) -> dict[str, Any]:
+    threshold = policy["high_confidence"]
     answers = record["answers"]
     if case["task"] == "copy-similarity":
         primary = answers["copy_relation"]
@@ -112,20 +109,20 @@ def _evaluate_case(case: dict[str, Any], record: dict[str, Any], threshold: floa
         expected_label = case["expected"]["semantic_relation"]
         contradiction = _copy_contradiction(predicted_label, answers)
         if primary["confidence"] < threshold or contradiction:
-            predicted_action = "review"
+            predicted_action = policy["low_confidence_action"] if primary["confidence"] < threshold else policy["contradiction_action"]
         elif predicted_label == "equivalent":
-            predicted_action = "allow" if case["state"].get("approved_reuse") else "block"
+            predicted_action = "allow" if policy["approved_reuse_precedence"] and case["state"].get("approved_reuse") else policy["copy_actions"][predicted_label]
         else:
-            predicted_action = "allow"
+            predicted_action = policy["copy_actions"][predicted_label]
     else:
         primary = answers["claim_support_relation"]
         predicted_label = primary["choice"]
         expected_label = case["expected"]["support"]
         contradiction = _claim_contradiction(predicted_label, answers)
         if primary["confidence"] < threshold or contradiction:
-            predicted_action = "review"
+            predicted_action = policy["low_confidence_action"] if primary["confidence"] < threshold else policy["contradiction_action"]
         else:
-            predicted_action = {"supported": "allow", "unsupported": "block", "insufficient": "review"}[predicted_label]
+            predicted_action = policy["claim_actions"][predicted_label]
     expected_action = case["expected"]["action"]
     reasons = []
     if primary["confidence"] < threshold:
@@ -163,6 +160,39 @@ def _claim_contradiction(label: str, answers: dict[str, Any]) -> bool:
     if label == "unsupported":
         return not (certainty or scope)
     return False
+
+
+def _validate_policy(policy: object) -> None:
+    required = {
+        "schema_version",
+        "policy_id",
+        "status",
+        "model",
+        "question_set_id",
+        "high_confidence",
+        "low_confidence_action",
+        "contradiction_action",
+        "approved_reuse_precedence",
+        "copy_actions",
+        "claim_actions",
+        "production_effect",
+    }
+    if not isinstance(policy, dict) or set(policy) != required:
+        raise EvaluationError("Candidate policy keys are invalid")
+    if policy["status"] != "holdout-locked" or policy["production_effect"] != "none":
+        raise EvaluationError("Candidate policy must be holdout-locked and non-production")
+    if policy["model"] != "jev-1.13.0" or policy["question_set_id"] != "onbrand-jev-semantic-v1":
+        raise EvaluationError("Candidate policy model or question set drifted")
+    if not 0 < policy["high_confidence"] <= 1:
+        raise EvaluationError("high_confidence must be within (0, 1]")
+    if policy["low_confidence_action"] != "review" or policy["contradiction_action"] != "review":
+        raise EvaluationError("Uncertain candidate decisions must route to review")
+    if policy["approved_reuse_precedence"] is not True:
+        raise EvaluationError("Approved reuse precedence must remain enabled")
+    if policy["copy_actions"] != {"equivalent": "block", "related-distinct": "allow", "distinct": "allow"}:
+        raise EvaluationError("Copy action mappings are invalid")
+    if policy["claim_actions"] != {"supported": "allow", "unsupported": "block", "insufficient": "review"}:
+        raise EvaluationError("Claim action mappings are invalid")
 
 
 def _task_metrics(results: list[dict[str, Any]]) -> dict[str, Any]:

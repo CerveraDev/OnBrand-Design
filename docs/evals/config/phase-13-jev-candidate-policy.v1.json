@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "policy_id": "onbrand-jev-candidate-v1",
+  "status": "holdout-locked",
+  "model": "jev-1.13.0",
+  "question_set_id": "onbrand-jev-semantic-v1",
+  "high_confidence": 0.8,
+  "low_confidence_action": "review",
+  "contradiction_action": "review",
+  "approved_reuse_precedence": true,
+  "copy_actions": {
+    "equivalent": "block",
+    "related-distinct": "allow",
+    "distinct": "allow"
+  },
+  "claim_actions": {
+    "supported": "allow",
+    "unsupported": "block",
+    "insufficient": "review"
+  },
+  "production_effect": "none"
+}

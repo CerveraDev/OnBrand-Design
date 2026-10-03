@@ -51,3 +51,5 @@ Before any production effect:
 - Live receipt SHA-256: `032b20c0e77ea9c72cdfcb091c49e0f8095686ccbb8d747ef68b711d673f3c4a`
 
 The receipt stores typed answers, usage, model ID, and hashes. It contains no API key and no raw duplicated campaign state.
+
+The candidate interpretation is locked separately in `docs/evals/config/phase-13-jev-candidate-policy.v1.json` with canonical SHA-256 `bbb7fceaaddc15ed47fee0d177046aa397ceb46dcc8fe5556cce3283e17990fb` before holdout generation or execution.

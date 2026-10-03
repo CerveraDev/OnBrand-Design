@@ -45,6 +45,7 @@ QUESTION_SET_SCHEMA_PATH = ROOT / "tools/semantic_eval/question_set.schema.json"
 CALIBRATION_BATCH_PATH = ROOT / "docs/evals/requests/phase-13-jev-calibration.v1.json"
 LIVE_RECEIPT_PATH = ROOT / "docs/evals/receipts/phase-13-jev-calibration.live.v1.json"
 FROZEN_BASELINE_PATH = ROOT / "docs/evals/phase-13-lexical-baseline.frozen.v1.json"
+JEV_POLICY_PATH = ROOT / "docs/evals/config/phase-13-jev-candidate-policy.v1.json"
 
 
 class SemanticEvaluationDatasetTests(unittest.TestCase):
@@ -317,7 +318,8 @@ class SemanticEvaluationDatasetTests(unittest.TestCase):
         frozen = json.loads(FROZEN_DATASET_PATH.read_text(encoding="utf-8"))
         receipt = json.loads(LIVE_RECEIPT_PATH.read_text(encoding="utf-8"))
         baseline = json.loads(FROZEN_BASELINE_PATH.read_text(encoding="utf-8"))
-        report = evaluate_calibration(frozen, receipt, baseline)
+        policy = json.loads(JEV_POLICY_PATH.read_text(encoding="utf-8"))
+        report = evaluate_calibration(frozen, receipt, baseline, policy)
         self.assertFalse(report["acceptance_evidence"])
         self.assertEqual(report["production_effect"], "none")
         self.assertEqual(report["case_count"], 17)
@@ -337,9 +339,22 @@ class SemanticEvaluationDatasetTests(unittest.TestCase):
         frozen = json.loads(FROZEN_DATASET_PATH.read_text(encoding="utf-8"))
         receipt = json.loads(LIVE_RECEIPT_PATH.read_text(encoding="utf-8"))
         baseline = json.loads(FROZEN_BASELINE_PATH.read_text(encoding="utf-8"))
+        policy = json.loads(JEV_POLICY_PATH.read_text(encoding="utf-8"))
         receipt["split"] = "holdout"
         with self.assertRaisesRegex(EvaluationError, "calibration-only"):
-            evaluate_calibration(frozen, receipt, baseline)
+            evaluate_calibration(frozen, receipt, baseline, policy)
+
+    def test_candidate_policy_is_locked_and_rejects_threshold_drift(self):
+        frozen = json.loads(FROZEN_DATASET_PATH.read_text(encoding="utf-8"))
+        receipt = json.loads(LIVE_RECEIPT_PATH.read_text(encoding="utf-8"))
+        baseline = json.loads(FROZEN_BASELINE_PATH.read_text(encoding="utf-8"))
+        policy = json.loads(JEV_POLICY_PATH.read_text(encoding="utf-8"))
+        self.assertEqual(policy["status"], "holdout-locked")
+        self.assertEqual(policy["high_confidence"], 0.8)
+        drifted = copy.deepcopy(policy)
+        drifted["copy_actions"]["related-distinct"] = "review"
+        with self.assertRaisesRegex(EvaluationError, "Copy action mappings"):
+            evaluate_calibration(frozen, receipt, baseline, drifted)
 
 
 def complete_review(dataset, reviewer_id):

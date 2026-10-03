@@ -71,7 +71,7 @@
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 - Obtain live manual invocation evidence on permitted authenticated hosts; deterministic parity does not establish model behavior.
 - Keep [LIMITATIONS.md](LIMITATIONS.md) current when audits, specs, QA runs, or implementation work discover new constraints.
-- Lock the non-production calibration policy and holdout procedure before requesting separate approval to generate and run the nine untouched holdout cases.
+- Run the separately approved nine-case holdout using the now-locked non-production policy and procedure, without changing thresholds or mappings.
 
 ## Waiting On Project Inputs
 
