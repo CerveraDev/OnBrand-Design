@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CerveraDev/OnBrand-Design/tools/semantic_eval/receipt.schema.json",
+  "title": "OnBrand Jev pilot receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "provider", "endpoint", "question_set_id", "question_set_sha256", "batch_sha256", "dataset_id", "split", "executed_at", "status", "production_effect", "records"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "provider": {"const": "typesafe"},
+    "endpoint": {"const": "https://api.typesafe.ai/v1/systemone"},
+    "question_set_id": {"type": "string", "minLength": 1},
+    "question_set_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "batch_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "dataset_id": {"type": "string", "minLength": 1},
+    "split": {"enum": ["calibration", "holdout"]},
+    "executed_at": {"type": "string", "minLength": 1},
+    "status": {"enum": ["disabled", "completed", "partial", "failed"]},
+    "production_effect": {"const": "none"},
+    "records": {"type": "array", "minItems": 1, "items": {"type": "object"}}
+  }
+}

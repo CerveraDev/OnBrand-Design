@@ -10,6 +10,7 @@ OnBrand Design keeps credentials outside repository files, project packages, cam
 | GitHub Actions | Repository or organization Actions secrets; use the automatic `GITHUB_TOKEN` when sufficient | Workflow YAML values or committed shell scripts |
 | Dropbox manifest refresh | `tools/dropbox-manifest/.env` on an authorized maintainer's machine | Git, project downloads, campaign packages, or `manifest.json` |
 | Distributed skill asset access | Public manifest and approved public asset URLs | Dropbox app secret, refresh token, or maintainer access token |
+| Optional TypeSafe Jev calibration | `tools/semantic_eval/.env` on an owner-approved evaluation machine | Git, project packages, campaign output, provider receipts, or skill instructions |
 
 ## GitHub Authentication
 
@@ -88,3 +89,26 @@ Only authorized maintainers need these values. Normal campaign generation should
 Rotate a credential when a maintainer leaves, permissions change, a token expires, or exposure is suspected. If a secret enters Git history, revoke it immediately before attempting history cleanup. Deleting the visible file or commit does not make the credential safe again.
 
 Review ignored files before each public release and verify that only `.env.example` files with empty values are tracked.
+
+## TypeSafe Jev Calibration
+
+Jev remains an optional evaluation provider and is disabled by default. Copy the tracked empty example only after owner approval for a live calibration:
+
+```text
+tools/semantic_eval/.env
+```
+
+```dotenv
+ONBRAND_JEV_ENABLED=false
+TYPESAFE_API_KEY=
+```
+
+A live request requires all three conditions:
+
+1. Set `ONBRAND_JEV_ENABLED=true` locally.
+2. Supply `TYPESAFE_API_KEY` locally.
+3. Pass the explicit `--execute-live` CLI flag.
+
+The adapter sends only the state fields present in the committed calibration batch. It must not send expected labels, reviewer records, adjudication evidence, agent contact data, credentials, or complete campaign packages. Receipts store hashes, typed answers, model ID, usage, and failures without storing the API key.
+
+Do not enable Jev for production campaign builds. Phase 13 calibration has no production effect, does not replace deterministic QA, and requires a separate owner-approved data-handling decision before any live call.

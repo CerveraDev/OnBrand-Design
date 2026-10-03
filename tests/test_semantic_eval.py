@@ -30,6 +30,7 @@ from tools.semantic_eval.jev_pilot import (
     question_set_sha256,
     validate_question_set,
 )
+from tools.semantic_eval.provider import ProviderError, run_provider_batch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -40,6 +41,7 @@ ADJUDICATION_PATH = ROOT / "docs/evals/reviews/phase-13-adjudication.v1.json"
 FROZEN_DATASET_PATH = ROOT / "docs/evals/data/phase-13-rider-copy-pairs.v1.frozen.json"
 QUESTION_SET_PATH = ROOT / "docs/evals/config/phase-13-jev-questions.v1.json"
 QUESTION_SET_SCHEMA_PATH = ROOT / "tools/semantic_eval/question_set.schema.json"
+CALIBRATION_BATCH_PATH = ROOT / "docs/evals/requests/phase-13-jev-calibration.v1.json"
 
 
 class SemanticEvaluationDatasetTests(unittest.TestCase):
@@ -215,6 +217,98 @@ class SemanticEvaluationDatasetTests(unittest.TestCase):
         question_set = json.loads(QUESTION_SET_PATH.read_text(encoding="utf-8"))
         with self.assertRaisesRegex(QuestionSetError, "adjudicated frozen dataset"):
             build_request_batch(self.dataset, question_set)
+
+    def test_disabled_provider_writes_skipped_receipt_without_transport(self):
+        batch = json.loads(CALIBRATION_BATCH_PATH.read_text(encoding="utf-8"))
+        question_set = json.loads(QUESTION_SET_PATH.read_text(encoding="utf-8"))
+        calls = []
+        receipt = run_provider_batch(
+            batch,
+            question_set,
+            enabled=False,
+            live_authorized=False,
+            api_key=None,
+            transport=lambda *args: calls.append(args),
+            executed_at="2026-10-03T00:00:00+00:00",
+        )
+        self.assertEqual(receipt["status"], "disabled")
+        self.assertEqual(calls, [])
+        self.assertEqual(len(receipt["records"]), 17)
+        self.assertTrue(all(item["status"] == "skipped" for item in receipt["records"]))
+        self.assertEqual(receipt["production_effect"], "none")
+
+    def test_enabled_provider_requires_authorization_and_key(self):
+        batch = json.loads(CALIBRATION_BATCH_PATH.read_text(encoding="utf-8"))
+        question_set = json.loads(QUESTION_SET_PATH.read_text(encoding="utf-8"))
+        kwargs = {"transport": lambda *args: {}, "executed_at": "2026-10-03T00:00:00+00:00"}
+        with self.assertRaisesRegex(ProviderError, "explicit authorization"):
+            run_provider_batch(batch, question_set, enabled=True, live_authorized=False, api_key="secret", **kwargs)
+        with self.assertRaisesRegex(ProviderError, "TYPESAFE_API_KEY"):
+            run_provider_batch(batch, question_set, enabled=True, live_authorized=True, api_key=None, **kwargs)
+
+    def test_fake_provider_responses_are_typed_and_receipted(self):
+        batch = json.loads(CALIBRATION_BATCH_PATH.read_text(encoding="utf-8"))
+        question_set = json.loads(QUESTION_SET_PATH.read_text(encoding="utf-8"))
+        calls = []
+
+        def transport(endpoint, headers, request, timeout):
+            calls.append((endpoint, headers["Authorization"], timeout))
+            answers = {}
+            for question_id, question in request["questions"].items():
+                if question["type"] == "choice":
+                    options = list(question["criteria"])
+                    probabilities = {option: 0.0 for option in options}
+                    probabilities[options[0]] = 1.0
+                    answers[question_id] = {"type": "choice", "choice": options[0], "confidence": 1.0, "probabilities": probabilities}
+                else:
+                    answers[question_id] = {"type": "noul", "noul": 0.0}
+            return {"model": request["model"], "answers": answers, "usage": {"input_tokens": 10, "output_tokens": 2}}
+
+        receipt = run_provider_batch(
+            batch,
+            question_set,
+            enabled=True,
+            live_authorized=True,
+            api_key="test-only",
+            transport=transport,
+            executed_at="2026-10-03T00:00:00+00:00",
+        )
+        self.assertEqual(receipt["status"], "completed")
+        self.assertEqual(len(calls), 17)
+        self.assertTrue(all(item["status"] == "completed" for item in receipt["records"]))
+        self.assertNotIn("test-only", json.dumps(receipt))
+
+    def test_provider_rejects_model_answer_and_batch_drift(self):
+        batch = json.loads(CALIBRATION_BATCH_PATH.read_text(encoding="utf-8"))
+        question_set = json.loads(QUESTION_SET_PATH.read_text(encoding="utf-8"))
+
+        def wrong_model(endpoint, headers, request, timeout):
+            return {"model": "jev-other", "answers": {}, "usage": {"input_tokens": 0, "output_tokens": 0}}
+
+        with self.assertRaisesRegex(ProviderError, "model drift"):
+            run_provider_batch(
+                {**batch, "records": batch["records"][:1], "record_count": 1},
+                question_set,
+                enabled=True,
+                live_authorized=True,
+                api_key="test-only",
+                transport=wrong_model,
+                executed_at="2026-10-03T00:00:00+00:00",
+                fail_fast=True,
+            )
+
+        drifted = copy.deepcopy(batch)
+        drifted["records"][0]["request"]["questions"] = {}
+        with self.assertRaisesRegex(ProviderError, "drifted from the locked question set"):
+            run_provider_batch(
+                drifted,
+                question_set,
+                enabled=False,
+                live_authorized=False,
+                api_key=None,
+                transport=lambda *args: {},
+                executed_at="2026-10-03T00:00:00+00:00",
+            )
 
 
 def complete_review(dataset, reviewer_id):

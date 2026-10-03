@@ -1,0 +1,185 @@
+{
+  "schema_version": "1.0",
+  "provider": "typesafe",
+  "endpoint": "https://api.typesafe.ai/v1/systemone",
+  "question_set_id": "onbrand-jev-semantic-v1",
+  "question_set_sha256": "4cfec4204f842666c4f9fa35167015503129e866864c2efff53f165f6e761122",
+  "batch_sha256": "7613c14938fd7e7d6a09e0c32cfec93bc876969ca73d0231705845225a89c2fe",
+  "dataset_id": "rider-semantic-decision-pilot-v1",
+  "split": "calibration",
+  "executed_at": "2026-10-03T23:20:54.350263+00:00",
+  "status": "disabled",
+  "production_effect": "none",
+  "records": [
+    {
+      "case_id": "sim-cal-001",
+      "task": "copy-similarity",
+      "request_sha256": "58c03daa6fd036e2b3387398c6f6768c382446633cf9015e991b2030bf26b640",
+      "status": "skipped",
+      "error": {
+        "type": "disabled",
+        "message": "Jev provider is disabled"
+      }
+    },
+    {
+      "case_id": "sim-cal-002",
+      "task": "copy-similarity",
+      "request_sha256": "da54cf00c70a1147c42bdeb01d2e27cdee365b4e1bfe39d416095dcddb318180",
+      "status": "skipped",
+      "error": {
+        "type": "disabled",
+        "message": "Jev provider is disabled"
+      }
+    },
+    {
+      "case_id": "sim-cal-003",
+      "task": "copy-similarity",
+      "request_sha256": "0a7789dcf44267f1ce605d0bda55ba31d9db7d3d81518501e797397c0b1d4c64",
+      "status": "skipped",
+      "error": {
+        "type": "disabled",
+        "message": "Jev provider is disabled"
+      }
+    },
+    {
+      "case_id": "sim-cal-004",
+      "task": "copy-similarity",
+      "request_sha256": "e3bc61da157872152bece069b8417f392af9652209762a8d2c512df1aa116313",
+      "status": "skipped",
+      "error": {
+        "type": "disabled",
+        "message": "Jev provider is disabled"
+      }
+    },
+    {
+      "case_id": "sim-cal-005",
+      "task": "copy-similarity",
+      "request_sha256": "57526d92032ae9fbb22ea769a31936e6caf8d2ef568e5dccf9afb5cc7d2d9916",
+      "status": "skipped",
+      "error": {
+        "type": "disabled",
+        "message": "Jev provider is disabled"
+      }
+    },
+    {
+      "case_id": "sim-cal-006",
+      "task": "copy-similarity",
+      "request_sha256": "5a5012e143fdfeca23c0257641996ffe7efc1f8f95f1f5dd71ef3c6a95062fb7",
+      "status": "skipped",
+      "error": {
+        "type": "disabled",
+        "message": "Jev provider is disabled"
+      }
+    },
+    {
+      "case_id": "sim-cal-007",
+      "task": "copy-similarity",
+      "request_sha256": "b3481a0e53bb726b9bf7f4f54ac1000aadec5d95598adb84f5447e2063b9dcc5",
+      "status": "skipped",
+      "error": {
+        "type": "disabled",
+        "message": "Jev provider is disabled"
+      }
+    },
+    {
+      "case_id": "sim-cal-008",
+      "task": "copy-similarity",
+      "request_sha256": "aae0624767d09d7012c34d3ca451c14eb647f1ec4f164029b375d1332bf3a924",
+      "status": "skipped",
+      "error": {
+        "type": "disabled",
+        "message": "Jev provider is disabled"
+      }
+    },
+    {
+      "case_id": "sim-cal-009",
+      "task": "copy-similarity",
+      "request_sha256": "b7a56e0ace41f2956fd8edd645f925b17b2931f26aa4d54696c812e2373b4f7b",
+      "status": "skipped",
+      "error": {
+        "type": "disabled",
+        "message": "Jev provider is disabled"
+      }
+    },
+    {
+      "case_id": "sim-cal-010",
+      "task": "copy-similarity",
+      "request_sha256": "8062ee7e58e596eb3fa6f30de774b410c9ad42e4f5c735d69bc152d7b26f8199",
+      "status": "skipped",
+      "error": {
+        "type": "disabled",
+        "message": "Jev provider is disabled"
+      }
+    },
+    {
+      "case_id": "sim-cal-011",
+      "task": "copy-similarity",
+      "request_sha256": "b9244f04c361b9bc8a95782c1f327881d96b0b01dcab09143530a3156b41dee1",
+      "status": "skipped",
+      "error": {
+        "type": "disabled",
+        "message": "Jev provider is disabled"
+      }
+    },
+    {
+      "case_id": "sim-cal-012",
+      "task": "copy-similarity",
+      "request_sha256": "08c096126bfad8fc3c79482a15be7a925a7fcbb60f4f0e7b79a91000d3308363",
+      "status": "skipped",
+      "error": {
+        "type": "disabled",
+        "message": "Jev provider is disabled"
+      }
+    },
+    {
+      "case_id": "claim-cal-001",
+      "task": "claim-support",
+      "request_sha256": "6d2ef1eaaa2fd606447159dbe3c70f834d6e60fbb61a92223eefbeb2f2019727",
+      "status": "skipped",
+      "error": {
+        "type": "disabled",
+        "message": "Jev provider is disabled"
+      }
+    },
+    {
+      "case_id": "claim-cal-002",
+      "task": "claim-support",
+      "request_sha256": "89e597a3f07f32882b8815b03c7d7710159a53d5f8f6f4a91b0c7adf76ddff0e",
+      "status": "skipped",
+      "error": {
+        "type": "disabled",
+        "message": "Jev provider is disabled"
+      }
+    },
+    {
+      "case_id": "claim-cal-003",
+      "task": "claim-support",
+      "request_sha256": "b79f83a45b307c24040283db22dcd3a109c4b438a74fa0999050aa05c22abfbd",
+      "status": "skipped",
+      "error": {
+        "type": "disabled",
+        "message": "Jev provider is disabled"
+      }
+    },
+    {
+      "case_id": "claim-cal-004",
+      "task": "claim-support",
+      "request_sha256": "c649a6d85bf30e407a153fd5e5544fac8f2108bbaabeb4d153ea1509b98c300b",
+      "status": "skipped",
+      "error": {
+        "type": "disabled",
+        "message": "Jev provider is disabled"
+      }
+    },
+    {
+      "case_id": "claim-cal-005",
+      "task": "claim-support",
+      "request_sha256": "99ef4265912a79047683560fc30992aab6088a67c0120729504bd7da6b7fb8e6",
+      "status": "skipped",
+      "error": {
+        "type": "disabled",
+        "message": "Jev provider is disabled"
+      }
+    }
+  ]
+}

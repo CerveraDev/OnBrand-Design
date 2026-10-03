@@ -63,7 +63,7 @@
 ## Approved Specs, Not Implemented
 
 - Phase 12: Distribution profiles remain deferred until public core, private project packs, and sanitized broker packages are physically separated.
-- Phase 13 provider integration: dataset and question set version 1 are frozen and a 17-case calibration batch exists, but no SDK, credentials, provider calls, runtime integration, or blocking behavior exist.
+- Phase 13 provider integration: an optional standard-library adapter, typed receipt validation, disabled fallback, frozen dataset/question set, and 17-case calibration batch exist. No credential is stored, no live call has run, and no production behavior changed.
 
 ## In Progress
 
@@ -71,7 +71,7 @@
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 - Obtain live manual invocation evidence on permitted authenticated hosts; deterministic parity does not establish model behavior.
 - Keep [LIMITATIONS.md](LIMITATIONS.md) current when audits, specs, QA runs, or implementation work discover new constraints.
-- Implement a no-production-effect provider adapter and recorded-response contract for the locked 17-case calibration batch. The 9 holdout cases remain ungenerated and untouched.
+- Obtain explicit owner approval for TypeSafe-hosted processing and configure a local `TYPESAFE_API_KEY` before the first 17-case live calibration. The 9 holdout cases remain ungenerated and untouched.
 
 ## Waiting On Project Inputs
 
@@ -87,4 +87,4 @@
 
 ## Next Milestone
 
-Implement and test the optional Phase 13 provider/receipt boundary without making live calls or changing deterministic QA. Live manual adapter checks and broader visual/email-client review remain open; Phase 12 distribution stays deferred.
+Decide whether to authorize the first live Phase 13 calibration and configure the local TypeSafe key if approved. Live manual adapter checks and broader visual/email-client review remain open; Phase 12 distribution stays deferred.
