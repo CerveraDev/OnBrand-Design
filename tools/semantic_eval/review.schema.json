@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CerveraDev/OnBrand-Design/tools/semantic_eval/review.schema.json",
+  "title": "OnBrand semantic evaluation review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "dataset_id", "dataset_sha256", "reviewer_id", "reviewed_at", "status", "instructions", "labels"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "dataset_id": {"type": "string", "minLength": 1},
+    "dataset_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "reviewer_id": {"type": "string", "minLength": 1},
+    "reviewed_at": {"type": ["string", "null"]},
+    "status": {"enum": ["draft", "complete"]},
+    "instructions": {"type": "string", "minLength": 1},
+    "labels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["case_id", "label", "action", "intentional_refrain", "notes"],
+        "properties": {
+          "case_id": {"type": "string", "minLength": 1},
+          "label": {"type": ["string", "null"]},
+          "action": {"type": ["string", "null"]},
+          "intentional_refrain": {"type": ["boolean", "string", "null"]},
+          "notes": {"type": "string"}
+        }
+      }
+    }
+  }
+}

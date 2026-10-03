@@ -114,6 +114,8 @@ Disabling the feature flag restores the existing Phase 10 behavior. Removing the
 
 - [Provisional dataset](../evals/data/phase-13-rider-copy-pairs.v1.json)
 - [Blind review worksheet](../evals/phase-13-rider-copy-review-worksheet.md)
+- [Independent review process](../evals/phase-13-review-process.md)
 - [Baseline evaluation](../evals/phase-13-semantic-decision-baseline.md)
 - [Machine-readable baseline](../evals/phase-13-lexical-baseline.v1.json)
 - [Dataset validator tests](../../tests/test_semantic_eval.py)
+- [Reviewer response schema](../../tools/semantic_eval/review.schema.json)

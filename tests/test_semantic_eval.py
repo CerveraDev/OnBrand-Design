@@ -11,11 +11,19 @@ from tools.semantic_eval.dataset import (
     review_markdown,
     validate_dataset,
 )
+from tools.semantic_eval.reviews import (
+    ReviewError,
+    compare_reviews,
+    create_review_template,
+    dataset_sha256,
+    validate_review,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
 DATASET_PATH = ROOT / "docs/evals/data/phase-13-rider-copy-pairs.v1.json"
 SCHEMA_PATH = ROOT / "tools/semantic_eval/dataset.schema.json"
+REVIEW_SCHEMA_PATH = ROOT / "tools/semantic_eval/review.schema.json"
 
 
 class SemanticEvaluationDatasetTests(unittest.TestCase):
@@ -34,6 +42,8 @@ class SemanticEvaluationDatasetTests(unittest.TestCase):
         self.assertEqual(schema["$schema"], "https://json-schema.org/draft/2020-12/schema")
         self.assertEqual(schema["properties"]["schema_version"]["const"], self.dataset["schema_version"])
         self.assertFalse(schema["additionalProperties"])
+        review_schema = json.loads(REVIEW_SCHEMA_PATH.read_text(encoding="utf-8"))
+        self.assertEqual(review_schema["properties"]["schema_version"]["const"], "1.0")
 
     def test_loader_rejects_duplicate_state_and_split_leakage(self):
         duplicate = copy.deepcopy(self.dataset)
@@ -83,6 +93,58 @@ class SemanticEvaluationDatasetTests(unittest.TestCase):
             path.write_text(json.dumps(self.dataset), encoding="utf-8")
             loaded = load_dataset(path)
         self.assertEqual(loaded["dataset_id"], self.dataset["dataset_id"])
+
+    def test_review_template_is_blinded_bound_and_incomplete(self):
+        review = create_review_template(self.dataset, "reviewer-a")
+        self.assertEqual(review["dataset_sha256"], dataset_sha256(self.dataset))
+        self.assertEqual(len(review["labels"]), len(self.dataset["cases"]))
+        self.assertTrue(all(item["label"] is None for item in review["labels"]))
+        summary = validate_review(review, self.dataset, require_complete=False)
+        self.assertEqual(summary["completed_count"], 0)
+        with self.assertRaisesRegex(ReviewError, "status must be complete"):
+            validate_review(review, self.dataset, require_complete=True)
+
+    def test_review_rejects_dataset_drift_duplicate_ids_and_incomplete_labels(self):
+        review = complete_review(self.dataset, "reviewer-a")
+        review["dataset_sha256"] = "0" * 64
+        with self.assertRaisesRegex(ReviewError, "does not match the exact dataset"):
+            validate_review(review, self.dataset)
+
+        review = complete_review(self.dataset, "reviewer-a")
+        review["labels"][1]["case_id"] = review["labels"][0]["case_id"]
+        with self.assertRaisesRegex(ReviewError, "duplicate case IDs"):
+            validate_review(review, self.dataset)
+
+        review = complete_review(self.dataset, "reviewer-a")
+        review["labels"][0]["label"] = None
+        with self.assertRaisesRegex(ReviewError, "copy label is unsupported"):
+            validate_review(review, self.dataset)
+
+    def test_comparison_requires_independent_reviewers_and_reports_disagreements(self):
+        left = complete_review(self.dataset, "reviewer-a")
+        right = complete_review(self.dataset, "reviewer-b")
+        right["labels"][0]["action"] = "review"
+        report = compare_reviews(self.dataset, left, right)
+        self.assertEqual(report["full_agreement_count"], 25)
+        self.assertEqual(report["adjudication_required_count"], 1)
+        self.assertTrue(report["cases"][0]["adjudication_required"])
+
+        right["reviewer_id"] = "REVIEWER-A"
+        with self.assertRaisesRegex(ReviewError, "different reviewer IDs"):
+            compare_reviews(self.dataset, left, right)
+
+
+def complete_review(dataset, reviewer_id):
+    review = create_review_template(dataset, reviewer_id)
+    review["status"] = "complete"
+    review["reviewed_at"] = "2026-10-03"
+    by_id = {case["id"]: case for case in dataset["cases"]}
+    for item in review["labels"]:
+        expected = by_id[item["case_id"]]["expected"]
+        item["label"] = expected.get("semantic_relation", expected.get("support"))
+        item["action"] = expected["action"]
+        item["intentional_refrain"] = expected.get("intentional_refrain", "not-applicable")
+    return review
 
 
 if __name__ == "__main__":

@@ -71,7 +71,7 @@
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 - Obtain live manual invocation evidence on permitted authenticated hosts; deterministic parity does not establish model behavior.
 - Keep [LIMITATIONS.md](LIMITATIONS.md) current when audits, specs, QA runs, or implementation work discover new constraints.
-- Independently review and adjudicate the 26-case, de-identified Rider semantic dataset before designing provider questions or thresholds.
+- Collect and compare two blinded reviews of the 26-case, de-identified Rider semantic dataset, then adjudicate disagreements before designing provider questions or thresholds. Bound response templates and validation tooling are ready.
 
 ## Waiting On Project Inputs
 

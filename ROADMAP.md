@@ -17,7 +17,7 @@ The roadmap applies to the framework and is executed independently for each proj
 | 10 | Copy allocation QA | Rider implementation complete | Implemented and tested | Planned |
 | 11 | Cross-platform compatibility | Deterministic adapters/parity complete; live agents unverified | 13/13 critical components at 100 | Reference adapters; runtime unavailable |
 | 12 | Distribution profiles | Deferred | Deferred | Deferred |
-| 13 | Jev semantic decision pilot | Evaluation foundation complete; provider not implemented | 26 provisional cases and lexical baseline committed | Not planned until Rider evidence exists |
+| 13 | Jev semantic decision pilot | Evaluation and independent-review tooling complete; provider not implemented | 26 provisional cases awaiting two blinded reviews | Not planned until Rider evidence exists |
 
 ## Framework Gate
 
