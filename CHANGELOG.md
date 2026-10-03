@@ -6,6 +6,8 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Added
 
+- Explicit dependency conditions for all 16 limitation entries and the entry template, plus a dedicated responsive desktop/mobile copy fixture that passes allocation and package QA under one logical owner.
+
 - Phase 10 required approved copy allocation contract, stable content-unit/channel ownership, restricted phrase counts, exact/normalized and near-duplicate checks, declared baked-image text, scoped reuse exemptions, claim-reference gates, and metadata/QA evidence.
 - Dedicated allocation reference, 17 positive/negative allocation tests, and committed Composition Preview package-audit evidence.
 
@@ -58,6 +60,8 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Generated or edited Rider imagery now enters runtime builds only through explicit `image_workflow_id` provenance records; ordinary `asset_id` image slots remain the approved existing-asset path and do not trigger image generation.
 
 ### Validated
+
+- Acceptance-gap follow-up passes 79 tests, including 18 allocation tests; responsive branch duplication counts once while a second owner still fails. Runtime behavior and the audited live pilot remain unchanged.
 
 - Phase 10 full unittest discovery passes 78 tests, including Phase 7-9 regression coverage.
 - Live wellness Composition Preview passes 86 QA checks, 26 allocation checks, 23 copy units, 1 branded variant, and 9 assets; its ZIP contains 13 byte-matching files with validated asset checksums and no external or missing image references.

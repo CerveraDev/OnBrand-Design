@@ -1,13 +1,22 @@
 import copy
+from dataclasses import replace
+import json
+from pathlib import Path
+import tempfile
 import unittest
+from unittest.mock import patch
 
+from tools.rider_campaign_runtime.assets import rewrite_and_package_assets, write_asset_manifest
 from tools.rider_campaign_runtime.copy_allocation import (
     CopyAllocationError,
     similarity_score,
     validate_copy_allocation,
 )
 from tools.rider_campaign_runtime.runtime import MODULE_METADATA_PATH, ROOT, SCAFFOLD_PATH, SLOT_MAP_PATH
-from tools.rider_campaign_runtime.scaffold import load_scaffold
+from tools.rider_campaign_runtime.qa import run_qa, write_qa_report
+from tools.rider_campaign_runtime.scaffold import compose_html, load_scaffold
+from tools.rider_campaign_runtime.schema import validate_campaign_spec
+from tools.rider_campaign_runtime.slots import apply_module_slots
 
 
 class RiderCopyAllocationTests(unittest.TestCase):
@@ -18,6 +27,69 @@ class RiderCopyAllocationTests(unittest.TestCase):
         summary = validate_copy_allocation(clean_spec(), scaffold=self.scaffold)
         self.assertTrue(summary["passed"])
         self.assertEqual(summary["content_unit_count"], 6)
+
+    def test_responsive_fallback_shares_one_owner_through_allocation_and_qa(self):
+        spec = clean_spec()
+        spec["build"]["mode"] = "smoke-test"
+        hero = spec["modules"][0]
+        hero["slots"] = {"headline": hero["slots"]["headline"]}
+        spec["modules"] = [hero]
+        spec["copy_allocation"]["content_units"] = spec["copy_allocation"]["content_units"][:3]
+        fixture = (ROOT / "tests/fixtures/rider-responsive-copy.html").read_text()
+        anchors = [
+            '<div class="copy-proof-desktop"><span>Responsive headline placeholder</span></div>',
+            '<div class="copy-proof-mobile" style="display: none; mso-hide: all;"><span>Responsive headline placeholder</span></div>',
+        ]
+        slot_defs = {"headline": [
+            {"operation": "replace_text_in_context", "anchor": anchor,
+             "text_anchor": "Responsive headline placeholder"}
+            for anchor in anchors
+        ]}
+        scaffold = replace(self.scaffold, slot_map={**self.scaffold.slot_map, hero["id"]: slot_defs})
+        validate_campaign_spec(spec)
+        allocation = validate_copy_allocation(spec, scaffold=scaffold)
+        rendered, _ = apply_module_slots(
+            hero["id"], fixture, slot_defs, hero["slots"], manifest_assets={}
+        )
+        approved_text = hero["slots"]["headline"]["value"]
+        self.assertEqual(rendered.count(approved_text), 2)
+        occurrence = next(item for item in allocation["occurrences"] if item["content_unit_id"] == "hero-headline")
+        self.assertEqual((occurrence["occurrences"], occurrence["max_occurrences"]), (1, 1))
+        self.assertEqual(allocation["dedupe_exemptions"], [])
+
+        html = compose_html(scaffold, [rendered])
+        with tempfile.TemporaryDirectory() as tmp:
+            package = Path(tmp)
+            spacer = bytes.fromhex("47494638396101000100800000ffffff00000021f90401000000002c00000000010001000002024401003b")
+            with patch("tools.rider_campaign_runtime.assets._read_asset", return_value=(spacer, "white-spacer.gif")):
+                html_by_variant, assets = rewrite_and_package_assets(
+                    {"branded": html}, [], package, asset_mode="relative-review", hosted_asset_base_url=None
+                )
+            write_asset_manifest(package, spec["campaign"], assets, asset_mode="relative-review")
+            self.assertEqual(html_by_variant["branded"].count(approved_text), 2)
+            (package / "html").mkdir()
+            (package / "html/branded.html").write_text(html_by_variant["branded"])
+            metadata = {"variants": ["branded"], "build": spec["build"], "copy_allocation": allocation}
+            (package / "campaign-metadata.json").write_text(json.dumps(metadata))
+            qa = run_qa(
+                package, html_by_variant, expected_variants={"branded"}, agent_variant_count=0,
+                build_metadata=spec["build"], copy_allocation_metadata=allocation,
+            )
+            self.assertTrue(qa.passed, [item for item in qa.checks if not item["passed"]])
+            report = json.loads(write_qa_report(package / "qa-report.json", qa).read_text())
+            self.assertEqual(report["copy_allocation"], json.loads((package / "campaign-metadata.json").read_text())["copy_allocation"])
+            check = next(item for item in report["checks"] if item["name"] == "copy-allocation:copy-unit:hero-headline:occurrences")
+            self.assertTrue(check["passed"])
+
+        # A distinct logical owner remains unintended repetition despite the responsive branches.
+        spec["modules"].append({"id": "BODY - DARK THEN LIGHT LAYOUT", "slots": {
+            "section_1_copy": {"kind": "safe_rich_text", "value": approved_text}
+        }})
+        spec["copy_allocation"]["content_units"].append(
+            live_unit("second-owner", approved_text, "BODY - DARK THEN LIGHT LAYOUT", "section_1_copy")
+        )
+        with self.assertRaisesRegex(CopyAllocationError, "occurrence"):
+            validate_copy_allocation(spec, scaffold=scaffold)
 
     def test_rejects_known_repeated_wellness_copy_pattern(self):
         spec = clean_spec()

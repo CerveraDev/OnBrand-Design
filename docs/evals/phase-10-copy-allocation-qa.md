@@ -2,6 +2,8 @@
 
 Date: 2026-10-03. Internal non-production Rider validation; no campaign was sent or deployed.
 
+The baseline below preserves the initial Phase 10 run. Current acceptance-gap follow-up evidence is recorded separately below.
+
 ## Contract And Regression Evidence
 
 Run from the repository root:
@@ -48,6 +50,12 @@ A separate audit parsed metadata, QA, and the asset manifest and asserted:
 Generated packages are ignored and excluded from the implementation commit. JSON/schema parse, fixture validation, local Markdown links, secret patterns, and diff whitespace are checked separately before commit.
 
 Final checks passed: 29 JSON files parsed, all four runtime fixtures validated structurally and semantically, 187 local Markdown links resolved, high-confidence token/private-key patterns absent from tracked and nonignored files, and `git diff --check` clean. The final allocation validator output exactly matches the audited live pilot summary. Python `quick_validate.py` could not run because PyYAML is unavailable; Ruby YAML parsing plus equivalent naming, description, preserved invocation-policy, and placeholder checks passed. The published JSON Schema was parsed; fixture validation used the runtime's standard-library validator rather than the unavailable optional `jsonschema` library.
+
+## Acceptance-Gap Follow-Up
+
+On 2026-10-03, the full suite passed 79 tests, including 18 allocation tests. The new [responsive fallback fixture](../../tests/fixtures/rider-responsive-copy.html) uses two contextual render rules for one approved headline slot. Both branches retain the exact approved text, while allocation counts one logical occurrence with `single-use`, cap 1, and no dedupe exemption. Asset localization, package QA, metadata, and QA-report checks pass. Assigning the same text to a second logical owner still fails the repetition gate.
+
+All 16 limitation entries and the new-entry template now have explicit dependency conditions. IDs, statuses, closure evidence, and original audit history are preserved. No runtime code or scoring behavior changed, so the original live pilot and its package audit remain valid; no rebuild was required. JSON/schema validation, Markdown links, whitespace, and secret-pattern checks were repeated for this follow-up.
 
 ## Scoring And Remaining Limits
 

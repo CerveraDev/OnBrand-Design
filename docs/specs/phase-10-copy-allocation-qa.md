@@ -64,6 +64,7 @@ Normalize HTML to text, lowercase, punctuation/dash/whitespace variants, and rem
 
 - [Allocation tests](../../tests/test_rider_copy_allocation.py) cover clean plans; exact/normalized and near-duplicate failures; live/baked/alt/metadata overlap; known wellness and authority repetition; refrains; static/legal/footer/required-name exemptions; capped reuse; unsupported/supported claims; stale, unknown, ambiguous and missing owners; stale slot links; missing baked declarations; warning scores; and unchanged approved text.
 - Runtime and grounded-image regression tests preserve Phase 7-9 modes, composition, source provenance, locked blocks, responsive branches, and staging/package behavior.
+- The committed [responsive fallback fixture](../../tests/fixtures/rider-responsive-copy.html) runs through contextual slot rendering, copy allocation, asset localization, package QA, and report output. Two desktop/mobile branches share one logical owner with `single-use`, cap 1, and no dedupe exemption; the same text assigned to a second owner is rejected.
 - All four Rider runtime fixtures carry allocation plans. Wellness fixture copy removes the old repeated campaign pattern; negative tests retain that failure case. These are internal non-production examples, not changes to a user's approved campaign.
 - Composition Preview pilot and package integrity evidence are recorded in [AUDIT_LOG.md](../../AUDIT_LOG.md), entry AUD-055.
 

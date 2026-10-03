@@ -34,6 +34,8 @@ The runtime computes normalized fingerprints; authors should not hand-edit finge
 
 The plan requires `version: "1.0"`, stable `plan_id`, `status: "approved"`, `approved_by`, and `approved_at`. Optional `slot_allocation[]` entries must agree with their content unit's module, slot, and channel. Unknown, duplicate, stale, or unallocated owners fail before rendering. Static declarations must reference included blocks and match locked text; legal/footer declarations must match the named scaffold footer. Standard footer/contact/legal rendering remains governed by its existing deterministic contract.
 
+Known desktop/mobile fallback branches may use multiple contextual rendering rules for the same logical slot. Allocate that slot once with `single-use` and `max_occurrences: 1`; the deterministic slot mapping accounts for responsive duplication without a campaign dedupe exemption. A second logical owner is still a separate occurrence and remains subject to the same repetition gate.
+
 ## Owner Channels
 
 - `metadata`: use `metadata_field` set to `subject` or `preview_text`.
