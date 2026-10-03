@@ -1,6 +1,6 @@
 # Phase 13: Jev Semantic Decision Pilot
 
-**Status:** Offline provider boundary implemented; live calibration not authorized or executed
+**Status:** Live calibration complete; untouched holdout and acceptance decision pending
 **Target:** Post-Phase 11 refinement; independent of deferred Phase 12
 **Depends on:** Phase 10 copy allocation QA, versioned runtime contracts, and a labeled Rider evaluation set
 
@@ -125,4 +125,7 @@ Disabling the feature flag restores the existing Phase 10 behavior. Removing the
 - [Calibration-locked question set](../evals/config/phase-13-jev-questions.v1.json)
 - [Calibration request batch](../evals/requests/phase-13-jev-calibration.v1.json)
 - [Disabled provider receipt](../evals/receipts/phase-13-jev-calibration.disabled.v1.json)
+- [Live calibration receipt](../evals/receipts/phase-13-jev-calibration.live.v1.json)
+- [Calibration report](../evals/phase-13-jev-calibration-report.md)
+- [Machine-readable calibration report](../evals/phase-13-jev-calibration-report.v1.json)
 - [Receipt schema](../../tools/semantic_eval/receipt.schema.json)

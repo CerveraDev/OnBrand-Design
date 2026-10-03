@@ -1,0 +1,293 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "rider-semantic-decision-pilot-v1",
+  "dataset_sha256": "38df0b4d55c489fa06e4dea1b20ea5ce5b2d90e5969a65f5652c93343e6e8af7",
+  "receipt_sha256": "032b20c0e77ea9c72cdfcb091c49e0f8095686ccbb8d747ef68b711d673f3c4a",
+  "split": "calibration",
+  "acceptance_evidence": false,
+  "production_effect": "none",
+  "policy": {
+    "name": "jev-calibration-candidate-v1",
+    "model": "jev-1.13.0",
+    "high_confidence": 0.8,
+    "low_confidence_action": "review",
+    "contradiction_action": "review",
+    "approved_reuse_precedence": true
+  },
+  "case_count": 17,
+  "metrics": {
+    "semantic_label_agreement": 0.765,
+    "semantic_label_matches": 13,
+    "action_accuracy": 0.941,
+    "action_matches": 16,
+    "precision_intervention": 0.9,
+    "recall_intervention": 1.0,
+    "false_positive_rate": 0.125,
+    "false_negative_rate": 0.0,
+    "coverage": 0.824,
+    "review_rate": 0.176,
+    "human_action_overrides": 1,
+    "confusion": {
+      "tp": 9,
+      "fp": 1,
+      "tn": 7,
+      "fn": 0
+    }
+  },
+  "task_metrics": {
+    "claim-support": {
+      "total": 5,
+      "label_matches": 4,
+      "label_agreement": 0.8,
+      "action_matches": 4,
+      "action_accuracy": 0.8,
+      "review_count": 2
+    },
+    "copy-similarity": {
+      "total": 12,
+      "label_matches": 9,
+      "label_agreement": 0.75,
+      "action_matches": 12,
+      "action_accuracy": 1.0,
+      "review_count": 1
+    }
+  },
+  "lexical_baseline_comparison": {
+    "calibration_action_matches": 10,
+    "jev_candidate_action_matches": 16,
+    "match_delta": 6,
+    "lexical_accuracy": 0.588,
+    "jev_candidate_accuracy": 0.941
+  },
+  "results": [
+    {
+      "case_id": "sim-cal-001",
+      "task": "copy-similarity",
+      "expected_label": "equivalent",
+      "predicted_label": "equivalent",
+      "label_matched": true,
+      "expected_action": "block",
+      "predicted_action": "block",
+      "action_matched": true,
+      "confidence": 0.98,
+      "routed_to_review": false,
+      "routing_reasons": []
+    },
+    {
+      "case_id": "sim-cal-002",
+      "task": "copy-similarity",
+      "expected_label": "equivalent",
+      "predicted_label": "equivalent",
+      "label_matched": true,
+      "expected_action": "block",
+      "predicted_action": "block",
+      "action_matched": true,
+      "confidence": 1.0,
+      "routed_to_review": false,
+      "routing_reasons": []
+    },
+    {
+      "case_id": "sim-cal-003",
+      "task": "copy-similarity",
+      "expected_label": "equivalent",
+      "predicted_label": "equivalent",
+      "label_matched": true,
+      "expected_action": "block",
+      "predicted_action": "block",
+      "action_matched": true,
+      "confidence": 0.98,
+      "routed_to_review": false,
+      "routing_reasons": []
+    },
+    {
+      "case_id": "sim-cal-004",
+      "task": "copy-similarity",
+      "expected_label": "distinct",
+      "predicted_label": "related-distinct",
+      "label_matched": false,
+      "expected_action": "allow",
+      "predicted_action": "allow",
+      "action_matched": true,
+      "confidence": 0.82,
+      "routed_to_review": false,
+      "routing_reasons": []
+    },
+    {
+      "case_id": "sim-cal-005",
+      "task": "copy-similarity",
+      "expected_label": "related-distinct",
+      "predicted_label": "related-distinct",
+      "label_matched": true,
+      "expected_action": "allow",
+      "predicted_action": "allow",
+      "action_matched": true,
+      "confidence": 0.93,
+      "routed_to_review": false,
+      "routing_reasons": []
+    },
+    {
+      "case_id": "sim-cal-006",
+      "task": "copy-similarity",
+      "expected_label": "equivalent",
+      "predicted_label": "equivalent",
+      "label_matched": true,
+      "expected_action": "allow",
+      "predicted_action": "allow",
+      "action_matched": true,
+      "confidence": 0.99,
+      "routed_to_review": false,
+      "routing_reasons": []
+    },
+    {
+      "case_id": "sim-cal-007",
+      "task": "copy-similarity",
+      "expected_label": "related-distinct",
+      "predicted_label": "related-distinct",
+      "label_matched": true,
+      "expected_action": "allow",
+      "predicted_action": "allow",
+      "action_matched": true,
+      "confidence": 0.94,
+      "routed_to_review": false,
+      "routing_reasons": []
+    },
+    {
+      "case_id": "sim-cal-008",
+      "task": "copy-similarity",
+      "expected_label": "equivalent",
+      "predicted_label": "equivalent",
+      "label_matched": true,
+      "expected_action": "block",
+      "predicted_action": "block",
+      "action_matched": true,
+      "confidence": 0.98,
+      "routed_to_review": false,
+      "routing_reasons": []
+    },
+    {
+      "case_id": "sim-cal-009",
+      "task": "copy-similarity",
+      "expected_label": "equivalent",
+      "predicted_label": "equivalent",
+      "label_matched": true,
+      "expected_action": "block",
+      "predicted_action": "block",
+      "action_matched": true,
+      "confidence": 0.98,
+      "routed_to_review": false,
+      "routing_reasons": []
+    },
+    {
+      "case_id": "sim-cal-010",
+      "task": "copy-similarity",
+      "expected_label": "related-distinct",
+      "predicted_label": "related-distinct",
+      "label_matched": true,
+      "expected_action": "allow",
+      "predicted_action": "allow",
+      "action_matched": true,
+      "confidence": 0.96,
+      "routed_to_review": false,
+      "routing_reasons": []
+    },
+    {
+      "case_id": "sim-cal-011",
+      "task": "copy-similarity",
+      "expected_label": "distinct",
+      "predicted_label": "related-distinct",
+      "label_matched": false,
+      "expected_action": "allow",
+      "predicted_action": "allow",
+      "action_matched": true,
+      "confidence": 0.81,
+      "routed_to_review": false,
+      "routing_reasons": []
+    },
+    {
+      "case_id": "sim-cal-012",
+      "task": "copy-similarity",
+      "expected_label": "related-distinct",
+      "predicted_label": "equivalent",
+      "label_matched": false,
+      "expected_action": "review",
+      "predicted_action": "review",
+      "action_matched": true,
+      "confidence": 0.79,
+      "routed_to_review": true,
+      "routing_reasons": [
+        "below-high-confidence-band"
+      ]
+    },
+    {
+      "case_id": "claim-cal-001",
+      "task": "claim-support",
+      "expected_label": "supported",
+      "predicted_label": "supported",
+      "label_matched": true,
+      "expected_action": "allow",
+      "predicted_action": "allow",
+      "action_matched": true,
+      "confidence": 1.0,
+      "routed_to_review": false,
+      "routing_reasons": []
+    },
+    {
+      "case_id": "claim-cal-002",
+      "task": "claim-support",
+      "expected_label": "unsupported",
+      "predicted_label": "unsupported",
+      "label_matched": true,
+      "expected_action": "block",
+      "predicted_action": "block",
+      "action_matched": true,
+      "confidence": 1.0,
+      "routed_to_review": false,
+      "routing_reasons": []
+    },
+    {
+      "case_id": "claim-cal-003",
+      "task": "claim-support",
+      "expected_label": "unsupported",
+      "predicted_label": "unsupported",
+      "label_matched": true,
+      "expected_action": "block",
+      "predicted_action": "block",
+      "action_matched": true,
+      "confidence": 1.0,
+      "routed_to_review": false,
+      "routing_reasons": []
+    },
+    {
+      "case_id": "claim-cal-004",
+      "task": "claim-support",
+      "expected_label": "insufficient",
+      "predicted_label": "unsupported",
+      "label_matched": false,
+      "expected_action": "review",
+      "predicted_action": "review",
+      "action_matched": true,
+      "confidence": 0.67,
+      "routed_to_review": true,
+      "routing_reasons": [
+        "below-high-confidence-band"
+      ]
+    },
+    {
+      "case_id": "claim-cal-005",
+      "task": "claim-support",
+      "expected_label": "supported",
+      "predicted_label": "supported",
+      "label_matched": true,
+      "expected_action": "allow",
+      "predicted_action": "review",
+      "action_matched": false,
+      "confidence": 0.56,
+      "routed_to_review": true,
+      "routing_reasons": [
+        "below-high-confidence-band",
+        "companion-answer-contradiction"
+      ]
+    }
+  ],
+  "conclusion": "Calibration signal only. Keep production disabled until the untouched holdout is evaluated and acceptance criteria pass."
+}

@@ -18,6 +18,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Hash-bound adjudication evidence and a separate frozen Phase 13 dataset; all five disputes are resolved without changing holdout text or adding provider behavior.
 - Calibration-locked Jev question set version 1, pinned model configuration, privacy field policy, and a label-free 17-case request batch with holdout generation guarded explicitly.
 - Optional standard-library TypeSafe provider adapter with double opt-in, typed-answer and drift validation, secret-free receipts, tested disabled/failure behavior, and no production effect.
+- Owner-approved live Phase 13 calibration receipt, deterministic evaluation policy, and reproducible report showing 16/17 candidate actions correct versus 10/17 for the lexical baseline; production and holdout remain disabled.
 
 - Phase 11 versioned project/request contracts, manual-only Codex/Claude workspace wrappers, shared dispatch, installer/generator integration, and 13-component blocking parity.
 - Realistic three-adapter Rider preview evidence at 100%, checksum-verified real asset transport, and separate live CLI limitations without changing credentials or Phase 7-10 rules.

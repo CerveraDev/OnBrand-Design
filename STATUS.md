@@ -63,7 +63,7 @@
 ## Approved Specs, Not Implemented
 
 - Phase 12: Distribution profiles remain deferred until public core, private project packs, and sanitized broker packages are physically separated.
-- Phase 13 provider integration: an optional standard-library adapter, typed receipt validation, disabled fallback, frozen dataset/question set, and 17-case calibration batch exist. No credential is stored, no live call has run, and no production behavior changed.
+- Phase 13 provider integration: the owner-approved 17-case live calibration completed with 13/17 semantic-label agreement and 16/17 candidate-action accuracy versus the lexical baseline's 10/17 on the same split. The key remains local and ignored; no production behavior changed.
 
 ## In Progress
 
@@ -71,7 +71,7 @@
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 - Obtain live manual invocation evidence on permitted authenticated hosts; deterministic parity does not establish model behavior.
 - Keep [LIMITATIONS.md](LIMITATIONS.md) current when audits, specs, QA runs, or implementation work discover new constraints.
-- Obtain explicit owner approval for TypeSafe-hosted processing and configure a local `TYPESAFE_API_KEY` before the first 17-case live calibration. The 9 holdout cases remain ungenerated and untouched.
+- Lock the non-production calibration policy and holdout procedure before requesting separate approval to generate and run the nine untouched holdout cases.
 
 ## Waiting On Project Inputs
 
@@ -87,4 +87,4 @@
 
 ## Next Milestone
 
-Decide whether to authorize the first live Phase 13 calibration and configure the local TypeSafe key if approved. Live manual adapter checks and broader visual/email-client review remain open; Phase 12 distribution stays deferred.
+Run the untouched Phase 13 holdout only after its procedure is locked and separately approved, then record the keep, revise, or remove decision. Live manual adapter checks and broader visual/email-client review remain open; Phase 12 distribution stays deferred.

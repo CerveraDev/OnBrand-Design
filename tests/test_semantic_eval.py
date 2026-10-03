@@ -31,6 +31,7 @@ from tools.semantic_eval.jev_pilot import (
     validate_question_set,
 )
 from tools.semantic_eval.provider import ProviderError, run_provider_batch
+from tools.semantic_eval.evaluation import EvaluationError, evaluate_calibration
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -42,6 +43,8 @@ FROZEN_DATASET_PATH = ROOT / "docs/evals/data/phase-13-rider-copy-pairs.v1.froze
 QUESTION_SET_PATH = ROOT / "docs/evals/config/phase-13-jev-questions.v1.json"
 QUESTION_SET_SCHEMA_PATH = ROOT / "tools/semantic_eval/question_set.schema.json"
 CALIBRATION_BATCH_PATH = ROOT / "docs/evals/requests/phase-13-jev-calibration.v1.json"
+LIVE_RECEIPT_PATH = ROOT / "docs/evals/receipts/phase-13-jev-calibration.live.v1.json"
+FROZEN_BASELINE_PATH = ROOT / "docs/evals/phase-13-lexical-baseline.frozen.v1.json"
 
 
 class SemanticEvaluationDatasetTests(unittest.TestCase):
@@ -309,6 +312,34 @@ class SemanticEvaluationDatasetTests(unittest.TestCase):
                 transport=lambda *args: {},
                 executed_at="2026-10-03T00:00:00+00:00",
             )
+
+    def test_live_calibration_report_is_non_production_and_reproducible(self):
+        frozen = json.loads(FROZEN_DATASET_PATH.read_text(encoding="utf-8"))
+        receipt = json.loads(LIVE_RECEIPT_PATH.read_text(encoding="utf-8"))
+        baseline = json.loads(FROZEN_BASELINE_PATH.read_text(encoding="utf-8"))
+        report = evaluate_calibration(frozen, receipt, baseline)
+        self.assertFalse(report["acceptance_evidence"])
+        self.assertEqual(report["production_effect"], "none")
+        self.assertEqual(report["case_count"], 17)
+        self.assertEqual(report["metrics"]["semantic_label_matches"], 13)
+        self.assertEqual(report["metrics"]["action_matches"], 16)
+        self.assertEqual(report["metrics"]["confusion"], {"tp": 9, "fp": 1, "tn": 7, "fn": 0})
+        self.assertEqual(report["metrics"]["review_rate"], 0.176)
+        self.assertEqual(report["lexical_baseline_comparison"]["match_delta"], 6)
+        by_id = {item["case_id"]: item for item in report["results"]}
+        self.assertEqual(by_id["sim-cal-012"]["predicted_action"], "review")
+        self.assertEqual(by_id["claim-cal-005"]["routing_reasons"], [
+            "below-high-confidence-band",
+            "companion-answer-contradiction",
+        ])
+
+    def test_calibration_evaluation_rejects_incomplete_or_holdout_receipts(self):
+        frozen = json.loads(FROZEN_DATASET_PATH.read_text(encoding="utf-8"))
+        receipt = json.loads(LIVE_RECEIPT_PATH.read_text(encoding="utf-8"))
+        baseline = json.loads(FROZEN_BASELINE_PATH.read_text(encoding="utf-8"))
+        receipt["split"] = "holdout"
+        with self.assertRaisesRegex(EvaluationError, "calibration-only"):
+            evaluate_calibration(frozen, receipt, baseline)
 
 
 def complete_review(dataset, reviewer_id):
