@@ -63,6 +63,7 @@
 ## Approved Specs, Not Implemented
 
 - Phase 12: Distribution profiles remain deferred until public core, private project packs, and sanitized broker packages are physically separated.
+- Phase 13: Optional Jev semantic decision pilot begins with copy similarity and claim-support triage; no SDK, credentials, runtime calls, or blocking behavior are implemented.
 
 ## In Progress
 
@@ -70,6 +71,7 @@
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 - Obtain live manual invocation evidence on permitted authenticated hosts; deterministic parity does not establish model behavior.
 - Keep [LIMITATIONS.md](LIMITATIONS.md) current when audits, specs, QA runs, or implementation work discover new constraints.
+- Prepare a labeled, de-identified Rider copy evaluation set before implementing the optional Phase 13 provider adapter.
 
 ## Waiting On Project Inputs
 
@@ -85,4 +87,4 @@
 
 ## Next Milestone
 
-Run live manual adapter checks and broader visual/email-client review. Phase 11 deterministic parity is complete; Phase 12 distribution stays deferred.
+Design and evaluate the Phase 13 semantic-copy pilot without changing deterministic QA. Live manual adapter checks and broader visual/email-client review remain open; Phase 12 distribution stays deferred.

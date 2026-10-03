@@ -17,6 +17,7 @@ The roadmap applies to the framework and is executed independently for each proj
 | 10 | Copy allocation QA | Rider implementation complete | Implemented and tested | Planned |
 | 11 | Cross-platform compatibility | Deterministic adapters/parity complete; live agents unverified | 13/13 critical components at 100 | Reference adapters; runtime unavailable |
 | 12 | Distribution profiles | Deferred | Deferred | Deferred |
+| 13 | Jev semantic decision pilot | Approved for evaluation; not implemented | Copy-similarity pilot planned | Not planned until Rider evidence exists |
 
 ## Framework Gate
 
@@ -77,6 +78,15 @@ The roadmap applies to the framework and is executed independently for each proj
 - Codex and Claude Code adapters are thin wrappers around the same canonical references, JSON contracts, Python runtime, and QA.
 - Manual-only adapters pass deterministic parity against CLI; all 13 critical components require 100. Live model invocation stays unverified under LIM-017.
 - Platform-specific skill metadata remains outside shared canonical instructions.
+
+## Semantic Decision Pilot Gate
+
+- Jev remains optional and disabled by default; deterministic QA remains authoritative.
+- The first evaluation targets semantic copy similarity and claim-support triage using a labeled Rider dataset and a held-out set.
+- Questions, criteria, model version, thresholds, probabilities, confidence, and human overrides are versioned and auditable.
+- Provider unavailability has a tested deterministic fallback and cannot replace the last passing package.
+- Visual similarity stays with specialized image/OCR/render measurements; Jev may only route their structured evidence.
+- Production blocking is prohibited until the Phase 13 acceptance report demonstrates measurable improvement and owner-approved data handling.
 
 ## Public Release Gate
 

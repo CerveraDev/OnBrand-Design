@@ -49,6 +49,7 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 | LIM-015 | Accessibility, contrast, readability, and alt-text quality checks are incomplete | P3 | Open | QA backlog |
 | LIM-016 | Legal, fair-housing, financial, and regulated-copy checks are human-review flags, not compliance proof | P1 | Mitigated | Compliance governance |
 | LIM-017 | Live agent invocation and model-behavior parity remain unverified | P1 | Open | Phase 11 live validation |
+| LIM-018 | Jev semantic decision value, calibration, privacy approval, and fallback behavior are unverified | P2 | Open | Phase 13 pilot |
 
 ## Detailed Entries
 
@@ -290,6 +291,20 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 - Candidate metrics: Observed explicit skill discovery, absence of implicit invocation, request/spec hashes, tool execution outcomes, model-produced approval fidelity, and artifact parity by authenticated host.
 - Closure criteria: Commit permitted authenticated manual invocation evidence for both platforms, representative live artifact comparisons, and any remaining model-interpretation deviations. Keep legal/visual approval external.
 
+### LIM-018: Jev semantic decision value, calibration, privacy approval, and fallback behavior are unverified
+
+- Priority: P2
+- Status: Open
+- Owner phase: Phase 13 pilot
+- Dependencies: Phase 10 lexical baseline, a versioned and de-identified Rider evaluation set, owner-approved hosted-data handling, and recorded-response tests before live API evaluation.
+- Evidence: [docs/specs/phase-13-jev-semantic-decision-pilot.md](docs/specs/phase-13-jev-semantic-decision-pilot.md), [docs/specs/phase-10-copy-allocation-qa.md](docs/specs/phase-10-copy-allocation-qa.md)
+- Current behavior: OnBrand uses deterministic lexical similarity, ownership, occurrence, and claim-reference checks. It has no Jev SDK dependency, API credentials, provider calls, semantic probability receipts, calibrated review bands, or provider fallback tests.
+- Risk and impact: Adding an uncalibrated hosted decision model could increase false positives, hide model-version drift, transmit unnecessary project data, create an availability dependency, or be mistaken for visual, factual, legal, or compliance proof.
+- Current control: Jev is approved only as an optional evaluation candidate. Existing deterministic QA remains authoritative, direct visual similarity remains outside Jev, and no runtime or skill behavior has changed.
+- Scoring could help: Yes, if measured against the existing baseline.
+- Candidate metrics: Semantic duplicate precision/recall, false-positive and false-negative rates, claim-support triage accuracy, confidence/review coverage, reviewer agreement, override rate, latency, provider failure rate, token cost, and cross-adapter receipt parity.
+- Closure criteria: Complete the Phase 13 held-out evaluation, document owner-approved data handling, pin and version the evaluated model/questions/thresholds, verify deterministic fallback and adapter parity, and record an explicit keep/remove decision. A successful pilot may mitigate this entry; it does not close visual-similarity limitations.
+
 ## Entry Template
 
 Use this template for new limitations:
@@ -317,3 +332,4 @@ Use this template for new limitations:
 - 2026-10-03: Added explicit dependency conditions to all 16 limitation entries and the entry template after completion audit; retained stable IDs, status, closure evidence, and prior history.
 - 2026-10-03: Mitigated LIM-010 with versioned thin adapters and 100% deterministic parity; added LIM-017 for precise unverified live agent/model behavior. Phase 12 remains deferred.
 - 2026-10-03: Completion audit found two P2 boolean/number coercion gaps in parity and composition approval matching at 175a284. Corrected shared JSON-semantic comparison/hashing and adjacent approval/selection/size boundaries; 15 new regressions and the rebuilt pilot close those defects. LIM-010 remains mitigated because LIM-017 live evidence is still open.
+- 2026-10-03: Added LIM-018 and the approved Phase 13 Jev pilot boundary. Jev remains optional, text-only, unimplemented, and subject to held-out evaluation, privacy approval, deterministic fallback, and a keep/remove decision.
