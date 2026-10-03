@@ -63,7 +63,7 @@
 ## Approved Specs, Not Implemented
 
 - Phase 12: Distribution profiles remain deferred until public core, private project packs, and sanitized broker packages are physically separated.
-- Phase 13 provider integration: the owner-approved 17-case live calibration completed with 13/17 semantic-label agreement and 16/17 candidate-action accuracy versus the lexical baseline's 10/17 on the same split. The key remains local and ignored; no production behavior changed.
+- Phase 13 provider integration: calibration and holdout are complete. Holdout semantic-label agreement was 8/9, but candidate-action accuracy was only 5/9 versus the baseline's 4/9, with one false allow and a 44.4% review rate. Version 1 is `revise`; production integration is rejected.
 
 ## In Progress
 
@@ -71,7 +71,7 @@
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 - Obtain live manual invocation evidence on permitted authenticated hosts; deterministic parity does not establish model behavior.
 - Keep [LIMITATIONS.md](LIMITATIONS.md) current when audits, specs, QA runs, or implementation work discover new constraints.
-- Run the separately approved nine-case holdout using the now-locked non-production policy and procedure, without changing thresholds or mappings.
+- Decide whether a version 2 Jev pilot is worth a fresh dataset and holdout. Do not retune against or reuse the spent version 1 holdout as validation evidence.
 
 ## Waiting On Project Inputs
 
@@ -87,4 +87,4 @@
 
 ## Next Milestone
 
-Run the untouched Phase 13 holdout only after its procedure is locked and separately approved, then record the keep, revise, or remove decision. Live manual adapter checks and broader visual/email-client review remain open; Phase 12 distribution stays deferred.
+Return focus to the remaining core skill work unless a version 2 Jev pilot is explicitly prioritized. Live manual adapter checks and broader visual/email-client review remain open; Phase 12 distribution stays deferred.

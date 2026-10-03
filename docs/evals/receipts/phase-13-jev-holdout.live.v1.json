@@ -1,0 +1,294 @@
+{
+  "schema_version": "1.0",
+  "provider": "typesafe",
+  "endpoint": "https://api.typesafe.ai/v1/systemone",
+  "question_set_id": "onbrand-jev-semantic-v1",
+  "question_set_sha256": "4cfec4204f842666c4f9fa35167015503129e866864c2efff53f165f6e761122",
+  "batch_sha256": "69e3370ed7707d4c4e8510556255a4c6d640e51e4f74fca6bcf45ee1486787ff",
+  "dataset_id": "rider-semantic-decision-pilot-v1",
+  "split": "holdout",
+  "executed_at": "2026-10-03T23:54:45.887144+00:00",
+  "status": "completed",
+  "production_effect": "none",
+  "records": [
+    {
+      "case_id": "sim-hold-001",
+      "task": "copy-similarity",
+      "request_sha256": "8bedb3c09907364c387c7b285fc1f65cb469520bbd36652e0fd748141e8fdb6e",
+      "status": "completed",
+      "model": "jev-1.13.0",
+      "answers": {
+        "copy_relation": {
+          "type": "choice",
+          "choice": "equivalent",
+          "confidence": 0.45,
+          "probabilities": {
+            "distinct": 0.01,
+            "equivalent": 0.63,
+            "related-distinct": 0.36
+          }
+        },
+        "same_core_message": {
+          "type": "noul",
+          "noul": 0.78
+        },
+        "second_adds_material_information": {
+          "type": "noul",
+          "noul": 0.74
+        }
+      },
+      "usage": {
+        "input_tokens": 632,
+        "output_tokens": 84
+      }
+    },
+    {
+      "case_id": "sim-hold-002",
+      "task": "copy-similarity",
+      "request_sha256": "91c2b9cb842b154e5647d82cc95234803e3c2521109c2a3bae9ecf19c294dbc2",
+      "status": "completed",
+      "model": "jev-1.13.0",
+      "answers": {
+        "copy_relation": {
+          "type": "choice",
+          "choice": "related-distinct",
+          "confidence": 0.87,
+          "probabilities": {
+            "equivalent": 0.07,
+            "related-distinct": 0.91,
+            "distinct": 0.02
+          }
+        },
+        "same_core_message": {
+          "type": "noul",
+          "noul": 0.33
+        },
+        "second_adds_material_information": {
+          "type": "noul",
+          "noul": 0.82
+        }
+      },
+      "usage": {
+        "input_tokens": 634,
+        "output_tokens": 84
+      }
+    },
+    {
+      "case_id": "sim-hold-003",
+      "task": "copy-similarity",
+      "request_sha256": "c70f1482df1dbeadb9fcd31c474b0557bc7683266c4de1839f3e001071495d40",
+      "status": "completed",
+      "model": "jev-1.13.0",
+      "answers": {
+        "copy_relation": {
+          "type": "choice",
+          "choice": "equivalent",
+          "confidence": 0.94,
+          "probabilities": {
+            "related-distinct": 0.03,
+            "equivalent": 0.97,
+            "distinct": 0.0
+          }
+        },
+        "same_core_message": {
+          "type": "noul",
+          "noul": 0.89
+        },
+        "second_adds_material_information": {
+          "type": "noul",
+          "noul": 0.28
+        }
+      },
+      "usage": {
+        "input_tokens": 628,
+        "output_tokens": 84
+      }
+    },
+    {
+      "case_id": "sim-hold-004",
+      "task": "copy-similarity",
+      "request_sha256": "a1afe9e6a08cb7e79c8f957a7d532b83b20ab5ac23a636a6801ee220eebb2f55",
+      "status": "completed",
+      "model": "jev-1.13.0",
+      "answers": {
+        "copy_relation": {
+          "type": "choice",
+          "choice": "related-distinct",
+          "confidence": 0.89,
+          "probabilities": {
+            "equivalent": 0.03,
+            "distinct": 0.04,
+            "related-distinct": 0.93
+          }
+        },
+        "same_core_message": {
+          "type": "noul",
+          "noul": 0.16
+        },
+        "second_adds_material_information": {
+          "type": "noul",
+          "noul": 0.94
+        }
+      },
+      "usage": {
+        "input_tokens": 628,
+        "output_tokens": 84
+      }
+    },
+    {
+      "case_id": "sim-hold-005",
+      "task": "copy-similarity",
+      "request_sha256": "a5b8bad66b17fe767154156679c112c2ae6666b0f15165673a1a559bfa811382",
+      "status": "completed",
+      "model": "jev-1.13.0",
+      "answers": {
+        "copy_relation": {
+          "type": "choice",
+          "choice": "distinct",
+          "confidence": 0.38,
+          "probabilities": {
+            "equivalent": 0.01,
+            "related-distinct": 0.41,
+            "distinct": 0.58
+          }
+        },
+        "same_core_message": {
+          "type": "noul",
+          "noul": 0.06
+        },
+        "second_adds_material_information": {
+          "type": "noul",
+          "noul": 0.84
+        }
+      },
+      "usage": {
+        "input_tokens": 617,
+        "output_tokens": 82
+      }
+    },
+    {
+      "case_id": "sim-hold-006",
+      "task": "copy-similarity",
+      "request_sha256": "5a7c8f19cc91ce6614fd28e5a536edec317309f6eec776c70c727b4685ea903e",
+      "status": "completed",
+      "model": "jev-1.13.0",
+      "answers": {
+        "copy_relation": {
+          "type": "choice",
+          "choice": "equivalent",
+          "confidence": 0.88,
+          "probabilities": {
+            "equivalent": 0.92,
+            "distinct": 0.0,
+            "related-distinct": 0.08
+          }
+        },
+        "same_core_message": {
+          "type": "noul",
+          "noul": 0.82
+        },
+        "second_adds_material_information": {
+          "type": "noul",
+          "noul": 0.7
+        }
+      },
+      "usage": {
+        "input_tokens": 626,
+        "output_tokens": 84
+      }
+    },
+    {
+      "case_id": "claim-hold-001",
+      "task": "claim-support",
+      "request_sha256": "e7353f6ea9a4f152f79de6522ac60d765deb8e2d63523aa130a97d7f0d432f88",
+      "status": "completed",
+      "model": "jev-1.13.0",
+      "answers": {
+        "claim_support_relation": {
+          "type": "choice",
+          "choice": "supported",
+          "confidence": 0.89,
+          "probabilities": {
+            "unsupported": 0.02,
+            "supported": 0.93,
+            "insufficient": 0.05
+          }
+        },
+        "adds_unstated_certainty": {
+          "type": "noul",
+          "noul": 0.34
+        },
+        "adds_unstated_scope_timing_or_ranking": {
+          "type": "noul",
+          "noul": 0.29
+        }
+      },
+      "usage": {
+        "input_tokens": 627,
+        "output_tokens": 92
+      }
+    },
+    {
+      "case_id": "claim-hold-002",
+      "task": "claim-support",
+      "request_sha256": "158b554936e2b5a00d92dcde899f7f856b7b954cc0e22e9b3a35a080079990e8",
+      "status": "completed",
+      "model": "jev-1.13.0",
+      "answers": {
+        "claim_support_relation": {
+          "type": "choice",
+          "choice": "unsupported",
+          "confidence": 0.97,
+          "probabilities": {
+            "unsupported": 0.98,
+            "insufficient": 0.02,
+            "supported": 0.0
+          }
+        },
+        "adds_unstated_certainty": {
+          "type": "noul",
+          "noul": 0.97
+        },
+        "adds_unstated_scope_timing_or_ranking": {
+          "type": "noul",
+          "noul": 0.98
+        }
+      },
+      "usage": {
+        "input_tokens": 621,
+        "output_tokens": 92
+      }
+    },
+    {
+      "case_id": "claim-hold-003",
+      "task": "claim-support",
+      "request_sha256": "b4683dc9269df388a4e705eb13a7d77794f170a0e990e5f1b3756d98a2e33b42",
+      "status": "completed",
+      "model": "jev-1.13.0",
+      "answers": {
+        "claim_support_relation": {
+          "type": "choice",
+          "choice": "unsupported",
+          "confidence": 0.3,
+          "probabilities": {
+            "supported": 0.0,
+            "unsupported": 0.53,
+            "insufficient": 0.47
+          }
+        },
+        "adds_unstated_certainty": {
+          "type": "noul",
+          "noul": 0.95
+        },
+        "adds_unstated_scope_timing_or_ranking": {
+          "type": "noul",
+          "noul": 0.96
+        }
+      },
+      "usage": {
+        "input_tokens": 623,
+        "output_tokens": 92
+      }
+    }
+  ]
+}

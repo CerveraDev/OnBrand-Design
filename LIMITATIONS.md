@@ -291,19 +291,19 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 - Candidate metrics: Observed explicit skill discovery, absence of implicit invocation, request/spec hashes, tool execution outcomes, model-produced approval fidelity, and artifact parity by authenticated host.
 - Closure criteria: Commit permitted authenticated manual invocation evidence for both platforms, representative live artifact comparisons, and any remaining model-interpretation deviations. Keep legal/visual approval external.
 
-### LIM-018: Jev semantic decision value, calibration, privacy approval, and fallback behavior are unverified
+### LIM-018: Jev semantic action routing remains unfit for production
 
 - Priority: P2
 - Status: Open
 - Owner phase: Phase 13 pilot
 - Dependencies: Phase 10 lexical baseline, a versioned and de-identified Rider evaluation set, owner-approved hosted-data handling, and recorded-response tests before live API evaluation.
-- Evidence: [Phase 13 spec](docs/specs/phase-13-jev-semantic-decision-pilot.md), [baseline evaluation](docs/evals/phase-13-semantic-decision-baseline.md), [provisional dataset](docs/evals/data/phase-13-rider-copy-pairs.v1.json), [Phase 10 baseline](docs/specs/phase-10-copy-allocation-qa.md)
-- Current behavior: OnBrand preserves the provisional and frozen Rider datasets, completed reviews/adjudication, and a lexical baseline matching 14 of 26 actions with five low-overlap semantic gaps. The owner-approved live `jev-1.13.0` calibration completed all 17 cases. A non-production candidate policy matched 16/17 actions versus 10/17 for the lexical baseline on the same split, with 82.4% automated coverage and a 17.6% review rate. The nine-case holdout remains untouched, so the result is not acceptance evidence and has no production effect.
+- Evidence: [Phase 13 spec](docs/specs/phase-13-jev-semantic-decision-pilot.md), [holdout report](docs/evals/phase-13-jev-holdout-report.md), [machine-readable holdout report](docs/evals/phase-13-jev-holdout-report.v1.json), [frozen dataset](docs/evals/data/phase-13-rider-copy-pairs.v1.frozen.json), [Phase 10 baseline](docs/specs/phase-10-copy-allocation-qa.md)
+- Current behavior: OnBrand preserves the frozen Rider dataset, reviews, adjudication, lexical baseline, live calibration, locked policy, and live holdout evidence. Holdout label agreement reached 8/9, but the candidate policy matched only 5/9 actions versus 4/9 for the lexical baseline, produced one false allow, and routed 44.4% to review. Version 1 is `revise`, has no production effect, and its spent holdout cannot validate a revised policy.
 - Risk and impact: Adding an uncalibrated hosted decision model could increase false positives, hide model-version drift, transmit unnecessary project data, create an availability dependency, or be mistaken for visual, factual, legal, or compliance proof.
 - Current control: Jev is approved only as an optional evaluation candidate. Existing deterministic QA remains authoritative, direct visual similarity remains outside Jev, and no runtime or skill behavior has changed.
 - Scoring could help: Yes, if measured against the existing baseline.
 - Candidate metrics: Semantic duplicate precision/recall, false-positive and false-negative rates, claim-support triage accuracy, confidence/review coverage, reviewer agreement, override rate, latency, provider failure rate, token cost, and cross-adapter receipt parity.
-- Closure criteria: Complete the Phase 13 held-out evaluation, document owner-approved data handling, pin and version the evaluated model/questions/thresholds, verify deterministic fallback and adapter parity, and record an explicit keep/remove decision. A successful pilot may mitigate this entry; it does not close visual-similarity limitations.
+- Closure criteria: Either keep Jev disabled and formally accept or remove the optional evaluation code, or complete a version 2 pilot with a fresh independently reviewed dataset, newly locked policy, untouched holdout, no false allows, bounded review rate, measurable baseline improvement, fallback verification, and cross-adapter receipt parity. This does not close visual-similarity limitations.
 
 ## Entry Template
 
@@ -340,3 +340,4 @@ Use this template for new limitations:
 - 2026-10-03: Locked Jev question set version 1 for calibration only and generated 17 provider-shaped requests without expected labels, review evidence, contact data, holdout cases, or production effect. No network call was made.
 - 2026-10-03: Added the optional TypeSafe provider and receipt boundary with double opt-in, pinned-model/typed-answer validation, disabled fallback, secret-free receipts, and no production effect. The committed receipt proves disabled behavior only; no live call was made.
 - 2026-10-03: Ran the explicitly owner-approved 17-case live calibration. Jev matched 13/17 semantic labels; the conservative candidate policy matched 16/17 actions versus the lexical baseline's 10/17, routing three cases to review. Production remains disabled and the nine-case holdout remains untouched.
+- 2026-10-03: Locked the candidate policy before running the separately approved nine-case holdout. Jev matched 8/9 semantic labels but only 5/9 actions, with one false allow and four review routes. Version 1 failed the keep gate and is marked `revise`; production remains disabled.

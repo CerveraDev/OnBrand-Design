@@ -1,6 +1,6 @@
 # Phase 13: Jev Semantic Decision Pilot
 
-**Status:** Live calibration complete; untouched holdout and acceptance decision pending
+**Status:** Holdout complete; decision is revise; production integration rejected for version 1
 **Target:** Post-Phase 11 refinement; independent of deferred Phase 12
 **Depends on:** Phase 10 copy allocation QA, versioned runtime contracts, and a labeled Rider evaluation set
 
@@ -128,4 +128,10 @@ Disabling the feature flag restores the existing Phase 10 behavior. Removing the
 - [Live calibration receipt](../evals/receipts/phase-13-jev-calibration.live.v1.json)
 - [Calibration report](../evals/phase-13-jev-calibration-report.md)
 - [Machine-readable calibration report](../evals/phase-13-jev-calibration-report.v1.json)
+- [Locked candidate policy](../evals/config/phase-13-jev-candidate-policy.v1.json)
+- [Holdout procedure](../evals/phase-13-jev-holdout-procedure.md)
+- [Holdout request batch](../evals/requests/phase-13-jev-holdout.v1.json)
+- [Live holdout receipt](../evals/receipts/phase-13-jev-holdout.live.v1.json)
+- [Holdout report](../evals/phase-13-jev-holdout-report.md)
+- [Machine-readable holdout report](../evals/phase-13-jev-holdout-report.v1.json)
 - [Receipt schema](../../tools/semantic_eval/receipt.schema.json)

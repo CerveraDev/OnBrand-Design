@@ -1,0 +1,209 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "rider-semantic-decision-pilot-v1",
+  "dataset_sha256": "38df0b4d55c489fa06e4dea1b20ea5ce5b2d90e5969a65f5652c93343e6e8af7",
+  "receipt_sha256": "fb5257ac8cc291b1f3cb92243c8ce850ab83154259a9a80f08fc6aaa6484c9da",
+  "split": "holdout",
+  "acceptance_evidence": true,
+  "production_effect": "none",
+  "policy_id": "onbrand-jev-candidate-v1",
+  "policy_sha256": "bbb7fceaaddc15ed47fee0d177046aa397ceb46dcc8fe5556cce3283e17990fb",
+  "policy": {
+    "schema_version": "1.0",
+    "policy_id": "onbrand-jev-candidate-v1",
+    "status": "holdout-locked",
+    "model": "jev-1.13.0",
+    "question_set_id": "onbrand-jev-semantic-v1",
+    "high_confidence": 0.8,
+    "low_confidence_action": "review",
+    "contradiction_action": "review",
+    "approved_reuse_precedence": true,
+    "copy_actions": {
+      "equivalent": "block",
+      "related-distinct": "allow",
+      "distinct": "allow"
+    },
+    "claim_actions": {
+      "supported": "allow",
+      "unsupported": "block",
+      "insufficient": "review"
+    },
+    "production_effect": "none"
+  },
+  "case_count": 9,
+  "metrics": {
+    "semantic_label_agreement": 0.889,
+    "semantic_label_matches": 8,
+    "action_accuracy": 0.556,
+    "action_matches": 5,
+    "precision_intervention": 0.833,
+    "recall_intervention": 0.833,
+    "false_positive_rate": 0.333,
+    "false_negative_rate": 0.167,
+    "coverage": 0.556,
+    "review_rate": 0.444,
+    "human_action_overrides": 4,
+    "false_allows": 1,
+    "confusion": {
+      "tp": 5,
+      "fp": 1,
+      "tn": 2,
+      "fn": 1
+    }
+  },
+  "task_metrics": {
+    "claim-support": {
+      "total": 3,
+      "label_matches": 2,
+      "label_agreement": 0.667,
+      "action_matches": 3,
+      "action_accuracy": 1.0,
+      "review_count": 1
+    },
+    "copy-similarity": {
+      "total": 6,
+      "label_matches": 6,
+      "label_agreement": 1.0,
+      "action_matches": 2,
+      "action_accuracy": 0.333,
+      "review_count": 3
+    }
+  },
+  "lexical_baseline_comparison": {
+    "holdout_action_matches": 4,
+    "jev_candidate_action_matches": 5,
+    "match_delta": 1,
+    "lexical_accuracy": 0.444,
+    "jev_candidate_accuracy": 0.556
+  },
+  "results": [
+    {
+      "case_id": "sim-hold-001",
+      "task": "copy-similarity",
+      "expected_label": "equivalent",
+      "predicted_label": "equivalent",
+      "label_matched": true,
+      "expected_action": "block",
+      "predicted_action": "review",
+      "action_matched": false,
+      "confidence": 0.45,
+      "routed_to_review": true,
+      "routing_reasons": [
+        "below-high-confidence-band",
+        "companion-answer-contradiction"
+      ]
+    },
+    {
+      "case_id": "sim-hold-002",
+      "task": "copy-similarity",
+      "expected_label": "related-distinct",
+      "predicted_label": "related-distinct",
+      "label_matched": true,
+      "expected_action": "review",
+      "predicted_action": "allow",
+      "action_matched": false,
+      "confidence": 0.87,
+      "routed_to_review": false,
+      "routing_reasons": []
+    },
+    {
+      "case_id": "sim-hold-003",
+      "task": "copy-similarity",
+      "expected_label": "equivalent",
+      "predicted_label": "equivalent",
+      "label_matched": true,
+      "expected_action": "block",
+      "predicted_action": "block",
+      "action_matched": true,
+      "confidence": 0.94,
+      "routed_to_review": false,
+      "routing_reasons": []
+    },
+    {
+      "case_id": "sim-hold-004",
+      "task": "copy-similarity",
+      "expected_label": "related-distinct",
+      "predicted_label": "related-distinct",
+      "label_matched": true,
+      "expected_action": "allow",
+      "predicted_action": "allow",
+      "action_matched": true,
+      "confidence": 0.89,
+      "routed_to_review": false,
+      "routing_reasons": []
+    },
+    {
+      "case_id": "sim-hold-005",
+      "task": "copy-similarity",
+      "expected_label": "distinct",
+      "predicted_label": "distinct",
+      "label_matched": true,
+      "expected_action": "allow",
+      "predicted_action": "review",
+      "action_matched": false,
+      "confidence": 0.38,
+      "routed_to_review": true,
+      "routing_reasons": [
+        "below-high-confidence-band"
+      ]
+    },
+    {
+      "case_id": "sim-hold-006",
+      "task": "copy-similarity",
+      "expected_label": "equivalent",
+      "predicted_label": "equivalent",
+      "label_matched": true,
+      "expected_action": "block",
+      "predicted_action": "review",
+      "action_matched": false,
+      "confidence": 0.88,
+      "routed_to_review": true,
+      "routing_reasons": [
+        "companion-answer-contradiction"
+      ]
+    },
+    {
+      "case_id": "claim-hold-001",
+      "task": "claim-support",
+      "expected_label": "supported",
+      "predicted_label": "supported",
+      "label_matched": true,
+      "expected_action": "allow",
+      "predicted_action": "allow",
+      "action_matched": true,
+      "confidence": 0.89,
+      "routed_to_review": false,
+      "routing_reasons": []
+    },
+    {
+      "case_id": "claim-hold-002",
+      "task": "claim-support",
+      "expected_label": "unsupported",
+      "predicted_label": "unsupported",
+      "label_matched": true,
+      "expected_action": "block",
+      "predicted_action": "block",
+      "action_matched": true,
+      "confidence": 0.97,
+      "routed_to_review": false,
+      "routing_reasons": []
+    },
+    {
+      "case_id": "claim-hold-003",
+      "task": "claim-support",
+      "expected_label": "insufficient",
+      "predicted_label": "unsupported",
+      "label_matched": false,
+      "expected_action": "review",
+      "predicted_action": "review",
+      "action_matched": true,
+      "confidence": 0.3,
+      "routed_to_review": true,
+      "routing_reasons": [
+        "below-high-confidence-band"
+      ]
+    }
+  ],
+  "decision": "revise",
+  "conclusion": "Holdout decision: revise. Candidate actions matched 5/9 versus 4/9 for the lexical baseline, with 1 false allow(s) and 4/9 cases routed to review. Production remains disabled."
+}

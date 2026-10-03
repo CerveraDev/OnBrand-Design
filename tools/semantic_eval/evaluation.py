@@ -20,15 +20,28 @@ def evaluate_calibration(
     lexical_baseline: dict[str, Any],
     policy: dict[str, Any],
 ) -> dict[str, Any]:
+    return evaluate_split(dataset, receipt, lexical_baseline, policy, split="calibration")
+
+
+def evaluate_split(
+    dataset: dict[str, Any],
+    receipt: dict[str, Any],
+    lexical_baseline: dict[str, Any],
+    policy: dict[str, Any],
+    *,
+    split: str,
+) -> dict[str, Any]:
     _validate_policy(policy)
     high_confidence = policy["high_confidence"]
-    cases = [case for case in dataset.get("cases", []) if case.get("split") == "calibration"]
+    if split not in {"calibration", "holdout"}:
+        raise EvaluationError("Evaluation split must be calibration or holdout")
+    cases = [case for case in dataset.get("cases", []) if case.get("split") == split]
     expected_ids = {case["id"] for case in cases}
     records = receipt.get("records")
     if dataset.get("status") != "adjudicated":
         raise EvaluationError("Calibration requires an adjudicated dataset")
-    if receipt.get("status") != "completed" or receipt.get("split") != "calibration":
-        raise EvaluationError("Calibration receipt must be completed and calibration-only")
+    if receipt.get("status") != "completed" or receipt.get("split") != split:
+        raise EvaluationError(f"Receipt must be completed and {split}-only")
     if receipt.get("dataset_id") != dataset.get("dataset_id"):
         raise EvaluationError("Receipt dataset_id does not match the frozen dataset")
     if not isinstance(records, list) or {record.get("case_id") for record in records} != expected_ids:
@@ -55,9 +68,9 @@ def evaluate_calibration(
     false_negative = sum(expected and not predicted for expected, predicted in zip(expected_positive, predicted_positive))
     automated = sum(result["predicted_action"] != "review" for result in results)
     reviews = len(results) - automated
-    baseline_calibration = lexical_baseline.get("split_metrics", {}).get("calibration", {})
-    baseline_matched = baseline_calibration.get("matched")
-    baseline_total = baseline_calibration.get("total")
+    baseline_split = lexical_baseline.get("split_metrics", {}).get(split, {})
+    baseline_matched = baseline_split.get("matched")
+    baseline_total = baseline_split.get("total")
     if baseline_total != len(results) or type(baseline_matched) is not int:
         raise EvaluationError("Lexical baseline does not match the calibration split")
 
@@ -66,8 +79,8 @@ def evaluate_calibration(
         "dataset_id": dataset["dataset_id"],
         "dataset_sha256": document_sha256(dataset),
         "receipt_sha256": document_sha256(receipt),
-        "split": "calibration",
-        "acceptance_evidence": False,
+        "split": split,
+        "acceptance_evidence": split == "holdout",
         "production_effect": "none",
         "policy_id": policy["policy_id"],
         "policy_sha256": document_sha256(policy),
@@ -85,18 +98,20 @@ def evaluate_calibration(
             "coverage": _ratio(automated, len(results)),
             "review_rate": _ratio(reviews, len(results)),
             "human_action_overrides": len(results) - action_matches,
+            "false_allows": false_negative,
             "confusion": {"tp": true_positive, "fp": false_positive, "tn": true_negative, "fn": false_negative},
         },
         "task_metrics": _task_metrics(results),
         "lexical_baseline_comparison": {
-            "calibration_action_matches": baseline_matched,
+            f"{split}_action_matches": baseline_matched,
             "jev_candidate_action_matches": action_matches,
             "match_delta": action_matches - baseline_matched,
             "lexical_accuracy": _ratio(baseline_matched, baseline_total),
             "jev_candidate_accuracy": _ratio(action_matches, len(results)),
         },
         "results": results,
-        "conclusion": "Calibration signal only. Keep production disabled until the untouched holdout is evaluated and acceptance criteria pass.",
+        "decision": _decision(split, action_matches, baseline_matched, false_negative, reviews, len(results)),
+        "conclusion": _conclusion(split, action_matches, baseline_matched, false_negative, reviews, len(results)),
     }
 
 
@@ -212,3 +227,24 @@ def _task_metrics(results: list[dict[str, Any]]) -> dict[str, Any]:
 
 def _ratio(numerator: int, denominator: int) -> float:
     return round(numerator / denominator, 3) if denominator else 0.0
+
+
+def _decision(split: str, matches: int, baseline_matches: int, false_allows: int, reviews: int, total: int) -> str:
+    if split == "calibration":
+        return "proceed-to-holdout"
+    if matches > baseline_matches and false_allows == 0 and _ratio(reviews, total) <= 0.3:
+        return "keep"
+    if matches >= baseline_matches or false_allows > 0:
+        return "revise"
+    return "remove"
+
+
+def _conclusion(split: str, matches: int, baseline_matches: int, false_allows: int, reviews: int, total: int) -> str:
+    if split == "calibration":
+        return "Calibration signal only. Keep production disabled until the untouched holdout is evaluated and acceptance criteria pass."
+    decision = _decision(split, matches, baseline_matches, false_allows, reviews, total)
+    return (
+        f"Holdout decision: {decision}. Candidate actions matched {matches}/{total} versus "
+        f"{baseline_matches}/{total} for the lexical baseline, with {false_allows} false allow(s) "
+        f"and {reviews}/{total} cases routed to review. Production remains disabled."
+    )

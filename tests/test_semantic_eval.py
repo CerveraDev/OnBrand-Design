@@ -31,7 +31,7 @@ from tools.semantic_eval.jev_pilot import (
     validate_question_set,
 )
 from tools.semantic_eval.provider import ProviderError, run_provider_batch
-from tools.semantic_eval.evaluation import EvaluationError, evaluate_calibration
+from tools.semantic_eval.evaluation import EvaluationError, evaluate_calibration, evaluate_split
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -46,6 +46,7 @@ CALIBRATION_BATCH_PATH = ROOT / "docs/evals/requests/phase-13-jev-calibration.v1
 LIVE_RECEIPT_PATH = ROOT / "docs/evals/receipts/phase-13-jev-calibration.live.v1.json"
 FROZEN_BASELINE_PATH = ROOT / "docs/evals/phase-13-lexical-baseline.frozen.v1.json"
 JEV_POLICY_PATH = ROOT / "docs/evals/config/phase-13-jev-candidate-policy.v1.json"
+HOLDOUT_RECEIPT_PATH = ROOT / "docs/evals/receipts/phase-13-jev-holdout.live.v1.json"
 
 
 class SemanticEvaluationDatasetTests(unittest.TestCase):
@@ -355,6 +356,24 @@ class SemanticEvaluationDatasetTests(unittest.TestCase):
         drifted["copy_actions"]["related-distinct"] = "review"
         with self.assertRaisesRegex(EvaluationError, "Copy action mappings"):
             evaluate_calibration(frozen, receipt, baseline, drifted)
+
+    def test_live_holdout_report_uses_locked_policy_and_requires_revision(self):
+        frozen = json.loads(FROZEN_DATASET_PATH.read_text(encoding="utf-8"))
+        receipt = json.loads(HOLDOUT_RECEIPT_PATH.read_text(encoding="utf-8"))
+        baseline = json.loads(FROZEN_BASELINE_PATH.read_text(encoding="utf-8"))
+        policy = json.loads(JEV_POLICY_PATH.read_text(encoding="utf-8"))
+        report = evaluate_split(frozen, receipt, baseline, policy, split="holdout")
+        self.assertTrue(report["acceptance_evidence"])
+        self.assertEqual(report["decision"], "revise")
+        self.assertEqual(report["metrics"]["semantic_label_matches"], 8)
+        self.assertEqual(report["metrics"]["action_matches"], 5)
+        self.assertEqual(report["metrics"]["false_allows"], 1)
+        self.assertEqual(report["metrics"]["review_rate"], 0.444)
+        self.assertEqual(report["lexical_baseline_comparison"]["match_delta"], 1)
+        by_id = {item["case_id"]: item for item in report["results"]}
+        self.assertEqual(by_id["sim-hold-002"]["predicted_action"], "allow")
+        self.assertEqual(by_id["sim-hold-002"]["expected_action"], "review")
+        self.assertEqual(by_id["sim-hold-006"]["routing_reasons"], ["companion-answer-contradiction"])
 
 
 def complete_review(dataset, reviewer_id):
