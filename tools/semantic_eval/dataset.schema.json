@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CerveraDev/OnBrand-Design/tools/semantic_eval/dataset.schema.json",
+  "title": "OnBrand semantic evaluation dataset",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "dataset_id",
+    "project",
+    "status",
+    "created_at",
+    "purpose",
+    "deidentification",
+    "label_policy",
+    "cases"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "dataset_id": {"type": "string", "minLength": 1},
+    "project": {"type": "string", "minLength": 1},
+    "status": {"const": "provisional"},
+    "created_at": {"type": "string", "format": "date"},
+    "purpose": {"type": "string", "minLength": 1},
+    "deidentification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contains_personal_contact_data", "method"],
+      "properties": {
+        "contains_personal_contact_data": {"const": false},
+        "method": {"type": "string", "minLength": 1}
+      }
+    },
+    "label_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["copy_similarity", "claim_support", "review_rule"],
+      "properties": {
+        "copy_similarity": {"type": "string", "minLength": 1},
+        "claim_support": {"type": "string", "minLength": 1},
+        "review_rule": {"type": "string", "minLength": 1}
+      }
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 20,
+      "items": {"$ref": "#/$defs/case"}
+    }
+  },
+  "$defs": {
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "task", "split", "state", "expected", "challenge_tags", "provenance", "adjudication"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "task": {"enum": ["copy-similarity", "claim-support"]},
+        "split": {"enum": ["calibration", "holdout"]},
+        "state": {
+          "oneOf": [
+            {"$ref": "#/$defs/copyState"},
+            {"$ref": "#/$defs/claimState"}
+          ]
+        },
+        "expected": {
+          "oneOf": [
+            {"$ref": "#/$defs/copyExpected"},
+            {"$ref": "#/$defs/claimExpected"}
+          ]
+        },
+        "challenge_tags": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "reference", "notes"],
+          "properties": {
+            "kind": {"type": "string", "minLength": 1},
+            "reference": {"type": "string", "minLength": 1},
+            "notes": {"type": "string", "minLength": 1}
+          }
+        },
+        "adjudication": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "reviewer_labels"],
+          "properties": {
+            "status": {"enum": ["provisional", "reviewed", "adjudicated"]},
+            "reviewer_labels": {"type": "array"}
+          }
+        }
+      }
+    },
+    "copyState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["left", "right", "context", "approved_reuse"],
+      "properties": {
+        "left": {"type": "string", "minLength": 1},
+        "right": {"type": "string", "minLength": 1},
+        "context": {"type": "string", "minLength": 1},
+        "approved_reuse": {"type": "boolean"}
+      }
+    },
+    "claimState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["claim", "source_excerpt", "context"],
+      "properties": {
+        "claim": {"type": "string", "minLength": 1},
+        "source_excerpt": {"type": "string", "minLength": 1},
+        "context": {"type": "string", "minLength": 1}
+      }
+    },
+    "copyExpected": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["semantic_relation", "action", "intentional_refrain"],
+      "properties": {
+        "semantic_relation": {"enum": ["distinct", "related-distinct", "equivalent"]},
+        "action": {"enum": ["allow", "review", "block"]},
+        "intentional_refrain": {"type": "boolean"}
+      }
+    },
+    "claimExpected": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["support", "action"],
+      "properties": {
+        "support": {"enum": ["supported", "unsupported", "insufficient"]},
+        "action": {"enum": ["allow", "review", "block"]}
+      }
+    }
+  }
+}

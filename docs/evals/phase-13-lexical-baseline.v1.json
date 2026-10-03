@@ -1,0 +1,298 @@
+{
+  "dataset_id": "rider-semantic-decision-pilot-v1",
+  "dataset_status": "provisional",
+  "acceptance_evidence": false,
+  "baseline": {
+    "name": "phase-10-lexical-and-reference-presence",
+    "warning_threshold": 0.65,
+    "blocking_threshold": 0.82
+  },
+  "case_count": 26,
+  "matched": 14,
+  "accuracy": 0.538,
+  "split_metrics": {
+    "calibration": {
+      "matched": 10,
+      "total": 17,
+      "accuracy": 0.588
+    },
+    "holdout": {
+      "matched": 4,
+      "total": 9,
+      "accuracy": 0.444
+    }
+  },
+  "task_metrics": {
+    "claim-support": {
+      "matched": 2,
+      "total": 8,
+      "accuracy": 0.25
+    },
+    "copy-similarity": {
+      "matched": 12,
+      "total": 18,
+      "accuracy": 0.667
+    }
+  },
+  "semantic_gap_case_ids": [
+    "sim-cal-003",
+    "sim-cal-009",
+    "sim-hold-001",
+    "sim-hold-003",
+    "sim-hold-006"
+  ],
+  "results": [
+    {
+      "id": "sim-cal-001",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "expected_action": "block",
+      "predicted_action": "block",
+      "matched": true,
+      "lexical_score": 1.0,
+      "reason": "exact normalized match"
+    },
+    {
+      "id": "sim-cal-002",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "expected_action": "block",
+      "predicted_action": "block",
+      "matched": true,
+      "lexical_score": 0.833,
+      "reason": "lexical blocking threshold"
+    },
+    {
+      "id": "sim-cal-003",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "expected_action": "block",
+      "predicted_action": "allow",
+      "matched": false,
+      "lexical_score": 0.005,
+      "reason": "below lexical warning threshold"
+    },
+    {
+      "id": "sim-cal-004",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "expected_action": "allow",
+      "predicted_action": "allow",
+      "matched": true,
+      "lexical_score": 0.062,
+      "reason": "below lexical warning threshold"
+    },
+    {
+      "id": "sim-cal-005",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "expected_action": "allow",
+      "predicted_action": "allow",
+      "matched": true,
+      "lexical_score": 0.0,
+      "reason": "below lexical warning threshold"
+    },
+    {
+      "id": "sim-cal-006",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "expected_action": "allow",
+      "predicted_action": "allow",
+      "matched": true,
+      "lexical_score": 1.0,
+      "reason": "approved reuse exemption"
+    },
+    {
+      "id": "sim-cal-007",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "expected_action": "allow",
+      "predicted_action": "allow",
+      "matched": true,
+      "lexical_score": 0.0,
+      "reason": "below lexical warning threshold"
+    },
+    {
+      "id": "sim-cal-008",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "expected_action": "block",
+      "predicted_action": "block",
+      "matched": true,
+      "lexical_score": 1.0,
+      "reason": "exact normalized match"
+    },
+    {
+      "id": "sim-cal-009",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "expected_action": "block",
+      "predicted_action": "allow",
+      "matched": false,
+      "lexical_score": 0.118,
+      "reason": "below lexical warning threshold"
+    },
+    {
+      "id": "sim-cal-010",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "expected_action": "allow",
+      "predicted_action": "allow",
+      "matched": true,
+      "lexical_score": 0.007,
+      "reason": "below lexical warning threshold"
+    },
+    {
+      "id": "sim-cal-011",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "expected_action": "allow",
+      "predicted_action": "allow",
+      "matched": true,
+      "lexical_score": 0.077,
+      "reason": "below lexical warning threshold"
+    },
+    {
+      "id": "sim-cal-012",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "expected_action": "review",
+      "predicted_action": "allow",
+      "matched": false,
+      "lexical_score": 0.053,
+      "reason": "below lexical warning threshold"
+    },
+    {
+      "id": "sim-hold-001",
+      "task": "copy-similarity",
+      "split": "holdout",
+      "expected_action": "block",
+      "predicted_action": "allow",
+      "matched": false,
+      "lexical_score": 0.048,
+      "reason": "below lexical warning threshold"
+    },
+    {
+      "id": "sim-hold-002",
+      "task": "copy-similarity",
+      "split": "holdout",
+      "expected_action": "review",
+      "predicted_action": "review",
+      "matched": true,
+      "lexical_score": 0.8,
+      "reason": "lexical warning threshold"
+    },
+    {
+      "id": "sim-hold-003",
+      "task": "copy-similarity",
+      "split": "holdout",
+      "expected_action": "block",
+      "predicted_action": "allow",
+      "matched": false,
+      "lexical_score": 0.0,
+      "reason": "below lexical warning threshold"
+    },
+    {
+      "id": "sim-hold-004",
+      "task": "copy-similarity",
+      "split": "holdout",
+      "expected_action": "allow",
+      "predicted_action": "allow",
+      "matched": true,
+      "lexical_score": 0.071,
+      "reason": "below lexical warning threshold"
+    },
+    {
+      "id": "sim-hold-005",
+      "task": "copy-similarity",
+      "split": "holdout",
+      "expected_action": "allow",
+      "predicted_action": "allow",
+      "matched": true,
+      "lexical_score": 0.0,
+      "reason": "below lexical warning threshold"
+    },
+    {
+      "id": "sim-hold-006",
+      "task": "copy-similarity",
+      "split": "holdout",
+      "expected_action": "block",
+      "predicted_action": "allow",
+      "matched": false,
+      "lexical_score": 0.062,
+      "reason": "below lexical warning threshold"
+    },
+    {
+      "id": "claim-cal-001",
+      "task": "claim-support",
+      "split": "calibration",
+      "expected_action": "allow",
+      "predicted_action": "review",
+      "matched": false,
+      "reason": "current baseline checks reference presence, not semantic support"
+    },
+    {
+      "id": "claim-cal-002",
+      "task": "claim-support",
+      "split": "calibration",
+      "expected_action": "block",
+      "predicted_action": "review",
+      "matched": false,
+      "reason": "current baseline checks reference presence, not semantic support"
+    },
+    {
+      "id": "claim-cal-003",
+      "task": "claim-support",
+      "split": "calibration",
+      "expected_action": "block",
+      "predicted_action": "review",
+      "matched": false,
+      "reason": "current baseline checks reference presence, not semantic support"
+    },
+    {
+      "id": "claim-cal-004",
+      "task": "claim-support",
+      "split": "calibration",
+      "expected_action": "review",
+      "predicted_action": "review",
+      "matched": true,
+      "reason": "current baseline checks reference presence, not semantic support"
+    },
+    {
+      "id": "claim-cal-005",
+      "task": "claim-support",
+      "split": "calibration",
+      "expected_action": "allow",
+      "predicted_action": "review",
+      "matched": false,
+      "reason": "current baseline checks reference presence, not semantic support"
+    },
+    {
+      "id": "claim-hold-001",
+      "task": "claim-support",
+      "split": "holdout",
+      "expected_action": "allow",
+      "predicted_action": "review",
+      "matched": false,
+      "reason": "current baseline checks reference presence, not semantic support"
+    },
+    {
+      "id": "claim-hold-002",
+      "task": "claim-support",
+      "split": "holdout",
+      "expected_action": "block",
+      "predicted_action": "review",
+      "matched": false,
+      "reason": "current baseline checks reference presence, not semantic support"
+    },
+    {
+      "id": "claim-hold-003",
+      "task": "claim-support",
+      "split": "holdout",
+      "expected_action": "review",
+      "predicted_action": "review",
+      "matched": true,
+      "reason": "current baseline checks reference presence, not semantic support"
+    }
+  ]
+}

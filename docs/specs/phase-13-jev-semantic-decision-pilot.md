@@ -1,6 +1,6 @@
 # Phase 13: Jev Semantic Decision Pilot
 
-**Status:** Approved for evaluation, not implemented
+**Status:** Evaluation foundation implemented; provider not implemented
 **Target:** Post-Phase 11 refinement; independent of deferred Phase 12
 **Depends on:** Phase 10 copy allocation QA, versioned runtime contracts, and a labeled Rider evaluation set
 
@@ -66,6 +66,8 @@ Build a versioned, de-identified Rider set containing:
 
 Keep training/calibration examples separate from the final holdout set.
 
+The provisional version 1 Rider dataset, JSON Schema, deterministic validator, blind review worksheet, and lexical baseline report are committed. Seed labels are not acceptance evidence until independent review and adjudication are recorded.
+
 ## Acceptance Criteria
 
 - Demonstrate improvement over the Phase 10 lexical baseline on the held-out semantic cases.
@@ -107,3 +109,11 @@ No production blocking decision may depend on Jev until these criteria pass and 
 ## Rollback
 
 Disabling the feature flag restores the existing Phase 10 behavior. Removing the provider adapter must leave campaign inputs, generated packages, QA reports, and platform adapters valid.
+
+## Current Evidence
+
+- [Provisional dataset](../evals/data/phase-13-rider-copy-pairs.v1.json)
+- [Blind review worksheet](../evals/phase-13-rider-copy-review-worksheet.md)
+- [Baseline evaluation](../evals/phase-13-semantic-decision-baseline.md)
+- [Machine-readable baseline](../evals/phase-13-lexical-baseline.v1.json)
+- [Dataset validator tests](../../tests/test_semantic_eval.py)
