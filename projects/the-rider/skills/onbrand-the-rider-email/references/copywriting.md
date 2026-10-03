@@ -41,3 +41,5 @@ Prefer clear action labels. Examples:
 Match CTA to campaign goal. Do not invent contact details or URLs; use supplied values or leave placeholders.
 
 After drafting, run [copy-quality.md](copy-quality.md) before presenting final copy for approval or building HTML. Copy-quality guidance supplements the approved Rider voice; it does not replace it.
+
+After copy approval, map the selected wording through [copy-allocation.md](copy-allocation.md). Keep supplied wording intact; suggest any rewrite as a reviewable option. Repeated authority phrases, names, refrains, and claims require explicit ownership and approved policy before runtime assembly.

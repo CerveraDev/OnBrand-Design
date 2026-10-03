@@ -13,6 +13,7 @@ Run QA before delivery.
 - Build mode, representative variant, effective variant scope, changed surfaces, and expansion reason are recorded in `campaign-metadata.json` and `qa-report.json`.
 - Composition Preview and Release Build record the approved composition plan in `campaign-metadata.json` and `qa-report.json`.
 - Generated or edited imagery records the approved image workflow summary in `campaign-metadata.json`, `asset-manifest.json`, and `qa-report.json`.
+- Every build records approved `copy_allocation`, including source/owner context, claim references, exemptions, occurrence counts, and similarity results in metadata and QA.
 - Composition Preview and ordinary Smoke Test builds render one representative variant; Release Build renders the full internal matrix.
 - Package contains both the campaign folder and matching ZIP.
 - Asset manifest accounts for every image reference in every delivered HTML file.
@@ -20,6 +21,10 @@ Run QA before delivery.
 ## Copy Checks
 
 - Copy passed [copy-quality.md](copy-quality.md) after the campaign direction was selected.
+- Copy passed the pre-render [copy allocation gate](copy-allocation.md): every creative owner is allocated, unit text matches exactly, and restricted phrases stay within approved caps across metadata, live HTML, alt text, and declared baked-image text.
+- Near-duplicate scores of at least 0.65 are reviewed; scores of at least 0.82 block without a scoped exemption. Exemptions never waive occurrence caps.
+- Units marked `requires-evidence` carry approved claim references. Reference presence does not prove factual support or legal compliance.
+- Copy fixes were presented for approval; the runtime did not rewrite approved text.
 - Subject line, preview text, headline, body, and CTA support one coherent action.
 - Preview text adds information instead of repeating the subject line.
 - Generic luxury language was replaced with supported project detail where possible.
@@ -76,5 +81,6 @@ Run QA before delivery.
 - Real Rider environments use approved source assets whose filename, path, or category matches the claimed environment, such as gym, lobby, arrival, exterior, or amenity.
 - Source assets are tracked by manifest ID or checksummed local/scaffold path.
 - Output checksum, dimensions, intended module/slot, role, crop, focal point, and text policy match the final packaged image.
+- Every `baked-approved` workflow has declared text in allocation. Actual bitmap text is reviewed against the declaration; OCR execution remains external.
 - Branded objects are used only when requested and approved.
 - Rejected and unused image candidates are excluded from the package unless explicitly requested.

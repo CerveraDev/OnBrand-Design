@@ -9,8 +9,8 @@
     "slug": "rider-wellness-composition-preview",
     "title": "Rider Wellness Composition Preview Pilot",
     "output_dir": "campaign-output/rider-wellness-composition-preview",
-    "subject": "Miami’s new epicenter of wellness",
-    "preview_text": "Soho House and Equinox are minutes from The Rider."
+    "subject": "Wellness routines land near The Rider",
+    "preview_text": "Soho House and Equinox keep familiar rituals close to home."
   },
   "manifest": {
     "path": "tools/dropbox-manifest/manifest.json"
@@ -22,7 +22,7 @@
       "slots": {
         "headline": {
           "kind": "safe_rich_text",
-          "value": "MIAMI’S NEW EPICENTER<br>OF WELLNESS."
+          "value": "WELLNESS ARRIVES<br>NEAR THE RIDER."
         },
         "logo_link": {
           "kind": "url",
@@ -43,59 +43,59 @@
       "slots": {
         "section_label": {
           "kind": "text",
-          "value": "Soho House and Equinox are minutes from The Rider — and your NY or California membership may travel with you."
+          "value": "Soho House and Equinox are minutes from The Rider, keeping familiar wellness rituals close to home."
         },
         "section_1_heading": {
           "kind": "safe_rich_text",
-          "value": "Two of the names that define members’ health and social life are landing right here,"
+          "value": "Two defining membership experiences are expanding nearby,"
         },
         "section_1_copy": {
           "kind": "text",
-          "value": "Soho House, pouring capital into its Beach House, and a new dedicated health club nearby, and Equinox, with a new club coming to Edgewater minutes away."
+          "value": "Soho House continues investing in its Beach House presence while Equinox prepares an Edgewater club minutes from The Rider."
         },
         "section_2_heading": {
           "kind": "text",
-          "value": "For anyone relocating from New York or California,"
+          "value": "For New York and California relocations,"
         },
         "section_2_copy": {
           "kind": "text",
-          "value": "that’s the quiet luxury: the membership you already have works in Miami, too."
+          "value": "the point is continuity: daily fitness, social time, and recovery can stay part of the same week."
         },
         "section_3_heading": {
           "kind": "text",
-          "value": "Same routine."
+          "value": "Established rituals,"
         },
         "section_3_copy": {
           "kind": "text",
-          "value": "Same membership."
+          "value": "now a few minutes from home."
         },
         "section_4_heading": {
           "kind": "text",
-          "value": "New city,"
+          "value": "The move feels familiar,"
         },
         "section_4_copy": {
           "kind": "text",
-          "value": "with The Rider at the center of it."
+          "value": "because the routine already does."
         },
         "list_item_1": {
           "kind": "safe_rich_text",
-          "value": "<em>Same routine.</em>"
+          "value": "<em>Soho House Beach House investment nearby.</em>"
         },
         "list_item_2": {
           "kind": "safe_rich_text",
-          "value": "<em>Same membership.</em>"
+          "value": "<em>Equinox Edgewater club access nearby.</em>"
         },
         "list_item_3": {
           "kind": "safe_rich_text",
-          "value": "<em>New city, with The Rider at the center of it.</em>"
+          "value": "<em>The Rider keeps home at the center.</em>"
         },
         "amenity_statement": {
           "kind": "safe_rich_text",
-          "value": "Same routine.<br>Same membership.<br>New city, with The Rider at the center of it."
+          "value": "Keep your routine close without rebuilding your day."
         },
         "amenity_kicker": {
           "kind": "text",
-          "value": "New city, with The Rider at the center of it."
+          "value": "Home stays at the center."
         },
         "arrival_image": {
           "kind": "image",
@@ -105,7 +105,7 @@
         },
         "anchor_line": {
           "kind": "safe_rich_text",
-          "value": "<em>New city,</em><br><em>with The Rider at the center of it.</em>"
+          "value": "<em>Wellness stays familiar,</em><br><em>with The Rider at the center.</em>"
         },
         "anchor_name": {
           "kind": "text",
@@ -578,5 +578,507 @@
         }
       }
     ]
+  },
+  "copy_allocation": {
+    "version": "1.0",
+    "plan_id": "rider-wellness-composition-preview-copy-allocation",
+    "status": "approved",
+    "approved_by": "OnBrand Phase 10 fixture update",
+    "approved_at": "2026-10-03",
+    "content_units": [
+      {
+        "id": "meta-subject",
+        "text": "Wellness routines land near The Rider",
+        "content_role": "subject",
+        "source": "approved campaign metadata",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "metadata",
+          "metadata_field": "subject"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "meta-preview-text",
+        "text": "Soho House and Equinox keep familiar rituals close to home.",
+        "content_role": "preview_text",
+        "source": "approved campaign metadata",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "metadata",
+          "metadata_field": "preview_text"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "header-hero-live-text-heading-full-width-headline",
+        "text": "WELLNESS ARRIVES<br>NEAR THE RIDER.",
+        "content_role": "headline",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
+          "slot": "headline"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "header-hero-live-text-heading-full-width-background-image-alt",
+        "text": "Woman seated on a charcoal-gray yoga mat with The Rider logo engraved into the mat",
+        "content_role": "image-alt",
+        "source": "approved image alt text",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "alt-text",
+          "module_id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
+          "slot": "background_image",
+          "image_workflow_id": "rider-wellness-gym-hero"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-dark-then-light-layout-section-label",
+        "text": "Soho House and Equinox are minutes from The Rider, keeping familiar wellness rituals close to home.",
+        "content_role": "section_label",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "section_label"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-dark-then-light-layout-section-1-heading",
+        "text": "Two defining membership experiences are expanding nearby,",
+        "content_role": "section_1_heading",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "section_1_heading"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-dark-then-light-layout-section-1-copy",
+        "text": "Soho House continues investing in its Beach House presence while Equinox prepares an Edgewater club minutes from The Rider.",
+        "content_role": "section_1_copy",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "section_1_copy"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-dark-then-light-layout-section-2-heading",
+        "text": "For New York and California relocations,",
+        "content_role": "section_2_heading",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "section_2_heading"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-dark-then-light-layout-section-2-copy",
+        "text": "the point is continuity: daily fitness, social time, and recovery can stay part of the same week.",
+        "content_role": "section_2_copy",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "section_2_copy"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-dark-then-light-layout-section-3-heading",
+        "text": "Established rituals,",
+        "content_role": "section_3_heading",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "section_3_heading"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-dark-then-light-layout-section-3-copy",
+        "text": "now a few minutes from home.",
+        "content_role": "section_3_copy",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "section_3_copy"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-dark-then-light-layout-section-4-heading",
+        "text": "The move feels familiar,",
+        "content_role": "section_4_heading",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "section_4_heading"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-dark-then-light-layout-section-4-copy",
+        "text": "because the routine already does.",
+        "content_role": "section_4_copy",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "section_4_copy"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-dark-then-light-layout-list-item-1",
+        "text": "<em>Soho House Beach House investment nearby.</em>",
+        "content_role": "list_item_1",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "list_item_1"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-dark-then-light-layout-list-item-2",
+        "text": "<em>Equinox Edgewater club access nearby.</em>",
+        "content_role": "list_item_2",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "list_item_2"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-dark-then-light-layout-list-item-3",
+        "text": "<em>The Rider keeps home at the center.</em>",
+        "content_role": "list_item_3",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "list_item_3"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-dark-then-light-layout-amenity-statement",
+        "text": "Keep your routine close without rebuilding your day.",
+        "content_role": "amenity_statement",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "amenity_statement"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-dark-then-light-layout-amenity-kicker",
+        "text": "Home stays at the center.",
+        "content_role": "amenity_kicker",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "amenity_kicker"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-dark-then-light-layout-arrival-image-alt",
+        "text": "The Rider lobby arrival and valet",
+        "content_role": "image-alt",
+        "source": "approved image alt text",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "alt-text",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "arrival_image"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-dark-then-light-layout-anchor-line",
+        "text": "<em>Wellness stays familiar,</em><br><em>with The Rider at the center.</em>",
+        "content_role": "anchor_line",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "anchor_line"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-dark-then-light-layout-anchor-name",
+        "text": "THE RIDER RESIDENCES.",
+        "content_role": "anchor_name",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "anchor_name"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-dark-then-light-layout-primary-cta",
+        "text": "REQUEST MORE INFORMATION",
+        "content_role": "primary_cta",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "primary_cta"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-dark-then-light-layout-gallery-image-alt",
+        "text": "The Rider recovery spa",
+        "content_role": "image-alt",
+        "source": "approved image alt text",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "alt-text",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "gallery_image"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      }
+    ],
+    "slot_allocation": [
+      {
+        "module_id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
+        "slot": "headline",
+        "content_unit_id": "header-hero-live-text-heading-full-width-headline",
+        "rendering_type": "live-html"
+      },
+      {
+        "module_id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
+        "slot": "background_image",
+        "content_unit_id": "header-hero-live-text-heading-full-width-background-image-alt",
+        "rendering_type": "alt-text"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "section_label",
+        "content_unit_id": "body-dark-then-light-layout-section-label",
+        "rendering_type": "live-html"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "section_1_heading",
+        "content_unit_id": "body-dark-then-light-layout-section-1-heading",
+        "rendering_type": "live-html"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "section_1_copy",
+        "content_unit_id": "body-dark-then-light-layout-section-1-copy",
+        "rendering_type": "live-html"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "section_2_heading",
+        "content_unit_id": "body-dark-then-light-layout-section-2-heading",
+        "rendering_type": "live-html"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "section_2_copy",
+        "content_unit_id": "body-dark-then-light-layout-section-2-copy",
+        "rendering_type": "live-html"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "section_3_heading",
+        "content_unit_id": "body-dark-then-light-layout-section-3-heading",
+        "rendering_type": "live-html"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "section_3_copy",
+        "content_unit_id": "body-dark-then-light-layout-section-3-copy",
+        "rendering_type": "live-html"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "section_4_heading",
+        "content_unit_id": "body-dark-then-light-layout-section-4-heading",
+        "rendering_type": "live-html"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "section_4_copy",
+        "content_unit_id": "body-dark-then-light-layout-section-4-copy",
+        "rendering_type": "live-html"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "list_item_1",
+        "content_unit_id": "body-dark-then-light-layout-list-item-1",
+        "rendering_type": "live-html"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "list_item_2",
+        "content_unit_id": "body-dark-then-light-layout-list-item-2",
+        "rendering_type": "live-html"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "list_item_3",
+        "content_unit_id": "body-dark-then-light-layout-list-item-3",
+        "rendering_type": "live-html"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "amenity_statement",
+        "content_unit_id": "body-dark-then-light-layout-amenity-statement",
+        "rendering_type": "live-html"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "amenity_kicker",
+        "content_unit_id": "body-dark-then-light-layout-amenity-kicker",
+        "rendering_type": "live-html"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "arrival_image",
+        "content_unit_id": "body-dark-then-light-layout-arrival-image-alt",
+        "rendering_type": "alt-text"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "anchor_line",
+        "content_unit_id": "body-dark-then-light-layout-anchor-line",
+        "rendering_type": "live-html"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "anchor_name",
+        "content_unit_id": "body-dark-then-light-layout-anchor-name",
+        "rendering_type": "live-html"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "primary_cta",
+        "content_unit_id": "body-dark-then-light-layout-primary-cta",
+        "rendering_type": "live-html"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "gallery_image",
+        "content_unit_id": "body-dark-then-light-layout-gallery-image-alt",
+        "rendering_type": "alt-text"
+      }
+    ],
+    "restricted_phrases": [
+      {
+        "id": "from-creators-authority",
+        "phrase": "From the creators of The Bond",
+        "max_occurrences": 1,
+        "reason": "Authority phrase may have only one owner unless explicitly approved as a refrain."
+      },
+      {
+        "id": "same-routine-refrain",
+        "phrase": "Same routine",
+        "max_occurrences": 1,
+        "reason": "Reference failure phrase from earlier wellness smoke repetition."
+      },
+      {
+        "id": "same-membership-refrain",
+        "phrase": "Same membership",
+        "max_occurrences": 1,
+        "reason": "Reference failure phrase from earlier wellness smoke repetition."
+      }
+    ],
+    "dedupe_exemptions": []
   }
 }

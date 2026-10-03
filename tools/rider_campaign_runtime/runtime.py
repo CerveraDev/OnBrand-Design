@@ -12,6 +12,7 @@ from tools.asset_selection import load_manifest
 from .agents import load_agents
 from .assets import create_zip, package_documents, rewrite_and_package_assets, write_asset_manifest
 from .composition import validate_composition_contract
+from .copy_allocation import validate_copy_allocation
 from .footer import render_agent_footer, render_branded_footer, render_outside_broker_footer
 from .grounded_images import validate_grounded_image_workflow
 from .qa import QAResult, run_qa, write_qa_report
@@ -64,6 +65,7 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
     scaffold = load_scaffold(SCAFFOLD_PATH, SLOT_MAP_PATH, MODULE_METADATA_PATH)
     available = catalog(scaffold)
     composition_metadata = validate_composition_contract(spec, scaffold)
+    copy_allocation_metadata = validate_copy_allocation(spec, scaffold=scaffold)
     manifest_path = _resolve_path(base_dir, spec["manifest"]["path"])
     assets = load_manifest(manifest_path)
     manifest_assets = {asset["dropbox_id"]: asset for asset in assets}
@@ -219,6 +221,7 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
                 "build": build_metadata,
                 "composition": composition_metadata or {},
                 "image_workflow": image_workflow_metadata or {},
+                "copy_allocation": copy_allocation_metadata or {},
                 "variants": sorted(rewritten_html),
             },
             indent=2,
@@ -238,6 +241,7 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
         build_metadata=build_metadata,
         composition_metadata=composition_metadata,
         image_workflow_metadata=image_workflow_metadata,
+        copy_allocation_metadata=copy_allocation_metadata,
     )
     qa_report = write_qa_report(package_dir / "qa-report.json", qa)
     zip_path = None

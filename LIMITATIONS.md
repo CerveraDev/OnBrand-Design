@@ -34,8 +34,8 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 | --- | --- | --- | --- | --- |
 | LIM-001 | Generated-image visual faithfulness and environment preservation are not automatically scored | P1 | Open | Phase 9 refinement |
 | LIM-002 | Image provider execution and candidate-generation UX remain external to the runtime | P2 | Open | Phase 4 / Phase 9 refinement |
-| LIM-003 | Copy allocation, phrase ownership, and cross-surface repetition QA are not implemented | P1 | Open | Phase 10 |
-| LIM-004 | Unsupported-claim and copy-quality confidence are review-based, not scored or citation-backed | P2 | Open | Phase 10 / backlog |
+| LIM-003 | Copy allocation, phrase ownership, and cross-surface repetition QA | P1 | Closed | Phase 10 |
+| LIM-004 | Claim truth verification, extraction, and copy-quality confidence remain review-based | P2 | Mitigated | Phase 10 / backlog |
 | LIM-005 | Email-client and responsive visual compatibility are not covered by a committed render matrix | P1 | Open | Public release gate |
 | LIM-006 | The Rider uses local-cache manifest fallback because the canonical public manifest URL is not configured | P1 | Open | Asset library / project setup |
 | LIM-007 | Asset selection uses deterministic metadata scoring; sparse metadata still weakens ranking confidence | P2 | Mitigated | Asset library refinement |
@@ -77,28 +77,28 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 - Candidate metrics: Prompt-to-asset grounding score, candidate diversity, source-reference coverage, policy or brand-risk flags, likeness-consent verification where applicable, and human approval outcome tracking.
 - Closure criteria: Implement a documented provider adapter or candidate workflow, record all candidate decisions, and verify that package QA distinguishes generated, approved, rejected, and superseded outputs.
 
-### LIM-003: Copy allocation, phrase ownership, and cross-surface repetition QA are not implemented
+### LIM-003: Copy allocation, phrase ownership, and cross-surface repetition QA
 
 - Priority: P1
-- Status: Open
+- Status: Closed, 2026-10-03
 - Owner phase: Phase 10
 - Evidence: [ROADMAP.md](ROADMAP.md), [STATUS.md](STATUS.md), [docs/specs/phase-10-copy-allocation-qa.md](docs/specs/phase-10-copy-allocation-qa.md)
-- Current behavior: Phase 10 is approved but not implemented. The framework does not yet enforce owner slots, restricted phrases, name-deduplication, or repeated authority-language checks across visible text, baked imagery, alt text, metadata, subject lines, and preview text.
+- Current behavior: All Rider build modes require approved `copy_allocation` before rendering. Stable owners, exact approved text, normalized occurrences, restricted phrases/names, declared baked-image text, scoped exemptions, claim-reference policy, and transparent similarity checks are enforced. Passing metadata/QA retain approved units and findings; failed validation preserves the previous package.
 - Risk and impact: Repeated phrases can make campaigns sound templated, overstate authority, or duplicate claims across surfaces. The Phase 10 reference failure is the wellness smoke package repeating phrases such as "From the creators..." and "Same routine..." across multiple rendered surfaces.
-- Current control: Human review, copy references, and audit notes can flag repetition manually.
+- Current control: Committed runtime gates and 17 dedicated allocation tests, plus runtime integration/regression coverage and compliant plans in all four Rider fixtures. Undeclared bitmap text, implicit locked scaffold/contact strings, paraphrases, and factual truth still require human review; these are outside the explicit campaign inventory contract.
 - Scoring could help: Yes. Deterministic counts should lead where possible.
 - Candidate metrics: Normalized phrase overlap, repeated visible-text counts, restricted phrase occurrence count, person or broker name repetition, surface ownership confidence, subject-preview overlap, alt-visible duplicate rate, and unsupported-claim confidence.
-- Closure criteria: Implement Phase 10 QA with fixtures, failure cases, runtime/report integration, and documented remediation guidance.
+- Closure evidence: [Phase 10 evaluation](docs/evals/phase-10-copy-allocation-qa.md), [allocation tests](tests/test_rider_copy_allocation.py), and AUD-055. The live Composition Preview pilot passes 86 QA checks, including 26 allocation checks for 23 units, with 9 assets and a byte-audited ZIP. Ownership, failure fixtures, report integration, and reviewable remediation guidance are implemented.
 
-### LIM-004: Unsupported-claim and copy-quality confidence are review-based, not scored or citation-backed
+### LIM-004: Claim truth verification, extraction, and copy-quality confidence remain review-based
 
 - Priority: P2
-- Status: Open
+- Status: Mitigated
 - Owner phase: Phase 10 / backlog
 - Evidence: [projects/the-rider/skills/onbrand-the-rider-email/references/copy-quality.md](projects/the-rider/skills/onbrand-the-rider-email/references/copy-quality.md), [docs/evals/copy-quality.md](docs/evals/copy-quality.md), [docs/specs/phase-10-copy-allocation-qa.md](docs/specs/phase-10-copy-allocation-qa.md)
-- Current behavior: Copy-quality guidance is contextual. It flags unsupported facts, policy-sensitive assertions, and artificial-sounding phrases, but it does not compute a confidence score, citation coverage score, or automated claim-support report.
+- Current behavior: Phase 10 blocks units declared `requires-evidence` without references and retains those references for review. It also reports deterministic repetition and a transparent overlap score (warning 0.65, blocking 0.82). It does not extract claims, retrieve or verify sources, certify factual/legal support, run OCR, or compute a general copy-quality confidence score. Similarity thresholds have fixture evidence but no broader editorial calibration dataset.
 - Risk and impact: Unsupported claims can slip through if a reviewer misses them, and reviewers may apply inconsistent thresholds across campaigns.
-- Current control: Project references require human review for unsupported facts and prohibit claiming certainty from AI-detector-style judgments.
+- Current control: Required-reference gating and supported/unsupported claim fixtures mitigate missing declared evidence. Project references still require human review for undeclared claims, source truth, image-text declarations, and similarity findings; AI-detector-style judgments remain prohibited.
 - Scoring could help: Yes, with caveats.
 - Candidate metrics: Claim extraction count, supported-claim coverage, citation/source availability, unsupported-claim confidence, restricted-domain keyword hits, phrase naturalness heuristics, and reviewer override rate. Scores should identify review needs, not assert legal or factual compliance.
 - Closure criteria: Commit a claim-support QA workflow, fixtures for supported and unsupported claims, report fields for human review, and documented non-goals around AI authorship detection.
@@ -281,3 +281,4 @@ Use this template for new limitations:
 ## Change History
 
 - 2026-10-03: Created root limitations register covering Phase 1 through Phase 12 findings before Phase 10 implementation.
+- 2026-10-03: Closed LIM-003 with committed Phase 10 runtime/test/pilot evidence; mitigated LIM-004 through declared claim-reference gating and transparent repetition scoring while keeping source verification, OCR, and calibration limitations explicit.

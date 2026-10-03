@@ -27,7 +27,7 @@ The canonical Beefree scaffold is available at [templates/scaffold/rider-scaffol
 9. Create the approved composition plan with `python3 -m tools.rider_campaign_runtime.cli plan --selection <selection.json> --output <composition-plan.json>`.
 10. If generated or edited imagery is needed, hand off to `onbrand-the-rider-image` only after the relevant hero/image module is approved, then require an approved `image_workflow` provenance record before runtime assembly.
 11. Choose either a compatible standalone header plus hero or a hero that includes its own header. Never add a header automatically.
-12. Encode the approved campaign as a JSON document that conforms to `tools/rider_campaign_runtime/campaign.schema.json`, embeds the approved `composition` plan for Composition Preview or Release Build, and uses only slots declared in the Rider scaffold sidecar map.
+12. Create the approved [copy allocation plan](references/copy-allocation.md), including metadata, live copy, alt text, declared baked-image text, claim references, and narrowly scoped reuse approvals. Encode it as `copy_allocation` in the campaign JSON alongside the approved `composition` plan and only slots declared in the Rider scaffold sidecar map.
 13. Run `python3 -m tools.rider_campaign_runtime.cli <campaign.json>` from the repository root.
 14. Treat a nonzero exit or blocked QA report as a failed build; do not hand-assemble around it or create a ZIP manually.
 15. Deliver the generated campaign folder and ZIP only after reviewing the runtime summary and `qa-report.json`.
@@ -112,6 +112,8 @@ The runtime is Rider-specific and lives at `tools/rider_campaign_runtime/`. Its 
 
 The runtime also owns the portable Composition Preview and generated-image provenance workflow. `catalog` produces stable module codes and isolated HTML preview artifacts. `plan` consumes an explicit approved selection and writes a composition plan that the build step validates before rendering. `image_workflow` records generated/edited image provenance in the same campaign JSON. This file workflow is usable from Codex, Claude Code, or a normal shell.
 
+Every build mode requires approved `copy_allocation`. Ownership, exact/normalized repetition, restricted phrases, declared image text, and near-duplicate checks run before rendering; failures block packaging. Passing builds retain the approved units, claim references, exemptions, counts, and similarity results in metadata and QA. Proposed copy revisions remain reviewable options; never silently rewrite approved user copy to pass QA. Claude Code can call this portable CLI contract; adapter support still awaits Phase 11 parity validation.
+
 Use `projects/the-rider/skills/onbrand-the-rider-email/examples/smoke-campaign.runtime.json` only as an internal non-production example. Replace its sample copy and module selection with approved campaign content; never send or deploy the smoke output.
 
 ## References
@@ -121,6 +123,7 @@ Use `projects/the-rider/skills/onbrand-the-rider-email/examples/smoke-campaign.r
 - [references/campaign-types.md](references/campaign-types.md): campaign category rules
 - [references/copywriting.md](references/copywriting.md): copy, CTA, headline, subject-line rules
 - [references/copy-quality.md](references/copy-quality.md): project-aware editorial pass and audit mode
+- [references/copy-allocation.md](references/copy-allocation.md): approved ownership, reuse, claims, and repetition QA
 - [references/modules.md](references/modules.md): required and optional email modules
 - [references/footers.md](references/footers.md): locked footer variants and output set
 - [references/asset-selection.md](references/asset-selection.md): approved image selection rules

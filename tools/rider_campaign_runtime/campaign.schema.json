@@ -4,7 +4,7 @@
   "title": "Rider Campaign Runtime Spec",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "build", "campaign", "manifest", "modules", "static_blocks", "variants"],
+  "required": ["schema_version", "build", "copy_allocation", "campaign", "manifest", "modules", "static_blocks", "variants"],
   "properties": {
     "schema_version": { "const": "1.0" },
     "build": {
@@ -293,6 +293,118 @@
                   "logo_overlay": { "type": "string" }
                 }
               }
+            }
+          }
+        }
+      }
+    },
+    "copy_allocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "plan_id", "status", "approved_by", "approved_at", "content_units"],
+      "properties": {
+        "version": { "const": "1.0" },
+        "plan_id": { "type": "string", "minLength": 1 },
+        "status": { "const": "approved" },
+        "approved_by": { "type": "string", "minLength": 1 },
+        "approved_at": { "type": "string", "minLength": 1 },
+        "content_units": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "text", "content_role", "source", "approval_status", "owner"],
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "text": { "type": "string", "minLength": 1 },
+              "content_role": { "type": "string", "minLength": 1 },
+              "source": { "type": "string", "minLength": 1 },
+              "approval_status": { "const": "approved" },
+              "owner": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["channel"],
+                "properties": {
+                  "channel": {
+                    "enum": ["live-html", "baked-image-text", "alt-text", "metadata", "static", "legal", "footer"]
+                  },
+                  "module_id": { "type": "string" },
+                  "slot": { "type": "string" },
+                  "metadata_field": { "type": "string" },
+                  "image_workflow_id": { "type": "string" },
+                  "static_block_id": { "type": "string" },
+                  "variant_scope": { "enum": ["all", "representative"] }
+                }
+              },
+              "reuse_policy": {
+                "enum": [
+                  "single-use",
+                  "intentional-refrain",
+                  "required-legal",
+                  "static-brand",
+                  "required-name",
+                  "footer-contact",
+                  "metadata-required"
+                ]
+              },
+              "max_occurrences": { "type": "integer", "minimum": 1 },
+              "claim_policy": { "enum": ["none", "requires-evidence", "approved-no-evidence-required"] },
+              "claim_references": {
+                "type": "array",
+                "items": { "type": "string", "minLength": 1 }
+              },
+              "declared_text_source": { "enum": ["ocr", "creator-declared"] },
+              "notes": { "type": "string" }
+            }
+          }
+        },
+        "slot_allocation": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["module_id", "slot", "content_unit_id", "rendering_type"],
+            "properties": {
+              "module_id": { "type": "string", "minLength": 1 },
+              "slot": { "type": "string", "minLength": 1 },
+              "content_unit_id": { "type": "string", "minLength": 1 },
+              "rendering_type": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "restricted_phrases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "phrase", "reason"],
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "phrase": { "type": "string", "minLength": 1 },
+              "max_occurrences": { "type": "integer", "minimum": 1 },
+              "reason": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "dedupe_exemptions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "reason", "scope", "applies_to", "approved_by", "approved_at"],
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "reason": { "type": "string", "minLength": 1 },
+              "scope": { "type": "string", "minLength": 1 },
+              "applies_to": {
+                "type": "array",
+                "minItems": 1,
+                "items": { "type": "string", "minLength": 1 }
+              },
+              "approved_by": { "type": "string", "minLength": 1 },
+              "approved_at": { "type": "string", "minLength": 1 },
+              "evidence": { "type": "string" }
             }
           }
         }

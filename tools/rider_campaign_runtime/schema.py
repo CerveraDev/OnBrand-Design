@@ -5,6 +5,8 @@ import re
 from pathlib import Path
 from urllib.parse import urlparse
 
+from .copy_allocation import CHANNELS, CLAIM_POLICIES, REUSE_POLICIES
+
 
 class CampaignSpecError(ValueError):
     """Raised when a campaign spec is not safe to render."""
@@ -16,6 +18,7 @@ ALLOWED_TOP = {
     "build",
     "composition",
     "image_workflow",
+    "copy_allocation",
     "campaign",
     "manifest",
     "modules",
@@ -72,6 +75,43 @@ ALLOWED_IMAGE_PROMPT = {"tool", "model", "prompt", "negative_prompt", "edit_step
 ALLOWED_IMAGE_OUTPUT = {"src", "sha256", "width", "height", "format"}
 ALLOWED_IMAGE_PLACEMENT = {"aspect_ratio", "crop", "focal_point", "safe_area", "logo_overlay"}
 ALLOWED_IMAGE_FOCAL = {"x", "y"}
+ALLOWED_COPY_ALLOCATION = {
+    "version",
+    "plan_id",
+    "status",
+    "approved_by",
+    "approved_at",
+    "content_units",
+    "slot_allocation",
+    "restricted_phrases",
+    "dedupe_exemptions",
+}
+ALLOWED_COPY_UNIT = {
+    "id",
+    "text",
+    "content_role",
+    "source",
+    "approval_status",
+    "owner",
+    "reuse_policy",
+    "max_occurrences",
+    "claim_policy",
+    "claim_references",
+    "declared_text_source",
+    "notes",
+}
+ALLOWED_COPY_OWNER = {
+    "channel",
+    "module_id",
+    "slot",
+    "metadata_field",
+    "image_workflow_id",
+    "static_block_id",
+    "variant_scope",
+}
+ALLOWED_SLOT_ALLOCATION = {"module_id", "slot", "content_unit_id", "rendering_type"}
+ALLOWED_RESTRICTED_PHRASE = {"id", "phrase", "max_occurrences", "reason"}
+ALLOWED_DEDUPE_EXEMPTION = {"id", "reason", "scope", "applies_to", "approved_by", "approved_at", "evidence"}
 ALLOWED_CAMPAIGN = {
     "slug",
     "title",
@@ -138,6 +178,7 @@ def validate_campaign_spec(data: object) -> None:
         _validate_composition(_require(data, "composition", dict, "campaign spec"))
     if "image_workflow" in data:
         _validate_image_workflow(_require(data, "image_workflow", dict, "campaign spec"))
+    _validate_copy_allocation(_require(data, "copy_allocation", dict, "campaign spec"))
 
     campaign = _require(data, "campaign", dict, "campaign spec")
     _reject_unknown(campaign, ALLOWED_CAMPAIGN, "campaign")
@@ -459,6 +500,74 @@ def _validate_image_workflow(workflow: dict) -> None:
                 raise CampaignSpecError(f"{label}.placement.{field} must be a string")
         if "approval_notes" in item and not isinstance(item["approval_notes"], str):
             raise CampaignSpecError(f"{label}.approval_notes must be a string")
+
+
+def _validate_copy_allocation(allocation: dict) -> None:
+    _reject_unknown(allocation, ALLOWED_COPY_ALLOCATION, "copy_allocation")
+    if _require(allocation, "version", str, "copy_allocation") != "1.0":
+        raise CampaignSpecError("copy_allocation.version must be '1.0'")
+    _require(allocation, "plan_id", str, "copy_allocation")
+    if _require(allocation, "status", str, "copy_allocation") != "approved":
+        raise CampaignSpecError("copy_allocation.status must be approved")
+    _require(allocation, "approved_by", str, "copy_allocation")
+    _require(allocation, "approved_at", str, "copy_allocation")
+    units = _require_array(allocation, "content_units", "copy_allocation")
+    if not units:
+        raise CampaignSpecError("copy_allocation.content_units must not be empty")
+    for index, unit in enumerate(units):
+        label = f"copy_allocation.content_units[{index}]"
+        _validate_object(unit, ALLOWED_COPY_UNIT, label)
+        for field in ("id", "text", "content_role", "source", "approval_status"):
+            _require(unit, field, str, label)
+        if unit["approval_status"] != "approved":
+            raise CampaignSpecError(f"{label}.approval_status must be approved")
+        owner = _require(unit, "owner", dict, label)
+        _reject_unknown(owner, ALLOWED_COPY_OWNER, f"{label}.owner")
+        _require(owner, "channel", str, f"{label}.owner")
+        if owner["channel"] not in CHANNELS:
+            raise CampaignSpecError(f"{label}.owner.channel is not supported")
+        for field in ("module_id", "slot", "metadata_field", "image_workflow_id", "static_block_id"):
+            if field in owner:
+                _require(owner, field, str, f"{label}.owner")
+        if "variant_scope" in owner and owner["variant_scope"] not in {"all", "representative"}:
+            raise CampaignSpecError(f"{label}.owner.variant_scope must be all or representative")
+        if "reuse_policy" in unit and _require(unit, "reuse_policy", str, label) not in REUSE_POLICIES:
+            raise CampaignSpecError(f"{label}.reuse_policy is not supported")
+        if "max_occurrences" in unit:
+            value = unit["max_occurrences"]
+            if type(value) is not int or value <= 0:
+                raise CampaignSpecError(f"{label}.max_occurrences must be a positive integer")
+        if "claim_policy" in unit and _require(unit, "claim_policy", str, label) not in CLAIM_POLICIES:
+            raise CampaignSpecError(f"{label}.claim_policy is not supported")
+        if "claim_references" in unit:
+            _require_string_array(unit, "claim_references", label, allow_empty=True)
+        for field in ("declared_text_source", "notes"):
+            if field in unit and not isinstance(unit[field], str):
+                raise CampaignSpecError(f"{label}.{field} must be a string")
+        if "declared_text_source" in unit and unit["declared_text_source"] not in {"ocr", "creator-declared"}:
+            raise CampaignSpecError(f"{label}.declared_text_source is not supported")
+    for index, item in enumerate(_optional_array(allocation, "slot_allocation", "copy_allocation")):
+        label = f"copy_allocation.slot_allocation[{index}]"
+        _validate_object(item, ALLOWED_SLOT_ALLOCATION, label)
+        for field in ("module_id", "slot", "content_unit_id", "rendering_type"):
+            _require(item, field, str, label)
+    for index, item in enumerate(_optional_array(allocation, "restricted_phrases", "copy_allocation")):
+        label = f"copy_allocation.restricted_phrases[{index}]"
+        _validate_object(item, ALLOWED_RESTRICTED_PHRASE, label)
+        for field in ("id", "phrase", "reason"):
+            _require(item, field, str, label)
+        if "max_occurrences" in item:
+            value = item["max_occurrences"]
+            if type(value) is not int or value <= 0:
+                raise CampaignSpecError(f"{label}.max_occurrences must be a positive integer")
+    for index, item in enumerate(_optional_array(allocation, "dedupe_exemptions", "copy_allocation")):
+        label = f"copy_allocation.dedupe_exemptions[{index}]"
+        _validate_object(item, ALLOWED_DEDUPE_EXEMPTION, label)
+        for field in ("id", "reason", "scope", "approved_by", "approved_at"):
+            _require(item, field, str, label)
+        _require_string_array(item, "applies_to", label)
+        if "evidence" in item and not isinstance(item["evidence"], str):
+            raise CampaignSpecError(f"{label}.evidence must be a string")
 
 
 def _validate_slot(slot: object, label: str) -> None:

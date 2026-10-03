@@ -6,6 +6,9 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Added
 
+- Phase 10 required approved copy allocation contract, stable content-unit/channel ownership, restricted phrase counts, exact/normalized and near-duplicate checks, declared baked-image text, scoped reuse exemptions, claim-reference gates, and metadata/QA evidence.
+- Dedicated allocation reference, 17 positive/negative allocation tests, and committed Composition Preview package-audit evidence.
+
 - Project-aware copy-quality pass for the starter, The Rider, and Cassia email skills.
 - Audit-only mode that reports evidence without guessing AI authorship.
 - Contextual vocabulary watchlist, portability test, email-specific checks, and behavioral evaluation cases.
@@ -35,6 +38,10 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Changed
 
+- All Rider runtime fixtures include approved allocation plans; internal wellness fixture wording removes the historical repetition pattern retained in negative tests.
+- Copy validation blocks all build modes before rendering or asset download and preserves approved wording and the last passing package.
+- Phase 10 is implemented for The Rider; LIM-003 is closed and LIM-004 is mitigated, with OCR, truth verification, and similarity calibration still documented.
+
 - The Rider email skill and neutral project starter now describe manifest-backed asset selection, shortlist approval, and the boundary between existing assets and the separate image-generation workflow.
 - The former unbranded/broker-neutral footer workflow is now the outside-broker customizable footer workflow.
 - Rider brand, email design system, module, footer, Beefree structure, HTML assembly, QA, and calibration references are calibrated from the supplied scaffold.
@@ -51,6 +58,9 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Generated or edited Rider imagery now enters runtime builds only through explicit `image_workflow_id` provenance records; ordinary `asset_id` image slots remain the approved existing-asset path and do not trigger image generation.
 
 ### Validated
+
+- Phase 10 full unittest discovery passes 78 tests, including Phase 7-9 regression coverage.
+- Live wellness Composition Preview passes 86 QA checks, 26 allocation checks, 23 copy units, 1 branded variant, and 9 assets; its ZIP contains 13 byte-matching files with validated asset checksums and no external or missing image references.
 
 - Refresh-token authentication completed a live Dropbox synchronization with no stored access token.
 - The refresh-authenticated synchronization preserved all 195 records, including 191 records with curated `category` and `approved_for` values, with zero additions or removals.

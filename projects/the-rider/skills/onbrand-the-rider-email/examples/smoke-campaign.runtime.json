@@ -107,5 +107,149 @@
   ],
   "deployment": {
     "asset_mode": "relative-review"
+  },
+  "copy_allocation": {
+    "version": "1.0",
+    "plan_id": "rider-runtime-smoke-copy-allocation",
+    "status": "approved",
+    "approved_by": "OnBrand Phase 10 fixture update",
+    "approved_at": "2026-10-03",
+    "content_units": [
+      {
+        "id": "meta-subject",
+        "text": "Internal smoke test only",
+        "content_role": "subject",
+        "source": "approved campaign metadata",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "metadata",
+          "metadata_field": "subject"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "meta-preview-text",
+        "text": "Non-production validation of the Rider runtime package.",
+        "content_role": "preview_text",
+        "source": "approved campaign metadata",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "metadata",
+          "metadata_field": "preview_text"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "hero-live-text-heading-dark-framed-layout-headline",
+        "text": "INTERNAL REVIEW<br>DO NOT SEND",
+        "content_role": "headline",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT",
+          "slot": "headline"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "hero-live-text-heading-dark-framed-layout-background-image-alt",
+        "text": "The Rider tower exterior",
+        "content_role": "image-alt",
+        "source": "approved image alt text",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "alt-text",
+          "module_id": "HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT",
+          "slot": "background_image"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-dark-then-light-layout-primary-cta",
+        "text": "REQUEST INTERNAL REVIEW",
+        "content_role": "primary_cta",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "primary_cta"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-dark-then-light-layout-gallery-image-alt",
+        "text": "The Rider near Wynwood Station",
+        "content_role": "image-alt",
+        "source": "approved image alt text",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "alt-text",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "gallery_image"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      }
+    ],
+    "slot_allocation": [
+      {
+        "module_id": "HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT",
+        "slot": "headline",
+        "content_unit_id": "hero-live-text-heading-dark-framed-layout-headline",
+        "rendering_type": "live-html"
+      },
+      {
+        "module_id": "HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT",
+        "slot": "background_image",
+        "content_unit_id": "hero-live-text-heading-dark-framed-layout-background-image-alt",
+        "rendering_type": "alt-text"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "primary_cta",
+        "content_unit_id": "body-dark-then-light-layout-primary-cta",
+        "rendering_type": "live-html"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "gallery_image",
+        "content_unit_id": "body-dark-then-light-layout-gallery-image-alt",
+        "rendering_type": "alt-text"
+      }
+    ],
+    "restricted_phrases": [
+      {
+        "id": "from-creators-authority",
+        "phrase": "From the creators of The Bond",
+        "max_occurrences": 1,
+        "reason": "Authority phrase may have only one owner unless explicitly approved as a refrain."
+      },
+      {
+        "id": "same-routine-refrain",
+        "phrase": "Same routine",
+        "max_occurrences": 1,
+        "reason": "Reference failure phrase from earlier wellness smoke repetition."
+      },
+      {
+        "id": "same-membership-refrain",
+        "phrase": "Same membership",
+        "max_occurrences": 1,
+        "reason": "Reference failure phrase from earlier wellness smoke repetition."
+      }
+    ],
+    "dedupe_exemptions": []
   }
 }

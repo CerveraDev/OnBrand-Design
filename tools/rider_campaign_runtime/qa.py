@@ -16,6 +16,7 @@ class QAResult:
     build: dict | None = None
     composition: dict | None = None
     image_workflow: dict | None = None
+    copy_allocation: dict | None = None
 
 
 def run_qa(
@@ -29,6 +30,7 @@ def run_qa(
     build_metadata: dict | None = None,
     composition_metadata: dict | None = None,
     image_workflow_metadata: dict | None = None,
+    copy_allocation_metadata: dict | None = None,
 ) -> QAResult:
     checks: list[dict] = []
     static_blocks = static_blocks or []
@@ -92,6 +94,12 @@ def run_qa(
             metadata.get("image_workflow", {}) == (image_workflow_metadata or {}),
             "campaign metadata records generated image provenance summary",
         )
+        _check(
+            checks,
+            "campaign-metadata-copy-allocation",
+            metadata.get("copy_allocation", {}) == (copy_allocation_metadata or {}),
+            "campaign metadata records copy allocation QA summary",
+        )
     _check(checks, "asset-manifest", manifest_path.is_file(), "asset manifest exists")
     if manifest_path.is_file():
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -146,12 +154,15 @@ def run_qa(
             packaged_workflow_ids == workflow_ids,
             "packaged generated image assets match workflow items",
         )
+    for item in (copy_allocation_metadata or {}).get("checks", []):
+        _check(checks, f"copy-allocation:{item['name']}", item["passed"], item["message"])
     return QAResult(
         passed=all(item["passed"] for item in checks),
         checks=checks,
         build=build_metadata,
         composition=composition_metadata,
         image_workflow=image_workflow_metadata,
+        copy_allocation=copy_allocation_metadata,
     )
 
 
@@ -163,6 +174,7 @@ def write_qa_report(path: Path, result: QAResult) -> Path:
                 "build": result.build or {},
                 "composition": result.composition or {},
                 "image_workflow": result.image_workflow or {},
+                "copy_allocation": result.copy_allocation or {},
                 "checks": result.checks,
             },
             indent=2,

@@ -14,7 +14,7 @@ The roadmap applies to the framework and is executed independently for each proj
 | 7 | Build modes | Rider implementation complete | Implemented and tested | Planned |
 | 8 | Composition Preview | Rider implementation complete | Implemented and tested | Planned |
 | 9 | Grounded image generation | Rider implementation complete | Implemented and tested | Planned |
-| 10 | Copy allocation QA | Approved spec, not implemented | Planned | Planned |
+| 10 | Copy allocation QA | Rider implementation complete | Implemented and tested | Planned |
 | 11 | Cross-platform compatibility | Approved spec, not implemented | Codex current; Claude Code planned | Planned |
 | 12 | Distribution profiles | Deferred | Deferred | Deferred |
 
@@ -70,6 +70,7 @@ The roadmap applies to the framework and is executed independently for each proj
 - Every copy unit has an approved slot owner before rendering.
 - Restricted phrases and names, including single-owner occurrences, are deduplicated across live text, baked imagery, alt text, and metadata.
 - QA reports unsupported claims, repeated authority language, and ambiguous ownership rather than silently rewriting locked content.
+- All Rider build modes require approved `copy_allocation` before rendering; successful metadata and QA retain ownership, claim references, explicit exemptions, deterministic counts, and transparent similarity scores.
 
 ## Cross-Platform Gate
 

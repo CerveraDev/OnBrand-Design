@@ -132,6 +132,42 @@ def base_spec(tmp_path, output_image):
             "slug": "runtime-test",
             "title": "Runtime Test",
             "output_dir": str(tmp_path / "campaign-output"),
+            "subject": "Internal runtime test",
+        },
+        "copy_allocation": {
+            "version": "1.0",
+            "plan_id": "unit-test-copy-allocation",
+            "status": "approved",
+            "approved_by": "unit test",
+            "approved_at": "2026-10-03",
+            "content_units": [
+                {
+                    "id": "meta-subject",
+                    "text": "Internal runtime test",
+                    "content_role": "subject",
+                    "source": "unit-test",
+                    "approval_status": "approved",
+                    "owner": {"channel": "metadata", "metadata_field": "subject"},
+                    "reuse_policy": "single-use",
+                    "max_occurrences": 1,
+                    "claim_policy": "none",
+                },
+                {
+                    "id": "hero-alt",
+                    "text": "The Rider gym",
+                    "content_role": "image-alt",
+                    "source": "unit-test",
+                    "approval_status": "approved",
+                    "owner": {
+                        "channel": "alt-text",
+                        "module_id": "AI GENERATED IMAGE BASED ON PROMPT",
+                        "slot": "hero_image",
+                    },
+                    "reuse_policy": "single-use",
+                    "max_occurrences": 1,
+                    "claim_policy": "none",
+                },
+            ],
         },
         "manifest": {"path": str(write_manifest(tmp_path, output_image))},
         "modules": [
@@ -170,6 +206,22 @@ def generated_image_spec(tmp_path, output_image):
         "alt": "Woman framed inside The Rider gym environment",
         "role": "hero",
         "image_workflow_id": "wellness-gym-hero",
+    }
+    spec["copy_allocation"]["content_units"][1] = {
+        "id": "hero-alt",
+        "text": "Woman framed inside The Rider gym environment",
+        "content_role": "image-alt",
+        "source": "unit-test",
+        "approval_status": "approved",
+        "owner": {
+            "channel": "alt-text",
+            "module_id": "AI GENERATED IMAGE BASED ON PROMPT",
+            "slot": "hero_image",
+            "image_workflow_id": "wellness-gym-hero",
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none",
     }
     spec["image_workflow"] = {
         "version": "1.0",

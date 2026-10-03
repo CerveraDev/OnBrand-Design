@@ -67,7 +67,7 @@ The generator creates a complete project folder from `templates/project-starter/
 
 `tools/asset_selection/` validates a local master manifest, validates project manifest-source configuration, and returns deterministic, explained asset shortlists for project email skills. It does not refresh Dropbox, require credentials, download source assets, or choose a final campaign image without approval when top candidates are materially different.
 
-`tools/rider_campaign_runtime/` validates Rider campaign JSON, generates Composition Preview catalog/plan artifacts, validates grounded generated/edited image provenance when present, composes approved scaffold modules, applies explicit build-mode variant policy, packages only used images, runs blocking QA, and creates a portable ZIP. See its [runtime guide](tools/rider_campaign_runtime/README.md).
+`tools/rider_campaign_runtime/` validates Rider campaign JSON, generates Composition Preview catalog/plan artifacts, validates grounded image provenance and approved copy allocation, blocks unintended cross-surface repetition before rendering, composes approved scaffold modules, applies explicit build-mode variant policy, packages only used images, runs blocking QA, and creates a portable ZIP. See its [runtime guide](tools/rider_campaign_runtime/README.md).
 
 ## Security
 

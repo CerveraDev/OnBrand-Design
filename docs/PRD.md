@@ -110,6 +110,8 @@ An authorized maintainer runs the shared Dropbox manifest synchronizer against a
 | FR-026 | Cross-platform support uses a canonical core plus thin Codex and Claude Code adapters; Claude Code is planned only until parity validation is recorded. |
 | FR-027 | Broker-only or sanitized distribution packages remain deferred until public core, private project packs, and broker packages are physically separated and validated. |
 
+FR-025 is implemented for The Rider in Phase 10. All runtime modes require approved copy allocation before rendering; successful metadata/QA retain exact approved units, ownership, claim references, exemptions, occurrence counts, and transparent similarity findings. Declared baked-image text is included; OCR execution and factual source verification remain external review tasks. The runtime never silently rewrites approved user copy.
+
 ## Non-Functional Requirements
 
 - Scalability: dozens of project folders without technical ID collisions.

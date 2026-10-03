@@ -5,6 +5,7 @@ import unittest
 from unittest.mock import patch
 
 from tools.rider_campaign_runtime.composition import create_composition_plan
+from tools.rider_campaign_runtime.copy_allocation import CopyAllocationError
 from tools.rider_campaign_runtime.agents import load_agents
 from tools.rider_campaign_runtime.assets import package_documents, rewrite_and_package_assets
 from tools.rider_campaign_runtime.runtime import (
@@ -180,6 +181,7 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
             spec = minimal_spec()
             spec["campaign"]["output_dir"] = str(tmp_path / "campaign-output")
             spec["manifest"]["path"] = str(write_manifest(tmp_path, asset))
+            refresh_copy_allocation(spec)
             with self.assertRaisesRegex(RuntimeError, "Refusing to replace non-runtime"):
                 build_campaign_from_spec(spec, base_dir=tmp_path)
             self.assertTrue((protected / "keep.txt").is_file())
@@ -246,6 +248,7 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
             spec = minimal_spec()
             spec["campaign"]["output_dir"] = str(tmp_path / "campaign-output")
             spec["manifest"]["path"] = str(write_manifest(tmp_path, asset))
+            refresh_copy_allocation(spec)
 
             with patch(
                 "tools.rider_campaign_runtime.assets._read_asset",
@@ -266,6 +269,15 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
 
             self.assertEqual(sentinel.read_text(encoding="utf-8"), "preserve me")
             self.assertEqual(next(iter(first.html_files.values())).read_bytes(), first_html)
+
+            first_zip = first.zip_path.read_bytes()
+            spec["campaign"]["subject"] = "Unapproved replacement subject"
+            with patch("tools.rider_campaign_runtime.assets._read_asset") as read_asset:
+                with self.assertRaisesRegex(CopyAllocationError, "does not match"):
+                    build_campaign_from_spec(spec, base_dir=tmp_path)
+                read_asset.assert_not_called()
+            self.assertEqual(next(iter(first.html_files.values())).read_bytes(), first_html)
+            self.assertEqual(first.zip_path.read_bytes(), first_zip)
 
     def test_asset_rewrite_handles_html_escaped_query_strings(self):
         source = "https://example.com/headshot.jpg?token=1&raw=1"
@@ -335,6 +347,7 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
             spec["campaign"]["output_dir"] = str(tmp_path / "campaign-output")
             spec["manifest"]["path"] = str(write_manifest(tmp_path, asset))
             spec["static_blocks"][0]["decision"] = "include"
+            refresh_copy_allocation(spec)
             with self.assertRaisesRegex(RuntimeError, "missing from modules"):
                 build_campaign_from_spec(spec, base_dir=tmp_path)
 
@@ -356,6 +369,7 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
             spec["campaign"]["output_dir"] = str(tmp_path / "campaign-output")
             spec["manifest"]["path"] = str(write_manifest(tmp_path, asset))
             spec["modules"].insert(0, {"id": "ONE-COLUMN HEADER DARK", "slots": {}})
+            refresh_copy_allocation(spec)
             with self.assertRaisesRegex(RuntimeError, "incompatible"):
                 build_campaign_from_spec(spec, base_dir=tmp_path)
 
@@ -413,6 +427,7 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
                 },
             ]
             spec["variants"] = {"branded": True, "outside_broker": False, "agents": []}
+            refresh_copy_allocation(spec)
             with patch("tools.rider_campaign_runtime.assets._read_asset") as read_asset:
                 read_asset.side_effect = lambda source: (asset.read_bytes(), Path(source).name or "asset.png")
                 result = build_campaign_from_spec(spec, base_dir=tmp_path)
@@ -441,6 +456,7 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
                 selected_codes=["HH-01"],
                 representative_variant="outside-broker-customizable",
             )
+            refresh_copy_allocation(spec)
             with patch("tools.rider_campaign_runtime.assets._read_asset") as read_asset:
                 read_asset.side_effect = lambda source: (asset.read_bytes(), Path(source).name or "asset.png")
                 result = build_campaign_from_spec(spec, base_dir=tmp_path)
@@ -451,6 +467,8 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
             self.assertEqual(metadata["build"]["rendered_variants"], ["outside-broker-customizable"])
             qa = json.loads(result.qa_report.read_text())
             self.assertEqual(qa["build"], metadata["build"])
+            self.assertEqual(qa["copy_allocation"], metadata["copy_allocation"])
+            self.assertEqual(qa["copy_allocation"]["content_units"], spec["copy_allocation"]["content_units"])
 
     def test_smoke_build_policy_all_renders_full_authorized_set(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -514,6 +532,7 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
                     "role": "hero",
                 }
             }
+            refresh_copy_allocation(spec)
             with patch("tools.rider_campaign_runtime.assets._read_asset") as read_asset:
                 read_asset.side_effect = lambda source: (asset.read_bytes(), Path(source).name or "asset.png")
                 result = build_campaign_from_spec(spec, base_dir=tmp_path)
@@ -580,6 +599,27 @@ def minimal_spec():
             "slug": "runtime-test",
             "title": "Runtime Test",
             "output_dir": "campaign-output/runtime-test",
+            "subject": "Internal runtime test",
+        },
+        "copy_allocation": {
+            "version": "1.0",
+            "plan_id": "unit-test-copy-allocation",
+            "status": "approved",
+            "approved_by": "unit test",
+            "approved_at": "2026-10-03",
+            "content_units": [
+                {
+                    "id": "meta-subject",
+                    "text": "Internal runtime test",
+                    "content_role": "subject",
+                    "source": "unit-test",
+                    "approval_status": "approved",
+                    "owner": {"channel": "metadata", "metadata_field": "subject"},
+                    "reuse_policy": "single-use",
+                    "max_occurrences": 1,
+                    "claim_policy": "none",
+                }
+            ],
         },
         "manifest": {"path": "manifest.json"},
         "modules": [{"id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH", "slots": {}}],
@@ -609,6 +649,69 @@ def release_spec(tmp_path, asset):
         "social": "[OUTSIDE BROKER SOCIAL]",
     }
     return spec
+
+
+def refresh_copy_allocation(spec):
+    units = []
+    for field in ("subject", "preview_text"):
+        value = spec.get("campaign", {}).get(field, "")
+        if value:
+            units.append(
+                {
+                    "id": f"meta-{field.replace('_', '-')}",
+                    "text": value,
+                    "content_role": field,
+                    "source": "unit-test",
+                    "approval_status": "approved",
+                    "owner": {"channel": "metadata", "metadata_field": field},
+                    "reuse_policy": "single-use",
+                    "max_occurrences": 1,
+                    "claim_policy": "none",
+                }
+            )
+    for module in spec.get("modules", []):
+        for slot_name, slot in module.get("slots", {}).items():
+            if slot.get("kind") in {"text", "safe_rich_text"}:
+                units.append(
+                    {
+                        "id": f"{module['id'].lower().replace(' ', '-').replace('&', 'and')}-{slot_name}",
+                        "text": slot["value"],
+                        "content_role": slot_name,
+                        "source": "unit-test",
+                        "approval_status": "approved",
+                        "owner": {"channel": "live-html", "module_id": module["id"], "slot": slot_name},
+                        "reuse_policy": "single-use",
+                        "max_occurrences": 1,
+                        "claim_policy": "none",
+                    }
+                )
+            if slot.get("kind") == "image" and slot.get("alt"):
+                units.append(
+                    {
+                        "id": f"{module['id'].lower().replace(' ', '-').replace('&', 'and')}-{slot_name}-alt",
+                        "text": slot["alt"],
+                        "content_role": "image-alt",
+                        "source": "unit-test",
+                        "approval_status": "approved",
+                        "owner": {
+                            "channel": "alt-text",
+                            "module_id": module["id"],
+                            "slot": slot_name,
+                            **({"image_workflow_id": slot["image_workflow_id"]} if "image_workflow_id" in slot else {}),
+                        },
+                        "reuse_policy": "single-use",
+                        "max_occurrences": 1,
+                        "claim_policy": "none",
+                    }
+                )
+    spec["copy_allocation"] = {
+        "version": "1.0",
+        "plan_id": "unit-test-copy-allocation",
+        "status": "approved",
+        "approved_by": "unit test",
+        "approved_at": "2026-10-03",
+        "content_units": units,
+    }
 
 
 def approved_composition(*, selected_codes, representative_variant="branded"):

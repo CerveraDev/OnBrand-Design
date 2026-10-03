@@ -17,7 +17,7 @@ Use this mode when the user already knows the campaign, audience, CTA, and desir
 11. Build final HTML only after any required copy, creative, composition, or image approvals. Generated or edited image approvals must be represented as `image_workflow` records before runtime assembly.
 12. Select a compatible header/hero structure; do not combine a standalone header with a hero that includes one.
 13. Choose the build mode explicitly: Composition Preview for a user-facing Design Proof, Smoke Test for representative technical validation, or Release Build for the full internal matrix.
-14. Write a strict campaign JSON file using the runtime schema, module metadata, Rider slot map, approved composition plan, and any approved image workflow provenance.
+14. Create an approved [copy allocation plan](copy-allocation.md) and write it as `copy_allocation` in the strict campaign JSON alongside the approved composition and image workflow records. Allocate subject, preview, live slots, alt text, and declared baked-image text before rendering.
 15. Run `python3 -m tools.rider_campaign_runtime.cli <campaign.json>` from the repository root.
 16. Inspect the CLI summary and generated `qa-report.json`.
 17. Deliver the generated folder and ZIP only when QA passes.
@@ -37,6 +37,8 @@ Provide options before building:
 - Recommended module plan
 
 After the user chooses or revises a direction, continue as a directed build. Apply the copy-quality pass to the selected direction rather than polishing every discarded option into near-duplicates.
+
+Both intake modes use the same allocation gate. Propose revisions or scoped exemptions when copy fails; preserve approved user wording until a revision is approved. A technical Smoke Test also requires approved allocation.
 
 ## Completion Deliverable
 
@@ -74,6 +76,7 @@ Use this file workflow in Codex, Claude Code, or a normal shell:
 4. Return a local output image, prompt record, source records, approval fields, crop/focal constraints, checksum, and dimensions.
 5. Add the record to campaign JSON under `image_workflow.items[]`.
 6. Set the rendered image slot to `{"kind": "image", "src": "...", "image_workflow_id": "...", "role": "..."}`.
+   For `text_policy: "baked-approved"`, declare the actual image text as a `baked-image-text` content unit with the matching workflow ID and `declared_text_source: "ocr"` or `"creator-declared"`.
 7. Run the runtime. It packages the local output and records the image workflow summary in campaign metadata, asset manifest, and QA report.
 
 ## Agent Variant Workflow

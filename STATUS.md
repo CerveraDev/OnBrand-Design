@@ -5,7 +5,7 @@
 **Author:** Felix Mendoza  
 **Version:** 0.1.0  
 **Updated:** 2026-10-03
-**Overall status:** Multi-project foundation complete; Rider campaign runtime implemented with explicit build modes, composition approval, grounded image provenance, and pilot packages tested
+**Overall status:** Multi-project foundation complete; Rider campaign runtime implemented through Phase 10 with build modes, composition approval, grounded images, copy allocation QA, and tested pilot packages
 
 ## Completed
 
@@ -50,6 +50,7 @@
 - Implemented Phase 8 Composition Preview for The Rider runtime with stable module codes, review artifacts, approved selection plans, compatibility validation, and composition metadata/QA reporting.
 - Implemented Phase 9 Grounded Image Generation for The Rider runtime with a validated local manifest-cache fallback, structured image workflow provenance, source/output validation, release gating, and QA/manifest reporting.
 - Added a root [limitations register](LIMITATIONS.md) so known limitations, scoring opportunities, deferred safeguards, and closure criteria remain discoverable before Phase 10 implementation.
+- Implemented Phase 10 approved copy inventory/ownership, cross-surface normalized repetition, transparent near-duplicate scoring, narrow reuse exemptions, claim-reference gating, and metadata/QA reporting without rewriting approved text.
 
 ## Project Portfolio
 
@@ -60,7 +61,6 @@
 
 ## Approved Specs, Not Implemented
 
-- Phase 10: Copy allocation QA for slot ownership, restricted phrase dedupe, and wellness repetition checks.
 - Phase 11: Cross-platform compatibility through a canonical core and thin Codex/Claude Code adapters.
 - Phase 12: Distribution profiles remain deferred until public core, private project packs, and sanitized broker packages are physically separated.
 
@@ -68,7 +68,7 @@
 
 - Perform representative visual and email-client compatibility review beyond structural QA.
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
-- Implement the approved copy-allocation and cross-platform specifications after runtime contracts are scheduled.
+- Implement Phase 11 cross-platform adapters and parity validation against the canonical runtime contracts.
 - Keep [LIMITATIONS.md](LIMITATIONS.md) current when audits, specs, QA runs, or implementation work discover new constraints.
 
 ## Waiting On Project Inputs
@@ -85,4 +85,4 @@
 
 ## Next Milestone
 
-Pilot broader Rider campaigns with approved content, then implement the approved copy-allocation contract before expanding cross-platform or external distribution claims.
+Pilot broader Rider campaigns with approved composition, image, and copy allocation plans, then implement Phase 11 adapters and parity validation. Broader visual/client review and distribution safeguards remain required.
