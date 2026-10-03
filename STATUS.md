@@ -49,6 +49,7 @@
 - Implemented Phase 7 build modes for The Rider runtime: Composition Preview, Smoke Test, and Release Build with explicit variant policy, representative selection, metadata, QA reporting, and release-matrix validation.
 - Implemented Phase 8 Composition Preview for The Rider runtime with stable module codes, review artifacts, approved selection plans, compatibility validation, and composition metadata/QA reporting.
 - Implemented Phase 9 Grounded Image Generation for The Rider runtime with a validated local manifest-cache fallback, structured image workflow provenance, source/output validation, release gating, and QA/manifest reporting.
+- Added a root [limitations register](LIMITATIONS.md) so known limitations, scoring opportunities, deferred safeguards, and closure criteria remain discoverable before Phase 10 implementation.
 
 ## Project Portfolio
 
@@ -68,6 +69,7 @@
 - Perform representative visual and email-client compatibility review beyond structural QA.
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 - Implement the approved copy-allocation and cross-platform specifications after runtime contracts are scheduled.
+- Keep [LIMITATIONS.md](LIMITATIONS.md) current when audits, specs, QA runs, or implementation work discover new constraints.
 
 ## Waiting On Project Inputs
 
@@ -79,6 +81,7 @@
 - Choose support contact and CODEOWNERS identities.
 - Do not claim Claude Code support until Phase 11 adapter parity validation passes.
 - Do not distribute broker-restricted packages until Phase 12 physical source/package separation is implemented.
+- Do not treat generated-image visual faithfulness, email-client rendering, or legal/compliance review as automated approvals until their limitations are closed with committed evidence.
 
 ## Next Milestone
 

@@ -23,6 +23,7 @@ The roadmap applies to the framework and is executed independently for each proj
 - Project generator produces unique IDs and complete self-contained folders.
 - Registry and project metadata remain valid.
 - No project template contains another project's name, brand rules, or credentials.
+- Known limitations, scoring opportunities, and deferred safeguards are recorded in [LIMITATIONS.md](LIMITATIONS.md) before new phase implementation starts.
 
 ## Asset Gate
 
@@ -83,6 +84,7 @@ The roadmap applies to the framework and is executed independently for each proj
 - No secrets, private paths, missing assets, or cross-project references remain.
 - Codex installation and explicit invocation are tested; Claude Code release claims wait for Phase 11 parity validation.
 - At least one representative project campaign passes human and compatibility review.
+- P0 and public-release-blocking P1 limitations in [LIMITATIONS.md](LIMITATIONS.md) are either closed or explicitly accepted by the owner with documented mitigations.
 
 ## Deferred Distribution Profiles Gate
 

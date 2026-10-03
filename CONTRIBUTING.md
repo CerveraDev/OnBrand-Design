@@ -34,8 +34,9 @@ Every pull request should:
 4. Update `STATUS.md` when progress changes.
 5. Append `AUDIT_LOG.md` for material decisions or operational events.
 6. Update `CHANGELOG.md` when release behavior changes.
-7. Avoid changing locked assets or curated manifest fields without explicit authorization.
-8. Check that changes to shared templates do not introduce one project's branding into another project.
+7. Update `LIMITATIONS.md` when a limitation is discovered, mitigated, deferred, closed, or changed in release impact.
+8. Avoid changing locked assets or curated manifest fields without explicit authorization.
+9. Check that changes to shared templates do not introduce one project's branding into another project.
 
 ## Definition Of Done
 
@@ -44,4 +45,5 @@ Every pull request should:
 - Skill references are reachable from `SKILL.md` when required at runtime.
 - Explicit-only invocation remains intact.
 - No secret, private path, or unapproved asset is included.
+- New or changed limitations are recorded with evidence and closure criteria.
 - Project registry and metadata remain valid and collision-free.

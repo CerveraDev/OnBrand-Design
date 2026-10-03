@@ -31,6 +31,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Rider grounded-image `image_workflow` contract for generated/edited imagery, including intended slot, approved source assets, prompt record, output checksum/dimensions, placement constraints, approval state, metadata, asset-manifest, and QA reporting.
 - The Rider manifest-source config at `projects/the-rider/manifest-source.json`, currently validating the repository local-cache fallback because no stable public manifest URL is configured.
 - Wellness Composition Preview pilot fixtures with approved Phase 8 module selection, approved composition plan, grounded gym-image provenance, and a generated hero tied to the Rider gym source plus scaffold logo reference.
+- Root `LIMITATIONS.md` register covering evidence-backed Phase 1 through Phase 12 limitations, scoring opportunities, current controls, and closure criteria.
 
 ### Changed
 

@@ -46,6 +46,7 @@ The generator creates a complete project folder from `templates/project-starter/
 - [Product requirements](docs/PRD.md)
 - [Current status](STATUS.md)
 - [Roadmap](ROADMAP.md)
+- [Limitations register](LIMITATIONS.md)
 - [Audit log](AUDIT_LOG.md)
 - [Versioning policy](VERSIONING.md)
 - [Project registry](projects/registry.json)
