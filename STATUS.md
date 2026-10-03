@@ -40,6 +40,7 @@
 - Added header/hero compatibility checks and static-content locking before portable asset localization.
 - Registered Paulie Hankin's manifest headshot as an approved in-house-agent footer asset while preserving all 205 existing curated records.
 - Added Paulie Hankin as the verified Sales Director and restored the complete eight-variant smoke package with Paulie replacing Jake Lecce.
+- Deleted Jake Lecce's retired headshot from Dropbox and synchronized the manifest from 206 to 205 records without changing any surviving curated arrays.
 
 ## Project Portfolio
 
@@ -53,7 +54,6 @@
 - Configure The Rider's stable public manifest URL or validated local cache fallback.
 - Run the first user-approved campaign through the Rider runtime.
 - Perform representative visual and email-client compatibility review beyond structural QA.
-- Enable Dropbox `files.content.write`, reauthorize `rider_ai_context`, and remove Jake Lecce's verified former headshot.
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 
 ## Waiting On Project Inputs
@@ -64,7 +64,6 @@
 ## Release Blockers
 
 - Choose support contact and CODEOWNERS identities.
-- Dropbox deletion remains blocked until the app receives `files.content.write` and the refresh authorization is renewed.
 
 ## Next Milestone
 

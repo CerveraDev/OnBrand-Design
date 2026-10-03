@@ -47,6 +47,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Revised-scaffold unit suite passes 35 tests, including preservation of the last passing package after a failed asset download.
 - Paulie Hankin replaces Jake Lecce in the active roster; the revised smoke package passes 200 QA checks across eight variants with 15 images, one PDF, and a valid ZIP.
 - Dropbox synchronization found 206 assets, added Paulie Hankin's headshot, and preserved the curated arrays of all 205 existing records.
+- After Dropbox write authorization was renewed, Jake Lecce's retired headshot was deleted; synchronization removed only his asset and preserved all curated fields across the 205 surviving records.
 
 ## [0.1.0] - 2026-09-30
 
