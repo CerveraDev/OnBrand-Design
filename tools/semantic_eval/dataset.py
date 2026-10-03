@@ -62,8 +62,8 @@ def validate_dataset(dataset: object) -> dict[str, Any]:
         raise DatasetError(f"schema_version must be {SCHEMA_VERSION}")
     for key in ("dataset_id", "project", "status", "created_at", "purpose"):
         _require_text(dataset, key, "dataset")
-    if dataset["status"] != "provisional":
-        raise DatasetError("The seed dataset must remain provisional until human adjudication")
+    if dataset["status"] not in {"provisional", "adjudicated"}:
+        raise DatasetError("dataset.status must be provisional or adjudicated")
     if not isinstance(dataset["deidentification"], dict) or dataset["deidentification"].get("contains_personal_contact_data") is not False:
         raise DatasetError("deidentification.contains_personal_contact_data must be false")
     policy = dataset["label_policy"]
@@ -119,8 +119,14 @@ def validate_dataset(dataset: object) -> dict[str, Any]:
         reviewer_labels = adjudication.get("reviewer_labels")
         if not isinstance(reviewer_labels, list):
             raise DatasetError(f"{case_id} reviewer_labels must be an array")
-        if adjudication["status"] == "provisional" and reviewer_labels:
-            raise DatasetError(f"{case_id} provisional cases cannot claim reviewer labels")
+        if dataset["status"] == "provisional":
+            if adjudication["status"] != "provisional" or reviewer_labels:
+                raise DatasetError(f"{case_id} provisional cases cannot claim completed adjudication")
+        else:
+            if adjudication["status"] != "adjudicated" or len(reviewer_labels) != 2:
+                raise DatasetError(f"{case_id} adjudicated cases require two reviewer labels")
+            for reviewer_index, reviewer_label in enumerate(reviewer_labels):
+                _validate_reviewer_label(case_id, task, reviewer_label, reviewer_index)
 
         serialized_state = json.dumps(case["state"], sort_keys=True, separators=(",", ":"))
         digest = hashlib.sha256(serialized_state.encode("utf-8")).hexdigest()
@@ -298,6 +304,21 @@ def _validate_expected(case_id: str, task: str, expected: object) -> None:
             raise DatasetError(f"{case_id} support is unsupported")
     if expected["action"] not in ACTIONS:
         raise DatasetError(f"{case_id} action is unsupported")
+
+
+def _validate_reviewer_label(case_id: str, task: str, value: object, index: int) -> None:
+    label = f"{case_id}.adjudication.reviewer_labels[{index}]"
+    if not isinstance(value, dict):
+        raise DatasetError(f"{label} must be an object")
+    _require_exact_keys(value, {"reviewer_id", "label", "action", "intentional_refrain"}, label)
+    _require_text(value, "reviewer_id", label)
+    if value["action"] not in ACTIONS:
+        raise DatasetError(f"{label}.action is unsupported")
+    if task == "copy-similarity":
+        if value["label"] not in RELATIONS or type(value["intentional_refrain"]) is not bool:
+            raise DatasetError(f"{label} has invalid copy decision")
+    elif value["label"] not in SUPPORT_LABELS or value["intentional_refrain"] != "not-applicable":
+        raise DatasetError(f"{label} has invalid claim decision")
 
 
 def _require_exact_keys(value: dict, keys: set[str], label: str) -> None:

@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "rider-semantic-decision-pilot-v1",
+  "source_dataset_sha256": "50154d8cf3c4efa9531d0dd5e1abfdb0e04e6fc9b9616f4b3c7505ffa8e4d8c2",
+  "comparison_sha256": "2ae87723ed46395e0a7c01a564843a0ed310851a00bdd741dcea0a44a0772095",
+  "adjudicator_id": "onbrand-maintainer-policy-v1",
+  "adjudicated_at": "2026-10-03",
+  "status": "complete",
+  "policy": "Apply the existing single-use copy policy after semantic labeling: equivalent non-exempt visible campaign messages block; approved reuse may allow. Distinguish content function when deciding distinct versus related-distinct. Do not change holdout text.",
+  "decisions": [
+    {
+      "case_id": "sim-cal-003",
+      "label": "equivalent",
+      "action": "block",
+      "intentional_refrain": false,
+      "rationale": "Both reviewers independently labeled the membership-continuity message equivalent. No approved reuse exists, so the existing single-use policy blocks the second visible expression."
+    },
+    {
+      "case_id": "sim-cal-009",
+      "label": "equivalent",
+      "action": "block",
+      "intentional_refrain": false,
+      "rationale": "Both reviewers independently labeled the creator-authority statements equivalent. Rephrasing does not create a distinct claim, and no approved reuse exists."
+    },
+    {
+      "case_id": "sim-cal-010",
+      "label": "related-distinct",
+      "action": "allow",
+      "intentional_refrain": false,
+      "rationale": "Both reviewers allow the pair. The headline and alt text share the wellness campaign context but perform different jobs and communicate different information, making related-distinct the more precise taxonomy."
+    },
+    {
+      "case_id": "sim-hold-001",
+      "label": "equivalent",
+      "action": "block",
+      "intentional_refrain": false,
+      "rationale": "Both reviewers independently labeled the routine-portability message equivalent. The holdout text remains unchanged; the non-exempt single-use policy determines the blocking action."
+    },
+    {
+      "case_id": "sim-hold-006",
+      "label": "equivalent",
+      "action": "block",
+      "intentional_refrain": false,
+      "rationale": "Both reviewers independently labeled the city-change and routine-continuity statements equivalent. No approved refrain or reuse record permits both visible placements."
+    }
+  ]
+}

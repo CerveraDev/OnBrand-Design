@@ -18,12 +18,19 @@ from tools.semantic_eval.reviews import (
     dataset_sha256,
     validate_review,
 )
+from tools.semantic_eval.adjudication import (
+    AdjudicationError,
+    comparison_sha256,
+    freeze_dataset,
+    validate_adjudication,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
 DATASET_PATH = ROOT / "docs/evals/data/phase-13-rider-copy-pairs.v1.json"
 SCHEMA_PATH = ROOT / "tools/semantic_eval/dataset.schema.json"
 REVIEW_SCHEMA_PATH = ROOT / "tools/semantic_eval/review.schema.json"
+ADJUDICATION_PATH = ROOT / "docs/evals/reviews/phase-13-adjudication.v1.json"
 
 
 class SemanticEvaluationDatasetTests(unittest.TestCase):
@@ -66,7 +73,7 @@ class SemanticEvaluationDatasetTests(unittest.TestCase):
 
         false_review = copy.deepcopy(self.dataset)
         false_review["cases"][0]["adjudication"]["reviewer_labels"] = [{"reviewer": "A", "label": "equivalent"}]
-        with self.assertRaisesRegex(DatasetError, "cannot claim reviewer labels"):
+        with self.assertRaisesRegex(DatasetError, "cannot claim completed adjudication"):
             validate_dataset(false_review)
 
     def test_baseline_exposes_semantic_gaps_without_claiming_acceptance(self):
@@ -133,6 +140,33 @@ class SemanticEvaluationDatasetTests(unittest.TestCase):
         with self.assertRaisesRegex(ReviewError, "different reviewer IDs"):
             compare_reviews(self.dataset, left, right)
 
+    def test_adjudication_freezes_reviews_without_mutating_source(self):
+        left, right = reviews_with_five_real_disagreements(self.dataset)
+        comparison = compare_reviews(self.dataset, left, right)
+        adjudication = adjudication_for(comparison, self.dataset)
+        summary = validate_adjudication(self.dataset, left, right, adjudication)
+        self.assertEqual(summary["decision_count"], 5)
+        frozen = freeze_dataset(self.dataset, left, right, adjudication)
+        self.assertEqual(self.dataset["status"], "provisional")
+        self.assertEqual(frozen["status"], "adjudicated")
+        self.assertTrue(all(case["adjudication"]["status"] == "adjudicated" for case in frozen["cases"]))
+        by_id = {case["id"]: case for case in frozen["cases"]}
+        self.assertEqual(by_id["sim-cal-010"]["expected"]["semantic_relation"], "related-distinct")
+        self.assertEqual(by_id["sim-hold-006"]["expected"]["action"], "block")
+
+    def test_adjudication_rejects_missing_decision_and_comparison_drift(self):
+        left, right = reviews_with_five_real_disagreements(self.dataset)
+        comparison = compare_reviews(self.dataset, left, right)
+        adjudication = adjudication_for(comparison, self.dataset)
+        adjudication["decisions"].pop()
+        with self.assertRaisesRegex(AdjudicationError, "coverage invalid"):
+            validate_adjudication(self.dataset, left, right, adjudication)
+
+        adjudication = adjudication_for(comparison, self.dataset)
+        adjudication["comparison_sha256"] = "0" * 64
+        with self.assertRaisesRegex(AdjudicationError, "comparison_sha256 does not match"):
+            validate_adjudication(self.dataset, left, right, adjudication)
+
 
 def complete_review(dataset, reviewer_id):
     review = create_review_template(dataset, reviewer_id)
@@ -145,6 +179,25 @@ def complete_review(dataset, reviewer_id):
         item["action"] = expected["action"]
         item["intentional_refrain"] = expected.get("intentional_refrain", "not-applicable")
     return review
+
+
+def reviews_with_five_real_disagreements(dataset):
+    left = complete_review(dataset, "reviewer-a")
+    right = complete_review(dataset, "reviewer-b")
+    left_by_id = {item["case_id"]: item for item in left["labels"]}
+    for case_id in ("sim-cal-003", "sim-cal-009", "sim-hold-001", "sim-hold-006"):
+        left_by_id[case_id]["action"] = "review"
+    left_by_id["sim-cal-010"]["label"] = "distinct"
+    right_by_id = {item["case_id"]: item for item in right["labels"]}
+    right_by_id["sim-cal-010"]["label"] = "related-distinct"
+    return left, right
+
+
+def adjudication_for(comparison, dataset):
+    source = json.loads(ADJUDICATION_PATH.read_text(encoding="utf-8"))
+    source["source_dataset_sha256"] = dataset_sha256(dataset)
+    source["comparison_sha256"] = comparison_sha256(comparison)
+    return source
 
 
 if __name__ == "__main__":

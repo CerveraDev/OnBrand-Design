@@ -1,0 +1,1101 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "rider-semantic-decision-pilot-v1",
+  "project": "the-rider",
+  "status": "adjudicated",
+  "created_at": "2026-10-03",
+  "purpose": "Measure semantic copy-similarity and claim-support decisions beyond the deterministic Phase 10 baseline. Labels frozen after two blinded reviews and explicit disagreement adjudication.",
+  "deidentification": {
+    "contains_personal_contact_data": false,
+    "method": "Uses public-facing project language and synthetic evaluation text only; agent names, phone numbers, email addresses, credentials, and private campaign records are excluded."
+  },
+  "label_policy": {
+    "copy_similarity": "Label meaning as distinct, related-distinct, or equivalent; action reflects cross-surface repetition risk after any explicit approved reuse.",
+    "claim_support": "Label whether the supplied excerpt supports the claim without adding unstated certainty, scope, timing, or superlatives.",
+    "review_rule": "All labels are maintainer-seeded and provisional until independent review and adjudication are recorded. Holdout cases are not used to tune questions or thresholds."
+  },
+  "cases": [
+    {
+      "id": "sim-cal-001",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "state": {
+        "left": "Same routine. Same membership.",
+        "right": "Same routine. Same membership.",
+        "context": "Two separate visible body modules in one email.",
+        "approved_reuse": false
+      },
+      "expected": {
+        "semantic_relation": "equivalent",
+        "action": "block",
+        "intentional_refrain": false
+      },
+      "challenge_tags": [
+        "exact-duplicate",
+        "cross-surface"
+      ],
+      "provenance": {
+        "kind": "test-derived",
+        "reference": "tests/test_rider_copy_allocation.py",
+        "notes": "Reference repetition failure adapted from the wellness campaign."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "equivalent",
+            "action": "block",
+            "intentional_refrain": false
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "equivalent",
+            "action": "block",
+            "intentional_refrain": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "sim-cal-002",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "state": {
+        "left": "The wellness routine now travels with you in Miami every day.",
+        "right": "The wellness routine now travels with you in Miami each day.",
+        "context": "Adjacent body sections.",
+        "approved_reuse": false
+      },
+      "expected": {
+        "semantic_relation": "equivalent",
+        "action": "block",
+        "intentional_refrain": false
+      },
+      "challenge_tags": [
+        "near-duplicate",
+        "lexical-easy"
+      ],
+      "provenance": {
+        "kind": "test-derived",
+        "reference": "tests/test_rider_copy_allocation.py",
+        "notes": "Existing lexical blocking fixture."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "equivalent",
+            "action": "block",
+            "intentional_refrain": false
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "equivalent",
+            "action": "block",
+            "intentional_refrain": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "sim-cal-003",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "state": {
+        "left": "Keep the wellness membership you already use when you move to Miami.",
+        "right": "Your familiar club access can continue in your new city.",
+        "context": "Hero support line and concluding body line.",
+        "approved_reuse": false
+      },
+      "expected": {
+        "semantic_relation": "equivalent",
+        "action": "block",
+        "intentional_refrain": false
+      },
+      "challenge_tags": [
+        "semantic-paraphrase",
+        "low-lexical-overlap"
+      ],
+      "provenance": {
+        "kind": "brief-derived",
+        "reference": "Rider wellness campaign brief",
+        "notes": "De-identified paraphrase pair created for semantic-gap evaluation."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "equivalent",
+            "action": "review",
+            "intentional_refrain": false
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "equivalent",
+            "action": "block",
+            "intentional_refrain": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "sim-cal-004",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "state": {
+        "left": "A recovery-focused fitness space supports the start of the day.",
+        "right": "Valet arrival keeps the transition home simple.",
+        "context": "Separate amenity and arrival body modules.",
+        "approved_reuse": false
+      },
+      "expected": {
+        "semantic_relation": "distinct",
+        "action": "allow",
+        "intentional_refrain": false
+      },
+      "challenge_tags": [
+        "different-topics",
+        "lexical-easy"
+      ],
+      "provenance": {
+        "kind": "synthetic",
+        "reference": "Phase 13 seed set",
+        "notes": "Distinct project-relevant messages."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "distinct",
+            "action": "allow",
+            "intentional_refrain": false
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "distinct",
+            "action": "allow",
+            "intentional_refrain": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "sim-cal-005",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "state": {
+        "left": "Soho House continues investing in its Beach House presence.",
+        "right": "Equinox is preparing a new Edgewater club nearby.",
+        "context": "Two list items supporting one neighborhood-wellness theme.",
+        "approved_reuse": false
+      },
+      "expected": {
+        "semantic_relation": "related-distinct",
+        "action": "allow",
+        "intentional_refrain": false
+      },
+      "challenge_tags": [
+        "shared-theme",
+        "different-facts"
+      ],
+      "provenance": {
+        "kind": "fixture-derived",
+        "reference": "projects/the-rider/skills/onbrand-the-rider-email/examples/rider-wellness-smoke.runtime.json",
+        "notes": "Condensed from separate approved fixture statements."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "related-distinct",
+            "action": "allow",
+            "intentional_refrain": false
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "related-distinct",
+            "action": "allow",
+            "intentional_refrain": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "sim-cal-006",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "state": {
+        "left": "Same routine.",
+        "right": "Same routine.",
+        "context": "A deliberately repeated campaign refrain with an approved exemption naming both placements.",
+        "approved_reuse": true
+      },
+      "expected": {
+        "semantic_relation": "equivalent",
+        "action": "allow",
+        "intentional_refrain": true
+      },
+      "challenge_tags": [
+        "approved-refrain",
+        "policy-context"
+      ],
+      "provenance": {
+        "kind": "test-derived",
+        "reference": "tests/test_rider_copy_allocation.py",
+        "notes": "Existing approved-refrain behavior."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "equivalent",
+            "action": "allow",
+            "intentional_refrain": true
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "equivalent",
+            "action": "allow",
+            "intentional_refrain": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "sim-cal-007",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "state": {
+        "left": "Wellness, minutes from home.",
+        "right": "See how familiar memberships can fit your Miami routine.",
+        "context": "Subject line and preview text; preview should extend rather than repeat the subject.",
+        "approved_reuse": false
+      },
+      "expected": {
+        "semantic_relation": "related-distinct",
+        "action": "allow",
+        "intentional_refrain": false
+      },
+      "challenge_tags": [
+        "subject-preview",
+        "complementary-copy"
+      ],
+      "provenance": {
+        "kind": "synthetic",
+        "reference": "projects/the-rider/skills/onbrand-the-rider-email/references/copy-quality.md",
+        "notes": "Tests subject-preview complementarity."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "related-distinct",
+            "action": "allow",
+            "intentional_refrain": false
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "related-distinct",
+            "action": "allow",
+            "intentional_refrain": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "sim-cal-008",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "state": {
+        "left": "Miami's new epicenter of wellness.",
+        "right": "MIAMI'S NEW EPICENTER OF WELLNESS",
+        "context": "Subject line and hero headline.",
+        "approved_reuse": false
+      },
+      "expected": {
+        "semantic_relation": "equivalent",
+        "action": "block",
+        "intentional_refrain": false
+      },
+      "challenge_tags": [
+        "normalized-duplicate",
+        "metadata-visible-copy"
+      ],
+      "provenance": {
+        "kind": "test-derived",
+        "reference": "tests/test_rider_copy_allocation.py",
+        "notes": "Case and punctuation normalization."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "equivalent",
+            "action": "block",
+            "intentional_refrain": false
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "equivalent",
+            "action": "block",
+            "intentional_refrain": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "sim-cal-009",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "state": {
+        "left": "From the creators of The Bond, a new address takes shape.",
+        "right": "The team behind The Bond introduces its next residential project.",
+        "context": "Two authority statements in separate modules.",
+        "approved_reuse": false
+      },
+      "expected": {
+        "semantic_relation": "equivalent",
+        "action": "block",
+        "intentional_refrain": false
+      },
+      "challenge_tags": [
+        "authority-language",
+        "semantic-paraphrase"
+      ],
+      "provenance": {
+        "kind": "test-derived",
+        "reference": "tests/test_rider_copy_allocation.py",
+        "notes": "Paraphrases the restricted authority phrase rather than repeating it literally."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "equivalent",
+            "action": "review",
+            "intentional_refrain": false
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "equivalent",
+            "action": "block",
+            "intentional_refrain": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "sim-cal-010",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "state": {
+        "left": "Miami's new epicenter of wellness.",
+        "right": "Woman seated on a yoga mat inside The Rider fitness room.",
+        "context": "Hero headline and descriptive image alt text.",
+        "approved_reuse": false
+      },
+      "expected": {
+        "semantic_relation": "related-distinct",
+        "action": "allow",
+        "intentional_refrain": false
+      },
+      "challenge_tags": [
+        "alt-text",
+        "different-functions"
+      ],
+      "provenance": {
+        "kind": "brief-derived",
+        "reference": "Rider wellness campaign brief",
+        "notes": "Alt text describes content instead of echoing the headline."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "distinct",
+            "action": "allow",
+            "intentional_refrain": false
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "related-distinct",
+            "action": "allow",
+            "intentional_refrain": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "sim-cal-011",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "state": {
+        "left": "Recovery finds its own pace at home.",
+        "right": "The arrival experience begins at the porte cochere.",
+        "context": "Amenity and arrival sections in one campaign.",
+        "approved_reuse": false
+      },
+      "expected": {
+        "semantic_relation": "distinct",
+        "action": "allow",
+        "intentional_refrain": false
+      },
+      "challenge_tags": [
+        "brand-voice",
+        "different-topics"
+      ],
+      "provenance": {
+        "kind": "synthetic",
+        "reference": "Phase 13 seed set",
+        "notes": "Two restrained but distinct project messages."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "distinct",
+            "action": "allow",
+            "intentional_refrain": false
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "distinct",
+            "action": "allow",
+            "intentional_refrain": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "sim-cal-012",
+      "task": "copy-similarity",
+      "split": "calibration",
+      "state": {
+        "left": "Two membership destinations are expanding close to The Rider.",
+        "right": "The neighborhood is gaining new places for fitness and social time.",
+        "context": "Introductory and concluding body statements.",
+        "approved_reuse": false
+      },
+      "expected": {
+        "semantic_relation": "related-distinct",
+        "action": "review",
+        "intentional_refrain": false
+      },
+      "challenge_tags": [
+        "partial-overlap",
+        "editorial-judgment"
+      ],
+      "provenance": {
+        "kind": "synthetic",
+        "reference": "Phase 13 seed set",
+        "notes": "Shared premise with different specificity; reviewer should decide whether both earn their space."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "related-distinct",
+            "action": "review",
+            "intentional_refrain": false
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "related-distinct",
+            "action": "review",
+            "intentional_refrain": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "sim-hold-001",
+      "task": "copy-similarity",
+      "split": "holdout",
+      "state": {
+        "left": "Your New York routine does not have to stay in New York.",
+        "right": "Moving south can preserve the club habits already built into your week.",
+        "context": "Hero support and final body section.",
+        "approved_reuse": false
+      },
+      "expected": {
+        "semantic_relation": "equivalent",
+        "action": "block",
+        "intentional_refrain": false
+      },
+      "challenge_tags": [
+        "semantic-paraphrase",
+        "holdout"
+      ],
+      "provenance": {
+        "kind": "brief-derived",
+        "reference": "Rider wellness campaign brief",
+        "notes": "Low-overlap repetition of membership continuity."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "equivalent",
+            "action": "review",
+            "intentional_refrain": false
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "equivalent",
+            "action": "block",
+            "intentional_refrain": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "sim-hold-002",
+      "task": "copy-similarity",
+      "split": "holdout",
+      "state": {
+        "left": "Wellness routines bring calm to daily life in Miami.",
+        "right": "Wellness routines bring energy to daily life in Miami.",
+        "context": "Separate body statements with parallel construction but different intended benefits.",
+        "approved_reuse": false
+      },
+      "expected": {
+        "semantic_relation": "related-distinct",
+        "action": "review",
+        "intentional_refrain": false
+      },
+      "challenge_tags": [
+        "high-lexical-overlap",
+        "meaningful-difference",
+        "holdout"
+      ],
+      "provenance": {
+        "kind": "test-derived",
+        "reference": "tests/test_rider_copy_allocation.py",
+        "notes": "Existing lexical warning fixture used to test semantic nuance."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "related-distinct",
+            "action": "review",
+            "intentional_refrain": false
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "related-distinct",
+            "action": "review",
+            "intentional_refrain": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "sim-hold-003",
+      "task": "copy-similarity",
+      "split": "holdout",
+      "state": {
+        "left": "Keep your membership. Change your latitude.",
+        "right": "A different coast does not require a different club routine.",
+        "context": "Two campaign taglines without an approved refrain exemption.",
+        "approved_reuse": false
+      },
+      "expected": {
+        "semantic_relation": "equivalent",
+        "action": "block",
+        "intentional_refrain": false
+      },
+      "challenge_tags": [
+        "tagline-paraphrase",
+        "low-lexical-overlap",
+        "holdout"
+      ],
+      "provenance": {
+        "kind": "synthetic",
+        "reference": "Phase 13 holdout",
+        "notes": "Equivalent compact ideas expressed with different words."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "equivalent",
+            "action": "block",
+            "intentional_refrain": false
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "equivalent",
+            "action": "block",
+            "intentional_refrain": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "sim-hold-004",
+      "task": "copy-similarity",
+      "split": "holdout",
+      "state": {
+        "left": "Soho House is investing in its Miami Beach presence.",
+        "right": "Equinox plans a club in Edgewater.",
+        "context": "Sibling list items under one neighborhood heading.",
+        "approved_reuse": false
+      },
+      "expected": {
+        "semantic_relation": "related-distinct",
+        "action": "allow",
+        "intentional_refrain": false
+      },
+      "challenge_tags": [
+        "shared-category",
+        "different-entities",
+        "holdout"
+      ],
+      "provenance": {
+        "kind": "fixture-derived",
+        "reference": "projects/the-rider/skills/onbrand-the-rider-email/examples/rider-wellness-smoke.runtime.json",
+        "notes": "Different facts should not be collapsed because they share a category."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "related-distinct",
+            "action": "allow",
+            "intentional_refrain": false
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "related-distinct",
+            "action": "allow",
+            "intentional_refrain": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "sim-hold-005",
+      "task": "copy-similarity",
+      "split": "holdout",
+      "state": {
+        "left": "A closer fitness routine begins here.",
+        "right": "Request current residence availability.",
+        "context": "Body heading and primary CTA.",
+        "approved_reuse": false
+      },
+      "expected": {
+        "semantic_relation": "distinct",
+        "action": "allow",
+        "intentional_refrain": false
+      },
+      "challenge_tags": [
+        "content-vs-action",
+        "holdout"
+      ],
+      "provenance": {
+        "kind": "synthetic",
+        "reference": "Phase 13 holdout",
+        "notes": "CTA and campaign statement serve distinct functions."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "distinct",
+            "action": "allow",
+            "intentional_refrain": false
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "distinct",
+            "action": "allow",
+            "intentional_refrain": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "sim-hold-006",
+      "task": "copy-similarity",
+      "split": "holdout",
+      "state": {
+        "left": "The city changes. Your ritual stays with you.",
+        "right": "Arrive in Miami without leaving your weekly routine behind.",
+        "context": "Subject line and hero headline.",
+        "approved_reuse": false
+      },
+      "expected": {
+        "semantic_relation": "equivalent",
+        "action": "block",
+        "intentional_refrain": false
+      },
+      "challenge_tags": [
+        "semantic-paraphrase",
+        "subject-hero",
+        "holdout"
+      ],
+      "provenance": {
+        "kind": "synthetic",
+        "reference": "Phase 13 holdout",
+        "notes": "Tests equivalent metaphorical and direct statements."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "equivalent",
+            "action": "review",
+            "intentional_refrain": false
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "equivalent",
+            "action": "block",
+            "intentional_refrain": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "claim-cal-001",
+      "task": "claim-support",
+      "split": "calibration",
+      "state": {
+        "claim": "The source describes a planned fitness club in Edgewater.",
+        "source_excerpt": "The approved project brief states that a new fitness club is planned for Edgewater.",
+        "context": "Ordinary neighborhood claim; synthetic evidence wording for evaluation only."
+      },
+      "expected": {
+        "support": "supported",
+        "action": "allow"
+      },
+      "challenge_tags": [
+        "direct-support",
+        "scope-match"
+      ],
+      "provenance": {
+        "kind": "synthetic",
+        "reference": "Phase 13 seed set",
+        "notes": "The evidence directly supports the limited claim."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "supported",
+            "action": "allow",
+            "intentional_refrain": "not-applicable"
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "supported",
+            "action": "allow",
+            "intentional_refrain": "not-applicable"
+          }
+        ]
+      }
+    },
+    {
+      "id": "claim-cal-002",
+      "task": "claim-support",
+      "split": "calibration",
+      "state": {
+        "claim": "The club is guaranteed to open this year.",
+        "source_excerpt": "The approved brief describes a club planned for a future opening; no guaranteed date is provided.",
+        "context": "Timing and certainty escalation; synthetic evidence wording."
+      },
+      "expected": {
+        "support": "unsupported",
+        "action": "block"
+      },
+      "challenge_tags": [
+        "certainty-escalation",
+        "timing"
+      ],
+      "provenance": {
+        "kind": "synthetic",
+        "reference": "Phase 13 seed set",
+        "notes": "Claim adds a guarantee and date absent from the source."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "unsupported",
+            "action": "block",
+            "intentional_refrain": "not-applicable"
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "unsupported",
+            "action": "block",
+            "intentional_refrain": "not-applicable"
+          }
+        ]
+      }
+    },
+    {
+      "id": "claim-cal-003",
+      "task": "claim-support",
+      "split": "calibration",
+      "state": {
+        "claim": "Every membership level is valid at every location.",
+        "source_excerpt": "Some membership types may provide access to participating locations, subject to membership terms.",
+        "context": "Membership portability; synthetic evidence wording."
+      },
+      "expected": {
+        "support": "unsupported",
+        "action": "block"
+      },
+      "challenge_tags": [
+        "scope-expansion",
+        "absolute-language"
+      ],
+      "provenance": {
+        "kind": "synthetic",
+        "reference": "Phase 13 seed set",
+        "notes": "Claim removes qualifications and broadens scope."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "unsupported",
+            "action": "block",
+            "intentional_refrain": "not-applicable"
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "unsupported",
+            "action": "block",
+            "intentional_refrain": "not-applicable"
+          }
+        ]
+      }
+    },
+    {
+      "id": "claim-cal-004",
+      "task": "claim-support",
+      "split": "calibration",
+      "state": {
+        "claim": "The venue is minutes from the property.",
+        "source_excerpt": "The venue and property are shown in the same neighborhood, but no travel time or distance is supplied.",
+        "context": "Proximity language; synthetic evidence wording."
+      },
+      "expected": {
+        "support": "insufficient",
+        "action": "review"
+      },
+      "challenge_tags": [
+        "missing-measurement",
+        "proximity"
+      ],
+      "provenance": {
+        "kind": "synthetic",
+        "reference": "Phase 13 seed set",
+        "notes": "Neighborhood co-location alone does not establish minutes."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "insufficient",
+            "action": "review",
+            "intentional_refrain": "not-applicable"
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "insufficient",
+            "action": "review",
+            "intentional_refrain": "not-applicable"
+          }
+        ]
+      }
+    },
+    {
+      "id": "claim-cal-005",
+      "task": "claim-support",
+      "split": "calibration",
+      "state": {
+        "claim": "The building offers a dedicated fitness room.",
+        "source_excerpt": "The approved amenity schedule lists a residents' fitness room.",
+        "context": "Project amenity claim; synthetic evidence wording."
+      },
+      "expected": {
+        "support": "supported",
+        "action": "allow"
+      },
+      "challenge_tags": [
+        "terminology-variation",
+        "direct-support"
+      ],
+      "provenance": {
+        "kind": "synthetic",
+        "reference": "Phase 13 seed set",
+        "notes": "Equivalent ordinary terminology with no scope change."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "supported",
+            "action": "allow",
+            "intentional_refrain": "not-applicable"
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "supported",
+            "action": "allow",
+            "intentional_refrain": "not-applicable"
+          }
+        ]
+      }
+    },
+    {
+      "id": "claim-hold-001",
+      "task": "claim-support",
+      "split": "holdout",
+      "state": {
+        "claim": "Eligible members may use participating clubs in another city.",
+        "source_excerpt": "The membership terms permit eligible plans to access participating locations outside the member's home market.",
+        "context": "Qualified portability statement; synthetic evidence wording."
+      },
+      "expected": {
+        "support": "supported",
+        "action": "allow"
+      },
+      "challenge_tags": [
+        "qualified-support",
+        "holdout"
+      ],
+      "provenance": {
+        "kind": "synthetic",
+        "reference": "Phase 13 holdout",
+        "notes": "Claim preserves eligibility and participation qualifications."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "supported",
+            "action": "allow",
+            "intentional_refrain": "not-applicable"
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "supported",
+            "action": "allow",
+            "intentional_refrain": "not-applicable"
+          }
+        ]
+      }
+    },
+    {
+      "id": "claim-hold-002",
+      "task": "claim-support",
+      "split": "holdout",
+      "state": {
+        "claim": "This is Miami's number-one wellness address.",
+        "source_excerpt": "The project materials describe wellness amenities and nearby clubs but provide no independent ranking.",
+        "context": "Unsupported superlative; synthetic evidence wording."
+      },
+      "expected": {
+        "support": "unsupported",
+        "action": "block"
+      },
+      "challenge_tags": [
+        "superlative",
+        "missing-ranking",
+        "holdout"
+      ],
+      "provenance": {
+        "kind": "synthetic",
+        "reference": "Phase 13 holdout",
+        "notes": "Marketing enthusiasm does not establish a ranking."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "unsupported",
+            "action": "block",
+            "intentional_refrain": "not-applicable"
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "unsupported",
+            "action": "block",
+            "intentional_refrain": "not-applicable"
+          }
+        ]
+      }
+    },
+    {
+      "id": "claim-hold-003",
+      "task": "claim-support",
+      "split": "holdout",
+      "state": {
+        "claim": "The new club will open before residents move in.",
+        "source_excerpt": "The materials identify both the residence and club as forthcoming but provide no comparative completion dates.",
+        "context": "Relative timing claim; synthetic evidence wording."
+      },
+      "expected": {
+        "support": "insufficient",
+        "action": "review"
+      },
+      "challenge_tags": [
+        "relative-timing",
+        "missing-date",
+        "holdout"
+      ],
+      "provenance": {
+        "kind": "synthetic",
+        "reference": "Phase 13 holdout",
+        "notes": "Both events are planned, but their order is not established."
+      },
+      "adjudication": {
+        "status": "adjudicated",
+        "reviewer_labels": [
+          {
+            "reviewer_id": "reviewer-a",
+            "label": "insufficient",
+            "action": "review",
+            "intentional_refrain": "not-applicable"
+          },
+          {
+            "reviewer_id": "reviewer-b",
+            "label": "insufficient",
+            "action": "review",
+            "intentional_refrain": "not-applicable"
+          }
+        ]
+      }
+    }
+  ]
+}

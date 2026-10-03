@@ -15,6 +15,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Phase 13 evaluation foundation with 26 provisional de-identified cases, a Draft 2020-12 schema, strict standard-library validator, blind review worksheet, baseline evaluator, and machine-readable diagnostic report. No provider integration was added.
 - Phase 13 blinded review workflow with dataset-bound response templates, completion validation, independent-reviewer enforcement, and deterministic disagreement reporting.
 - Two completed blinded Phase 13 reviews and comparison evidence: 21/26 full agreement, 25/26 semantic-label agreement, and five cases reserved for explicit adjudication.
+- Hash-bound adjudication evidence and a separate frozen Phase 13 dataset; all five disputes are resolved without changing holdout text or adding provider behavior.
 
 - Phase 11 versioned project/request contracts, manual-only Codex/Claude workspace wrappers, shared dispatch, installer/generator integration, and 13-component blocking parity.
 - Realistic three-adapter Rider preview evidence at 100%, checksum-verified real asset transport, and separate live CLI limitations without changing credentials or Phase 7-10 rules.

@@ -63,7 +63,7 @@
 ## Approved Specs, Not Implemented
 
 - Phase 12: Distribution profiles remain deferred until public core, private project packs, and sanitized broker packages are physically separated.
-- Phase 13 provider integration: the evaluation foundation is implemented, but no SDK, credentials, runtime calls, or blocking behavior exist.
+- Phase 13 provider integration: dataset version 1 is independently reviewed, adjudicated, and frozen, but no Jev question set, SDK, credentials, runtime calls, or blocking behavior exist.
 
 ## In Progress
 
@@ -71,7 +71,7 @@
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 - Obtain live manual invocation evidence on permitted authenticated hosts; deterministic parity does not establish model behavior.
 - Keep [LIMITATIONS.md](LIMITATIONS.md) current when audits, specs, QA runs, or implementation work discover new constraints.
-- Adjudicate five disagreements from two completed blinded reviews of the 26-case Rider semantic dataset. Reviewers reached 21/26 full agreement and 25/26 label agreement; provider questions and thresholds remain blocked until adjudication and freeze.
+- Design the first versioned Jev question set using only the 17 calibration cases. The 9 holdout cases remain untouched until the question set is locked.
 
 ## Waiting On Project Inputs
 
@@ -87,4 +87,4 @@
 
 ## Next Milestone
 
-Adjudicate the five Phase 13 review disagreements, freeze dataset version 1, and then design calibration-only Jev questions without changing deterministic QA. Live manual adapter checks and broader visual/email-client review remain open; Phase 12 distribution stays deferred.
+Design and lock the calibration-only Phase 13 Jev question set without changing deterministic QA or adding production blocking. Live manual adapter checks and broader visual/email-client review remain open; Phase 12 distribution stays deferred.

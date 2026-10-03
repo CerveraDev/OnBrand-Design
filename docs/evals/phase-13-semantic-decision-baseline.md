@@ -1,6 +1,6 @@
 # Phase 13 Semantic Decision Baseline
 
-**Status:** Provisional diagnostic evidence, not Phase 13 acceptance evidence
+**Status:** Dataset version 1 adjudicated and frozen; baseline is diagnostic, not provider acceptance evidence
 
 **Dataset:** `rider-semantic-decision-pilot-v1`
 
@@ -19,7 +19,7 @@ Establish whether the existing Phase 10 lexical and claim-reference checks leave
 - Claim labels cover supported, unsupported, and insufficient evidence.
 - Labels are maintainer-seeded and remain provisional. The blind [review worksheet](phase-13-rider-copy-review-worksheet.md) omits expected labels so reviewers can judge independently.
 
-The JSON [dataset](data/phase-13-rider-copy-pairs.v1.json), portable [schema](../../tools/semantic_eval/dataset.schema.json), and strict standard-library validator are versioned together.
+The original [provisional dataset](data/phase-13-rider-copy-pairs.v1.json), [frozen adjudicated dataset](data/phase-13-rider-copy-pairs.v1.frozen.json), portable [schema](../../tools/semantic_eval/dataset.schema.json), and strict standard-library validator are versioned together. The provisional snapshot remains unchanged so completed reviews continue to validate against its exact hash.
 
 ## Baseline
 
@@ -57,11 +57,12 @@ These results do not establish Jev quality. They establish only that a semantic 
 
 ## Next Gate
 
-Two blinded reviews are now committed. They agree fully on 21 of 26 cases, agree on the semantic label for 25 of 26, and leave five cases requiring adjudication. Four disputes share the `equivalent` label and differ only between `review` and `block`; one shares `allow` and differs between `distinct` and `related-distinct`.
+Two blinded reviews agree fully on 21 of 26 cases and agree on the semantic label for 25 of 26. All five disagreements are now explicitly adjudicated in [phase-13-adjudication.v1.json](reviews/phase-13-adjudication.v1.json). Four equivalent, non-exempt copy pairs use the existing single-use policy and resolve to `block`. The headline/alt-text pair resolves to `related-distinct` and `allow` because the surfaces share campaign context but serve different functions.
 
-1. Adjudicate the five recorded disagreements without changing holdout text.
-2. Freeze dataset version 1 for the first provider comparison.
-3. Design atomic Jev questions using calibration cases only.
-4. Compare Jev with this baseline on the untouched holdout and record precision, recall, false positives, false negatives, review coverage, and overrides.
+The frozen baseline remains 14/26 exact action matches. Adjudication changes one semantic taxonomy label but no expected action, and holdout text is unchanged. The frozen machine report is [phase-13-lexical-baseline.frozen.v1.json](phase-13-lexical-baseline.frozen.v1.json).
+
+1. Design atomic Jev questions using calibration cases only.
+2. Lock the first question-set version before evaluating the untouched holdout.
+3. Compare Jev with this baseline and record precision, recall, false positives, false negatives, review coverage, and overrides.
 
 Review evidence: [Reviewer A](reviews/phase-13-reviewer-a.v1.json), [Reviewer B](reviews/phase-13-reviewer-b.v1.json), and [comparison](reviews/phase-13-review-comparison.v1.json).
