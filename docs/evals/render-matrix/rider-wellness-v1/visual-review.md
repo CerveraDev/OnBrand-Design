@@ -8,6 +8,8 @@
 
 **Human review status:** Pending
 
+**Creative baseline status:** Rejected; technical regression fixture only
+
 This worksheet is for screenshot review only. It is not Outlook, Gmail, Apple Mail, native mobile-client, accessibility, legal, or brand certification.
 
 | Matrix entry | Hierarchy | Copy readable | Image crop | Alignment | Footer | No overlap |
@@ -33,3 +35,4 @@ This worksheet is for screenshot review only. It is not Outlook, Gmail, Apple Ma
 - Dark preference: Light and dark screenshots are byte-identical. The email intentionally preserves its fixed palette in Chromium; client-specific dark-mode rewriting is still unverified.
 - Editorial observation: The authority line beginning “From the creators…” appears in multiple approved/static modules. This is not a render failure, but should remain visible to copy review.
 - Human decision remains pending.
+- Known creative gaps: no labeled hero-selection gallery was exercised, the hero is the earlier generated environment rather than approved source-grounded visual evidence, and repeated locked authority copy remains visible.

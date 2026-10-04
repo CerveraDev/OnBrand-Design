@@ -23,6 +23,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Completed the separately approved nine-case Jev holdout and recorded a `revise` decision: 8/9 semantic labels, 5/9 actions, one false allow, and no production integration.
 - Phase 14 pinned Playwright browser-preview renderer, four-mode desktop/mobile light/dark matrix, machine diagnostics and hashes, report schema, visual-review worksheet, and explicit separation from real email-client certification.
 - Committed Rider wellness browser-render evidence: all four Phase 14 entries pass without overflow, broken images, or browser errors; fixed-palette dark behavior, human approval, and real-client testing remain explicit.
+- Phase 15 Creative Fidelity remediation specification covering labeled visual module selection, source-versus-candidate image grounding, and cross-block static-copy collision decisions; prior wellness screenshots are reclassified as technical-only evidence.
 
 - Phase 11 versioned project/request contracts, manual-only Codex/Claude workspace wrappers, shared dispatch, installer/generator integration, and 13-component blocking parity.
 - Realistic three-adapter Rider preview evidence at 100%, checksum-verified real asset transport, and separate live CLI limitations without changing credentials or Phase 7-10 rules.

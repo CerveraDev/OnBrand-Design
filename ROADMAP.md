@@ -19,6 +19,7 @@ The roadmap applies to the framework and is executed independently for each proj
 | 12 | Distribution profiles | Deferred | Deferred | Deferred |
 | 13 | Jev semantic decision pilot | Version 1 holdout complete; revise decision | 8/9 labels but 5/9 actions, one false allow; production rejected | Not planned until a version 2 pilot is justified |
 | 14 | Email render matrix | Browser-preview tool and Rider evidence complete | Four browser modes pass; human and real-client matrix pending | Planned after representative package |
+| 15 | Creative fidelity remediation | Approved for implementation | Labeled gallery, visual grounding, and static-copy collision work pending | Planned after project calibration |
 
 ## Framework Gate
 
@@ -101,6 +102,7 @@ The roadmap applies to the framework and is executed independently for each proj
 - No secrets, private paths, missing assets, or cross-project references remain.
 - Adapter installation/manual policies and deterministic outputs are tested; live platform/model claims wait for LIM-017 evidence.
 - At least one representative project campaign passes human and compatibility review.
+- The representative campaign must pass Phase 15 creative-fidelity approval before real-client evidence is treated as a release candidate.
 - P0 and public-release-blocking P1 limitations in [LIMITATIONS.md](LIMITATIONS.md) are either closed or explicitly accepted by the owner with documented mitigations.
 
 ## Deferred Distribution Profiles Gate

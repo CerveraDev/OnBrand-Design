@@ -53,6 +53,7 @@
 - Implemented Phase 10 approved copy inventory/ownership, cross-surface normalized repetition, transparent near-duplicate scoring, narrow reuse exemptions, claim-reference gating, and metadata/QA reporting without rewriting approved text.
 - Implemented Phase 11 versioned contracts, shared dispatch, manual-only wrappers, and 13-component blocking parity. Rider preview builds score 100 using real cached assets; live model invocation is unverified. See [evidence](docs/evals/phase-11-cross-platform-compatibility.md).
 - Implemented the Phase 14 Playwright browser-preview matrix and committed representative Rider desktop/mobile light/dark evidence. All four browser modes pass with zero overflow or resource errors; human approval and real email-client review remain pending.
+- Reclassified the Phase 14 wellness screenshots as technical-only evidence with known creative defects and approved Phase 15 remediation for labeled visual selection, source-grounded image evidence, and static-copy collision control.
 
 ## Project Portfolio
 
@@ -69,7 +70,7 @@
 ## In Progress
 
 - Perform representative visual and email-client compatibility review beyond structural QA.
-- Obtain human review of the Phase 14 screenshots and execute the defined Gmail, Outlook, and Apple Mail client matrix.
+- Implement Phase 15 before requesting creative approval or running the real Gmail, Outlook, and Apple Mail matrix.
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 - Obtain live manual invocation evidence on permitted authenticated hosts; deterministic parity does not establish model behavior.
 - Keep [LIMITATIONS.md](LIMITATIONS.md) current when audits, specs, QA runs, or implementation work discover new constraints.
@@ -89,4 +90,4 @@
 
 ## Next Milestone
 
-Obtain human approval of the Phase 14 Rider screenshots, then choose a real email-client rendering method for the pending Gmail, Outlook, and Apple Mail matrix. Live manual adapter checks remain open; Phase 12 distribution stays deferred.
+Implement Phase 15 Workstream A: generate a labeled visual header/hero gallery from the stable Rider catalog. Image-grounding and static-copy collision enforcement follow before a corrected branded proof. Live manual adapter checks remain open; Phase 12 distribution stays deferred.

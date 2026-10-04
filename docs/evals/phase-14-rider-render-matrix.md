@@ -7,6 +7,8 @@
 **Human approval:** Pending
 **Scope:** Chromium browser preview only
 
+**Creative baseline status:** Rejected for creative approval. This is a technical regression fixture with known stale hero-selection, image-grounding, and repeated-copy defects.
+
 ## Automated Matrix
 
 | Entry | Viewport | Scheme | Overflow | Images | Errors | Result |
@@ -29,7 +31,7 @@ Two non-blocking findings remain:
 1. The authority message beginning “From the creators…” is visibly repeated across multiple approved/static modules. This is an editorial/static-content decision, not a rendering defect.
 2. Browser dark preference produces no alternate styling. Real client dark-mode rewriting remains untested.
 
-This inspection is not human approval, accessibility certification, or email-client certification.
+This inspection is not creative approval, human approval, accessibility certification, or email-client certification. The fixture must not be used to claim completion of Phase 15 creative-fidelity requirements.
 
 ## Supported Client Review Matrix
 
