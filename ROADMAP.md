@@ -19,7 +19,7 @@ The roadmap applies to the framework and is executed independently for each proj
 | 12 | Distribution profiles | Deferred | Deferred | Deferred |
 | 13 | Jev semantic decision pilot | Version 1 holdout complete; revise decision | 8/9 labels but 5/9 actions, one false allow; production rejected | Not planned until a version 2 pilot is justified |
 | 14 | Email render matrix | Browser-preview tool and Rider evidence complete | Four browser modes pass; human and real-client matrix pending | Planned after representative package |
-| 15 | Creative fidelity remediation | Approved for implementation | Labeled gallery, visual grounding, and static-copy collision work pending | Planned after project calibration |
+| 15 | Creative fidelity remediation | Workstream A implemented | Labeled gallery generated; owner selection and Workstreams B-C pending | Planned after project calibration |
 
 ## Framework Gate
 

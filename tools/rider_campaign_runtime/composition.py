@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from html import escape
 import json
 from pathlib import Path
 
@@ -17,6 +18,7 @@ class CompositionError(ValueError):
 
 
 CATALOG_VERSION = "1.0"
+GALLERY_VERSION = "1.0"
 PLAN_VERSION = "1.0"
 APPROVED_STATUS = "approved"
 
@@ -70,9 +72,79 @@ def write_catalog_artifacts(scaffold: Scaffold, output_dir: Path) -> dict[str, P
         html = compose_html(scaffold, module_rows(scaffold, module_id))
         (preview_dir / f"{code}.html").write_text(html, encoding="utf-8")
 
+    configurations = build_hero_configurations(module_catalog)
+    configuration_dir = output_dir / "hero-configurations"
+    configuration_dir.mkdir(parents=True, exist_ok=True)
+    entries_by_code = {entry["code"]: entry for entry in module_catalog["entries"]}
+    for option in configurations["options"]:
+        rows = []
+        for code in option["selected_module_codes"]:
+            rows.extend(module_rows(scaffold, entries_by_code[code]["scaffold_module_id"]))
+        (configuration_dir / f"{option['id']}.html").write_text(compose_html(scaffold, rows), encoding="utf-8")
+    configuration_path = output_dir / "hero-configurations.json"
+    configuration_path.write_text(json.dumps(configurations, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    gallery_path = output_dir / "hero-gallery.html"
+    gallery_path.write_text(_gallery_html(configurations), encoding="utf-8")
+
     review_path = output_dir / "composition-review.md"
     review_path.write_text(_review_markdown(module_catalog), encoding="utf-8")
-    return {"catalog": catalog_path, "review": review_path, "preview_dir": preview_dir}
+    return {
+        "catalog": catalog_path,
+        "review": review_path,
+        "preview_dir": preview_dir,
+        "hero_configurations": configuration_path,
+        "hero_gallery": gallery_path,
+        "hero_configuration_dir": configuration_dir,
+    }
+
+
+def build_hero_configurations(module_catalog: dict) -> dict:
+    entries = module_catalog["entries"]
+    headers = [entry for entry in entries if entry["module_type"] == "header"]
+    non_header_heroes = [
+        entry for entry in entries if entry["module_type"] == "hero" and not entry["includes_header"]
+    ]
+    header_heroes = [entry for entry in entries if entry["module_type"] == "hero" and entry["includes_header"]]
+    candidates = []
+    for hero in header_heroes:
+        candidates.append((None, hero))
+    for hero in non_header_heroes:
+        candidates.append((None, hero))
+    for header in headers:
+        for hero in non_header_heroes:
+            candidates.append((header, hero))
+
+    options = []
+    for index, (header, hero) in enumerate(candidates, start=1):
+        codes = [hero["code"]] if header is None else [header["code"], hero["code"]]
+        label = hero["label"] if header is None else f"{header['label']} + {hero['label']}"
+        if hero["includes_header"]:
+            group = "integrated-header"
+            group_label = "Integrated Header And Hero"
+        elif header is None:
+            group = "hero-only"
+            group_label = "Hero Only"
+        else:
+            group = f"header-{header['code']}"
+            group_label = header["label"]
+        options.append(
+            {
+                "id": f"CFG-{index:02d}",
+                "label": label,
+                "group": group,
+                "group_label": group_label,
+                "selected_module_codes": codes,
+                "header_code": header["code"] if header else "",
+                "hero_code": hero["code"],
+                "includes_header": hero["includes_header"] or header is not None,
+                "live_text_support": hero["live_text_support"] or bool(header and header["live_text_support"]),
+                "image_required": hero["image_required"],
+                "image_aspect_ratio": hero["image_aspect_ratio"],
+                "compatibility_notes": list(hero["companion_rules"]),
+                "preview_path": f"hero-configurations/CFG-{index:02d}.html",
+            }
+        )
+    return {"gallery_version": GALLERY_VERSION, "option_count": len(options), "options": options}
 
 
 def create_composition_plan(scaffold: Scaffold, selection: dict) -> dict:
@@ -88,6 +160,7 @@ def create_composition_plan(scaffold: Scaffold, selection: dict) -> dict:
             "representative_variant",
             "selected_module_codes",
             "static_block_decisions",
+            "selected_hero_configuration",
         }
     )
     if unknown:
@@ -107,9 +180,14 @@ def create_composition_plan(scaffold: Scaffold, selection: dict) -> dict:
     _validate_selected_codes(selected_codes, entries_by_code)
     _validate_static_decisions(selected_codes, static_decisions, entries_by_code)
     _validate_module_compatibility(selected_codes, entries_by_code)
+    selected_configuration = selection.get("selected_hero_configuration", "")
+    if selected_configuration:
+        if not isinstance(selected_configuration, str):
+            raise CompositionError("composition selection.selected_hero_configuration must be a string")
+        _validate_hero_configuration(selected_configuration, selected_codes, module_catalog)
 
     selected_entries = [entries_by_code[code] for code in selected_codes]
-    return {
+    plan = {
         "plan_version": PLAN_VERSION,
         "plan_id": plan_id,
         "status": status,
@@ -161,6 +239,9 @@ def create_composition_plan(scaffold: Scaffold, selection: dict) -> dict:
         },
         "approval_required_before": ["image-generation", "html-assembly", "package-generation"],
     }
+    if selected_configuration:
+        plan["selected_hero_configuration"] = selected_configuration
+    return plan
 
 
 def validate_composition_contract(spec: dict, scaffold: Scaffold) -> dict | None:
@@ -190,6 +271,11 @@ def validate_composition_contract(spec: dict, scaffold: Scaffold) -> dict | None
         entries_by_code,
     )
     _validate_module_compatibility(selected_codes, entries_by_code)
+    selected_configuration = composition.get("selected_hero_configuration", "")
+    if selected_configuration:
+        if not isinstance(selected_configuration, str):
+            raise CompositionError("composition.selected_hero_configuration must be a string")
+        _validate_hero_configuration(selected_configuration, selected_codes, module_catalog)
 
     expected_module_ids = [entries_by_code[code]["scaffold_module_id"] for code in selected_codes]
     actual_module_ids = [module["id"] for module in spec["modules"]]
@@ -295,6 +381,21 @@ def _validate_module_compatibility(selected_codes: list[str], entries_by_code: d
         )
 
 
+def _validate_hero_configuration(configuration_id: str, selected_codes: list[str], module_catalog: dict) -> None:
+    options = {option["id"]: option for option in build_hero_configurations(module_catalog)["options"]}
+    if configuration_id not in options:
+        raise CompositionError(f"Unknown hero configuration: {configuration_id}")
+    entries_by_code = {entry["code"]: entry for entry in module_catalog["entries"]}
+    selected_header_hero = [
+        code for code in selected_codes if entries_by_code[code]["module_type"] in {"header", "hero"}
+    ]
+    if selected_header_hero != options[configuration_id]["selected_module_codes"]:
+        raise CompositionError(
+            f"Hero configuration {configuration_id} requires module codes: "
+            + ", ".join(options[configuration_id]["selected_module_codes"])
+        )
+
+
 def _validate_static_decisions(selected_codes: list[str], decisions: list[dict], entries_by_code: dict[str, dict]) -> None:
     static_codes = {code for code, entry in entries_by_code.items() if entry["module_type"] == "static"}
     decision_codes = [item["code"] for item in decisions]
@@ -337,6 +438,7 @@ def _composition_summary(composition: dict) -> dict:
         "approved_at": composition["approved_at"],
         "representative_variant": composition["representative_variant"],
         "selected_module_codes": composition["selected_module_codes"],
+        "selected_hero_configuration": composition.get("selected_hero_configuration", ""),
         "selected_modules": composition.get("selected_modules", []),
         "static_block_decisions": composition["static_block_decisions"],
         "required_assets": composition.get("required_assets", []),
@@ -370,7 +472,94 @@ def _review_markdown(module_catalog: dict) -> str:
     lines.append("")
     lines.append("A standalone header cannot be selected with a hero whose header behavior is `includes`.")
     lines.append("Every static block code must receive an include/exclude decision.")
+    lines.append("Open `hero-gallery.html` to choose a complete labeled `CFG-*` header/hero configuration.")
     return "\n".join(lines) + "\n"
+
+
+def _gallery_html(configurations: dict) -> str:
+    grouped_options = []
+    for option in configurations["options"]:
+        if not grouped_options or grouped_options[-1][0] != option["group"]:
+            grouped_options.append((option["group"], option["group_label"], []))
+        grouped_options[-1][2].append(option)
+
+    sections = []
+    for group, group_label, options in grouped_options:
+        cards = []
+        for option in options:
+            cards.append(_gallery_card(option))
+        sections.append(
+            f'<section id="{escape(group)}"><h2 class="group-title">{escape(group_label)}</h2>'
+            f'<div class="options">{"".join(cards)}</div></section>'
+        )
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rider Header And Hero Configurations</title>
+  <style>
+    * {{ box-sizing: border-box; }}
+    body {{ margin: 0; background: #f4f4f2; color: #151515; font-family: Arial, sans-serif; }}
+    .page-header {{ padding: 28px 32px 20px; background: #151515; color: #fff; }}
+    .page-header h1 {{ margin: 0 0 8px; font-size: 26px; letter-spacing: 0; }}
+    .page-header p {{ margin: 0; max-width: 760px; font-size: 14px; line-height: 1.5; }}
+    main {{ padding: 12px 24px 32px; }}
+    section {{ padding-top: 20px; }}
+    .group-title {{ margin: 0 0 12px; font-size: 18px; letter-spacing: 0; }}
+    .options {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 20px; }}
+    .option {{ min-width: 0; border: 1px solid #c9c9c4; background: #fff; }}
+    .option > header {{ min-height: 128px; padding: 18px 20px; border-bottom: 1px solid #d8d8d2; }}
+    .option > header div {{ display: flex; justify-content: space-between; gap: 12px; font-size: 12px; text-transform: uppercase; }}
+    .option > header span {{ color: #666; }}
+    .option h3 {{ margin: 14px 0 8px; font-size: 17px; line-height: 1.25; letter-spacing: 0; }}
+    .codes {{ margin: 0; font-family: monospace; font-size: 12px; }}
+    iframe {{ display: block; width: 100%; height: 520px; border: 0; background: #eee; }}
+    dl {{ display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; border-top: 1px solid #d8d8d2; }}
+    dl div {{ min-width: 0; padding: 12px; border-right: 1px solid #d8d8d2; }}
+    dl div:last-child {{ border-right: 0; }}
+    dt {{ margin-bottom: 5px; color: #666; font-size: 10px; text-transform: uppercase; }}
+    dd {{ margin: 0; font-size: 12px; line-height: 1.35; }}
+    .notes {{ min-height: 58px; margin: 0; padding: 12px 20px 16px; color: #555; font-size: 12px; line-height: 1.4; }}
+    @media (max-width: 520px) {{
+      .page-header {{ padding: 22px 18px; }}
+      main {{ padding: 4px 12px 24px; }}
+      .options {{ grid-template-columns: minmax(0, 1fr); }}
+      iframe {{ height: 430px; }}
+      dl {{ grid-template-columns: 1fr; }}
+      dl div {{ border-right: 0; border-bottom: 1px solid #d8d8d2; }}
+    }}
+  </style>
+</head>
+<body>
+  <header class="page-header">
+    <h1>Rider Header And Hero Configurations</h1>
+    <p>Select one stable CFG code before image generation. Each option is a compatible complete configuration, not a final email-client rendering.</p>
+  </header>
+  <main>{''.join(sections)}</main>
+</body>
+</html>
+"""
+
+
+def _gallery_card(option: dict) -> str:
+        codes = " + ".join(option["selected_module_codes"])
+        notes = " ".join(option["compatibility_notes"])
+        return f"""
+            <article class="option" data-configuration="{escape(option['id'])}">
+              <header>
+                <div><strong>{escape(option['id'])}</strong><span>{escape(option['group'])}</span></div>
+                <h3>{escape(option['label'])}</h3>
+                <p class="codes">{escape(codes)}</p>
+              </header>
+              <iframe src="{escape(option['preview_path'])}" title="{escape(option['id'] + ' ' + option['label'])}"></iframe>
+              <dl>
+                <div><dt>Header</dt><dd>{'Included' if option['includes_header'] else 'None'}</dd></div>
+                <div><dt>Text</dt><dd>{'Live HTML supported' if option['live_text_support'] else 'Image-led or locked'}</dd></div>
+                <div><dt>Image</dt><dd>{'Required' if option['image_required'] else 'Not required'}</dd></div>
+              </dl>
+              <p class="notes">{escape(notes)}</p>
+            </article>"""
 
 
 def _require_str(obj: dict, field: str, label: str) -> str:

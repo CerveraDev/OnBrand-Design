@@ -1,6 +1,6 @@
 # Phase 15: Creative Fidelity Remediation
 
-**Status:** Approved for implementation
+**Status:** Workstream A implemented; Workstreams B and C pending
 **Target:** Corrected Rider Composition Preview before real email-client testing
 **Depends on:** Phases 8, 9, 10, and 14
 
@@ -13,6 +13,8 @@ Close the gap between deterministic runtime validity and the creative workflow t
 The Phase 14 Rider wellness fixture is technically valid but creatively stale. It renders one previously selected hero, uses an earlier generated environment, and includes repeated locked authority copy. Its screenshots remain useful for responsive regression testing, but they are not creative acceptance evidence.
 
 ## Workstream A: Labeled Visual Selection
+
+Implementation evidence: [Rider header and hero gallery](../evals/phase-15-rider-hero-gallery.md). The generated gallery is awaiting owner visual selection.
 
 - FID-001: Preserve stable module codes from the canonical catalog.
 - FID-002: Produce a rendered gallery for every eligible header and hero, not only isolated HTML files.

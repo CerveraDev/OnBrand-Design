@@ -54,6 +54,7 @@
 - Implemented Phase 11 versioned contracts, shared dispatch, manual-only wrappers, and 13-component blocking parity. Rider preview builds score 100 using real cached assets; live model invocation is unverified. See [evidence](docs/evals/phase-11-cross-platform-compatibility.md).
 - Implemented the Phase 14 Playwright browser-preview matrix and committed representative Rider desktop/mobile light/dark evidence. All four browser modes pass with zero overflow or resource errors; human approval and real email-client review remain pending.
 - Reclassified the Phase 14 wellness screenshots as technical-only evidence with known creative defects and approved Phase 15 remediation for labeled visual selection, source-grounded image evidence, and static-copy collision control.
+- Implemented Phase 15 Workstream A with 16 labeled, compatible Rider header/hero configurations, a grouped visual gallery, configuration-bound composition approval, and hash-bound review evidence. Full discovery passes 154 tests; owner selection remains pending.
 
 ## Project Portfolio
 
@@ -70,7 +71,7 @@
 ## In Progress
 
 - Perform representative visual and email-client compatibility review beyond structural QA.
-- Implement Phase 15 before requesting creative approval or running the real Gmail, Outlook, and Apple Mail matrix.
+- Complete Phase 15 Workstreams B and C before requesting creative approval or running the real Gmail, Outlook, and Apple Mail matrix.
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 - Obtain live manual invocation evidence on permitted authenticated hosts; deterministic parity does not establish model behavior.
 - Keep [LIMITATIONS.md](LIMITATIONS.md) current when audits, specs, QA runs, or implementation work discover new constraints.
@@ -90,4 +91,4 @@
 
 ## Next Milestone
 
-Implement Phase 15 Workstream A: generate a labeled visual header/hero gallery from the stable Rider catalog. Image-grounding and static-copy collision enforcement follow before a corrected branded proof. Live manual adapter checks remain open; Phase 12 distribution stays deferred.
+Obtain the owner's `CFG-*` choice from the Phase 15 gallery, then implement static-copy collision enforcement and source-grounded image evidence before a corrected branded proof. Live manual adapter checks remain open; Phase 12 distribution stays deferred.

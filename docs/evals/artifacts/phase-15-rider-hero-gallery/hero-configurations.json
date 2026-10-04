@@ -1,0 +1,322 @@
+{
+  "gallery_version": "1.0",
+  "option_count": 16,
+  "options": [
+    {
+      "id": "CFG-01",
+      "label": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
+      "group": "integrated-header",
+      "group_label": "Integrated Header And Hero",
+      "selected_module_codes": [
+        "HH-01"
+      ],
+      "header_code": "",
+      "hero_code": "HH-01",
+      "includes_header": true,
+      "live_text_support": true,
+      "image_required": true,
+      "image_aspect_ratio": "module-native hero crop; approve exact crop before image generation",
+      "compatibility_notes": [
+        "Do not pair with a standalone header."
+      ],
+      "preview_path": "hero-configurations/CFG-01.html"
+    },
+    {
+      "id": "CFG-02",
+      "label": "AI GENERATED IMAGE BASED ON PROMPT",
+      "group": "hero-only",
+      "group_label": "Hero Only",
+      "selected_module_codes": [
+        "AI-01"
+      ],
+      "header_code": "",
+      "hero_code": "AI-01",
+      "includes_header": false,
+      "live_text_support": false,
+      "image_required": true,
+      "image_aspect_ratio": "module-native hero crop; approve exact crop before image generation",
+      "compatibility_notes": [
+        "May pair with zero or one standalone header."
+      ],
+      "preview_path": "hero-configurations/CFG-02.html"
+    },
+    {
+      "id": "CFG-03",
+      "label": "HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT",
+      "group": "hero-only",
+      "group_label": "Hero Only",
+      "selected_module_codes": [
+        "HR-01"
+      ],
+      "header_code": "",
+      "hero_code": "HR-01",
+      "includes_header": false,
+      "live_text_support": true,
+      "image_required": true,
+      "image_aspect_ratio": "module-native hero crop; approve exact crop before image generation",
+      "compatibility_notes": [
+        "May pair with zero or one standalone header."
+      ],
+      "preview_path": "hero-configurations/CFG-03.html"
+    },
+    {
+      "id": "CFG-04",
+      "label": "HERO - LIVE TEXT HEADING - LIGHT LAYOUT - FRAMED",
+      "group": "hero-only",
+      "group_label": "Hero Only",
+      "selected_module_codes": [
+        "HR-02"
+      ],
+      "header_code": "",
+      "hero_code": "HR-02",
+      "includes_header": false,
+      "live_text_support": true,
+      "image_required": true,
+      "image_aspect_ratio": "module-native hero crop; approve exact crop before image generation",
+      "compatibility_notes": [
+        "May pair with zero or one standalone header."
+      ],
+      "preview_path": "hero-configurations/CFG-04.html"
+    },
+    {
+      "id": "CFG-05",
+      "label": "TWO-COLUMN HEADER + AI GENERATED IMAGE BASED ON PROMPT",
+      "group": "header-H-01",
+      "group_label": "TWO-COLUMN HEADER",
+      "selected_module_codes": [
+        "H-01",
+        "AI-01"
+      ],
+      "header_code": "H-01",
+      "hero_code": "AI-01",
+      "includes_header": true,
+      "live_text_support": true,
+      "image_required": true,
+      "image_aspect_ratio": "module-native hero crop; approve exact crop before image generation",
+      "compatibility_notes": [
+        "May pair with zero or one standalone header."
+      ],
+      "preview_path": "hero-configurations/CFG-05.html"
+    },
+    {
+      "id": "CFG-06",
+      "label": "TWO-COLUMN HEADER + HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT",
+      "group": "header-H-01",
+      "group_label": "TWO-COLUMN HEADER",
+      "selected_module_codes": [
+        "H-01",
+        "HR-01"
+      ],
+      "header_code": "H-01",
+      "hero_code": "HR-01",
+      "includes_header": true,
+      "live_text_support": true,
+      "image_required": true,
+      "image_aspect_ratio": "module-native hero crop; approve exact crop before image generation",
+      "compatibility_notes": [
+        "May pair with zero or one standalone header."
+      ],
+      "preview_path": "hero-configurations/CFG-06.html"
+    },
+    {
+      "id": "CFG-07",
+      "label": "TWO-COLUMN HEADER + HERO - LIVE TEXT HEADING - LIGHT LAYOUT - FRAMED",
+      "group": "header-H-01",
+      "group_label": "TWO-COLUMN HEADER",
+      "selected_module_codes": [
+        "H-01",
+        "HR-02"
+      ],
+      "header_code": "H-01",
+      "hero_code": "HR-02",
+      "includes_header": true,
+      "live_text_support": true,
+      "image_required": true,
+      "image_aspect_ratio": "module-native hero crop; approve exact crop before image generation",
+      "compatibility_notes": [
+        "May pair with zero or one standalone header."
+      ],
+      "preview_path": "hero-configurations/CFG-07.html"
+    },
+    {
+      "id": "CFG-08",
+      "label": "ONE-COLUMN HEADER DARK + AI GENERATED IMAGE BASED ON PROMPT",
+      "group": "header-H-02",
+      "group_label": "ONE-COLUMN HEADER DARK",
+      "selected_module_codes": [
+        "H-02",
+        "AI-01"
+      ],
+      "header_code": "H-02",
+      "hero_code": "AI-01",
+      "includes_header": true,
+      "live_text_support": true,
+      "image_required": true,
+      "image_aspect_ratio": "module-native hero crop; approve exact crop before image generation",
+      "compatibility_notes": [
+        "May pair with zero or one standalone header."
+      ],
+      "preview_path": "hero-configurations/CFG-08.html"
+    },
+    {
+      "id": "CFG-09",
+      "label": "ONE-COLUMN HEADER DARK + HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT",
+      "group": "header-H-02",
+      "group_label": "ONE-COLUMN HEADER DARK",
+      "selected_module_codes": [
+        "H-02",
+        "HR-01"
+      ],
+      "header_code": "H-02",
+      "hero_code": "HR-01",
+      "includes_header": true,
+      "live_text_support": true,
+      "image_required": true,
+      "image_aspect_ratio": "module-native hero crop; approve exact crop before image generation",
+      "compatibility_notes": [
+        "May pair with zero or one standalone header."
+      ],
+      "preview_path": "hero-configurations/CFG-09.html"
+    },
+    {
+      "id": "CFG-10",
+      "label": "ONE-COLUMN HEADER DARK + HERO - LIVE TEXT HEADING - LIGHT LAYOUT - FRAMED",
+      "group": "header-H-02",
+      "group_label": "ONE-COLUMN HEADER DARK",
+      "selected_module_codes": [
+        "H-02",
+        "HR-02"
+      ],
+      "header_code": "H-02",
+      "hero_code": "HR-02",
+      "includes_header": true,
+      "live_text_support": true,
+      "image_required": true,
+      "image_aspect_ratio": "module-native hero crop; approve exact crop before image generation",
+      "compatibility_notes": [
+        "May pair with zero or one standalone header."
+      ],
+      "preview_path": "hero-configurations/CFG-10.html"
+    },
+    {
+      "id": "CFG-11",
+      "label": "INVITE - TWO-COLUMN HEADER - COLLABORATION + AI GENERATED IMAGE BASED ON PROMPT",
+      "group": "header-H-03",
+      "group_label": "INVITE - TWO-COLUMN HEADER - COLLABORATION",
+      "selected_module_codes": [
+        "H-03",
+        "AI-01"
+      ],
+      "header_code": "H-03",
+      "hero_code": "AI-01",
+      "includes_header": true,
+      "live_text_support": false,
+      "image_required": true,
+      "image_aspect_ratio": "module-native hero crop; approve exact crop before image generation",
+      "compatibility_notes": [
+        "May pair with zero or one standalone header."
+      ],
+      "preview_path": "hero-configurations/CFG-11.html"
+    },
+    {
+      "id": "CFG-12",
+      "label": "INVITE - TWO-COLUMN HEADER - COLLABORATION + HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT",
+      "group": "header-H-03",
+      "group_label": "INVITE - TWO-COLUMN HEADER - COLLABORATION",
+      "selected_module_codes": [
+        "H-03",
+        "HR-01"
+      ],
+      "header_code": "H-03",
+      "hero_code": "HR-01",
+      "includes_header": true,
+      "live_text_support": true,
+      "image_required": true,
+      "image_aspect_ratio": "module-native hero crop; approve exact crop before image generation",
+      "compatibility_notes": [
+        "May pair with zero or one standalone header."
+      ],
+      "preview_path": "hero-configurations/CFG-12.html"
+    },
+    {
+      "id": "CFG-13",
+      "label": "INVITE - TWO-COLUMN HEADER - COLLABORATION + HERO - LIVE TEXT HEADING - LIGHT LAYOUT - FRAMED",
+      "group": "header-H-03",
+      "group_label": "INVITE - TWO-COLUMN HEADER - COLLABORATION",
+      "selected_module_codes": [
+        "H-03",
+        "HR-02"
+      ],
+      "header_code": "H-03",
+      "hero_code": "HR-02",
+      "includes_header": true,
+      "live_text_support": true,
+      "image_required": true,
+      "image_aspect_ratio": "module-native hero crop; approve exact crop before image generation",
+      "compatibility_notes": [
+        "May pair with zero or one standalone header."
+      ],
+      "preview_path": "hero-configurations/CFG-13.html"
+    },
+    {
+      "id": "CFG-14",
+      "label": "ONE-COLUMN HEADER LIGHT + AI GENERATED IMAGE BASED ON PROMPT",
+      "group": "header-H-04",
+      "group_label": "ONE-COLUMN HEADER LIGHT",
+      "selected_module_codes": [
+        "H-04",
+        "AI-01"
+      ],
+      "header_code": "H-04",
+      "hero_code": "AI-01",
+      "includes_header": true,
+      "live_text_support": true,
+      "image_required": true,
+      "image_aspect_ratio": "module-native hero crop; approve exact crop before image generation",
+      "compatibility_notes": [
+        "May pair with zero or one standalone header."
+      ],
+      "preview_path": "hero-configurations/CFG-14.html"
+    },
+    {
+      "id": "CFG-15",
+      "label": "ONE-COLUMN HEADER LIGHT + HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT",
+      "group": "header-H-04",
+      "group_label": "ONE-COLUMN HEADER LIGHT",
+      "selected_module_codes": [
+        "H-04",
+        "HR-01"
+      ],
+      "header_code": "H-04",
+      "hero_code": "HR-01",
+      "includes_header": true,
+      "live_text_support": true,
+      "image_required": true,
+      "image_aspect_ratio": "module-native hero crop; approve exact crop before image generation",
+      "compatibility_notes": [
+        "May pair with zero or one standalone header."
+      ],
+      "preview_path": "hero-configurations/CFG-15.html"
+    },
+    {
+      "id": "CFG-16",
+      "label": "ONE-COLUMN HEADER LIGHT + HERO - LIVE TEXT HEADING - LIGHT LAYOUT - FRAMED",
+      "group": "header-H-04",
+      "group_label": "ONE-COLUMN HEADER LIGHT",
+      "selected_module_codes": [
+        "H-04",
+        "HR-02"
+      ],
+      "header_code": "H-04",
+      "hero_code": "HR-02",
+      "includes_header": true,
+      "live_text_support": true,
+      "image_required": true,
+      "image_aspect_ratio": "module-native hero crop; approve exact crop before image generation",
+      "compatibility_notes": [
+        "May pair with zero or one standalone header."
+      ],
+      "preview_path": "hero-configurations/CFG-16.html"
+    }
+  ]
+}

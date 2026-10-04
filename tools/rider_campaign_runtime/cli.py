@@ -50,6 +50,8 @@ def main(argv=None):
             print(f"module catalog: {artifacts['catalog']}")
             print(f"review guide: {artifacts['review']}")
             print(f"module previews: {artifacts['preview_dir']}")
+            print(f"hero configuration catalog: {artifacts['hero_configurations']}")
+            print(f"hero selection gallery: {artifacts['hero_gallery']}")
             return 0
         if args.command == "plan":
             selection_path = Path(args.selection)
