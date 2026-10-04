@@ -18,6 +18,7 @@ The roadmap applies to the framework and is executed independently for each proj
 | 11 | Cross-platform compatibility | Deterministic adapters/parity complete; live agents unverified | 13/13 critical components at 100 | Reference adapters; runtime unavailable |
 | 12 | Distribution profiles | Deferred | Deferred | Deferred |
 | 13 | Jev semantic decision pilot | Version 1 holdout complete; revise decision | 8/9 labels but 5/9 actions, one false allow; production rejected | Not planned until a version 2 pilot is justified |
+| 14 | Email render matrix | Browser-preview tool implemented; execution pending | Representative matrix blocked by current host browser sandbox | Planned after representative package |
 
 ## Framework Gate
 

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/CerveraDev/OnBrand-Design/tools/email_render_matrix/report.schema.json",
+  "title": "OnBrand browser-preview render report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "tool", "browser_engine", "input", "matrix", "passed", "scope", "human_review"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "tool": {"const": "onbrand-email-render-matrix"},
+    "browser_engine": {"const": "chromium"},
+    "input": {"type": "object"},
+    "matrix": {"type": "array", "minItems": 4, "maxItems": 4},
+    "passed": {"type": "boolean"},
+    "scope": {"const": "browser-preview-only"},
+    "human_review": {"const": "pending"}
+  }
+}

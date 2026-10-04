@@ -52,6 +52,7 @@
 - Added a root [limitations register](LIMITATIONS.md) so known limitations, scoring opportunities, deferred safeguards, and closure criteria remain discoverable before Phase 10 implementation.
 - Implemented Phase 10 approved copy inventory/ownership, cross-surface normalized repetition, transparent near-duplicate scoring, narrow reuse exemptions, claim-reference gating, and metadata/QA reporting without rewriting approved text.
 - Implemented Phase 11 versioned contracts, shared dispatch, manual-only wrappers, and 13-component blocking parity. Rider preview builds score 100 using real cached assets; live model invocation is unverified. See [evidence](docs/evals/phase-11-cross-platform-compatibility.md).
+- Implemented the Phase 14 Playwright browser-preview matrix contract and portable renderer for desktop/mobile light/dark evidence. The current managed host blocks Chromium's macOS process handshake, so representative screenshots and human review remain pending.
 
 ## Project Portfolio
 
@@ -68,6 +69,7 @@
 ## In Progress
 
 - Perform representative visual and email-client compatibility review beyond structural QA.
+- Run the Phase 14 Rider browser-preview matrix on an unrestricted host, commit its report/screenshots, and complete the generated visual-review worksheet.
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 - Obtain live manual invocation evidence on permitted authenticated hosts; deterministic parity does not establish model behavior.
 - Keep [LIMITATIONS.md](LIMITATIONS.md) current when audits, specs, QA runs, or implementation work discover new constraints.
@@ -87,4 +89,4 @@
 
 ## Next Milestone
 
-Return focus to the remaining core skill work unless a version 2 Jev pilot is explicitly prioritized. Live manual adapter checks and broader visual/email-client review remain open; Phase 12 distribution stays deferred.
+Run and review the Phase 14 representative Rider render matrix on an unrestricted browser host. Live manual adapter checks and real email-client review remain open; Phase 12 distribution stays deferred.

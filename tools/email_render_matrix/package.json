@@ -1,0 +1,12 @@
+{
+  "name": "onbrand-email-render-matrix",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Browser-preview render evidence for OnBrand email packages",
+  "scripts": {
+    "render": "node render_matrix.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

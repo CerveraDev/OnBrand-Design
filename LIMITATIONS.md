@@ -116,9 +116,9 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 - Owner phase: Public release gate
 - Dependencies: Phase 5-7 representative packages, a defined client/viewport/dark-mode support matrix, available render tooling or services, and committed human review evidence.
 - Evidence: [ROADMAP.md](ROADMAP.md), [STATUS.md](STATUS.md), [AUDIT_LOG.md](AUDIT_LOG.md), [docs/specs/phase-05-html-variants.md](docs/specs/phase-05-html-variants.md)
-- Current behavior: Structural QA, package QA, and static compatibility checks exist, but representative desktop/mobile render evidence and broader email-client compatibility review remain pending. Earlier audit notes recorded that local browser rendering was unavailable during one review and that human/client visual review remained required.
+- Current behavior: Structural QA, package QA, and static compatibility checks exist. Phase 14 now provides a pinned Playwright tool, four-entry desktop/mobile light/dark browser matrix, diagnostics, hashes, screenshots, and a human-review worksheet. Representative execution remains pending because the current managed shell blocks Chromium's macOS Mach-port handshake and browser-control policy forbids local `file:` URLs. Real email-client evidence also remains pending.
 - Risk and impact: A package can be structurally valid while rendering poorly in Outlook, Gmail, Apple Mail, mobile clients, or dark mode.
-- Current control: Outlook-oriented structure guidance, compatibility references, QA reports, and the public-release gate requiring representative human and compatibility review.
+- Current control: Outlook-oriented structure guidance, compatibility references, QA reports, a versioned browser-preview contract, and the public-release gate requiring representative human and real-client compatibility review.
 - Scoring could help: Yes.
 - Candidate metrics: Playwright screenshots for web preview, email-service render snapshots, pixel diffs, layout shift measurements, media-query behavior checks, table/fallback validation, dark-mode deltas, and per-client pass rates.
 - Closure criteria: Define the supported email-client matrix, commit representative render evidence, add regression fixtures, and record pass/fail status in package QA.

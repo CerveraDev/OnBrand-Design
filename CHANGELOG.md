@@ -21,6 +21,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Owner-approved live Phase 13 calibration receipt, deterministic evaluation policy, and reproducible report showing 16/17 candidate actions correct versus 10/17 for the lexical baseline; production and holdout remain disabled.
 - Holdout-locked Jev candidate policy and evaluation procedure committed before holdout generation, with tests rejecting threshold or action-mapping drift.
 - Completed the separately approved nine-case Jev holdout and recorded a `revise` decision: 8/9 semantic labels, 5/9 actions, one false allow, and no production integration.
+- Phase 14 pinned Playwright browser-preview renderer, four-mode desktop/mobile light/dark matrix, machine diagnostics and hashes, report schema, visual-review worksheet, and explicit separation from real email-client certification.
 
 - Phase 11 versioned project/request contracts, manual-only Codex/Claude workspace wrappers, shared dispatch, installer/generator integration, and 13-component blocking parity.
 - Realistic three-adapter Rider preview evidence at 100%, checksum-verified real asset transport, and separate live CLI limitations without changing credentials or Phase 7-10 rules.
