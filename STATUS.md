@@ -56,6 +56,7 @@
 - Reclassified the Phase 14 wellness screenshots as technical-only evidence with known creative defects and approved Phase 15 remediation for labeled visual selection, source-grounded image evidence, and static-copy collision control.
 - Implemented Phase 15 Workstream A with 16 labeled, compatible Rider header/hero configurations, a grouped visual gallery, configuration-bound composition approval, and hash-bound review evidence. Full discovery passes 154 tests; owner selection remains pending.
 - Implemented Phase 15 Workstream C: included locked static copy is automatically extracted into the cross-surface inventory, partial static declarations fail, findings retain owner context, and broad exemption lists cannot hide unapproved similarity pairs. Full discovery passes 158 tests.
+- Generated the Phase 15 Workstream B CFG-05 comparison set from the actual approved Rider Gym 1 and Gym 2 bytes. Both current candidates retain their source copyright credit and have hash-bound source/candidate evidence; final candidate selection and human attribution verification remain pending.
 
 ## Project Portfolio
 

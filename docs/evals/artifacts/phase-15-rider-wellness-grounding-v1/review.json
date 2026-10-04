@@ -1,0 +1,117 @@
+{
+  "evidence_version": "1.0",
+  "status": "pending-candidate-selection",
+  "campaign": "Rider wellness corrected proof",
+  "configuration": {
+    "id": "CFG-05",
+    "module_codes": [
+      "H-01",
+      "AI-01"
+    ],
+    "label": "TWO-COLUMN HEADER + AI GENERATED IMAGE BASED ON PROMPT",
+    "selected_by": "Felix Mendoza",
+    "selected_at": "2026-10-03"
+  },
+  "source_selections": [
+    {
+      "asset_id": "id:31E0v0XEN2IAAAAAAAAAJA",
+      "filename": "the-rider-gym-1.jpg",
+      "role": "environment-base",
+      "status": "approved-for-candidate-generation",
+      "selected_by": "Felix Mendoza",
+      "selected_at": "2026-10-03",
+      "relevance": "Dark gallery-driven Rider gym rendering with open wood flooring.",
+      "local_path": "projects/the-rider/skills/onbrand-the-rider-email/examples/assets/rider-wellness-corrected/rider-gym-1-source.jpg",
+      "sha256": "536ea1378a1c1f431111345beb93201332b3ebbbf4bd21c5d2f80b623b7c716d",
+      "width": 5000,
+      "height": 2813
+    },
+    {
+      "asset_id": "id:31E0v0XEN2IAAAAAAAAAIg",
+      "filename": "the-rider-gym-2.jpg",
+      "role": "environment-base",
+      "status": "approved-for-candidate-generation",
+      "selected_by": "Felix Mendoza",
+      "selected_at": "2026-10-03",
+      "relevance": "Brighter garden-facing Rider gym rendering with a large open center floor.",
+      "local_path": "projects/the-rider/skills/onbrand-the-rider-email/examples/assets/rider-wellness-corrected/rider-gym-2-source.jpg",
+      "sha256": "705344436a46eefe0108c2fbe70e090cd58cd343ca2eb60d61cc8012ebbfd9c9",
+      "width": 5000,
+      "height": 3333
+    }
+  ],
+  "candidates": [
+    {
+      "id": "rider-wellness-gym1-candidate-v2",
+      "source_asset_id": "id:31E0v0XEN2IAAAAAAAAAJA",
+      "status": "pending",
+      "local_path": "projects/the-rider/skills/onbrand-the-rider-email/examples/assets/rider-wellness-corrected/rider-wellness-gym1-candidate-v2.png",
+      "sha256": "81061678b67e505a20a3b4b1c177856786028eaa2044e4db8aa17cf66fed319d",
+      "width": 1672,
+      "height": 941,
+      "format": "png",
+      "tool": "OpenAI built-in image generation",
+      "text_policy": "live-html",
+      "copyright_credit": "visually retained; human text verification required"
+    },
+    {
+      "id": "rider-wellness-gym2-candidate-v1",
+      "source_asset_id": "id:31E0v0XEN2IAAAAAAAAAIg",
+      "status": "pending",
+      "local_path": "projects/the-rider/skills/onbrand-the-rider-email/examples/assets/rider-wellness-corrected/rider-wellness-gym2-candidate-v1.png",
+      "sha256": "b79df805bb8bc04bf4ec147e3ca1338ce7d27e62bc76fefdfe209d281a02fcb3",
+      "width": 1672,
+      "height": 941,
+      "format": "png",
+      "tool": "OpenAI built-in image generation",
+      "text_policy": "live-html",
+      "copyright_credit": "visually retained; human text verification required"
+    }
+  ],
+  "creative_constraints": {
+    "subject": "Woman in her late twenties to early thirties wearing black yoga pants and a black sports bra in a butterfly pose facing camera.",
+    "framing": "Tight editorial 16:9 crop focused on the subject while retaining recognizable Rider gym context.",
+    "logo_treatment": "Approved Rider wordmark engraved into the charcoal-gray mat on the viewer's right.",
+    "preserve": [
+      "gym architecture and wall finishes",
+      "source-specific wall artwork",
+      "windows and exterior views",
+      "equipment placement and room identity",
+      "floor materials",
+      "lighting direction and perspective",
+      "source copyright credit"
+    ],
+    "prohibited": [
+      "generic or different gym",
+      "altered architecture",
+      "extra people or anatomical artifacts",
+      "invented branding",
+      "baked campaign headline or subheading"
+    ]
+  },
+  "candidate_approval_checklist": {
+    "rider-wellness-gym1-candidate-v2": {
+      "environment_preservation": null,
+      "subject_placement_and_pose": null,
+      "crop_and_focal_scale": null,
+      "logo_fidelity_and_placement": null,
+      "live_text_policy": null,
+      "source_attribution_treatment": null
+    },
+    "rider-wellness-gym2-candidate-v1": {
+      "environment_preservation": null,
+      "subject_placement_and_pose": null,
+      "crop_and_focal_scale": null,
+      "logo_fidelity_and_placement": null,
+      "live_text_policy": null,
+      "source_attribution_treatment": null
+    }
+  },
+  "review_note": "Both current candidates visibly retain the bottom-left source credit. Automated OCR is unavailable in the current environment, so exact credit wording remains a human approval item.",
+  "rejected_candidate": {
+    "id": "rider-wellness-gym1-candidate-v1",
+    "reason": "Did not retain the source copyright credit.",
+    "sha256": "32958463a89d61f7c4b2a909d763c6d1edfc8e601571760826ed800696438234"
+  },
+  "approval": null
+}

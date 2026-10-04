@@ -26,6 +26,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Phase 15 Creative Fidelity remediation specification covering labeled visual module selection, source-versus-candidate image grounding, and cross-block static-copy collision decisions; prior wellness screenshots are reclassified as technical-only evidence.
 - Phase 15 Workstream A header/hero configuration generator, grouped 16-option Rider selection gallery, `CFG-*` composition binding, mismatch validation, and hash-bound review evidence.
 - Phase 15 Workstream C automatic static-copy inventory, exact locked-copy validation, owner-context findings, authority-phrase regression, and exact-pair-only similarity exemptions.
+- Phase 15 CFG-05 grounded wellness candidate set using actual Rider Gym 1 and Gym 2 source bytes, approved Rider logo reference, retained source credits, and hash-bound side-by-side review evidence pending owner selection.
 
 - Phase 11 versioned project/request contracts, manual-only Codex/Claude workspace wrappers, shared dispatch, installer/generator integration, and 13-component blocking parity.
 - Realistic three-adapter Rider preview evidence at 100%, checksum-verified real asset transport, and separate live CLI limitations without changing credentials or Phase 7-10 rules.
