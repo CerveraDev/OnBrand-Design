@@ -13,6 +13,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Added
 
+- Phase 16 scaffold expansion and layout calibration specification, including annotated-scaffold intake, richer block metadata, sequence acceptance criteria, and LIM-020.
 - Owner-approved Phase 15 Candidate B decision evidence, CFG-05 Rider Gym 2 selection/plan/runtime fixtures, grounded source/output provenance, corrected branded proof evaluation, and LIM-019 for rendered replacement multiplicity.
 - Approved Phase 13 Jev semantic decision pilot specification and LIM-018. The provider remains optional, disabled, and unimplemented pending a labeled Rider evaluation, privacy approval, deterministic fallback tests, and a keep/remove decision.
 - Phase 13 evaluation foundation with 26 provisional de-identified cases, a Draft 2020-12 schema, strict standard-library validator, blind review worksheet, baseline evaluator, and machine-readable diagnostic report. No provider integration was added.
@@ -69,7 +70,8 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Changed
 
-- Phase 15 Workstreams A, B, and C are implemented. The corrected branded proof is now the creative-baseline candidate awaiting owner approval; the earlier Phase 14 screenshots remain technical-only evidence.
+- The corrected CFG-05 proof is classified as an improved interim baseline after owner review; final creative approval now waits for the annotated expanded scaffold and Phase 16 layout refinement.
+- Phase 15 Workstreams A, B, and C are implemented. The corrected branded proof is retained as an improved interim baseline pending Phase 16 layout refinement; the earlier Phase 14 screenshots remain technical-only evidence.
 - All Rider runtime fixtures include approved allocation plans; internal wellness fixture wording removes the historical repetition pattern retained in negative tests.
 - Copy validation blocks all build modes before rendering or asset download and preserves approved wording and the last passing package.
 - Phase 10 is implemented for The Rider; LIM-003 is closed and LIM-004 is mitigated, with OCR, truth verification, and similarity calibration still documented.

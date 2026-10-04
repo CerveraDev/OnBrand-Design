@@ -19,7 +19,8 @@ The roadmap applies to the framework and is executed independently for each proj
 | 12 | Distribution profiles | Deferred | Deferred | Deferred |
 | 13 | Jev semantic decision pilot | Version 1 holdout complete; revise decision | 8/9 labels but 5/9 actions, one false allow; production rejected | Not planned until a version 2 pilot is justified |
 | 14 | Email render matrix | Browser-preview tool and Rider evidence complete | Four browser modes pass; human and real-client matrix pending | Planned after representative package |
-| 15 | Creative fidelity remediation | Workstreams A and C implemented | Gallery selection and source-grounded image Workstream B pending | Planned after project calibration |
+| 15 | Creative fidelity remediation | Implemented; creative approval pending | CFG-05 and Rider Gym 2 proof generated; further layout refinement requested | Planned after project calibration |
+| 16 | Scaffold expansion and layout calibration | Planned | Waiting for annotated expanded Rider scaffold | Planned after project calibration |
 
 ## Framework Gate
 
@@ -104,6 +105,15 @@ The roadmap applies to the framework and is executed independently for each proj
 - At least one representative project campaign passes human and compatibility review.
 - The representative campaign must pass Phase 15 creative-fidelity approval before real-client evidence is treated as a release candidate.
 - P0 and public-release-blocking P1 limitations in [LIMITATIONS.md](LIMITATIONS.md) are either closed or explicitly accepted by the owner with documented mitigations.
+
+## Scaffold Expansion And Layout Gate
+
+- Treat each newly supplied scaffold as a versioned input; preserve the current source and canonical scaffold as provenance rather than overwriting history.
+- Parse and classify every new marker type before using its enclosed rows in campaign assembly.
+- Map every added block to stable metadata, layout purpose, compatibility rules, editable slots, locked content, image requirements, and copy-allocation ownership.
+- Distinguish technical compatibility from editorial layout intent so structurally valid blocks are not combined in an awkward sequence.
+- Regenerate the module catalog, labeled galleries, composition plans, cross-platform fingerprints, and representative proof after scaffold calibration.
+- Require owner review of the updated block sequence before replacing the current Phase 15 proof as the creative baseline.
 
 ## Deferred Distribution Profiles Gate
 

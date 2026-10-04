@@ -1,6 +1,6 @@
 # Phase 15 Rider Wellness Corrected Proof
 
-**Status:** Branded Composition Preview generated; owner creative approval pending
+**Status:** Branded Composition Preview generated; owner confirmed major improvement but requested further layout refinement
 
 **Date:** 2026-10-03
 
@@ -44,4 +44,4 @@ The generated package remains local under `campaign-output/` and is not source-c
 
 ## Remaining Approval
 
-This artifact is the corrected creative baseline candidate. Owner approval of the assembled branded email is still required before generating the complete authorized variant matrix or treating it as the Phase 14 real-client test baseline. Gmail, Outlook, and Apple Mail certification remain outside this proof.
+This artifact is an improved interim creative baseline candidate, not final approval. The owner will provide a revised annotated scaffold with additional blocks and layout notes. Those inputs will be calibrated under Phase 16 before generating the complete authorized variant matrix or treating a proof as the Phase 14 real-client test baseline. Gmail, Outlook, and Apple Mail certification remain outside this proof.

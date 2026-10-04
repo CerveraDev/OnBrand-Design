@@ -75,7 +75,8 @@
 ## In Progress
 
 - Perform representative visual and email-client compatibility review beyond structural QA.
-- Obtain owner creative approval for the corrected Phase 15 branded proof, then run its browser matrix and the real Gmail, Outlook, and Apple Mail matrix.
+- Prepare Phase 16 intake for the owner's annotated expanded Rider scaffold, then recalibrate block metadata, sequencing, previews, and the branded proof.
+- Obtain owner creative approval only after the Phase 16 layout-refined proof, then run its browser matrix and the real Gmail, Outlook, and Apple Mail matrix.
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 - Obtain live manual invocation evidence on permitted authenticated hosts; deterministic parity does not establish model behavior.
 - Keep [LIMITATIONS.md](LIMITATIONS.md) current when audits, specs, QA runs, or implementation work discover new constraints.
@@ -83,6 +84,7 @@
 
 ## Waiting On Project Inputs
 
+- Revised annotated Rider scaffold with additional HTML blocks, marker meanings, and layout notes.
 - Confirmed public URL for The Rider's canonical Dropbox manifest.
 - Cassia brand standards, canonical HTML, footers, logos, and asset catalog.
 
@@ -95,4 +97,4 @@
 
 ## Next Milestone
 
-Obtain owner creative approval for the corrected CFG-05 Rider Gym 2 branded proof. Once approved, use its hash-bound HTML as the new Phase 14 baseline, then generate the full authorized variant matrix only after browser and real-client review. Live manual adapter checks remain open; Phase 12 distribution stays deferred.
+Receive and preserve the revised annotated Rider scaffold, execute Phase 16 block-corpus and layout calibration, and produce a new branded proof for owner review. The current CFG-05 Rider Gym 2 proof remains reproducible interim evidence. Live manual adapter checks remain open; Phase 12 distribution stays deferred.

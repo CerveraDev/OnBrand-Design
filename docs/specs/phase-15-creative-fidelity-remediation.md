@@ -87,3 +87,9 @@ Implementation evidence: [static copy collision evaluation](../evals/phase-15-st
 - Automatic creative approval.
 - Full variant generation before branded-proof approval.
 - Outlook, Gmail, or Apple Mail certification before the creative baseline is accepted.
+
+## Owner Review And Handoff
+
+The owner reviewed the corrected CFG-05 proof on 2026-10-03 and described it as a substantial improvement over the earlier smoke test, while explicitly withholding final creative approval pending further block-layout refinement. The current proof remains an evidence-backed interim baseline.
+
+Further scaffold expansion and layout semantics move to [Phase 16](phase-16-scaffold-expansion-and-layout-calibration.md). The next required input is an annotated Rider scaffold containing additional notes, marker conventions, and a larger HTML block corpus.

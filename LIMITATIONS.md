@@ -51,6 +51,7 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 | LIM-017 | Live agent invocation and model-behavior parity remain unverified | P1 | Open | Phase 11 live validation |
 | LIM-018 | Jev semantic decision value, calibration, privacy approval, and fallback behavior are unverified | P2 | Open | Phase 13 pilot |
 | LIM-019 | Copy QA counts logical slot owners, not every rendered replacement rule | P2 | Open | Phase 10 refinement |
+| LIM-020 | Block metadata does not yet encode enough editorial layout intent | P1 | Open | Phase 16 |
 
 ## Detailed Entries
 
@@ -320,6 +321,20 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 - Candidate metrics: Replacement-rule multiplicity, rendered visible-text occurrence count, owner-to-render ratio, intentional-repeat classification, responsive-branch identity, and reviewer override rate.
 - Closure criteria: Add a rendered-copy inventory that distinguishes intentional responsive duplication from multiple visible placements, require explicit reuse policy for multi-placement slots, and add positive CTA plus negative editorial-repeat fixtures.
 
+### LIM-020: Block metadata does not yet encode enough editorial layout intent
+
+- Priority: P1
+- Status: Open
+- Owner phase: Phase 16
+- Dependencies: Owner-supplied annotated expanded Rider scaffold, stable marker meanings, and the existing Phase 8/15 module catalog and proof workflow.
+- Evidence: [Phase 16 specification](docs/specs/phase-16-scaffold-expansion-and-layout-calibration.md), [Phase 15 corrected proof](docs/evals/phase-15-rider-wellness-corrected-proof.md)
+- Current behavior: The runtime records module type, header inclusion, locked state, editable slots, required assets, and basic compatibility. This prevents structurally invalid combinations but does not fully model narrative purpose, density, visual transitions, recommended order, or which technically compatible body blocks feel coherent together.
+- Risk and impact: An assembled email can pass structural and package QA while still using an awkward block sequence, mismatched density, redundant visual rhythm, or a content block that is technically valid but contextually wrong.
+- Current control: Composition Preview and human review remain required. The current CFG-05 proof is retained as interim evidence and is not promoted to final creative approval.
+- Scoring could help: Yes, after the annotation vocabulary is stable. Deterministic compatibility and content-fit rules should lead; scoring may rank multiple valid sequences.
+- Candidate metrics: Required-content coverage, copy-density fit, image-count fit, adjacent color-transition compatibility, duplicate-purpose count, narrative-role coverage, sequence-rule violations, mobile-height balance, and reviewer selection or correction rate.
+- Closure criteria: Import the annotated expanded scaffold, encode the new block semantics, add negative sequence fixtures, regenerate the gallery, and obtain owner approval on a layout-refined branded proof.
+
 ## Entry Template
 
 Use this template for new limitations:
@@ -359,3 +374,4 @@ Use this template for new limitations:
 - 2026-10-03: Added Phase 15 Workstream A selection evidence: 16 labeled compatible Rider header/hero configurations, a grouped gallery, and configuration-bound plan validation. LIM-005 remains open because human visual selection and real-client evidence are still pending.
 - 2026-10-03: Implemented Phase 15 Workstream C by auto-inventorying included static copy, rejecting partial declarations, retaining owner context, and narrowing similarity exemptions to exact pairs. Semantic paraphrase detection remains limited and human-reviewed.
 - 2026-10-03: Added LIM-019 after the corrected CFG-05 proof exposed that one logical slot can render through multiple replacement rules. The Rider authority rows now have distinct slots and copy, while general rendered-occurrence accounting remains open.
+- 2026-10-03: Added LIM-020 after owner review confirmed that the corrected proof is a major improvement but still needs richer block-layout semantics. Phase 16 now waits for an annotated expanded Rider scaffold.
