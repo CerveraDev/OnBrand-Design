@@ -12,7 +12,7 @@ Create one `content_units[]` entry for each approved campaign copy unit:
 - Live scaffold slot copy as `live-html`.
 - Image alt text as `alt-text`.
 - Text intentionally baked into a generated or edited image as `baked-image-text`.
-- Locked static, legal, footer, or required name strings only when they need an explicit exemption record.
+- Legal, footer, or required-name strings only when they need an explicit exemption record. Included locked static blocks are added to the inventory automatically.
 
 Do not allocate deterministic footer/contact/legal strings as campaign creative copy. They are governed by the footer and legal contracts unless a campaign-level exemption is needed.
 
@@ -32,7 +32,7 @@ Each content unit needs:
 
 The runtime computes normalized fingerprints; authors should not hand-edit fingerprints.
 
-The plan requires `version: "1.0"`, stable `plan_id`, `status: "approved"`, `approved_by`, and `approved_at`. Optional `slot_allocation[]` entries must agree with their content unit's module, slot, and channel. Unknown, duplicate, stale, or unallocated owners fail before rendering. Static declarations must reference included blocks and match locked text; legal/footer declarations must match the named scaffold footer. Standard footer/contact/legal rendering remains governed by its existing deterministic contract.
+The plan requires `version: "1.0"`, stable `plan_id`, `status: "approved"`, `approved_by`, and `approved_at`. Optional `slot_allocation[]` entries must agree with their content unit's module, slot, and channel. Unknown, duplicate, stale, or unallocated owners fail before rendering. Every included static block contributes one deterministic locked-copy unit. An optional explicit static declaration must reference an included block and exactly match all visible locked text; partial declarations fail. Legal/footer declarations must match the named scaffold footer. Standard footer/contact/legal rendering remains governed by its existing deterministic contract.
 
 Known desktop/mobile fallback branches may use multiple contextual rendering rules for the same logical slot. Allocate that slot once with `single-use` and `max_occurrences: 1`; the deterministic slot mapping accounts for responsive duplication without a campaign dedupe exemption. A second logical owner is still a separate occurrence and remains subject to the same repetition gate.
 
@@ -47,7 +47,7 @@ Known desktop/mobile fallback branches may use multiple contextual rendering rul
 
 ## Repeats And Exemptions
 
-The runtime blocks repeated normalized copy and restricted phrases above their approved occurrence caps. Reuse policies other than `single-use` require a named exemption; restricted phrase caps above one also require an exemption. Exemptions never waive the approved cap. Near-duplicate similarity exemptions must name both affected units or the exact pair `left-id+right-id`.
+The runtime blocks repeated normalized copy and restricted phrases above their approved occurrence caps. Reuse policies other than `single-use` require a named exemption; restricted phrase caps above one also require an exemption. Exemptions never waive the approved cap. Near-duplicate similarity exemptions must name exactly two affected units or the exact pair `left-id+right-id`; a longer list does not exempt every pair within it.
 
 An exemption must include:
 

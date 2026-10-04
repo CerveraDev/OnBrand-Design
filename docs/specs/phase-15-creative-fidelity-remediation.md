@@ -1,6 +1,6 @@
 # Phase 15: Creative Fidelity Remediation
 
-**Status:** Workstream A implemented; Workstreams B and C pending
+**Status:** Workstreams A and C implemented; Workstream B pending
 **Target:** Corrected Rider Composition Preview before real email-client testing
 **Depends on:** Phases 8, 9, 10, and 14
 
@@ -36,6 +36,8 @@ Implementation evidence: [Rider header and hero gallery](../evals/phase-15-rider
 - FID-015: Metadata grounding alone is insufficient evidence of visual faithfulness.
 
 ## Workstream C: Static And Cross-Block Copy Collisions
+
+Implementation evidence: [static copy collision evaluation](../evals/phase-15-static-copy-collisions.md).
 
 - FID-016: Extract visible editorial copy from every selected locked static block and include it in the pre-composition copy inventory.
 - FID-017: Compare selected static copy with campaign-authored live, metadata, alt, and declared baked-image copy.

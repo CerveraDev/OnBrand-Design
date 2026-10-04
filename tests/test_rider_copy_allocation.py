@@ -208,7 +208,7 @@ class RiderCopyAllocationTests(unittest.TestCase):
         spec["copy_allocation"]["content_units"].append(
             {
                 "id": "static-brand-message",
-                "text": "From the creators of The Bond",
+                "text": "FROM THE CREATORS OF THE BOND ON BRICKELL AND THE RENOWNED JP MORGAN TOWER IN MIAMI. OWN BETTER.",
                 "content_role": "locked-static-brand-message",
                 "source": "locked static block",
                 "approval_status": "approved",
@@ -230,6 +230,63 @@ class RiderCopyAllocationTests(unittest.TestCase):
         ]
         self.assertTrue(validate_copy_allocation(spec, scaffold=self.scaffold)["passed"])
 
+    def test_included_static_copy_is_automatically_added_to_inventory(self):
+        spec = clean_spec()
+        spec["modules"].append({"id": "STATIC BLOCK 1", "slots": {}})
+        spec["static_blocks"][0]["decision"] = "include"
+        result = validate_copy_allocation(spec, scaffold=self.scaffold)
+        unit = next(item for item in result["content_units"] if item["id"] == "locked-static-block-1-copy")
+        self.assertTrue(unit["derived"])
+        self.assertIn("FROM THE CREATORS OF THE BOND", unit["text"])
+        self.assertIn("OWN BETTER", unit["text"])
+
+    def test_static_authority_copy_counts_toward_restricted_phrase_limit(self):
+        spec = clean_spec()
+        spec["modules"].append({"id": "STATIC BLOCK 1", "slots": {}})
+        spec["static_blocks"][0]["decision"] = "include"
+        spec["modules"][1]["slots"]["section_1_copy"] = {
+            "kind": "text",
+            "value": "From the creators of The Bond, a new wellness address takes shape.",
+        }
+        spec["copy_allocation"]["content_units"].append(
+            live_unit(
+                "repeated-authority",
+                "From the creators of The Bond, a new wellness address takes shape.",
+                "BODY - DARK THEN LIGHT LAYOUT",
+                "section_1_copy",
+            )
+        )
+        spec["copy_allocation"]["restricted_phrases"] = [
+            {
+                "id": "from-creators-authority",
+                "phrase": "From the creators of The Bond",
+                "max_occurrences": 1,
+                "reason": "Authority phrase should have one owner.",
+            }
+        ]
+        with self.assertRaisesRegex(CopyAllocationError, "restricted-phrase:from-creators-authority"):
+            validate_copy_allocation(spec, scaffold=self.scaffold)
+
+    def test_explicit_static_unit_must_cover_all_visible_locked_copy(self):
+        spec = clean_spec()
+        spec["modules"].append({"id": "STATIC BLOCK 1", "slots": {}})
+        spec["static_blocks"][0]["decision"] = "include"
+        spec["copy_allocation"]["content_units"].append(
+            {
+                "id": "partial-static-copy",
+                "text": "From the creators of The Bond",
+                "content_role": "locked-static-brand-message",
+                "source": "locked static block",
+                "approval_status": "approved",
+                "owner": {"channel": "static", "static_block_id": "STATIC BLOCK 1"},
+                "reuse_policy": "single-use",
+                "max_occurrences": 1,
+                "claim_policy": "none",
+            }
+        )
+        with self.assertRaisesRegex(CopyAllocationError, "exactly match all visible copy"):
+            validate_copy_allocation(spec, scaffold=self.scaffold)
+
     def test_exemption_does_not_bypass_occurrence_cap(self):
         spec = clean_spec()
         unit = spec["copy_allocation"]["content_units"][0]
@@ -238,6 +295,26 @@ class RiderCopyAllocationTests(unittest.TestCase):
         spec["copy_allocation"]["content_units"][1]["text"] = unit["text"]
         spec["copy_allocation"]["dedupe_exemptions"] = [exemption([unit["id"]])]
         with self.assertRaisesRegex(CopyAllocationError, "occurrence"):
+            validate_copy_allocation(spec, scaffold=self.scaffold)
+
+    def test_broad_exemption_does_not_hide_unapproved_similarity_pair(self):
+        spec = clean_spec()
+        texts = [
+            "Wellness routines bring calm and balance to daily life in Miami.",
+            "Wellness routines bring calm and energy to daily life in Miami.",
+            "A third distinct message keeps this approval intentionally broad.",
+        ]
+        ids = []
+        for index, text in enumerate(texts):
+            slot = f"section_{index + 1}_copy"
+            unit_id = f"broad-{index + 1}"
+            ids.append(unit_id)
+            spec["modules"][1]["slots"][slot] = {"kind": "text", "value": text}
+            unit = live_unit(unit_id, text, "BODY - DARK THEN LIGHT LAYOUT", slot)
+            unit["reuse_policy"] = "intentional-refrain"
+            spec["copy_allocation"]["content_units"].append(unit)
+        spec["copy_allocation"]["dedupe_exemptions"] = [exemption(ids)]
+        with self.assertRaisesRegex(CopyAllocationError, "copy-similarity:broad-1:broad-2"):
             validate_copy_allocation(spec, scaffold=self.scaffold)
 
     def test_rejects_missing_baked_text_and_stale_slot_allocation(self):

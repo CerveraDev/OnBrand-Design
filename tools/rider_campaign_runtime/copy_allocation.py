@@ -63,9 +63,10 @@ def validate_copy_allocation(spec: dict, *, scaffold: Scaffold) -> dict:
     if allocation.get("status") != APPROVED_STATUS:
         raise CopyAllocationError("copy_allocation.status must be approved before runtime assembly")
 
-    units = allocation.get("content_units")
-    if not isinstance(units, list) or not units:
+    declared_units = allocation.get("content_units")
+    if not isinstance(declared_units, list) or not declared_units:
         raise CopyAllocationError("copy_allocation.content_units must be a non-empty array")
+    units = [*declared_units, *_derived_static_units(spec, scaffold, declared_units)]
     unit_ids = [unit.get("id", "") for unit in units if isinstance(unit, dict)]
     duplicates = sorted({unit_id for unit_id in unit_ids if unit_ids.count(unit_id) > 1})
     if duplicates:
@@ -79,6 +80,7 @@ def validate_copy_allocation(spec: dict, *, scaffold: Scaffold) -> dict:
     max_by_unit: dict[str, int] = {}
     reuse_by_unit: dict[str, str] = {}
     exempted = _exemption_keys(allocation.get("dedupe_exemptions", []))
+    exempted_pairs = _similarity_exemption_pairs(allocation.get("dedupe_exemptions", []))
 
     owner_counts: dict[str, list[str]] = {}
     for index, unit in enumerate(units):
@@ -127,7 +129,7 @@ def validate_copy_allocation(spec: dict, *, scaffold: Scaffold) -> dict:
                 raise CopyAllocationError(f"{unit_id} static owner is unknown: {static_id}")
             if not any(item.get("id") == static_id for item in spec.get("modules", [])):
                 raise CopyAllocationError(f"{unit_id} static owner is excluded: {static_id}")
-            _validate_locked_text(scaffold, static_id, normalized_text, unit_id)
+            _validate_static_text(scaffold, static_id, normalized_text, unit_id)
             refs.append(CopyRef(channel=channel, static_block_id=static_id, text=text))
         elif channel in {"legal", "footer"}:
             module_id = _require_str(owner, "module_id", f"{unit_id}.owner")
@@ -176,6 +178,7 @@ def validate_copy_allocation(spec: dict, *, scaffold: Scaffold) -> dict:
                 "occurrences": count,
                 "max_occurrences": max_occurrences,
                 "reuse_policy": reuse_by_unit[unit_id],
+                "owner": next(unit["owner"] for unit in units if unit["id"] == unit_id),
             }
         )
         _check(
@@ -187,7 +190,7 @@ def validate_copy_allocation(spec: dict, *, scaffold: Scaffold) -> dict:
 
     restricted_results = _check_restricted_phrases(allocation.get("restricted_phrases", []), refs, exempted)
     checks.extend(restricted_results["checks"])
-    similarity = _similarity_checks(units, normalized_units, exempted)
+    similarity = _similarity_checks(units, normalized_units, exempted_pairs)
     checks.extend(similarity["checks"])
     failed = [item["name"] for item in checks if not item["passed"]]
     if failed:
@@ -253,6 +256,43 @@ def _collect_runtime_copy_refs(spec: dict) -> list[CopyRef]:
     return refs
 
 
+def _derived_static_units(spec: dict, scaffold: Scaffold, declared_units: list[dict]) -> list[dict]:
+    declared_owners = {
+        unit.get("owner", {}).get("static_block_id")
+        for unit in declared_units
+        if isinstance(unit, dict)
+        and isinstance(unit.get("owner"), dict)
+        and unit["owner"].get("channel") == "static"
+    }
+    included = {
+        item.get("id")
+        for item in spec.get("static_blocks", [])
+        if isinstance(item, dict) and item.get("decision") == "include"
+    }
+    derived = []
+    for static_id in scaffold.static_boundaries:
+        if static_id not in included or static_id in declared_owners:
+            continue
+        text = _locked_visible_text(scaffold, static_id)
+        if not normalize_text(text):
+            raise CopyAllocationError(f"Included static block has no visible editorial copy: {static_id}")
+        derived.append(
+            {
+                "id": f"locked-{static_id.lower().replace(' ', '-')}-copy",
+                "text": text,
+                "content_role": "locked-static-copy",
+                "source": "canonical Rider scaffold",
+                "approval_status": APPROVED_STATUS,
+                "owner": {"channel": "static", "static_block_id": static_id},
+                "reuse_policy": "single-use",
+                "max_occurrences": 1,
+                "claim_policy": "none",
+                "derived": True,
+            }
+        )
+    return derived
+
+
 def _validate_baked_image_owner(spec: dict, image_id: str, unit: dict) -> None:
     workflows = {
         item.get("image_id"): item
@@ -273,6 +313,16 @@ def _validate_baked_image_owner(spec: dict, image_id: str, unit: dict) -> None:
 def _validate_locked_text(scaffold: Scaffold, module_id: str, text: str, unit_id: str) -> None:
     if f" {text} " not in f" {normalize_text(''.join(module_rows(scaffold, module_id)))} ":
         raise CopyAllocationError(f"{unit_id} text does not match its locked owner")
+
+
+def _validate_static_text(scaffold: Scaffold, module_id: str, text: str, unit_id: str) -> None:
+    expected = normalize_text(_locked_visible_text(scaffold, module_id))
+    if text != expected:
+        raise CopyAllocationError(f"{unit_id} text must exactly match all visible copy in its locked static owner")
+
+
+def _locked_visible_text(scaffold: Scaffold, module_id: str) -> str:
+    return _html_to_text("".join(module_rows(scaffold, module_id)))
 
 
 def _validate_allocation_links(allocation: dict, units: list[dict], exempted: set[str]) -> None:
@@ -319,6 +369,11 @@ def _check_restricted_phrases(phrases: object, refs: list[CopyRef], exempted: se
         max_occurrences = item.get("max_occurrences", 1)
         if type(max_occurrences) is not int or max_occurrences < 1:
             raise CopyAllocationError(f"{phrase_id} max_occurrences must be a positive integer")
+        matches = [
+            ref.owner_key
+            for ref, text in zip(refs, corpus)
+            if phrase and re.search(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)", text)
+        ]
         count = sum(len(re.findall(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)", text)) for text in corpus if phrase)
         if max_occurrences > 1 and phrase_id not in exempted:
             raise CopyAllocationError(f"{phrase_id} repeated restricted phrase requires a dedupe_exemption")
@@ -330,11 +385,19 @@ def _check_restricted_phrases(phrases: object, refs: list[CopyRef], exempted: se
                 "message": f"{count} occurrence(s), max {max_occurrences}: {phrase}",
             }
         )
-        results.append({"id": phrase_id, "phrase": phrase, "occurrences": count, "max_occurrences": max_occurrences})
+        results.append(
+            {
+                "id": phrase_id,
+                "phrase": phrase,
+                "occurrences": count,
+                "max_occurrences": max_occurrences,
+                "matched_owners": matches,
+            }
+        )
     return {"checks": checks, "phrases": results}
 
 
-def _similarity_checks(units: list[dict], normalized_units: dict[str, str], exempted: set[str]) -> dict:
+def _similarity_checks(units: list[dict], normalized_units: dict[str, str], exempted_pairs: set[tuple[str, str]]) -> dict:
     checks: list[dict] = []
     pairs: list[dict] = []
     ids = [unit["id"] for unit in units]
@@ -347,10 +410,22 @@ def _similarity_checks(units: list[dict], normalized_units: dict[str, str], exem
             score = similarity_score(left, right)
             if score < NEAR_DUPLICATE_WARN_THRESHOLD:
                 continue
-            exempt = (left_id in exempted and right_id in exempted) or f"{left_id}+{right_id}" in exempted or f"{right_id}+{left_id}" in exempted
+            exempt = tuple(sorted((left_id, right_id))) in exempted_pairs
             blocking = score >= NEAR_DUPLICATE_BLOCK_THRESHOLD and not exempt
             passed = not blocking
-            pairs.append({"left": left_id, "right": right_id, "score": round(score, 3), "blocking": blocking})
+            left_unit = next(unit for unit in units if unit["id"] == left_id)
+            right_unit = next(unit for unit in units if unit["id"] == right_id)
+            pairs.append(
+                {
+                    "left": left_id,
+                    "right": right_id,
+                    "left_owner": left_unit["owner"],
+                    "right_owner": right_unit["owner"],
+                    "score": round(score, 3),
+                    "blocking": blocking,
+                    "exempt": exempt,
+                }
+            )
             checks.append(
                 {
                     "name": f"copy-similarity:{left_id}:{right_id}",
@@ -406,6 +481,22 @@ def _exemption_keys(exemptions: object) -> set[str]:
         for key in _require_str_array(item, "applies_to", f"copy_allocation.dedupe_exemptions[{index}]"):
             keys.add(key)
     return keys
+
+
+def _similarity_exemption_pairs(exemptions: object) -> set[tuple[str, str]]:
+    pairs: set[tuple[str, str]] = set()
+    for item in exemptions or []:
+        targets = item.get("applies_to", []) if isinstance(item, dict) else []
+        explicit_units = [target for target in targets if isinstance(target, str) and "+" not in target]
+        if len(explicit_units) == 2:
+            pairs.add(tuple(sorted(explicit_units)))
+        for target in targets:
+            if not isinstance(target, str) or "+" not in target:
+                continue
+            left, right, *extra = target.split("+")
+            if left and right and not extra:
+                pairs.add(tuple(sorted((left, right))))
+    return pairs
 
 
 def _html_to_text(value: str) -> str:

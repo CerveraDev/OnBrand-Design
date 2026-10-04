@@ -65,7 +65,6 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
     scaffold = load_scaffold(SCAFFOLD_PATH, SLOT_MAP_PATH, MODULE_METADATA_PATH)
     available = catalog(scaffold)
     composition_metadata = validate_composition_contract(spec, scaffold)
-    copy_allocation_metadata = validate_copy_allocation(spec, scaffold=scaffold)
     manifest_path = _resolve_path(base_dir, spec["manifest"]["path"])
     assets = load_manifest(manifest_path)
     manifest_assets = {asset["dropbox_id"]: asset for asset in assets}
@@ -107,6 +106,7 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
     _validate_module_compatibility(scaffold, requested_module_ids)
     if not any(module_kind(scaffold, module_id) == "hero" for module_id in requested_module_ids):
         raise RuntimeError("Campaign must include at least one Rider hero/header module")
+    copy_allocation_metadata = validate_copy_allocation(spec, scaffold=scaffold)
 
     content_rows: list[str] = []
     content_asset_hints: list[UsedAsset] = []
