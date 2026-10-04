@@ -145,7 +145,7 @@ function sha256File(filename) {
 
 function reviewWorksheet(report) {
   const rows = report.matrix.map((item) => `| ${item.id} | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] |`).join('\n');
-  return `# Visual Review Worksheet\n\n**Input:** \`${report.input.filename}\`  \n**Input SHA-256:** \`${report.input.sha256}\`  \n**Automated browser-preview result:** ${report.passed ? 'PASS' : 'FAIL'}  \n**Human review status:** Pending\n\nThis worksheet is for screenshot review only. It is not Outlook, Gmail, Apple Mail, native mobile-client, accessibility, legal, or brand certification.\n\n| Matrix entry | Hierarchy | Copy readable | Image crop | Alignment | Footer | No overlap |\n| --- | --- | --- | --- | --- | --- | --- |\n${rows}\n\n## Reviewer Record\n\n- Reviewer:\n- Review date:\n- Decision: Pending\n- Notes:\n`;
+  return `# Visual Review Worksheet\n\n**Input:** \`${report.input.filename}\`\n\n**Input SHA-256:** \`${report.input.sha256}\`\n\n**Automated browser-preview result:** ${report.passed ? 'PASS' : 'FAIL'}\n\n**Human review status:** Pending\n\nThis worksheet is for screenshot review only. It is not Outlook, Gmail, Apple Mail, native mobile-client, accessibility, legal, or brand certification.\n\n| Matrix entry | Hierarchy | Copy readable | Image crop | Alignment | Footer | No overlap |\n| --- | --- | --- | --- | --- | --- | --- |\n${rows}\n\n## Reviewer Record\n\n- Reviewer:\n- Review date:\n- Decision: Pending\n- Notes:\n`;
 }
 
 main().catch((error) => {

@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0",
+  "tool": "onbrand-email-render-matrix",
+  "browser_engine": "chromium",
+  "input": {
+    "filename": "rider-wellness-composition-preview-branded.html",
+    "sha256": "fcd0bed5e6ea6c5c2ca46ef76a130ecf0e3fee8c29f80cd8ecd9fcd4b867ad32",
+    "byte_size": 92832
+  },
+  "matrix": [
+    {
+      "id": "desktop-light",
+      "viewport": {
+        "width": 1440,
+        "height": 1200
+      },
+      "color_scheme": "light",
+      "screenshot": {
+        "filename": "desktop-light.jpg",
+        "sha256": "5883fac320a456965acb829cb329d8f8df00ef90cfd7d0c40c91f147c67da55c",
+        "byte_size": 556493
+      },
+      "diagnostics": {
+        "title": "",
+        "document_width": 1440,
+        "document_height": 4842,
+        "viewport_width": 1440,
+        "viewport_height": 1200,
+        "horizontal_overflow_px": 0,
+        "image_count": 6,
+        "loaded_image_count": 6,
+        "broken_images": [],
+        "body_text_characters": 3830
+      },
+      "request_failures": [],
+      "page_errors": [],
+      "console_errors": [],
+      "checks": {
+        "nonempty_document": true,
+        "no_horizontal_overflow": true,
+        "all_images_loaded": true,
+        "no_request_failures": true,
+        "no_page_errors": true,
+        "screenshot_nonempty": true
+      },
+      "passed": true
+    },
+    {
+      "id": "mobile-light",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "color_scheme": "light",
+      "screenshot": {
+        "filename": "mobile-light.jpg",
+        "sha256": "fe87c470f4f18629e2bf2e730b098e42ff55cf2785f286b1f92425ba8d573d71",
+        "byte_size": 270452
+      },
+      "diagnostics": {
+        "title": "",
+        "document_width": 390,
+        "document_height": 3431,
+        "viewport_width": 390,
+        "viewport_height": 844,
+        "horizontal_overflow_px": 0,
+        "image_count": 6,
+        "loaded_image_count": 6,
+        "broken_images": [],
+        "body_text_characters": 3825
+      },
+      "request_failures": [],
+      "page_errors": [],
+      "console_errors": [],
+      "checks": {
+        "nonempty_document": true,
+        "no_horizontal_overflow": true,
+        "all_images_loaded": true,
+        "no_request_failures": true,
+        "no_page_errors": true,
+        "screenshot_nonempty": true
+      },
+      "passed": true
+    },
+    {
+      "id": "desktop-dark",
+      "viewport": {
+        "width": 1440,
+        "height": 1200
+      },
+      "color_scheme": "dark",
+      "screenshot": {
+        "filename": "desktop-dark.jpg",
+        "sha256": "5883fac320a456965acb829cb329d8f8df00ef90cfd7d0c40c91f147c67da55c",
+        "byte_size": 556493
+      },
+      "diagnostics": {
+        "title": "",
+        "document_width": 1440,
+        "document_height": 4842,
+        "viewport_width": 1440,
+        "viewport_height": 1200,
+        "horizontal_overflow_px": 0,
+        "image_count": 6,
+        "loaded_image_count": 6,
+        "broken_images": [],
+        "body_text_characters": 3830
+      },
+      "request_failures": [],
+      "page_errors": [],
+      "console_errors": [],
+      "checks": {
+        "nonempty_document": true,
+        "no_horizontal_overflow": true,
+        "all_images_loaded": true,
+        "no_request_failures": true,
+        "no_page_errors": true,
+        "screenshot_nonempty": true
+      },
+      "passed": true
+    },
+    {
+      "id": "mobile-dark",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "color_scheme": "dark",
+      "screenshot": {
+        "filename": "mobile-dark.jpg",
+        "sha256": "fe87c470f4f18629e2bf2e730b098e42ff55cf2785f286b1f92425ba8d573d71",
+        "byte_size": 270452
+      },
+      "diagnostics": {
+        "title": "",
+        "document_width": 390,
+        "document_height": 3431,
+        "viewport_width": 390,
+        "viewport_height": 844,
+        "horizontal_overflow_px": 0,
+        "image_count": 6,
+        "loaded_image_count": 6,
+        "broken_images": [],
+        "body_text_characters": 3825
+      },
+      "request_failures": [],
+      "page_errors": [],
+      "console_errors": [],
+      "checks": {
+        "nonempty_document": true,
+        "no_horizontal_overflow": true,
+        "all_images_loaded": true,
+        "no_request_failures": true,
+        "no_page_errors": true,
+        "screenshot_nonempty": true
+      },
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "scope": "browser-preview-only",
+  "human_review": "pending"
+}
