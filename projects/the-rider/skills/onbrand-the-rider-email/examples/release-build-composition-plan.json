@@ -159,6 +159,26 @@
     {
       "code": "B-04",
       "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "authority_statement_dark",
+      "slot_type": "text",
+      "operations": [
+        "replace_text_in_context"
+      ],
+      "required_approvals": []
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+      "slot": "authority_statement_light",
+      "slot_type": "text",
+      "operations": [
+        "replace_text_in_context"
+      ],
+      "required_approvals": []
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
       "slot": "gallery_image",
       "slot_type": "image",
       "operations": [

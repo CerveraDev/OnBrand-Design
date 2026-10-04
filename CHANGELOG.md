@@ -6,11 +6,14 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Fixed
 
+- Added the missing composition-schema allowance for generated `selected_hero_configuration` plans and regression coverage for CFG-bound runtime fixtures.
+- Removed the repeated B-04 authority message from the corrected Rider wellness proof by exposing its dark and light placements as separate slots with distinct campaign copy; Static Block 1 remains the only canonical “From the creators…” statement.
 - Phase 11 completion-audit defects where Python equality treated JSON booleans as numbers in parity and approval matching. Shared recursive JSON-semantic comparison/hashing now preserves type distinctions, declares finite numeric equivalence, and rejects non-finite values; selection and asset-size boundaries use the same check.
 - Added 15 regressions and rebuilt realistic three-adapter parity evidence without changing campaign business logic, approvals, or accepted live invocation limitations.
 
 ### Added
 
+- Owner-approved Phase 15 Candidate B decision evidence, CFG-05 Rider Gym 2 selection/plan/runtime fixtures, grounded source/output provenance, corrected branded proof evaluation, and LIM-019 for rendered replacement multiplicity.
 - Approved Phase 13 Jev semantic decision pilot specification and LIM-018. The provider remains optional, disabled, and unimplemented pending a labeled Rider evaluation, privacy approval, deterministic fallback tests, and a keep/remove decision.
 - Phase 13 evaluation foundation with 26 provisional de-identified cases, a Draft 2020-12 schema, strict standard-library validator, blind review worksheet, baseline evaluator, and machine-readable diagnostic report. No provider integration was added.
 - Phase 13 blinded review workflow with dataset-bound response templates, completion validation, independent-reviewer enforcement, and deterministic disagreement reporting.
@@ -66,6 +69,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Changed
 
+- Phase 15 Workstreams A, B, and C are implemented. The corrected branded proof is now the creative-baseline candidate awaiting owner approval; the earlier Phase 14 screenshots remain technical-only evidence.
 - All Rider runtime fixtures include approved allocation plans; internal wellness fixture wording removes the historical repetition pattern retained in negative tests.
 - Copy validation blocks all build modes before rendering or asset download and preserves approved wording and the last passing package.
 - Phase 10 is implemented for The Rider; LIM-003 is closed and LIM-004 is mitigated, with OCR, truth verification, and similarity calibration still documented.
@@ -87,6 +91,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Validated
 
+- Corrected CFG-05 branded Composition Preview passes 90 QA checks with one approved Gym 2 hero, 27 copy owners, one HTML variant, nine packaged images, visible source attribution, and a self-contained ZIP. Full discovery passes 160 tests.
 - Acceptance-gap follow-up passes 79 tests, including 18 allocation tests; responsive branch duplication counts once while a second owner still fails. Runtime behavior and the audited live pilot remain unchanged.
 
 - Phase 10 full unittest discovery passes 78 tests, including Phase 7-9 regression coverage.

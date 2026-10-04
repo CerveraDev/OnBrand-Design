@@ -1,6 +1,6 @@
 {
   "evidence_version": "1.0",
-  "status": "pending-candidate-selection",
+  "status": "approved",
   "campaign": "Rider wellness corrected proof",
   "configuration": {
     "id": "CFG-05",
@@ -44,7 +44,7 @@
     {
       "id": "rider-wellness-gym1-candidate-v2",
       "source_asset_id": "id:31E0v0XEN2IAAAAAAAAAJA",
-      "status": "pending",
+      "status": "not-selected",
       "local_path": "projects/the-rider/skills/onbrand-the-rider-email/examples/assets/rider-wellness-corrected/rider-wellness-gym1-candidate-v2.png",
       "sha256": "81061678b67e505a20a3b4b1c177856786028eaa2044e4db8aa17cf66fed319d",
       "width": 1672,
@@ -57,7 +57,7 @@
     {
       "id": "rider-wellness-gym2-candidate-v1",
       "source_asset_id": "id:31E0v0XEN2IAAAAAAAAAIg",
-      "status": "pending",
+      "status": "approved",
       "local_path": "projects/the-rider/skills/onbrand-the-rider-email/examples/assets/rider-wellness-corrected/rider-wellness-gym2-candidate-v1.png",
       "sha256": "b79df805bb8bc04bf4ec147e3ca1338ce7d27e62bc76fefdfe209d281a02fcb3",
       "width": 1672,
@@ -99,12 +99,12 @@
       "source_attribution_treatment": null
     },
     "rider-wellness-gym2-candidate-v1": {
-      "environment_preservation": null,
-      "subject_placement_and_pose": null,
-      "crop_and_focal_scale": null,
-      "logo_fidelity_and_placement": null,
-      "live_text_policy": null,
-      "source_attribution_treatment": null
+      "environment_preservation": true,
+      "subject_placement_and_pose": true,
+      "crop_and_focal_scale": true,
+      "logo_fidelity_and_placement": true,
+      "live_text_policy": true,
+      "source_attribution_treatment": true
     }
   },
   "review_note": "Both current candidates visibly retain the bottom-left source credit. Automated OCR is unavailable in the current environment, so exact credit wording remains a human approval item.",
@@ -113,5 +113,11 @@
     "reason": "Did not retain the source copyright credit.",
     "sha256": "32958463a89d61f7c4b2a909d763c6d1edfc8e601571760826ed800696438234"
   },
-  "approval": null
+  "approval": {
+    "selected_candidate_id": "rider-wellness-gym2-candidate-v1",
+    "selected_source_asset_id": "id:31E0v0XEN2IAAAAAAAAAIg",
+    "approved_by": "Felix Mendoza",
+    "approved_at": "2026-10-03",
+    "note": "Candidate B, Rider Gym 2, selected for the approved CFG-05 composition. Candidate A remains retained as non-selected review evidence."
+  }
 }

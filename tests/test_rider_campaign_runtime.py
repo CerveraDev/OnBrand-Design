@@ -17,7 +17,7 @@ from tools.rider_campaign_runtime.runtime import (
     build_campaign_from_spec,
 )
 from tools.rider_campaign_runtime.schema import CampaignSpecError, validate_campaign_spec
-from tools.rider_campaign_runtime.scaffold import catalog, load_scaffold
+from tools.rider_campaign_runtime.scaffold import catalog, load_scaffold, module_rows
 from tools.rider_campaign_runtime.slots import SlotError, UsedAsset, apply_module_slots, safe_rich_text
 
 
@@ -82,12 +82,47 @@ class RiderCampaignSchemaTests(unittest.TestCase):
         with self.assertRaisesRegex(CampaignSpecError, "requires at least one"):
             validate_campaign_spec(spec)
 
+    def test_accepts_selected_hero_configuration_in_composition_contract(self):
+        spec = minimal_spec()
+        spec["composition"] = {
+            "plan_version": "1.0",
+            "plan_id": "cfg-05-schema-regression",
+            "status": "approved",
+            "approved_by": "unit test",
+            "approved_at": "2026-10-03",
+            "representative_variant": "branded",
+            "selected_module_codes": ["H-01", "AI-01"],
+            "selected_hero_configuration": "CFG-05",
+            "static_block_decisions": [],
+        }
+        validate_campaign_spec(spec)
+
 
 class RiderCampaignSlotTests(unittest.TestCase):
     def test_safe_rich_text_allows_small_formatting_vocabulary(self):
         self.assertEqual(safe_rich_text("A<br><strong>B</strong>"), "A<br><strong>B</strong>")
         with self.assertRaisesRegex(SlotError, "not allowed"):
             safe_rich_text("<script>alert(1)</script>")
+
+    def test_dark_then_light_body_exposes_distinct_authority_statement_slots(self):
+        scaffold = load_scaffold(
+            ROOT / "projects/the-rider/skills/onbrand-the-rider-email/templates/scaffold/rider-scaffolding.canonical.html",
+            ROOT / "projects/the-rider/skills/onbrand-the-rider-email/templates/scaffold/rider-scaffolding.slot-map.json",
+            ROOT / "projects/the-rider/skills/onbrand-the-rider-email/templates/scaffold/rider-scaffolding.module-metadata.json",
+        )
+        html, _ = apply_module_slots(
+            "BODY - DARK THEN LIGHT LAYOUT",
+            "".join(module_rows(scaffold, "BODY - DARK THEN LIGHT LAYOUT")),
+            scaffold.slot_map["BODY - DARK THEN LIGHT LAYOUT"],
+            {
+                "authority_statement_dark": {"kind": "text", "value": "DARK AUTHORITY MESSAGE"},
+                "authority_statement_light": {"kind": "text", "value": "LIGHT AUTHORITY MESSAGE"},
+            },
+            manifest_assets={},
+        )
+        self.assertEqual(html.count("DARK AUTHORITY MESSAGE"), 1)
+        self.assertEqual(html.count("LIGHT AUTHORITY MESSAGE"), 1)
+        self.assertNotIn("FROM THE CREATORS OF THE BOND", html)
 
     def test_slot_anchor_must_resolve_once(self):
         with self.assertRaisesRegex(SlotError, "exactly once"):

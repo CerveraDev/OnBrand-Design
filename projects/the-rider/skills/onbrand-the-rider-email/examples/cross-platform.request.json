@@ -9,7 +9,7 @@
   "inputs": {
     "composition": {
       "path": "rider-wellness-composition-plan.json",
-      "sha256": "1856ee766db7b7c9a023f0fe6dede3e76caf7228af42a2d09e9eaabcdd3be9d6"
+      "sha256": "4beca174585d13585b303987270a7a27e847c44cade0075bbd3e31d1289667b6"
     },
     "selection": {
       "path": "rider-wellness-composition-selection.json",

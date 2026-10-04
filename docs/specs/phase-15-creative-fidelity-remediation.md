@@ -1,6 +1,6 @@
 # Phase 15: Creative Fidelity Remediation
 
-**Status:** Workstreams A and C implemented; Workstream B pending
+**Status:** Workstreams A, B, and C implemented; corrected branded proof generated
 **Target:** Corrected Rider Composition Preview before real email-client testing
 **Depends on:** Phases 8, 9, 10, and 14
 
@@ -14,7 +14,7 @@ The Phase 14 Rider wellness fixture is technically valid but creatively stale. I
 
 ## Workstream A: Labeled Visual Selection
 
-Implementation evidence: [Rider header and hero gallery](../evals/phase-15-rider-hero-gallery.md). The generated gallery is awaiting owner visual selection.
+Implementation evidence: [Rider header and hero gallery](../evals/phase-15-rider-hero-gallery.md). The owner selected `CFG-05`.
 
 - FID-001: Preserve stable module codes from the canonical catalog.
 - FID-002: Produce a rendered gallery for every eligible header and hero, not only isolated HTML files.
@@ -25,6 +25,8 @@ Implementation evidence: [Rider header and hero gallery](../evals/phase-15-rider
 - FID-007: Gallery screenshots are selection aids, not email-client certification.
 
 ## Workstream B: Source-Grounded Image Composition
+
+Implementation evidence: [corrected Rider wellness proof](../evals/phase-15-rider-wellness-corrected-proof.md). Candidate B, Rider Gym 2, is the approved source-grounded hero.
 
 - FID-008: A brief that names or implies a Rider room, amenity, facade, or other real environment must select an approved environment-base asset before generation.
 - FID-009: Present one or two base-image candidates with asset ID, category, approval, and relevance notes for owner selection.

@@ -193,6 +193,20 @@
         "anchor": "THE RIDER RESIDENCES."
       }
     ],
+    "authority_statement_dark": [
+      {
+        "operation": "replace_text_in_context",
+        "anchor": "<div style=\"color:#ffffff;direction:ltr;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:32px;font-weight:400;letter-spacing:0px;line-height:1;text-align:left;mso-line-height-alt:32px;\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p style=\"margin: 0;\">FROM THE CREATORS OF THE BOND ON BRICKELL AND THE RENOWNED JP MORGAN TOWER IN MIAMI.</p>",
+        "text_anchor": "FROM THE CREATORS OF THE BOND ON BRICKELL AND THE RENOWNED JP MORGAN TOWER IN MIAMI."
+      }
+    ],
+    "authority_statement_light": [
+      {
+        "operation": "replace_text_in_context",
+        "anchor": "<div style=\"color:#000000;direction:ltr;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:32px;font-weight:400;letter-spacing:0px;line-height:1;text-align:left;mso-line-height-alt:32px;\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p style=\"margin: 0;\">FROM THE CREATORS OF THE BOND ON BRICKELL AND THE RENOWNED JP MORGAN TOWER IN MIAMI.</p>",
+        "text_anchor": "FROM THE CREATORS OF THE BOND ON BRICKELL AND THE RENOWNED JP MORGAN TOWER IN MIAMI."
+      }
+    ],
     "primary_cta": [
       {
         "operation": "replace_text_in_context",

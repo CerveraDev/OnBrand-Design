@@ -5,7 +5,7 @@
 **Author:** Felix Mendoza  
 **Version:** 0.1.0  
 **Updated:** 2026-10-03
-**Overall status:** Rider runtime through Phase 10 plus Phase 11 deterministic Codex/Claude/CLI adapters and parity; live model invocation remains unverified
+**Overall status:** Rider Phase 15 corrected branded proof generated with approved CFG-05 and Rider Gym 2; owner creative approval and real-client testing remain pending
 
 ## Completed
 
@@ -54,9 +54,11 @@
 - Implemented Phase 11 versioned contracts, shared dispatch, manual-only wrappers, and 13-component blocking parity. Rider preview builds score 100 using real cached assets; live model invocation is unverified. See [evidence](docs/evals/phase-11-cross-platform-compatibility.md).
 - Implemented the Phase 14 Playwright browser-preview matrix and committed representative Rider desktop/mobile light/dark evidence. All four browser modes pass with zero overflow or resource errors; human approval and real email-client review remain pending.
 - Reclassified the Phase 14 wellness screenshots as technical-only evidence with known creative defects and approved Phase 15 remediation for labeled visual selection, source-grounded image evidence, and static-copy collision control.
-- Implemented Phase 15 Workstream A with 16 labeled, compatible Rider header/hero configurations, a grouped visual gallery, configuration-bound composition approval, and hash-bound review evidence. Full discovery passes 154 tests; owner selection remains pending.
+- Implemented Phase 15 Workstream A with 16 labeled, compatible Rider header/hero configurations, a grouped visual gallery, configuration-bound composition approval, and hash-bound review evidence. The owner selected `CFG-05`.
 - Implemented Phase 15 Workstream C: included locked static copy is automatically extracted into the cross-surface inventory, partial static declarations fail, findings retain owner context, and broad exemption lists cannot hide unapproved similarity pairs. Full discovery passes 158 tests.
-- Generated the Phase 15 Workstream B CFG-05 comparison set from the actual approved Rider Gym 1 and Gym 2 bytes. Both current candidates retain their source copyright credit and have hash-bound source/candidate evidence; final candidate selection and human attribution verification remain pending.
+- Completed Phase 15 Workstream B with owner-approved Candidate B, Rider Gym 2, retained source attribution, hash-bound source/output evidence, grounded workflow provenance, and a corrected branded CFG-05 Composition Preview.
+- Exposed B-04's two repeated authority rows as distinct editable slots, replaced them with campaign-specific wellness messages, retained Static Block 1 as the sole canonical authority statement, and recorded the broader rendered-occurrence limitation as LIM-019.
+- Built the corrected branded package with 90 passing QA checks, 27 allocated copy owners, nine packaged images, one HTML preview, and a self-contained ZIP. Full discovery passes 160 tests.
 
 ## Project Portfolio
 
@@ -73,7 +75,7 @@
 ## In Progress
 
 - Perform representative visual and email-client compatibility review beyond structural QA.
-- Complete Phase 15 Workstream B before requesting creative approval or running the real Gmail, Outlook, and Apple Mail matrix.
+- Obtain owner creative approval for the corrected Phase 15 branded proof, then run its browser matrix and the real Gmail, Outlook, and Apple Mail matrix.
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 - Obtain live manual invocation evidence on permitted authenticated hosts; deterministic parity does not establish model behavior.
 - Keep [LIMITATIONS.md](LIMITATIONS.md) current when audits, specs, QA runs, or implementation work discover new constraints.
@@ -93,4 +95,4 @@
 
 ## Next Milestone
 
-Obtain the owner's `CFG-*` choice from the Phase 15 gallery, then complete source-grounded image evidence before a corrected branded proof. Static-copy collision enforcement is implemented. Live manual adapter checks remain open; Phase 12 distribution stays deferred.
+Obtain owner creative approval for the corrected CFG-05 Rider Gym 2 branded proof. Once approved, use its hash-bound HTML as the new Phase 14 baseline, then generate the full authorized variant matrix only after browser and real-client review. Live manual adapter checks remain open; Phase 12 distribution stays deferred.

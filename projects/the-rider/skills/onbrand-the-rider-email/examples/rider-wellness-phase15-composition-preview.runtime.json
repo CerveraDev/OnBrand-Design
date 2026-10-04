@@ -6,34 +6,40 @@
     "variant_policy": "single"
   },
   "campaign": {
-    "slug": "rider-wellness-composition-preview",
-    "title": "Rider Wellness Composition Preview Pilot",
-    "output_dir": "campaign-output/rider-wellness-composition-preview",
-    "subject": "Wellness routines land near The Rider",
-    "preview_text": "Soho House and Equinox keep familiar rituals close to home."
+    "slug": "rider-wellness-phase15-composition-preview",
+    "title": "Rider Wellness Phase 15 CFG-05 Composition Preview",
+    "output_dir": "campaign-output/rider-wellness-phase15-composition-preview",
+    "subject": "Your Miami wellness routine, minutes from home",
+    "preview_text": "Soho House and Equinox are minutes from The Rider."
   },
   "manifest": {
     "path": "tools/dropbox-manifest/manifest.json"
   },
   "modules": [
     {
-      "id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
+      "id": "TWO-COLUMN HEADER",
       "variant": "default",
       "slots": {
         "headline": {
           "kind": "safe_rich_text",
-          "value": "WELLNESS ARRIVES<br>NEAR THE RIDER."
+          "value": "MIAMI’S NEW EPICENTER<br>OF WELLNESS."
         },
         "logo_link": {
           "kind": "url",
           "href": "https://theriderresidences.com"
-        },
-        "background_image": {
+        }
+      }
+    },
+    {
+      "id": "AI GENERATED IMAGE BASED ON PROMPT",
+      "variant": "default",
+      "slots": {
+        "hero_image": {
           "kind": "image",
-          "src": "projects/the-rider/skills/onbrand-the-rider-email/examples/assets/rider-wellness-smoke/rider-wellness-hero.png",
-          "alt": "Woman seated on a charcoal-gray yoga mat with The Rider logo engraved into the mat",
+          "src": "projects/the-rider/skills/onbrand-the-rider-email/examples/assets/rider-wellness-corrected/rider-wellness-gym2-candidate-v1.png",
+          "alt": "Woman in black activewear seated in a butterfly pose on a charcoal-gray Rider mat inside The Rider gym",
           "role": "hero",
-          "image_workflow_id": "rider-wellness-gym-hero"
+          "image_workflow_id": "rider-wellness-gym2-hero"
         }
       }
     },
@@ -43,7 +49,7 @@
       "slots": {
         "section_label": {
           "kind": "text",
-          "value": "Soho House and Equinox are minutes from The Rider, keeping familiar wellness rituals close to home."
+          "value": "Soho House and Equinox are minutes from The Rider — and your NY or California membership may travel with you."
         },
         "section_1_heading": {
           "kind": "safe_rich_text",
@@ -120,6 +126,14 @@
           "asset_id": "id:31E0v0XEN2IAAAAAAAAAIA",
           "alt": "The Rider recovery spa",
           "role": "body-wellness-recovery"
+        },
+        "authority_statement_dark": {
+          "kind": "text",
+          "value": "TWO MEMBERSHIP EXPERIENCES, MINUTES FROM HOME."
+        },
+        "authority_statement_light": {
+          "kind": "text",
+          "value": "THE RIDER PUTS MIAMI’S WELLNESS ROUTINE WITHIN REACH."
         }
       }
     },
@@ -169,23 +183,31 @@
   },
   "composition": {
     "plan_version": "1.0",
-    "plan_id": "rider-wellness-composition-preview",
+    "plan_id": "rider-wellness-phase15-composition-preview",
     "status": "approved",
-    "approved_by": "OnBrand Phase 9 pilot fixture",
+    "approved_by": "Felix Mendoza",
     "approved_at": "2026-10-03",
     "representative_variant": "branded",
     "selected_module_codes": [
-      "HH-01",
+      "H-01",
+      "AI-01",
       "B-04",
       "S-02",
       "S-01"
     ],
     "selected_modules": [
       {
-        "code": "HH-01",
-        "scaffold_module_id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
+        "code": "H-01",
+        "scaffold_module_id": "TWO-COLUMN HEADER",
+        "module_type": "header",
+        "includes_header": false,
+        "locked": false
+      },
+      {
+        "code": "AI-01",
+        "scaffold_module_id": "AI GENERATED IMAGE BASED ON PROMPT",
         "module_type": "hero",
-        "includes_header": true,
+        "includes_header": false,
         "locked": false
       },
       {
@@ -234,20 +256,8 @@
     ],
     "editable_slots": [
       {
-        "code": "HH-01",
-        "scaffold_module_id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
-        "slot": "background_image",
-        "slot_type": "image",
-        "operations": [
-          "replace_background_url"
-        ],
-        "required_approvals": [
-          "hero"
-        ]
-      },
-      {
-        "code": "HH-01",
-        "scaffold_module_id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
+        "code": "H-01",
+        "scaffold_module_id": "TWO-COLUMN HEADER",
         "slot": "headline",
         "slot_type": "text",
         "operations": [
@@ -256,14 +266,26 @@
         "required_approvals": []
       },
       {
-        "code": "HH-01",
-        "scaffold_module_id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
+        "code": "H-01",
+        "scaffold_module_id": "TWO-COLUMN HEADER",
         "slot": "logo_link",
         "slot_type": "url",
         "operations": [
           "replace_href"
         ],
         "required_approvals": []
+      },
+      {
+        "code": "AI-01",
+        "scaffold_module_id": "AI GENERATED IMAGE BASED ON PROMPT",
+        "slot": "hero_image",
+        "slot_type": "image",
+        "operations": [
+          "replace_image_src"
+        ],
+        "required_approvals": [
+          "hero"
+        ]
       },
       {
         "code": "B-04",
@@ -482,9 +504,9 @@
     ],
     "required_assets": [
       {
-        "code": "HH-01",
-        "scaffold_module_id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
-        "slot": "background_image",
+        "code": "AI-01",
+        "scaffold_module_id": "AI GENERATED IMAGE BASED ON PROMPT",
+        "slot": "hero_image",
         "required_approvals": [
           "hero"
         ],
@@ -510,51 +532,56 @@
       }
     ],
     "compatibility": {
-      "standalone_header_count": 0,
-      "header_bearing_hero_count": 1,
+      "standalone_header_count": 1,
+      "header_bearing_hero_count": 0,
       "hero_count": 1
     },
     "approval_required_before": [
       "image-generation",
       "html-assembly",
       "package-generation"
-    ]
+    ],
+    "selected_hero_configuration": "CFG-05"
   },
   "image_workflow": {
     "version": "1.0",
     "items": [
       {
-        "image_id": "rider-wellness-gym-hero",
+        "image_id": "rider-wellness-gym2-hero",
         "workflow_type": "grounded-edit",
         "status": "approved",
-        "approved_by": "OnBrand Phase 9 pilot fixture",
+        "approved_by": "Felix Mendoza",
         "approved_at": "2026-10-03",
-        "approval_notes": "Pilot fixture records the Phase 9 lesson that wellness imagery depicting a Rider space must start from an approved Rider gym environment, preserve the room, and keep headline text live in HTML.",
+        "approval_notes": "Candidate B, Rider Gym 2, approved for CFG-05. The selected candidate preserves recognizable Rider Gym 2 architecture and the source copyright credit; campaign headline and subheading remain live HTML.",
         "intended_use": {
-          "module_id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
-          "slot": "background_image",
+          "module_id": "AI GENERATED IMAGE BASED ON PROMPT",
+          "slot": "hero_image",
           "role": "hero",
           "variant_scope": "representative"
         },
         "environment": {
           "type": "real-rider",
-          "description": "The Rider gym and recovery amenity environment",
+          "description": "The approved garden-facing Rider Gym 2 rendering",
           "keywords": [
             "gym",
-            "amenity"
+            "rider"
           ],
           "conceptual_environment_approved": false
         },
         "source_assets": [
           {
-            "asset_id": "id:31E0v0XEN2IAAAAAAAAAJA",
+            "path": "projects/the-rider/skills/onbrand-the-rider-email/examples/assets/rider-wellness-corrected/rider-gym-2-source.jpg",
+            "sha256": "705344436a46eefe0108c2fbe70e090cd58cd343ca2eb60d61cc8012ebbfd9c9",
             "role": "environment-base",
-            "required_approval": "hero",
             "preserve": [
               "architecture",
+              "wall artwork",
+              "windows and exterior view",
+              "equipment placement",
+              "floor materials",
               "lighting direction",
-              "material identity",
-              "Rider gym context"
+              "perspective",
+              "source copyright credit"
             ]
           },
           {
@@ -567,48 +594,49 @@
           }
         ],
         "prompt_record": {
-          "tool": "codex-imagegen-recorded-fixture",
+          "tool": "OpenAI built-in image generation",
           "model": "not-recorded",
-          "prompt": "Create a premium wellness hero by placing a tightly framed wellness subject inside the approved Rider gym environment. Preserve the Rider gym architecture, lighting direction, material identity, and project context. Use the approved Rider logo reference only where branding is required. Keep campaign headline text live in HTML, not baked into the image.",
-          "negative_prompt": "Do not invent an unrelated gym, alter the Rider environment, add unsupported signage, change materials, or bake campaign copy into the image.",
+          "prompt": "Using the attached Rider Gym 2 rendering as the environmental base, preserve its architecture, wall artwork, windows, exterior view, equipment placement, floor materials, lighting direction, perspective, and visible copyright credit. Add a woman in her late twenties to early thirties wearing black yoga pants and a black sports bra, seated in a butterfly pose facing camera on a charcoal-gray yoga mat. Frame her tightly while keeping the Rider gym recognizable. Engrave the approved Rider wordmark into the mat on the viewer’s right. Produce a 16:9 editorial hero with no campaign headline or subheading baked into the image.",
+          "negative_prompt": "Do not invent a different gym, alter the architecture, remove or rewrite the source copyright credit, add extra people, create anatomical artifacts, invent branding, or bake campaign copy into the image.",
           "edit_steps": [
-            "Approved Rider gym source selected as environmental base.",
-            "Wellness subject framed for a 16:9 hero crop.",
-            "Rider logo reference recorded from scaffold asset.",
-            "Headline remains live HTML in the email module."
+            "Rider Gym 2 selected and attached as the environment base.",
+            "Approved Rider logo attached as the only logo reference.",
+            "Wellness subject added in a tight front-facing butterfly pose.",
+            "Candidate B reviewed against Candidate A and approved by Felix Mendoza.",
+            "Headline and subheading reserved for live HTML."
           ],
           "text_policy": "live-html"
         },
         "output": {
-          "src": "projects/the-rider/skills/onbrand-the-rider-email/examples/assets/rider-wellness-smoke/rider-wellness-hero.png",
-          "sha256": "e35a034f96b437abf0dbd1fdbe4581237b7a8700936a2c7caa619ef560c27d23",
-          "width": 1600,
-          "height": 900,
+          "src": "projects/the-rider/skills/onbrand-the-rider-email/examples/assets/rider-wellness-corrected/rider-wellness-gym2-candidate-v1.png",
+          "sha256": "b79df805bb8bc04bf4ec147e3ca1338ce7d27e62bc76fefdfe209d281a02fcb3",
+          "width": 1672,
+          "height": 941,
           "format": "png"
         },
         "placement": {
           "aspect_ratio": "16:9",
-          "crop": "module-native full-width hero crop; keep subject tight and environment recognizable",
+          "crop": "approved full-width CFG-05 image crop; preserve the visible source credit",
           "focal_point": {
-            "x": 0.5,
-            "y": 0.52
+            "x": 0.55,
+            "y": 0.57
           },
-          "safe_area": "Top-left live HTML logo/header and live headline must remain legible over the selected crop.",
-          "logo_overlay": "approved scaffold logo reference only; no invented marks"
+          "safe_area": "No campaign text is overlaid on the image; retain the complete bottom-left copyright credit.",
+          "logo_overlay": "approved Rider wordmark engraved into the mat on the viewer’s right"
         }
       }
     ]
   },
   "copy_allocation": {
     "version": "1.0",
-    "plan_id": "rider-wellness-composition-preview-copy-allocation",
+    "plan_id": "rider-wellness-phase15-composition-preview-copy-allocation",
     "status": "approved",
-    "approved_by": "OnBrand Phase 10 fixture update",
+    "approved_by": "Felix Mendoza",
     "approved_at": "2026-10-03",
     "content_units": [
       {
         "id": "meta-subject",
-        "text": "Wellness routines land near The Rider",
+        "text": "Your Miami wellness routine, minutes from home",
         "content_role": "subject",
         "source": "approved campaign metadata",
         "approval_status": "approved",
@@ -622,7 +650,7 @@
       },
       {
         "id": "meta-preview-text",
-        "text": "Soho House and Equinox keep familiar rituals close to home.",
+        "text": "Soho House and Equinox are minutes from The Rider.",
         "content_role": "preview_text",
         "source": "approved campaign metadata",
         "approval_status": "approved",
@@ -635,14 +663,14 @@
         "claim_policy": "none"
       },
       {
-        "id": "header-hero-live-text-heading-full-width-headline",
-        "text": "WELLNESS ARRIVES<br>NEAR THE RIDER.",
+        "id": "two-column-header-headline",
+        "text": "MIAMI’S NEW EPICENTER<br>OF WELLNESS.",
         "content_role": "headline",
         "source": "approved campaign copy",
         "approval_status": "approved",
         "owner": {
           "channel": "live-html",
-          "module_id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
+          "module_id": "TWO-COLUMN HEADER",
           "slot": "headline"
         },
         "reuse_policy": "single-use",
@@ -650,16 +678,16 @@
         "claim_policy": "none"
       },
       {
-        "id": "header-hero-live-text-heading-full-width-background-image-alt",
-        "text": "Woman seated on a charcoal-gray yoga mat with The Rider logo engraved into the mat",
+        "id": "ai-generated-image-hero-alt",
+        "text": "Woman in black activewear seated in a butterfly pose on a charcoal-gray Rider mat inside The Rider gym",
         "content_role": "image-alt",
         "source": "approved image alt text",
         "approval_status": "approved",
         "owner": {
           "channel": "alt-text",
-          "module_id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
-          "slot": "background_image",
-          "image_workflow_id": "rider-wellness-gym-hero"
+          "module_id": "AI GENERATED IMAGE BASED ON PROMPT",
+          "slot": "hero_image",
+          "image_workflow_id": "rider-wellness-gym2-hero"
         },
         "reuse_policy": "single-use",
         "max_occurrences": 1,
@@ -667,7 +695,7 @@
       },
       {
         "id": "body-dark-then-light-layout-section-label",
-        "text": "Soho House and Equinox are minutes from The Rider, keeping familiar wellness rituals close to home.",
+        "text": "Soho House and Equinox are minutes from The Rider — and your NY or California membership may travel with you.",
         "content_role": "section_label",
         "source": "approved campaign copy",
         "approval_status": "approved",
@@ -921,6 +949,36 @@
         "claim_policy": "none"
       },
       {
+        "id": "body-dark-then-light-layout-authority-statement-dark",
+        "text": "TWO MEMBERSHIP EXPERIENCES, MINUTES FROM HOME.",
+        "content_role": "authority_statement_dark",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "authority_statement_dark"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-dark-then-light-layout-authority-statement-light",
+        "text": "THE RIDER PUTS MIAMI’S WELLNESS ROUTINE WITHIN REACH.",
+        "content_role": "authority_statement_light",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+          "slot": "authority_statement_light"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
         "id": "body-dark-then-light-layout-primary-cta",
         "text": "REQUEST MORE INFORMATION",
         "content_role": "primary_cta",
@@ -953,15 +1011,15 @@
     ],
     "slot_allocation": [
       {
-        "module_id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
+        "module_id": "TWO-COLUMN HEADER",
         "slot": "headline",
-        "content_unit_id": "header-hero-live-text-heading-full-width-headline",
+        "content_unit_id": "two-column-header-headline",
         "rendering_type": "live-html"
       },
       {
-        "module_id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
-        "slot": "background_image",
-        "content_unit_id": "header-hero-live-text-heading-full-width-background-image-alt",
+        "module_id": "AI GENERATED IMAGE BASED ON PROMPT",
+        "slot": "hero_image",
+        "content_unit_id": "ai-generated-image-hero-alt",
         "rendering_type": "alt-text"
       },
       {
@@ -1064,6 +1122,18 @@
         "module_id": "BODY - DARK THEN LIGHT LAYOUT",
         "slot": "anchor_name",
         "content_unit_id": "body-dark-then-light-layout-anchor-name",
+        "rendering_type": "live-html"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "authority_statement_dark",
+        "content_unit_id": "body-dark-then-light-layout-authority-statement-dark",
+        "rendering_type": "live-html"
+      },
+      {
+        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "slot": "authority_statement_light",
+        "content_unit_id": "body-dark-then-light-layout-authority-statement-light",
         "rendering_type": "live-html"
       },
       {

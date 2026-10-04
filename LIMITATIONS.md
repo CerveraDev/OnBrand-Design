@@ -50,6 +50,7 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 | LIM-016 | Legal, fair-housing, financial, and regulated-copy checks are human-review flags, not compliance proof | P1 | Mitigated | Compliance governance |
 | LIM-017 | Live agent invocation and model-behavior parity remain unverified | P1 | Open | Phase 11 live validation |
 | LIM-018 | Jev semantic decision value, calibration, privacy approval, and fallback behavior are unverified | P2 | Open | Phase 13 pilot |
+| LIM-019 | Copy QA counts logical slot owners, not every rendered replacement rule | P2 | Open | Phase 10 refinement |
 
 ## Detailed Entries
 
@@ -305,6 +306,20 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 - Candidate metrics: Semantic duplicate precision/recall, false-positive and false-negative rates, claim-support triage accuracy, confidence/review coverage, reviewer agreement, override rate, latency, provider failure rate, token cost, and cross-adapter receipt parity.
 - Closure criteria: Either keep Jev disabled and formally accept or remove the optional evaluation code, or complete a version 2 pilot with a fresh independently reviewed dataset, newly locked policy, untouched holdout, no false allows, bounded review rate, measurable baseline improvement, fallback verification, and cross-adapter receipt parity. This does not close visual-similarity limitations.
 
+### LIM-019: Copy QA counts logical slot owners, not every rendered replacement rule
+
+- Priority: P2
+- Status: Open
+- Owner phase: Phase 10 refinement
+- Dependencies: Phase 10 allocation ownership, scaffold slot rules, and representative modules where one slot intentionally or accidentally replaces text more than once.
+- Evidence: [corrected Phase 15 proof](docs/evals/phase-15-rider-wellness-corrected-proof.md), [slot renderer](tools/rider_campaign_runtime/slots.py), [copy allocation](tools/rider_campaign_runtime/copy_allocation.py)
+- Current behavior: Copy allocation counts each declared slot as one logical owner. A slot may contain multiple replacement rules and therefore render the same approved value more than once. The CFG-05 review exposed this boundary in `B-04`: two previously locked authority rows were visible in the output but absent from the slot inventory. They are now separate slots with unique content, so the corrected proof has one canonical authority statement. The general multiplicity boundary remains for other multi-rule slots such as the repeated primary CTA.
+- Risk and impact: A package can pass logical-owner repetition QA while rendering the same text multiple times from one slot. Some repetition is intentional, especially CTAs and responsive fallbacks, but accidental repeated editorial messages may be undercounted.
+- Current control: Known editorial repeats receive distinct slots or are resolved by module/static selection; browser review remains required. Responsive fallback duplication is still treated as one logical owner by design.
+- Scoring could help: Limited. Deterministic rendered-occurrence counting is preferable; scoring is useful only for deciding whether distinct rendered phrases are semantically repetitive.
+- Candidate metrics: Replacement-rule multiplicity, rendered visible-text occurrence count, owner-to-render ratio, intentional-repeat classification, responsive-branch identity, and reviewer override rate.
+- Closure criteria: Add a rendered-copy inventory that distinguishes intentional responsive duplication from multiple visible placements, require explicit reuse policy for multi-placement slots, and add positive CTA plus negative editorial-repeat fixtures.
+
 ## Entry Template
 
 Use this template for new limitations:
@@ -343,3 +358,4 @@ Use this template for new limitations:
 - 2026-10-03: Locked the candidate policy before running the separately approved nine-case holdout. Jev matched 8/9 semantic labels but only 5/9 actions, with one false allow and four review routes. Version 1 failed the keep gate and is marked `revise`; production remains disabled.
 - 2026-10-03: Added Phase 15 Workstream A selection evidence: 16 labeled compatible Rider header/hero configurations, a grouped gallery, and configuration-bound plan validation. LIM-005 remains open because human visual selection and real-client evidence are still pending.
 - 2026-10-03: Implemented Phase 15 Workstream C by auto-inventorying included static copy, rejecting partial declarations, retaining owner context, and narrowing similarity exemptions to exact pairs. Semantic paraphrase detection remains limited and human-reviewed.
+- 2026-10-03: Added LIM-019 after the corrected CFG-05 proof exposed that one logical slot can render through multiple replacement rules. The Rider authority rows now have distinct slots and copy, while general rendered-occurrence accounting remains open.

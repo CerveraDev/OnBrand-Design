@@ -48,6 +48,7 @@ ALLOWED_COMPOSITION = {
     "required_assets",
     "compatibility",
     "approval_required_before",
+    "selected_hero_configuration",
 }
 ALLOWED_COMPOSITION_MODULE = {"code", "scaffold_module_id", "module_type", "includes_header", "locked"}
 ALLOWED_COMPOSITION_STATIC = {"code", "scaffold_module_id", "decision"}
@@ -389,6 +390,8 @@ def _validate_composition(composition: dict) -> None:
                 _require_string_array(item, array_field, f"composition.{field}[{index}]", allow_empty=allow_empty)
     if "approval_required_before" in composition:
         _require_string_array(composition, "approval_required_before", "composition")
+    if "selected_hero_configuration" in composition:
+        _require(composition, "selected_hero_configuration", str, "composition")
     if "compatibility" in composition and not isinstance(composition["compatibility"], dict):
         raise CampaignSpecError("composition.compatibility must be an object")
 
