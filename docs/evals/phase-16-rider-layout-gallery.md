@@ -6,7 +6,7 @@
 
 ## Purpose
 
-This checkpoint turns the refined Phase 16 metadata into visual review artifacts without promoting the staged scaffold to the production runtime. It separates three decisions:
+This checkpoint turned the refined Phase 16 metadata into visual review artifacts before promotion. The same gallery now regenerates from canonical defaults and separates three decisions:
 
 - Isolated module inspection through stable module codes
 - Header and hero selection through stable `CFG-*` codes
@@ -36,7 +36,7 @@ The sequence gallery contains seven long-form choices and two always-dark invite
 - Invalid sequence presets: 0
 - Full repository tests: 179 passed
 
-The CLI now accepts an explicit staged scaffold, slot map, and metadata trio for `catalog` and `plan`. Omitting all three retains the Phase 15 canonical defaults; supplying only part of the trio fails.
+The CLI accepts an explicit candidate scaffold, slot map, and metadata trio for `catalog` and `plan`. Omitting all three uses the approved Phase 16 canonical defaults; supplying only part of the trio fails.
 
 ## Visual Inspection
 
@@ -61,8 +61,6 @@ The two light-led sequences show the current light header and light hero flowing
 | `hero-gallery.html` | `9682164cffa1d8d7085c02ada8b51bf9fcb883b0649ce1b991488187c9de41bc` |
 | `sequence-gallery.html` | `e3b0717e8e134bcce593da7d7526a349b1706ab09c1b7991e679c419bde429fc` |
 
-## Promotion Boundary
+## Promotion Result
 
-The Phase 15 scaffold remains canonical. Gallery generation does not approve a sequence, promote Phase 16, replace CFG-05 proof evidence, or establish real-client compatibility.
-
-The owner selected `SEQ-LF-07`, and that decision now drives the staged Phase 16 composition plan and branded proof. The next decision is visual approval or requested refinement of the rendered proof. Canonical promotion remains blocked until that review is complete.
+The owner selected `SEQ-LF-07`, approved the refined proof as the best proof produced so far, and accepted the recommendation to promote Phase 16 before lower-risk follow-on work. The gallery, selection, and plan now use canonical defaults. This promotion does not establish native email-client compatibility, and `SEQ-LF-07` remains campaign-specific rather than a universal default.

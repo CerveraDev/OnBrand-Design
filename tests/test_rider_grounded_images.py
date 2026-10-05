@@ -160,7 +160,7 @@ def base_spec(tmp_path, output_image):
                     "approval_status": "approved",
                     "owner": {
                         "channel": "alt-text",
-                        "module_id": "AI GENERATED IMAGE BASED ON PROMPT",
+                        "module_id": "hero-ai-generated",
                         "slot": "hero_image",
                     },
                     "reuse_policy": "single-use",
@@ -172,7 +172,7 @@ def base_spec(tmp_path, output_image):
         "manifest": {"path": str(write_manifest(tmp_path, output_image))},
         "modules": [
             {
-                "id": "AI GENERATED IMAGE BASED ON PROMPT",
+                "id": "hero-ai-generated",
                 "slots": {
                     "hero_image": {
                         "kind": "image",
@@ -184,10 +184,9 @@ def base_spec(tmp_path, output_image):
             }
         ],
         "static_blocks": [
-            {"id": "STATIC BLOCK 1", "decision": "exclude"},
-            {"id": "STATIC BLOCK 2", "decision": "exclude"},
-            {"id": "STATIC BLOCK 3", "decision": "exclude"},
-            {"id": "STATIC BLOCK 4", "decision": "exclude"},
+            {"id": "static-authority", "decision": "exclude"},
+            {"id": "static-design", "decision": "exclude"},
+            {"id": "static-opportunity", "decision": "exclude"},
         ],
         "variants": {"branded": True, "outside_broker": False, "agents": []},
         "deployment": {"asset_mode": "relative-review"},
@@ -215,7 +214,7 @@ def generated_image_spec(tmp_path, output_image):
         "approval_status": "approved",
         "owner": {
             "channel": "alt-text",
-            "module_id": "AI GENERATED IMAGE BASED ON PROMPT",
+            "module_id": "hero-ai-generated",
             "slot": "hero_image",
             "image_workflow_id": "wellness-gym-hero",
         },
@@ -233,7 +232,7 @@ def generated_image_spec(tmp_path, output_image):
                 "approved_by": "unit test",
                 "approved_at": "2026-10-03",
                 "intended_use": {
-                    "module_id": "AI GENERATED IMAGE BASED ON PROMPT",
+                    "module_id": "hero-ai-generated",
                     "slot": "hero_image",
                     "role": "hero",
                     "variant_scope": "all",

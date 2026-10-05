@@ -9,11 +9,11 @@
   "inputs": {
     "composition": {
       "path": "rider-wellness-composition-plan.json",
-      "sha256": "4beca174585d13585b303987270a7a27e847c44cade0075bbd3e31d1289667b6"
+      "sha256": "336b64a4bb37df1a68f1dff37eed3fa62ae0ad3431f3bf3f0909fb9d63617797"
     },
     "selection": {
       "path": "rider-wellness-composition-selection.json",
-      "sha256": "5c12f90e7917c3c7020e835ac172a8a1f86bda760e1671d48d64dde2facd6f64"
+      "sha256": "70fb37bd6b4c5e27dff7248b0cd69dbc86f416ab858f5fadcd87b86419ebd270"
     }
   },
   "invocation": {

@@ -1,0 +1,254 @@
+{
+  "TWO-COLUMN HEADER": {
+    "headline": [
+      {
+        "operation": "replace_text",
+        "anchor": "SEE THE PLAYERS BEHIND THE $11 BILLION NEIGHBORHOOD"
+      }
+    ],
+    "logo_link": [
+      {
+        "operation": "replace_href",
+        "anchor": "https://theriderresidences.com"
+      }
+    ]
+  },
+  "AI GENERATED IMAGE BASED ON PROMPT": {
+    "hero_image": [
+      {
+        "operation": "replace_image_src",
+        "anchor": "https://media.beefree.cloud/pub/bfra/9dgc1zff/kp4/irm/xi1/hero-ai-composed.jpg",
+        "required_approval": "hero"
+      }
+    ]
+  },
+  "ONE-COLUMN HEADER DARK": {
+    "logo_link": [
+      {
+        "operation": "replace_href",
+        "anchor": "https://theriderresidences.com"
+      }
+    ]
+  },
+  "HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT": {
+    "headline": [
+      {
+        "operation": "replace_text",
+        "anchor": "TAILORED FOR DIGITAL<br>NOMADS AND&nbsp;HODLERS."
+      }
+    ],
+    "background_image": [
+      {
+        "operation": "replace_background_url",
+        "anchor": "https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/kh2b02wi/rya/sbp/to7/bitcoin-hero.png",
+        "required_approval": "hero"
+      }
+    ]
+  },
+  "ONE-COLUMN HEADER LIGHT": {
+    "logo_link": [
+      {
+        "operation": "replace_href",
+        "anchor": "https://theriderresidences.com"
+      }
+    ]
+  },
+  "HERO - LIVE TEXT HEADING - LIGHT LAYOUT - FRAMED": {
+    "headline": [
+      {
+        "operation": "replace_text",
+        "anchor": "TAILORED FOR DIGITAL<br>NOMADS AND&nbsp;HODLERS."
+      }
+    ],
+    "background_image": [
+      {
+        "operation": "replace_background_url",
+        "anchor": "https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/kh2b02wi/rya/sbp/to7/bitcoin-hero.png",
+        "required_approval": "hero"
+      }
+    ]
+  },
+  "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH": {
+    "headline": [
+      {
+        "operation": "replace_text",
+        "anchor": "SEE THE PLAYERS BEHIND THE $11 BILLION NEIGHBORHOOD"
+      }
+    ],
+    "logo_link": [
+      {
+        "operation": "replace_href",
+        "anchor": "https://theriderresidences.com"
+      }
+    ],
+    "background_image": [
+      {
+        "operation": "replace_background_url",
+        "anchor": "https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/kh2b02wi/rya/sbp/to7/bitcoin-hero.png",
+        "required_approval": "hero"
+      }
+    ]
+  },
+  "BODY - DARK THEN LIGHT LAYOUT": {
+    "section_label": [
+      {
+        "operation": "replace_text",
+        "anchor": "BIG MOVES IN THE AREA"
+      }
+    ],
+    "section_1_heading": [
+      {
+        "operation": "replace_text",
+        "anchor": "AMAZON"
+      }
+    ],
+    "section_1_copy": [
+      {
+        "operation": "replace_text",
+        "anchor": "75,000 SQFT of offices + Whole Foods, one block away."
+      }
+    ],
+    "section_2_heading": [
+      {
+        "operation": "replace_text",
+        "anchor": "KEN GRIFFIN"
+      }
+    ],
+    "section_2_copy": [
+      {
+        "operation": "replace_text",
+        "anchor": "Paid $180M for 545Wyn, right up the street."
+      }
+    ],
+    "section_3_heading": [
+      {
+        "operation": "replace_text",
+        "anchor": "SOHO HOUSE, SONY MUSIC,<br>SPOTIFY, LIVE NATION:"
+      }
+    ],
+    "section_3_copy": [
+      {
+        "operation": "replace_text",
+        "anchor": "The culture moved first."
+      }
+    ],
+    "section_4_heading": [
+      {
+        "operation": "replace_text",
+        "anchor": "FOUNDERS FUND, RIPPLE,<br>MAX SAPPHIRE, GEMINI:"
+      }
+    ],
+    "section_4_copy": [
+      {
+        "operation": "replace_text",
+        "anchor": "Miami's FinTech row, blocks away."
+      }
+    ],
+    "list_item_1": [
+      {
+        "operation": "replace_text",
+        "anchor": "<em>1</em><em>5 million visitors a year.</em>"
+      }
+    ],
+    "list_item_2": [
+      {
+        "operation": "replace_text",
+        "anchor": "<em>$590 million spent.</em>"
+      }
+    ],
+    "list_item_3": [
+      {
+        "operation": "replace_text",
+        "anchor": "<em>One street connecting it all.</em>"
+      }
+    ],
+    "amenity_statement": [
+      {
+        "operation": "replace_text",
+        "anchor": "FROM OUTDOOR INFRARED SAUNAS AND COLD PLUNGE POOLS TO MOTORCYCLE RENTALS AND D.J. LISTENING ROOMS."
+      }
+    ],
+    "amenity_kicker": [
+      {
+        "operation": "replace_text",
+        "anchor": "THAT IS DIFFERENT."
+      }
+    ],
+    "arrival_image": [
+      {
+        "operation": "replace_image_src",
+        "anchor": "https://media.beefree.cloud/pub/bfra/9dgc1zff/au4/qxf/nnu/37e1ce0b-0cad-4712-8c00-e57377eef994.jpg",
+        "required_approval": "body"
+      }
+    ],
+    "anchor_line": [
+      {
+        "operation": "replace_text",
+        "anchor": "<em>AND AT 94 NE 29TH STREET,</em><br><em>RIGHT AT THE CENTER OF IT,</em>"
+      }
+    ],
+    "anchor_name": [
+      {
+        "operation": "replace_text",
+        "anchor": "THE RIDER RESIDENCES."
+      }
+    ],
+    "authority_statement_dark": [
+      {
+        "operation": "replace_text_in_context",
+        "anchor": "<div style=\"color:#ffffff;direction:ltr;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:32px;font-weight:400;letter-spacing:0px;line-height:1;text-align:left;mso-line-height-alt:32px;\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p style=\"margin: 0;\">FROM THE CREATORS OF THE BOND ON BRICKELL AND THE RENOWNED JP MORGAN TOWER IN MIAMI.</p>",
+        "text_anchor": "FROM THE CREATORS OF THE BOND ON BRICKELL AND THE RENOWNED JP MORGAN TOWER IN MIAMI."
+      }
+    ],
+    "authority_statement_light": [
+      {
+        "operation": "replace_text_in_context",
+        "anchor": "<div style=\"color:#000000;direction:ltr;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:32px;font-weight:400;letter-spacing:0px;line-height:1;text-align:left;mso-line-height-alt:32px;\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p style=\"margin: 0;\">FROM THE CREATORS OF THE BOND ON BRICKELL AND THE RENOWNED JP MORGAN TOWER IN MIAMI.</p>",
+        "text_anchor": "FROM THE CREATORS OF THE BOND ON BRICKELL AND THE RENOWNED JP MORGAN TOWER IN MIAMI."
+      }
+    ],
+    "primary_cta": [
+      {
+        "operation": "replace_text_in_context",
+        "anchor": "<span class=\"btn-pad\" style=\"word-break: break-word; padding-left: 25px; padding-right: 25px; padding-top: 5px; padding-bottom: 5px; display: block;\"><span style=\"word-break: break-word; line-height: 24px;\">REQUEST MORE INFORMATION</span></span>",
+        "text_anchor": "REQUEST MORE INFORMATION"
+      },
+      {
+        "operation": "replace_text_in_context",
+        "anchor": "<span class=\"btn-pad\" style=\"word-break: break-word; padding-left: 15px; padding-right: 15px; padding-top: 5px; padding-bottom: 5px; display: block;\"><span style=\"word-break: break-word; line-height: 24px;\">REQUEST MORE INFORMATION</span></span>",
+        "text_anchor": "REQUEST MORE INFORMATION"
+      }
+    ],
+    "gallery_image": [
+      {
+        "operation": "replace_image_src",
+        "anchor": "https://media.beefree.cloud/pub/bfra/9dgc1zff/hb0/txm/5ny/tower-front-facade-day-option-1.jpg",
+        "required_approval": "body"
+      }
+    ]
+  },
+  "BRANDED FOOTER": {
+    "footer_cta": [
+      {
+        "operation": "replace_text",
+        "anchor": "SCHEDULE A PRESENTATION"
+      }
+    ]
+  },
+  "OUTSIDE-BROKER CUSTOMIZABLE FOOTER": {
+    "footer_cta": [
+      {
+        "operation": "replace_text",
+        "anchor": "SCHEDULE A PRESENTATION"
+      }
+    ]
+  },
+  "IN-HOUSE AGENT FOOTER": {
+    "footer_cta": [
+      {
+        "operation": "replace_text",
+        "anchor": "SCHEDULE A PRESENTATION"
+      }
+    ]
+  }
+}

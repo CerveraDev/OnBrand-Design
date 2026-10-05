@@ -366,6 +366,9 @@ def analyze_style_colors(rows: Iterable[Row], *, include_marker_rows: bool = Fal
         if row.is_marker and not include_marker_rows:
             continue
         colors.update(row.style_colors)
+    if not include_marker_rows:
+        for marker_color in (*MARKER_COLORS, MARKER_TEXT_COLOR):
+            colors.pop(marker_color, None)
     return colors
 
 

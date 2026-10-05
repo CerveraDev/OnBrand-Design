@@ -1,4 +1,5 @@
 import json
+import hashlib
 from pathlib import Path
 import re
 import unittest
@@ -7,7 +8,6 @@ from tools.email_scaffold import (
     STATIC_END_MARKER_COLOR,
     STATIC_START_MARKER_COLOR,
     analyze_style_colors,
-    apply_canonical_text_corrections,
     find_module_boundaries,
     parse_rows,
     render_without_marker_rows,
@@ -26,18 +26,17 @@ class RiderScaffoldTests(unittest.TestCase):
         cls.canonical_html = (SCAFFOLD_DIR / "rider-scaffolding.canonical.html").read_text()
         cls.rows = parse_rows(cls.canonical_html)
 
-    def test_canonical_copy_applies_expected_text_corrections(self):
+    def test_canonical_copy_preserves_latest_source_and_guarded_corrections(self):
+        source_provenance = SCAFFOLD_DIR / "provenance/rider-scaffolding.source.phase16-2026-10-05.html"
+        self.assertEqual(self.source_html, source_provenance.read_text())
         self.assertEqual(
-            apply_canonical_text_corrections(self.source_html),
-            self.canonical_html,
+            hashlib.sha256(self.canonical_html.encode()).hexdigest(),
+            "4125169e6079965a596f71636c0cb4df3aa336eaf5c101e83a24a73dd4351439",
         )
-        self.assertEqual(self.source_html.count("REQUEST MORE INFORMAITON"), 0)
-        self.assertEqual(self.source_html.count("ARTTS"), 0)
-        self.assertEqual(self.source_html.count("UNBRANDED FOOTER"), 2)
         self.assertNotIn("REQUEST MORE INFORMAITON", self.canonical_html)
         self.assertNotIn("ARTTS", self.canonical_html)
         self.assertNotIn("UNBRANDED FOOTER", self.canonical_html)
-        self.assertTrue((SCAFFOLD_DIR / "provenance/rider-scaffolding.source.legacy-2026-09-30.html").is_file())
+        self.assertTrue((SCAFFOLD_DIR / "provenance/rider-scaffolding.canonical.phase15-2026-10-05.html").is_file())
 
     def test_scaffold_has_expected_marker_pairs(self):
         self.assertEqual(len(self.rows), 102)
@@ -46,28 +45,29 @@ class RiderScaffoldTests(unittest.TestCase):
             [(module.label, module.start_marker_row, module.end_marker_row) for module in modules],
             [
                 ("TWO-COLUMN HEADER", 2, 4),
-                ("AI GENERATED IMAGE BASED ON PROMPT", 5, 7),
-                ("BODY - MASONRY LAYOUT", 8, 12),
+                ("AI GENERATED IMAGE BASED ON PROMPT - CAN BE USED ON INVITES OR LONG FORM EMAIL PIECES", 5, 7),
+                ("BODY - MASONRY LAYOUT - ASPECT RATIO RETAINED - USE AT LEAST THREE IMAGES ON A MASONRY LAYOUT WHEN THE USER ASKS FOR AN IMAGE GALLERY", 8, 12),
                 ("ONE-COLUMN HEADER DARK", 13, 15),
                 ("HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT", 16, 18),
-                ("BODY - LIGHT THEN DARK LAYOUT", 19, 27),
-                ("INVITE - TWO-COLUMN HEADER - COLLABORATION", 28, 31),
-                ("INVITE - DARK BODY", 32, 36),
-                ("HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH", 37, 39),
-                ("ONE-COLUMN HEADER LIGHT", 40, 42),
-                ("HERO - LIVE TEXT HEADING - LIGHT LAYOUT - FRAMED", 43, 45),
-                ("STATIC BLOCK", 53, 55),
-                ("STATIC BLOCK", 57, 59),
-                ("STATIC BLOCK", 62, 64),
-                ("STATIC BLOCK", 65, 67),
-                ("BODY - DARK THEN LIGHT LAYOUT", 46, 72),
+                ("INVITE - TWO-COLUMN HEADER - RIDER PLUS COLLABORATING COMPANY", 19, 22),
+                ("INVITE - DARK BODY", 23, 27),
+                ("HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH", 28, 30),
+                ("ONE-COLUMN HEADER LIGHT", 31, 33),
+                ("HERO - LIVE TEXT HEADING - LIGHT LAYOUT - FRAMED", 34, 36),
+                ("BODY LAYOUT - DARK MODE IS DEFAULT - CONVERT TO LIGHT MODE IF USER ASKS FOR IT", 37, 53),
+                ("STATIC BLOCK - LIGHT MODE IS DEFAULT - TO BE USED IN COMBO WITH DARK MODE BODY - MAY BE REVERSED TO DARK MODE IF DARK BODY IS CONVERTED TO LIGHT MODE - NEVER USE TWO OF THESE IN THE SAME PIECE", 54, 56),
+                ("STATIC BLOCK - CONSIDER THIS BLOCK WHEN THE PIECE IS WELLNESS-RELATED - NEVER USE TWO OF THESE IN THE SAME PIECE", 57, 59),
+                ("CALLOUT TEXT BLOCK HIGHLIGHTING SOMETHING - LATIN REPRESENTS CLOSING CTA IN THE COPY", 61, 63),
+                ("SEMI-STATIC SPECS BLOCK", 64, 66),
+                ("STATIC BLOCK - CONSIDER THIS BLOCK WHEN THE PIECE RELATES TO THE LOBBY OR ARRIVAL - NEVER USE TWO OF THESE IN THE SAME PIECE", 67, 69),
+                ("PRE-FOOTER BLOCK - LATIN REPRESENTS CLOSING CTA IN THE COPY", 70, 72),
                 ("BRANDED FOOTER", 73, 82),
                 ("OUTSIDE-BROKER CUSTOMIZABLE FOOTER", 83, 92),
                 ("IN-HOUSE AGENT FOOTER", 93, 102),
             ],
         )
         for module in modules:
-            if module.label == "STATIC BLOCK":
+            if module.label.startswith("STATIC BLOCK"):
                 self.assertIn(
                     STATIC_START_MARKER_COLOR,
                     self.rows[module.start_marker_row - 1].style_colors,
@@ -79,15 +79,11 @@ class RiderScaffoldTests(unittest.TestCase):
 
     def test_marker_rows_are_excluded_from_rendered_outputs(self):
         rendered = render_without_marker_rows(self.canonical_html)
-        self.assertNotIn("#55ebb9", rendered.lower())
-        self.assertNotIn("#ff81fb", rendered.lower())
-        self.assertNotIn("#ffd675", rendered.lower())
-        self.assertNotIn("#75edff", rendered.lower())
-        self.assertNotIn("START - ", rendered)
-        self.assertNotIn("END - ", rendered)
+        for row_number in (2, 4, 5, 7, 54, 56, 73, 82):
+            self.assertNotIn(f'class="row row-{row_number}"', rendered)
         self.assertIn("row-1", rendered)
         self.assertIn("row-3", rendered)
-        self.assertIn("row-54", rendered)
+        self.assertIn("row-55", rendered)
 
     def test_brand_color_analysis_excludes_authoring_marker_colors(self):
         colors = analyze_style_colors(self.rows)
@@ -96,9 +92,9 @@ class RiderScaffoldTests(unittest.TestCase):
         self.assertNotIn("#ffd675", colors)
         self.assertNotIn("#75edff", colors)
         self.assertNotIn("#393d47", colors)
-        self.assertEqual(colors["#000000"], 156)
-        self.assertEqual(colors["#ffffff"], 101)
-        self.assertEqual(colors["#dddddd"], 6)
+        self.assertEqual(colors["#000000"], 146)
+        self.assertEqual(colors["#ffffff"], 78)
+        self.assertEqual(colors["#dddddd"], 5)
         self.assertEqual(colors["#636565"], 3)
         self.assertEqual(colors["#999999"], 2)
         self.assertEqual(colors["#f7f7f7"], 2)

@@ -104,25 +104,24 @@ class RiderCampaignSlotTests(unittest.TestCase):
         with self.assertRaisesRegex(SlotError, "not allowed"):
             safe_rich_text("<script>alert(1)</script>")
 
-    def test_dark_then_light_body_exposes_distinct_authority_statement_slots(self):
+    def test_long_form_body_exposes_distinct_primary_and_secondary_copy_slots(self):
         scaffold = load_scaffold(
             ROOT / "projects/the-rider/skills/onbrand-the-rider-email/templates/scaffold/rider-scaffolding.canonical.html",
             ROOT / "projects/the-rider/skills/onbrand-the-rider-email/templates/scaffold/rider-scaffolding.slot-map.json",
             ROOT / "projects/the-rider/skills/onbrand-the-rider-email/templates/scaffold/rider-scaffolding.module-metadata.json",
         )
         html, _ = apply_module_slots(
-            "BODY - DARK THEN LIGHT LAYOUT",
-            "".join(module_rows(scaffold, "BODY - DARK THEN LIGHT LAYOUT")),
-            scaffold.slot_map["BODY - DARK THEN LIGHT LAYOUT"],
+            "body-long-form",
+            "".join(module_rows(scaffold, "body-long-form")),
+            scaffold.slot_map["body-long-form"],
             {
-                "authority_statement_dark": {"kind": "text", "value": "DARK AUTHORITY MESSAGE"},
-                "authority_statement_light": {"kind": "text", "value": "LIGHT AUTHORITY MESSAGE"},
+                "body_copy_primary": {"kind": "text", "value": "PRIMARY CAMPAIGN MESSAGE"},
+                "body_copy_secondary": {"kind": "text", "value": "SECONDARY CAMPAIGN MESSAGE"},
             },
             manifest_assets={},
         )
-        self.assertEqual(html.count("DARK AUTHORITY MESSAGE"), 1)
-        self.assertEqual(html.count("LIGHT AUTHORITY MESSAGE"), 1)
-        self.assertNotIn("FROM THE CREATORS OF THE BOND", html)
+        self.assertEqual(html.count("PRIMARY CAMPAIGN MESSAGE"), 1)
+        self.assertEqual(html.count("SECONDARY CAMPAIGN MESSAGE"), 1)
 
     def test_slot_anchor_must_resolve_once(self):
         with self.assertRaisesRegex(SlotError, "exactly once"):
@@ -358,20 +357,19 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
             ROOT / "projects/the-rider/skills/onbrand-the-rider-email/templates/scaffold/rider-scaffolding.module-metadata.json",
         )
         modules = catalog(scaffold)
-        self.assertEqual(len(modules), 19)
-        self.assertEqual(modules["BRANDED FOOTER"], (74, 75, 76, 77, 78, 79, 80, 81))
-        self.assertEqual(modules["STATIC BLOCK 1"], (54,))
-        self.assertEqual(modules["STATIC BLOCK 2"], (58,))
-        self.assertEqual(modules["STATIC BLOCK 3"], (63,))
-        self.assertEqual(modules["STATIC BLOCK 4"], (66,))
+        self.assertEqual(len(modules), 21)
+        self.assertEqual(modules["footer-branded"], (74, 75, 76, 77, 78, 79, 80, 81))
+        self.assertEqual(modules["static-authority"], (55,))
+        self.assertEqual(modules["static-design"], (58,))
+        self.assertEqual(modules["static-opportunity"], (68,))
         self.assertEqual(
-            modules["BODY - DARK THEN LIGHT LAYOUT"],
-            (47, 48, 49, 50, 51, 52, 56, 60, 61, 68, 69, 70, 71),
+            modules["body-long-form"],
+            (38, 39, 40, 42, 45, 48, 51),
         )
-        self.assertNotIn("#55ebb9", "".join(scaffold.rows[number - 1].html for number in modules["BRANDED FOOTER"]))
-        self.assertEqual(scaffold.metadata["HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH"].kind, "hero")
-        self.assertTrue(scaffold.metadata["HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH"].includes_header)
-        self.assertTrue(scaffold.metadata["STATIC BLOCK 1"].locked)
+        self.assertNotIn("#55ebb9", "".join(scaffold.rows[number - 1].html for number in modules["footer-branded"]))
+        self.assertEqual(scaffold.metadata["hero-header-full-width"].kind, "hero")
+        self.assertTrue(scaffold.metadata["hero-header-full-width"].includes_header)
+        self.assertTrue(scaffold.metadata["static-authority"].locked)
 
     def test_static_block_decisions_must_match_ordered_modules(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -387,11 +385,11 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
                 build_campaign_from_spec(spec, base_dir=tmp_path)
 
     def test_static_lock_rejects_mutated_content_before_asset_rewrite(self):
-        decisions = [{"id": "STATIC BLOCK 1", "decision": "include"}]
+        decisions = [{"id": "static-authority", "decision": "include"}]
         with self.assertRaisesRegex(RuntimeError, "Static block lock failed"):
             _validate_static_rendering(
                 decisions,
-                {"STATIC BLOCK 1": "<table>Locked copy</table>"},
+                {"static-authority": "<table>Locked copy</table>"},
                 {"branded": "<table>Changed copy</table>"},
             )
 
@@ -403,7 +401,7 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
             spec = minimal_spec()
             spec["campaign"]["output_dir"] = str(tmp_path / "campaign-output")
             spec["manifest"]["path"] = str(write_manifest(tmp_path, asset))
-            spec["modules"].insert(0, {"id": "ONE-COLUMN HEADER DARK", "slots": {}})
+            spec["modules"].insert(0, {"id": "header-one-column-dark", "slots": {}})
             refresh_copy_allocation(spec)
             with self.assertRaisesRegex(RuntimeError, "incompatible"):
                 build_campaign_from_spec(spec, base_dir=tmp_path)
@@ -443,14 +441,14 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
             spec["manifest"]["path"] = str(write_manifest(tmp_path, asset))
             spec["modules"] = [
                 {
-                    "id": "TWO-COLUMN HEADER",
+                    "id": "header-two-column-dark",
                     "slots": {
                         "headline": {"kind": "text", "value": "Internal Sample Headline"},
                         "logo_link": {"kind": "url", "href": "https://theriderresidences.com"},
                     },
                 },
                 {
-                    "id": "AI GENERATED IMAGE BASED ON PROMPT",
+                    "id": "hero-ai-generated",
                     "slots": {
                         "hero_image": {
                             "kind": "image",
@@ -488,7 +486,7 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
             spec["campaign"]["output_dir"] = str(tmp_path / "campaign-output")
             spec["manifest"]["path"] = str(write_manifest(tmp_path, asset))
             spec["composition"] = approved_composition(
-                selected_codes=["HH-01"],
+                selected_codes=["HH-01", "B-04"],
                 representative_variant="outside-broker-customizable",
             )
             refresh_copy_allocation(spec)
@@ -560,6 +558,7 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
             spec["campaign"]["output_dir"] = str(tmp_path / "campaign-output")
             spec["manifest"]["path"] = str(write_manifest(tmp_path, asset))
             spec["modules"][0]["slots"] = {
+                "headline": {"kind": "text", "value": "Local hero headline"},
                 "background_image": {
                     "kind": "image",
                     "src": "assets/local-hero.png",
@@ -584,19 +583,20 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
         self.assertEqual(
             [module["id"] for module in spec["modules"]],
             [
-                "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
-                "BODY - DARK THEN LIGHT LAYOUT",
-                "STATIC BLOCK 2",
-                "STATIC BLOCK 1",
+                "header-two-column-dark",
+                "hero-ai-generated",
+                "body-long-form",
+                "static-authority",
+                "static-design",
+                "pre-footer-cta",
             ],
         )
         self.assertEqual(
             {item["id"]: item["decision"] for item in spec["static_blocks"]},
             {
-                "STATIC BLOCK 1": "include",
-                "STATIC BLOCK 2": "include",
-                "STATIC BLOCK 3": "exclude",
-                "STATIC BLOCK 4": "exclude",
+                "static-authority": "include",
+                "static-design": "include",
+                "static-opportunity": "exclude",
             },
         )
         self.assertEqual(
@@ -605,12 +605,8 @@ class RiderCampaignRuntimeTests(unittest.TestCase):
         )
         self.assertEqual(spec["variants"], {"branded": True, "outside_broker": True, "agents": "all"})
         self.assertEqual(
-            spec["modules"][1]["slots"]["gallery_image"]["asset_id"],
+            spec["modules"][2]["slots"]["inline_image_primary"]["asset_id"],
             "id:31E0v0XEN2IAAAAAAAAAIA",
-        )
-        self.assertEqual(
-            spec["modules"][1]["slots"]["arrival_image"]["asset_id"],
-            "id:31E0v0XEN2IAAAAAAAAAFw",
         )
 
     def test_release_build_fixture_declares_full_matrix(self):
@@ -657,12 +653,33 @@ def minimal_spec():
             ],
         },
         "manifest": {"path": "manifest.json"},
-        "modules": [{"id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH", "slots": {}}],
+        "modules": [
+            {
+                "id": "hero-header-full-width",
+                "slots": {
+                    "headline": {"kind": "text", "value": "Internal Sample Headline"},
+                    "background_image": {
+                        "kind": "image",
+                        "asset_id": "id:runtime-hero",
+                        "alt": "Internal runtime hero",
+                        "role": "hero",
+                    },
+                },
+            },
+            {
+                "id": "body-long-form",
+                "slots": {
+                    "body_copy_primary": {
+                        "kind": "text",
+                        "value": "A concise approved body message.",
+                    }
+                },
+            },
+        ],
         "static_blocks": [
-            {"id": "STATIC BLOCK 1", "decision": "exclude"},
-            {"id": "STATIC BLOCK 2", "decision": "exclude"},
-            {"id": "STATIC BLOCK 3", "decision": "exclude"},
-            {"id": "STATIC BLOCK 4", "decision": "exclude"}
+            {"id": "static-authority", "decision": "exclude"},
+            {"id": "static-design", "decision": "exclude"},
+            {"id": "static-opportunity", "decision": "exclude"}
         ],
         "variants": {"branded": True, "outside_broker": False, "agents": []},
         "deployment": {"asset_mode": "relative-review"},
@@ -675,7 +692,7 @@ def release_spec(tmp_path, asset):
     spec["campaign"]["output_dir"] = str(tmp_path / "campaign-output")
     spec["manifest"]["path"] = str(write_manifest(tmp_path, asset))
     spec["variants"] = {"branded": True, "outside_broker": True, "agents": "all"}
-    spec["composition"] = approved_composition(selected_codes=["HH-01"])
+    spec["composition"] = approved_composition(selected_codes=["HH-01", "B-04"])
     spec["outside_broker"] = {
         "name": "[OUTSIDE BROKER NAME]",
         "title": "[OUTSIDE BROKER TITLE]",
@@ -683,6 +700,7 @@ def release_spec(tmp_path, asset):
         "email": "[OUTSIDE BROKER EMAIL]",
         "social": "[OUTSIDE BROKER SOCIAL]",
     }
+    refresh_copy_allocation(spec)
     return spec
 
 
@@ -753,7 +771,6 @@ def approved_composition(*, selected_codes, representative_variant="branded"):
     static_decisions = [
         {"code": "S-01", "decision": "include" if "S-01" in selected_codes else "exclude"},
         {"code": "S-02", "decision": "include" if "S-02" in selected_codes else "exclude"},
-        {"code": "S-03", "decision": "include" if "S-03" in selected_codes else "exclude"},
         {"code": "S-04", "decision": "include" if "S-04" in selected_codes else "exclude"},
     ]
     return create_composition_plan(

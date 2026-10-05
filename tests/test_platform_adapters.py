@@ -312,7 +312,6 @@ class AdapterParityTests(unittest.TestCase):
         asset = write_png(cls.root / "pixel.png")
         spec = minimal_spec()
         spec["manifest"]["path"] = str(write_manifest(cls.root, asset))
-        spec["modules"][0]["slots"] = {"headline": {"kind": "text", "value": "Internal Sample Headline"}}
         refresh_copy_allocation(spec)
         cls.spec_path = cls.root / "approved.json"
         write_json(cls.spec_path, spec)

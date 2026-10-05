@@ -155,23 +155,14 @@ Build an approved campaign:
 python3 -m tools.rider_campaign_runtime.cli build path/to/campaign.runtime.json
 ```
 
-The current Phase 16 Rider scaffold is still staged rather than canonical. Reproducing its latest proof requires the complete staged sidecar trio:
-
-```bash
-python3 -m tools.rider_campaign_runtime.cli build path/to/campaign.runtime.json \
-  --scaffold projects/the-rider/skills/onbrand-the-rider-email/templates/scaffold/rider-scaffolding.phase16-intake.html \
-  --slot-map projects/the-rider/skills/onbrand-the-rider-email/templates/scaffold/rider-scaffolding.phase16-slot-map.json \
-  --metadata projects/the-rider/skills/onbrand-the-rider-email/templates/scaffold/rider-scaffolding.phase16-block-metadata.json
-```
-
-After owner approval and canonical promotion, those three flags will no longer be needed for ordinary Rider builds.
+The approved Phase 16 Rider scaffold is canonical. Ordinary Rider builds use it automatically; no scaffold override flags are required. The optional `--scaffold`, `--slot-map`, and `--metadata` trio is reserved for evaluating a future candidate without changing canonical defaults.
 
 For the versioned cross-platform request workflow, see [Cross-Platform Compatibility](COMPATIBILITY.md).
 
 ## Current Boundaries
 
 - Only The Rider has an implemented campaign runtime. Other project folders are scaffolds until calibrated.
-- The latest Phase 16 Rider design is a staged review candidate, not yet the canonical default.
+- The approved Phase 16 Rider design is the canonical default; the previous Phase 15 trio is retained as regression provenance only.
 - The public Rider manifest URL is not configured, so fresh-clone asset bootstrap is incomplete.
 - Browser QA does not certify Gmail, Outlook, Apple Mail, an ESP, accessibility, or legal compliance.
 - Human approval remains required for visual fidelity, factual claims, likeness use, brand judgment, legal text, and final distribution.

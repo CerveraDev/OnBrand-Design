@@ -1,6 +1,6 @@
 # Modules
 
-The canonical scaffold contains 102 top-level Beefree rows, 15 ordinary module boundaries, and four nested static-block boundaries. Marker rows are authoring documentation only:
+The canonical Phase 16 scaffold contains 102 top-level Beefree rows, 20 row-level module boundaries, and 17 granular inline or nested annotations. The runtime exposes 18 selectable content modules and three footer variants. Marker rows are authoring documentation only:
 
 - START marker rows use `#55ebb9`.
 - END marker rows use `#ff81fb`.
@@ -31,17 +31,19 @@ Use structured HTML parsing for runtime extraction. Do not split the scaffold wi
 | Body - masonry layout | 8-12 | 9-11 | Multi-image body layout. |
 | One-column header dark | 13-15 | 14 | Standalone dark header; select only with a hero that does not include a header. |
 | Hero - live text heading - dark framed layout | 16-18 | 17 | Dark framed hero without a built-in header. |
-| Body - light then dark layout | 19-27 | 20-26 | Editorial body sequence that transitions from light to dark. |
-| Invite - two-column header - collaboration | 28-31 | 29-30 | Standalone invitation header with collaboration framing. |
-| Invite - dark body | 32-36 | 33-35 | Dark invitation body with CTA. |
-| Header & hero - live text heading - full-width | 37-39 | 38 | Full-width hero that includes its own Rider header/logo. |
-| One-column header light | 40-42 | 41 | Standalone light header; select only with a hero that does not include a header. |
-| Hero - live text heading - light layout - framed | 43-45 | 44 | Light framed hero without a built-in header. |
-| Body - dark then light layout | 46-72 | 47-52, 56, 60-61, 68-71 | Extended body sequence; nested static rows are selected separately. |
-| Static block 1 | 53-55 | 54 | Locked creator/Own Better brand message. |
-| Static block 2 | 57-59 | 58 | Locked curated-design brand message. |
-| Static block 3 | 62-64 | 63 | Locked furnished-residence availability and price message. |
-| Static block 4 | 65-67 | 66 | Locked opportunity message. |
+| Invite - two-column header - collaboration | 19-22 | 20-21 | Standalone invitation header with collaboration framing. |
+| Invite - dark body | 23-27 | 24-26 | Always-dark invitation body with CTA. |
+| Header & hero - live text heading - full-width | 28-30 | 29 | Full-width hero that includes its own Rider header/logo. |
+| One-column header light | 31-33 | 32 | Standalone light header; select only with a hero that does not include a header. |
+| Hero - live text heading - light layout - framed | 34-36 | 35 | Light framed hero without a built-in header. |
+| Body - long form | 37-53 | 38-52, conditionally | Dark-default editorial body. Optional list/payoff rows are removed as complete table units when unused. |
+| Static authority `S-01` | 54-56 | 55 | Locked developer-authority/Own Better message. |
+| Static curated design `S-02` | 57-59 | 58 | Locked wellness-relevant sauna/design message. May follow `S-01` in the approved exception. |
+| Secondary image `I-02` | Nested annotation | Parent body row | Optional standalone image between copy blocks; placeholder must be replaced when selected. |
+| Callout `C-01` | 61-63 | 62 | Editable highlighted callout and closing copy. |
+| Residence specs `S-03` | 64-66 | 65 | Semi-static residence details with controlled editable fields. |
+| Static opportunity `S-04` | 67-69 | 68 | Locked building-arrival/opportunity message. |
+| Pre-footer CTA `PF-01` | 70-72 | 71 | Editable closing CTA copy before the footer. |
 | Branded footer | 73-82 | 74-81 | Rider footer with project contact, legal, and developer branding. |
 | Outside-broker customizable footer | 83-92 | 84-91 | Rider/legal footer with customizable outside-broker placeholder area. |
 | In-house agent footer | 93-102 | 94-101 | Rider/legal footer populated from an in-house agent record. |
@@ -63,14 +65,6 @@ For in-house agent variants, populate the agent area from `data/agents/index.jso
 
 For outside-broker variants, expose customization fields for headshot, name, title, phone, and email. Keep Rider project branding, developer/legal content, Equal Housing Opportunity marks, and footer legal copy intact.
 
-## Phase 16 Staged Calibration
+## Canonical Calibration
 
-The corrected 94-row scaffold, refined metadata, and deterministic slot map are staged beside the current canonical runtime:
-
-- `templates/scaffold/rider-scaffolding.phase16-intake.html`
-- `templates/scaffold/rider-scaffolding.phase16-block-metadata.json`
-- `templates/scaffold/rider-scaffolding.phase16-slot-map.json`
-
-The shared parser and composition planner can load these files using stable metadata IDs and codes. Optional annotated blocks are removed when omitted; required slots fail before rendering; repeating lists use typed arrays; and compatibility rules enforce campaign type, sequence, and exclusion groups.
-
-Do not treat these staged files as the production source until the Phase 16 galleries and branded proof receive owner approval and the canonical paths are deliberately promoted.
+The approved Phase 16 scaffold, metadata, and deterministic slot map are the production defaults at the canonical paths. The former Phase 15 trio is preserved under `templates/scaffold/provenance/` for regression evidence only. Optional annotated blocks are removed when omitted; required slots fail before rendering; repeating lists use typed arrays; and compatibility rules enforce campaign type, sequence, and exclusion groups.

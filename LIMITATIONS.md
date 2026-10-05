@@ -51,7 +51,7 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 | LIM-017 | Live agent invocation and model-behavior parity remain unverified | P1 | Open | Phase 11 live validation |
 | LIM-018 | Jev semantic decision value, calibration, privacy approval, and fallback behavior are unverified | P2 | Open | Phase 13 pilot |
 | LIM-019 | Copy QA counts logical slot owners, not every rendered replacement rule | P2 | Open | Phase 10 refinement |
-| LIM-020 | Block metadata does not yet encode enough editorial layout intent | P1 | Open | Phase 16 |
+| LIM-020 | Block metadata does not yet encode enough editorial layout intent | P1 | Mitigated | Phase 16 |
 
 ## Detailed Entries
 
@@ -324,16 +324,16 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 ### LIM-020: Block metadata does not yet encode enough editorial layout intent
 
 - Priority: P1
-- Status: Open
+- Status: Mitigated
 - Owner phase: Phase 16
 - Dependencies: The annotated expanded Rider scaffold is received and marker-validated; nested-annotation parsing, stable metadata identities, and the existing Phase 8/15 module catalog and proof workflow remain required.
 - Evidence: [Phase 16 specification](docs/specs/phase-16-scaffold-expansion-and-layout-calibration.md), [Phase 16 intake](docs/evals/phase-16-rider-scaffold-intake.md), [Phase 16 layout gallery](docs/evals/phase-16-rider-layout-gallery.md), [Phase 16 branded proof](docs/evals/phase-16-rider-wellness-branded-proof.md), [Phase 15 corrected proof](docs/evals/phase-15-rider-wellness-corrected-proof.md)
-- Current behavior: The Phase 16 parser, metadata, slot map, and composition planner classify and enforce 20 modules, 17 granular annotations, required/optional content, four container-owned conditional list/payoff rows, repeating lists, campaign compatibility, predecessor/successor rules, and exclusion groups. `S-02` carries wellness/sauna guidance, `S-04` carries building-arrival guidance, and the explicit `S-01` then `S-02` exception is permitted while other static-message pairs remain blocked. The owner selected `SEQ-LF-07`, and the staged runtime produced a branded proof through explicit scaffold/slot-map/metadata inputs. The production build paths still default to the Phase 15 canonical sidecars; presets are not automatically ranked, owner visual approval is pending, and the optional full light-body conversion is not yet a coordinated runtime transform.
+- Current behavior: The Phase 16 parser, metadata, slot map, and composition planner classify and enforce 20 modules, 17 granular annotations, required/optional content, four container-owned conditional list/payoff rows, repeating lists, campaign compatibility, predecessor/successor rules, and exclusion groups. `S-02` carries wellness/sauna guidance, `S-04` carries building-arrival guidance, and the explicit `S-01` then `S-02` exception is permitted while other static-message pairs remain blocked. The owner selected and approved the `SEQ-LF-07` proof, and the Phase 16 scaffold and sidecars are now canonical. Presets are not automatically ranked, and the optional full light-body conversion is not yet a coordinated runtime transform.
 - Risk and impact: An assembled email can pass structural and package QA while still using an awkward block sequence, mismatched density, redundant visual rhythm, or a content block that is technically valid but contextually wrong.
-- Current control: Composition Preview and human review remain required. Stable `SEQ-*` choices expose complete block order before proof assembly, and staged build flags prevent the selected Phase 16 inputs from silently replacing canonical defaults. The new `SEQ-LF-07` proof is review evidence only.
+- Current control: Composition Preview and human review remain required. Stable `SEQ-*` choices expose complete block order before proof assembly, and every campaign requires a fresh header/hero approval. Candidate build flags can evaluate a future scaffold without changing canonical defaults.
 - Scoring could help: Yes, after the annotation vocabulary is stable. Deterministic compatibility and content-fit rules should lead; scoring may rank multiple valid sequences.
 - Candidate metrics: Required-content coverage, copy-density fit, image-count fit, adjacent color-transition compatibility, duplicate-purpose count, narrative-role coverage, sequence-rule violations, mobile-height balance, and reviewer selection or correction rate.
-- Closure criteria: Resolve owner feedback on the `SEQ-LF-07` proof, implement any approved light-body transformation needed by that decision, and obtain approval on a layout-refined branded proof before canonical promotion.
+- Closure criteria: Add evidence-backed ranking metrics for multiple valid sequences, implement a coordinated light-body transform if approved for a real campaign, and validate representative layouts in the browser and native email-client matrices.
 
 ## Entry Template
 
@@ -382,3 +382,4 @@ Use this template for new limitations:
 - 2026-10-04: Continuity review found that the initial eight presets omitted the approved CFG-05 `H-01 + AI-01` combination. Added `SEQ-LF-07` as a ninth proposed sequence with the refined body, one authority block, and pre-footer; owner approval remains pending.
 - 2026-10-05: The owner selected `SEQ-LF-07`, then clarified that its wellness narrative requires `S-02` immediately after `S-01`. Creative guidance now identifies `S-02` as the sauna/wellness block and `S-04` as the building-arrival block. The revised proof passes 69 QA checks and clean browser diagnostics. LIM-020 remains open for owner visual approval, any resulting layout changes, reproducible browser-matrix evidence, native email-client review, and canonical promotion.
 - 2026-10-05: Preserved the CSS-corrected 102-row scaffold and implemented four nested conditional list/payoff containers. The regenerated proof retains the two populated list rows and removes the two absent list families as balanced table units. Full discovery passes 179 tests. LIM-020 remains open for owner visual approval, any further annotated layout changes, reproducible browser-matrix evidence, native email-client review, and canonical promotion.
+- 2026-10-05: The owner accepted the canonical-promotion recommendation. The Phase 16 trio and migrated fixtures now drive ordinary builds, the Phase 15 trio is archived as regression provenance, and the approved proof reproduces byte-for-byte without override flags. LIM-020 is mitigated; sequence ranking, optional full-light transformation, and native-client evidence remain open.

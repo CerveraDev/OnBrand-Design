@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-05
 
-**Status:** Branded Composition Preview regenerated from the latest scaffold; owner visual feedback pending
+**Status:** Owner approved as the canonical Phase 16 promotion proof
 
 ## Approved Inputs
 
@@ -15,7 +15,7 @@
 - Attribution: the source copyright credit remains visibly present
 - Output scope: one branded Composition Preview
 
-The owner's request to begin the branded proof is recorded as approval to use the proposed `SEQ-LF-07` sequence for this review build. It is not canonical scaffold approval.
+The owner selected `SEQ-LF-07`, approved the refined result as the best proof produced so far, and then accepted the recommendation to promote Phase 16 as the next priority. That decision is recorded as canonical scaffold approval.
 
 ## Composition
 
@@ -38,9 +38,9 @@ The latest scaffold revision makes the list families row-conditional. This proof
 
 ## Package Evidence
 
-- Runtime fixture: `projects/the-rider/skills/onbrand-the-rider-email/examples/rider-wellness-phase16-composition-preview.runtime.json`
-- Selection: `projects/the-rider/skills/onbrand-the-rider-email/examples/rider-wellness-phase16-composition-selection.json`
-- Composition plan: `projects/the-rider/skills/onbrand-the-rider-email/examples/rider-wellness-phase16-composition-plan.json`
+- Canonical runtime fixture: `projects/the-rider/skills/onbrand-the-rider-email/examples/rider-wellness-composition-preview.runtime.json`
+- Canonical selection: `projects/the-rider/skills/onbrand-the-rider-email/examples/rider-wellness-composition-selection.json`
+- Canonical composition plan: `projects/the-rider/skills/onbrand-the-rider-email/examples/rider-wellness-composition-plan.json`
 - Build mode: `composition-preview`
 - Variant count: 1 branded preview
 - QA: 69 checks passed, zero failed
@@ -81,6 +81,6 @@ Visual inspection of the latest full-page proof found coherent stacking, readabl
 
 The packaged sauna background resolves to `images/sauna-7957fadc8be8.jpg` through computed CSS. A fresh mobile check of the revised proof remains pending because the current in-app browser surface did not expose viewport resizing, and the standalone Playwright render-matrix command remains unavailable inside the managed macOS shell because Chromium cannot register its Mach rendezvous port. No revised-proof mobile or matrix success is claimed. The in-app browser checks are review evidence, not Gmail, Outlook, Apple Mail, or native-client certification.
 
-## Promotion Boundary
+## Promotion Result
 
-The Phase 15 scaffold remains canonical. This Phase 16 proof is open for owner critique and iteration. Canonical promotion, full variant generation, and real-client testing remain blocked until the owner approves the refined composition.
+The Phase 16 scaffold, metadata, slot map, and live fixtures are canonical. A no-override build reproduced this proof with the same HTML SHA-256, 69 passing QA checks, eight packaged assets, and zero authoring-marker leaks. The Phase 15 trio remains archived as regression provenance. Native email-client testing and full release-matrix review remain open.

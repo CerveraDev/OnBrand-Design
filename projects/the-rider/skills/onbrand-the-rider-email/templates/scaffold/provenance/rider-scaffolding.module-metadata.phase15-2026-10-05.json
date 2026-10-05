@@ -1,0 +1,156 @@
+{
+  "modules": [
+    {
+      "id": "TWO-COLUMN HEADER",
+      "label": "TWO-COLUMN HEADER",
+      "kind": "header",
+      "includes_header": false,
+      "locked": false,
+      "summary": "Dark two-column standalone header with Rider logo and live text headline."
+    },
+    {
+      "id": "AI GENERATED IMAGE BASED ON PROMPT",
+      "label": "AI GENERATED IMAGE BASED ON PROMPT",
+      "kind": "hero",
+      "includes_header": false,
+      "locked": false,
+      "summary": "Image-led hero module for approved generated imagery."
+    },
+    {
+      "id": "BODY - MASONRY LAYOUT",
+      "label": "BODY - MASONRY LAYOUT",
+      "kind": "body",
+      "includes_header": false,
+      "locked": false,
+      "summary": "Dark masonry-style editorial body content."
+    },
+    {
+      "id": "ONE-COLUMN HEADER DARK",
+      "label": "ONE-COLUMN HEADER DARK",
+      "kind": "header",
+      "includes_header": false,
+      "locked": false,
+      "summary": "Dark one-column standalone header with white Rider logo."
+    },
+    {
+      "id": "HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT",
+      "label": "HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT",
+      "kind": "hero",
+      "includes_header": false,
+      "locked": false,
+      "summary": "Dark framed hero with editable live text heading and background art."
+    },
+    {
+      "id": "BODY - LIGHT THEN DARK LAYOUT",
+      "label": "BODY - LIGHT THEN DARK LAYOUT",
+      "kind": "body",
+      "includes_header": false,
+      "locked": false,
+      "summary": "Light-to-dark editorial body module with image and CTA content."
+    },
+    {
+      "id": "INVITE - TWO-COLUMN HEADER - COLLABORATION",
+      "label": "INVITE - TWO-COLUMN HEADER - COLLABORATION",
+      "kind": "header",
+      "includes_header": false,
+      "locked": false,
+      "summary": "Invite collaboration header with Rider and partner logo placement."
+    },
+    {
+      "id": "INVITE - DARK BODY",
+      "label": "INVITE - DARK BODY",
+      "kind": "body",
+      "includes_header": false,
+      "locked": false,
+      "summary": "Dark invite body module with supporting image and CTA content."
+    },
+    {
+      "id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
+      "label": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
+      "kind": "hero",
+      "includes_header": true,
+      "locked": false,
+      "summary": "Full-width hero that includes its own Rider header/logo."
+    },
+    {
+      "id": "ONE-COLUMN HEADER LIGHT",
+      "label": "ONE-COLUMN HEADER LIGHT",
+      "kind": "header",
+      "includes_header": false,
+      "locked": false,
+      "summary": "Light one-column standalone header with black Rider logo."
+    },
+    {
+      "id": "HERO - LIVE TEXT HEADING - LIGHT LAYOUT - FRAMED",
+      "label": "HERO - LIVE TEXT HEADING - LIGHT LAYOUT - FRAMED",
+      "kind": "hero",
+      "includes_header": false,
+      "locked": false,
+      "summary": "Light framed hero with editable live text heading and background art."
+    },
+    {
+      "id": "BODY - DARK THEN LIGHT LAYOUT",
+      "label": "BODY - DARK THEN LIGHT LAYOUT",
+      "kind": "body",
+      "includes_header": false,
+      "locked": false,
+      "summary": "Dark-to-light editorial body module; nested static blocks are locked and selected separately."
+    },
+    {
+      "id": "STATIC BLOCK 1",
+      "label": "STATIC BLOCK",
+      "kind": "static",
+      "includes_header": false,
+      "locked": true,
+      "summary": "From the creators of The Bond on Brickell and JP Morgan Tower; Own Better brand lockup."
+    },
+    {
+      "id": "STATIC BLOCK 2",
+      "label": "STATIC BLOCK",
+      "kind": "static",
+      "includes_header": false,
+      "locked": true,
+      "summary": "Curated design to please both your eyes and soul."
+    },
+    {
+      "id": "STATIC BLOCK 3",
+      "label": "STATIC BLOCK",
+      "kind": "static",
+      "includes_header": false,
+      "locked": true,
+      "summary": "Limited edition furnished residences availability and price range."
+    },
+    {
+      "id": "STATIC BLOCK 4",
+      "label": "STATIC BLOCK",
+      "kind": "static",
+      "includes_header": false,
+      "locked": true,
+      "summary": "Opportunity is knocking at your door."
+    },
+    {
+      "id": "BRANDED FOOTER",
+      "label": "BRANDED FOOTER",
+      "kind": "footer",
+      "includes_header": false,
+      "locked": false,
+      "summary": "Branded Rider footer."
+    },
+    {
+      "id": "OUTSIDE-BROKER CUSTOMIZABLE FOOTER",
+      "label": "OUTSIDE-BROKER CUSTOMIZABLE FOOTER",
+      "kind": "footer",
+      "includes_header": false,
+      "locked": false,
+      "summary": "Outside-broker customizable footer."
+    },
+    {
+      "id": "IN-HOUSE AGENT FOOTER",
+      "label": "IN-HOUSE AGENT FOOTER",
+      "kind": "footer",
+      "includes_header": false,
+      "locked": false,
+      "summary": "In-house agent footer."
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-04
 
-**Status:** Latest source preserved, conditional row annotations validated, and canonical promotion pending
+**Status:** Latest source preserved, conditional row annotations validated, and promoted to canonical on 2026-10-05
 
 ## Artifacts
 
@@ -49,4 +49,4 @@ The latest source adds four nested row-level conditions inside the long-form bod
 
 The shared scaffold parser preserves top-level and nested static module extraction and adds a separate marker-element pass for granular inline and nested annotations. It resolves 20 modules and 17 annotations from the corrected intake, including four conditional row containers, five nested relationships, the nested amplification field, and the standalone second image block.
 
-The corrected intake file still must not replace `rider-scaffolding.canonical.html` until slot-map, composition, preview, proof, and remaining regression work is complete. See [Phase 16 parser and metadata evidence](phase-16-parser-and-metadata.md).
+After owner approval of the refined proof, the corrected intake became `rider-scaffolding.canonical.html` with the same SHA-256 shown above. The former Phase 15 canonical scaffold, metadata, and slot map are preserved under `templates/scaffold/provenance/`. See [Phase 16 parser and metadata evidence](phase-16-parser-and-metadata.md).

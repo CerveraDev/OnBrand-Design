@@ -16,6 +16,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Added
 
+- Canonical Phase 16 Rider scaffold, refined metadata, deterministic slot map, migrated runtime fixtures, and archived Phase 15 regression provenance after owner approval.
 - A practical user guide covering prerequisites, explicit Codex and Claude Code invocation, campaign prompts, approval workflow, build modes, CLI commands, package contents, optional maintenance dependencies, and current distribution/portability boundaries.
 - The owner's latest CSS-corrected Rider scaffold as immutable provenance, four deterministic conditional list/payoff row containers, dependency validation for nested slots, and a regenerated wellness proof with only populated list families retained.
 - Machine-readable creative guidance for `S-02` as a wellness/sauna block and `S-04` as a Rider building-arrival block, with visible selection guidance and tags in the module gallery.
@@ -106,8 +107,10 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Validated
 
+- Canonical no-override regeneration reproduces the approved Phase 16 wellness proof byte-for-byte at SHA-256 `b82bcc430806bd174e621f379ee4a5ef132bab59900e50c4af1188700580ea60`, with 69 passing QA checks, eight packaged assets, and zero authoring-marker leaks.
+- Canonical Release Build renders all nine authorized variants, packages 16 assets, and passes 237 QA checks with zero failures.
 - Latest Phase 16 proof passes 69 runtime QA checks with eight assets, balanced table markup, no authoring markers, each approved campaign phrase emitted once, populated rows 42/45 retained, unused rows 48/51 omitted, full-page browser inspection passed, and all 179 repository tests passing.
-- The revised staged Phase 16 branded proof passes 69 runtime QA checks, packages eight assets, includes the locally packaged sauna background after the authority block, emits each campaign message once, contains no authoring-marker rows, and passes browser diagnostics with zero horizontal overflow and zero broken images. Owner visual approval and native email-client review remain pending.
+- The revised Phase 16 branded proof passes 69 runtime QA checks, packages eight assets, includes the locally packaged sauna background after the authority block, emits each campaign message once, contains no authoring-marker rows, and passes browser diagnostics with zero horizontal overflow and zero broken images. Native email-client review remains pending.
 - Corrected CFG-05 branded Composition Preview passes 90 QA checks with one approved Gym 2 hero, 27 copy owners, one HTML variant, nine packaged images, visible source attribution, and a self-contained ZIP. Full discovery passes 160 tests.
 - Acceptance-gap follow-up passes 79 tests, including 18 allocation tests; responsive branch duplication counts once while a second owner still fails. Runtime behavior and the audited live pilot remain unchanged.
 

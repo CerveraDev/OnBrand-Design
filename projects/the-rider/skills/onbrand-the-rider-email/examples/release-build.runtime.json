@@ -6,19 +6,23 @@
   },
   "campaign": {
     "slug": "rider-runtime-release-build",
-    "title": "Rider Runtime Release Build Validation",
+    "title": "Rider Runtime Phase 16 Release Build Validation",
     "output_dir": "campaign-output/rider-runtime-release-build",
-    "subject": "Internal release build validation only",
-    "preview_text": "Non-production validation of the full Rider runtime variant matrix."
+    "subject": "Your Miami wellness routine, minutes from home",
+    "preview_text": "Soho House and Equinox are minutes from The Rider."
   },
   "manifest": {
     "path": "tools/dropbox-manifest/manifest.json"
   },
   "modules": [
     {
-      "id": "ONE-COLUMN HEADER DARK",
+      "id": "header-two-column-dark",
       "variant": "default",
       "slots": {
+        "headline": {
+          "kind": "safe_rich_text",
+          "value": "MIAMI’S NEW EPICENTER<br>OF WELLNESS."
+        },
         "logo_link": {
           "kind": "url",
           "href": "https://theriderresidences.com"
@@ -26,63 +30,86 @@
       }
     },
     {
-      "id": "HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT",
+      "id": "hero-ai-generated",
       "variant": "default",
       "slots": {
-        "headline": {
-          "kind": "safe_rich_text",
-          "value": "INTERNAL RELEASE BUILD<br>DO NOT SEND"
-        },
-        "background_image": {
+        "hero_image": {
           "kind": "image",
-          "asset_id": "id:31E0v0XEN2IAAAAAAAAABg",
-          "alt": "The Rider tower exterior",
-          "role": "hero"
+          "src": "projects/the-rider/skills/onbrand-the-rider-email/examples/assets/rider-wellness-corrected/rider-wellness-gym2-candidate-v1.png",
+          "alt": "Woman in black activewear seated in a butterfly pose on a charcoal-gray Rider mat inside The Rider gym",
+          "role": "hero",
+          "image_workflow_id": "rider-wellness-gym2-hero"
         }
       }
     },
     {
-      "id": "BODY - DARK THEN LIGHT LAYOUT",
+      "id": "body-long-form",
       "variant": "default",
       "slots": {
-        "primary_cta": {
+        "subheading": {
           "kind": "text",
-          "value": "REQUEST INTERNAL REVIEW"
+          "value": "Soho House and Equinox are minutes from The Rider — and your New York or California membership may travel with you."
         },
-        "gallery_image": {
+        "body_copy_primary": {
+          "kind": "text",
+          "value": "Two of the names that define members’ health and social life are landing right here: Soho House is investing in its Beach House and a dedicated health club nearby, while Equinox is bringing a new club to Edgewater minutes away."
+        },
+        "inline_image_primary": {
           "kind": "image",
-          "asset_id": "id:31E0v0XEN2IAAAAAAAAAVw",
-          "alt": "The Rider near Wynwood Station",
-          "role": "body"
+          "asset_id": "id:31E0v0XEN2IAAAAAAAAAIA",
+          "alt": "The Rider recovery spa",
+          "role": "body-wellness-recovery"
+        },
+        "body_copy_secondary": {
+          "kind": "text",
+          "value": "For anyone relocating from New York or California, that is the quiet luxury: the membership you already have can remain part of your Miami routine."
+        },
+        "leading_terms": {
+          "kind": "text_list",
+          "items": [
+            "SAME ROUTINE",
+            "SAME MEMBERSHIP",
+            "NEW CITY"
+          ]
+        },
+        "list_payoff": {
+          "kind": "text",
+          "value": "WITH THE RIDER AT THE CENTER OF IT."
         }
       }
     },
     {
-      "id": "STATIC BLOCK 1",
+      "id": "static-authority",
       "variant": "default",
       "slots": {}
     },
     {
-      "id": "STATIC BLOCK 3",
+      "id": "static-design",
       "variant": "default",
       "slots": {}
+    },
+    {
+      "id": "pre-footer-cta",
+      "variant": "default",
+      "slots": {
+        "closing_cta_copy": {
+          "kind": "text",
+          "value": "KEEP YOUR MIAMI ROUTINE CLOSE TO HOME."
+        }
+      }
     }
   ],
   "static_blocks": [
     {
-      "id": "STATIC BLOCK 1",
+      "id": "static-authority",
       "decision": "include"
     },
     {
-      "id": "STATIC BLOCK 2",
-      "decision": "exclude"
-    },
-    {
-      "id": "STATIC BLOCK 3",
+      "id": "static-design",
       "decision": "include"
     },
     {
-      "id": "STATIC BLOCK 4",
+      "id": "static-opportunity",
       "decision": "exclude"
     }
   ],
@@ -98,92 +125,101 @@
     "email": "[OUTSIDE BROKER EMAIL]",
     "social": "[OUTSIDE BROKER SOCIAL]"
   },
-  "documents": [
-    {
-      "asset_id": "id:31E0v0XEN2IAAAAAAAAA9Q",
-      "role": "internal-release-validation-supporting-pdf"
-    }
-  ],
   "deployment": {
     "asset_mode": "relative-review"
   },
   "composition": {
     "plan_version": "1.0",
-    "plan_id": "rider-runtime-release-build-composition",
+    "plan_id": "rider-wellness-phase16-seq-lf-07",
     "status": "approved",
-    "approved_by": "OnBrand Phase 8 fixture",
-    "approved_at": "2026-10-03",
+    "approved_by": "Felix Mendoza",
+    "approved_at": "2026-10-05",
     "representative_variant": "branded",
     "selected_module_codes": [
-      "H-02",
-      "HR-01",
+      "H-01",
+      "AI-01",
       "B-04",
       "S-01",
-      "S-03"
+      "S-02",
+      "PF-01"
     ],
     "selected_modules": [
       {
-        "code": "H-02",
-        "scaffold_module_id": "ONE-COLUMN HEADER DARK",
+        "code": "H-01",
+        "scaffold_module_id": "header-two-column-dark",
         "module_type": "header",
-        "includes_header": false,
+        "includes_header": true,
         "locked": false
       },
       {
-        "code": "HR-01",
-        "scaffold_module_id": "HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT",
+        "code": "AI-01",
+        "scaffold_module_id": "hero-ai-generated",
         "module_type": "hero",
         "includes_header": false,
         "locked": false
       },
       {
         "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
+        "scaffold_module_id": "body-long-form",
         "module_type": "body",
         "includes_header": false,
         "locked": false
       },
       {
         "code": "S-01",
-        "scaffold_module_id": "STATIC BLOCK 1",
+        "scaffold_module_id": "static-authority",
         "module_type": "static",
         "includes_header": false,
         "locked": true
       },
       {
-        "code": "S-03",
-        "scaffold_module_id": "STATIC BLOCK 3",
+        "code": "S-02",
+        "scaffold_module_id": "static-design",
         "module_type": "static",
         "includes_header": false,
         "locked": true
+      },
+      {
+        "code": "PF-01",
+        "scaffold_module_id": "pre-footer-cta",
+        "module_type": "body",
+        "includes_header": false,
+        "locked": false
       }
     ],
     "static_block_decisions": [
       {
         "code": "S-01",
-        "scaffold_module_id": "STATIC BLOCK 1",
+        "scaffold_module_id": "static-authority",
         "decision": "include"
       },
       {
         "code": "S-02",
-        "scaffold_module_id": "STATIC BLOCK 2",
-        "decision": "exclude"
-      },
-      {
-        "code": "S-03",
-        "scaffold_module_id": "STATIC BLOCK 3",
+        "scaffold_module_id": "static-design",
         "decision": "include"
       },
       {
         "code": "S-04",
-        "scaffold_module_id": "STATIC BLOCK 4",
+        "scaffold_module_id": "static-opportunity",
         "decision": "exclude"
       }
     ],
     "editable_slots": [
       {
-        "code": "H-02",
-        "scaffold_module_id": "ONE-COLUMN HEADER DARK",
+        "code": "H-01",
+        "scaffold_module_id": "header-two-column-dark",
+        "slot": "headline",
+        "slot_type": "text",
+        "operations": [
+          "replace_text"
+        ],
+        "required_approvals": [],
+        "required": true,
+        "omit_if_missing": false
+      },
+      {
+        "code": "H-01",
+        "scaffold_module_id": "header-two-column-dark",
         "slot": "logo_link",
         "slot_type": "url",
         "operations": [
@@ -192,269 +228,169 @@
         "required_approvals": []
       },
       {
-        "code": "HR-01",
-        "scaffold_module_id": "HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT",
-        "slot": "background_image",
+        "code": "AI-01",
+        "scaffold_module_id": "hero-ai-generated",
+        "slot": "hero_image",
         "slot_type": "image",
         "operations": [
-          "replace_background_url"
+          "replace_image_src"
         ],
         "required_approvals": [
           "hero"
-        ]
-      },
-      {
-        "code": "HR-01",
-        "scaffold_module_id": "HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT",
-        "slot": "headline",
-        "slot_type": "text",
-        "operations": [
-          "replace_text"
         ],
-        "required_approvals": []
+        "required": true,
+        "omit_if_missing": false
       },
       {
         "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "amenity_kicker",
-        "slot_type": "text",
+        "scaffold_module_id": "body-long-form",
+        "slot": "amplified_list",
+        "slot_type": "amplified_list",
         "operations": [
-          "replace_text"
+          "annotation_repeat_pairs"
         ],
-        "required_approvals": []
+        "required_approvals": [],
+        "required": false,
+        "omit_if_missing": true,
+        "annotation_id": "body-amplified-list"
       },
       {
         "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "amenity_statement",
+        "scaffold_module_id": "body-long-form",
+        "slot": "body_copy_primary",
         "slot_type": "text",
         "operations": [
-          "replace_text"
+          "annotation_replace_text"
         ],
-        "required_approvals": []
+        "required_approvals": [],
+        "required": true,
+        "omit_if_missing": false,
+        "annotation_id": "body-paragraph-primary"
       },
       {
         "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "anchor_line",
+        "scaffold_module_id": "body-long-form",
+        "slot": "body_copy_secondary",
         "slot_type": "text",
         "operations": [
-          "replace_text"
+          "annotation_replace_text"
         ],
-        "required_approvals": []
+        "required_approvals": [],
+        "required": false,
+        "omit_if_missing": true,
+        "annotation_id": "body-paragraph-secondary"
       },
       {
         "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "anchor_name",
-        "slot_type": "text",
+        "scaffold_module_id": "body-long-form",
+        "slot": "followup_list",
+        "slot_type": "text_list",
         "operations": [
-          "replace_text"
+          "annotation_replace_list"
         ],
-        "required_approvals": []
+        "required_approvals": [],
+        "required": false,
+        "omit_if_missing": true,
+        "annotation_id": "body-followup-list"
       },
       {
         "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "arrival_image",
+        "scaffold_module_id": "body-long-form",
+        "slot": "inline_image_primary",
         "slot_type": "image",
         "operations": [
-          "replace_image_src"
+          "annotation_replace_image"
         ],
         "required_approvals": [
           "body"
-        ]
+        ],
+        "required": false,
+        "omit_if_missing": true,
+        "annotation_id": "body-inline-image-primary"
       },
       {
         "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "authority_statement_dark",
+        "scaffold_module_id": "body-long-form",
+        "slot": "leading_terms",
+        "slot_type": "text_list",
+        "operations": [
+          "annotation_repeat_text"
+        ],
+        "required_approvals": [],
+        "required": false,
+        "omit_if_missing": true,
+        "annotation_id": "body-leading-term-list"
+      },
+      {
+        "code": "B-04",
+        "scaffold_module_id": "body-long-form",
+        "slot": "list_eyebrow",
         "slot_type": "text",
         "operations": [
-          "replace_text_in_context"
+          "annotation_replace_text"
         ],
-        "required_approvals": []
+        "required_approvals": [],
+        "required": false,
+        "omit_if_missing": true,
+        "annotation_id": "body-list-eyebrow"
       },
       {
         "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "authority_statement_light",
+        "scaffold_module_id": "body-long-form",
+        "slot": "list_payoff",
         "slot_type": "text",
         "operations": [
-          "replace_text_in_context"
+          "annotation_replace_text"
         ],
-        "required_approvals": []
+        "required_approvals": [],
+        "required": false,
+        "omit_if_missing": true,
+        "annotation_id": "body-list-payoff"
       },
       {
         "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "gallery_image",
-        "slot_type": "image",
-        "operations": [
-          "replace_image_src"
-        ],
-        "required_approvals": [
-          "body"
-        ]
-      },
-      {
-        "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "list_item_1",
+        "scaffold_module_id": "body-long-form",
+        "slot": "subheading",
         "slot_type": "text",
         "operations": [
-          "replace_text"
+          "annotation_replace_text"
         ],
-        "required_approvals": []
+        "required_approvals": [],
+        "required": false,
+        "omit_if_missing": true,
+        "annotation_id": "body-subheading"
       },
       {
-        "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "list_item_2",
-        "slot_type": "text",
-        "operations": [
-          "replace_text"
-        ],
-        "required_approvals": []
-      },
-      {
-        "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "list_item_3",
-        "slot_type": "text",
-        "operations": [
-          "replace_text"
-        ],
-        "required_approvals": []
-      },
-      {
-        "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "primary_cta",
-        "slot_type": "text",
-        "operations": [
-          "replace_text_in_context"
-        ],
-        "required_approvals": []
-      },
-      {
-        "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "section_1_copy",
+        "code": "PF-01",
+        "scaffold_module_id": "pre-footer-cta",
+        "slot": "closing_cta_copy",
         "slot_type": "text",
         "operations": [
           "replace_text"
         ],
-        "required_approvals": []
-      },
-      {
-        "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "section_1_heading",
-        "slot_type": "text",
-        "operations": [
-          "replace_text"
-        ],
-        "required_approvals": []
-      },
-      {
-        "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "section_2_copy",
-        "slot_type": "text",
-        "operations": [
-          "replace_text"
-        ],
-        "required_approvals": []
-      },
-      {
-        "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "section_2_heading",
-        "slot_type": "text",
-        "operations": [
-          "replace_text"
-        ],
-        "required_approvals": []
-      },
-      {
-        "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "section_3_copy",
-        "slot_type": "text",
-        "operations": [
-          "replace_text"
-        ],
-        "required_approvals": []
-      },
-      {
-        "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "section_3_heading",
-        "slot_type": "text",
-        "operations": [
-          "replace_text"
-        ],
-        "required_approvals": []
-      },
-      {
-        "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "section_4_copy",
-        "slot_type": "text",
-        "operations": [
-          "replace_text"
-        ],
-        "required_approvals": []
-      },
-      {
-        "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "section_4_heading",
-        "slot_type": "text",
-        "operations": [
-          "replace_text"
-        ],
-        "required_approvals": []
-      },
-      {
-        "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "section_label",
-        "slot_type": "text",
-        "operations": [
-          "replace_text"
-        ],
-        "required_approvals": []
+        "required_approvals": [],
+        "required": true,
+        "omit_if_missing": false
       }
     ],
     "required_assets": [
       {
-        "code": "HR-01",
-        "scaffold_module_id": "HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT",
-        "slot": "background_image",
+        "code": "AI-01",
+        "scaffold_module_id": "hero-ai-generated",
+        "slot": "hero_image",
         "required_approvals": [
           "hero"
         ],
-        "image_aspect_ratio": "module-native hero crop; approve exact crop before image generation"
+        "image_aspect_ratio": "scaffold-defined"
       },
       {
         "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "arrival_image",
+        "scaffold_module_id": "body-long-form",
+        "slot": "inline_image_primary",
         "required_approvals": [
           "body"
         ],
-        "image_aspect_ratio": "module-native body crop; approve exact crop before image selection"
-      },
-      {
-        "code": "B-04",
-        "scaffold_module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "gallery_image",
-        "required_approvals": [
-          "body"
-        ],
-        "image_aspect_ratio": "module-native body crop; approve exact crop before image selection"
+        "image_aspect_ratio": "scaffold-defined"
       }
     ],
     "compatibility": {
@@ -466,18 +402,103 @@
       "image-generation",
       "html-assembly",
       "package-generation"
+    ],
+    "selected_hero_configuration": "CFG-05"
+  },
+  "image_workflow": {
+    "version": "1.0",
+    "items": [
+      {
+        "image_id": "rider-wellness-gym2-hero",
+        "workflow_type": "grounded-edit",
+        "status": "approved",
+        "approved_by": "Felix Mendoza",
+        "approved_at": "2026-10-03",
+        "approval_notes": "Candidate B, Rider Gym 2, approved for CFG-05. The selected candidate preserves recognizable Rider Gym 2 architecture and the source copyright credit; campaign headline and subheading remain live HTML.",
+        "intended_use": {
+          "module_id": "hero-ai-generated",
+          "slot": "hero_image",
+          "role": "hero",
+          "variant_scope": "representative"
+        },
+        "environment": {
+          "type": "real-rider",
+          "description": "The approved garden-facing Rider Gym 2 rendering",
+          "keywords": [
+            "gym",
+            "rider"
+          ],
+          "conceptual_environment_approved": false
+        },
+        "source_assets": [
+          {
+            "path": "projects/the-rider/skills/onbrand-the-rider-email/examples/assets/rider-wellness-corrected/rider-gym-2-source.jpg",
+            "sha256": "705344436a46eefe0108c2fbe70e090cd58cd343ca2eb60d61cc8012ebbfd9c9",
+            "role": "environment-base",
+            "preserve": [
+              "architecture",
+              "wall artwork",
+              "windows and exterior view",
+              "equipment placement",
+              "floor materials",
+              "lighting direction",
+              "perspective",
+              "source copyright credit"
+            ]
+          },
+          {
+            "path": "projects/the-rider/skills/onbrand-the-rider-email/examples/assets/rider-wellness-smoke/rider-logo-white-approved-scaffold.png",
+            "sha256": "4478393bb91ab9f116ed889e4a7047f21acf0e4216f732915a7d667f6d08b16c",
+            "role": "logo-reference",
+            "preserve": [
+              "approved scaffold logo proportions"
+            ]
+          }
+        ],
+        "prompt_record": {
+          "tool": "OpenAI built-in image generation",
+          "model": "not-recorded",
+          "prompt": "Using the attached Rider Gym 2 rendering as the environmental base, preserve its architecture, wall artwork, windows, exterior view, equipment placement, floor materials, lighting direction, perspective, and visible copyright credit. Add a woman in her late twenties to early thirties wearing black yoga pants and a black sports bra, seated in a butterfly pose facing camera on a charcoal-gray yoga mat. Frame her tightly while keeping the Rider gym recognizable. Engrave the approved Rider wordmark into the mat on the viewer’s right. Produce a 16:9 editorial hero with no campaign headline or subheading baked into the image.",
+          "negative_prompt": "Do not invent a different gym, alter the architecture, remove or rewrite the source copyright credit, add extra people, create anatomical artifacts, invent branding, or bake campaign copy into the image.",
+          "edit_steps": [
+            "Rider Gym 2 selected and attached as the environment base.",
+            "Approved Rider logo attached as the only logo reference.",
+            "Wellness subject added in a tight front-facing butterfly pose.",
+            "Candidate B reviewed against Candidate A and approved by Felix Mendoza.",
+            "Headline and subheading reserved for live HTML."
+          ],
+          "text_policy": "live-html"
+        },
+        "output": {
+          "src": "projects/the-rider/skills/onbrand-the-rider-email/examples/assets/rider-wellness-corrected/rider-wellness-gym2-candidate-v1.png",
+          "sha256": "b79df805bb8bc04bf4ec147e3ca1338ce7d27e62bc76fefdfe209d281a02fcb3",
+          "width": 1672,
+          "height": 941,
+          "format": "png"
+        },
+        "placement": {
+          "aspect_ratio": "16:9",
+          "crop": "approved full-width CFG-05 image crop; preserve the visible source credit",
+          "focal_point": {
+            "x": 0.55,
+            "y": 0.57
+          },
+          "safe_area": "No campaign text is overlaid on the image; retain the complete bottom-left copyright credit.",
+          "logo_overlay": "approved Rider wordmark engraved into the mat on the viewer’s right"
+        }
+      }
     ]
   },
   "copy_allocation": {
     "version": "1.0",
-    "plan_id": "rider-runtime-release-build-copy-allocation",
+    "plan_id": "rider-wellness-phase16-copy-allocation",
     "status": "approved",
-    "approved_by": "OnBrand Phase 10 fixture update",
-    "approved_at": "2026-10-03",
+    "approved_by": "Felix Mendoza",
+    "approved_at": "2026-10-05",
     "content_units": [
       {
         "id": "meta-subject",
-        "text": "Internal release build validation only",
+        "text": "Your Miami wellness routine, minutes from home",
         "content_role": "subject",
         "source": "approved campaign metadata",
         "approval_status": "approved",
@@ -490,8 +511,8 @@
         "claim_policy": "none"
       },
       {
-        "id": "meta-preview-text",
-        "text": "Non-production validation of the full Rider runtime variant matrix.",
+        "id": "meta-preview",
+        "text": "Soho House and Equinox are minutes from The Rider.",
         "content_role": "preview_text",
         "source": "approved campaign metadata",
         "approval_status": "approved",
@@ -504,14 +525,14 @@
         "claim_policy": "none"
       },
       {
-        "id": "hero-live-text-heading-dark-framed-layout-headline",
-        "text": "INTERNAL RELEASE BUILD<br>DO NOT SEND",
+        "id": "header-headline",
+        "text": "MIAMI’S NEW EPICENTER<br>OF WELLNESS.",
         "content_role": "headline",
         "source": "approved campaign copy",
         "approval_status": "approved",
         "owner": {
           "channel": "live-html",
-          "module_id": "HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT",
+          "module_id": "header-two-column-dark",
           "slot": "headline"
         },
         "reuse_policy": "single-use",
@@ -519,97 +540,129 @@
         "claim_policy": "none"
       },
       {
-        "id": "hero-live-text-heading-dark-framed-layout-background-image-alt",
-        "text": "The Rider tower exterior",
+        "id": "hero-alt",
+        "text": "Woman in black activewear seated in a butterfly pose on a charcoal-gray Rider mat inside The Rider gym",
         "content_role": "image-alt",
         "source": "approved image alt text",
         "approval_status": "approved",
         "owner": {
           "channel": "alt-text",
-          "module_id": "HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT",
-          "slot": "background_image"
+          "module_id": "hero-ai-generated",
+          "slot": "hero_image",
+          "image_workflow_id": "rider-wellness-gym2-hero"
         },
         "reuse_policy": "single-use",
         "max_occurrences": 1,
         "claim_policy": "none"
       },
       {
-        "id": "body-dark-then-light-layout-primary-cta",
-        "text": "REQUEST INTERNAL REVIEW",
-        "content_role": "primary_cta",
+        "id": "body-subheading",
+        "text": "Soho House and Equinox are minutes from The Rider — and your New York or California membership may travel with you.",
+        "content_role": "subheading",
         "source": "approved campaign copy",
         "approval_status": "approved",
         "owner": {
           "channel": "live-html",
-          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
-          "slot": "primary_cta"
+          "module_id": "body-long-form",
+          "slot": "subheading"
         },
         "reuse_policy": "single-use",
         "max_occurrences": 1,
         "claim_policy": "none"
       },
       {
-        "id": "body-dark-then-light-layout-gallery-image-alt",
-        "text": "The Rider near Wynwood Station",
+        "id": "body-primary",
+        "text": "Two of the names that define members’ health and social life are landing right here: Soho House is investing in its Beach House and a dedicated health club nearby, while Equinox is bringing a new club to Edgewater minutes away.",
+        "content_role": "body_copy",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "body-long-form",
+          "slot": "body_copy_primary"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-image-alt",
+        "text": "The Rider recovery spa",
         "content_role": "image-alt",
         "source": "approved image alt text",
         "approval_status": "approved",
         "owner": {
           "channel": "alt-text",
-          "module_id": "BODY - DARK THEN LIGHT LAYOUT",
-          "slot": "gallery_image"
+          "module_id": "body-long-form",
+          "slot": "inline_image_primary"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-secondary",
+        "text": "For anyone relocating from New York or California, that is the quiet luxury: the membership you already have can remain part of your Miami routine.",
+        "content_role": "body_copy",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "body-long-form",
+          "slot": "body_copy_secondary"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-leading-terms",
+        "text": "SAME ROUTINE\nSAME MEMBERSHIP\nNEW CITY",
+        "content_role": "leading_terms",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "body-long-form",
+          "slot": "leading_terms"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "body-list-payoff",
+        "text": "WITH THE RIDER AT THE CENTER OF IT.",
+        "content_role": "list_payoff",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "body-long-form",
+          "slot": "list_payoff"
+        },
+        "reuse_policy": "single-use",
+        "max_occurrences": 1,
+        "claim_policy": "none"
+      },
+      {
+        "id": "pre-footer-close",
+        "text": "KEEP YOUR MIAMI ROUTINE CLOSE TO HOME.",
+        "content_role": "closing_cta",
+        "source": "approved campaign copy",
+        "approval_status": "approved",
+        "owner": {
+          "channel": "live-html",
+          "module_id": "pre-footer-cta",
+          "slot": "closing_cta_copy"
         },
         "reuse_policy": "single-use",
         "max_occurrences": 1,
         "claim_policy": "none"
       }
     ],
-    "slot_allocation": [
-      {
-        "module_id": "HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT",
-        "slot": "headline",
-        "content_unit_id": "hero-live-text-heading-dark-framed-layout-headline",
-        "rendering_type": "live-html"
-      },
-      {
-        "module_id": "HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT",
-        "slot": "background_image",
-        "content_unit_id": "hero-live-text-heading-dark-framed-layout-background-image-alt",
-        "rendering_type": "alt-text"
-      },
-      {
-        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "primary_cta",
-        "content_unit_id": "body-dark-then-light-layout-primary-cta",
-        "rendering_type": "live-html"
-      },
-      {
-        "module_id": "BODY - DARK THEN LIGHT LAYOUT",
-        "slot": "gallery_image",
-        "content_unit_id": "body-dark-then-light-layout-gallery-image-alt",
-        "rendering_type": "alt-text"
-      }
-    ],
-    "restricted_phrases": [
-      {
-        "id": "from-creators-authority",
-        "phrase": "From the creators of The Bond",
-        "max_occurrences": 1,
-        "reason": "Authority phrase may have only one owner unless explicitly approved as a refrain."
-      },
-      {
-        "id": "same-routine-refrain",
-        "phrase": "Same routine",
-        "max_occurrences": 1,
-        "reason": "Reference failure phrase from earlier wellness smoke repetition."
-      },
-      {
-        "id": "same-membership-refrain",
-        "phrase": "Same membership",
-        "max_occurrences": 1,
-        "reason": "Reference failure phrase from earlier wellness smoke repetition."
-      }
-    ],
-    "dedupe_exemptions": []
+    "restricted_phrases": [],
+    "dedupe_exemptions": [],
+    "slot_allocation": []
   }
 }

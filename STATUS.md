@@ -5,7 +5,7 @@
 **Author:** Felix Mendoza  
 **Version:** 0.1.0  
 **Updated:** 2026-10-05
-**Overall status:** Rider Phase 16 `SEQ-LF-07` branded proof regenerated from the latest staged scaffold with conditional rows; owner visual feedback, canonical promotion, and real-client testing remain pending
+**Overall status:** Rider Phase 16 scaffold, metadata, slot map, and live fixtures promoted to canonical after owner approval; native email-client testing remains pending
 
 ## Completed
 
@@ -61,12 +61,13 @@
 - Built the corrected branded package with 90 passing QA checks, 27 allocated copy owners, nine packaged images, one HTML preview, and a self-contained ZIP. Full discovery passes 160 tests.
 - Preserved the 2026-10-04 annotated Rider scaffold submission, corrected its marker-only mismatches in a separate intake copy, and validated 34 exact label/color pairs without changing the canonical runtime scaffold.
 - Added a backward-compatible granular marker parser that resolves the Phase 16 intake into 20 modules and 14 inline/nested annotations, strips authoring markers without deleting content rows, and validates checksum-bound refined metadata with stable IDs and codes. Full discovery passes 166 tests.
-- Added the Phase 16 deterministic slot map and runtime composition rules: required/optional block behavior, repeating typed lists, microcopy limits, placeholder-image blocking, stable metadata codes, campaign/sequence compatibility, and static-message exclusion. Full discovery passes 175 tests; the Phase 15 canonical runtime remains active.
-- Generated the Phase 16 visual review set with 18 isolated modules, 14 compatible header/hero configurations, and nine complete runtime-valid sequences. Structural review found 44 HTML files, zero missing iframe targets, zero authoring-marker leaks, and 176 passing repository tests; owner sequence selection remains pending.
+- Added the Phase 16 deterministic slot map and runtime composition rules: required/optional block behavior, repeating typed lists, microcopy limits, placeholder-image blocking, stable metadata codes, campaign/sequence compatibility, and static-message exclusion.
+- Generated the Phase 16 visual review set with 18 isolated modules, 14 compatible header/hero configurations, and nine complete runtime-valid sequences. Structural review found 44 HTML files, zero missing iframe targets, and zero authoring-marker leaks; the owner subsequently selected `SEQ-LF-07`.
 - Added `SEQ-LF-07` after continuity review found that the initial sequence set omitted the previously approved CFG-05 combination. The selected path carries `H-01 + AI-01` into the refined body, developer-authority block, wellness-relevant curated-design block, and pre-footer.
-- Recorded the owner's `SEQ-LF-07` selection and generated a staged branded Rider wellness proof without replacing the Phase 15 canonical scaffold. The revised proof passes 69 runtime QA checks, packages eight assets, preserves the approved Rider Gym 2 hero credit, includes `S-01` followed by the sauna-based `S-02`, emits each campaign message once, and passes browser diagnostics with no overflow or broken images.
+- Recorded the owner's `SEQ-LF-07` selection and generated the branded Rider wellness proof. The revised proof passes 69 runtime QA checks, packages eight assets, preserves the approved Rider Gym 2 hero credit, includes `S-01` followed by the sauna-based `S-02`, emits each campaign message once, and passes browser diagnostics with no overflow or broken images.
 - Preserved the owner's 2026-10-05 CSS-corrected scaffold, expanded refined metadata to 17 annotations, and implemented four container-owned conditional list/payoff rows. The regenerated wellness proof retains only the supplied leading-term and paragraph-payoff rows, omits the two unused list families without empty markup, passes 69 runtime QA checks, and the full repository passes 179 tests.
 - Added a practical user guide and README quick start covering explicit invocation, prerequisites, campaign approvals, build modes, CLI operation, portable output packages, optional maintenance dependencies, and current portability/security limitations.
+- Promoted the owner-approved Phase 16 scaffold and sidecars to canonical defaults, archived the Phase 15 trio as regression provenance, migrated live fixtures, regenerated the gallery without overrides, and reproduced the approved proof byte-for-byte with 69 passing QA checks and eight assets. The canonical Release Build also passes 237 QA checks across nine variants and 16 packaged assets.
 
 ## Project Portfolio
 
@@ -83,8 +84,8 @@
 ## In Progress
 
 - Perform representative visual and email-client compatibility review beyond structural QA.
-- Collect owner visual feedback on the Phase 16 `SEQ-LF-07` branded proof and apply any requested layout refinements without replacing the current canonical scaffold prematurely.
-- Obtain owner creative approval, then run the reproducible browser matrix and the real Gmail, Outlook, and Apple Mail matrix.
+- Continue campaign-by-campaign visual refinement without turning `SEQ-LF-07` or `CFG-05` into global defaults.
+- Run the reproducible browser matrix and the real Gmail, Outlook, and Apple Mail matrix against the canonical Phase 16 output.
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 - Obtain live manual invocation evidence on permitted authenticated hosts; deterministic parity does not establish model behavior.
 - Keep [LIMITATIONS.md](LIMITATIONS.md) current when audits, specs, QA runs, or implementation work discover new constraints.
@@ -104,4 +105,4 @@
 
 ## Next Milestone
 
-Review the staged Phase 16 `SEQ-LF-07` branded proof and record requested refinements or approval. Canonical promotion, reproducible browser-matrix evidence, native email-client review, live manual adapter checks, and Phase 12 distribution remain open.
+Validate the canonical Phase 16 output in the reproducible browser matrix and native Gmail, Outlook, and Apple Mail clients. Public manifest configuration, live manual adapter checks, and deferred Phase 12 distribution remain open.

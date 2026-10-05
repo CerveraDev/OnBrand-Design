@@ -20,7 +20,7 @@ The roadmap applies to the framework and is executed independently for each proj
 | 13 | Jev semantic decision pilot | Version 1 holdout complete; revise decision | 8/9 labels but 5/9 actions, one false allow; production rejected | Not planned until a version 2 pilot is justified |
 | 14 | Email render matrix | Browser-preview tool and Rider evidence complete | Four browser modes pass; human and real-client matrix pending | Planned after representative package |
 | 15 | Creative fidelity remediation | Implemented; creative approval pending | CFG-05 and Rider Gym 2 proof generated; further layout refinement requested | Planned after project calibration |
-| 16 | Scaffold expansion and layout calibration | In progress | `SEQ-LF-07` selected and staged branded proof generated; owner visual feedback pending | Planned after project calibration |
+| 16 | Scaffold expansion and layout calibration | Canonical promotion complete; compatibility follow-up open | Phase 16 canonical and proof reproducible; native-client matrix pending | Planned after project calibration |
 
 ## Framework Gate
 
@@ -113,9 +113,9 @@ The roadmap applies to the framework and is executed independently for each proj
 - Map every added block to stable metadata, layout purpose, compatibility rules, editable slots, locked content, image requirements, and copy-allocation ownership.
 - Distinguish technical compatibility from editorial layout intent so structurally valid blocks are not combined in an awkward sequence.
 - Regenerate the module catalog, labeled galleries, composition plans, cross-platform fingerprints, and representative proof after scaffold calibration.
-- Require owner review of the updated block sequence before replacing the current Phase 15 proof as the creative baseline.
+- Require owner review of the updated block sequence before replacing a canonical creative baseline.
 
-Checkpoint on 2026-10-05: versioned intake, nested parsing, refined metadata, deterministic slots, runtime sequencing, and regenerated galleries are complete. The latest owner-corrected scaffold adds four conditional list/payoff row containers; the runtime now removes an entire container when its owning content is absent. The owner selected `SEQ-LF-07`, and the regenerated staged wellness proof passes runtime QA and full-page browser inspection. Owner visual feedback, reproducible browser-matrix evidence, native email-client testing, and canonical promotion remain open.
+Checkpoint on 2026-10-05: versioned intake, nested parsing, refined metadata, deterministic slots, runtime sequencing, regenerated galleries, owner proof approval, and canonical promotion are complete. The former Phase 15 trio is archived as regression provenance. The ordinary canonical build reproduces the approved proof byte-for-byte with 69 passing QA checks and eight assets. Reproducible browser-matrix evidence and native email-client testing remain open.
 
 ## Deferred Distribution Profiles Gate
 

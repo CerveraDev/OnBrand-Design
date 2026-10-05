@@ -12,7 +12,7 @@ from tools.rider_campaign_runtime.copy_allocation import (
     similarity_score,
     validate_copy_allocation,
 )
-from tools.rider_campaign_runtime.runtime import MODULE_METADATA_PATH, ROOT, SCAFFOLD_PATH, SLOT_MAP_PATH
+from tools.rider_campaign_runtime.runtime import ROOT
 from tools.rider_campaign_runtime.qa import run_qa, write_qa_report
 from tools.rider_campaign_runtime.scaffold import compose_html, load_scaffold
 from tools.rider_campaign_runtime.schema import validate_campaign_spec
@@ -21,7 +21,18 @@ from tools.rider_campaign_runtime.slots import apply_module_slots
 
 class RiderCopyAllocationTests(unittest.TestCase):
     def setUp(self):
-        self.scaffold = load_scaffold(SCAFFOLD_PATH, SLOT_MAP_PATH, MODULE_METADATA_PATH)
+        scaffold_dir = (
+            ROOT
+            / "projects/the-rider/skills/onbrand-the-rider-email/templates/scaffold"
+        )
+        provenance_dir = scaffold_dir / "provenance"
+        # These fixtures intentionally preserve Phase 15 allocation behavior while
+        # Phase 16 exercises the current canonical layout in the runtime suites.
+        self.scaffold = load_scaffold(
+            provenance_dir / "rider-scaffolding.canonical.phase15-2026-10-05.html",
+            provenance_dir / "rider-scaffolding.slot-map.phase15-2026-10-05.json",
+            provenance_dir / "rider-scaffolding.module-metadata.phase15-2026-10-05.json",
+        )
 
     def test_accepts_clean_approved_allocation(self):
         summary = validate_copy_allocation(clean_spec(), scaffold=self.scaffold)

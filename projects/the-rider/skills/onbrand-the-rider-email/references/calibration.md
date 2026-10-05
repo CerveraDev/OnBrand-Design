@@ -7,12 +7,15 @@ The supplied Beefree scaffold has been calibrated.
 - Immutable source copy: `templates/scaffold/rider-scaffolding.source.html`
 - Runtime canonical copy: `templates/scaffold/rider-scaffolding.canonical.html`
 - Top-level rows: 102
-- Catalog entries: 19, consisting of 15 ordinary modules and four nested static blocks
+- Row-level module boundaries: 20
+- Granular inline or nested annotations: 17
+- Runtime catalog: 18 selectable content modules plus three footer variants
 - Module markers: `#55ebb9` start and `#ff81fb` end
 - Static-block markers: `#ffd675` start and `#75edff` end
 - Runtime typo corrections: `REQUEST MORE INFORMATION` and `ARTS`
 - Former unbranded footer terminology: outside-broker customizable footer
-- Previous supplied source: `templates/scaffold/provenance/rider-scaffolding.source.legacy-2026-09-30.html`
+- Previous canonical runtime trio: `templates/scaffold/provenance/*phase15-2026-10-05*`
+- Current canonical SHA-256: `4125169e6079965a596f71636c0cb4df3aa336eaf5c101e83a24a73dd4351439`
 
 ## Current Extracted References
 
@@ -37,4 +40,4 @@ When a new approved Beefree scaffold is supplied:
 5. Re-count production colors and typography usage.
 6. Update module inventory, footer boundaries, and tests together.
 
-Do not overwrite provenance files casually, and do not claim full HTML generation or campaign packaging unless the runtime assembler and package output have been implemented and verified.
+Do not overwrite provenance files casually. Canonical promotion requires owner approval, a reproducible proof, fixture migration, and a passing regression suite.

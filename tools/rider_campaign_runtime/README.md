@@ -16,7 +16,7 @@ Generate Composition Preview review artifacts:
 python3 -m tools.rider_campaign_runtime.cli catalog --output path/to/review-folder
 ```
 
-To review a staged scaffold without changing the canonical runtime, provide the complete sidecar trio:
+To review a future candidate scaffold without changing the approved Phase 16 canonical runtime, provide the complete sidecar trio:
 
 ```bash
 python3 -m tools.rider_campaign_runtime.cli catalog \
@@ -26,9 +26,9 @@ python3 -m tools.rider_campaign_runtime.cli catalog \
   --metadata path/to/staged-metadata.json
 ```
 
-Refined staged scaffolds also produce `module-gallery.html`, `sequence-gallery.html`, and machine-readable sequence configurations. The three staged paths must be supplied together. The same flags are available to `plan` and `build`, so an approved staged selection can be converted and rendered without changing canonical defaults.
+Candidate scaffolds also produce `module-gallery.html`, `sequence-gallery.html`, and machine-readable sequence configurations. The three candidate paths must be supplied together. The same flags are available to `plan` and `build`, so a candidate selection can be converted and rendered without changing canonical defaults.
 
-For a staged build, pass the complete trio with the campaign fixture:
+For a candidate build, pass the complete trio with the campaign fixture:
 
 ```bash
 python3 -m tools.rider_campaign_runtime.cli build path/to/campaign.json \

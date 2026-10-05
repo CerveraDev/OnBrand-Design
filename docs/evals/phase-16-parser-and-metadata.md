@@ -2,11 +2,11 @@
 
 **Date:** 2026-10-04
 
-**Status:** Passed; runtime promotion pending
+**Status:** Passed and promoted to canonical runtime
 
 ## Scope
 
-This checkpoint validates the corrected Phase 16 Rider scaffold as an authoring document. It does not promote that scaffold into campaign rendering.
+This checkpoint validated the corrected Phase 16 Rider scaffold as an authoring document before its approved canonical promotion.
 
 ## Parser Results
 
@@ -45,9 +45,9 @@ The loader binds metadata to the exact scaffold SHA-256 and verifies full source
 
 - Focused Phase 16 parser/runtime tests: 19 passed
 - Full repository test discovery: 179 passed
-- Existing canonical scaffold behavior: unchanged
-- Phase 16 canonical promotion: not performed
+- Previous Phase 15 canonical behavior: retained in archived regression fixtures
+- Phase 16 canonical promotion: performed on 2026-10-05
 
 ## Next Work
 
-Deterministic slots, composition rules, galleries, and the regenerated branded proof are complete. See [Phase 16 slots and composition evidence](phase-16-slots-and-composition.md) and [the branded proof](phase-16-rider-wellness-branded-proof.md). Remaining work is owner visual approval, reproducible browser-matrix evidence, native email-client review, and the canonical promotion decision.
+Deterministic slots, composition rules, galleries, the branded proof, and canonical fixture migration are complete. See [Phase 16 slots and composition evidence](phase-16-slots-and-composition.md) and [the branded proof](phase-16-rider-wellness-branded-proof.md). Native email-client review and broader release validation remain open.

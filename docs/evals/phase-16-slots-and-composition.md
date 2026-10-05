@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-04
 
-**Status:** Passed; galleries generated and owner sequence selection pending
+**Status:** Passed; approved sequence and sidecars promoted to canonical runtime
 
 ## Deterministic Slots
 
@@ -39,7 +39,7 @@ Composition validation now enforces:
 - One standalone or integrated header source
 - One primary hero where required
 - Complete invite paths with or without an optional AI image hero
-- At most one Rider static-message block
+- At most one Rider static-message block, except the approved `S-01` followed by `S-02` sequence
 - Exact static include/exclude decisions
 - Required and optional slot behavior in approved plans
 
@@ -53,19 +53,18 @@ The Phase 16 header/hero filter currently yields 14 compatible configurations. I
 - Generated isolated module previews: 18
 - Generated compatible header/hero configurations: 14
 - Marker leaks in generated previews: 0
-- Existing Phase 15 cross-platform fixture fingerprints: unchanged
+- Approved canonical proof fingerprint: unchanged after promotion
 
 Negative tests reject missing required slots, nested content without its row owner, overly long microcopy, bad block order, multiple static messages, and an unreplaced standalone placeholder image.
 
-## Promotion Boundary
+## Promotion Result
 
-The production Rider build paths still point to the Phase 15 canonical scaffold and sidecars. This checkpoint makes Phase 16 loadable by the shared runtime and composition planner, but does not replace the current canonical scaffold, regenerate approved campaign fixtures, or claim visual approval.
+The production Rider build paths now point to the approved Phase 16 scaffold and sidecars. The Phase 15 trio is archived under `templates/scaffold/provenance/`, and the ordinary no-override build reproduces the approved proof byte-for-byte.
 
 ## Next Work
 
-1. Review the generated dark, light-led, and invite sequences visually.
-2. Select or revise an approved `SEQ-*` layout sequence.
-3. Build the next branded proof and browser matrix.
-4. Promote Phase 16 only after owner approval and regression evidence.
+1. Run the complete repository regression suite after promotion.
+2. Validate representative release variants in native email clients.
+3. Continue visual calibration with new campaign briefs without treating `SEQ-LF-07` or `CFG-05` as global defaults.
 
 Gallery evidence is recorded in [Phase 16 Rider layout gallery](phase-16-rider-layout-gallery.md).

@@ -26,12 +26,12 @@ class RiderCompositionTests(unittest.TestCase):
     def test_catalog_uses_stable_codes_and_excludes_footers(self):
         catalog = build_module_catalog(self.scaffold)
         entries = {entry["code"]: entry for entry in catalog["entries"]}
-        self.assertEqual(len(entries), 16)
-        self.assertEqual(entries["H-01"]["scaffold_module_id"], "TWO-COLUMN HEADER")
-        self.assertEqual(entries["AI-01"]["scaffold_module_id"], "AI GENERATED IMAGE BASED ON PROMPT")
-        self.assertEqual(entries["HR-01"]["scaffold_module_id"], "HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT")
-        self.assertEqual(entries["HH-01"]["scaffold_module_id"], "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH")
-        self.assertEqual(entries["S-04"]["scaffold_module_id"], "STATIC BLOCK 4")
+        self.assertEqual(len(entries), 18)
+        self.assertEqual(entries["H-01"]["scaffold_module_id"], "header-two-column-dark")
+        self.assertEqual(entries["AI-01"]["scaffold_module_id"], "hero-ai-generated")
+        self.assertEqual(entries["HR-01"]["scaffold_module_id"], "hero-dark-framed")
+        self.assertEqual(entries["HH-01"]["scaffold_module_id"], "hero-header-full-width")
+        self.assertEqual(entries["S-04"]["scaffold_module_id"], "static-opportunity")
         self.assertNotIn("BRANDED FOOTER", {entry["scaffold_module_id"] for entry in entries.values()})
         self.assertTrue(entries["HH-01"]["includes_header"])
         self.assertTrue(entries["HR-01"]["image_required"])
@@ -48,7 +48,7 @@ class RiderCompositionTests(unittest.TestCase):
             self.assertTrue(artifacts["hero_gallery"].is_file())
             self.assertTrue((artifacts["hero_configuration_dir"] / "CFG-01.html").is_file())
             configurations = json.loads(artifacts["hero_configurations"].read_text())
-            self.assertEqual(configurations["option_count"], 16)
+            self.assertEqual(configurations["option_count"], 14)
             self.assertIn("CFG-01", artifacts["hero_gallery"].read_text())
 
     def test_labeled_gallery_contains_only_compatible_complete_configurations(self):
@@ -56,7 +56,7 @@ class RiderCompositionTests(unittest.TestCase):
         configurations = build_hero_configurations(catalog)
         entries = {entry["code"]: entry for entry in catalog["entries"]}
         self.assertEqual(configurations["gallery_version"], "1.0")
-        self.assertEqual(len(configurations["options"]), 16)
+        self.assertEqual(len(configurations["options"]), 14)
         for option in configurations["options"]:
             selected = [entries[code] for code in option["selected_module_codes"]]
             self.assertEqual(sum(entry["module_type"] == "hero" for entry in selected), 1)
@@ -80,7 +80,7 @@ class RiderCompositionTests(unittest.TestCase):
         self.assertEqual(plan["selected_hero_configuration"], "CFG-09")
 
     def test_plan_rejects_configuration_that_does_not_match_selected_codes(self):
-        selection = approved_selection(["H-02", "HR-01"])
+        selection = approved_selection(["H-02", "HR-01", "B-04"])
         selection["selected_hero_configuration"] = "CFG-01"
         with self.assertRaisesRegex(CompositionError, "requires module codes"):
             create_composition_plan(self.scaffold, selection)
@@ -100,12 +100,11 @@ class RiderCompositionTests(unittest.TestCase):
     def test_runtime_contract_rejects_missing_approval_for_release(self):
         spec = {
             "build": {"mode": "release-build", "variant_policy": "all"},
-            "modules": [{"id": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH", "slots": {}}],
+            "modules": [{"id": "hero-header-full-width", "slots": {}}],
             "static_blocks": [
-                {"id": "STATIC BLOCK 1", "decision": "exclude"},
-                {"id": "STATIC BLOCK 2", "decision": "exclude"},
-                {"id": "STATIC BLOCK 3", "decision": "exclude"},
-                {"id": "STATIC BLOCK 4", "decision": "exclude"},
+                {"id": "static-authority", "decision": "exclude"},
+                {"id": "static-design", "decision": "exclude"},
+                {"id": "static-opportunity", "decision": "exclude"},
             ],
         }
         with self.assertRaisesRegex(CompositionError, "composition approval is required"):
@@ -123,7 +122,6 @@ def approved_selection(selected_codes):
         "static_block_decisions": [
             {"code": "S-01", "decision": "include" if "S-01" in selected_codes else "exclude"},
             {"code": "S-02", "decision": "include" if "S-02" in selected_codes else "exclude"},
-            {"code": "S-03", "decision": "include" if "S-03" in selected_codes else "exclude"},
             {"code": "S-04", "decision": "include" if "S-04" in selected_codes else "exclude"},
         ],
     }
