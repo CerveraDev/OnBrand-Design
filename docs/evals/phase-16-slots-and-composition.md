@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-04
 
-**Status:** Passed; visual preview and canonical promotion pending
+**Status:** Passed; galleries generated and owner sequence selection pending
 
 ## Deterministic Slots
 
@@ -45,8 +45,8 @@ The Phase 16 header/hero filter currently yields 14 compatible configurations. I
 
 ## Validation
 
-- Focused runtime, parser, composition, and campaign tests: 58 passed
-- Full repository test discovery: 175 passed
+- Focused runtime, parser, composition, and campaign tests: 59 passed
+- Full repository test discovery: 176 passed
 - Generated module catalog entries: 18
 - Generated isolated module previews: 18
 - Generated compatible header/hero configurations: 14
@@ -61,8 +61,9 @@ The production Rider build paths still point to the Phase 15 canonical scaffold 
 
 ## Next Work
 
-1. Generate the versioned Phase 16 module and sequence gallery.
-2. Review dark/light and invite sequences visually.
-3. Select an approved layout sequence.
-4. Build the next branded proof and browser matrix.
-5. Promote Phase 16 only after owner approval and regression evidence.
+1. Review the generated dark, light-led, and invite sequences visually.
+2. Select or revise an approved `SEQ-*` layout sequence.
+3. Build the next branded proof and browser matrix.
+4. Promote Phase 16 only after owner approval and regression evidence.
+
+Gallery evidence is recorded in [Phase 16 Rider layout gallery](phase-16-rider-layout-gallery.md).

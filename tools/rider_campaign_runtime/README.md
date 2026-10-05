@@ -16,6 +16,18 @@ Generate Composition Preview review artifacts:
 python3 -m tools.rider_campaign_runtime.cli catalog --output path/to/review-folder
 ```
 
+To review a staged scaffold without changing the canonical runtime, provide the complete sidecar trio:
+
+```bash
+python3 -m tools.rider_campaign_runtime.cli catalog \
+  --output path/to/review-folder \
+  --scaffold path/to/staged-scaffold.html \
+  --slot-map path/to/staged-slot-map.json \
+  --metadata path/to/staged-metadata.json
+```
+
+Refined staged scaffolds also produce `module-gallery.html`, `sequence-gallery.html`, and machine-readable sequence configurations. The three staged paths must be supplied together. The same flags are available to `plan` so an approved staged selection can be converted without changing canonical defaults.
+
 Create an approved composition plan from a user-approved selection:
 
 ```bash

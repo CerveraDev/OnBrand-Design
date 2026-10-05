@@ -1,6 +1,6 @@
 # Phase 16: Scaffold Expansion And Layout Calibration
 
-**Status:** Nested parser, refined metadata, deterministic slots, and composition rules implemented; preview calibration pending
+**Status:** Galleries generated from refined runtime rules; owner sequence selection and branded proof pending
 
 **Target:** A larger, better-labeled Rider block corpus whose layout intent can be selected and assembled predictably
 
@@ -88,6 +88,12 @@ The structured parser now separates 20 row-level modules from 14 inline annotati
 The checksum-bound Phase 16 metadata assigns stable IDs and codes, source occurrences, module families, layout roles, theme rules, header behavior, content and image requirements, campaign use, compatibility, and client behavior. Annotation metadata defines editable value type, optionality, repetition, generation policy, constraints, and placeholder handling. See [Phase 16 parser and metadata evidence](../evals/phase-16-parser-and-metadata.md).
 
 The Phase 16 slot map converts those annotations into required, optional-removable, default-preserving, image, text-list, and amplified-list inputs. Runtime composition now enforces stable codes, compatible campaign types, predecessor/successor rules, exclusion groups, at-most-one static message, invite paths that do not require a hero, and filtered header/hero configurations. See [Phase 16 slots and composition evidence](../evals/phase-16-slots-and-composition.md).
+
+## Visual Gallery Checkpoint
+
+The staged scaffold now generates 18 isolated module previews, 14 compatible header/hero configurations, and eight complete runtime-valid sequences: six long-form and two invite options. The committed galleries have zero missing iframe targets and zero authoring-marker leaks. See [Phase 16 Rider layout gallery](../evals/phase-16-rider-layout-gallery.md).
+
+The gallery is a selection aid, not approval. It uses scaffold sample content, does not perform the optional full light-body color conversion, and does not promote Phase 16 to the canonical runtime. The owner must select or revise one `SEQ-*` option before the new branded proof is assembled.
 
 ## Non-Goals
 

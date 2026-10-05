@@ -1,0 +1,1280 @@
+{
+  "catalog_version": "1.0",
+  "entries": [
+    {
+      "code": "H-01",
+      "scaffold_module_id": "header-two-column-dark",
+      "label": "Two-Column Header, Dark",
+      "module_type": "header",
+      "module_family": "header",
+      "layout_role": "header",
+      "summary": "Two-Column Header, Dark",
+      "content_rows": [
+        3
+      ],
+      "includes_header": true,
+      "locked": false,
+      "live_text_support": true,
+      "image_required": false,
+      "image_aspect_ratio": "",
+      "editable_slots": [
+        {
+          "name": "headline",
+          "slot_type": "text",
+          "operations": [
+            "replace_text"
+          ],
+          "required_approvals": [],
+          "required": true,
+          "omit_if_missing": false,
+          "annotation_id": ""
+        },
+        {
+          "name": "logo_link",
+          "slot_type": "url",
+          "operations": [
+            "replace_href"
+          ],
+          "required_approvals": []
+        }
+      ],
+      "companion_rules": [
+        "Allowed after: start.",
+        "Allowed before: hero, body.",
+        "At most 1 from email-header."
+      ],
+      "theme": {
+        "default": "dark",
+        "user_selectable": false
+      },
+      "compatibility": {
+        "predecessors": [
+          "start"
+        ],
+        "successors": [
+          "hero",
+          "body"
+        ],
+        "exclusion_group": "email-header"
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "preview": {
+        "type": "isolated-html",
+        "path": "module-previews/H-01.html",
+        "expectation": "Use this isolated scaffold snippet for composition review; final package assets are localized by the runtime."
+      }
+    },
+    {
+      "code": "AI-01",
+      "scaffold_module_id": "hero-ai-generated",
+      "label": "AI-Generated Image Hero",
+      "module_type": "hero",
+      "module_family": "hero",
+      "layout_role": "hero",
+      "summary": "AI-Generated Image Hero",
+      "content_rows": [
+        6
+      ],
+      "includes_header": false,
+      "locked": false,
+      "live_text_support": false,
+      "image_required": true,
+      "image_aspect_ratio": "scaffold-defined",
+      "editable_slots": [
+        {
+          "name": "hero_image",
+          "slot_type": "image",
+          "operations": [
+            "replace_image_src"
+          ],
+          "required_approvals": [
+            "hero"
+          ],
+          "required": true,
+          "omit_if_missing": false,
+          "annotation_id": ""
+        }
+      ],
+      "companion_rules": [
+        "Allowed after: header, start.",
+        "Allowed before: body.",
+        "At most 1 from primary-hero."
+      ],
+      "theme": {
+        "default": "image-led",
+        "user_selectable": false
+      },
+      "compatibility": {
+        "predecessors": [
+          "header",
+          "start"
+        ],
+        "successors": [
+          "body"
+        ],
+        "exclusion_group": "primary-hero"
+      },
+      "campaign_types": [
+        "invite",
+        "long-form"
+      ],
+      "preview": {
+        "type": "isolated-html",
+        "path": "module-previews/AI-01.html",
+        "expectation": "Use this isolated scaffold snippet for composition review; final package assets are localized by the runtime."
+      }
+    },
+    {
+      "code": "B-01",
+      "scaffold_module_id": "body-masonry",
+      "label": "Masonry Image Body",
+      "module_type": "body",
+      "module_family": "body",
+      "layout_role": "body",
+      "summary": "Masonry Image Body",
+      "content_rows": [
+        9,
+        10,
+        11
+      ],
+      "includes_header": false,
+      "locked": false,
+      "live_text_support": false,
+      "image_required": true,
+      "image_aspect_ratio": "retain each source ratio",
+      "editable_slots": [
+        {
+          "name": "image_1",
+          "slot_type": "image",
+          "operations": [
+            "replace_image_src_first"
+          ],
+          "required_approvals": [
+            "body"
+          ],
+          "required": true,
+          "omit_if_missing": false,
+          "annotation_id": ""
+        },
+        {
+          "name": "image_2",
+          "slot_type": "image",
+          "operations": [
+            "replace_image_src_first"
+          ],
+          "required_approvals": [
+            "body"
+          ],
+          "required": true,
+          "omit_if_missing": false,
+          "annotation_id": ""
+        },
+        {
+          "name": "image_3",
+          "slot_type": "image",
+          "operations": [
+            "replace_image_src_first"
+          ],
+          "required_approvals": [
+            "body"
+          ],
+          "required": true,
+          "omit_if_missing": false,
+          "annotation_id": ""
+        },
+        {
+          "name": "image_4",
+          "slot_type": "image",
+          "operations": [
+            "replace_image_src_first"
+          ],
+          "required_approvals": [
+            "body"
+          ],
+          "required": true,
+          "omit_if_missing": false,
+          "annotation_id": ""
+        },
+        {
+          "name": "image_5",
+          "slot_type": "image",
+          "operations": [
+            "replace_image_src_first"
+          ],
+          "required_approvals": [
+            "body"
+          ],
+          "required": true,
+          "omit_if_missing": false,
+          "annotation_id": ""
+        },
+        {
+          "name": "image_6",
+          "slot_type": "image",
+          "operations": [
+            "replace_image_src_first"
+          ],
+          "required_approvals": [
+            "body"
+          ],
+          "required": true,
+          "omit_if_missing": false,
+          "annotation_id": ""
+        },
+        {
+          "name": "image_7",
+          "slot_type": "image",
+          "operations": [
+            "replace_image_src_first"
+          ],
+          "required_approvals": [
+            "body"
+          ],
+          "required": true,
+          "omit_if_missing": false,
+          "annotation_id": ""
+        },
+        {
+          "name": "image_8",
+          "slot_type": "image",
+          "operations": [
+            "replace_image_src_first"
+          ],
+          "required_approvals": [
+            "body"
+          ],
+          "required": true,
+          "omit_if_missing": false,
+          "annotation_id": ""
+        }
+      ],
+      "companion_rules": [
+        "Allowed after: hero, body.",
+        "Allowed before: body, static, pre-footer, footer."
+      ],
+      "theme": {
+        "default": "dark",
+        "user_selectable": false
+      },
+      "compatibility": {
+        "predecessors": [
+          "hero",
+          "body"
+        ],
+        "successors": [
+          "body",
+          "static",
+          "pre-footer",
+          "footer"
+        ],
+        "exclusion_group": null
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "preview": {
+        "type": "isolated-html",
+        "path": "module-previews/B-01.html",
+        "expectation": "Use this isolated scaffold snippet for composition review; final package assets are localized by the runtime."
+      }
+    },
+    {
+      "code": "H-02",
+      "scaffold_module_id": "header-one-column-dark",
+      "label": "One-Column Header, Dark",
+      "module_type": "header",
+      "module_family": "header",
+      "layout_role": "header",
+      "summary": "One-Column Header, Dark",
+      "content_rows": [
+        14
+      ],
+      "includes_header": true,
+      "locked": false,
+      "live_text_support": true,
+      "image_required": false,
+      "image_aspect_ratio": "",
+      "editable_slots": [
+        {
+          "name": "logo_link",
+          "slot_type": "url",
+          "operations": [
+            "replace_href"
+          ],
+          "required_approvals": []
+        }
+      ],
+      "companion_rules": [
+        "Allowed after: start.",
+        "Allowed before: hero, body.",
+        "At most 1 from email-header."
+      ],
+      "theme": {
+        "default": "dark",
+        "user_selectable": false
+      },
+      "compatibility": {
+        "predecessors": [
+          "start"
+        ],
+        "successors": [
+          "hero",
+          "body"
+        ],
+        "exclusion_group": "email-header"
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "preview": {
+        "type": "isolated-html",
+        "path": "module-previews/H-02.html",
+        "expectation": "Use this isolated scaffold snippet for composition review; final package assets are localized by the runtime."
+      }
+    },
+    {
+      "code": "HR-01",
+      "scaffold_module_id": "hero-dark-framed",
+      "label": "Framed Live-Text Hero, Dark",
+      "module_type": "hero",
+      "module_family": "hero",
+      "layout_role": "hero",
+      "summary": "Framed Live-Text Hero, Dark",
+      "content_rows": [
+        17
+      ],
+      "includes_header": false,
+      "locked": false,
+      "live_text_support": true,
+      "image_required": true,
+      "image_aspect_ratio": "scaffold-defined",
+      "editable_slots": [
+        {
+          "name": "background_image",
+          "slot_type": "image",
+          "operations": [
+            "replace_background_url"
+          ],
+          "required_approvals": [
+            "hero"
+          ],
+          "required": true,
+          "omit_if_missing": false,
+          "annotation_id": ""
+        },
+        {
+          "name": "headline",
+          "slot_type": "text",
+          "operations": [
+            "replace_text"
+          ],
+          "required_approvals": [],
+          "required": true,
+          "omit_if_missing": false,
+          "annotation_id": ""
+        }
+      ],
+      "companion_rules": [
+        "Allowed after: header, start.",
+        "Allowed before: body.",
+        "At most 1 from primary-hero."
+      ],
+      "theme": {
+        "default": "dark",
+        "user_selectable": false
+      },
+      "compatibility": {
+        "predecessors": [
+          "header",
+          "start"
+        ],
+        "successors": [
+          "body"
+        ],
+        "exclusion_group": "primary-hero"
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "preview": {
+        "type": "isolated-html",
+        "path": "module-previews/HR-01.html",
+        "expectation": "Use this isolated scaffold snippet for composition review; final package assets are localized by the runtime."
+      }
+    },
+    {
+      "code": "H-03",
+      "scaffold_module_id": "invite-header-collaboration",
+      "label": "Invite Collaboration Header",
+      "module_type": "header",
+      "module_family": "header",
+      "layout_role": "invite-header",
+      "summary": "Invite Collaboration Header",
+      "content_rows": [
+        20,
+        21
+      ],
+      "includes_header": true,
+      "locked": false,
+      "live_text_support": false,
+      "image_required": true,
+      "image_aspect_ratio": "logo-native",
+      "editable_slots": [
+        {
+          "name": "collaborator_logo",
+          "slot_type": "image",
+          "operations": [
+            "replace_image_src"
+          ],
+          "required_approvals": [
+            "body"
+          ],
+          "required": true,
+          "omit_if_missing": false,
+          "annotation_id": ""
+        }
+      ],
+      "companion_rules": [
+        "Allowed after: start.",
+        "Allowed before: hero, invite-body.",
+        "At most 1 from email-header."
+      ],
+      "theme": {
+        "default": "dark",
+        "user_selectable": false
+      },
+      "compatibility": {
+        "predecessors": [
+          "start"
+        ],
+        "successors": [
+          "hero",
+          "invite-body"
+        ],
+        "exclusion_group": "email-header"
+      },
+      "campaign_types": [
+        "invite"
+      ],
+      "preview": {
+        "type": "isolated-html",
+        "path": "module-previews/H-03.html",
+        "expectation": "Use this isolated scaffold snippet for composition review; final package assets are localized by the runtime."
+      }
+    },
+    {
+      "code": "B-03",
+      "scaffold_module_id": "invite-body-dark",
+      "label": "Invite Body, Dark",
+      "module_type": "body",
+      "module_family": "body",
+      "layout_role": "invite-body",
+      "summary": "Invite Body, Dark",
+      "content_rows": [
+        24,
+        25,
+        26
+      ],
+      "includes_header": false,
+      "locked": false,
+      "live_text_support": false,
+      "image_required": true,
+      "image_aspect_ratio": "scaffold-defined",
+      "editable_slots": [
+        {
+          "name": "supporting_image",
+          "slot_type": "image",
+          "operations": [
+            "annotation_replace_image"
+          ],
+          "required_approvals": [
+            "body"
+          ],
+          "required": false,
+          "omit_if_missing": true,
+          "annotation_id": "invite-supporting-image"
+        }
+      ],
+      "companion_rules": [
+        "Allowed after: invite-header, hero.",
+        "Allowed before: pre-footer, footer."
+      ],
+      "theme": {
+        "default": "dark",
+        "user_selectable": false
+      },
+      "compatibility": {
+        "predecessors": [
+          "invite-header",
+          "hero"
+        ],
+        "successors": [
+          "pre-footer",
+          "footer"
+        ],
+        "exclusion_group": null
+      },
+      "campaign_types": [
+        "invite"
+      ],
+      "preview": {
+        "type": "isolated-html",
+        "path": "module-previews/B-03.html",
+        "expectation": "Use this isolated scaffold snippet for composition review; final package assets are localized by the runtime."
+      }
+    },
+    {
+      "code": "HH-01",
+      "scaffold_module_id": "hero-header-full-width",
+      "label": "Integrated Header and Full-Width Hero",
+      "module_type": "hero",
+      "module_family": "hero",
+      "layout_role": "header-hero",
+      "summary": "Integrated Header and Full-Width Hero",
+      "content_rows": [
+        29
+      ],
+      "includes_header": true,
+      "locked": false,
+      "live_text_support": true,
+      "image_required": true,
+      "image_aspect_ratio": "full-width scaffold ratio",
+      "editable_slots": [
+        {
+          "name": "background_image",
+          "slot_type": "image",
+          "operations": [
+            "replace_background_url"
+          ],
+          "required_approvals": [
+            "hero"
+          ],
+          "required": true,
+          "omit_if_missing": false,
+          "annotation_id": ""
+        },
+        {
+          "name": "headline",
+          "slot_type": "text",
+          "operations": [
+            "replace_text"
+          ],
+          "required_approvals": [],
+          "required": true,
+          "omit_if_missing": false,
+          "annotation_id": ""
+        },
+        {
+          "name": "logo_link",
+          "slot_type": "url",
+          "operations": [
+            "replace_href"
+          ],
+          "required_approvals": []
+        }
+      ],
+      "companion_rules": [
+        "Allowed after: start.",
+        "Allowed before: body.",
+        "At most 1 from primary-hero."
+      ],
+      "theme": {
+        "default": "image-led",
+        "user_selectable": false
+      },
+      "compatibility": {
+        "predecessors": [
+          "start"
+        ],
+        "successors": [
+          "body"
+        ],
+        "exclusion_group": "primary-hero"
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "preview": {
+        "type": "isolated-html",
+        "path": "module-previews/HH-01.html",
+        "expectation": "Use this isolated scaffold snippet for composition review; final package assets are localized by the runtime."
+      }
+    },
+    {
+      "code": "H-04",
+      "scaffold_module_id": "header-one-column-light",
+      "label": "One-Column Header, Light",
+      "module_type": "header",
+      "module_family": "header",
+      "layout_role": "header",
+      "summary": "One-Column Header, Light",
+      "content_rows": [
+        32
+      ],
+      "includes_header": true,
+      "locked": false,
+      "live_text_support": true,
+      "image_required": false,
+      "image_aspect_ratio": "",
+      "editable_slots": [
+        {
+          "name": "logo_link",
+          "slot_type": "url",
+          "operations": [
+            "replace_href"
+          ],
+          "required_approvals": []
+        }
+      ],
+      "companion_rules": [
+        "Allowed after: start.",
+        "Allowed before: hero, body.",
+        "At most 1 from email-header."
+      ],
+      "theme": {
+        "default": "light",
+        "user_selectable": false
+      },
+      "compatibility": {
+        "predecessors": [
+          "start"
+        ],
+        "successors": [
+          "hero",
+          "body"
+        ],
+        "exclusion_group": "email-header"
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "preview": {
+        "type": "isolated-html",
+        "path": "module-previews/H-04.html",
+        "expectation": "Use this isolated scaffold snippet for composition review; final package assets are localized by the runtime."
+      }
+    },
+    {
+      "code": "HR-02",
+      "scaffold_module_id": "hero-light-framed",
+      "label": "Framed Live-Text Hero, Light",
+      "module_type": "hero",
+      "module_family": "hero",
+      "layout_role": "hero",
+      "summary": "Framed Live-Text Hero, Light",
+      "content_rows": [
+        35
+      ],
+      "includes_header": false,
+      "locked": false,
+      "live_text_support": true,
+      "image_required": true,
+      "image_aspect_ratio": "scaffold-defined",
+      "editable_slots": [
+        {
+          "name": "background_image",
+          "slot_type": "image",
+          "operations": [
+            "replace_background_url"
+          ],
+          "required_approvals": [
+            "hero"
+          ],
+          "required": true,
+          "omit_if_missing": false,
+          "annotation_id": ""
+        },
+        {
+          "name": "headline",
+          "slot_type": "text",
+          "operations": [
+            "replace_text"
+          ],
+          "required_approvals": [],
+          "required": true,
+          "omit_if_missing": false,
+          "annotation_id": ""
+        }
+      ],
+      "companion_rules": [
+        "Allowed after: header, start.",
+        "Allowed before: body.",
+        "At most 1 from primary-hero."
+      ],
+      "theme": {
+        "default": "light",
+        "user_selectable": false
+      },
+      "compatibility": {
+        "predecessors": [
+          "header",
+          "start"
+        ],
+        "successors": [
+          "body"
+        ],
+        "exclusion_group": "primary-hero"
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "preview": {
+        "type": "isolated-html",
+        "path": "module-previews/HR-02.html",
+        "expectation": "Use this isolated scaffold snippet for composition review; final package assets are localized by the runtime."
+      }
+    },
+    {
+      "code": "B-04",
+      "scaffold_module_id": "body-long-form",
+      "label": "Long-Form Editorial Body",
+      "module_type": "body",
+      "module_family": "body",
+      "layout_role": "body",
+      "summary": "Long-Form Editorial Body",
+      "content_rows": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44
+      ],
+      "includes_header": false,
+      "locked": false,
+      "live_text_support": true,
+      "image_required": true,
+      "image_aspect_ratio": "scaffold-defined",
+      "editable_slots": [
+        {
+          "name": "amplified_list",
+          "slot_type": "amplified_list",
+          "operations": [
+            "annotation_repeat_pairs"
+          ],
+          "required_approvals": [],
+          "required": false,
+          "omit_if_missing": true,
+          "annotation_id": "body-amplified-list"
+        },
+        {
+          "name": "body_copy_primary",
+          "slot_type": "unknown",
+          "operations": [
+            "annotation_replace_text"
+          ],
+          "required_approvals": [],
+          "required": true,
+          "omit_if_missing": false,
+          "annotation_id": "body-paragraph-primary"
+        },
+        {
+          "name": "body_copy_secondary",
+          "slot_type": "unknown",
+          "operations": [
+            "annotation_replace_text"
+          ],
+          "required_approvals": [],
+          "required": false,
+          "omit_if_missing": true,
+          "annotation_id": "body-paragraph-secondary"
+        },
+        {
+          "name": "followup_list",
+          "slot_type": "text_list",
+          "operations": [
+            "annotation_replace_list"
+          ],
+          "required_approvals": [],
+          "required": false,
+          "omit_if_missing": true,
+          "annotation_id": "body-followup-list"
+        },
+        {
+          "name": "inline_image_primary",
+          "slot_type": "image",
+          "operations": [
+            "annotation_replace_image"
+          ],
+          "required_approvals": [
+            "body"
+          ],
+          "required": false,
+          "omit_if_missing": true,
+          "annotation_id": "body-inline-image-primary"
+        },
+        {
+          "name": "leading_terms",
+          "slot_type": "text_list",
+          "operations": [
+            "annotation_repeat_text"
+          ],
+          "required_approvals": [],
+          "required": false,
+          "omit_if_missing": true,
+          "annotation_id": "body-leading-term-list"
+        },
+        {
+          "name": "list_eyebrow",
+          "slot_type": "text",
+          "operations": [
+            "annotation_replace_text"
+          ],
+          "required_approvals": [],
+          "required": false,
+          "omit_if_missing": true,
+          "annotation_id": "body-list-eyebrow"
+        },
+        {
+          "name": "list_payoff",
+          "slot_type": "unknown",
+          "operations": [
+            "annotation_replace_text"
+          ],
+          "required_approvals": [],
+          "required": false,
+          "omit_if_missing": true,
+          "annotation_id": "body-list-payoff"
+        },
+        {
+          "name": "subheading",
+          "slot_type": "unknown",
+          "operations": [
+            "annotation_replace_text"
+          ],
+          "required_approvals": [],
+          "required": false,
+          "omit_if_missing": true,
+          "annotation_id": "body-subheading"
+        }
+      ],
+      "companion_rules": [
+        "Allowed after: hero, header.",
+        "Allowed before: body, static, callout, specs, pre-footer, footer."
+      ],
+      "theme": {
+        "default": "dark",
+        "user_selectable": true,
+        "allowed": [
+          "dark",
+          "light"
+        ]
+      },
+      "compatibility": {
+        "predecessors": [
+          "hero",
+          "header"
+        ],
+        "successors": [
+          "body",
+          "static",
+          "callout",
+          "specs",
+          "pre-footer",
+          "footer"
+        ],
+        "exclusion_group": null
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "preview": {
+        "type": "isolated-html",
+        "path": "module-previews/B-04.html",
+        "expectation": "Use this isolated scaffold snippet for composition review; final package assets are localized by the runtime."
+      }
+    },
+    {
+      "code": "S-01",
+      "scaffold_module_id": "static-authority",
+      "label": "Developer Authority Static Block",
+      "module_type": "static",
+      "module_family": "static",
+      "layout_role": "supporting-proof",
+      "summary": "Developer Authority Static Block",
+      "content_rows": [
+        47
+      ],
+      "includes_header": false,
+      "locked": true,
+      "live_text_support": false,
+      "image_required": false,
+      "image_aspect_ratio": "",
+      "editable_slots": [],
+      "companion_rules": [
+        "Allowed after: body.",
+        "Allowed before: pre-footer, footer.",
+        "At most 1 from rider-static-message."
+      ],
+      "theme": {
+        "default": "light",
+        "user_selectable": true,
+        "inverse_of": "body-long-form"
+      },
+      "compatibility": {
+        "predecessors": [
+          "body"
+        ],
+        "successors": [
+          "pre-footer",
+          "footer"
+        ],
+        "exclusion_group": "rider-static-message",
+        "max_from_group": 1
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "preview": {
+        "type": "isolated-html",
+        "path": "module-previews/S-01.html",
+        "expectation": "Use this isolated scaffold snippet for composition review; final package assets are localized by the runtime."
+      }
+    },
+    {
+      "code": "S-02",
+      "scaffold_module_id": "static-design",
+      "label": "Curated Design Static Block",
+      "module_type": "static",
+      "module_family": "static",
+      "layout_role": "supporting-proof",
+      "summary": "Curated Design Static Block",
+      "content_rows": [
+        50
+      ],
+      "includes_header": false,
+      "locked": true,
+      "live_text_support": false,
+      "image_required": false,
+      "image_aspect_ratio": "",
+      "editable_slots": [],
+      "companion_rules": [
+        "Allowed after: body.",
+        "Allowed before: pre-footer, footer.",
+        "At most 1 from rider-static-message."
+      ],
+      "theme": {
+        "default": "scaffold-defined",
+        "user_selectable": false
+      },
+      "compatibility": {
+        "predecessors": [
+          "body"
+        ],
+        "successors": [
+          "pre-footer",
+          "footer"
+        ],
+        "exclusion_group": "rider-static-message",
+        "max_from_group": 1
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "preview": {
+        "type": "isolated-html",
+        "path": "module-previews/S-02.html",
+        "expectation": "Use this isolated scaffold snippet for composition review; final package assets are localized by the runtime."
+      }
+    },
+    {
+      "code": "I-02",
+      "scaffold_module_id": "body-inline-image-secondary",
+      "label": "Between-Copy Image Block, Secondary",
+      "module_type": "body",
+      "module_family": "body",
+      "layout_role": "body-image",
+      "summary": "Optional standalone image row placed between compatible long-form copy blocks; its scaffold placeholder must always be replaced.",
+      "content_rows": [
+        52
+      ],
+      "includes_header": false,
+      "locked": false,
+      "live_text_support": false,
+      "image_required": true,
+      "image_aspect_ratio": "scaffold-defined",
+      "editable_slots": [
+        {
+          "name": "image",
+          "slot_type": "image",
+          "operations": [
+            "annotation_replace_image"
+          ],
+          "required_approvals": [
+            "body"
+          ],
+          "required": true,
+          "omit_if_missing": false,
+          "annotation_id": "body-inline-image-secondary"
+        }
+      ],
+      "companion_rules": [
+        "Allowed after: body, callout.",
+        "Allowed before: body, callout, specs, static, pre-footer, footer."
+      ],
+      "theme": {
+        "default": "scaffold-defined",
+        "user_selectable": false
+      },
+      "compatibility": {
+        "predecessors": [
+          "body",
+          "callout"
+        ],
+        "successors": [
+          "body",
+          "callout",
+          "specs",
+          "static",
+          "pre-footer",
+          "footer"
+        ],
+        "exclusion_group": null
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "preview": {
+        "type": "isolated-html",
+        "path": "module-previews/I-02.html",
+        "expectation": "Use this isolated scaffold snippet for composition review; final package assets are localized by the runtime."
+      }
+    },
+    {
+      "code": "C-01",
+      "scaffold_module_id": "callout-highlight",
+      "label": "Highlighted Text Callout",
+      "module_type": "body",
+      "module_family": "callout",
+      "layout_role": "body-callout",
+      "summary": "Highlighted Text Callout",
+      "content_rows": [
+        54
+      ],
+      "includes_header": false,
+      "locked": false,
+      "live_text_support": true,
+      "image_required": false,
+      "image_aspect_ratio": "",
+      "editable_slots": [
+        {
+          "name": "callout_copy",
+          "slot_type": "text",
+          "operations": [
+            "replace_text"
+          ],
+          "required_approvals": [],
+          "required": true,
+          "omit_if_missing": false,
+          "annotation_id": ""
+        },
+        {
+          "name": "footnote",
+          "slot_type": "text",
+          "operations": [
+            "annotation_replace_text"
+          ],
+          "required_approvals": [],
+          "required": false,
+          "omit_if_missing": true,
+          "annotation_id": "callout-footnote"
+        }
+      ],
+      "companion_rules": [
+        "Allowed after: body, image.",
+        "Allowed before: specs, static, pre-footer."
+      ],
+      "theme": {
+        "default": "scaffold-defined",
+        "user_selectable": false
+      },
+      "compatibility": {
+        "predecessors": [
+          "body",
+          "image"
+        ],
+        "successors": [
+          "specs",
+          "static",
+          "pre-footer"
+        ],
+        "exclusion_group": null
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "preview": {
+        "type": "isolated-html",
+        "path": "module-previews/C-01.html",
+        "expectation": "Use this isolated scaffold snippet for composition review; final package assets are localized by the runtime."
+      }
+    },
+    {
+      "code": "S-03",
+      "scaffold_module_id": "specs-residences",
+      "label": "Residence Specs, Semi-Static",
+      "module_type": "body",
+      "module_family": "semi-static",
+      "layout_role": "product-specs",
+      "summary": "Residence Specs, Semi-Static",
+      "content_rows": [
+        57
+      ],
+      "includes_header": false,
+      "locked": false,
+      "live_text_support": true,
+      "image_required": false,
+      "image_aspect_ratio": "",
+      "editable_slots": [
+        {
+          "name": "price",
+          "slot_type": "text",
+          "operations": [
+            "annotation_replace_text"
+          ],
+          "required_approvals": [],
+          "required": false,
+          "omit_if_missing": false,
+          "annotation_id": "specs-price"
+        }
+      ],
+      "companion_rules": [
+        "Allowed after: body, callout.",
+        "Allowed before: pre-footer, footer."
+      ],
+      "theme": {
+        "default": "scaffold-defined",
+        "user_selectable": false
+      },
+      "compatibility": {
+        "predecessors": [
+          "body",
+          "callout"
+        ],
+        "successors": [
+          "pre-footer",
+          "footer"
+        ],
+        "exclusion_group": null
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "preview": {
+        "type": "isolated-html",
+        "path": "module-previews/S-03.html",
+        "expectation": "Use this isolated scaffold snippet for composition review; final package assets are localized by the runtime."
+      }
+    },
+    {
+      "code": "S-04",
+      "scaffold_module_id": "static-opportunity",
+      "label": "Opportunity Static Block",
+      "module_type": "static",
+      "module_family": "static",
+      "layout_role": "supporting-cta",
+      "summary": "Opportunity Static Block",
+      "content_rows": [
+        60
+      ],
+      "includes_header": false,
+      "locked": true,
+      "live_text_support": false,
+      "image_required": false,
+      "image_aspect_ratio": "",
+      "editable_slots": [],
+      "companion_rules": [
+        "Allowed after: body, specs.",
+        "Allowed before: pre-footer, footer.",
+        "At most 1 from rider-static-message."
+      ],
+      "theme": {
+        "default": "scaffold-defined",
+        "user_selectable": false
+      },
+      "compatibility": {
+        "predecessors": [
+          "body",
+          "specs"
+        ],
+        "successors": [
+          "pre-footer",
+          "footer"
+        ],
+        "exclusion_group": "rider-static-message",
+        "max_from_group": 1
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "preview": {
+        "type": "isolated-html",
+        "path": "module-previews/S-04.html",
+        "expectation": "Use this isolated scaffold snippet for composition review; final package assets are localized by the runtime."
+      }
+    },
+    {
+      "code": "PF-01",
+      "scaffold_module_id": "pre-footer-cta",
+      "label": "Closing CTA Pre-Footer",
+      "module_type": "body",
+      "module_family": "pre-footer",
+      "layout_role": "pre-footer",
+      "summary": "Closing CTA Pre-Footer",
+      "content_rows": [
+        63
+      ],
+      "includes_header": false,
+      "locked": false,
+      "live_text_support": true,
+      "image_required": false,
+      "image_aspect_ratio": "",
+      "editable_slots": [
+        {
+          "name": "closing_cta_copy",
+          "slot_type": "text",
+          "operations": [
+            "replace_text"
+          ],
+          "required_approvals": [],
+          "required": true,
+          "omit_if_missing": false,
+          "annotation_id": ""
+        }
+      ],
+      "companion_rules": [
+        "Allowed after: body, static, callout, specs.",
+        "Allowed before: footer.",
+        "At most 1 from pre-footer."
+      ],
+      "theme": {
+        "default": "scaffold-defined",
+        "user_selectable": false
+      },
+      "compatibility": {
+        "predecessors": [
+          "body",
+          "static",
+          "callout",
+          "specs"
+        ],
+        "successors": [
+          "footer"
+        ],
+        "exclusion_group": "pre-footer"
+      },
+      "campaign_types": [
+        "long-form",
+        "invite"
+      ],
+      "preview": {
+        "type": "isolated-html",
+        "path": "module-previews/PF-01.html",
+        "expectation": "Use this isolated scaffold snippet for composition review; final package assets are localized by the runtime."
+      }
+    }
+  ]
+}

@@ -19,6 +19,7 @@ class CompositionError(ValueError):
 
 CATALOG_VERSION = "1.0"
 GALLERY_VERSION = "1.0"
+SEQUENCE_GALLERY_VERSION = "1.0"
 PLAN_VERSION = "1.0"
 APPROVED_STATUS = "approved"
 
@@ -102,6 +103,26 @@ def write_catalog_artifacts(scaffold: Scaffold, output_dir: Path) -> dict[str, P
     gallery_path = output_dir / "hero-gallery.html"
     gallery_path.write_text(_gallery_html(configurations), encoding="utf-8")
 
+    module_gallery_path = output_dir / "module-gallery.html"
+    module_gallery_path.write_text(_module_gallery_html(module_catalog), encoding="utf-8")
+
+    sequence_path = None
+    sequence_gallery_path = None
+    sequence_dir = None
+    if scaffold.refined:
+        sequences = build_sequence_configurations(module_catalog)
+        sequence_dir = output_dir / "sequence-configurations"
+        sequence_dir.mkdir(parents=True, exist_ok=True)
+        for option in sequences["options"]:
+            rows = []
+            for code in option["selected_module_codes"]:
+                rows.extend(module_rows(scaffold, entries_by_code[code]["scaffold_module_id"]))
+            (sequence_dir / f"{option['id']}.html").write_text(compose_html(scaffold, rows), encoding="utf-8")
+        sequence_path = output_dir / "sequence-configurations.json"
+        sequence_path.write_text(json.dumps(sequences, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        sequence_gallery_path = output_dir / "sequence-gallery.html"
+        sequence_gallery_path.write_text(_sequence_gallery_html(sequences), encoding="utf-8")
+
     review_path = output_dir / "composition-review.md"
     review_path.write_text(_review_markdown(module_catalog), encoding="utf-8")
     return {
@@ -111,6 +132,10 @@ def write_catalog_artifacts(scaffold: Scaffold, output_dir: Path) -> dict[str, P
         "hero_configurations": configuration_path,
         "hero_gallery": gallery_path,
         "hero_configuration_dir": configuration_dir,
+        "module_gallery": module_gallery_path,
+        **({"sequence_configurations": sequence_path} if sequence_path else {}),
+        **({"sequence_gallery": sequence_gallery_path} if sequence_gallery_path else {}),
+        **({"sequence_configuration_dir": sequence_dir} if sequence_dir else {}),
     }
 
 
@@ -162,6 +187,99 @@ def build_hero_configurations(module_catalog: dict) -> dict:
             }
         )
     return {"gallery_version": GALLERY_VERSION, "option_count": len(options), "options": options}
+
+
+def build_sequence_configurations(module_catalog: dict) -> dict:
+    entries_by_code = {entry["code"]: entry for entry in module_catalog["entries"]}
+    presets = [
+        {
+            "id": "SEQ-LF-01",
+            "label": "Dark Framed Editorial",
+            "campaign_type": "long-form",
+            "theme": "dark",
+            "codes": ["H-02", "HR-01", "B-04", "PF-01"],
+            "notes": "Compact dark header and framed hero followed by the default dark editorial body.",
+        },
+        {
+            "id": "SEQ-LF-02",
+            "label": "Light-Led Editorial Transition",
+            "campaign_type": "long-form",
+            "theme": "light-to-dark",
+            "codes": ["H-04", "HR-02", "B-04", "PF-01"],
+            "notes": "Light header and hero transition into the scaffold's default dark editorial body.",
+        },
+        {
+            "id": "SEQ-LF-03",
+            "label": "Integrated Hero With Authority Proof",
+            "campaign_type": "long-form",
+            "theme": "image-led-to-dark",
+            "codes": ["HH-01", "B-04", "S-01", "PF-01"],
+            "notes": "Integrated header and hero, editorial body, one approved authority message, and closing CTA.",
+        },
+        {
+            "id": "SEQ-LF-04",
+            "label": "Editorial With Callout And Specs",
+            "campaign_type": "long-form",
+            "theme": "dark",
+            "codes": ["H-01", "HR-01", "B-04", "C-01", "S-03", "PF-01"],
+            "notes": "Two-column headline header, framed hero, editorial body, closing callout, and residence specs.",
+        },
+        {
+            "id": "SEQ-LF-05",
+            "label": "Masonry With Design Proof",
+            "campaign_type": "long-form",
+            "theme": "dark",
+            "codes": ["H-02", "HR-01", "B-01", "S-02", "PF-01"],
+            "notes": "Image-forward masonry body followed by the single permitted curated-design static message.",
+        },
+        {
+            "id": "SEQ-LF-06",
+            "label": "Light-Led Opportunity Close",
+            "campaign_type": "long-form",
+            "theme": "light-to-dark",
+            "codes": ["H-04", "HR-02", "B-04", "S-04", "PF-01"],
+            "notes": "Light opening, default dark editorial body, one opportunity message, and closing CTA.",
+        },
+        {
+            "id": "SEQ-IN-01",
+            "label": "Dark Invite",
+            "campaign_type": "invite",
+            "theme": "dark",
+            "codes": ["H-03", "B-03", "PF-01"],
+            "notes": "Collaboration header and invite body without an additional hero image.",
+        },
+        {
+            "id": "SEQ-IN-02",
+            "label": "Dark Invite With Image Hero",
+            "campaign_type": "invite",
+            "theme": "dark",
+            "codes": ["H-03", "AI-01", "B-03", "PF-01"],
+            "notes": "Collaboration header, optional approved image hero, invite body, and closing CTA.",
+        },
+    ]
+    options = []
+    for preset in presets:
+        if not all(code in entries_by_code for code in preset["codes"]):
+            continue
+        selected = [entries_by_code[code] for code in preset["codes"]]
+        _validate_module_compatibility(preset["codes"], entries_by_code)
+        options.append(
+            {
+                "id": preset["id"],
+                "label": preset["label"],
+                "campaign_type": preset["campaign_type"],
+                "theme": preset["theme"],
+                "selected_module_codes": preset["codes"],
+                "selected_module_labels": [entry["label"] for entry in selected],
+                "notes": preset["notes"],
+                "preview_path": f"sequence-configurations/{preset['id']}.html",
+            }
+        )
+    return {
+        "gallery_version": SEQUENCE_GALLERY_VERSION,
+        "option_count": len(options),
+        "options": options,
+    }
 
 
 def _header_hero_pair_is_compatible(header: dict, hero: dict) -> bool:
@@ -475,13 +593,16 @@ def _validate_refined_sequence(selected: list[dict]) -> None:
 
 
 def _entry_tokens(entry: dict) -> set[str]:
-    return {
+    tokens = {
         entry["code"],
         entry["scaffold_module_id"],
         entry["module_type"],
         entry.get("module_family", ""),
         entry.get("layout_role", ""),
     } - {""}
+    for value in (entry.get("module_family", ""), entry.get("layout_role", "")):
+        tokens.update(part for part in value.split("-") if part)
+    return tokens
 
 
 def _metadata_companion_rules(compatibility: dict) -> list[str]:
@@ -593,7 +714,147 @@ def _review_markdown(module_catalog: dict) -> str:
     lines.append("A standalone header cannot be selected with a hero whose header behavior is `includes`.")
     lines.append("Every static block code must receive an include/exclude decision.")
     lines.append("Open `hero-gallery.html` to choose a complete labeled `CFG-*` header/hero configuration.")
+    lines.append("Open `module-gallery.html` to inspect every selectable block in isolation.")
+    lines.append("For refined scaffolds, open `sequence-gallery.html` to review complete `SEQ-*` compositions.")
     return "\n".join(lines) + "\n"
+
+
+def _module_gallery_html(module_catalog: dict) -> str:
+    cards = []
+    for entry in module_catalog["entries"]:
+        slots = ", ".join(slot["name"] for slot in entry["editable_slots"]) or "Locked content"
+        cards.append(
+            f"""
+            <article class="option" data-module-code="{escape(entry['code'])}">
+              <header>
+                <div><strong>{escape(entry['code'])}</strong><span>{escape(entry['module_family'])}</span></div>
+                <h2>{escape(entry['label'])}</h2>
+                <p>{escape(entry['summary'])}</p>
+              </header>
+              <iframe src="{escape(entry['preview']['path'])}" title="{escape(entry['code'] + ' ' + entry['label'])}"></iframe>
+              <dl>
+                <div><dt>Role</dt><dd>{escape(entry['layout_role'])}</dd></div>
+                <div><dt>Theme</dt><dd>{escape(str(entry['theme'].get('default', 'scaffold-defined')))}</dd></div>
+                <div><dt>Editable slots</dt><dd>{escape(slots)}</dd></div>
+              </dl>
+            </article>"""
+        )
+    return _review_gallery_shell(
+        title="Rider Phase 16 Module Gallery",
+        intro="Inspect each selectable block in isolation. Stable codes and slot names are shown outside the email preview.",
+        content=f'<div class="options">{"".join(cards)}</div>',
+        iframe_height=420,
+    )
+
+
+def _sequence_gallery_html(sequences: dict) -> str:
+    sections = []
+    campaign_order = (("long-form", "Long-Form Email Sequences"), ("invite", "Invite Sequences"))
+    for campaign_type, heading in campaign_order:
+        cards = []
+        for option in sequences["options"]:
+            if option["campaign_type"] != campaign_type:
+                continue
+            codes = " + ".join(option["selected_module_codes"])
+            module_path = " → ".join(option["selected_module_labels"])
+            cards.append(
+                f"""
+                <article class="option sequence" data-sequence-id="{escape(option['id'])}">
+                  <header>
+                    <div><strong>{escape(option['id'])}</strong><span>{escape(option['theme'])}</span></div>
+                    <h2>{escape(option['label'])}</h2>
+                    <p class="codes">{escape(codes)}</p>
+                  </header>
+                  <iframe src="{escape(option['preview_path'])}" title="{escape(option['id'] + ' ' + option['label'])}"></iframe>
+                  <dl>
+                    <div><dt>Campaign</dt><dd>{escape(option['campaign_type'])}</dd></div>
+                    <div><dt>Sequence</dt><dd>{escape(module_path)}</dd></div>
+                    <div><dt>Review note</dt><dd>{escape(option['notes'])}</dd></div>
+                  </dl>
+                </article>"""
+            )
+        if cards:
+            sections.append(f'<section><h2 class="group-title">{escape(heading)}</h2>{"".join(cards)}</section>')
+    return _review_gallery_shell(
+        title="Rider Phase 16 Sequence Gallery",
+        intro="Review complete, runtime-valid block sequences before approving a new creative baseline. Footers are omitted from these layout previews.",
+        content="".join(sections),
+        iframe_height=860,
+        single_column=True,
+    )
+
+
+def _review_gallery_shell(
+    *, title: str, intro: str, content: str, iframe_height: int, single_column: bool = False
+) -> str:
+    columns = "minmax(0, 1fr)" if single_column else "repeat(auto-fit, minmax(360px, 1fr))"
+    resize_script = """
+  <script>
+    function sizePreview(frame) {
+      const previewDocument = frame.contentWindow && frame.contentWindow.document;
+      if (!previewDocument) return;
+      frame.style.height = '1px';
+      const documentElement = previewDocument.documentElement;
+      const body = previewDocument.body;
+      frame.style.height = Math.max(documentElement.scrollHeight, body ? body.scrollHeight : 0) + 'px';
+    }
+    window.addEventListener('load', () => {
+      document.querySelectorAll('iframe').forEach((frame) => {
+        frame.addEventListener('load', () => sizePreview(frame));
+        sizePreview(frame);
+      });
+    });
+  </script>"""
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{escape(title)}</title>
+  <style>
+    * {{ box-sizing: border-box; }}
+    body {{ margin: 0; background: #f4f4f2; color: #151515; font-family: Arial, sans-serif; }}
+    .page-header {{ padding: 28px 32px 20px; background: #151515; color: #fff; }}
+    .page-header h1 {{ margin: 0 0 8px; font-size: 26px; letter-spacing: 0; }}
+    .page-header p {{ margin: 0; max-width: 820px; font-size: 14px; line-height: 1.5; }}
+    main {{ padding: 24px; }}
+    section + section {{ margin-top: 32px; }}
+    .group-title {{ margin: 0 0 12px; font-size: 19px; letter-spacing: 0; }}
+    .options {{ display: grid; grid-template-columns: {columns}; gap: 20px; }}
+    section .option + .option {{ margin-top: 20px; }}
+    .option {{ min-width: 0; border: 1px solid #c9c9c4; background: #fff; }}
+    .option > header {{ padding: 18px 20px; border-bottom: 1px solid #d8d8d2; }}
+    .option > header div {{ display: flex; justify-content: space-between; gap: 12px; font-size: 12px; text-transform: uppercase; }}
+    .option > header span {{ color: #666; }}
+    .option h2 {{ margin: 12px 0 7px; font-size: 17px; line-height: 1.3; letter-spacing: 0; }}
+    .option p {{ margin: 0; color: #555; font-size: 12px; line-height: 1.45; }}
+    .codes {{ font-family: monospace; }}
+    iframe {{ display: block; width: 100%; height: {iframe_height}px; border: 0; background: #eee; }}
+    dl {{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; border-top: 1px solid #d8d8d2; }}
+    dl div {{ min-width: 0; padding: 12px; border-right: 1px solid #d8d8d2; }}
+    dl div:last-child {{ border-right: 0; }}
+    dt {{ margin-bottom: 5px; color: #666; font-size: 10px; text-transform: uppercase; }}
+    dd {{ margin: 0; overflow-wrap: anywhere; font-size: 12px; line-height: 1.4; }}
+    @media (max-width: 620px) {{
+      .page-header {{ padding: 22px 18px; }}
+      main {{ padding: 16px 12px 24px; }}
+      .options {{ grid-template-columns: minmax(0, 1fr); }}
+      iframe {{ height: 430px; }}
+      dl {{ grid-template-columns: 1fr; }}
+      dl div {{ border-right: 0; border-bottom: 1px solid #d8d8d2; }}
+    }}
+  </style>
+</head>
+<body>
+  <header class="page-header">
+    <h1>{escape(title)}</h1>
+    <p>{escape(intro)}</p>
+  </header>
+  <main>{content}</main>
+{resize_script}
+</body>
+</html>
+"""
 
 
 def _gallery_html(configurations: dict) -> str:

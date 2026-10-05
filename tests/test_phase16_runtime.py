@@ -1,12 +1,15 @@
 import json
 from pathlib import Path
+import tempfile
 import unittest
 
 from tools.rider_campaign_runtime.composition import (
     CompositionError,
     build_hero_configurations,
     build_module_catalog,
+    build_sequence_configurations,
     create_composition_plan,
+    write_catalog_artifacts,
 )
 from tools.rider_campaign_runtime.scaffold import catalog, load_scaffold, module_rows
 from tools.rider_campaign_runtime.slots import SlotError, apply_module_slots
@@ -209,6 +212,35 @@ class Phase16RuntimeTests(unittest.TestCase):
             approved_selection(["H-03", "B-03"]),
         )
         self.assertEqual(invite["compatibility"]["hero_count"], 0)
+
+    def test_refined_catalog_writes_module_and_sequence_galleries(self):
+        sequences = build_sequence_configurations(build_module_catalog(self.scaffold))
+        self.assertEqual(sequences["option_count"], 8)
+        self.assertEqual(
+            [option["id"] for option in sequences["options"]],
+            [
+                "SEQ-LF-01",
+                "SEQ-LF-02",
+                "SEQ-LF-03",
+                "SEQ-LF-04",
+                "SEQ-LF-05",
+                "SEQ-LF-06",
+                "SEQ-IN-01",
+                "SEQ-IN-02",
+            ],
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            artifacts = write_catalog_artifacts(self.scaffold, Path(tmp))
+            self.assertTrue(artifacts["module_gallery"].is_file())
+            self.assertTrue(artifacts["sequence_gallery"].is_file())
+            self.assertTrue((artifacts["sequence_configuration_dir"] / "SEQ-IN-02.html").is_file())
+            self.assertIn("SEQ-LF-04", artifacts["sequence_gallery"].read_text())
+            generated_html = "".join(
+                path.read_text(encoding="utf-8")
+                for path in Path(tmp).rglob("*.html")
+            )
+            self.assertNotIn("START - ", generated_html)
+            self.assertNotIn("END - ", generated_html)
 
     def test_sequence_rules_reject_bad_order_and_multiple_static_messages(self):
         with self.assertRaisesRegex(CompositionError, "cannot precede"):

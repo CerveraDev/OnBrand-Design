@@ -38,25 +38,31 @@ def main(argv=None):
     build_parser.add_argument("campaign_json", help="Path to the campaign JSON spec.")
     catalog_parser = subparsers.add_parser("catalog", help="Generate the Rider module catalog and review artifacts.")
     catalog_parser.add_argument("--output", required=True, help="Directory for module_catalog.json and preview artifacts.")
+    _add_scaffold_arguments(catalog_parser)
     plan_parser = subparsers.add_parser("plan", help="Create an approved composition plan from a selection JSON file.")
     plan_parser.add_argument("--selection", required=True, help="Path to an approved composition selection JSON file.")
     plan_parser.add_argument("--output", required=True, help="Path to write composition_plan.json.")
+    _add_scaffold_arguments(plan_parser)
     args = parser.parse_args(argv)
 
     try:
         if args.command == "catalog":
-            scaffold = load_scaffold(SCAFFOLD_PATH, SLOT_MAP_PATH, MODULE_METADATA_PATH)
+            scaffold = _load_selected_scaffold(args)
             artifacts = write_catalog_artifacts(scaffold, Path(args.output))
             print(f"module catalog: {artifacts['catalog']}")
             print(f"review guide: {artifacts['review']}")
             print(f"module previews: {artifacts['preview_dir']}")
             print(f"hero configuration catalog: {artifacts['hero_configurations']}")
             print(f"hero selection gallery: {artifacts['hero_gallery']}")
+            print(f"module gallery: {artifacts['module_gallery']}")
+            if "sequence_gallery" in artifacts:
+                print(f"sequence configuration catalog: {artifacts['sequence_configurations']}")
+                print(f"sequence gallery: {artifacts['sequence_gallery']}")
             return 0
         if args.command == "plan":
             selection_path = Path(args.selection)
             selection = json.loads(selection_path.read_text(encoding="utf-8"))
-            scaffold = load_scaffold(SCAFFOLD_PATH, SLOT_MAP_PATH, MODULE_METADATA_PATH)
+            scaffold = _load_selected_scaffold(args)
             plan = create_composition_plan(scaffold, selection)
             output_path = Path(args.output)
             output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -93,6 +99,21 @@ def main(argv=None):
     for check in failed[:10]:
         print(f"blocking: {check['name']} - {check['message']}", file=sys.stderr)
     return 4
+
+
+def _add_scaffold_arguments(parser):
+    parser.add_argument("--scaffold", help="Optional staged scaffold HTML path.")
+    parser.add_argument("--slot-map", help="Optional staged scaffold slot-map JSON path.")
+    parser.add_argument("--metadata", help="Optional staged scaffold metadata JSON path.")
+
+
+def _load_selected_scaffold(args):
+    supplied = [args.scaffold, args.slot_map, args.metadata]
+    if any(supplied) and not all(supplied):
+        raise ValueError("--scaffold, --slot-map, and --metadata must be supplied together")
+    if all(supplied):
+        return load_scaffold(Path(args.scaffold), Path(args.slot_map), Path(args.metadata))
+    return load_scaffold(SCAFFOLD_PATH, SLOT_MAP_PATH, MODULE_METADATA_PATH)
 
 
 if __name__ == "__main__":

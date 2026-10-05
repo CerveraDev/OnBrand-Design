@@ -1,0 +1,172 @@
+{
+  "gallery_version": "1.0",
+  "option_count": 8,
+  "options": [
+    {
+      "id": "SEQ-LF-01",
+      "label": "Dark Framed Editorial",
+      "campaign_type": "long-form",
+      "theme": "dark",
+      "selected_module_codes": [
+        "H-02",
+        "HR-01",
+        "B-04",
+        "PF-01"
+      ],
+      "selected_module_labels": [
+        "One-Column Header, Dark",
+        "Framed Live-Text Hero, Dark",
+        "Long-Form Editorial Body",
+        "Closing CTA Pre-Footer"
+      ],
+      "notes": "Compact dark header and framed hero followed by the default dark editorial body.",
+      "preview_path": "sequence-configurations/SEQ-LF-01.html"
+    },
+    {
+      "id": "SEQ-LF-02",
+      "label": "Light-Led Editorial Transition",
+      "campaign_type": "long-form",
+      "theme": "light-to-dark",
+      "selected_module_codes": [
+        "H-04",
+        "HR-02",
+        "B-04",
+        "PF-01"
+      ],
+      "selected_module_labels": [
+        "One-Column Header, Light",
+        "Framed Live-Text Hero, Light",
+        "Long-Form Editorial Body",
+        "Closing CTA Pre-Footer"
+      ],
+      "notes": "Light header and hero transition into the scaffold's default dark editorial body.",
+      "preview_path": "sequence-configurations/SEQ-LF-02.html"
+    },
+    {
+      "id": "SEQ-LF-03",
+      "label": "Integrated Hero With Authority Proof",
+      "campaign_type": "long-form",
+      "theme": "image-led-to-dark",
+      "selected_module_codes": [
+        "HH-01",
+        "B-04",
+        "S-01",
+        "PF-01"
+      ],
+      "selected_module_labels": [
+        "Integrated Header and Full-Width Hero",
+        "Long-Form Editorial Body",
+        "Developer Authority Static Block",
+        "Closing CTA Pre-Footer"
+      ],
+      "notes": "Integrated header and hero, editorial body, one approved authority message, and closing CTA.",
+      "preview_path": "sequence-configurations/SEQ-LF-03.html"
+    },
+    {
+      "id": "SEQ-LF-04",
+      "label": "Editorial With Callout And Specs",
+      "campaign_type": "long-form",
+      "theme": "dark",
+      "selected_module_codes": [
+        "H-01",
+        "HR-01",
+        "B-04",
+        "C-01",
+        "S-03",
+        "PF-01"
+      ],
+      "selected_module_labels": [
+        "Two-Column Header, Dark",
+        "Framed Live-Text Hero, Dark",
+        "Long-Form Editorial Body",
+        "Highlighted Text Callout",
+        "Residence Specs, Semi-Static",
+        "Closing CTA Pre-Footer"
+      ],
+      "notes": "Two-column headline header, framed hero, editorial body, closing callout, and residence specs.",
+      "preview_path": "sequence-configurations/SEQ-LF-04.html"
+    },
+    {
+      "id": "SEQ-LF-05",
+      "label": "Masonry With Design Proof",
+      "campaign_type": "long-form",
+      "theme": "dark",
+      "selected_module_codes": [
+        "H-02",
+        "HR-01",
+        "B-01",
+        "S-02",
+        "PF-01"
+      ],
+      "selected_module_labels": [
+        "One-Column Header, Dark",
+        "Framed Live-Text Hero, Dark",
+        "Masonry Image Body",
+        "Curated Design Static Block",
+        "Closing CTA Pre-Footer"
+      ],
+      "notes": "Image-forward masonry body followed by the single permitted curated-design static message.",
+      "preview_path": "sequence-configurations/SEQ-LF-05.html"
+    },
+    {
+      "id": "SEQ-LF-06",
+      "label": "Light-Led Opportunity Close",
+      "campaign_type": "long-form",
+      "theme": "light-to-dark",
+      "selected_module_codes": [
+        "H-04",
+        "HR-02",
+        "B-04",
+        "S-04",
+        "PF-01"
+      ],
+      "selected_module_labels": [
+        "One-Column Header, Light",
+        "Framed Live-Text Hero, Light",
+        "Long-Form Editorial Body",
+        "Opportunity Static Block",
+        "Closing CTA Pre-Footer"
+      ],
+      "notes": "Light opening, default dark editorial body, one opportunity message, and closing CTA.",
+      "preview_path": "sequence-configurations/SEQ-LF-06.html"
+    },
+    {
+      "id": "SEQ-IN-01",
+      "label": "Dark Invite",
+      "campaign_type": "invite",
+      "theme": "dark",
+      "selected_module_codes": [
+        "H-03",
+        "B-03",
+        "PF-01"
+      ],
+      "selected_module_labels": [
+        "Invite Collaboration Header",
+        "Invite Body, Dark",
+        "Closing CTA Pre-Footer"
+      ],
+      "notes": "Collaboration header and invite body without an additional hero image.",
+      "preview_path": "sequence-configurations/SEQ-IN-01.html"
+    },
+    {
+      "id": "SEQ-IN-02",
+      "label": "Dark Invite With Image Hero",
+      "campaign_type": "invite",
+      "theme": "dark",
+      "selected_module_codes": [
+        "H-03",
+        "AI-01",
+        "B-03",
+        "PF-01"
+      ],
+      "selected_module_labels": [
+        "Invite Collaboration Header",
+        "AI-Generated Image Hero",
+        "Invite Body, Dark",
+        "Closing CTA Pre-Footer"
+      ],
+      "notes": "Collaboration header, optional approved image hero, invite body, and closing CTA.",
+      "preview_path": "sequence-configurations/SEQ-IN-02.html"
+    }
+  ]
+}

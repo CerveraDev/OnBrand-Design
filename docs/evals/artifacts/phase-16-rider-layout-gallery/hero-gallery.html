@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rider Header And Hero Configurations</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f4f4f2; color: #151515; font-family: Arial, sans-serif; }
+    .page-header { padding: 28px 32px 20px; background: #151515; color: #fff; }
+    .page-header h1 { margin: 0 0 8px; font-size: 26px; letter-spacing: 0; }
+    .page-header p { margin: 0; max-width: 760px; font-size: 14px; line-height: 1.5; }
+    main { padding: 12px 24px 32px; }
+    section { padding-top: 20px; }
+    .group-title { margin: 0 0 12px; font-size: 18px; letter-spacing: 0; }
+    .options { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 20px; }
+    .option { min-width: 0; border: 1px solid #c9c9c4; background: #fff; }
+    .option > header { min-height: 128px; padding: 18px 20px; border-bottom: 1px solid #d8d8d2; }
+    .option > header div { display: flex; justify-content: space-between; gap: 12px; font-size: 12px; text-transform: uppercase; }
+    .option > header span { color: #666; }
+    .option h3 { margin: 14px 0 8px; font-size: 17px; line-height: 1.25; letter-spacing: 0; }
+    .codes { margin: 0; font-family: monospace; font-size: 12px; }
+    iframe { display: block; width: 100%; height: 520px; border: 0; background: #eee; }
+    dl { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; border-top: 1px solid #d8d8d2; }
+    dl div { min-width: 0; padding: 12px; border-right: 1px solid #d8d8d2; }
+    dl div:last-child { border-right: 0; }
+    dt { margin-bottom: 5px; color: #666; font-size: 10px; text-transform: uppercase; }
+    dd { margin: 0; font-size: 12px; line-height: 1.35; }
+    .notes { min-height: 58px; margin: 0; padding: 12px 20px 16px; color: #555; font-size: 12px; line-height: 1.4; }
+    @media (max-width: 520px) {
+      .page-header { padding: 22px 18px; }
+      main { padding: 4px 12px 24px; }
+      .options { grid-template-columns: minmax(0, 1fr); }
+      iframe { height: 430px; }
+      dl { grid-template-columns: 1fr; }
+      dl div { border-right: 0; border-bottom: 1px solid #d8d8d2; }
+    }
+  </style>
+</head>
+<body>
+  <header class="page-header">
+    <h1>Rider Header And Hero Configurations</h1>
+    <p>Select one stable CFG code before image generation. Each option is a compatible complete configuration, not a final email-client rendering.</p>
+  </header>
+  <main><section id="integrated-header"><h2 class="group-title">Integrated Header And Hero</h2><div class="options">
+            <article class="option" data-configuration="CFG-01">
+              <header>
+                <div><strong>CFG-01</strong><span>integrated-header</span></div>
+                <h3>Integrated Header and Full-Width Hero</h3>
+                <p class="codes">HH-01</p>
+              </header>
+              <iframe src="hero-configurations/CFG-01.html" title="CFG-01 Integrated Header and Full-Width Hero"></iframe>
+              <dl>
+                <div><dt>Header</dt><dd>Included</dd></div>
+                <div><dt>Text</dt><dd>Live HTML supported</dd></div>
+                <div><dt>Image</dt><dd>Required</dd></div>
+              </dl>
+              <p class="notes">Allowed after: start. Allowed before: body. At most 1 from primary-hero.</p>
+            </article></div></section><section id="hero-only"><h2 class="group-title">Hero Only</h2><div class="options">
+            <article class="option" data-configuration="CFG-02">
+              <header>
+                <div><strong>CFG-02</strong><span>hero-only</span></div>
+                <h3>AI-Generated Image Hero</h3>
+                <p class="codes">AI-01</p>
+              </header>
+              <iframe src="hero-configurations/CFG-02.html" title="CFG-02 AI-Generated Image Hero"></iframe>
+              <dl>
+                <div><dt>Header</dt><dd>None</dd></div>
+                <div><dt>Text</dt><dd>Image-led or locked</dd></div>
+                <div><dt>Image</dt><dd>Required</dd></div>
+              </dl>
+              <p class="notes">Allowed after: header, start. Allowed before: body. At most 1 from primary-hero.</p>
+            </article>
+            <article class="option" data-configuration="CFG-03">
+              <header>
+                <div><strong>CFG-03</strong><span>hero-only</span></div>
+                <h3>Framed Live-Text Hero, Dark</h3>
+                <p class="codes">HR-01</p>
+              </header>
+              <iframe src="hero-configurations/CFG-03.html" title="CFG-03 Framed Live-Text Hero, Dark"></iframe>
+              <dl>
+                <div><dt>Header</dt><dd>None</dd></div>
+                <div><dt>Text</dt><dd>Live HTML supported</dd></div>
+                <div><dt>Image</dt><dd>Required</dd></div>
+              </dl>
+              <p class="notes">Allowed after: header, start. Allowed before: body. At most 1 from primary-hero.</p>
+            </article>
+            <article class="option" data-configuration="CFG-04">
+              <header>
+                <div><strong>CFG-04</strong><span>hero-only</span></div>
+                <h3>Framed Live-Text Hero, Light</h3>
+                <p class="codes">HR-02</p>
+              </header>
+              <iframe src="hero-configurations/CFG-04.html" title="CFG-04 Framed Live-Text Hero, Light"></iframe>
+              <dl>
+                <div><dt>Header</dt><dd>None</dd></div>
+                <div><dt>Text</dt><dd>Live HTML supported</dd></div>
+                <div><dt>Image</dt><dd>Required</dd></div>
+              </dl>
+              <p class="notes">Allowed after: header, start. Allowed before: body. At most 1 from primary-hero.</p>
+            </article></div></section><section id="header-H-01"><h2 class="group-title">Two-Column Header, Dark</h2><div class="options">
+            <article class="option" data-configuration="CFG-05">
+              <header>
+                <div><strong>CFG-05</strong><span>header-H-01</span></div>
+                <h3>Two-Column Header, Dark + AI-Generated Image Hero</h3>
+                <p class="codes">H-01 + AI-01</p>
+              </header>
+              <iframe src="hero-configurations/CFG-05.html" title="CFG-05 Two-Column Header, Dark + AI-Generated Image Hero"></iframe>
+              <dl>
+                <div><dt>Header</dt><dd>Included</dd></div>
+                <div><dt>Text</dt><dd>Live HTML supported</dd></div>
+                <div><dt>Image</dt><dd>Required</dd></div>
+              </dl>
+              <p class="notes">Allowed after: header, start. Allowed before: body. At most 1 from primary-hero.</p>
+            </article>
+            <article class="option" data-configuration="CFG-06">
+              <header>
+                <div><strong>CFG-06</strong><span>header-H-01</span></div>
+                <h3>Two-Column Header, Dark + Framed Live-Text Hero, Dark</h3>
+                <p class="codes">H-01 + HR-01</p>
+              </header>
+              <iframe src="hero-configurations/CFG-06.html" title="CFG-06 Two-Column Header, Dark + Framed Live-Text Hero, Dark"></iframe>
+              <dl>
+                <div><dt>Header</dt><dd>Included</dd></div>
+                <div><dt>Text</dt><dd>Live HTML supported</dd></div>
+                <div><dt>Image</dt><dd>Required</dd></div>
+              </dl>
+              <p class="notes">Allowed after: header, start. Allowed before: body. At most 1 from primary-hero.</p>
+            </article>
+            <article class="option" data-configuration="CFG-07">
+              <header>
+                <div><strong>CFG-07</strong><span>header-H-01</span></div>
+                <h3>Two-Column Header, Dark + Framed Live-Text Hero, Light</h3>
+                <p class="codes">H-01 + HR-02</p>
+              </header>
+              <iframe src="hero-configurations/CFG-07.html" title="CFG-07 Two-Column Header, Dark + Framed Live-Text Hero, Light"></iframe>
+              <dl>
+                <div><dt>Header</dt><dd>Included</dd></div>
+                <div><dt>Text</dt><dd>Live HTML supported</dd></div>
+                <div><dt>Image</dt><dd>Required</dd></div>
+              </dl>
+              <p class="notes">Allowed after: header, start. Allowed before: body. At most 1 from primary-hero.</p>
+            </article></div></section><section id="header-H-02"><h2 class="group-title">One-Column Header, Dark</h2><div class="options">
+            <article class="option" data-configuration="CFG-08">
+              <header>
+                <div><strong>CFG-08</strong><span>header-H-02</span></div>
+                <h3>One-Column Header, Dark + AI-Generated Image Hero</h3>
+                <p class="codes">H-02 + AI-01</p>
+              </header>
+              <iframe src="hero-configurations/CFG-08.html" title="CFG-08 One-Column Header, Dark + AI-Generated Image Hero"></iframe>
+              <dl>
+                <div><dt>Header</dt><dd>Included</dd></div>
+                <div><dt>Text</dt><dd>Live HTML supported</dd></div>
+                <div><dt>Image</dt><dd>Required</dd></div>
+              </dl>
+              <p class="notes">Allowed after: header, start. Allowed before: body. At most 1 from primary-hero.</p>
+            </article>
+            <article class="option" data-configuration="CFG-09">
+              <header>
+                <div><strong>CFG-09</strong><span>header-H-02</span></div>
+                <h3>One-Column Header, Dark + Framed Live-Text Hero, Dark</h3>
+                <p class="codes">H-02 + HR-01</p>
+              </header>
+              <iframe src="hero-configurations/CFG-09.html" title="CFG-09 One-Column Header, Dark + Framed Live-Text Hero, Dark"></iframe>
+              <dl>
+                <div><dt>Header</dt><dd>Included</dd></div>
+                <div><dt>Text</dt><dd>Live HTML supported</dd></div>
+                <div><dt>Image</dt><dd>Required</dd></div>
+              </dl>
+              <p class="notes">Allowed after: header, start. Allowed before: body. At most 1 from primary-hero.</p>
+            </article>
+            <article class="option" data-configuration="CFG-10">
+              <header>
+                <div><strong>CFG-10</strong><span>header-H-02</span></div>
+                <h3>One-Column Header, Dark + Framed Live-Text Hero, Light</h3>
+                <p class="codes">H-02 + HR-02</p>
+              </header>
+              <iframe src="hero-configurations/CFG-10.html" title="CFG-10 One-Column Header, Dark + Framed Live-Text Hero, Light"></iframe>
+              <dl>
+                <div><dt>Header</dt><dd>Included</dd></div>
+                <div><dt>Text</dt><dd>Live HTML supported</dd></div>
+                <div><dt>Image</dt><dd>Required</dd></div>
+              </dl>
+              <p class="notes">Allowed after: header, start. Allowed before: body. At most 1 from primary-hero.</p>
+            </article></div></section><section id="header-H-03"><h2 class="group-title">Invite Collaboration Header</h2><div class="options">
+            <article class="option" data-configuration="CFG-11">
+              <header>
+                <div><strong>CFG-11</strong><span>header-H-03</span></div>
+                <h3>Invite Collaboration Header + AI-Generated Image Hero</h3>
+                <p class="codes">H-03 + AI-01</p>
+              </header>
+              <iframe src="hero-configurations/CFG-11.html" title="CFG-11 Invite Collaboration Header + AI-Generated Image Hero"></iframe>
+              <dl>
+                <div><dt>Header</dt><dd>Included</dd></div>
+                <div><dt>Text</dt><dd>Image-led or locked</dd></div>
+                <div><dt>Image</dt><dd>Required</dd></div>
+              </dl>
+              <p class="notes">Allowed after: header, start. Allowed before: body. At most 1 from primary-hero.</p>
+            </article></div></section><section id="header-H-04"><h2 class="group-title">One-Column Header, Light</h2><div class="options">
+            <article class="option" data-configuration="CFG-12">
+              <header>
+                <div><strong>CFG-12</strong><span>header-H-04</span></div>
+                <h3>One-Column Header, Light + AI-Generated Image Hero</h3>
+                <p class="codes">H-04 + AI-01</p>
+              </header>
+              <iframe src="hero-configurations/CFG-12.html" title="CFG-12 One-Column Header, Light + AI-Generated Image Hero"></iframe>
+              <dl>
+                <div><dt>Header</dt><dd>Included</dd></div>
+                <div><dt>Text</dt><dd>Live HTML supported</dd></div>
+                <div><dt>Image</dt><dd>Required</dd></div>
+              </dl>
+              <p class="notes">Allowed after: header, start. Allowed before: body. At most 1 from primary-hero.</p>
+            </article>
+            <article class="option" data-configuration="CFG-13">
+              <header>
+                <div><strong>CFG-13</strong><span>header-H-04</span></div>
+                <h3>One-Column Header, Light + Framed Live-Text Hero, Dark</h3>
+                <p class="codes">H-04 + HR-01</p>
+              </header>
+              <iframe src="hero-configurations/CFG-13.html" title="CFG-13 One-Column Header, Light + Framed Live-Text Hero, Dark"></iframe>
+              <dl>
+                <div><dt>Header</dt><dd>Included</dd></div>
+                <div><dt>Text</dt><dd>Live HTML supported</dd></div>
+                <div><dt>Image</dt><dd>Required</dd></div>
+              </dl>
+              <p class="notes">Allowed after: header, start. Allowed before: body. At most 1 from primary-hero.</p>
+            </article>
+            <article class="option" data-configuration="CFG-14">
+              <header>
+                <div><strong>CFG-14</strong><span>header-H-04</span></div>
+                <h3>One-Column Header, Light + Framed Live-Text Hero, Light</h3>
+                <p class="codes">H-04 + HR-02</p>
+              </header>
+              <iframe src="hero-configurations/CFG-14.html" title="CFG-14 One-Column Header, Light + Framed Live-Text Hero, Light"></iframe>
+              <dl>
+                <div><dt>Header</dt><dd>Included</dd></div>
+                <div><dt>Text</dt><dd>Live HTML supported</dd></div>
+                <div><dt>Image</dt><dd>Required</dd></div>
+              </dl>
+              <p class="notes">Allowed after: header, start. Allowed before: body. At most 1 from primary-hero.</p>
+            </article></div></section></main>
+</body>
+</html>
