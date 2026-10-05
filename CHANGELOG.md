@@ -6,6 +6,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Fixed
 
+- Made header/hero selection an explicit campaign intake gate: unspecified prompts now require compatible labeled choices and user approval, and prior selections such as the wellness proof's `CFG-05` cannot become defaults.
 - Preserved legacy nested static modules while teaching the Phase 16 parser and runtime to treat annotated list/payoff rows as conditional containers, preventing empty rows without changing older canonical builds.
 - Corrected seven Phase 16 scaffold marker mismatches, normalized the matching footnote spelling, and renamed the former `UNBRANDED FOOTER` boundaries to `OUTSIDE-BROKER CUSTOMIZABLE FOOTER` without changing email content or layout.
 - Added the missing composition-schema allowance for generated `selected_hero_configuration` plans and regression coverage for CFG-bound runtime fixtures.

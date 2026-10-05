@@ -16,8 +16,13 @@ Ask only for missing essentials that materially affect the email.
 
 Before building HTML:
 
-- Ask whether the campaign should use a standalone header or a hero that includes its own header.
+- Treat header/hero layout as a required campaign decision.
+- If the prompt names an exact compatible configuration or module combination, confirm and record it without asking the user to choose again.
+- If the prompt does not specify one, present compatible labeled `CFG-*` options from the header/hero gallery and ask the user to select or explicitly approve one. Offer a context-based recommendation when useful, but do not treat the recommendation as approval.
+- Include hero-only, standalone-header-plus-hero, and integrated-header/hero choices when they are compatible with the campaign type; do not imply that every campaign needs a standalone header.
+- Never reuse a prior campaign's selection as a default. In particular, `CFG-05` belongs to the approved wellness proof and is not the Rider-wide default.
 - Never add a standalone header automatically.
+- Do not invoke generated-image work or build final HTML until the header/hero decision is recorded.
 - Present every static block using the summary in `templates/scaffold/rider-scaffolding.module-metadata.json`.
 - Record an explicit `include` or `exclude` decision for every static block.
 - Ask where each included static block belongs in the ordered module plan.

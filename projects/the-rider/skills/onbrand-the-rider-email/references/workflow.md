@@ -11,11 +11,11 @@ Use this mode when the user already knows the campaign, audience, CTA, and desir
 5. Draft subject lines, preview text, headline, optional subheading, body copy, and CTA language.
 6. Run [copy-quality.md](copy-quality.md), preserving approved facts and project voice.
 7. Present final copy for approval when the request or campaign sensitivity calls for it.
-8. Generate Composition Preview review artifacts with `python3 -m tools.rider_campaign_runtime.cli catalog --output <review-folder>` when the user needs to choose among scaffold modules.
-9. Ask the user to approve exact module codes, every static-block include/exclude decision, static-block placement, and representative variant.
+8. When the prompt does not specify an exact header/hero layout, generate Composition Preview review artifacts with `python3 -m tools.rider_campaign_runtime.cli catalog --output <review-folder>`, present compatible labeled `CFG-*` choices, and ask the user to select or explicitly approve one. Do not inherit a configuration from an earlier campaign.
+9. Ask the user to approve the exact header/hero configuration and module codes, every static-block include/exclude decision, static-block placement, and representative variant.
 10. Create an approved composition plan with `python3 -m tools.rider_campaign_runtime.cli plan --selection <selection.json> --output <composition-plan.json>`.
 11. Build final HTML only after any required copy, creative, composition, or image approvals. Generated or edited image approvals must be represented as `image_workflow` records before runtime assembly.
-12. Select a compatible header/hero structure; do not combine a standalone header with a hero that includes one.
+12. Record the approved compatible header/hero structure; do not combine a standalone header with a hero that includes one, and do not continue while the decision is unresolved.
 13. Choose the build mode explicitly: Composition Preview for a user-facing Design Proof, Smoke Test for representative technical validation, or Release Build for the full internal matrix.
 14. Create an approved [copy allocation plan](copy-allocation.md) and write it as `copy_allocation` in the strict campaign JSON alongside the approved composition and image workflow records. Allocate subject, preview, live slots, alt text, and declared baked-image text before rendering.
 15. Run `python3 -m tools.rider_campaign_runtime.cli <campaign.json>` from the repository root.

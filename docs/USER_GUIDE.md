@@ -110,7 +110,7 @@ The skill should ask only for information that is actually missing. It must not 
 ## Approval Workflow
 
 1. **Brief and copy:** Review strategy, subject line, preview text, headline, body copy, CTA, and factual claims.
-2. **Composition Preview:** Review labeled header, hero, body, static, and pre-footer choices. Approve the exact configuration and block sequence.
+2. **Composition Preview:** Review labeled header, hero, body, static, and pre-footer choices. If your prompt did not name a header/hero layout, the skill must show compatible labeled options and ask you to select or approve one. A previous campaign's choice is never the default. Approve the exact configuration and block sequence.
 3. **Static blocks:** Explicitly include or exclude every optional locked static block.
 4. **Images:** Approve selected existing assets. If generation or editing is needed, invoke the separate image skill and approve the final candidate before assembly.
 5. **Copy allocation:** Confirm where each approved message appears so repeated or near-duplicate copy can be blocked or deliberately exempted.
@@ -180,4 +180,3 @@ For the versioned cross-platform request workflow, see [Cross-Platform Compatibi
 - A relative review package is not automatically a production-hosted send package.
 
 Track open work in [Project Status](../STATUS.md), [Roadmap](../ROADMAP.md), and the [Limitations Register](../LIMITATIONS.md).
-

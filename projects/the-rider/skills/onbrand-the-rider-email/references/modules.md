@@ -55,6 +55,8 @@ Every Rider email must include:
 
 A standalone header is optional. Do not automatically prepend one. A hero with `includes_header: true` in `rider-scaffolding.module-metadata.json` cannot be combined with a standalone header.
 
+The campaign must record one approved compatible header/hero choice. If the user did not specify it in the brief, present the labeled `CFG-*` options or gallery before generated-image work or HTML assembly. A model recommendation remains a proposal until the user approves it. Never carry a configuration forward merely because it was used in the previous campaign; the wellness proof's `CFG-05` selection is campaign evidence, not a global default.
+
 Every static block requires an explicit include/exclude decision. Included static blocks must be listed exactly once in the ordered campaign modules and have no editable slots. Their placement is determined by their position in that list, not by their original nesting inside the scaffold body.
 
 For in-house agent variants, populate the agent area from `data/agents/index.json` and one JSON record per active agent. Resolve each headshot by canonical manifest `dropbox_id` and enforce the agent-footer approval and folder boundary.

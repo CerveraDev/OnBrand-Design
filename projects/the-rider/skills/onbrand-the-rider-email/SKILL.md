@@ -21,8 +21,8 @@ The canonical Beefree scaffold is available at [templates/scaffold/rider-scaffol
 4. Draft the campaign strategy, module plan, subject lines, preview text, copy, CTA, and image direction.
 5. Run the project-aware copy-quality pass before presenting copy for approval or building HTML.
 6. For existing imagery, load the configured Rider manifest and run deterministic asset selection before choosing images.
-7. Generate the Composition Preview catalog/review artifacts when the user needs to choose modules: `python3 -m tools.rider_campaign_runtime.cli catalog --output <review-folder>`.
-8. Ask the user to approve exact module codes, every static-block include/exclude decision, static-block placement in the module order, and representative variant before generated image work or final HTML assembly.
+7. If the prompt does not specify an exact header/hero layout, generate or use the Composition Preview catalog, present compatible labeled `CFG-*` choices, and ask the user to select one. A recommendation may be offered, but it is not approval. Never reuse the previous campaign's configuration as a default.
+8. Ask the user to approve the exact header/hero configuration and module codes, every static-block include/exclude decision, static-block placement in the module order, and representative variant before generated image work or final HTML assembly.
 9. Create the approved composition plan with `python3 -m tools.rider_campaign_runtime.cli plan --selection <selection.json> --output <composition-plan.json>`.
 10. If generated or edited imagery is needed, hand off to `onbrand-the-rider-image` only after the relevant hero/image module is approved, then require an approved `image_workflow` provenance record before runtime assembly.
 11. Choose either a compatible standalone header plus hero or a hero that includes its own header. Never add a header automatically.
@@ -51,6 +51,8 @@ Every email must include:
 - Footer module
 
 A standalone header is optional. Some hero modules include their own header and are incompatible with a separate header. Use `templates/scaffold/rider-scaffolding.module-metadata.json` to classify modules and enforce compatibility.
+
+Header/hero structure is a required campaign decision. When the user's prompt does not identify an exact layout, show compatible labeled options from the generated header/hero gallery and obtain a selection or explicit approval of a recommended option. Do not infer the choice from campaign history, including the wellness proof's `CFG-05` combination. Do not begin generated-image work or final HTML assembly while this decision is unresolved.
 
 Static blocks are optional locked modules, but the user must make an explicit include/exclude decision for every one. Included static blocks can be placed anywhere in the approved module order. Their copy and structure are not editable slots.
 
