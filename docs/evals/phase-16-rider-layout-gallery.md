@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-04
 
-**Status:** Generated and structurally passed; owner sequence selection pending
+**Status:** Generated and structurally passed; owner selected `SEQ-LF-07` for the first branded proof
 
 ## Purpose
 
@@ -44,7 +44,7 @@ The module and sequence galleries were opened through the local browser on 2026-
 
 The gallery intentionally uses scaffold sample copy and sample imagery to expose layout behavior. It is not a campaign proof, copy approval, image approval, or distribution package. The optional standalone `I-02` image remains visible only in its isolated module preview and is excluded from sequence presets until an approved replacement image is supplied.
 
-Continuity review found that the first eight presets omitted the exact `H-01 + AI-01` opening previously approved as CFG-05. `SEQ-LF-07` now preserves that opening and follows it with the refined long-form body, the single approved developer-authority message, and the pre-footer. This is the recommended starting point for the next Rider wellness proof, but it is not owner-approved merely because it appears in the gallery.
+Continuity review found that the first eight presets omitted the exact `H-01 + AI-01` opening previously approved as CFG-05. `SEQ-LF-07` now preserves that opening and follows it with the refined long-form body, the single approved developer-authority message, and the pre-footer. The owner subsequently selected `SEQ-LF-07` for the first branded proof; that selection does not by itself approve the rendered proof or promote the staged scaffold.
 
 The two light-led sequences show the current light header and light hero flowing into the scaffold's default dark editorial body. A full light-body conversion remains a future coordinated inline-color transformation and is not represented as completed behavior here.
 
@@ -63,4 +63,4 @@ The two light-led sequences show the current light header and light hero flowing
 
 The Phase 15 scaffold remains canonical. Gallery generation does not approve a sequence, promote Phase 16, replace CFG-05 proof evidence, or establish real-client compatibility.
 
-The next owner decision is to select one `SEQ-*` sequence, optionally with requested adjustments. That decision will drive a Phase 16 composition plan and the next branded proof.
+The owner selected `SEQ-LF-07`, and that decision now drives the staged Phase 16 composition plan and branded proof. The next decision is visual approval or requested refinement of the rendered proof. Canonical promotion remains blocked until that review is complete.

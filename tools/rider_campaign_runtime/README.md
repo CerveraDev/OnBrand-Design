@@ -26,7 +26,18 @@ python3 -m tools.rider_campaign_runtime.cli catalog \
   --metadata path/to/staged-metadata.json
 ```
 
-Refined staged scaffolds also produce `module-gallery.html`, `sequence-gallery.html`, and machine-readable sequence configurations. The three staged paths must be supplied together. The same flags are available to `plan` so an approved staged selection can be converted without changing canonical defaults.
+Refined staged scaffolds also produce `module-gallery.html`, `sequence-gallery.html`, and machine-readable sequence configurations. The three staged paths must be supplied together. The same flags are available to `plan` and `build`, so an approved staged selection can be converted and rendered without changing canonical defaults.
+
+For a staged build, pass the complete trio with the campaign fixture:
+
+```bash
+python3 -m tools.rider_campaign_runtime.cli build path/to/campaign.json \
+  --scaffold path/to/staged-scaffold.html \
+  --slot-map path/to/staged-slot-map.json \
+  --metadata path/to/staged-metadata.json
+```
+
+The runtime uses those files only for that invocation. Omitting the flags continues to use the canonical Rider scaffold and sidecars.
 
 Create an approved composition plan from a user-approved selection:
 

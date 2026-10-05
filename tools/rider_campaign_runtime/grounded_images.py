@@ -150,7 +150,11 @@ def _validate_item(
         raise GroundedImageError(f"{label}.intended_use.module_id is not in scaffold slot map: {module_id}")
     if slot_name not in scaffold.slot_map[module_id]:
         raise GroundedImageError(f"{label}.intended_use.slot is not defined for {module_id}: {slot_name}")
-    if not any(rule["operation"] in {"replace_image_src", "replace_background_url"} for rule in scaffold.slot_map[module_id][slot_name]):
+    if not any(
+        rule["operation"]
+        in {"replace_image_src", "replace_background_url", "annotation_replace_image"}
+        for rule in _slot_rules(scaffold.slot_map[module_id][slot_name])
+    ):
         raise GroundedImageError(f"{label}.intended_use.slot is not an image slot: {slot_name}")
 
     slot_ref = slot_refs.get(image_id)
@@ -210,6 +214,14 @@ def _image_workflow_slot_refs(spec: dict) -> dict[str, dict]:
                 "role": slot.get("role", slot_name),
             }
     return refs
+
+
+def _slot_rules(definition: object) -> list[dict]:
+    if isinstance(definition, list):
+        return definition
+    if isinstance(definition, dict) and isinstance(definition.get("rules"), list):
+        return definition["rules"]
+    return []
 
 
 def _validate_environment(environment: dict, label: str) -> dict:

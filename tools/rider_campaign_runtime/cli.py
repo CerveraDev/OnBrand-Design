@@ -36,6 +36,7 @@ def main(argv=None):
     subparsers = parser.add_subparsers(dest="command", required=True)
     build_parser = subparsers.add_parser("build", help="Build a Rider campaign package from a validated JSON spec.")
     build_parser.add_argument("campaign_json", help="Path to the campaign JSON spec.")
+    _add_scaffold_arguments(build_parser)
     catalog_parser = subparsers.add_parser("catalog", help="Generate the Rider module catalog and review artifacts.")
     catalog_parser.add_argument("--output", required=True, help="Directory for module_catalog.json and preview artifacts.")
     _add_scaffold_arguments(catalog_parser)
@@ -71,7 +72,7 @@ def main(argv=None):
             print(f"selected modules: {len(plan['selected_module_codes'])}")
             print(f"required assets: {len(plan['required_assets'])}")
             return 0
-        result = build_campaign(Path(args.campaign_json))
+        result = build_campaign(Path(args.campaign_json), scaffold=_load_selected_scaffold(args))
     except (
         RuntimeError,
         CampaignSpecError,

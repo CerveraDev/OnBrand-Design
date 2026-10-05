@@ -11,6 +11,10 @@ from tools.rider_campaign_runtime.composition import (
     create_composition_plan,
     write_catalog_artifacts,
 )
+from tools.rider_campaign_runtime.copy_allocation import _collect_runtime_copy_refs
+from tools.rider_campaign_runtime.grounded_images import _slot_rules
+from tools.rider_campaign_runtime.runtime import _footer_variant_modules
+from tools.rider_campaign_runtime.schema import load_campaign_spec, validate_campaign_spec
 from tools.rider_campaign_runtime.scaffold import catalog, load_scaffold, module_rows
 from tools.rider_campaign_runtime.slots import SlotError, apply_module_slots
 
@@ -254,6 +258,74 @@ class Phase16RuntimeTests(unittest.TestCase):
                 self.scaffold,
                 approved_selection(["H-02", "HR-01", "B-04", "S-01", "S-02"]),
             )
+
+    def test_refined_build_helpers_resolve_footers_images_and_typed_copy(self):
+        self.assertEqual(
+            _footer_variant_modules(self.scaffold),
+            {
+                "branded": "footer-branded",
+                "outside_broker": "footer-outside-broker",
+                "agent": "footer-in-house-agent",
+            },
+        )
+        self.assertEqual(
+            _slot_rules(self.scaffold.slot_map["hero-ai-generated"]["hero_image"])[0]["operation"],
+            "replace_image_src",
+        )
+        refs = _collect_runtime_copy_refs(
+            {
+                "campaign": {},
+                "modules": [
+                    {
+                        "id": "body-long-form",
+                        "slots": {
+                            "leading_terms": {
+                                "kind": "text_list",
+                                "items": ["SAME ROUTINE", "NEW CITY"],
+                            },
+                            "amplified_list": {
+                                "kind": "amplified_list",
+                                "items": [
+                                    {"term": "SOHO HOUSE", "amplification": "A social anchor."},
+                                    {"term": "EQUINOX", "amplification": "A familiar routine."},
+                                ],
+                            },
+                        },
+                    }
+                ],
+            }
+        )
+        by_slot = {ref.slot: ref.text for ref in refs}
+        self.assertEqual(by_slot["leading_terms"], "SAME ROUTINE\nNEW CITY")
+        self.assertEqual(
+            by_slot["amplified_list"],
+            "SOHO HOUSE: A social anchor.\nEQUINOX: A familiar routine.",
+        )
+
+    def test_phase16_wellness_proof_fixture_matches_approved_sequence(self):
+        fixture = (
+            ROOT
+            / "projects/the-rider/skills/onbrand-the-rider-email/examples"
+            / "rider-wellness-phase16-composition-preview.runtime.json"
+        )
+        spec = load_campaign_spec(fixture)
+        validate_campaign_spec(spec)
+        summary = create_composition_plan(
+            self.scaffold,
+            json.loads(
+                (
+                    ROOT
+                    / "projects/the-rider/skills/onbrand-the-rider-email/examples"
+                    / "rider-wellness-phase16-composition-selection.json"
+                ).read_text()
+            ),
+        )
+        self.assertEqual(spec["composition"]["selected_module_codes"], summary["selected_module_codes"])
+        self.assertEqual(
+            [module["id"] for module in spec["modules"]],
+            [module["scaffold_module_id"] for module in summary["selected_modules"]],
+        )
+        self.assertEqual(spec["composition"]["selected_hero_configuration"], "CFG-05")
 
 
 def approved_selection(codes):

@@ -17,7 +17,7 @@ from .footer import render_agent_footer, render_branded_footer, render_outside_b
 from .grounded_images import validate_grounded_image_workflow
 from .qa import QAResult, run_qa, write_qa_report
 from .scaffold import (
-    FOOTER_MODULES,
+    Scaffold,
     catalog,
     compose_html,
     load_scaffold,
@@ -52,18 +52,19 @@ MODULE_METADATA_PATH = RIDER_EMAIL_DIR / "templates/scaffold/rider-scaffolding.m
 AGENTS_DIR = RIDER_EMAIL_DIR / "data/agents"
 
 
-def build_campaign(spec_path: Path) -> BuildResult:
+def build_campaign(spec_path: Path, *, scaffold: Scaffold | None = None) -> BuildResult:
     spec_path = spec_path.resolve()
     spec = load_campaign_spec(spec_path)
     base_dir = spec_path.parent
-    return build_campaign_from_spec(spec, base_dir=base_dir)
+    return build_campaign_from_spec(spec, base_dir=base_dir, scaffold=scaffold)
 
 
-def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
+def build_campaign_from_spec(spec: dict, *, base_dir: Path, scaffold: Scaffold | None = None) -> BuildResult:
     validate_campaign_spec(spec)
     spec = _normalize_local_image_sources(spec, base_dir)
-    scaffold = load_scaffold(SCAFFOLD_PATH, SLOT_MAP_PATH, MODULE_METADATA_PATH)
+    scaffold = scaffold or load_scaffold(SCAFFOLD_PATH, SLOT_MAP_PATH, MODULE_METADATA_PATH)
     available = catalog(scaffold)
+    footer_modules = _footer_variant_modules(scaffold)
     composition_metadata = validate_composition_contract(spec, scaffold)
     manifest_path = _resolve_path(base_dir, spec["manifest"]["path"])
     assets = load_manifest(manifest_path)
@@ -99,7 +100,11 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
     unknown = sorted(set(requested_module_ids) - set(available))
     if unknown:
         raise RuntimeError("Unknown module(s): " + ", ".join(unknown))
-    footer_selected = [module_id for module_id in requested_module_ids if module_id in FOOTER_MODULES]
+    footer_selected = [
+        module_id
+        for module_id in requested_module_ids
+        if scaffold.metadata[module_id].kind == "footer"
+    ]
     if footer_selected:
         raise RuntimeError("Campaign modules must not include footer modules; variants append exactly one footer")
     _validate_static_decisions(spec, scaffold, requested_module_ids)
@@ -133,7 +138,7 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
     expected_variants: set[str] = set()
 
     if variants.get("branded", True):
-        footer_rows, used = render_branded_footer(module_rows(scaffold, "BRANDED FOOTER"))
+        footer_rows, used = render_branded_footer(module_rows(scaffold, footer_modules["branded"]))
         variant = "branded"
         expected_variants.add(variant)
         html_by_variant[variant] = compose_html(scaffold, content_rows + footer_rows)
@@ -141,7 +146,7 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
 
     if variants.get("outside_broker", True):
         footer_rows, used = render_outside_broker_footer(
-            module_rows(scaffold, "OUTSIDE-BROKER CUSTOMIZABLE FOOTER"),
+            module_rows(scaffold, footer_modules["outside_broker"]),
             spec.get("outside_broker", {}),
             manifest_assets,
         )
@@ -151,7 +156,7 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path) -> BuildResult:
         asset_hints.extend((variant, item) for item in content_asset_hints + used)
 
     for agent in agents:
-        footer_rows, used = render_agent_footer(module_rows(scaffold, "IN-HOUSE AGENT FOOTER"), agent)
+        footer_rows, used = render_agent_footer(module_rows(scaffold, footer_modules["agent"]), agent)
         variant = f"agent-{agent['id']}"
         expected_variants.add(variant)
         html_by_variant[variant] = compose_html(scaffold, content_rows + footer_rows)
@@ -424,3 +429,28 @@ def _validate_static_rendering(
                 raise RuntimeError(
                     f"Static block lock failed for {variant}/{static_id}: expected {expected}, found {count}"
                 )
+
+
+def _footer_variant_modules(scaffold: Scaffold) -> dict[str, str]:
+    footer_ids = {
+        module_id
+        for module_id, metadata in scaffold.metadata.items()
+        if metadata.kind == "footer"
+    }
+    legacy = {
+        "branded": "BRANDED FOOTER",
+        "outside_broker": "OUTSIDE-BROKER CUSTOMIZABLE FOOTER",
+        "agent": "IN-HOUSE AGENT FOOTER",
+    }
+    if set(legacy.values()) <= footer_ids:
+        return legacy
+    by_code = {
+        metadata.code: module_id
+        for module_id, metadata in scaffold.metadata.items()
+        if metadata.kind == "footer" and metadata.code
+    }
+    required = {"branded": "F-01", "outside_broker": "F-02", "agent": "F-03"}
+    missing = [code for code in required.values() if code not in by_code]
+    if missing:
+        raise RuntimeError("Scaffold is missing footer variant code(s): " + ", ".join(missing))
+    return {variant: by_code[code] for variant, code in required.items()}

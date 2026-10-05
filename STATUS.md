@@ -4,8 +4,8 @@
 **Owner:** Cervera Real Estate, Inc.  
 **Author:** Felix Mendoza  
 **Version:** 0.1.0  
-**Updated:** 2026-10-04
-**Overall status:** Rider Phase 16 module, header/hero, and sequence galleries generated; owner sequence selection, branded proof, and real-client testing remain pending
+**Updated:** 2026-10-05
+**Overall status:** Rider Phase 16 `SEQ-LF-07` branded proof generated from the staged scaffold; owner visual feedback, canonical promotion, and real-client testing remain pending
 
 ## Completed
 
@@ -64,6 +64,7 @@
 - Added the Phase 16 deterministic slot map and runtime composition rules: required/optional block behavior, repeating typed lists, microcopy limits, placeholder-image blocking, stable metadata codes, campaign/sequence compatibility, and static-message exclusion. Full discovery passes 175 tests; the Phase 15 canonical runtime remains active.
 - Generated the Phase 16 visual review set with 18 isolated modules, 14 compatible header/hero configurations, and nine complete runtime-valid sequences. Structural review found 44 HTML files, zero missing iframe targets, zero authoring-marker leaks, and 176 passing repository tests; owner sequence selection remains pending.
 - Added `SEQ-LF-07` after continuity review found that the initial sequence set omitted the previously approved CFG-05 combination. The proposed path carries `H-01 + AI-01` into the refined body, single authority block, and pre-footer without treating it as owner-approved.
+- Recorded the owner's `SEQ-LF-07` selection and generated a staged branded Rider wellness proof without replacing the Phase 15 canonical scaffold. The proof passes 64 runtime QA checks, packages seven assets, preserves the approved Rider Gym 2 hero credit, emits each campaign message once, and passes desktop/mobile browser diagnostics with no overflow or broken images.
 
 ## Project Portfolio
 
@@ -80,8 +81,8 @@
 ## In Progress
 
 - Perform representative visual and email-client compatibility review beyond structural QA.
-- Obtain owner selection or revision of one Phase 16 `SEQ-*` composition, then build a new branded proof without replacing the current canonical scaffold prematurely.
-- Obtain owner creative approval only after the Phase 16 layout-refined proof, then run its browser matrix and the real Gmail, Outlook, and Apple Mail matrix.
+- Collect owner visual feedback on the Phase 16 `SEQ-LF-07` branded proof and apply any requested layout refinements without replacing the current canonical scaffold prematurely.
+- Obtain owner creative approval, then run the reproducible browser matrix and the real Gmail, Outlook, and Apple Mail matrix.
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 - Obtain live manual invocation evidence on permitted authenticated hosts; deterministic parity does not establish model behavior.
 - Keep [LIMITATIONS.md](LIMITATIONS.md) current when audits, specs, QA runs, or implementation work discover new constraints.
@@ -101,4 +102,4 @@
 
 ## Next Milestone
 
-Review and select one Phase 16 `SEQ-*` layout, then produce a new branded proof. The current CFG-05 Rider Gym 2 proof remains reproducible interim evidence. Live manual adapter checks remain open; Phase 12 distribution stays deferred.
+Review the staged Phase 16 `SEQ-LF-07` branded proof and record requested refinements or approval. Canonical promotion, reproducible browser-matrix evidence, native email-client review, live manual adapter checks, and Phase 12 distribution remain open.

@@ -505,7 +505,7 @@ def _slot_type(operations: list[str]) -> str:
         return "text_list"
     if "replace_href" in operations:
         return "url"
-    if any(operation.startswith("replace_text") for operation in operations):
+    if any(operation.startswith("replace_text") or operation == "annotation_replace_text" for operation in operations):
         return "text"
     return "unknown"
 

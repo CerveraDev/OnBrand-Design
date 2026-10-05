@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from html.parser import HTMLParser
 import re
 
-from .scaffold import FOOTER_MODULES, Scaffold, module_rows
+from .scaffold import Scaffold, module_rows
 
 
 class CopyAllocationError(ValueError):
@@ -133,7 +133,7 @@ def validate_copy_allocation(spec: dict, *, scaffold: Scaffold) -> dict:
             refs.append(CopyRef(channel=channel, static_block_id=static_id, text=text))
         elif channel in {"legal", "footer"}:
             module_id = _require_str(owner, "module_id", f"{unit_id}.owner")
-            if module_id not in FOOTER_MODULES:
+            if module_id not in scaffold.metadata or scaffold.metadata[module_id].kind != "footer":
                 raise CopyAllocationError(f"{unit_id} protected owner is unknown: {module_id}")
             _validate_locked_text(scaffold, module_id, normalized_text, unit_id)
             refs.append(CopyRef(channel=channel, module_id=module_id, slot=owner.get("slot", ""), text=text))
@@ -243,6 +243,26 @@ def _collect_runtime_copy_refs(spec: dict) -> list[CopyRef]:
             kind = slot.get("kind")
             if kind in {"text", "safe_rich_text"} and slot.get("value", "").strip():
                 refs.append(CopyRef(channel="live-html", module_id=module_id, slot=slot_name, text=slot["value"]))
+            if kind == "text_list" and slot.get("items"):
+                refs.append(
+                    CopyRef(
+                        channel="live-html",
+                        module_id=module_id,
+                        slot=slot_name,
+                        text="\n".join(slot["items"]),
+                    )
+                )
+            if kind == "amplified_list" and slot.get("items"):
+                refs.append(
+                    CopyRef(
+                        channel="live-html",
+                        module_id=module_id,
+                        slot=slot_name,
+                        text="\n".join(
+                            f"{item['term']}: {item['amplification']}" for item in slot["items"]
+                        ),
+                    )
+                )
             if kind == "image" and slot.get("alt", "").strip():
                 refs.append(
                     CopyRef(

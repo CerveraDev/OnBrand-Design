@@ -1,6 +1,6 @@
 # Phase 16: Scaffold Expansion And Layout Calibration
 
-**Status:** Galleries generated from refined runtime rules; owner sequence selection and branded proof pending
+**Status:** `SEQ-LF-07` selected and staged branded proof generated; owner visual approval and canonical promotion pending
 
 **Target:** A larger, better-labeled Rider block corpus whose layout intent can be selected and assembled predictably
 
@@ -93,7 +93,13 @@ The Phase 16 slot map converts those annotations into required, optional-removab
 
 The staged scaffold now generates 18 isolated module previews, 14 compatible header/hero configurations, and nine complete runtime-valid sequences: seven long-form and two invite options. The long-form set includes `SEQ-LF-07`, which preserves the approved CFG-05 `H-01 + AI-01` opening. The committed galleries have zero missing iframe targets and zero authoring-marker leaks. See [Phase 16 Rider layout gallery](../evals/phase-16-rider-layout-gallery.md).
 
-The gallery is a selection aid, not approval. It uses scaffold sample content, does not perform the optional full light-body color conversion, and does not promote Phase 16 to the canonical runtime. The owner must select or revise one `SEQ-*` option before the new branded proof is assembled.
+The gallery is a selection aid, not approval. It uses scaffold sample content, does not perform the optional full light-body color conversion, and does not promote Phase 16 to the canonical runtime. The owner selected `SEQ-LF-07` for the first branded proof.
+
+## Branded Proof Checkpoint
+
+The staged runtime now assembles the selected `H-01 + AI-01 + B-04 + S-01 + PF-01` sequence with the approved Rider Gym 2 wellness hero and campaign copy. The branded package passes 64 runtime QA checks, contains seven packaged assets, and emits the campaign payoff, authority statement, and pre-footer once each. Desktop and mobile browser diagnostics report no horizontal overflow or broken images. See [Phase 16 Rider wellness branded proof](../evals/phase-16-rider-wellness-branded-proof.md).
+
+This checkpoint is a review proof, not canonical promotion or final creative approval. The owner must review its composition and request revisions or approve it before the Phase 16 scaffold replaces the current canonical runtime.
 
 ## Non-Goals
 
