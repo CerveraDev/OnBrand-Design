@@ -42,6 +42,16 @@ class Phase16RuntimeTests(unittest.TestCase):
         self.assertEqual(entries["I-02"]["scaffold_module_id"], "body-inline-image-secondary")
         self.assertEqual(entries["B-04"]["theme"]["default"], "dark")
         self.assertEqual(entries["B-03"]["theme"]["user_selectable"], False)
+        self.assertEqual(
+            entries["S-02"]["creative_guidance"]["visual_subject"],
+            "Woman seated in The Rider sauna rendering",
+        )
+        self.assertIn("wellness", entries["S-02"]["creative_guidance"]["selection_tags"])
+        self.assertEqual(
+            entries["S-04"]["creative_guidance"]["visual_subject"],
+            "Arrival at The Rider building entrance",
+        )
+        self.assertIn("arrival", entries["S-04"]["creative_guidance"]["selection_tags"])
         self.assertEqual(build_hero_configurations(module_catalog)["option_count"], 14)
 
     def test_every_annotation_is_owned_by_a_slot_or_nested_owner(self):
@@ -247,7 +257,12 @@ class Phase16RuntimeTests(unittest.TestCase):
             self.assertNotIn("START - ", generated_html)
             self.assertNotIn("END - ", generated_html)
 
-    def test_sequence_rules_reject_bad_order_and_multiple_static_messages(self):
+    def test_sequence_rules_allow_authority_then_wellness_and_reject_other_static_pairs(self):
+        paired = create_composition_plan(
+            self.scaffold,
+            approved_selection(["H-02", "HR-01", "B-04", "S-01", "S-02"]),
+        )
+        self.assertEqual(paired["selected_module_codes"][-2:], ["S-01", "S-02"])
         with self.assertRaisesRegex(CompositionError, "cannot precede"):
             create_composition_plan(
                 self.scaffold,
@@ -256,7 +271,7 @@ class Phase16RuntimeTests(unittest.TestCase):
         with self.assertRaisesRegex(CompositionError, "rider-static-message"):
             create_composition_plan(
                 self.scaffold,
-                approved_selection(["H-02", "HR-01", "B-04", "S-01", "S-02"]),
+                approved_selection(["H-02", "HR-01", "B-04", "S-01", "S-04"]),
             )
 
     def test_refined_build_helpers_resolve_footers_images_and_typed_copy(self):

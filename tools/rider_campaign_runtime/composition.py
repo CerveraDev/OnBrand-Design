@@ -66,6 +66,7 @@ def build_module_catalog(scaffold: Scaffold) -> dict:
                 "theme": metadata.theme or {},
                 "compatibility": metadata.compatibility or {},
                 "campaign_types": list(metadata.campaign_types),
+                "creative_guidance": metadata.creative_guidance or {},
                 "preview": {
                     "type": "isolated-html",
                     "path": f"module-previews/{code}.html",
@@ -245,8 +246,8 @@ def build_sequence_configurations(module_catalog: dict) -> dict:
             "label": "Approved CFG-05 Continuity",
             "campaign_type": "long-form",
             "theme": "dark",
-            "codes": ["H-01", "AI-01", "B-04", "S-01", "PF-01"],
-            "notes": "Carries forward the approved two-column header and AI image hero, then adds the refined editorial body, single authority message, and pre-footer.",
+            "codes": ["H-01", "AI-01", "B-04", "S-01", "S-02", "PF-01"],
+            "notes": "Carries forward the approved two-column header and AI image hero, then adds the refined editorial body, authority message, wellness-relevant sauna design block, and pre-footer.",
         },
         {
             "id": "SEQ-IN-01",
@@ -526,7 +527,7 @@ def _companion_rules(kind: str, includes_header: bool) -> list[str]:
     if kind == "hero":
         return ["May pair with zero or one standalone header."]
     if kind == "static":
-        return ["Requires an explicit include/exclude decision and appears at most once."]
+        return ["Requires an explicit include/exclude decision and follows its metadata compatibility rules."]
     return ["Can be selected with a compatible header/hero combination."]
 
 
@@ -705,6 +706,8 @@ def _review_markdown(module_catalog: dict) -> str:
     ]
     for entry in module_catalog["entries"]:
         slots = ", ".join(slot["name"] for slot in entry["editable_slots"]) or "locked"
+        guidance = entry.get("creative_guidance", {})
+        summary = guidance.get("use_when") or entry["summary"]
         header = "includes" if entry["includes_header"] else "standalone" if entry["module_type"] == "header" else "none"
         image = "yes" if entry["image_required"] else "no"
         lines.append(
@@ -715,7 +718,7 @@ def _review_markdown(module_catalog: dict) -> str:
                 header=header,
                 image=image,
                 slots=slots,
-                summary=entry["summary"].replace("|", "\\|"),
+                summary=summary.replace("|", "\\|"),
             )
         )
     lines.append("")
@@ -731,6 +734,9 @@ def _module_gallery_html(module_catalog: dict) -> str:
     cards = []
     for entry in module_catalog["entries"]:
         slots = ", ".join(slot["name"] for slot in entry["editable_slots"]) or "Locked content"
+        guidance = entry.get("creative_guidance", {})
+        visual_relevance = guidance.get("use_when", "No campaign-specific visual annotation.")
+        tags = ", ".join(guidance.get("selection_tags", [])) or "None"
         cards.append(
             f"""
             <article class="option" data-module-code="{escape(entry['code'])}">
@@ -744,6 +750,8 @@ def _module_gallery_html(module_catalog: dict) -> str:
                 <div><dt>Role</dt><dd>{escape(entry['layout_role'])}</dd></div>
                 <div><dt>Theme</dt><dd>{escape(str(entry['theme'].get('default', 'scaffold-defined')))}</dd></div>
                 <div><dt>Editable slots</dt><dd>{escape(slots)}</dd></div>
+                <div><dt>Visual relevance</dt><dd>{escape(visual_relevance)}</dd></div>
+                <div><dt>Selection tags</dt><dd>{escape(tags)}</dd></div>
               </dl>
             </article>"""
         )

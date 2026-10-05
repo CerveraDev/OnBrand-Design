@@ -16,11 +16,11 @@ Use these stable codes to select a Design Proof composition before image generat
 | HR-02 | hero | Framed Live-Text Hero, Light | none | yes | background_image, headline | Framed Live-Text Hero, Light |
 | B-04 | body | Long-Form Editorial Body | none | yes | amplified_list, body_copy_primary, body_copy_secondary, followup_list, inline_image_primary, leading_terms, list_eyebrow, list_payoff, subheading | Long-Form Editorial Body |
 | S-01 | static | Developer Authority Static Block | none | no | locked | Developer Authority Static Block |
-| S-02 | static | Curated Design Static Block | none | no | locked | Curated Design Static Block |
+| S-02 | static | Curated Design Static Block | none | no | locked | Consider this block for wellness-related emails and invites when its sauna scene supports the campaign narrative. |
 | I-02 | body | Between-Copy Image Block, Secondary | none | yes | image | Optional standalone image row placed between compatible long-form copy blocks; its scaffold placeholder must always be replaced. |
 | C-01 | body | Highlighted Text Callout | none | no | callout_copy, footnote | Highlighted Text Callout |
 | S-03 | body | Residence Specs, Semi-Static | none | no | price | Residence Specs, Semi-Static |
-| S-04 | static | Opportunity Static Block | none | no | locked | Opportunity Static Block |
+| S-04 | static | Opportunity Static Block | none | no | locked | Consider this block when the campaign narrative concerns arriving at, entering, visiting, or being welcomed to The Rider. |
 | PF-01 | body | Closing CTA Pre-Footer | none | no | closing_cta_copy | Closing CTA Pre-Footer |
 
 A standalone header cannot be selected with a hero whose header behavior is `includes`.

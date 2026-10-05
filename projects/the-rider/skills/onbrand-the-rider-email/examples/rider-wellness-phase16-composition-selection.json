@@ -9,6 +9,7 @@
     "AI-01",
     "B-04",
     "S-01",
+    "S-02",
     "PF-01"
   ],
   "static_block_decisions": [
@@ -18,7 +19,7 @@
     },
     {
       "code": "S-02",
-      "decision": "exclude"
+      "decision": "include"
     },
     {
       "code": "S-04",

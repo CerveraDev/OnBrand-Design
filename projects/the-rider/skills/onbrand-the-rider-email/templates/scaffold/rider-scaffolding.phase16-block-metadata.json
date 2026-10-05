@@ -195,7 +195,7 @@
       "content": {"locked": ["developer authority statement", "REQUEST MORE INFORMATION CTA"], "required": [], "optional": []},
       "image": {"count": 0, "aspect_ratio": null, "crop": null, "grounding": "not-applicable"},
       "campaign_types": ["long-form"],
-      "compatibility": {"predecessors": ["body"], "successors": ["pre-footer", "footer"], "exclusion_group": "rider-static-message", "max_from_group": 1},
+      "compatibility": {"predecessors": ["body"], "successors": ["S-02", "static-design", "pre-footer", "footer"], "exclusion_group": "rider-static-message", "max_from_group": 2},
       "client_behavior": {"mobile": "Preserve locked text hierarchy.", "outlook": "Keep the original tables and inline theme colors."}
     },
     {
@@ -208,9 +208,15 @@
       "theme": {"default": "scaffold-defined", "user_selectable": false},
       "includes_header": false,
       "content": {"locked": ["CURATED DESIGN message"], "required": [], "optional": []},
-      "image": {"count": 0, "aspect_ratio": null, "crop": null, "grounding": "not-applicable"},
-      "campaign_types": ["long-form"],
-      "compatibility": {"predecessors": ["body"], "successors": ["pre-footer", "footer"], "exclusion_group": "rider-static-message", "max_from_group": 1},
+      "image": {"count": 1, "aspect_ratio": null, "crop": null, "grounding": "locked-scaffold-asset"},
+      "creative_guidance": {
+        "visual_subject": "Woman seated in The Rider sauna rendering",
+        "selection_tags": ["wellness", "sauna", "spa", "recovery", "amenities"],
+        "use_when": "Consider this block for wellness-related emails and invites when its sauna scene supports the campaign narrative.",
+        "avoid_when": "Do not use it merely as decoration when the campaign has no credible wellness, spa, recovery, or amenity connection."
+      },
+      "campaign_types": ["long-form", "invite"],
+      "compatibility": {"predecessors": ["body", "S-01", "static-authority"], "successors": ["pre-footer", "footer"], "exclusion_group": "rider-static-message", "max_from_group": 2},
       "client_behavior": {"mobile": "Preserve locked typography and spacing.", "outlook": "Keep the original tables and inline styles."}
     },
     {
@@ -253,7 +259,13 @@
       "theme": {"default": "scaffold-defined", "user_selectable": false},
       "includes_header": false,
       "content": {"locked": ["OPPORTUNITY IS KNOCKING message"], "required": [], "optional": []},
-      "image": {"count": 0, "aspect_ratio": null, "crop": null, "grounding": "not-applicable"},
+      "image": {"count": 1, "aspect_ratio": null, "crop": null, "grounding": "locked-scaffold-asset"},
+      "creative_guidance": {
+        "visual_subject": "Arrival at The Rider building entrance",
+        "selection_tags": ["arrival", "building entrance", "exterior", "hospitality", "welcome"],
+        "use_when": "Consider this block when the campaign narrative concerns arriving at, entering, visiting, or being welcomed to The Rider.",
+        "avoid_when": "Do not infer a wellness setting from this scene; it depicts arrival at the building."
+      },
       "campaign_types": ["long-form"],
       "compatibility": {"predecessors": ["body", "specs"], "successors": ["pre-footer", "footer"], "exclusion_group": "rider-static-message", "max_from_group": 1},
       "client_behavior": {"mobile": "Preserve locked typography and spacing.", "outlook": "Keep the original tables and inline styles."}
@@ -518,7 +530,7 @@
   "global_rules": {
     "invite_theme": "Invites are always dark mode.",
     "long_form_theme": "The primary body defaults to dark and changes to light only on explicit user request.",
-    "static_selection": "Choose at most one module in the rider-static-message exclusion group and ask the user to include or exclude it.",
+    "static_selection": "Choose at most one module in the rider-static-message exclusion group unless S-01 is immediately followed by S-02. That approved authority-to-wellness pair may be used together when S-02's sauna scene supports the campaign.",
     "header_selection": "Use exactly one email header source: a standalone header or a hero whose layout role is header-hero.",
     "footer_selection": "Use exactly one footer variant per rendered HTML file.",
     "placeholder_images": "No annotated placeholder image may ship in a final package.",

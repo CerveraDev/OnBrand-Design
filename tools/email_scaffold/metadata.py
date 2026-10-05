@@ -82,6 +82,8 @@ def validate_block_metadata(
     _validate_entries(metadata.get("annotations"), REQUIRED_ANNOTATION_FIELDS, "annotation")
     module_entries = metadata["modules"]
     annotation_entries = metadata["annotations"]
+    for entry in module_entries:
+        _validate_creative_guidance(entry)
     _validate_unique(module_entries + annotation_entries, "id")
     _validate_unique(module_entries, "code")
 
@@ -160,6 +162,33 @@ def _validate_unique(entries: list[dict], field: str) -> None:
     duplicates = sorted(value for value, count in Counter(values).items() if count > 1)
     if duplicates:
         raise ScaffoldError(f"Duplicate block metadata {field}(s): {', '.join(duplicates)}")
+
+
+def _validate_creative_guidance(entry: dict) -> None:
+    guidance = entry.get("creative_guidance")
+    if guidance is None:
+        return
+    required = {"visual_subject", "selection_tags", "use_when", "avoid_when"}
+    if not isinstance(guidance, dict) or set(guidance) != required:
+        raise ScaffoldError(
+            f"Block metadata module {entry['id']} creative_guidance must contain: "
+            + ", ".join(sorted(required))
+        )
+    for field in ("visual_subject", "use_when", "avoid_when"):
+        if not isinstance(guidance[field], str) or not guidance[field].strip():
+            raise ScaffoldError(
+                f"Block metadata module {entry['id']} creative_guidance.{field} must be a non-empty string"
+            )
+    tags = guidance["selection_tags"]
+    if (
+        not isinstance(tags, list)
+        or not tags
+        or any(not isinstance(tag, str) or not tag.strip() for tag in tags)
+        or len(tags) != len(set(tags))
+    ):
+        raise ScaffoldError(
+            f"Block metadata module {entry['id']} creative_guidance.selection_tags must contain unique non-empty strings"
+        )
 
 
 def _occurrence_lookup(items: Iterable[tuple[str, int, int]]) -> dict[tuple[str, int], tuple[int, int]]:

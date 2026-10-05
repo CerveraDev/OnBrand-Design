@@ -28,8 +28,9 @@ The proof renders:
 5. Secondary paragraph
 6. Three leading terms and one payoff
 7. One locked developer-authority block
-8. Closing pre-footer CTA copy
-9. Locked branded footer
+8. Locked curated-design block with its wellness-relevant sauna rendering
+9. Closing pre-footer CTA copy
+10. Locked branded footer
 
 Optional eyebrow, amplified list, follow-up list, and secondary image blocks are omitted cleanly. Their scaffold examples do not appear in the proof.
 
@@ -40,10 +41,10 @@ Optional eyebrow, amplified list, follow-up list, and secondary image blocks are
 - Composition plan: `projects/the-rider/skills/onbrand-the-rider-email/examples/rider-wellness-phase16-composition-plan.json`
 - Build mode: `composition-preview`
 - Variant count: 1 branded preview
-- QA: 64 checks passed, zero failed
-- Copy allocation: 12 approved logical owners, including the derived locked static owner
-- Packaged assets: 7
-- HTML SHA-256: `ad40358e05d393925d3a75010af16f30bdd19c57b48b17d7be3a6c2ddcc1914a`
+- QA: 69 checks passed, zero failed
+- Copy allocation: 13 approved logical owners, including two derived locked static owners
+- Packaged assets: 8
+- HTML SHA-256: `836eac56945baa064addb579791bd28768e5497d18f2c2578569e8b7f4564e9f`
 - ZIP: generated successfully under ignored local `campaign-output/`
 
 ## Copy And Marker Verification
@@ -55,22 +56,28 @@ The rendered HTML contains exactly one occurrence each of:
 - `NEW CITY`
 - `WITH THE RIDER AT THE CENTER OF IT.`
 - The locked developer-authority statement
+- `CURATED DESIGN...`
 - `KEEP YOUR MIAMI ROUTINE CLOSE TO HOME.`
 
 It contains no `START -` or `END -` authoring markers, no lorem ipsum, and balanced table tags.
 
 ## Browser Inspection
 
-The local proof was inspected in the Codex in-app browser at the default 748px viewport and at a temporary 390 x 844 mobile viewport.
+The original proof revision was inspected at 748px and 390 x 844. After adding `S-02`, the revised proof was reloaded in a fresh in-app browser tab and inspected at 1280px.
 
 | View | Horizontal overflow | Images loaded | Broken images | Result |
 |---|---:|---:|---:|---|
-| Default browser viewport, 748px | 0px | 6/6 | 0 | Passed |
-| Mobile viewport, 390px | 0px | 6/6 | 0 | Passed |
+| Revised proof, 1280px | 0px | 6/6 | 0 | Passed |
 
-Visual inspection found coherent stacking, readable live text, retained image attribution, intact CTA hierarchy, and no visible overlap in the header, body, pre-footer, or branded footer.
+Visual inspection found coherent stacking, readable live text, retained image attribution, intact CTA hierarchy, the packaged sauna background directly after `S-01`, and no visible overlap in the header, body, static blocks, pre-footer, or branded footer.
 
-The standalone Playwright render-matrix command remains unavailable inside the managed macOS shell because Chromium cannot register its Mach rendezvous port. No matrix success is claimed. The in-app browser checks are review evidence, not Gmail, Outlook, Apple Mail, or native-client certification.
+## Static-Block Selection Guidance
+
+- `S-02` is machine-tagged for wellness, sauna, spa, recovery, and amenities. It may be considered for wellness-related emails or invites when the sauna scene supports the narrative.
+- `S-04` is machine-tagged for arrival, building entrance, exterior, hospitality, and welcome. It depicts arrival at The Rider and is not a wellness scene.
+- `S-01` immediately followed by `S-02` is an approved composition exception. Other combinations within the `rider-static-message` group remain mutually exclusive.
+
+The packaged sauna background resolves to `images/sauna-7957fadc8be8.jpg` through computed CSS. A fresh mobile check of the revised proof remains pending because the current in-app browser surface did not expose viewport resizing, and the standalone Playwright render-matrix command remains unavailable inside the managed macOS shell because Chromium cannot register its Mach rendezvous port. No revised-proof mobile or matrix success is claimed. The in-app browser checks are review evidence, not Gmail, Outlook, Apple Mail, or native-client certification.
 
 ## Promotion Boundary
 

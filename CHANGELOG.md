@@ -14,6 +14,8 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Added
 
+- Machine-readable creative guidance for `S-02` as a wellness/sauna block and `S-04` as a Rider building-arrival block, with visible selection guidance and tags in the module gallery.
+- The approved `S-01` followed by `S-02` static-block exception for wellness compositions; competing static-message combinations remain blocked.
 - A staged Phase 16 build path for explicit scaffold, slot-map, and metadata inputs, including refined footer resolution, typed list-copy inventory, granular image-slot validation, and annotation text-slot support without changing canonical defaults.
 - The owner-selected `SEQ-LF-07` Rider wellness composition selection, generated plan, runtime fixture, and branded proof evidence using the approved Rider Gym 2 hero with retained copyright credit.
 - Phase 16 staged-scaffold CLI selection, isolated module gallery, 14-option header/hero gallery, and nine-option complete sequence gallery with stable `SEQ-*` identifiers, full-height review previews, structural validation, and hash-bound evidence. `SEQ-LF-07` preserves the approved CFG-05 `H-01 + AI-01` path for the next proof decision.
@@ -100,7 +102,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Validated
 
-- The staged Phase 16 branded proof passes 64 runtime QA checks, packages seven assets, emits each campaign message once, contains no authoring-marker rows, and passes desktop/mobile browser diagnostics with zero horizontal overflow and zero broken images. Owner visual approval and native email-client review remain pending.
+- The revised staged Phase 16 branded proof passes 69 runtime QA checks, packages eight assets, includes the locally packaged sauna background after the authority block, emits each campaign message once, contains no authoring-marker rows, and passes browser diagnostics with zero horizontal overflow and zero broken images. Owner visual approval and native email-client review remain pending.
 - Corrected CFG-05 branded Composition Preview passes 90 QA checks with one approved Gym 2 hero, 27 copy owners, one HTML variant, nine packaged images, visible source attribution, and a self-contained ZIP. Full discovery passes 160 tests.
 - Acceptance-gap follow-up passes 79 tests, including 18 allocation tests; responsive branch duplication counts once while a second owner still fails. Runtime behavior and the audited live pilot remain unchanged.
 

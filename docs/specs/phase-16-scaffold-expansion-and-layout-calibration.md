@@ -97,7 +97,7 @@ The gallery is a selection aid, not approval. It uses scaffold sample content, d
 
 ## Branded Proof Checkpoint
 
-The staged runtime now assembles the selected `H-01 + AI-01 + B-04 + S-01 + PF-01` sequence with the approved Rider Gym 2 wellness hero and campaign copy. The branded package passes 64 runtime QA checks, contains seven packaged assets, and emits the campaign payoff, authority statement, and pre-footer once each. Desktop and mobile browser diagnostics report no horizontal overflow or broken images. See [Phase 16 Rider wellness branded proof](../evals/phase-16-rider-wellness-branded-proof.md).
+The staged runtime now assembles the selected `H-01 + AI-01 + B-04 + S-01 + S-02 + PF-01` sequence with the approved Rider Gym 2 wellness hero and campaign copy. `S-02` is annotated as a wellness-relevant sauna scene and is the approved exception that may immediately follow `S-01`; `S-04` is annotated as a building-arrival scene for future campaign selection. The branded package passes 69 runtime QA checks, contains eight packaged assets, and emits the campaign payoff, authority statement, curated-design message, and pre-footer once each. Browser diagnostics report no horizontal overflow or broken images. See [Phase 16 Rider wellness branded proof](../evals/phase-16-rider-wellness-branded-proof.md).
 
 This checkpoint is a review proof, not canonical promotion or final creative approval. The owner must review its composition and request revisions or approve it before the Phase 16 scaffold replaces the current canonical runtime.
 

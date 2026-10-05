@@ -42,6 +42,7 @@ class ModuleMetadata:
     compatibility: dict | None = None
     campaign_types: tuple[str, ...] = ()
     image: dict | None = None
+    creative_guidance: dict | None = None
 
 
 @dataclass(frozen=True)
@@ -386,6 +387,7 @@ def _refined_module_metadata(entry: dict) -> ModuleMetadata:
         compatibility=entry["compatibility"],
         campaign_types=tuple(entry["campaign_types"]),
         image=entry["image"],
+        creative_guidance=entry.get("creative_guidance", {}),
     )
 
 

@@ -10,6 +10,7 @@
     "AI-01",
     "B-04",
     "S-01",
+    "S-02",
     "PF-01"
   ],
   "selected_modules": [
@@ -42,6 +43,13 @@
       "locked": true
     },
     {
+      "code": "S-02",
+      "scaffold_module_id": "static-design",
+      "module_type": "static",
+      "includes_header": false,
+      "locked": true
+    },
+    {
       "code": "PF-01",
       "scaffold_module_id": "pre-footer-cta",
       "module_type": "body",
@@ -58,7 +66,7 @@
     {
       "code": "S-02",
       "scaffold_module_id": "static-design",
-      "decision": "exclude"
+      "decision": "include"
     },
     {
       "code": "S-04",
@@ -120,7 +128,7 @@
       "code": "B-04",
       "scaffold_module_id": "body-long-form",
       "slot": "body_copy_primary",
-      "slot_type": "unknown",
+      "slot_type": "text",
       "operations": [
         "annotation_replace_text"
       ],
@@ -133,7 +141,7 @@
       "code": "B-04",
       "scaffold_module_id": "body-long-form",
       "slot": "body_copy_secondary",
-      "slot_type": "unknown",
+      "slot_type": "text",
       "operations": [
         "annotation_replace_text"
       ],
@@ -200,7 +208,7 @@
       "code": "B-04",
       "scaffold_module_id": "body-long-form",
       "slot": "list_payoff",
-      "slot_type": "unknown",
+      "slot_type": "text",
       "operations": [
         "annotation_replace_text"
       ],
@@ -213,7 +221,7 @@
       "code": "B-04",
       "scaffold_module_id": "body-long-form",
       "slot": "subheading",
-      "slot_type": "unknown",
+      "slot_type": "text",
       "operations": [
         "annotation_replace_text"
       ],

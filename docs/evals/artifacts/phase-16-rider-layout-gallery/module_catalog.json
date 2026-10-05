@@ -60,6 +60,7 @@
       "campaign_types": [
         "long-form"
       ],
+      "creative_guidance": {},
       "preview": {
         "type": "isolated-html",
         "path": "module-previews/H-01.html",
@@ -120,6 +121,7 @@
         "invite",
         "long-form"
       ],
+      "creative_guidance": {},
       "preview": {
         "type": "isolated-html",
         "path": "module-previews/AI-01.html",
@@ -274,6 +276,7 @@
       "campaign_types": [
         "long-form"
       ],
+      "creative_guidance": {},
       "preview": {
         "type": "isolated-html",
         "path": "module-previews/B-01.html",
@@ -328,6 +331,7 @@
       "campaign_types": [
         "long-form"
       ],
+      "creative_guidance": {},
       "preview": {
         "type": "isolated-html",
         "path": "module-previews/H-02.html",
@@ -398,6 +402,7 @@
       "campaign_types": [
         "long-form"
       ],
+      "creative_guidance": {},
       "preview": {
         "type": "isolated-html",
         "path": "module-previews/HR-01.html",
@@ -458,6 +463,7 @@
       "campaign_types": [
         "invite"
       ],
+      "creative_guidance": {},
       "preview": {
         "type": "isolated-html",
         "path": "module-previews/H-03.html",
@@ -519,6 +525,7 @@
       "campaign_types": [
         "invite"
       ],
+      "creative_guidance": {},
       "preview": {
         "type": "isolated-html",
         "path": "module-previews/B-03.html",
@@ -596,6 +603,7 @@
       "campaign_types": [
         "long-form"
       ],
+      "creative_guidance": {},
       "preview": {
         "type": "isolated-html",
         "path": "module-previews/HH-01.html",
@@ -650,6 +658,7 @@
       "campaign_types": [
         "long-form"
       ],
+      "creative_guidance": {},
       "preview": {
         "type": "isolated-html",
         "path": "module-previews/H-04.html",
@@ -720,6 +729,7 @@
       "campaign_types": [
         "long-form"
       ],
+      "creative_guidance": {},
       "preview": {
         "type": "isolated-html",
         "path": "module-previews/HR-02.html",
@@ -762,7 +772,7 @@
         },
         {
           "name": "body_copy_primary",
-          "slot_type": "unknown",
+          "slot_type": "text",
           "operations": [
             "annotation_replace_text"
           ],
@@ -773,7 +783,7 @@
         },
         {
           "name": "body_copy_secondary",
-          "slot_type": "unknown",
+          "slot_type": "text",
           "operations": [
             "annotation_replace_text"
           ],
@@ -830,7 +840,7 @@
         },
         {
           "name": "list_payoff",
-          "slot_type": "unknown",
+          "slot_type": "text",
           "operations": [
             "annotation_replace_text"
           ],
@@ -841,7 +851,7 @@
         },
         {
           "name": "subheading",
-          "slot_type": "unknown",
+          "slot_type": "text",
           "operations": [
             "annotation_replace_text"
           ],
@@ -881,6 +891,7 @@
       "campaign_types": [
         "long-form"
       ],
+      "creative_guidance": {},
       "preview": {
         "type": "isolated-html",
         "path": "module-previews/B-04.html",
@@ -906,8 +917,8 @@
       "editable_slots": [],
       "companion_rules": [
         "Allowed after: body.",
-        "Allowed before: pre-footer, footer.",
-        "At most 1 from rider-static-message."
+        "Allowed before: S-02, static-design, pre-footer, footer.",
+        "At most 2 from rider-static-message."
       ],
       "theme": {
         "default": "light",
@@ -919,15 +930,18 @@
           "body"
         ],
         "successors": [
+          "S-02",
+          "static-design",
           "pre-footer",
           "footer"
         ],
         "exclusion_group": "rider-static-message",
-        "max_from_group": 1
+        "max_from_group": 2
       },
       "campaign_types": [
         "long-form"
       ],
+      "creative_guidance": {},
       "preview": {
         "type": "isolated-html",
         "path": "module-previews/S-01.html",
@@ -952,9 +966,9 @@
       "image_aspect_ratio": "",
       "editable_slots": [],
       "companion_rules": [
-        "Allowed after: body.",
+        "Allowed after: body, S-01, static-authority.",
         "Allowed before: pre-footer, footer.",
-        "At most 1 from rider-static-message."
+        "At most 2 from rider-static-message."
       ],
       "theme": {
         "default": "scaffold-defined",
@@ -962,18 +976,33 @@
       },
       "compatibility": {
         "predecessors": [
-          "body"
+          "body",
+          "S-01",
+          "static-authority"
         ],
         "successors": [
           "pre-footer",
           "footer"
         ],
         "exclusion_group": "rider-static-message",
-        "max_from_group": 1
+        "max_from_group": 2
       },
       "campaign_types": [
-        "long-form"
+        "long-form",
+        "invite"
       ],
+      "creative_guidance": {
+        "visual_subject": "Woman seated in The Rider sauna rendering",
+        "selection_tags": [
+          "wellness",
+          "sauna",
+          "spa",
+          "recovery",
+          "amenities"
+        ],
+        "use_when": "Consider this block for wellness-related emails and invites when its sauna scene supports the campaign narrative.",
+        "avoid_when": "Do not use it merely as decoration when the campaign has no credible wellness, spa, recovery, or amenity connection."
+      },
       "preview": {
         "type": "isolated-html",
         "path": "module-previews/S-02.html",
@@ -1037,6 +1066,7 @@
       "campaign_types": [
         "long-form"
       ],
+      "creative_guidance": {},
       "preview": {
         "type": "isolated-html",
         "path": "module-previews/I-02.html",
@@ -1106,6 +1136,7 @@
       "campaign_types": [
         "long-form"
       ],
+      "creative_guidance": {},
       "preview": {
         "type": "isolated-html",
         "path": "module-previews/C-01.html",
@@ -1163,6 +1194,7 @@
       "campaign_types": [
         "long-form"
       ],
+      "creative_guidance": {},
       "preview": {
         "type": "isolated-html",
         "path": "module-previews/S-03.html",
@@ -1210,6 +1242,18 @@
       "campaign_types": [
         "long-form"
       ],
+      "creative_guidance": {
+        "visual_subject": "Arrival at The Rider building entrance",
+        "selection_tags": [
+          "arrival",
+          "building entrance",
+          "exterior",
+          "hospitality",
+          "welcome"
+        ],
+        "use_when": "Consider this block when the campaign narrative concerns arriving at, entering, visiting, or being welcomed to The Rider.",
+        "avoid_when": "Do not infer a wellness setting from this scene; it depicts arrival at the building."
+      },
       "preview": {
         "type": "isolated-html",
         "path": "module-previews/S-04.html",
@@ -1270,6 +1314,7 @@
         "long-form",
         "invite"
       ],
+      "creative_guidance": {},
       "preview": {
         "type": "isolated-html",
         "path": "module-previews/PF-01.html",
