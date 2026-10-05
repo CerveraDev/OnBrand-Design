@@ -326,8 +326,8 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 - Priority: P1
 - Status: Open
 - Owner phase: Phase 16
-- Dependencies: Owner-supplied annotated expanded Rider scaffold, stable marker meanings, and the existing Phase 8/15 module catalog and proof workflow.
-- Evidence: [Phase 16 specification](docs/specs/phase-16-scaffold-expansion-and-layout-calibration.md), [Phase 15 corrected proof](docs/evals/phase-15-rider-wellness-corrected-proof.md)
+- Dependencies: The annotated expanded Rider scaffold is received and marker-validated; nested-annotation parsing, stable metadata identities, and the existing Phase 8/15 module catalog and proof workflow remain required.
+- Evidence: [Phase 16 specification](docs/specs/phase-16-scaffold-expansion-and-layout-calibration.md), [Phase 16 intake](docs/evals/phase-16-rider-scaffold-intake.md), [Phase 15 corrected proof](docs/evals/phase-15-rider-wellness-corrected-proof.md)
 - Current behavior: The runtime records module type, header inclusion, locked state, editable slots, required assets, and basic compatibility. This prevents structurally invalid combinations but does not fully model narrative purpose, density, visual transitions, recommended order, or which technically compatible body blocks feel coherent together.
 - Risk and impact: An assembled email can pass structural and package QA while still using an awkward block sequence, mismatched density, redundant visual rhythm, or a content block that is technically valid but contextually wrong.
 - Current control: Composition Preview and human review remain required. The current CFG-05 proof is retained as interim evidence and is not promoted to final creative approval.
@@ -375,3 +375,4 @@ Use this template for new limitations:
 - 2026-10-03: Implemented Phase 15 Workstream C by auto-inventorying included static copy, rejecting partial declarations, retaining owner context, and narrowing similarity exemptions to exact pairs. Semantic paraphrase detection remains limited and human-reviewed.
 - 2026-10-03: Added LIM-019 after the corrected CFG-05 proof exposed that one logical slot can render through multiple replacement rules. The Rider authority rows now have distinct slots and copy, while general rendered-occurrence accounting remains open.
 - 2026-10-03: Added LIM-020 after owner review confirmed that the corrected proof is a major improvement but still needs richer block-layout semantics. Phase 16 now waits for an annotated expanded Rider scaffold.
+- 2026-10-04: Received and marker-validated the annotated expanded Rider scaffold. LIM-020 remains open while nested annotations, repeated static identities, sequence semantics, and a new owner-approved proof are implemented.

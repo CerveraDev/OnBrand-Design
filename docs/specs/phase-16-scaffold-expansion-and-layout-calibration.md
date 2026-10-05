@@ -1,6 +1,6 @@
 # Phase 16: Scaffold Expansion And Layout Calibration
 
-**Status:** Planned; waiting for owner-supplied annotated expanded scaffold
+**Status:** Intake received and marker-corrected; parser and calibration work pending
 
 **Target:** A larger, better-labeled Rider block corpus whose layout intent can be selected and assembled predictably
 
@@ -74,10 +74,12 @@ The first three can be increasingly deterministic. Final visual quality remains 
 
 ## Pending Input
 
-- Revised Rider scaffold with owner notes and markers
-- Additional HTML blocks added by the owner
-- Any new marker color meanings or block naming conventions
-- Any explicit rules about blocks that must, may, or must not appear together
+- Owner confirmation of any remaining semantic questions discovered during block classification
+- Any additional rules about blocks that must, may, or must not appear together beyond the annotations already supplied
+
+## Intake Evidence
+
+The 2026-10-04 scaffold submission is preserved and its corrected working copy passes exact label and color pairing for all 34 marker pairs. See [Phase 16 Rider scaffold intake](../evals/phase-16-rider-scaffold-intake.md).
 
 ## Non-Goals
 

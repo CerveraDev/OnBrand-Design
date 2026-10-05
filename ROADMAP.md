@@ -20,7 +20,7 @@ The roadmap applies to the framework and is executed independently for each proj
 | 13 | Jev semantic decision pilot | Version 1 holdout complete; revise decision | 8/9 labels but 5/9 actions, one false allow; production rejected | Not planned until a version 2 pilot is justified |
 | 14 | Email render matrix | Browser-preview tool and Rider evidence complete | Four browser modes pass; human and real-client matrix pending | Planned after representative package |
 | 15 | Creative fidelity remediation | Implemented; creative approval pending | CFG-05 and Rider Gym 2 proof generated; further layout refinement requested | Planned after project calibration |
-| 16 | Scaffold expansion and layout calibration | Planned | Waiting for annotated expanded Rider scaffold | Planned after project calibration |
+| 16 | Scaffold expansion and layout calibration | In progress | Annotated scaffold received; marker intake validated, parser calibration pending | Planned after project calibration |
 
 ## Framework Gate
 

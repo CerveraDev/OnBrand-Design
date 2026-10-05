@@ -4,7 +4,7 @@
 **Owner:** Cervera Real Estate, Inc.  
 **Author:** Felix Mendoza  
 **Version:** 0.1.0  
-**Updated:** 2026-10-03
+**Updated:** 2026-10-04
 **Overall status:** Rider Phase 15 corrected branded proof generated with approved CFG-05 and Rider Gym 2; owner creative approval and real-client testing remain pending
 
 ## Completed
@@ -59,6 +59,7 @@
 - Completed Phase 15 Workstream B with owner-approved Candidate B, Rider Gym 2, retained source attribution, hash-bound source/output evidence, grounded workflow provenance, and a corrected branded CFG-05 Composition Preview.
 - Exposed B-04's two repeated authority rows as distinct editable slots, replaced them with campaign-specific wellness messages, retained Static Block 1 as the sole canonical authority statement, and recorded the broader rendered-occurrence limitation as LIM-019.
 - Built the corrected branded package with 90 passing QA checks, 27 allocated copy owners, nine packaged images, one HTML preview, and a self-contained ZIP. Full discovery passes 160 tests.
+- Preserved the 2026-10-04 annotated Rider scaffold submission, corrected its marker-only mismatches in a separate intake copy, and validated 34 exact label/color pairs without changing the canonical runtime scaffold.
 
 ## Project Portfolio
 
@@ -75,7 +76,7 @@
 ## In Progress
 
 - Perform representative visual and email-client compatibility review beyond structural QA.
-- Prepare Phase 16 intake for the owner's annotated expanded Rider scaffold, then recalibrate block metadata, sequencing, previews, and the branded proof.
+- Extend the scaffold parser for granular inline and nested annotations, then recalibrate block metadata, sequencing, previews, and the branded proof from the validated Phase 16 intake.
 - Obtain owner creative approval only after the Phase 16 layout-refined proof, then run its browser matrix and the real Gmail, Outlook, and Apple Mail matrix.
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 - Obtain live manual invocation evidence on permitted authenticated hosts; deterministic parity does not establish model behavior.
@@ -84,7 +85,6 @@
 
 ## Waiting On Project Inputs
 
-- Revised annotated Rider scaffold with additional HTML blocks, marker meanings, and layout notes.
 - Confirmed public URL for The Rider's canonical Dropbox manifest.
 - Cassia brand standards, canonical HTML, footers, logos, and asset catalog.
 
@@ -97,4 +97,4 @@
 
 ## Next Milestone
 
-Receive and preserve the revised annotated Rider scaffold, execute Phase 16 block-corpus and layout calibration, and produce a new branded proof for owner review. The current CFG-05 Rider Gym 2 proof remains reproducible interim evidence. Live manual adapter checks remain open; Phase 12 distribution stays deferred.
+Implement the Phase 16 nested-annotation parser against the preserved and marker-corrected Rider scaffold, then classify its reduced block corpus and produce a new branded proof. The current CFG-05 Rider Gym 2 proof remains reproducible interim evidence. Live manual adapter checks remain open; Phase 12 distribution stays deferred.

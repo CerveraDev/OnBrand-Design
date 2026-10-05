@@ -6,6 +6,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Fixed
 
+- Corrected seven Phase 16 scaffold marker mismatches, normalized the matching footnote spelling, and renamed the former `UNBRANDED FOOTER` boundaries to `OUTSIDE-BROKER CUSTOMIZABLE FOOTER` without changing email content or layout.
 - Added the missing composition-schema allowance for generated `selected_hero_configuration` plans and regression coverage for CFG-bound runtime fixtures.
 - Removed the repeated B-04 authority message from the corrected Rider wellness proof by exposing its dark and light placements as separate slots with distinct campaign copy; Static Block 1 remains the only canonical “From the creators…” statement.
 - Phase 11 completion-audit defects where Python equality treated JSON booleans as numbers in parity and approval matching. Shared recursive JSON-semantic comparison/hashing now preserves type distinctions, declares finite numeric equivalence, and rejects non-finite values; selection and asset-size boundaries use the same check.
@@ -13,6 +14,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Added
 
+- Immutable and corrected Phase 16 Rider scaffold intake artifacts plus a hash-bound marker audit covering 34 exact start/end pairs.
 - Phase 16 scaffold expansion and layout calibration specification, including annotated-scaffold intake, richer block metadata, sequence acceptance criteria, and LIM-020.
 - Owner-approved Phase 15 Candidate B decision evidence, CFG-05 Rider Gym 2 selection/plan/runtime fixtures, grounded source/output provenance, corrected branded proof evaluation, and LIM-019 for rendered replacement multiplicity.
 - Approved Phase 13 Jev semantic decision pilot specification and LIM-018. The provider remains optional, disabled, and unimplemented pending a labeled Rider evaluation, privacy approval, deterministic fallback tests, and a keep/remove decision.
