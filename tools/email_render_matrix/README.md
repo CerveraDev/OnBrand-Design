@@ -5,8 +5,8 @@ This tool captures deterministic Chromium browser previews for packaged email HT
 Install the pinned dependency when it is not already available:
 
 ```bash
-export npm_config_cache="$PWD/.cache/npm"
-export PLAYWRIGHT_BROWSERS_PATH="$PWD/.cache/playwright"
+export npm_config_cache=/tmp/onbrand-npm-cache
+export PLAYWRIGHT_BROWSERS_PATH=/tmp/onbrand-playwright
 npm --prefix tools/email_render_matrix install
 npx --prefix tools/email_render_matrix playwright install chromium
 ```

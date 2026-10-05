@@ -18,7 +18,7 @@ The roadmap applies to the framework and is executed independently for each proj
 | 11 | Cross-platform compatibility | Deterministic adapters/parity complete; live agents unverified | 13/13 critical components at 100 | Reference adapters; runtime unavailable |
 | 12 | Distribution profiles | Deferred | Deferred | Deferred |
 | 13 | Jev semantic decision pilot | Version 1 holdout complete; revise decision | 8/9 labels but 5/9 actions, one false allow; production rejected | Not planned until a version 2 pilot is justified |
-| 14 | Email render matrix | Browser-preview tool and Rider evidence complete | Four browser modes pass; human and real-client matrix pending | Planned after representative package |
+| 14 | Email render matrix | Browser-preview tool and Rider evidence complete | Canonical four-mode browser matrix and visual review pass; real-client matrix pending | Planned after representative package |
 | 15 | Creative fidelity remediation | Implemented; creative approval pending | CFG-05 and Rider Gym 2 proof generated; further layout refinement requested | Planned after project calibration |
 | 16 | Scaffold expansion and layout calibration | Canonical promotion complete; compatibility follow-up open | Phase 16 canonical and proof reproducible; native-client matrix pending | Planned after project calibration |
 
@@ -115,7 +115,7 @@ The roadmap applies to the framework and is executed independently for each proj
 - Regenerate the module catalog, labeled galleries, composition plans, cross-platform fingerprints, and representative proof after scaffold calibration.
 - Require owner review of the updated block sequence before replacing a canonical creative baseline.
 
-Checkpoint on 2026-10-05: versioned intake, nested parsing, refined metadata, deterministic slots, runtime sequencing, regenerated galleries, owner proof approval, and canonical promotion are complete. The former Phase 15 trio is archived as regression provenance. The ordinary canonical build reproduces the approved proof byte-for-byte with 69 passing QA checks and eight assets. Reproducible browser-matrix evidence and native email-client testing remain open.
+Checkpoint on 2026-10-05: versioned intake, nested parsing, refined metadata, deterministic slots, runtime sequencing, regenerated galleries, owner proof approval, canonical promotion, and the canonical four-mode browser matrix are complete. The former Phase 15 trio is archived as regression provenance. The ordinary canonical build reproduces the approved proof byte-for-byte with 69 passing QA checks and eight assets. Native email-client testing remains open.
 
 ## Deferred Distribution Profiles Gate
 

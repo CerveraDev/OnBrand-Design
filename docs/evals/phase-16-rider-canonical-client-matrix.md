@@ -4,7 +4,7 @@
 **Campaign:** Rider wellness canonical Composition Preview  
 **Variant:** Branded  
 **HTML SHA-256:** `b82bcc430806bd174e621f379ee4a5ef132bab59900e50c4af1188700580ea60`  
-**Status:** Browser visual review passed; automated Playwright report and native email-client evidence pending
+**Status:** Automated and visual browser matrix passed; native email-client evidence pending
 
 ## Browser Visual Review
 
@@ -21,17 +21,24 @@ The email contains an empty `prefers-color-scheme: dark` media query and otherwi
 
 ## Automated Browser Matrix
 
-The pinned Playwright package and Chromium 151 were installed successfully in isolated local caches. Launching Chromium from the managed Codex shell failed before page creation because macOS denied Chromium's Mach-port rendezvous registration:
+The pinned Playwright package and Chromium 151 were installed successfully. The managed Codex shell could not launch Chromium because macOS denied its Mach-port rendezvous registration, so the exact same versioned command was run from an ordinary Terminal.
 
-`bootstrap_check_in org.chromium.Chromium.MachPortRendezvousServer: Permission denied (1100)`
+The generated machine report is `docs/evals/render-matrix/rider-wellness-phase16-canonical/render-report.json`.
 
-This is an execution-environment restriction, not an email failure. No matrix report or screenshots were fabricated.
+| Entry | Viewport | Scheme | Overflow | Images | Errors | Result |
+| --- | ---: | --- | ---: | ---: | ---: | --- |
+| `desktop-light` | 1440 x 1200 | Light | 0px | 6/6 | 0 | Pass |
+| `mobile-light` | 390 x 844 | Light | 0px | 6/6 | 0 | Pass |
+| `desktop-dark` | 1440 x 1200 | Dark preference | 0px | 6/6 | 0 | Pass |
+| `mobile-dark` | 390 x 844 | Dark preference | 0px | 6/6 | 0 | Pass |
 
-Run the exact matrix from an ordinary Terminal at the repository root:
+Every entry has a non-empty document and screenshot, zero horizontal overflow, all images loaded, and no request, page, or console errors. The input hash matches the canonical proof. Desktop light/dark screenshots are byte-identical, as are mobile light/dark screenshots.
+
+The reproducible command remains:
 
 ```bash
-export npm_config_cache="$PWD/.cache/npm"
-export PLAYWRIGHT_BROWSERS_PATH="$PWD/.cache/playwright"
+export npm_config_cache=/tmp/onbrand-npm-cache
+export PLAYWRIGHT_BROWSERS_PATH=/tmp/onbrand-playwright
 npm --prefix tools/email_render_matrix install
 npx --prefix tools/email_render_matrix playwright install chromium
 node tools/email_render_matrix/render_matrix.cjs \
@@ -39,7 +46,7 @@ node tools/email_render_matrix/render_matrix.cjs \
   --output docs/evals/render-matrix/rider-wellness-phase16-canonical
 ```
 
-Expected output is four screenshots, `render-report.json`, and `visual-review.md`. The report must pass before the automated browser matrix is marked complete.
+The output includes four committed screenshots, `render-report.json`, and the completed `visual-review.md`.
 
 ## Native Client Matrix
 
@@ -66,4 +73,4 @@ For each client record:
 
 ## Decision Boundary
 
-The desktop and 390px browser visual reviews pass. They do not close LIM-005 or certify Gmail, Outlook, Apple Mail, accessibility, legal compliance, or production deployment. LIM-005 remains open until the automated report and representative native-client evidence are committed.
+The automated and visual browser matrix passes. It does not close LIM-005 or certify Gmail, Outlook, Apple Mail, accessibility, legal compliance, or production deployment. LIM-005 remains open until representative native-client evidence is committed.

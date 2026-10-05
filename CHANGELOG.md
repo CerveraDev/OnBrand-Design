@@ -108,6 +108,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Validated
 
+- Canonical Phase 16 Playwright matrix passes desktop/mobile and light/dark browser preferences with zero overflow, 6/6 images loaded, no browser errors, and completed screenshot review. Native email-client certification remains pending.
 - Canonical no-override regeneration reproduces the approved Phase 16 wellness proof byte-for-byte at SHA-256 `b82bcc430806bd174e621f379ee4a5ef132bab59900e50c4af1188700580ea60`, with 69 passing QA checks, eight packaged assets, and zero authoring-marker leaks.
 - Canonical Release Build renders all nine authorized variants, packages 16 assets, and passes 237 QA checks with zero failures.
 - Latest Phase 16 proof passes 69 runtime QA checks with eight assets, balanced table markup, no authoring markers, each approved campaign phrase emitted once, populated rows 42/45 retained, unused rows 48/51 omitted, full-page browser inspection passed, and all 179 repository tests passing.
