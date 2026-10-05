@@ -40,10 +40,10 @@ No campaign content, CSS, layout markup, images, footer content, or legal copy w
 - Marker-color pairing: passed
 - Outside-broker footer pair: passed
 
-The difference between 34 pairs and 33 unique labels is intentional: two static blocks share the same human annotation. Phase 16 parser calibration must assign stable numbered IDs to repeated static labels.
+The difference between 34 pairs and 33 unique labels is intentional: two static blocks share the same human annotation. The refined metadata distinguishes them by source occurrence and assigns stable IDs and codes.
 
 ## Parser Boundary
 
-The existing runtime parser is not yet promoted to this scaffold. It was designed around row-level module markers, while the revised scaffold includes granular inline start/end annotations within content rows and nested annotations such as amplification inside a list. Phase 16 must add a separate nested-annotation pass while preserving top-level module extraction.
+The shared scaffold parser now preserves top-level module extraction and adds a separate marker-element pass for granular inline and nested annotations. It resolves 20 modules and 14 annotations from the corrected intake, including the nested amplification field and the standalone second image block.
 
-The corrected intake file must not replace `rider-scaffolding.canonical.html` until parser, metadata, slot-map, composition, and regression work is complete.
+The corrected intake file still must not replace `rider-scaffolding.canonical.html` until slot-map, composition, preview, proof, and remaining regression work is complete. See [Phase 16 parser and metadata evidence](phase-16-parser-and-metadata.md).

@@ -1,6 +1,6 @@
 # Phase 16: Scaffold Expansion And Layout Calibration
 
-**Status:** Intake received and marker-corrected; parser and calibration work pending
+**Status:** Nested parser and refined block metadata implemented; runtime calibration pending
 
 **Target:** A larger, better-labeled Rider block corpus whose layout intent can be selected and assembled predictably
 
@@ -80,6 +80,12 @@ The first three can be increasingly deterministic. Final visual quality remains 
 ## Intake Evidence
 
 The 2026-10-04 scaffold submission is preserved and its corrected working copy passes exact label and color pairing for all 34 marker pairs. See [Phase 16 Rider scaffold intake](../evals/phase-16-rider-scaffold-intake.md).
+
+## Parser And Metadata Checkpoint
+
+The structured parser now separates 20 row-level modules from 14 inline annotations, preserves parent-module and parent-annotation relationships, and recognizes the amplification field nested inside the amplified-list field. A marker-removal path deletes row-level and inline authoring markers without deleting their content rows.
+
+The checksum-bound Phase 16 metadata assigns stable IDs and codes, source occurrences, module families, layout roles, theme rules, header behavior, content and image requirements, campaign use, compatibility, and client behavior. Annotation metadata defines editable value type, optionality, repetition, generation policy, constraints, and placeholder handling. See [Phase 16 parser and metadata evidence](../evals/phase-16-parser-and-metadata.md).
 
 ## Non-Goals
 

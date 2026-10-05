@@ -328,12 +328,12 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 - Owner phase: Phase 16
 - Dependencies: The annotated expanded Rider scaffold is received and marker-validated; nested-annotation parsing, stable metadata identities, and the existing Phase 8/15 module catalog and proof workflow remain required.
 - Evidence: [Phase 16 specification](docs/specs/phase-16-scaffold-expansion-and-layout-calibration.md), [Phase 16 intake](docs/evals/phase-16-rider-scaffold-intake.md), [Phase 15 corrected proof](docs/evals/phase-15-rider-wellness-corrected-proof.md)
-- Current behavior: The runtime records module type, header inclusion, locked state, editable slots, required assets, and basic compatibility. This prevents structurally invalid combinations but does not fully model narrative purpose, density, visual transitions, recommended order, or which technically compatible body blocks feel coherent together.
+- Current behavior: The Phase 16 parser and checksum-bound metadata now classify 20 modules and 14 granular annotations, including layout role, theme, content/image requirements, basic sequence compatibility, and nesting. The production runtime still uses the Phase 15 sidecars and does not yet enforce the refined Phase 16 model, rank coherent sequences, or measure narrative purpose, density, and visual transitions.
 - Risk and impact: An assembled email can pass structural and package QA while still using an awkward block sequence, mismatched density, redundant visual rhythm, or a content block that is technically valid but contextually wrong.
 - Current control: Composition Preview and human review remain required. The current CFG-05 proof is retained as interim evidence and is not promoted to final creative approval.
 - Scoring could help: Yes, after the annotation vocabulary is stable. Deterministic compatibility and content-fit rules should lead; scoring may rank multiple valid sequences.
 - Candidate metrics: Required-content coverage, copy-density fit, image-count fit, adjacent color-transition compatibility, duplicate-purpose count, narrative-role coverage, sequence-rule violations, mobile-height balance, and reviewer selection or correction rate.
-- Closure criteria: Import the annotated expanded scaffold, encode the new block semantics, add negative sequence fixtures, regenerate the gallery, and obtain owner approval on a layout-refined branded proof.
+- Closure criteria: Derive deterministic slots and runtime rules from the refined metadata, add negative sequence fixtures, regenerate the gallery, and obtain owner approval on a layout-refined branded proof.
 
 ## Entry Template
 
@@ -376,3 +376,4 @@ Use this template for new limitations:
 - 2026-10-03: Added LIM-019 after the corrected CFG-05 proof exposed that one logical slot can render through multiple replacement rules. The Rider authority rows now have distinct slots and copy, while general rendered-occurrence accounting remains open.
 - 2026-10-03: Added LIM-020 after owner review confirmed that the corrected proof is a major improvement but still needs richer block-layout semantics. Phase 16 now waits for an annotated expanded Rider scaffold.
 - 2026-10-04: Received and marker-validated the annotated expanded Rider scaffold. LIM-020 remains open while nested annotations, repeated static identities, sequence semantics, and a new owner-approved proof are implemented.
+- 2026-10-04: Implemented nested annotation parsing and checksum-bound refined metadata for 20 modules and 14 annotations. LIM-020 remains open because the production slot map, sequence enforcement/ranking, previews, and owner-approved proof still use the prior runtime model.

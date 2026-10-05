@@ -60,6 +60,7 @@
 - Exposed B-04's two repeated authority rows as distinct editable slots, replaced them with campaign-specific wellness messages, retained Static Block 1 as the sole canonical authority statement, and recorded the broader rendered-occurrence limitation as LIM-019.
 - Built the corrected branded package with 90 passing QA checks, 27 allocated copy owners, nine packaged images, one HTML preview, and a self-contained ZIP. Full discovery passes 160 tests.
 - Preserved the 2026-10-04 annotated Rider scaffold submission, corrected its marker-only mismatches in a separate intake copy, and validated 34 exact label/color pairs without changing the canonical runtime scaffold.
+- Added a backward-compatible granular marker parser that resolves the Phase 16 intake into 20 modules and 14 inline/nested annotations, strips authoring markers without deleting content rows, and validates checksum-bound refined metadata with stable IDs and codes. Full discovery passes 166 tests.
 
 ## Project Portfolio
 
@@ -76,7 +77,7 @@
 ## In Progress
 
 - Perform representative visual and email-client compatibility review beyond structural QA.
-- Extend the scaffold parser for granular inline and nested annotations, then recalibrate block metadata, sequencing, previews, and the branded proof from the validated Phase 16 intake.
+- Convert the refined Phase 16 annotation metadata into deterministic slots, sequencing rules, previews, and a new branded proof without replacing the current canonical scaffold prematurely.
 - Obtain owner creative approval only after the Phase 16 layout-refined proof, then run its browser matrix and the real Gmail, Outlook, and Apple Mail matrix.
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 - Obtain live manual invocation evidence on permitted authenticated hosts; deterministic parity does not establish model behavior.
@@ -97,4 +98,4 @@
 
 ## Next Milestone
 
-Implement the Phase 16 nested-annotation parser against the preserved and marker-corrected Rider scaffold, then classify its reduced block corpus and produce a new branded proof. The current CFG-05 Rider Gym 2 proof remains reproducible interim evidence. Live manual adapter checks remain open; Phase 12 distribution stays deferred.
+Implement the Phase 16 slot map and runtime composition rules from the validated 20-module, 14-annotation metadata, then produce a new branded proof. The current CFG-05 Rider Gym 2 proof remains reproducible interim evidence. Live manual adapter checks remain open; Phase 12 distribution stays deferred.

@@ -14,6 +14,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Added
 
+- Backward-compatible Phase 16 marker-element parsing for inline and nested annotations, parent relationships, marker-only removal, checksum-bound refined block metadata, and 166-test regression evidence.
 - Immutable and corrected Phase 16 Rider scaffold intake artifacts plus a hash-bound marker audit covering 34 exact start/end pairs.
 - Phase 16 scaffold expansion and layout calibration specification, including annotated-scaffold intake, richer block metadata, sequence acceptance criteria, and LIM-020.
 - Owner-approved Phase 15 Candidate B decision evidence, CFG-05 Rider Gym 2 selection/plan/runtime fixtures, grounded source/output provenance, corrected branded proof evaluation, and LIM-019 for rendered replacement multiplicity.
