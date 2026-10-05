@@ -30,18 +30,18 @@ class Phase16ScaffoldTests(unittest.TestCase):
         cls.annotations = find_annotation_boundaries(cls.html, cls.rows)
 
     def test_granular_parser_separates_modules_from_annotations(self):
-        self.assertEqual(len(self.rows), 94)
-        self.assertEqual(len(parse_marker_elements(self.html, self.rows)), 68)
+        self.assertEqual(len(self.rows), 102)
+        self.assertEqual(len(parse_marker_elements(self.html, self.rows)), 74)
         self.assertEqual(
             [(item.start_marker_row, item.end_marker_row) for item in self.modules],
             [
                 (2, 4), (5, 7), (8, 12), (13, 15), (16, 18),
                 (19, 22), (23, 27), (28, 30), (31, 33), (34, 36),
-                (37, 45), (46, 48), (49, 51), (53, 55), (56, 58),
-                (59, 61), (62, 64), (65, 74), (75, 84), (85, 94),
+                (37, 53), (54, 56), (57, 59), (61, 63), (64, 66),
+                (67, 69), (70, 72), (73, 82), (83, 92), (93, 102),
             ],
         )
-        self.assertEqual(len(self.annotations), 14)
+        self.assertEqual(len(self.annotations), 17)
         self.assertNotIn(
             "IMAGE BLOCK TO BE USED ON INVITES - IMAGE MAY CHANGE",
             [item.label for item in self.modules],
@@ -54,15 +54,24 @@ class Phase16ScaffoldTests(unittest.TestCase):
         self.assertIsNone(invite_image.parent_annotation_label)
 
         amplification = by_label["AMPLIFICATION OF BULLET POINT."]
-        self.assertEqual(amplification.depth, 1)
+        self.assertEqual(amplification.depth, 2)
         self.assertEqual(
             amplification.parent_annotation_label,
-            "LIST THAT HAS BULLET POINTS WITH AMPLIFICATION. REPEAT FOR AS MANY "
-            "BULLET POINTS ARE NEEDED IN THE COPY.",
+            "LIST THAT HAS BULLET POINTS WITH AMPLIFICATION - REPEAT FOR AS MANY "
+            "BULLET POINTS ARE NEEDED IN THE COPY",
+        )
+        leading_list = by_label[
+            "LIST THAT HAS BULLET POINTS WITH ONLY LEADING TERMS, NO AMPLIFICATION. "
+            "REPEAT FOR AS MANY BULLET POINTS ARE NEEDED IN THE COPY"
+        ]
+        self.assertEqual(
+            leading_list.parent_annotation_label,
+            "ROW CONTAINING LIST - THIS ROW IS ONLY NEEDED IF THIS TYPE OF LIST IS "
+            "REQUIRED IN THE PIECE",
         )
         standalone = by_label[
             "ANOTHER IMAGE BLOCK TO BE USED BETWEEN COPY BLOCKS - NEVER USE THIS "
-            "IMAGE, IT'S ONLY A PLACEHOLDER."
+            "IMAGE, IT'S ONLY A PLACEHOLDER"
         ]
         self.assertIsNone(standalone.parent_module_label)
 
@@ -84,7 +93,7 @@ class Phase16ScaffoldTests(unittest.TestCase):
         self.assertNotIn("#ffd675", rendered.lower())
         self.assertNotIn("#75edff", rendered.lower())
         self.assertIn('class="row row-25"', rendered)
-        self.assertIn('class="row row-52"', rendered)
+        self.assertIn('class="row row-60"', rendered)
         self.assertIn("SOHO HOUSE AND EQUINOX", rendered)
         self.assertIn("$500K's", rendered)
 
@@ -96,7 +105,7 @@ class Phase16ScaffoldTests(unittest.TestCase):
             self.annotations,
         )
         self.assertEqual(len(metadata["modules"]), 20)
-        self.assertEqual(len(metadata["annotations"]), 14)
+        self.assertEqual(len(metadata["annotations"]), 17)
         self.assertEqual(
             next(item for item in metadata["modules"] if item["code"] == "B-04")["id"],
             "body-long-form",
@@ -108,6 +117,14 @@ class Phase16ScaffoldTests(unittest.TestCase):
                 if item["id"] == "body-list-amplification"
             )["parent_annotation_id"],
             "body-amplified-list",
+        )
+        self.assertEqual(
+            next(
+                item
+                for item in metadata["annotations"]
+                if item["id"] == "body-leading-term-list"
+            )["parent_annotation_id"],
+            "body-leading-term-row",
         )
 
     def test_refined_metadata_is_checksum_bound(self):

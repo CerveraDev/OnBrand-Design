@@ -59,10 +59,15 @@ class Phase16RuntimeTests(unittest.TestCase):
             (SCAFFOLD_DIR / "rider-scaffolding.phase16-block-metadata.json").read_text()
         )
         mapped = {
-            definition["annotation_id"]
+            annotation_id
             for slots in self.scaffold.slot_map.values()
             for definition in slots.values()
-            if isinstance(definition, dict) and definition.get("annotation_id")
+            if isinstance(definition, dict)
+            for annotation_id in (
+                definition.get("annotation_id"),
+                definition.get("container_annotation_id"),
+            )
+            if annotation_id
         }
         nested = {
             item["id"]
@@ -104,6 +109,8 @@ class Phase16RuntimeTests(unittest.TestCase):
             "END - ",
         ):
             self.assertNotIn(placeholder, rendered)
+        for omitted_row in (42, 45, 48, 51):
+            self.assertNotIn(f'class="row row-{omitted_row}"', rendered)
         self.assertEqual(rendered.lower().count("<table"), rendered.lower().count("</table>"))
         self.assertEqual(rendered.lower().count("<tr"), rendered.lower().count("</tr>"))
         self.assertEqual(rendered.lower().count("<td"), rendered.lower().count("</td>"))
@@ -148,6 +155,24 @@ class Phase16RuntimeTests(unittest.TestCase):
         ):
             self.assertEqual(rendered.count(text), 1, text)
         self.assertNotIn("75,000 SQFT", rendered)
+        self.assertIn('class="row row-42"', rendered)
+        self.assertNotIn('class="row row-45"', rendered)
+        self.assertIn('class="row row-48"', rendered)
+        self.assertIn('class="row row-51"', rendered)
+
+    def test_nested_optional_content_requires_its_conditional_row_owner(self):
+        html = "".join(module_rows(self.scaffold, "body-long-form"))
+        with self.assertRaisesRegex(SlotError, "requires container-owning slot amplified_list"):
+            apply_module_slots(
+                "body-long-form",
+                html,
+                self.scaffold.slot_map["body-long-form"],
+                {
+                    "body_copy_primary": {"kind": "text", "value": "Primary copy."},
+                    "list_eyebrow": {"kind": "text", "value": "WELLNESS NEARBY"},
+                },
+                manifest_assets={},
+            )
 
     def test_generated_microcopy_word_limit_is_enforced(self):
         html = "".join(module_rows(self.scaffold, "body-long-form"))
@@ -158,6 +183,12 @@ class Phase16RuntimeTests(unittest.TestCase):
                 self.scaffold.slot_map["body-long-form"],
                 {
                     "body_copy_primary": {"kind": "text", "value": "Primary copy."},
+                    "amplified_list": {
+                        "kind": "amplified_list",
+                        "items": [
+                            {"term": "SOHO HOUSE", "amplification": "A social anchor."},
+                        ],
+                    },
                     "list_eyebrow": {
                         "kind": "text",
                         "value": "THIS PHRASE CONTAINS FAR TOO MANY WORDS",

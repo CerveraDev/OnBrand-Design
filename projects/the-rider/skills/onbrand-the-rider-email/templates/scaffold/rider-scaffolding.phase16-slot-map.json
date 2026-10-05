@@ -83,8 +83,9 @@
       "allowed_kinds": ["text", "safe_rich_text"],
       "rules": [{"operation": "annotation_replace_text", "text_anchor": "For anyone relocating from New York or California, that’s the quiet luxury: the membership you already have works in Miami, too."}]
     },
-    "leading_terms": {
-      "annotation_id": "body-leading-term-list",
+  "leading_terms": {
+    "annotation_id": "body-leading-term-list",
+    "container_annotation_id": "body-leading-term-row",
       "required": false,
       "omit_if_missing": true,
       "allowed_kinds": ["text_list"],
@@ -106,15 +107,17 @@
       "max_words": 5,
       "rules": [{"operation": "annotation_replace_text", "text_anchor": "BIG MOVES IN THE AREA"}]
     },
-    "amplified_list": {
-      "annotation_id": "body-amplified-list",
+  "amplified_list": {
+    "annotation_id": "body-amplified-list",
+    "container_annotation_id": "body-amplified-list-row",
       "required": false,
       "omit_if_missing": true,
       "allowed_kinds": ["amplified_list"],
       "rules": [{"operation": "annotation_repeat_pairs", "text_anchor": "AMAZON", "secondary_text_anchor": "75,000 SQFT of offices + Whole Foods, one block away."}]
     },
-    "followup_list": {
-      "annotation_id": "body-followup-list",
+  "followup_list": {
+    "annotation_id": "body-followup-list",
+    "container_annotation_id": "body-followup-list-row",
       "required": false,
       "omit_if_missing": true,
       "allowed_kinds": ["text_list"],

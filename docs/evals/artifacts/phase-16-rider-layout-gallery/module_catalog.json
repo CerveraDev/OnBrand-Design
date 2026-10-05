@@ -748,10 +748,10 @@
         38,
         39,
         40,
-        41,
         42,
-        43,
-        44
+        45,
+        48,
+        51
       ],
       "includes_header": false,
       "locked": false,
@@ -907,7 +907,7 @@
       "layout_role": "supporting-proof",
       "summary": "Developer Authority Static Block",
       "content_rows": [
-        47
+        55
       ],
       "includes_header": false,
       "locked": true,
@@ -957,7 +957,7 @@
       "layout_role": "supporting-proof",
       "summary": "Curated Design Static Block",
       "content_rows": [
-        50
+        58
       ],
       "includes_header": false,
       "locked": true,
@@ -1018,7 +1018,7 @@
       "layout_role": "body-image",
       "summary": "Optional standalone image row placed between compatible long-form copy blocks; its scaffold placeholder must always be replaced.",
       "content_rows": [
-        52
+        60
       ],
       "includes_header": false,
       "locked": false,
@@ -1082,7 +1082,7 @@
       "layout_role": "body-callout",
       "summary": "Highlighted Text Callout",
       "content_rows": [
-        54
+        62
       ],
       "includes_header": false,
       "locked": false,
@@ -1152,7 +1152,7 @@
       "layout_role": "product-specs",
       "summary": "Residence Specs, Semi-Static",
       "content_rows": [
-        57
+        65
       ],
       "includes_header": false,
       "locked": false,
@@ -1210,7 +1210,7 @@
       "layout_role": "supporting-cta",
       "summary": "Opportunity Static Block",
       "content_rows": [
-        60
+        68
       ],
       "includes_header": false,
       "locked": true,
@@ -1269,7 +1269,7 @@
       "layout_role": "pre-footer",
       "summary": "Closing CTA Pre-Footer",
       "content_rows": [
-        63
+        71
       ],
       "includes_header": false,
       "locked": false,

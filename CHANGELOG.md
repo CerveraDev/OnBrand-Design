@@ -6,6 +6,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Fixed
 
+- Preserved legacy nested static modules while teaching the Phase 16 parser and runtime to treat annotated list/payoff rows as conditional containers, preventing empty rows without changing older canonical builds.
 - Corrected seven Phase 16 scaffold marker mismatches, normalized the matching footnote spelling, and renamed the former `UNBRANDED FOOTER` boundaries to `OUTSIDE-BROKER CUSTOMIZABLE FOOTER` without changing email content or layout.
 - Added the missing composition-schema allowance for generated `selected_hero_configuration` plans and regression coverage for CFG-bound runtime fixtures.
 - Removed the repeated B-04 authority message from the corrected Rider wellness proof by exposing its dark and light placements as separate slots with distinct campaign copy; Static Block 1 remains the only canonical “From the creators…” statement.
@@ -14,6 +15,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Added
 
+- The owner's latest CSS-corrected Rider scaffold as immutable provenance, four deterministic conditional list/payoff row containers, dependency validation for nested slots, and a regenerated wellness proof with only populated list families retained.
 - Machine-readable creative guidance for `S-02` as a wellness/sauna block and `S-04` as a Rider building-arrival block, with visible selection guidance and tags in the module gallery.
 - The approved `S-01` followed by `S-02` static-block exception for wellness compositions; competing static-message combinations remain blocked.
 - A staged Phase 16 build path for explicit scaffold, slot-map, and metadata inputs, including refined footer resolution, typed list-copy inventory, granular image-slot validation, and annotation text-slot support without changing canonical defaults.
@@ -102,6 +104,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Validated
 
+- Latest Phase 16 proof passes 69 runtime QA checks with eight assets, balanced table markup, no authoring markers, each approved campaign phrase emitted once, populated rows 42/45 retained, unused rows 48/51 omitted, full-page browser inspection passed, and all 179 repository tests passing.
 - The revised staged Phase 16 branded proof passes 69 runtime QA checks, packages eight assets, includes the locally packaged sauna background after the authority block, emits each campaign message once, contains no authoring-marker rows, and passes browser diagnostics with zero horizontal overflow and zero broken images. Owner visual approval and native email-client review remain pending.
 - Corrected CFG-05 branded Composition Preview passes 90 QA checks with one approved Gym 2 hero, 27 copy owners, one HTML variant, nine packaged images, visible source attribution, and a self-contained ZIP. Full discovery passes 160 tests.
 - Acceptance-gap follow-up passes 79 tests, including 18 allocation tests; responsive branch duplication counts once while a second owner still fails. Runtime behavior and the audited live pilot remain unchanged.

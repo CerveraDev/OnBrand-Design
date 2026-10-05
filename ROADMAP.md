@@ -115,7 +115,7 @@ The roadmap applies to the framework and is executed independently for each proj
 - Regenerate the module catalog, labeled galleries, composition plans, cross-platform fingerprints, and representative proof after scaffold calibration.
 - Require owner review of the updated block sequence before replacing the current Phase 15 proof as the creative baseline.
 
-Checkpoint on 2026-10-05: versioned intake, nested parsing, refined metadata, deterministic slots, runtime sequencing, and regenerated galleries are complete. The owner selected `SEQ-LF-07`, and a staged branded wellness proof now passes runtime QA plus desktop/mobile browser diagnostics. Owner visual feedback, reproducible browser-matrix evidence, native email-client testing, and canonical promotion remain open.
+Checkpoint on 2026-10-05: versioned intake, nested parsing, refined metadata, deterministic slots, runtime sequencing, and regenerated galleries are complete. The latest owner-corrected scaffold adds four conditional list/payoff row containers; the runtime now removes an entire container when its owning content is absent. The owner selected `SEQ-LF-07`, and the regenerated staged wellness proof passes runtime QA and full-page browser inspection. Owner visual feedback, reproducible browser-matrix evidence, native email-client testing, and canonical promotion remain open.
 
 ## Deferred Distribution Profiles Gate
 

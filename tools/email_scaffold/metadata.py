@@ -108,15 +108,16 @@ def validate_block_metadata(
         boundary.label: module_ids[(boundary.label, occurrence)]
         for boundary, occurrence in _with_occurrences(module_list, lambda item: item.label)
     }
-    annotation_id_by_label = {
-        boundary.label: annotation_ids[(boundary.label, occurrence)]
-        for boundary, occurrence in _with_occurrences(
-            annotation_list, lambda item: item.label
-        )
-    }
     annotations_by_source = {
         (entry["source"]["label"], entry["source"].get("occurrence", 1)): entry
         for entry in annotation_entries
+    }
+    annotations_by_id = {entry["id"]: entry for entry in annotation_entries}
+    annotation_boundaries_by_source = {
+        (boundary.label, occurrence): boundary
+        for boundary, occurrence in _with_occurrences(
+            annotation_list, lambda item: item.label
+        )
     }
     for boundary, occurrence in _with_occurrences(annotation_list, lambda item: item.label):
         entry = annotations_by_source[(boundary.label, occurrence)]
@@ -125,21 +126,38 @@ def validate_block_metadata(
             if boundary.parent_module_label
             else None
         )
-        expected_annotation = (
-            annotation_id_by_label.get(boundary.parent_annotation_label)
-            if boundary.parent_annotation_label
-            else None
-        )
         if entry["parent_module_id"] != expected_module:
             raise ScaffoldError(
                 f"Annotation {entry['id']} has parent_module_id {entry['parent_module_id']!r}; "
                 f"expected {expected_module!r}"
             )
-        if entry["parent_annotation_id"] != expected_annotation:
+        declared_parent_id = entry["parent_annotation_id"]
+        if boundary.parent_annotation_label is None and declared_parent_id is not None:
             raise ScaffoldError(
                 f"Annotation {entry['id']} has parent_annotation_id "
-                f"{entry['parent_annotation_id']!r}; expected {expected_annotation!r}"
+                f"{declared_parent_id!r}; expected None"
             )
+        if boundary.parent_annotation_label is not None:
+            parent_entry = annotations_by_id.get(declared_parent_id)
+            if parent_entry is None:
+                raise ScaffoldError(
+                    f"Annotation {entry['id']} has unknown parent_annotation_id "
+                    f"{declared_parent_id!r}"
+                )
+            parent_source = parent_entry["source"]
+            parent_boundary = annotation_boundaries_by_source.get(
+                (parent_source["label"], parent_source.get("occurrence", 1))
+            )
+            contains_child = bool(
+                parent_boundary
+                and parent_boundary.start_marker.start < boundary.start_marker.start
+                and boundary.end_marker.end < parent_boundary.end_marker.end
+            )
+            if parent_source["label"] != boundary.parent_annotation_label or not contains_child:
+                raise ScaffoldError(
+                    f"Annotation {entry['id']} parent_annotation_id {declared_parent_id!r} "
+                    "does not identify its containing annotation"
+                )
 
 
 def _validate_entries(entries: object, required: set[str], kind: str) -> None:

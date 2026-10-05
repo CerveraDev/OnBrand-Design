@@ -178,7 +178,11 @@ def _content_rows_for(scaffold: Scaffold, module_id: str) -> tuple[int, ...]:
         if boundary.start_marker_row < static.start_marker_row and static.end_marker_row < boundary.end_marker_row
         for row_number in range(static.start_marker_row, static.end_marker_row + 1)
     }
-    return tuple(row_number for row_number in boundary.content_rows if row_number not in static_ranges)
+    return tuple(
+        row_number
+        for row_number in boundary.content_rows
+        if row_number not in static_ranges and not scaffold.rows[row_number - 1].is_marker
+    )
 
 
 def _load_metadata(metadata_path: Path | None, module_ids: set[str]) -> dict[str, ModuleMetadata]:
@@ -257,6 +261,7 @@ def _prepare_slot_map(
                     set(definition)
                     - {
                         "annotation_id",
+                        "container_annotation_id",
                         "required",
                         "omit_if_missing",
                         "allowed_kinds",
@@ -282,6 +287,16 @@ def _prepare_slot_map(
                         f"Slot map {module_id}.{slot_name} references unknown annotation {annotation_id}"
                     )
                 definition["annotation_anchor"] = annotation_anchors[annotation_id]
+            container_annotation_id = definition.get("container_annotation_id")
+            if container_annotation_id is not None:
+                if container_annotation_id not in annotation_anchors:
+                    raise ScaffoldError(
+                        f"Slot map {module_id}.{slot_name} references unknown container annotation "
+                        f"{container_annotation_id}"
+                    )
+                definition["container_annotation_anchor"] = annotation_anchors[
+                    container_annotation_id
+                ]
             for rule in rule_list:
                 if not isinstance(rule, dict):
                     raise ScaffoldError(f"Slot map {module_id}.{slot_name} rule must be an object")
@@ -332,12 +347,13 @@ def _load_refined_structure(boundaries_list, annotations, raw: dict, html: str):
     annotation_anchors: dict[str, str] = {}
     counts.clear()
     markers = parse_marker_elements(html)
+    rows = tuple(parse_rows(html))
     for annotation in annotations:
         counts[annotation.label] = counts.get(annotation.label, 0) + 1
         entry = annotation_sources[(annotation.label, counts[annotation.label])]
         annotation_id = entry["id"]
         annotation_anchors[annotation_id] = _annotation_content_without_markers(
-            annotation, markers, html
+            annotation, markers, html, rows
         )
         composition = entry.get("composition")
         if composition and composition.get("standalone"):
@@ -404,7 +420,12 @@ def _row_without_inline_markers(row, markers) -> str:
     return rendered
 
 
-def _annotation_content_without_markers(annotation, markers, html: str) -> str:
+def _annotation_content_without_markers(annotation, markers, html: str, rows: tuple) -> str:
+    if annotation.start_marker.is_full_row:
+        return "".join(
+            _row_without_inline_markers(rows[row_number - 1], markers)
+            for row_number in annotation.content_rows
+        )
     _, start = _marker_table_range(annotation.start_marker, html)
     end, _ = _marker_table_range(annotation.end_marker, html)
     content = html[start:end]

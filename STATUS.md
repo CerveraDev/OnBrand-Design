@@ -5,7 +5,7 @@
 **Author:** Felix Mendoza  
 **Version:** 0.1.0  
 **Updated:** 2026-10-05
-**Overall status:** Rider Phase 16 `SEQ-LF-07` branded proof generated from the staged scaffold; owner visual feedback, canonical promotion, and real-client testing remain pending
+**Overall status:** Rider Phase 16 `SEQ-LF-07` branded proof regenerated from the latest staged scaffold with conditional rows; owner visual feedback, canonical promotion, and real-client testing remain pending
 
 ## Completed
 
@@ -65,6 +65,7 @@
 - Generated the Phase 16 visual review set with 18 isolated modules, 14 compatible header/hero configurations, and nine complete runtime-valid sequences. Structural review found 44 HTML files, zero missing iframe targets, zero authoring-marker leaks, and 176 passing repository tests; owner sequence selection remains pending.
 - Added `SEQ-LF-07` after continuity review found that the initial sequence set omitted the previously approved CFG-05 combination. The selected path carries `H-01 + AI-01` into the refined body, developer-authority block, wellness-relevant curated-design block, and pre-footer.
 - Recorded the owner's `SEQ-LF-07` selection and generated a staged branded Rider wellness proof without replacing the Phase 15 canonical scaffold. The revised proof passes 69 runtime QA checks, packages eight assets, preserves the approved Rider Gym 2 hero credit, includes `S-01` followed by the sauna-based `S-02`, emits each campaign message once, and passes browser diagnostics with no overflow or broken images.
+- Preserved the owner's 2026-10-05 CSS-corrected scaffold, expanded refined metadata to 17 annotations, and implemented four container-owned conditional list/payoff rows. The regenerated wellness proof retains only the supplied leading-term and paragraph-payoff rows, omits the two unused list families without empty markup, passes 69 runtime QA checks, and the full repository passes 179 tests.
 
 ## Project Portfolio
 

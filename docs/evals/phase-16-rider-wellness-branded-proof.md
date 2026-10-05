@@ -2,7 +2,7 @@
 
 **Date:** 2026-10-05
 
-**Status:** Branded Composition Preview generated; owner visual feedback pending
+**Status:** Branded Composition Preview regenerated from the latest scaffold; owner visual feedback pending
 
 ## Approved Inputs
 
@@ -34,6 +34,8 @@ The proof renders:
 
 Optional eyebrow, amplified list, follow-up list, and secondary image blocks are omitted cleanly. Their scaffold examples do not appear in the proof.
 
+The latest scaffold revision makes the list families row-conditional. This proof supplies the leading-term list and paragraph payoff, so their rows remain. It supplies no amplified list or list-style follow-up payoff, so those complete rows are absent rather than rendered empty.
+
 ## Package Evidence
 
 - Runtime fixture: `projects/the-rider/skills/onbrand-the-rider-email/examples/rider-wellness-phase16-composition-preview.runtime.json`
@@ -44,7 +46,7 @@ Optional eyebrow, amplified list, follow-up list, and secondary image blocks are
 - QA: 69 checks passed, zero failed
 - Copy allocation: 13 approved logical owners, including two derived locked static owners
 - Packaged assets: 8
-- HTML SHA-256: `836eac56945baa064addb579791bd28768e5497d18f2c2578569e8b7f4564e9f`
+- HTML SHA-256: `b82bcc430806bd174e621f379ee4a5ef132bab59900e50c4af1188700580ea60`
 - ZIP: generated successfully under ignored local `campaign-output/`
 
 ## Copy And Marker Verification
@@ -69,7 +71,7 @@ The original proof revision was inspected at 748px and 390 x 844. After adding `
 |---|---:|---:|---:|---|
 | Revised proof, 1280px | 0px | 6/6 | 0 | Passed |
 
-Visual inspection found coherent stacking, readable live text, retained image attribution, intact CTA hierarchy, the packaged sauna background directly after `S-01`, and no visible overlap in the header, body, static blocks, pre-footer, or branded footer.
+Visual inspection of the latest full-page proof found coherent stacking, readable live text, retained image attribution, intact CTA hierarchy, the packaged sauna background directly after `S-01`, no empty conditional list rows, and no visible overlap in the header, body, static blocks, pre-footer, or branded footer.
 
 ## Static-Block Selection Guidance
 

@@ -2,10 +2,10 @@
   "schema_version": "1.0",
   "source": {
     "file": "rider-scaffolding.phase16-intake.html",
-    "sha256": "ff0f570999921f07b6eb47cc97d4dafd5239f1b10c7620be252b46542955fc28",
-    "row_count": 94,
+    "sha256": "4125169e6079965a596f71636c0cb4df3aa336eaf5c101e83a24a73dd4351439",
+    "row_count": 102,
     "module_count": 20,
-    "annotation_count": 14
+    "annotation_count": 17
   },
   "defaults": {
     "client_behavior": {
@@ -21,320 +21,1115 @@
     {
       "id": "header-two-column-dark",
       "code": "H-01",
-      "source": {"label": "TWO-COLUMN HEADER", "occurrence": 1, "marker_rows": [2, 4]},
+      "source": {
+        "label": "TWO-COLUMN HEADER",
+        "occurrence": 1,
+        "marker_rows": [
+          2,
+          4
+        ]
+      },
       "label": "Two-Column Header, Dark",
       "family": "header",
       "layout_role": "header",
-      "theme": {"default": "dark", "user_selectable": false},
+      "theme": {
+        "default": "dark",
+        "user_selectable": false
+      },
       "includes_header": true,
-      "content": {"locked": ["Rider logo"], "required": ["headline"], "optional": []},
-      "image": {"count": 0, "aspect_ratio": null, "crop": null, "grounding": "not-applicable"},
-      "campaign_types": ["long-form"],
-      "compatibility": {"predecessors": ["start"], "successors": ["hero", "body"], "exclusion_group": "email-header"},
-      "client_behavior": {"mobile": "Stack columns using scaffold behavior.", "outlook": "Keep the original two-column tables."}
+      "content": {
+        "locked": [
+          "Rider logo"
+        ],
+        "required": [
+          "headline"
+        ],
+        "optional": []
+      },
+      "image": {
+        "count": 0,
+        "aspect_ratio": null,
+        "crop": null,
+        "grounding": "not-applicable"
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "compatibility": {
+        "predecessors": [
+          "start"
+        ],
+        "successors": [
+          "hero",
+          "body"
+        ],
+        "exclusion_group": "email-header"
+      },
+      "client_behavior": {
+        "mobile": "Stack columns using scaffold behavior.",
+        "outlook": "Keep the original two-column tables."
+      }
     },
     {
       "id": "hero-ai-generated",
       "code": "AI-01",
-      "source": {"label": "AI GENERATED IMAGE BASED ON PROMPT - CAN BE USED ON INVITES OR LONG FORM EMAIL PIECES", "occurrence": 1, "marker_rows": [5, 7]},
+      "source": {
+        "label": "AI GENERATED IMAGE BASED ON PROMPT - CAN BE USED ON INVITES OR LONG FORM EMAIL PIECES",
+        "occurrence": 1,
+        "marker_rows": [
+          5,
+          7
+        ]
+      },
       "label": "AI-Generated Image Hero",
       "family": "hero",
       "layout_role": "hero",
-      "theme": {"default": "image-led", "user_selectable": false},
+      "theme": {
+        "default": "image-led",
+        "user_selectable": false
+      },
       "includes_header": false,
-      "content": {"locked": [], "required": ["approved image"], "optional": ["alt text"]},
-      "image": {"count": 1, "aspect_ratio": "scaffold-defined", "crop": "approved focal crop", "grounding": "Use approved Rider source imagery when the requested scene is project-specific."},
-      "campaign_types": ["invite", "long-form"],
-      "compatibility": {"predecessors": ["header", "start"], "successors": ["body"], "exclusion_group": "primary-hero"},
-      "client_behavior": {"mobile": "Use the scaffold image width and responsive height behavior.", "outlook": "Render as a stable image block; do not depend on CSS compositing."}
+      "content": {
+        "locked": [],
+        "required": [
+          "approved image"
+        ],
+        "optional": [
+          "alt text"
+        ]
+      },
+      "image": {
+        "count": 1,
+        "aspect_ratio": "scaffold-defined",
+        "crop": "approved focal crop",
+        "grounding": "Use approved Rider source imagery when the requested scene is project-specific."
+      },
+      "campaign_types": [
+        "invite",
+        "long-form"
+      ],
+      "compatibility": {
+        "predecessors": [
+          "header",
+          "start"
+        ],
+        "successors": [
+          "body"
+        ],
+        "exclusion_group": "primary-hero"
+      },
+      "client_behavior": {
+        "mobile": "Use the scaffold image width and responsive height behavior.",
+        "outlook": "Render as a stable image block; do not depend on CSS compositing."
+      }
     },
     {
       "id": "body-masonry",
       "code": "B-01",
-      "source": {"label": "BODY - MASONRY LAYOUT - ASPECT RATIO RETAINED", "occurrence": 1, "marker_rows": [8, 12]},
+      "source": {
+        "label": "BODY - MASONRY LAYOUT - ASPECT RATIO RETAINED - USE AT LEAST THREE IMAGES ON A MASONRY LAYOUT WHEN THE USER ASKS FOR AN IMAGE GALLERY",
+        "occurrence": 1,
+        "marker_rows": [
+          8,
+          12
+        ]
+      },
       "label": "Masonry Image Body",
       "family": "body",
       "layout_role": "body",
-      "theme": {"default": "dark", "user_selectable": false},
+      "theme": {
+        "default": "dark",
+        "user_selectable": false
+      },
       "includes_header": false,
-      "content": {"locked": [], "required": ["approved image set"], "optional": []},
-      "image": {"count": 3, "aspect_ratio": "retain each source ratio", "crop": "none unless approved", "grounding": "Select mutually compatible approved Rider assets."},
-      "campaign_types": ["long-form"],
-      "compatibility": {"predecessors": ["hero", "body"], "successors": ["body", "static", "pre-footer", "footer"], "exclusion_group": null},
-      "client_behavior": {"mobile": "Preserve image order and scaffold stacking.", "outlook": "Keep each image in its supplied table cell."}
+      "content": {
+        "locked": [],
+        "required": [
+          "approved image set"
+        ],
+        "optional": []
+      },
+      "image": {
+        "count": 3,
+        "aspect_ratio": "retain each source ratio",
+        "crop": "none unless approved",
+        "grounding": "Select mutually compatible approved Rider assets."
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "compatibility": {
+        "predecessors": [
+          "hero",
+          "body"
+        ],
+        "successors": [
+          "body",
+          "static",
+          "pre-footer",
+          "footer"
+        ],
+        "exclusion_group": null
+      },
+      "client_behavior": {
+        "mobile": "Preserve image order and scaffold stacking.",
+        "outlook": "Keep each image in its supplied table cell."
+      }
     },
     {
       "id": "header-one-column-dark",
       "code": "H-02",
-      "source": {"label": "ONE-COLUMN HEADER DARK", "occurrence": 1, "marker_rows": [13, 15]},
+      "source": {
+        "label": "ONE-COLUMN HEADER DARK",
+        "occurrence": 1,
+        "marker_rows": [
+          13,
+          15
+        ]
+      },
       "label": "One-Column Header, Dark",
       "family": "header",
       "layout_role": "header",
-      "theme": {"default": "dark", "user_selectable": false},
+      "theme": {
+        "default": "dark",
+        "user_selectable": false
+      },
       "includes_header": true,
-      "content": {"locked": ["Rider logo"], "required": [], "optional": []},
-      "image": {"count": 0, "aspect_ratio": null, "crop": null, "grounding": "not-applicable"},
-      "campaign_types": ["long-form"],
-      "compatibility": {"predecessors": ["start"], "successors": ["hero", "body"], "exclusion_group": "email-header"},
-      "client_behavior": {"mobile": "Preserve centered logo sizing.", "outlook": "Keep the original logo table and dimensions."}
+      "content": {
+        "locked": [
+          "Rider logo"
+        ],
+        "required": [],
+        "optional": []
+      },
+      "image": {
+        "count": 0,
+        "aspect_ratio": null,
+        "crop": null,
+        "grounding": "not-applicable"
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "compatibility": {
+        "predecessors": [
+          "start"
+        ],
+        "successors": [
+          "hero",
+          "body"
+        ],
+        "exclusion_group": "email-header"
+      },
+      "client_behavior": {
+        "mobile": "Preserve centered logo sizing.",
+        "outlook": "Keep the original logo table and dimensions."
+      }
     },
     {
       "id": "hero-dark-framed",
       "code": "HR-01",
-      "source": {"label": "HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT", "occurrence": 1, "marker_rows": [16, 18]},
+      "source": {
+        "label": "HERO - LIVE TEXT HEADING - DARK FRAMED LAYOUT",
+        "occurrence": 1,
+        "marker_rows": [
+          16,
+          18
+        ]
+      },
       "label": "Framed Live-Text Hero, Dark",
       "family": "hero",
       "layout_role": "hero",
-      "theme": {"default": "dark", "user_selectable": false},
+      "theme": {
+        "default": "dark",
+        "user_selectable": false
+      },
       "includes_header": false,
-      "content": {"locked": [], "required": ["headline", "approved image"], "optional": ["subheading"]},
-      "image": {"count": 1, "aspect_ratio": "scaffold-defined", "crop": "framed focal crop", "grounding": "Use an approved Rider asset or approved generated derivative."},
-      "campaign_types": ["long-form"],
-      "compatibility": {"predecessors": ["header", "start"], "successors": ["body"], "exclusion_group": "primary-hero"},
-      "client_behavior": {"mobile": "Keep headline live and preserve framed spacing.", "outlook": "Use the scaffold's existing background fallback."}
+      "content": {
+        "locked": [],
+        "required": [
+          "headline",
+          "approved image"
+        ],
+        "optional": [
+          "subheading"
+        ]
+      },
+      "image": {
+        "count": 1,
+        "aspect_ratio": "scaffold-defined",
+        "crop": "framed focal crop",
+        "grounding": "Use an approved Rider asset or approved generated derivative."
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "compatibility": {
+        "predecessors": [
+          "header",
+          "start"
+        ],
+        "successors": [
+          "body"
+        ],
+        "exclusion_group": "primary-hero"
+      },
+      "client_behavior": {
+        "mobile": "Keep headline live and preserve framed spacing.",
+        "outlook": "Use the scaffold's existing background fallback."
+      }
     },
     {
       "id": "invite-header-collaboration",
       "code": "H-03",
-      "source": {"label": "INVITE - TWO-COLUMN HEADER - RIDER PLUS COLLABORATING COMPANY", "occurrence": 1, "marker_rows": [19, 22]},
+      "source": {
+        "label": "INVITE - TWO-COLUMN HEADER - RIDER PLUS COLLABORATING COMPANY",
+        "occurrence": 1,
+        "marker_rows": [
+          19,
+          22
+        ]
+      },
       "label": "Invite Collaboration Header",
       "family": "header",
       "layout_role": "invite-header",
-      "theme": {"default": "dark", "user_selectable": false},
+      "theme": {
+        "default": "dark",
+        "user_selectable": false
+      },
       "includes_header": true,
-      "content": {"locked": ["Rider logo"], "required": ["collaborating-company logo"], "optional": []},
-      "image": {"count": 1, "aspect_ratio": "logo-native", "crop": "none", "grounding": "Use the approved collaborator logo."},
-      "campaign_types": ["invite"],
-      "compatibility": {"predecessors": ["start"], "successors": ["hero", "invite-body"], "exclusion_group": "email-header"},
-      "client_behavior": {"mobile": "Stack or scale logos according to the scaffold.", "outlook": "Keep logos as ordinary image cells."}
+      "content": {
+        "locked": [
+          "Rider logo"
+        ],
+        "required": [
+          "collaborating-company logo"
+        ],
+        "optional": []
+      },
+      "image": {
+        "count": 1,
+        "aspect_ratio": "logo-native",
+        "crop": "none",
+        "grounding": "Use the approved collaborator logo."
+      },
+      "campaign_types": [
+        "invite"
+      ],
+      "compatibility": {
+        "predecessors": [
+          "start"
+        ],
+        "successors": [
+          "hero",
+          "invite-body"
+        ],
+        "exclusion_group": "email-header"
+      },
+      "client_behavior": {
+        "mobile": "Stack or scale logos according to the scaffold.",
+        "outlook": "Keep logos as ordinary image cells."
+      }
     },
     {
       "id": "invite-body-dark",
       "code": "B-03",
-      "source": {"label": "INVITE - DARK BODY", "occurrence": 1, "marker_rows": [23, 27]},
+      "source": {
+        "label": "INVITE - DARK BODY",
+        "occurrence": 1,
+        "marker_rows": [
+          23,
+          27
+        ]
+      },
       "label": "Invite Body, Dark",
       "family": "body",
       "layout_role": "invite-body",
-      "theme": {"default": "dark", "user_selectable": false},
+      "theme": {
+        "default": "dark",
+        "user_selectable": false
+      },
       "includes_header": false,
-      "content": {"locked": [], "required": ["event title", "event details", "location", "CTA"], "optional": ["supporting image", "hospitality note"]},
-      "image": {"count": 1, "aspect_ratio": "scaffold-defined", "crop": "contextual focal crop", "grounding": "Use an approved campaign image; generated imagery requires approval."},
-      "campaign_types": ["invite"],
-      "compatibility": {"predecessors": ["invite-header", "hero"], "successors": ["pre-footer", "footer"], "exclusion_group": null},
-      "client_behavior": {"mobile": "Keep event hierarchy and CTA readable.", "outlook": "Preserve the supplied tables and button fallback."}
+      "content": {
+        "locked": [],
+        "required": [
+          "event title",
+          "event details",
+          "location",
+          "CTA"
+        ],
+        "optional": [
+          "supporting image",
+          "hospitality note"
+        ]
+      },
+      "image": {
+        "count": 1,
+        "aspect_ratio": "scaffold-defined",
+        "crop": "contextual focal crop",
+        "grounding": "Use an approved campaign image; generated imagery requires approval."
+      },
+      "campaign_types": [
+        "invite"
+      ],
+      "compatibility": {
+        "predecessors": [
+          "invite-header",
+          "hero"
+        ],
+        "successors": [
+          "pre-footer",
+          "footer"
+        ],
+        "exclusion_group": null
+      },
+      "client_behavior": {
+        "mobile": "Keep event hierarchy and CTA readable.",
+        "outlook": "Preserve the supplied tables and button fallback."
+      }
     },
     {
       "id": "hero-header-full-width",
       "code": "HH-01",
-      "source": {"label": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH", "occurrence": 1, "marker_rows": [28, 30]},
+      "source": {
+        "label": "HEADER & HERO - LIVE TEXT HEADING - FULL-WIDTH",
+        "occurrence": 1,
+        "marker_rows": [
+          28,
+          30
+        ]
+      },
       "label": "Integrated Header and Full-Width Hero",
       "family": "hero",
       "layout_role": "header-hero",
-      "theme": {"default": "image-led", "user_selectable": false},
+      "theme": {
+        "default": "image-led",
+        "user_selectable": false
+      },
       "includes_header": true,
-      "content": {"locked": ["Rider logo"], "required": ["headline", "approved image"], "optional": ["subheading"]},
-      "image": {"count": 1, "aspect_ratio": "full-width scaffold ratio", "crop": "approved focal crop", "grounding": "Use an approved Rider asset or approved generated derivative."},
-      "campaign_types": ["long-form"],
-      "compatibility": {"predecessors": ["start"], "successors": ["body"], "exclusion_group": "primary-hero"},
-      "client_behavior": {"mobile": "Preserve logo and live-text legibility over the image.", "outlook": "Keep the supplied integrated-header fallback; never prepend another header."}
+      "content": {
+        "locked": [
+          "Rider logo"
+        ],
+        "required": [
+          "headline",
+          "approved image"
+        ],
+        "optional": [
+          "subheading"
+        ]
+      },
+      "image": {
+        "count": 1,
+        "aspect_ratio": "full-width scaffold ratio",
+        "crop": "approved focal crop",
+        "grounding": "Use an approved Rider asset or approved generated derivative."
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "compatibility": {
+        "predecessors": [
+          "start"
+        ],
+        "successors": [
+          "body"
+        ],
+        "exclusion_group": "primary-hero"
+      },
+      "client_behavior": {
+        "mobile": "Preserve logo and live-text legibility over the image.",
+        "outlook": "Keep the supplied integrated-header fallback; never prepend another header."
+      }
     },
     {
       "id": "header-one-column-light",
       "code": "H-04",
-      "source": {"label": "ONE-COLUMN HEADER LIGHT", "occurrence": 1, "marker_rows": [31, 33]},
+      "source": {
+        "label": "ONE-COLUMN HEADER LIGHT",
+        "occurrence": 1,
+        "marker_rows": [
+          31,
+          33
+        ]
+      },
       "label": "One-Column Header, Light",
       "family": "header",
       "layout_role": "header",
-      "theme": {"default": "light", "user_selectable": false},
+      "theme": {
+        "default": "light",
+        "user_selectable": false
+      },
       "includes_header": true,
-      "content": {"locked": ["Rider logo"], "required": [], "optional": []},
-      "image": {"count": 0, "aspect_ratio": null, "crop": null, "grounding": "not-applicable"},
-      "campaign_types": ["long-form"],
-      "compatibility": {"predecessors": ["start"], "successors": ["hero", "body"], "exclusion_group": "email-header"},
-      "client_behavior": {"mobile": "Preserve centered logo sizing.", "outlook": "Keep the original logo table and dimensions."}
+      "content": {
+        "locked": [
+          "Rider logo"
+        ],
+        "required": [],
+        "optional": []
+      },
+      "image": {
+        "count": 0,
+        "aspect_ratio": null,
+        "crop": null,
+        "grounding": "not-applicable"
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "compatibility": {
+        "predecessors": [
+          "start"
+        ],
+        "successors": [
+          "hero",
+          "body"
+        ],
+        "exclusion_group": "email-header"
+      },
+      "client_behavior": {
+        "mobile": "Preserve centered logo sizing.",
+        "outlook": "Keep the original logo table and dimensions."
+      }
     },
     {
       "id": "hero-light-framed",
       "code": "HR-02",
-      "source": {"label": "HERO - LIVE TEXT HEADING - LIGHT LAYOUT - FRAMED", "occurrence": 1, "marker_rows": [34, 36]},
+      "source": {
+        "label": "HERO - LIVE TEXT HEADING - LIGHT LAYOUT - FRAMED",
+        "occurrence": 1,
+        "marker_rows": [
+          34,
+          36
+        ]
+      },
       "label": "Framed Live-Text Hero, Light",
       "family": "hero",
       "layout_role": "hero",
-      "theme": {"default": "light", "user_selectable": false},
+      "theme": {
+        "default": "light",
+        "user_selectable": false
+      },
       "includes_header": false,
-      "content": {"locked": [], "required": ["headline", "approved image"], "optional": ["subheading"]},
-      "image": {"count": 1, "aspect_ratio": "scaffold-defined", "crop": "framed focal crop", "grounding": "Use an approved Rider asset or approved generated derivative."},
-      "campaign_types": ["long-form"],
-      "compatibility": {"predecessors": ["header", "start"], "successors": ["body"], "exclusion_group": "primary-hero"},
-      "client_behavior": {"mobile": "Keep headline live and preserve framed spacing.", "outlook": "Use the scaffold's existing background fallback."}
+      "content": {
+        "locked": [],
+        "required": [
+          "headline",
+          "approved image"
+        ],
+        "optional": [
+          "subheading"
+        ]
+      },
+      "image": {
+        "count": 1,
+        "aspect_ratio": "scaffold-defined",
+        "crop": "framed focal crop",
+        "grounding": "Use an approved Rider asset or approved generated derivative."
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "compatibility": {
+        "predecessors": [
+          "header",
+          "start"
+        ],
+        "successors": [
+          "body"
+        ],
+        "exclusion_group": "primary-hero"
+      },
+      "client_behavior": {
+        "mobile": "Keep headline live and preserve framed spacing.",
+        "outlook": "Use the scaffold's existing background fallback."
+      }
     },
     {
       "id": "body-long-form",
       "code": "B-04",
-      "source": {"label": "BODY LAYOUT - DARK MODE IS DEFAULT - CONVERT TO LIGHT MODE IF USER ASKS FOR IT.", "occurrence": 1, "marker_rows": [37, 45]},
+      "source": {
+        "label": "BODY LAYOUT - DARK MODE IS DEFAULT - CONVERT TO LIGHT MODE IF USER ASKS FOR IT",
+        "occurrence": 1,
+        "marker_rows": [
+          37,
+          53
+        ]
+      },
       "label": "Long-Form Editorial Body",
       "family": "body",
       "layout_role": "body",
-      "theme": {"default": "dark", "user_selectable": true, "allowed": ["dark", "light"]},
+      "theme": {
+        "default": "dark",
+        "user_selectable": true,
+        "allowed": [
+          "dark",
+          "light"
+        ]
+      },
       "includes_header": false,
-      "content": {"locked": [], "required": ["body copy"], "optional": ["subheading", "images", "lists", "list payoff", "eyebrow"]},
-      "image": {"count": "0-2", "aspect_ratio": "scaffold-defined", "crop": "approved focal crop", "grounding": "Pair each image with its adjacent copy and use approved Rider sources."},
-      "campaign_types": ["long-form"],
-      "compatibility": {"predecessors": ["hero", "header"], "successors": ["body", "static", "callout", "specs", "pre-footer", "footer"], "exclusion_group": null},
-      "client_behavior": {"mobile": "Preserve annotated content order and list hierarchy.", "outlook": "Keep the supplied body tables; theme conversion must change inline colors as a coordinated set."}
+      "content": {
+        "locked": [],
+        "required": [
+          "body copy"
+        ],
+        "optional": [
+          "subheading",
+          "images",
+          "lists",
+          "list payoff",
+          "eyebrow"
+        ]
+      },
+      "image": {
+        "count": "0-2",
+        "aspect_ratio": "scaffold-defined",
+        "crop": "approved focal crop",
+        "grounding": "Pair each image with its adjacent copy and use approved Rider sources."
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "compatibility": {
+        "predecessors": [
+          "hero",
+          "header"
+        ],
+        "successors": [
+          "body",
+          "static",
+          "callout",
+          "specs",
+          "pre-footer",
+          "footer"
+        ],
+        "exclusion_group": null
+      },
+      "client_behavior": {
+        "mobile": "Preserve annotated content order and list hierarchy.",
+        "outlook": "Keep the supplied body tables; theme conversion must change inline colors as a coordinated set."
+      }
     },
     {
       "id": "static-authority",
       "code": "S-01",
-      "source": {"label": "STATIC BLOCK - LIGHT MODE IS DEFAULT - TO BE USED IN COMBO WITH DARK MODE BODY - MAY BE REVERSED TO DARK MODE IF DARK BODY IS CONVERTED TO LIGHT MODE - NEVER USE TWO OF THESE IN THE SAME PIECE", "occurrence": 1, "marker_rows": [46, 48]},
+      "source": {
+        "label": "STATIC BLOCK - LIGHT MODE IS DEFAULT - TO BE USED IN COMBO WITH DARK MODE BODY - MAY BE REVERSED TO DARK MODE IF DARK BODY IS CONVERTED TO LIGHT MODE - NEVER USE TWO OF THESE IN THE SAME PIECE",
+        "occurrence": 1,
+        "marker_rows": [
+          54,
+          56
+        ]
+      },
       "label": "Developer Authority Static Block",
       "family": "static",
       "layout_role": "supporting-proof",
-      "theme": {"default": "light", "user_selectable": true, "inverse_of": "body-long-form"},
+      "theme": {
+        "default": "light",
+        "user_selectable": true,
+        "inverse_of": "body-long-form"
+      },
       "includes_header": false,
-      "content": {"locked": ["developer authority statement", "REQUEST MORE INFORMATION CTA"], "required": [], "optional": []},
-      "image": {"count": 0, "aspect_ratio": null, "crop": null, "grounding": "not-applicable"},
-      "campaign_types": ["long-form"],
-      "compatibility": {"predecessors": ["body"], "successors": ["S-02", "static-design", "pre-footer", "footer"], "exclusion_group": "rider-static-message", "max_from_group": 2},
-      "client_behavior": {"mobile": "Preserve locked text hierarchy.", "outlook": "Keep the original tables and inline theme colors."}
+      "content": {
+        "locked": [
+          "developer authority statement",
+          "REQUEST MORE INFORMATION CTA"
+        ],
+        "required": [],
+        "optional": []
+      },
+      "image": {
+        "count": 0,
+        "aspect_ratio": null,
+        "crop": null,
+        "grounding": "not-applicable"
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "compatibility": {
+        "predecessors": [
+          "body"
+        ],
+        "successors": [
+          "S-02",
+          "static-design",
+          "pre-footer",
+          "footer"
+        ],
+        "exclusion_group": "rider-static-message",
+        "max_from_group": 2
+      },
+      "client_behavior": {
+        "mobile": "Preserve locked text hierarchy.",
+        "outlook": "Keep the original tables and inline theme colors."
+      }
     },
     {
       "id": "static-design",
       "code": "S-02",
-      "source": {"label": "STATIC BLOCK - NEVER USE TWO OF THESE IN THE SAME PIECE", "occurrence": 1, "marker_rows": [49, 51]},
+      "source": {
+        "label": "STATIC BLOCK - CONSIDER THIS BLOCK WHEN THE PIECE IS WELLNESS-RELATED - NEVER USE TWO OF THESE IN THE SAME PIECE",
+        "occurrence": 1,
+        "marker_rows": [
+          57,
+          59
+        ]
+      },
       "label": "Curated Design Static Block",
       "family": "static",
       "layout_role": "supporting-proof",
-      "theme": {"default": "scaffold-defined", "user_selectable": false},
+      "theme": {
+        "default": "scaffold-defined",
+        "user_selectable": false
+      },
       "includes_header": false,
-      "content": {"locked": ["CURATED DESIGN message"], "required": [], "optional": []},
-      "image": {"count": 1, "aspect_ratio": null, "crop": null, "grounding": "locked-scaffold-asset"},
+      "content": {
+        "locked": [
+          "CURATED DESIGN message"
+        ],
+        "required": [],
+        "optional": []
+      },
+      "image": {
+        "count": 1,
+        "aspect_ratio": null,
+        "crop": null,
+        "grounding": "locked-scaffold-asset"
+      },
       "creative_guidance": {
         "visual_subject": "Woman seated in The Rider sauna rendering",
-        "selection_tags": ["wellness", "sauna", "spa", "recovery", "amenities"],
+        "selection_tags": [
+          "wellness",
+          "sauna",
+          "spa",
+          "recovery",
+          "amenities"
+        ],
         "use_when": "Consider this block for wellness-related emails and invites when its sauna scene supports the campaign narrative.",
         "avoid_when": "Do not use it merely as decoration when the campaign has no credible wellness, spa, recovery, or amenity connection."
       },
-      "campaign_types": ["long-form", "invite"],
-      "compatibility": {"predecessors": ["body", "S-01", "static-authority"], "successors": ["pre-footer", "footer"], "exclusion_group": "rider-static-message", "max_from_group": 2},
-      "client_behavior": {"mobile": "Preserve locked typography and spacing.", "outlook": "Keep the original tables and inline styles."}
+      "campaign_types": [
+        "long-form",
+        "invite"
+      ],
+      "compatibility": {
+        "predecessors": [
+          "body",
+          "S-01",
+          "static-authority"
+        ],
+        "successors": [
+          "pre-footer",
+          "footer"
+        ],
+        "exclusion_group": "rider-static-message",
+        "max_from_group": 2
+      },
+      "client_behavior": {
+        "mobile": "Preserve locked typography and spacing.",
+        "outlook": "Keep the original tables and inline styles."
+      }
     },
     {
       "id": "callout-highlight",
       "code": "C-01",
-      "source": {"label": "CALLOUT TEXT BLOCK HIGHLIGHTING SOMETHING - LATIN REPRESENTS CLOSING CTA IN THE COPY", "occurrence": 1, "marker_rows": [53, 55]},
+      "source": {
+        "label": "CALLOUT TEXT BLOCK HIGHLIGHTING SOMETHING - LATIN REPRESENTS CLOSING CTA IN THE COPY",
+        "occurrence": 1,
+        "marker_rows": [
+          61,
+          63
+        ]
+      },
       "label": "Highlighted Text Callout",
       "family": "callout",
       "layout_role": "body-callout",
-      "theme": {"default": "scaffold-defined", "user_selectable": false},
+      "theme": {
+        "default": "scaffold-defined",
+        "user_selectable": false
+      },
       "includes_header": false,
-      "content": {"locked": [], "required": ["closing CTA statement"], "optional": ["footnote"]},
-      "image": {"count": 0, "aspect_ratio": null, "crop": null, "grounding": "not-applicable"},
-      "campaign_types": ["long-form"],
-      "compatibility": {"predecessors": ["body", "image"], "successors": ["specs", "static", "pre-footer"], "exclusion_group": null},
-      "client_behavior": {"mobile": "Keep callout and optional footnote together.", "outlook": "Preserve the original text tables."}
+      "content": {
+        "locked": [],
+        "required": [
+          "closing CTA statement"
+        ],
+        "optional": [
+          "footnote"
+        ]
+      },
+      "image": {
+        "count": 0,
+        "aspect_ratio": null,
+        "crop": null,
+        "grounding": "not-applicable"
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "compatibility": {
+        "predecessors": [
+          "body",
+          "image"
+        ],
+        "successors": [
+          "specs",
+          "static",
+          "pre-footer"
+        ],
+        "exclusion_group": null
+      },
+      "client_behavior": {
+        "mobile": "Keep callout and optional footnote together.",
+        "outlook": "Preserve the original text tables."
+      }
     },
     {
       "id": "specs-residences",
       "code": "S-03",
-      "source": {"label": "SEMI-STATIC SPECS BLOCK", "occurrence": 1, "marker_rows": [56, 58]},
+      "source": {
+        "label": "SEMI-STATIC SPECS BLOCK",
+        "occurrence": 1,
+        "marker_rows": [
+          64,
+          66
+        ]
+      },
       "label": "Residence Specs, Semi-Static",
       "family": "semi-static",
       "layout_role": "product-specs",
-      "theme": {"default": "scaffold-defined", "user_selectable": false},
+      "theme": {
+        "default": "scaffold-defined",
+        "user_selectable": false
+      },
       "includes_header": false,
-      "content": {"locked": ["residence type and furnishing statement"], "required": ["price"], "optional": []},
-      "image": {"count": 0, "aspect_ratio": null, "crop": null, "grounding": "not-applicable"},
-      "campaign_types": ["long-form"],
-      "compatibility": {"predecessors": ["body", "callout"], "successors": ["pre-footer", "footer"], "exclusion_group": null},
-      "client_behavior": {"mobile": "Keep the editable price attached to the locked sentence.", "outlook": "Preserve the original inline text structure."}
+      "content": {
+        "locked": [
+          "residence type and furnishing statement"
+        ],
+        "required": [
+          "price"
+        ],
+        "optional": []
+      },
+      "image": {
+        "count": 0,
+        "aspect_ratio": null,
+        "crop": null,
+        "grounding": "not-applicable"
+      },
+      "campaign_types": [
+        "long-form"
+      ],
+      "compatibility": {
+        "predecessors": [
+          "body",
+          "callout"
+        ],
+        "successors": [
+          "pre-footer",
+          "footer"
+        ],
+        "exclusion_group": null
+      },
+      "client_behavior": {
+        "mobile": "Keep the editable price attached to the locked sentence.",
+        "outlook": "Preserve the original inline text structure."
+      }
     },
     {
       "id": "static-opportunity",
       "code": "S-04",
-      "source": {"label": "STATIC BLOCK - NEVER USE TWO OF THESE IN THE SAME PIECE", "occurrence": 2, "marker_rows": [59, 61]},
+      "source": {
+        "label": "STATIC BLOCK - CONSIDER THIS BLOCK WHEN THE PIECE RELATES TO THE LOBBY OR ARRIVAL - NEVER USE TWO OF THESE IN THE SAME PIECE",
+        "occurrence": 1,
+        "marker_rows": [
+          67,
+          69
+        ]
+      },
       "label": "Opportunity Static Block",
       "family": "static",
       "layout_role": "supporting-cta",
-      "theme": {"default": "scaffold-defined", "user_selectable": false},
+      "theme": {
+        "default": "scaffold-defined",
+        "user_selectable": false
+      },
       "includes_header": false,
-      "content": {"locked": ["OPPORTUNITY IS KNOCKING message"], "required": [], "optional": []},
-      "image": {"count": 1, "aspect_ratio": null, "crop": null, "grounding": "locked-scaffold-asset"},
+      "content": {
+        "locked": [
+          "OPPORTUNITY IS KNOCKING message"
+        ],
+        "required": [],
+        "optional": []
+      },
+      "image": {
+        "count": 1,
+        "aspect_ratio": null,
+        "crop": null,
+        "grounding": "locked-scaffold-asset"
+      },
       "creative_guidance": {
         "visual_subject": "Arrival at The Rider building entrance",
-        "selection_tags": ["arrival", "building entrance", "exterior", "hospitality", "welcome"],
+        "selection_tags": [
+          "arrival",
+          "building entrance",
+          "exterior",
+          "hospitality",
+          "welcome"
+        ],
         "use_when": "Consider this block when the campaign narrative concerns arriving at, entering, visiting, or being welcomed to The Rider.",
         "avoid_when": "Do not infer a wellness setting from this scene; it depicts arrival at the building."
       },
-      "campaign_types": ["long-form"],
-      "compatibility": {"predecessors": ["body", "specs"], "successors": ["pre-footer", "footer"], "exclusion_group": "rider-static-message", "max_from_group": 1},
-      "client_behavior": {"mobile": "Preserve locked typography and spacing.", "outlook": "Keep the original tables and inline styles."}
+      "campaign_types": [
+        "long-form"
+      ],
+      "compatibility": {
+        "predecessors": [
+          "body",
+          "specs"
+        ],
+        "successors": [
+          "pre-footer",
+          "footer"
+        ],
+        "exclusion_group": "rider-static-message",
+        "max_from_group": 1
+      },
+      "client_behavior": {
+        "mobile": "Preserve locked typography and spacing.",
+        "outlook": "Keep the original tables and inline styles."
+      }
     },
     {
       "id": "pre-footer-cta",
       "code": "PF-01",
-      "source": {"label": "PRE-FOOTER BLOCK - LATIN REPRESENTS CLOSING CTA IN THE COPY", "occurrence": 1, "marker_rows": [62, 64]},
+      "source": {
+        "label": "PRE-FOOTER BLOCK - LATIN REPRESENTS CLOSING CTA IN THE COPY",
+        "occurrence": 1,
+        "marker_rows": [
+          70,
+          72
+        ]
+      },
       "label": "Closing CTA Pre-Footer",
       "family": "pre-footer",
       "layout_role": "pre-footer",
-      "theme": {"default": "scaffold-defined", "user_selectable": false},
+      "theme": {
+        "default": "scaffold-defined",
+        "user_selectable": false
+      },
       "includes_header": false,
-      "content": {"locked": [], "required": ["closing CTA copy"], "optional": []},
-      "image": {"count": 0, "aspect_ratio": null, "crop": null, "grounding": "not-applicable"},
-      "campaign_types": ["long-form", "invite"],
-      "compatibility": {"predecessors": ["body", "static", "callout", "specs"], "successors": ["footer"], "exclusion_group": "pre-footer"},
-      "client_behavior": {"mobile": "Keep CTA hierarchy intact.", "outlook": "Preserve the supplied text and button tables."}
+      "content": {
+        "locked": [],
+        "required": [
+          "closing CTA copy"
+        ],
+        "optional": []
+      },
+      "image": {
+        "count": 0,
+        "aspect_ratio": null,
+        "crop": null,
+        "grounding": "not-applicable"
+      },
+      "campaign_types": [
+        "long-form",
+        "invite"
+      ],
+      "compatibility": {
+        "predecessors": [
+          "body",
+          "static",
+          "callout",
+          "specs"
+        ],
+        "successors": [
+          "footer"
+        ],
+        "exclusion_group": "pre-footer"
+      },
+      "client_behavior": {
+        "mobile": "Keep CTA hierarchy intact.",
+        "outlook": "Preserve the supplied text and button tables."
+      }
     },
     {
       "id": "footer-branded",
       "code": "F-01",
-      "source": {"label": "BRANDED FOOTER", "occurrence": 1, "marker_rows": [65, 74]},
+      "source": {
+        "label": "BRANDED FOOTER",
+        "occurrence": 1,
+        "marker_rows": [
+          73,
+          82
+        ]
+      },
       "label": "Branded Footer",
       "family": "footer",
       "layout_role": "footer",
-      "theme": {"default": "locked", "user_selectable": false},
+      "theme": {
+        "default": "locked",
+        "user_selectable": false
+      },
       "includes_header": false,
-      "content": {"locked": ["all footer structure, identity, contact, legal, and links"], "required": [], "optional": []},
-      "image": {"count": "scaffold-owned", "aspect_ratio": "native", "crop": "none", "grounding": "Use scaffold-owned assets."},
-      "campaign_types": ["long-form", "invite"],
-      "compatibility": {"predecessors": ["body", "pre-footer"], "successors": ["end"], "exclusion_group": "footer-variant"},
-      "client_behavior": {"mobile": "Use the locked scaffold footer behavior.", "outlook": "Do not rebuild or restyle the footer."}
+      "content": {
+        "locked": [
+          "all footer structure, identity, contact, legal, and links"
+        ],
+        "required": [],
+        "optional": []
+      },
+      "image": {
+        "count": "scaffold-owned",
+        "aspect_ratio": "native",
+        "crop": "none",
+        "grounding": "Use scaffold-owned assets."
+      },
+      "campaign_types": [
+        "long-form",
+        "invite"
+      ],
+      "compatibility": {
+        "predecessors": [
+          "body",
+          "pre-footer"
+        ],
+        "successors": [
+          "end"
+        ],
+        "exclusion_group": "footer-variant"
+      },
+      "client_behavior": {
+        "mobile": "Use the locked scaffold footer behavior.",
+        "outlook": "Do not rebuild or restyle the footer."
+      }
     },
     {
       "id": "footer-outside-broker",
       "code": "F-02",
-      "source": {"label": "OUTSIDE-BROKER CUSTOMIZABLE FOOTER", "occurrence": 1, "marker_rows": [75, 84]},
+      "source": {
+        "label": "OUTSIDE-BROKER CUSTOMIZABLE FOOTER",
+        "occurrence": 1,
+        "marker_rows": [
+          83,
+          92
+        ]
+      },
       "label": "Outside-Broker Customizable Footer",
       "family": "footer",
       "layout_role": "footer",
-      "theme": {"default": "locked", "user_selectable": false},
+      "theme": {
+        "default": "locked",
+        "user_selectable": false
+      },
       "includes_header": false,
-      "content": {"locked": ["Rider project and legal structure"], "required": ["broker contact placeholders"], "optional": ["broker headshot"]},
-      "image": {"count": "0-1 customizable headshot plus scaffold-owned assets", "aspect_ratio": "scaffold-defined", "crop": "headshot focal crop", "grounding": "Use only the outside broker's supplied or approved headshot."},
-      "campaign_types": ["long-form", "invite"],
-      "compatibility": {"predecessors": ["body", "pre-footer"], "successors": ["end"], "exclusion_group": "footer-variant"},
-      "client_behavior": {"mobile": "Keep customizable contact fields within the supplied layout.", "outlook": "Do not alter legal or structural footer markup."}
+      "content": {
+        "locked": [
+          "Rider project and legal structure"
+        ],
+        "required": [
+          "broker contact placeholders"
+        ],
+        "optional": [
+          "broker headshot"
+        ]
+      },
+      "image": {
+        "count": "0-1 customizable headshot plus scaffold-owned assets",
+        "aspect_ratio": "scaffold-defined",
+        "crop": "headshot focal crop",
+        "grounding": "Use only the outside broker's supplied or approved headshot."
+      },
+      "campaign_types": [
+        "long-form",
+        "invite"
+      ],
+      "compatibility": {
+        "predecessors": [
+          "body",
+          "pre-footer"
+        ],
+        "successors": [
+          "end"
+        ],
+        "exclusion_group": "footer-variant"
+      },
+      "client_behavior": {
+        "mobile": "Keep customizable contact fields within the supplied layout.",
+        "outlook": "Do not alter legal or structural footer markup."
+      }
     },
     {
       "id": "footer-in-house-agent",
       "code": "F-03",
-      "source": {"label": "IN-HOUSE AGENT FOOTER", "occurrence": 1, "marker_rows": [85, 94]},
+      "source": {
+        "label": "IN-HOUSE AGENT FOOTER",
+        "occurrence": 1,
+        "marker_rows": [
+          93,
+          102
+        ]
+      },
       "label": "In-House Agent Footer",
       "family": "footer",
       "layout_role": "footer",
-      "theme": {"default": "locked", "user_selectable": false},
+      "theme": {
+        "default": "locked",
+        "user_selectable": false
+      },
       "includes_header": false,
-      "content": {"locked": ["footer structure and Rider legal content"], "required": ["agent name", "title", "phone", "email", "headshot"], "optional": []},
-      "image": {"count": "one agent headshot plus scaffold-owned assets", "aspect_ratio": "scaffold-defined", "crop": "headshot focal crop", "grounding": "Resolve the active agent record and manifest asset ID."},
-      "campaign_types": ["long-form", "invite"],
-      "compatibility": {"predecessors": ["body", "pre-footer"], "successors": ["end"], "exclusion_group": "footer-variant"},
-      "client_behavior": {"mobile": "Keep agent identity and contact information readable.", "outlook": "Populate only declared slots in the locked footer structure."}
+      "content": {
+        "locked": [
+          "footer structure and Rider legal content"
+        ],
+        "required": [
+          "agent name",
+          "title",
+          "phone",
+          "email",
+          "headshot"
+        ],
+        "optional": []
+      },
+      "image": {
+        "count": "one agent headshot plus scaffold-owned assets",
+        "aspect_ratio": "scaffold-defined",
+        "crop": "headshot focal crop",
+        "grounding": "Resolve the active agent record and manifest asset ID."
+      },
+      "campaign_types": [
+        "long-form",
+        "invite"
+      ],
+      "compatibility": {
+        "predecessors": [
+          "body",
+          "pre-footer"
+        ],
+        "successors": [
+          "end"
+        ],
+        "exclusion_group": "footer-variant"
+      },
+      "client_behavior": {
+        "mobile": "Keep agent identity and contact information readable.",
+        "outlook": "Populate only declared slots in the locked footer structure."
+      }
     }
   ],
   "annotations": [
     {
       "id": "invite-supporting-image",
-      "source": {"label": "IMAGE BLOCK TO BE USED ON INVITES - IMAGE MAY CHANGE", "occurrence": 1, "marker_rows": [25, 25]},
+      "source": {
+        "label": "IMAGE BLOCK TO BE USED ON INVITES - IMAGE MAY CHANGE",
+        "occurrence": 1,
+        "marker_rows": [
+          25,
+          25
+        ]
+      },
       "parent_module_id": "invite-body-dark",
       "parent_annotation_id": null,
       "role": "image",
@@ -342,12 +1137,22 @@
       "required": false,
       "repeatable": false,
       "generation": "selected or generated with approval",
-      "constraints": ["Use only for invite campaigns", "Pair with the event concept"],
+      "constraints": [
+        "Use only for invite campaigns",
+        "Pair with the event concept"
+      ],
       "placeholder_policy": "Replace the scaffold image when included."
     },
     {
       "id": "body-subheading",
-      "source": {"label": "H2 - SUBHEADING", "occurrence": 1, "marker_rows": [38, 38]},
+      "source": {
+        "label": "H2 - SUBHEADING",
+        "occurrence": 1,
+        "marker_rows": [
+          38,
+          38
+        ]
+      },
       "parent_module_id": "body-long-form",
       "parent_annotation_id": null,
       "role": "subheading",
@@ -355,12 +1160,22 @@
       "required": false,
       "repeatable": false,
       "generation": "campaign copy",
-      "constraints": ["Use as H2", "Do not repeat the hero headline"],
+      "constraints": [
+        "Use as H2",
+        "Do not repeat the hero headline"
+      ],
       "placeholder_policy": "Replace example copy or omit the element cleanly."
     },
     {
       "id": "body-paragraph-primary",
-      "source": {"label": "BODY COPY PARAGRAPH", "occurrence": 1, "marker_rows": [38, 38]},
+      "source": {
+        "label": "BODY COPY PARAGRAPH",
+        "occurrence": 1,
+        "marker_rows": [
+          38,
+          38
+        ]
+      },
       "parent_module_id": "body-long-form",
       "parent_annotation_id": null,
       "role": "body-copy",
@@ -368,12 +1183,22 @@
       "required": true,
       "repeatable": false,
       "generation": "campaign copy",
-      "constraints": ["Advance the campaign narrative", "Avoid duplicate claims"],
+      "constraints": [
+        "Advance the campaign narrative",
+        "Avoid duplicate claims"
+      ],
       "placeholder_policy": "Always replace example copy."
     },
     {
       "id": "body-inline-image-primary",
-      "source": {"label": "IMAGE BLOCK TO BE USED BETWEEN COPY BLOCKS", "occurrence": 1, "marker_rows": [39, 39]},
+      "source": {
+        "label": "IMAGE BLOCK TO BE USED BETWEEN COPY BLOCKS",
+        "occurrence": 1,
+        "marker_rows": [
+          39,
+          39
+        ]
+      },
       "parent_module_id": "body-long-form",
       "parent_annotation_id": null,
       "role": "image",
@@ -381,12 +1206,22 @@
       "required": false,
       "repeatable": false,
       "generation": "selected or generated with approval",
-      "constraints": ["Pair with adjacent copy", "Use an approved Rider asset"],
+      "constraints": [
+        "Pair with adjacent copy",
+        "Use an approved Rider asset"
+      ],
       "placeholder_policy": "Replace the scaffold image when included."
     },
     {
       "id": "body-paragraph-secondary",
-      "source": {"label": "BODY COPY PARAGRAPH CONTINUED", "occurrence": 1, "marker_rows": [40, 40]},
+      "source": {
+        "label": "BODY COPY PARAGRAPH CONTINUED",
+        "occurrence": 1,
+        "marker_rows": [
+          40,
+          40
+        ]
+      },
       "parent_module_id": "body-long-form",
       "parent_annotation_id": null,
       "role": "body-copy",
@@ -394,25 +1229,66 @@
       "required": false,
       "repeatable": false,
       "generation": "campaign copy",
-      "constraints": ["Continue rather than restate the primary paragraph"],
+      "constraints": [
+        "Continue rather than restate the primary paragraph"
+      ],
       "placeholder_policy": "Replace example copy or omit the element cleanly."
     },
     {
-      "id": "body-leading-term-list",
-      "source": {"label": "LIST THAT HAS BULLET POINTS WITH ONLY LEADING TERMS, NO AMPLIFICATION. REPEAT FOR AS MANY BULLET POINTS ARE NEEDED IN THE COPY.", "occurrence": 1, "marker_rows": [41, 41]},
+      "id": "body-leading-term-row",
+      "source": {
+        "label": "ROW CONTAINING LIST - THIS ROW IS ONLY NEEDED IF THIS TYPE OF LIST IS REQUIRED IN THE PIECE",
+        "occurrence": 1,
+        "marker_rows": [
+          41,
+          43
+        ]
+      },
       "parent_module_id": "body-long-form",
       "parent_annotation_id": null,
+      "role": "conditional-row",
+      "value_type": "container",
+      "required": false,
+      "repeatable": false,
+      "generation": "structural",
+      "constraints": [
+        "Include only when a leading-term list is supplied"
+      ],
+      "placeholder_policy": "Omit the complete row when the owning list is absent."
+    },
+    {
+      "id": "body-leading-term-list",
+      "source": {
+        "label": "LIST THAT HAS BULLET POINTS WITH ONLY LEADING TERMS, NO AMPLIFICATION. REPEAT FOR AS MANY BULLET POINTS ARE NEEDED IN THE COPY",
+        "occurrence": 1,
+        "marker_rows": [
+          42,
+          42
+        ]
+      },
+      "parent_module_id": "body-long-form",
+      "parent_annotation_id": "body-leading-term-row",
       "role": "list",
       "value_type": "string-array",
       "required": false,
       "repeatable": true,
       "generation": "campaign copy",
-      "constraints": ["Each item is a leading term only", "Do not add amplification"],
+      "constraints": [
+        "Each item is a leading term only",
+        "Do not add amplification"
+      ],
       "placeholder_policy": "Replace all example items or omit the list."
     },
     {
       "id": "body-list-payoff",
-      "source": {"label": "PAYOFF TO THE LIST - SHOULD ONLY BE USED IF A PAYOFF EXISTS", "occurrence": 1, "marker_rows": [42, 42]},
+      "source": {
+        "label": "ROW CONTAINING A LIST PAYOFF - THIS ROW IS ONLY NEEDED IF A SENTENCE/PARAGRAPH-STYLE PAYOFF TO ANY PREVIOUS TYPE OF LIST IS REQUIRED IN THE PIECE",
+        "occurrence": 1,
+        "marker_rows": [
+          44,
+          46
+        ]
+      },
       "parent_module_id": "body-long-form",
       "parent_annotation_id": null,
       "role": "list-payoff",
@@ -420,38 +1296,90 @@
       "required": false,
       "repeatable": false,
       "generation": "campaign copy",
-      "constraints": ["Include only when it meaningfully resolves the preceding list"],
+      "constraints": [
+        "Include only when it meaningfully resolves the preceding list"
+      ],
       "placeholder_policy": "Replace example copy or omit the element cleanly."
     },
     {
-      "id": "body-list-eyebrow",
-      "source": {"label": "EYEBROW - AI GENERATED COPY BASED ON CONTEXT OF A LIST WITH OR WITHOUT AMPLIFICATION - ALWAYS A TWO-TO-FIVE WORD SENTENCE - NOT ALWAYS REQUIRED", "occurrence": 1, "marker_rows": [43, 43]},
+      "id": "body-amplified-list-row",
+      "source": {
+        "label": "ROW CONTAINING LIST - THIS ROW IS ONLY NEEDED IF THIS TYPE OF LIST IS REQUIRED IN THE PIECE",
+        "occurrence": 2,
+        "marker_rows": [
+          47,
+          49
+        ]
+      },
       "parent_module_id": "body-long-form",
       "parent_annotation_id": null,
+      "role": "conditional-row",
+      "value_type": "container",
+      "required": false,
+      "repeatable": false,
+      "generation": "structural",
+      "constraints": [
+        "Include only when an amplified list is supplied"
+      ],
+      "placeholder_policy": "Omit the complete row when the owning list is absent."
+    },
+    {
+      "id": "body-list-eyebrow",
+      "source": {
+        "label": "EYEBROW - AI GENERATED COPY BASED ON CONTEXT OF A LIST WITH OR WITHOUT AMPLIFICATION - ALWAYS A TWO-TO-FIVE WORD SENTENCE - NOT ALWAYS REQUIRED",
+        "occurrence": 1,
+        "marker_rows": [
+          48,
+          48
+        ]
+      },
+      "parent_module_id": "body-long-form",
+      "parent_annotation_id": "body-amplified-list-row",
       "role": "eyebrow",
       "value_type": "text",
       "required": false,
       "repeatable": false,
       "generation": "contextual AI copy",
-      "constraints": ["Two to five words", "Reflect the adjacent list", "Optional"],
+      "constraints": [
+        "Two to five words",
+        "Reflect the adjacent list",
+        "Optional"
+      ],
       "placeholder_policy": "Replace example copy or omit the element cleanly."
     },
     {
       "id": "body-amplified-list",
-      "source": {"label": "LIST THAT HAS BULLET POINTS WITH AMPLIFICATION. REPEAT FOR AS MANY BULLET POINTS ARE NEEDED IN THE COPY.", "occurrence": 1, "marker_rows": [43, 43]},
+      "source": {
+        "label": "LIST THAT HAS BULLET POINTS WITH AMPLIFICATION - REPEAT FOR AS MANY BULLET POINTS ARE NEEDED IN THE COPY",
+        "occurrence": 1,
+        "marker_rows": [
+          48,
+          48
+        ]
+      },
       "parent_module_id": "body-long-form",
-      "parent_annotation_id": null,
+      "parent_annotation_id": "body-amplified-list-row",
       "role": "list",
       "value_type": "object-array",
       "required": false,
       "repeatable": true,
       "generation": "campaign copy",
-      "constraints": ["Each item has a leading term and amplification", "Keep item structure consistent"],
+      "constraints": [
+        "Each item has a leading term and amplification",
+        "Keep item structure consistent"
+      ],
       "placeholder_policy": "Replace all example items or omit the list."
     },
     {
       "id": "body-list-amplification",
-      "source": {"label": "AMPLIFICATION OF BULLET POINT.", "occurrence": 1, "marker_rows": [43, 43]},
+      "source": {
+        "label": "AMPLIFICATION OF BULLET POINT.",
+        "occurrence": 1,
+        "marker_rows": [
+          48,
+          48
+        ]
+      },
       "parent_module_id": "body-long-form",
       "parent_annotation_id": "body-amplified-list",
       "role": "list-item-amplification",
@@ -459,25 +1387,67 @@
       "required": true,
       "repeatable": true,
       "generation": "campaign copy",
-      "constraints": ["Explain its owning leading term", "Do not become a second unrelated claim"],
+      "constraints": [
+        "Explain its owning leading term",
+        "Do not become a second unrelated claim"
+      ],
       "placeholder_policy": "Replace every example amplification."
     },
     {
-      "id": "body-followup-list",
-      "source": {"label": "BULLETED LISTS - ONLY APPLIES WHEN THERE'S A BULLET LIST THAT PAYS OFF A PREVIOUS LIST.", "occurrence": 1, "marker_rows": [44, 44]},
+      "id": "body-followup-list-row",
+      "source": {
+        "label": "ROW CONTAINING A LIST PAYOFF - THIS ROW IS ONLY NEEDED IF A LIST-STYLE PAYOFF TO ANY PREVIOUS TYPE OF LIST IS REQUIRED IN THE PIECE",
+        "occurrence": 1,
+        "marker_rows": [
+          50,
+          52
+        ]
+      },
       "parent_module_id": "body-long-form",
       "parent_annotation_id": null,
+      "role": "conditional-row",
+      "value_type": "container",
+      "required": false,
+      "repeatable": false,
+      "generation": "structural",
+      "constraints": [
+        "Include only when a list-style payoff is supplied"
+      ],
+      "placeholder_policy": "Omit the complete row when the owning list is absent."
+    },
+    {
+      "id": "body-followup-list",
+      "source": {
+        "label": "BULLETED LISTS - ONLY APPLIES WHEN THERE'S A BULLET LIST THAT PAYS OFF A PREVIOUS LIST",
+        "occurrence": 1,
+        "marker_rows": [
+          51,
+          51
+        ]
+      },
+      "parent_module_id": "body-long-form",
+      "parent_annotation_id": "body-followup-list-row",
       "role": "followup-list",
       "value_type": "string-array",
       "required": false,
       "repeatable": true,
       "generation": "campaign copy",
-      "constraints": ["Use only when it pays off a previous list", "Do not duplicate that list"],
+      "constraints": [
+        "Use only when it pays off a previous list",
+        "Do not duplicate that list"
+      ],
       "placeholder_policy": "Replace all example items or omit the list."
     },
     {
       "id": "body-inline-image-secondary",
-      "source": {"label": "ANOTHER IMAGE BLOCK TO BE USED BETWEEN COPY BLOCKS - NEVER USE THIS IMAGE, IT'S ONLY A PLACEHOLDER.", "occurrence": 1, "marker_rows": [52, 52]},
+      "source": {
+        "label": "ANOTHER IMAGE BLOCK TO BE USED BETWEEN COPY BLOCKS - NEVER USE THIS IMAGE, IT'S ONLY A PLACEHOLDER",
+        "occurrence": 1,
+        "marker_rows": [
+          60,
+          60
+        ]
+      },
       "parent_module_id": null,
       "parent_annotation_id": null,
       "role": "standalone-image-block",
@@ -485,7 +1455,10 @@
       "required": false,
       "repeatable": false,
       "generation": "selected or generated with approval",
-      "constraints": ["Place between compatible copy blocks", "Never ship the scaffold placeholder image"],
+      "constraints": [
+        "Place between compatible copy blocks",
+        "Never ship the scaffold placeholder image"
+      ],
       "placeholder_policy": "Replacement is mandatory whenever the block is included.",
       "composition": {
         "standalone": true,
@@ -494,15 +1467,46 @@
         "summary": "Optional standalone image row placed between compatible long-form copy blocks; its scaffold placeholder must always be replaced.",
         "family": "body",
         "layout_role": "body-image",
-        "theme": {"default": "scaffold-defined", "user_selectable": false},
-        "campaign_types": ["long-form"],
-        "compatibility": {"predecessors": ["body", "callout"], "successors": ["body", "callout", "specs", "static", "pre-footer", "footer"], "exclusion_group": null},
-        "image": {"count": 1, "aspect_ratio": "scaffold-defined", "crop": "approved focal crop", "grounding": "Use an approved Rider asset paired with adjacent copy."}
+        "theme": {
+          "default": "scaffold-defined",
+          "user_selectable": false
+        },
+        "campaign_types": [
+          "long-form"
+        ],
+        "compatibility": {
+          "predecessors": [
+            "body",
+            "callout"
+          ],
+          "successors": [
+            "body",
+            "callout",
+            "specs",
+            "static",
+            "pre-footer",
+            "footer"
+          ],
+          "exclusion_group": null
+        },
+        "image": {
+          "count": 1,
+          "aspect_ratio": "scaffold-defined",
+          "crop": "approved focal crop",
+          "grounding": "Use an approved Rider asset paired with adjacent copy."
+        }
       }
     },
     {
       "id": "callout-footnote",
-      "source": {"label": "FOOTNOTE - AI GENERATED COPY BASED ON CONTEXT OF ITS PRECEDING H3 - ALWAYS A TWO-TO-FIVE WORD SENTENCE - NOT ALWAYS REQUIRED", "occurrence": 1, "marker_rows": [54, 54]},
+      "source": {
+        "label": "FOOTNOTE - AI GENERATED COPY BASED ON CONTEXT OF ITS PRECEDING H3 - ALWAYS A TWO-TO-FIVE WORD SENTENCE - NOT ALWAYS REQUIRED",
+        "occurrence": 1,
+        "marker_rows": [
+          62,
+          62
+        ]
+      },
       "parent_module_id": "callout-highlight",
       "parent_annotation_id": null,
       "role": "footnote",
@@ -510,12 +1514,23 @@
       "required": false,
       "repeatable": false,
       "generation": "contextual AI copy",
-      "constraints": ["Two to five words", "Derive from the preceding H3", "Optional"],
+      "constraints": [
+        "Two to five words",
+        "Derive from the preceding H3",
+        "Optional"
+      ],
       "placeholder_policy": "Replace example copy or omit the element cleanly."
     },
     {
       "id": "specs-price",
-      "source": {"label": "PRICE - CHANGES IF SPECIFIED", "occurrence": 1, "marker_rows": [57, 57]},
+      "source": {
+        "label": "PRICE - CHANGES IF SPECIFIED",
+        "occurrence": 1,
+        "marker_rows": [
+          65,
+          65
+        ]
+      },
       "parent_module_id": "specs-residences",
       "parent_annotation_id": null,
       "role": "price",
@@ -523,7 +1538,10 @@
       "required": true,
       "repeatable": false,
       "generation": "user-specified or approved project data",
-      "constraints": ["Change only when a current approved price is supplied", "Keep the surrounding locked sentence intact"],
+      "constraints": [
+        "Change only when a current approved price is supplied",
+        "Keep the surrounding locked sentence intact"
+      ],
       "placeholder_policy": "Use the approved default only when no replacement is specified."
     }
   ],

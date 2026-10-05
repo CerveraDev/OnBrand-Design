@@ -216,14 +216,19 @@ def find_module_boundaries(rows: Iterable[Row]) -> list[ModuleBoundary]:
                     f"Marker mismatch: row {start.number} is {start.marker_label!r}, "
                     f"row {row.number} is {row.marker_label!r}"
                 )
-            boundaries.append(
-                ModuleBoundary(
-                    label=start.marker_label or "",
-                    start_marker_row=start.number,
-                    end_marker_row=row.number,
-                    content_rows=tuple(range(start.number + 1, row.number)),
-                )
+            is_static_module = (
+                STATIC_START_MARKER_COLOR in start.style_colors
+                and STATIC_END_MARKER_COLOR in row.style_colors
             )
+            if not starts or is_static_module:
+                boundaries.append(
+                    ModuleBoundary(
+                        label=start.marker_label or "",
+                        start_marker_row=start.number,
+                        end_marker_row=row.number,
+                        content_rows=tuple(range(start.number + 1, row.number)),
+                    )
+                )
     if starts:
         labels = ", ".join(f"{row.number}:{row.marker_label}" for row in starts)
         raise ScaffoldError(f"Unclosed START marker(s): {labels}")
@@ -273,15 +278,18 @@ def find_annotation_boundaries(
     annotations: list[AnnotationBoundary] = []
     for marker in markers:
         if marker.kind == "START":
-            parent_module = next(
-                (open_marker.label for open_marker, *_ in reversed(stack) if open_marker.is_full_row),
+            outer_module_index = next(
+                (index for index, (open_marker, *_) in enumerate(stack) if open_marker.is_full_row),
                 None,
             )
-            parent_annotation = next(
-                (open_marker.label for open_marker, *_ in reversed(stack) if not open_marker.is_full_row),
-                None,
+            parent_module = (
+                stack[outer_module_index][0].label if outer_module_index is not None else None
             )
-            depth = sum(1 for open_marker, *_ in stack if not open_marker.is_full_row)
+            annotation_parents = (
+                stack[outer_module_index + 1 :] if outer_module_index is not None else stack
+            )
+            parent_annotation = annotation_parents[-1][0].label if annotation_parents else None
+            depth = len(annotation_parents)
             stack.append((marker, parent_module, parent_annotation, depth))
             continue
         if not stack:
@@ -299,7 +307,11 @@ def find_annotation_boundaries(
                 f"Marker scope mismatch for {start.label!r}: START and END must both be "
                 "row-level or both be inline"
             )
-        if start.is_full_row:
+        is_static_module = (
+            start.color == STATIC_START_MARKER_COLOR
+            and marker.color == STATIC_END_MARKER_COLOR
+        )
+        if start.is_full_row and (parent_module is None or is_static_module):
             continue
         annotations.append(
             AnnotationBoundary(
@@ -309,7 +321,11 @@ def find_annotation_boundaries(
                 parent_module_label=parent_module,
                 parent_annotation_label=parent_annotation,
                 depth=depth,
-                content_rows=tuple(range(start.row_number, marker.row_number + 1)),
+                content_rows=(
+                    tuple(range(start.row_number + 1, marker.row_number))
+                    if start.is_full_row
+                    else tuple(range(start.row_number, marker.row_number + 1))
+                ),
                 content_html=html[start.end : marker.start],
             )
         )

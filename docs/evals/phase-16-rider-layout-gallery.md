@@ -34,7 +34,7 @@ The sequence gallery contains seven long-form choices and two always-dark invite
 - Missing iframe targets: 0
 - Authoring marker leaks: 0
 - Invalid sequence presets: 0
-- Full repository tests: 176 passed
+- Full repository tests: 179 passed
 
 The CLI now accepts an explicit staged scaffold, slot map, and metadata trio for `catalog` and `plan`. Omitting all three retains the Phase 15 canonical defaults; supplying only part of the trio fails.
 
@@ -54,7 +54,7 @@ The two light-led sequences show the current light header and light hero flowing
 
 | Artifact | SHA-256 |
 |---|---|
-| `module_catalog.json` | `f6efd60ce017ddd733b5ff1302cbfa07366004b3921e708c0f59761c4caee15d` |
+| `module_catalog.json` | `0a312f182e6cb4f60814c22f17857d1c75db11efd912a732a7db72b11f0c9128` |
 | `hero-configurations.json` | `7d7608f596654fec404a5d01e9a7c503d3c9952861e70ea42165d07114dcc9b1` |
 | `sequence-configurations.json` | `a2ee5321aeb4d9aec528972149e04f8fefe1ab022d7c0a457fcfbdfb325c0b35` |
 | `module-gallery.html` | `9ff4cfe54cee61a3d5e1f77c7da520bc8a45bf3a17da1ee945b8cfe37cfa6d4d` |

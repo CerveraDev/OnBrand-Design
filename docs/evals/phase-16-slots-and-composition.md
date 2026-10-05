@@ -20,6 +20,8 @@ The runtime now supports:
 - Image slots with manifest approval or grounded-generation provenance
 - Repeating term lists from typed string arrays
 - Repeating term-plus-amplification lists from typed object arrays
+- Container-owned conditional rows that disappear as complete table units when their list or payoff content is absent
+- Dependency checks that reject nested eyebrow or amplification content when its owning conditional row is absent
 - Two-to-five-word limits for generated eyebrows and footnotes
 - A standalone secondary image module whose placeholder can never ship when selected
 - Eight deterministic masonry image positions, all required when that module is selected
@@ -46,14 +48,14 @@ The Phase 16 header/hero filter currently yields 14 compatible configurations. I
 ## Validation
 
 - Focused runtime, parser, composition, and campaign tests: 59 passed
-- Full repository test discovery: 176 passed
+- Full repository test discovery: 179 passed
 - Generated module catalog entries: 18
 - Generated isolated module previews: 18
 - Generated compatible header/hero configurations: 14
 - Marker leaks in generated previews: 0
 - Existing Phase 15 cross-platform fixture fingerprints: unchanged
 
-Negative tests reject missing required slots, overly long microcopy, bad block order, multiple static messages, and an unreplaced standalone placeholder image.
+Negative tests reject missing required slots, nested content without its row owner, overly long microcopy, bad block order, multiple static messages, and an unreplaced standalone placeholder image.
 
 ## Promotion Boundary
 

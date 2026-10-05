@@ -10,11 +10,12 @@ This checkpoint validates the corrected Phase 16 Rider scaffold as an authoring 
 
 ## Parser Results
 
-- Beefree rows: 94
-- Marker elements: 68
+- Beefree rows: 102
+- Marker elements: 74
 - Row-level modules: 20
-- Inline or nested annotations: 14
-- Nested annotation relationships: 1, `body-list-amplification` inside `body-amplified-list`
+- Inline or nested annotations: 17
+- Nested annotation relationships: 5
+- Conditional row containers: 4, covering leading terms, paragraph payoff, amplified list, and list-style follow-up payoff
 - Standalone granular blocks: 1, `body-inline-image-secondary`
 - Marker-only rendering: removes all four authoring colors and all `START -` / `END -` text while retaining annotated content rows
 
@@ -29,7 +30,7 @@ The checksum-bound metadata file is:
 It defines:
 
 - 20 modules with stable IDs and codes
-- 14 granular fields or blocks with stable IDs
+- 17 granular fields or blocks with stable IDs
 - Dark-only invite behavior
 - Dark-default, user-selectable light long-form body behavior
 - Header-versus-integrated-header exclusion
@@ -42,11 +43,11 @@ The loader binds metadata to the exact scaffold SHA-256 and verifies full source
 
 ## Validation
 
-- Focused Phase 16 and legacy scaffold tests: 13 passed
-- Full repository test discovery: 166 passed
+- Focused Phase 16 parser/runtime tests: 19 passed
+- Full repository test discovery: 179 passed
 - Existing canonical scaffold behavior: unchanged
 - Phase 16 canonical promotion: not performed
 
 ## Next Work
 
-Deterministic slots and composition rules are now complete. See [Phase 16 slots and composition evidence](phase-16-slots-and-composition.md). Remaining work is to generate and inspect isolated previews and sequence options, then produce a new branded proof for owner review before canonical promotion.
+Deterministic slots, composition rules, galleries, and the regenerated branded proof are complete. See [Phase 16 slots and composition evidence](phase-16-slots-and-composition.md) and [the branded proof](phase-16-rider-wellness-branded-proof.md). Remaining work is owner visual approval, reproducible browser-matrix evidence, native email-client review, and the canonical promotion decision.

@@ -45,12 +45,39 @@ def apply_module_slots(
         raise SlotError(f"{module_id} is missing required slot(s): {', '.join(missing)}")
     html = row_html
     used: list[UsedAsset] = []
+    missing_containers = {
+        name: definition["container_annotation_anchor"]
+        for name, definition in definitions.items()
+        if name not in supplied_slots
+        and definition.get("omit_if_missing")
+        and definition.get("container_annotation_anchor")
+    }
+    for slot_name in supplied_slots:
+        anchor = definitions[slot_name].get("annotation_anchor")
+        owner = next(
+            (
+                owner_name
+                for owner_name, container in missing_containers.items()
+                if anchor and anchor != container and anchor in container
+            ),
+            None,
+        )
+        if owner:
+            raise SlotError(f"{module_id}.{slot_name} requires container-owning slot {owner}")
+    removed_containers: list[str] = []
+    for slot_name, anchor in missing_containers.items():
+        html = replace_once(html, anchor, "", f"{module_id}.{slot_name}.omit-container")
+        removed_containers.append(anchor)
     for slot_name, definition in definitions.items():
         if slot_name in supplied_slots or not definition.get("omit_if_missing"):
+            continue
+        if definition.get("container_annotation_anchor"):
             continue
         anchor = definition.get("annotation_anchor")
         if not anchor:
             raise SlotError(f"{module_id}.{slot_name} cannot be omitted without an annotation anchor")
+        if any(anchor in container for container in removed_containers):
+            continue
         html = replace_once(html, anchor, "", f"{module_id}.{slot_name}.omit")
     for slot_name, definition in definitions.items():
         if slot_name not in supplied_slots:
