@@ -1,6 +1,6 @@
 {
   "gallery_version": "1.0",
-  "option_count": 8,
+  "option_count": 9,
   "options": [
     {
       "id": "SEQ-LF-01",
@@ -129,6 +129,28 @@
       ],
       "notes": "Light opening, default dark editorial body, one opportunity message, and closing CTA.",
       "preview_path": "sequence-configurations/SEQ-LF-06.html"
+    },
+    {
+      "id": "SEQ-LF-07",
+      "label": "Approved CFG-05 Continuity",
+      "campaign_type": "long-form",
+      "theme": "dark",
+      "selected_module_codes": [
+        "H-01",
+        "AI-01",
+        "B-04",
+        "S-01",
+        "PF-01"
+      ],
+      "selected_module_labels": [
+        "Two-Column Header, Dark",
+        "AI-Generated Image Hero",
+        "Long-Form Editorial Body",
+        "Developer Authority Static Block",
+        "Closing CTA Pre-Footer"
+      ],
+      "notes": "Carries forward the approved two-column header and AI image hero, then adds the refined editorial body, single authority message, and pre-footer.",
+      "preview_path": "sequence-configurations/SEQ-LF-07.html"
     },
     {
       "id": "SEQ-IN-01",

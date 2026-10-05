@@ -215,7 +215,7 @@ class Phase16RuntimeTests(unittest.TestCase):
 
     def test_refined_catalog_writes_module_and_sequence_galleries(self):
         sequences = build_sequence_configurations(build_module_catalog(self.scaffold))
-        self.assertEqual(sequences["option_count"], 8)
+        self.assertEqual(sequences["option_count"], 9)
         self.assertEqual(
             [option["id"] for option in sequences["options"]],
             [
@@ -225,6 +225,7 @@ class Phase16RuntimeTests(unittest.TestCase):
                 "SEQ-LF-04",
                 "SEQ-LF-05",
                 "SEQ-LF-06",
+                "SEQ-LF-07",
                 "SEQ-IN-01",
                 "SEQ-IN-02",
             ],

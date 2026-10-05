@@ -22,15 +22,15 @@ This checkpoint turns the refined Phase 16 metadata into visual review artifacts
 - [Sequence configurations](artifacts/phase-16-rider-layout-gallery/sequence-configurations.json)
 - [Composition review guide](artifacts/phase-16-rider-layout-gallery/composition-review.md)
 
-The sequence gallery contains six long-form choices and two always-dark invite choices. Complete sequence previews expand to their rendered document height so the block rhythm can be reviewed continuously.
+The sequence gallery contains seven long-form choices and two always-dark invite choices. Complete sequence previews expand to their rendered document height so the block rhythm can be reviewed continuously.
 
 ## Structural Results
 
 - Selectable modules: 18
 - Isolated module previews: 18
 - Compatible header and hero configurations: 14
-- Complete sequence configurations: 8
-- Generated HTML files: 43
+- Complete sequence configurations: 9
+- Generated HTML files: 44
 - Missing iframe targets: 0
 - Authoring marker leaks: 0
 - Invalid sequence presets: 0
@@ -44,6 +44,8 @@ The module and sequence galleries were opened through the local browser on 2026-
 
 The gallery intentionally uses scaffold sample copy and sample imagery to expose layout behavior. It is not a campaign proof, copy approval, image approval, or distribution package. The optional standalone `I-02` image remains visible only in its isolated module preview and is excluded from sequence presets until an approved replacement image is supplied.
 
+Continuity review found that the first eight presets omitted the exact `H-01 + AI-01` opening previously approved as CFG-05. `SEQ-LF-07` now preserves that opening and follows it with the refined long-form body, the single approved developer-authority message, and the pre-footer. This is the recommended starting point for the next Rider wellness proof, but it is not owner-approved merely because it appears in the gallery.
+
 The two light-led sequences show the current light header and light hero flowing into the scaffold's default dark editorial body. A full light-body conversion remains a future coordinated inline-color transformation and is not represented as completed behavior here.
 
 ## Artifact Fingerprints
@@ -52,10 +54,10 @@ The two light-led sequences show the current light header and light hero flowing
 |---|---|
 | `module_catalog.json` | `d0da45d2decca35279360b11b143f3c6f331218dd4cab6a34169c4b29c35980e` |
 | `hero-configurations.json` | `7d7608f596654fec404a5d01e9a7c503d3c9952861e70ea42165d07114dcc9b1` |
-| `sequence-configurations.json` | `4a392275f2236f866b47fa201b3a690e88154634a7a82c834a244e8e6262efb2` |
+| `sequence-configurations.json` | `28a5a34d38d38cff8591c52cc06d99ed79f8beab7a8525150b3e3454944f28d2` |
 | `module-gallery.html` | `174421573420a510511f1bb7087b378953259f406d0e1246bf473e2e78fe0de6` |
 | `hero-gallery.html` | `9682164cffa1d8d7085c02ada8b51bf9fcb883b0649ce1b991488187c9de41bc` |
-| `sequence-gallery.html` | `97d9916df15e4668a99f6f31c699952b912ff3a32b19529d409ee46d70a27454` |
+| `sequence-gallery.html` | `4622f8648498df0ffd1a1de275754262c75e8460c8e8918ca0baf9d4a3220b94` |
 
 ## Promotion Boundary
 

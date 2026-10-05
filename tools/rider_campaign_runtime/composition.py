@@ -241,6 +241,14 @@ def build_sequence_configurations(module_catalog: dict) -> dict:
             "notes": "Light opening, default dark editorial body, one opportunity message, and closing CTA.",
         },
         {
+            "id": "SEQ-LF-07",
+            "label": "Approved CFG-05 Continuity",
+            "campaign_type": "long-form",
+            "theme": "dark",
+            "codes": ["H-01", "AI-01", "B-04", "S-01", "PF-01"],
+            "notes": "Carries forward the approved two-column header and AI image hero, then adds the refined editorial body, single authority message, and pre-footer.",
+        },
+        {
             "id": "SEQ-IN-01",
             "label": "Dark Invite",
             "campaign_type": "invite",

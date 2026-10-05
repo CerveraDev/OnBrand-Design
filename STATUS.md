@@ -62,7 +62,8 @@
 - Preserved the 2026-10-04 annotated Rider scaffold submission, corrected its marker-only mismatches in a separate intake copy, and validated 34 exact label/color pairs without changing the canonical runtime scaffold.
 - Added a backward-compatible granular marker parser that resolves the Phase 16 intake into 20 modules and 14 inline/nested annotations, strips authoring markers without deleting content rows, and validates checksum-bound refined metadata with stable IDs and codes. Full discovery passes 166 tests.
 - Added the Phase 16 deterministic slot map and runtime composition rules: required/optional block behavior, repeating typed lists, microcopy limits, placeholder-image blocking, stable metadata codes, campaign/sequence compatibility, and static-message exclusion. Full discovery passes 175 tests; the Phase 15 canonical runtime remains active.
-- Generated the Phase 16 visual review set with 18 isolated modules, 14 compatible header/hero configurations, and eight complete runtime-valid sequences. Structural review found 43 HTML files, zero missing iframe targets, zero authoring-marker leaks, and 176 passing repository tests; owner sequence selection remains pending.
+- Generated the Phase 16 visual review set with 18 isolated modules, 14 compatible header/hero configurations, and nine complete runtime-valid sequences. Structural review found 44 HTML files, zero missing iframe targets, zero authoring-marker leaks, and 176 passing repository tests; owner sequence selection remains pending.
+- Added `SEQ-LF-07` after continuity review found that the initial sequence set omitted the previously approved CFG-05 combination. The proposed path carries `H-01 + AI-01` into the refined body, single authority block, and pre-footer without treating it as owner-approved.
 
 ## Project Portfolio
 

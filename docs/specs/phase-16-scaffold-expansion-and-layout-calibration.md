@@ -91,7 +91,7 @@ The Phase 16 slot map converts those annotations into required, optional-removab
 
 ## Visual Gallery Checkpoint
 
-The staged scaffold now generates 18 isolated module previews, 14 compatible header/hero configurations, and eight complete runtime-valid sequences: six long-form and two invite options. The committed galleries have zero missing iframe targets and zero authoring-marker leaks. See [Phase 16 Rider layout gallery](../evals/phase-16-rider-layout-gallery.md).
+The staged scaffold now generates 18 isolated module previews, 14 compatible header/hero configurations, and nine complete runtime-valid sequences: seven long-form and two invite options. The long-form set includes `SEQ-LF-07`, which preserves the approved CFG-05 `H-01 + AI-01` opening. The committed galleries have zero missing iframe targets and zero authoring-marker leaks. See [Phase 16 Rider layout gallery](../evals/phase-16-rider-layout-gallery.md).
 
 The gallery is a selection aid, not approval. It uses scaffold sample content, does not perform the optional full light-body color conversion, and does not promote Phase 16 to the canonical runtime. The owner must select or revise one `SEQ-*` option before the new branded proof is assembled.
 
