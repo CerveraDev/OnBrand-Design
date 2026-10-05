@@ -9,6 +9,8 @@ Project-specific OnBrand Design pack for The Rider, used with the shared core.
 
 Both skills are explicit-only. The Rider email scaffold is calibrated from the supplied Beefree export. Runtime HTML assembly, campaign packaging, build modes, Composition Preview approval, grounded generated-image provenance, and blocking package QA are implemented for Rider pilot campaigns.
 
+See the repository [User Guide](../../docs/USER_GUIDE.md) for installation, requirements, example prompts, approval steps, build modes, and package contents.
+
 ## Download Boundary
 
 Keep this entire `the-rider/` folder with the shared core tools when sharing the implementation; it is not a standalone Python runtime. Do not include private `.env` files or Dropbox credentials. Phase 12 restricted package profiles stay deferred.

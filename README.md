@@ -43,6 +43,7 @@ The generator creates a complete project folder from `templates/project-starter/
 
 ## Project Documents
 
+- [User guide](docs/USER_GUIDE.md)
 - [Product requirements](docs/PRD.md)
 - [Current status](STATUS.md)
 - [Roadmap](ROADMAP.md)
@@ -70,6 +71,23 @@ The generator creates a complete project folder from `templates/project-starter/
 `tools/rider_campaign_runtime/` validates Rider campaign JSON, generates Composition Preview catalog/plan artifacts, validates grounded image provenance and approved copy allocation, blocks unintended cross-surface repetition before rendering, composes approved scaffold modules, applies explicit build-mode variant policy, packages only used images, runs blocking QA, and creates a portable ZIP. See its [runtime guide](tools/rider_campaign_runtime/README.md).
 
 `tools/platform_adapters/` provides versioned HUMAN/manual requests, project-aware Codex/Claude wrappers, and CLI dispatch into that same runtime. The realistic Rider pilot passes all 13 deterministic parity components at 100%. Live model invocation remains unverified. See [installation, invocation, boundaries, and evidence](docs/COMPATIBILITY.md). Phase 12 restricted distribution stays deferred.
+
+## Quick Start
+
+Ordinary campaign use requires Python 3.10+, the complete repository, a calibrated project runtime, and access to its validated asset manifest. Dropbox credentials, PyYAML, Jev, Node.js, and Playwright are not required for normal builds.
+
+Install the explicit-only Rider wrapper, then invoke it yourself:
+
+```bash
+python3 -m tools.platform_adapters.cli install --project the-rider --platform codex --workspace .
+```
+
+```text
+$onbrand-the-rider-email
+Create a Rider Composition Preview for this campaign brief: ...
+```
+
+Claude Code uses the same installer with `--platform claude` and the invocation `/onbrand-the-rider-email`. See the [User Guide](docs/USER_GUIDE.md) for requirements, campaign workflow, approvals, build modes, package contents, and current limitations.
 
 ## Security
 

@@ -15,6 +15,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Added
 
+- A practical user guide covering prerequisites, explicit Codex and Claude Code invocation, campaign prompts, approval workflow, build modes, CLI commands, package contents, optional maintenance dependencies, and current distribution/portability boundaries.
 - The owner's latest CSS-corrected Rider scaffold as immutable provenance, four deterministic conditional list/payoff row containers, dependency validation for nested slots, and a regenerated wellness proof with only populated list families retained.
 - Machine-readable creative guidance for `S-02` as a wellness/sauna block and `S-04` as a Rider building-arrival block, with visible selection guidance and tags in the module gallery.
 - The approved `S-01` followed by `S-02` static-block exception for wellness compositions; competing static-message combinations remain blocked.
