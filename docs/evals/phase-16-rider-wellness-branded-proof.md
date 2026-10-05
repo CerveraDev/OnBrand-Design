@@ -79,7 +79,7 @@ Visual inspection of the latest full-page proof found coherent stacking, readabl
 - `S-04` is machine-tagged for arrival, building entrance, exterior, hospitality, and welcome. It depicts arrival at The Rider and is not a wellness scene.
 - `S-01` immediately followed by `S-02` is an approved composition exception. Other combinations within the `rider-static-message` group remain mutually exclusive.
 
-The packaged sauna background resolves to `images/sauna-7957fadc8be8.jpg` through computed CSS. A fresh mobile check of the revised proof remains pending because the current in-app browser surface did not expose viewport resizing, and the standalone Playwright render-matrix command remains unavailable inside the managed macOS shell because Chromium cannot register its Mach rendezvous port. No revised-proof mobile or matrix success is claimed. The in-app browser checks are review evidence, not Gmail, Outlook, Apple Mail, or native-client certification.
+The packaged sauna background resolves to `images/sauna-7957fadc8be8.jpg` through computed CSS. After canonical promotion, the exact proof was also inspected through a committed 390px same-origin iframe harness. The responsive header, images, body, CTA, and footer stack cleanly with no visible overlap or horizontal clipping. The standalone Playwright matrix remains blocked inside the managed macOS shell because Chromium cannot register its Mach rendezvous port; the exact ordinary-Terminal command is recorded in the [canonical client matrix](phase-16-rider-canonical-client-matrix.md). These browser checks are not Gmail, Outlook, Apple Mail, or native-client certification.
 
 ## Promotion Result
 

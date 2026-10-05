@@ -17,6 +17,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 ### Added
 
 - Canonical Phase 16 Rider scaffold, refined metadata, deterministic slot map, migrated runtime fixtures, and archived Phase 15 regression provenance after owner approval.
+- Canonical Phase 16 browser/client review evidence, including a fixed 390px responsive harness, desktop/mobile visual findings, the exact outside-sandbox Playwright command, and a native Gmail/Outlook/Apple Mail worksheet.
 - A practical user guide covering prerequisites, explicit Codex and Claude Code invocation, campaign prompts, approval workflow, build modes, CLI commands, package contents, optional maintenance dependencies, and current distribution/portability boundaries.
 - The owner's latest CSS-corrected Rider scaffold as immutable provenance, four deterministic conditional list/payoff row containers, dependency validation for nested slots, and a regenerated wellness proof with only populated list families retained.
 - Machine-readable creative guidance for `S-02` as a wellness/sauna block and `S-04` as a Rider building-arrival block, with visible selection guidance and tags in the module gallery.
