@@ -52,7 +52,17 @@ ALLOWED_COMPOSITION = {
 }
 ALLOWED_COMPOSITION_MODULE = {"code", "scaffold_module_id", "module_type", "includes_header", "locked"}
 ALLOWED_COMPOSITION_STATIC = {"code", "scaffold_module_id", "decision"}
-ALLOWED_COMPOSITION_SLOT = {"code", "scaffold_module_id", "slot", "slot_type", "operations", "required_approvals"}
+ALLOWED_COMPOSITION_SLOT = {
+    "code",
+    "scaffold_module_id",
+    "slot",
+    "slot_type",
+    "operations",
+    "required_approvals",
+    "required",
+    "omit_if_missing",
+    "annotation_id",
+}
 ALLOWED_COMPOSITION_ASSET = {"code", "scaffold_module_id", "slot", "required_approvals", "image_aspect_ratio"}
 ALLOWED_IMAGE_WORKFLOW = {"version", "items"}
 ALLOWED_IMAGE_WORKFLOW_ITEM = {
@@ -133,13 +143,14 @@ ALLOWED_SLOT = {
     "title",
     "role",
     "image_workflow_id",
+    "items",
 }
 ALLOWED_VARIANTS = {"branded", "outside_broker", "agents"}
 ALLOWED_OUTSIDE = {"headshot", "name", "title", "phone", "email", "social"}
 ALLOWED_OUTSIDE_HEADSHOT = {"src", "asset_id", "alt", "title"}
 ALLOWED_DEPLOYMENT = {"asset_mode", "hosted_asset_base_url"}
 ALLOWED_DOCUMENT = {"asset_id", "role"}
-SLOT_KINDS = {"text", "safe_rich_text", "url", "image"}
+SLOT_KINDS = {"text", "safe_rich_text", "url", "image", "text_list", "amplified_list"}
 URL_SCHEMES = {"http", "https", "mailto", "tel"}
 IMAGE_SCHEMES = {"http", "https", "file"}
 BUILD_MODES = {"composition-preview", "smoke-test", "release-build"}
@@ -383,11 +394,24 @@ def _validate_composition(composition: dict) -> None:
     ):
         for index, item in enumerate(_optional_array(composition, field, "composition")):
             _validate_object(item, allowed, f"composition.{field}[{index}]")
-            for string_field in sorted(allowed - {"operations", "required_approvals"}):
+            required_strings = (
+                {"code", "scaffold_module_id", "slot", "slot_type"}
+                if field == "editable_slots"
+                else allowed - {"operations", "required_approvals"}
+            )
+            for string_field in sorted(required_strings):
                 _require(item, string_field, str, f"composition.{field}[{index}]")
             for array_field in sorted(allowed & {"operations", "required_approvals"}):
                 allow_empty = array_field == "required_approvals"
                 _require_string_array(item, array_field, f"composition.{field}[{index}]", allow_empty=allow_empty)
+            if field == "editable_slots":
+                if "annotation_id" in item:
+                    _require(item, "annotation_id", str, f"composition.{field}[{index}]")
+                for boolean_field in ("required", "omit_if_missing"):
+                    if boolean_field in item and not isinstance(item[boolean_field], bool):
+                        raise CampaignSpecError(
+                            f"composition.{field}[{index}].{boolean_field} must be a boolean"
+                        )
     if "approval_required_before" in composition:
         _require_string_array(composition, "approval_required_before", "composition")
     if "selected_hero_configuration" in composition:
@@ -605,6 +629,23 @@ def _validate_slot(slot: object, label: str) -> None:
             if not has_src:
                 raise CampaignSpecError(f"{label}.image_workflow_id requires a src image")
             _require(slot, "image_workflow_id", str, label)
+    elif kind == "text_list":
+        _reject_unknown(slot, {"kind", "items"}, label)
+        items = _require(slot, "items", list, label)
+        if not items or not all(isinstance(item, str) and item for item in items):
+            raise CampaignSpecError(f"{label}.items must be a non-empty array of strings")
+    elif kind == "amplified_list":
+        _reject_unknown(slot, {"kind", "items"}, label)
+        items = _require(slot, "items", list, label)
+        if not items:
+            raise CampaignSpecError(f"{label}.items must be a non-empty array")
+        for index, item in enumerate(items):
+            if not isinstance(item, dict) or set(item) != {"term", "amplification"}:
+                raise CampaignSpecError(
+                    f"{label}.items[{index}] must contain only term and amplification"
+                )
+            if not all(isinstance(item[field], str) and item[field] for field in item):
+                raise CampaignSpecError(f"{label}.items[{index}] values must be non-empty strings")
 
 
 def _require(obj: dict, field: str, expected_type: type, label: str):

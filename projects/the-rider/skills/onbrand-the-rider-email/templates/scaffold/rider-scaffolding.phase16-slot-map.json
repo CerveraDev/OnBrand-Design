@@ -1,0 +1,165 @@
+{
+  "header-two-column-dark": {
+    "headline": {
+      "required": true,
+      "allowed_kinds": ["text", "safe_rich_text"],
+      "rules": [{"operation": "replace_text", "anchor": "SEE THE PLAYERS BEHIND THE $11 BILLION NEIGHBORHOOD"}]
+    },
+    "logo_link": [{"operation": "replace_href", "anchor": "https://theriderresidences.com"}]
+  },
+  "hero-ai-generated": {
+    "hero_image": {
+      "required": true,
+      "allowed_kinds": ["image"],
+      "rules": [{"operation": "replace_image_src", "anchor": "https://media.beefree.cloud/pub/bfra/9dgc1zff/kp4/irm/xi1/hero-ai-composed.jpg", "required_approval": "hero"}]
+    }
+  },
+  "body-masonry": {
+    "image_1": {"required": true, "allowed_kinds": ["image"], "rules": [{"operation": "replace_image_src_first", "anchor": "https://media.beefree.cloud/pub/bfra/9dgc1zff/hb0/txm/5ny/tower-front-facade-day-option-1.jpg", "required_approval": "body"}]},
+    "image_2": {"required": true, "allowed_kinds": ["image"], "rules": [{"operation": "replace_image_src_first", "anchor": "https://media.beefree.cloud/pub/bfra/9dgc1zff/hb0/txm/5ny/tower-front-facade-day-option-1.jpg", "required_approval": "body"}]},
+    "image_3": {"required": true, "allowed_kinds": ["image"], "rules": [{"operation": "replace_image_src_first", "anchor": "https://media.beefree.cloud/pub/bfra/9dgc1zff/hb0/txm/5ny/tower-front-facade-day-option-1.jpg", "required_approval": "body"}]},
+    "image_4": {"required": true, "allowed_kinds": ["image"], "rules": [{"operation": "replace_image_src_first", "anchor": "https://media.beefree.cloud/pub/bfra/9dgc1zff/hb0/txm/5ny/tower-front-facade-day-option-1.jpg", "required_approval": "body"}]},
+    "image_5": {"required": true, "allowed_kinds": ["image"], "rules": [{"operation": "replace_image_src_first", "anchor": "https://media.beefree.cloud/pub/bfra/9dgc1zff/hb0/txm/5ny/tower-front-facade-day-option-1.jpg", "required_approval": "body"}]},
+    "image_6": {"required": true, "allowed_kinds": ["image"], "rules": [{"operation": "replace_image_src_first", "anchor": "https://media.beefree.cloud/pub/bfra/9dgc1zff/hb0/txm/5ny/tower-front-facade-day-option-1.jpg", "required_approval": "body"}]},
+    "image_7": {"required": true, "allowed_kinds": ["image"], "rules": [{"operation": "replace_image_src_first", "anchor": "https://media.beefree.cloud/pub/bfra/9dgc1zff/hb0/txm/5ny/tower-front-facade-day-option-1.jpg", "required_approval": "body"}]},
+    "image_8": {"required": true, "allowed_kinds": ["image"], "rules": [{"operation": "replace_image_src_first", "anchor": "https://media.beefree.cloud/pub/bfra/9dgc1zff/hb0/txm/5ny/tower-front-facade-day-option-1.jpg", "required_approval": "body"}]}
+  },
+  "header-one-column-dark": {
+    "logo_link": [{"operation": "replace_href", "anchor": "https://theriderresidences.com"}]
+  },
+  "hero-dark-framed": {
+    "headline": {"required": true, "allowed_kinds": ["text", "safe_rich_text"], "rules": [{"operation": "replace_text", "anchor": "TAILORED FOR DIGITAL<br>NOMADS AND&nbsp;HODLERS."}]},
+    "background_image": {"required": true, "allowed_kinds": ["image"], "rules": [{"operation": "replace_background_url", "anchor": "https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/kh2b02wi/rya/sbp/to7/bitcoin-hero.png", "required_approval": "hero"}]}
+  },
+  "invite-header-collaboration": {
+    "collaborator_logo": {"required": true, "allowed_kinds": ["image"], "rules": [{"operation": "replace_image_src", "anchor": "https://media.beefree.cloud/pub/bfra/9dgc1zff/ufw/tfv/7vx/logo-cobreiro-white.png", "required_approval": "body"}]}
+  },
+  "invite-body-dark": {
+    "supporting_image": {
+      "annotation_id": "invite-supporting-image",
+      "required": false,
+      "omit_if_missing": true,
+      "allowed_kinds": ["image"],
+      "rules": [{"operation": "annotation_replace_image", "anchor": "https://media.beefree.cloud/pub/bfra/9dgc1zff/hb0/txm/5ny/tower-front-facade-day-option-1.jpg", "required_approval": "body"}]
+    }
+  },
+  "hero-header-full-width": {
+    "headline": {"required": true, "allowed_kinds": ["text", "safe_rich_text"], "rules": [{"operation": "replace_text", "anchor": "SEE THE PLAYERS BEHIND THE $11 BILLION NEIGHBORHOOD"}]},
+    "logo_link": [{"operation": "replace_href", "anchor": "https://theriderresidences.com"}],
+    "background_image": {"required": true, "allowed_kinds": ["image"], "rules": [{"operation": "replace_background_url", "anchor": "https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/kh2b02wi/rya/sbp/to7/bitcoin-hero.png", "required_approval": "hero"}]}
+  },
+  "header-one-column-light": {
+    "logo_link": [{"operation": "replace_href", "anchor": "https://theriderresidences.com"}]
+  },
+  "hero-light-framed": {
+    "headline": {"required": true, "allowed_kinds": ["text", "safe_rich_text"], "rules": [{"operation": "replace_text", "anchor": "TAILORED FOR DIGITAL<br>NOMADS AND&nbsp;HODLERS."}]},
+    "background_image": {"required": true, "allowed_kinds": ["image"], "rules": [{"operation": "replace_background_url", "anchor": "https://d15k2d11r6t6rl.cloudfront.net/pub/bfra/kh2b02wi/rya/sbp/to7/bitcoin-hero.png", "required_approval": "hero"}]}
+  },
+  "body-long-form": {
+    "subheading": {
+      "annotation_id": "body-subheading",
+      "required": false,
+      "omit_if_missing": true,
+      "allowed_kinds": ["text", "safe_rich_text"],
+      "rules": [{"operation": "annotation_replace_text", "text_anchor": "SOHO HOUSE AND EQUINOX ARE MINUTES FROM THE RIDER — AND YOUR NY OR CALIFORNIA MEMBERSHIP MAY TRAVEL WITH YOU."}]
+    },
+    "body_copy_primary": {
+      "annotation_id": "body-paragraph-primary",
+      "required": true,
+      "allowed_kinds": ["text", "safe_rich_text"],
+      "rules": [{"operation": "annotation_replace_text", "text_anchor": "Two of the names that define members’ health and social life are landing right here, Soho House, pouring capital into its Beach House, and a new dedicated health club nearby, and Equinox, with a new club coming to Edgewater minutes away."}]
+    },
+    "inline_image_primary": {
+      "annotation_id": "body-inline-image-primary",
+      "required": false,
+      "omit_if_missing": true,
+      "allowed_kinds": ["image"],
+      "rules": [{"operation": "annotation_replace_image", "anchor": "https://media.beefree.cloud/pub/bfra/9dgc1zff/hb0/txm/5ny/tower-front-facade-day-option-1.jpg", "required_approval": "body"}]
+    },
+    "body_copy_secondary": {
+      "annotation_id": "body-paragraph-secondary",
+      "required": false,
+      "omit_if_missing": true,
+      "allowed_kinds": ["text", "safe_rich_text"],
+      "rules": [{"operation": "annotation_replace_text", "text_anchor": "For anyone relocating from New York or California, that’s the quiet luxury: the membership you already have works in Miami, too."}]
+    },
+    "leading_terms": {
+      "annotation_id": "body-leading-term-list",
+      "required": false,
+      "omit_if_missing": true,
+      "allowed_kinds": ["text_list"],
+      "rules": [{"operation": "annotation_repeat_text", "text_anchor": "SAME ROUTINE"}]
+    },
+    "list_payoff": {
+      "annotation_id": "body-list-payoff",
+      "required": false,
+      "omit_if_missing": true,
+      "allowed_kinds": ["text", "safe_rich_text"],
+      "rules": [{"operation": "annotation_replace_text", "text_anchor": "LOREM IPSUM DOLOR SIT AMET CONSECTETUR ADIPISCING ELIT.&nbsp;"}]
+    },
+    "list_eyebrow": {
+      "annotation_id": "body-list-eyebrow",
+      "required": false,
+      "omit_if_missing": true,
+      "allowed_kinds": ["text"],
+      "min_words": 2,
+      "max_words": 5,
+      "rules": [{"operation": "annotation_replace_text", "text_anchor": "BIG MOVES IN THE AREA"}]
+    },
+    "amplified_list": {
+      "annotation_id": "body-amplified-list",
+      "required": false,
+      "omit_if_missing": true,
+      "allowed_kinds": ["amplified_list"],
+      "rules": [{"operation": "annotation_repeat_pairs", "text_anchor": "AMAZON", "secondary_text_anchor": "75,000 SQFT of offices + Whole Foods, one block away."}]
+    },
+    "followup_list": {
+      "annotation_id": "body-followup-list",
+      "required": false,
+      "omit_if_missing": true,
+      "allowed_kinds": ["text_list"],
+      "rules": [{"operation": "annotation_replace_list", "item_template": "<li style=\"Margin: 0 0 0 0;\"><em>{item}</em></li>"}]
+    }
+  },
+  "body-inline-image-secondary": {
+    "image": {
+      "annotation_id": "body-inline-image-secondary",
+      "required": true,
+      "allowed_kinds": ["image"],
+      "rules": [{"operation": "annotation_replace_image", "anchor": "https://media.beefree.cloud/pub/bfra/9dgc1zff/au4/qxf/nnu/37e1ce0b-0cad-4712-8c00-e57377eef994.jpg", "required_approval": "body"}]
+    }
+  },
+  "callout-highlight": {
+    "callout_copy": {"required": true, "allowed_kinds": ["text", "safe_rich_text"], "rules": [{"operation": "replace_text", "anchor": "LOREM IPSUM DOLOR SIT AMET CONSECTETUR ADIPISCING ELIT. AD CONSEQUATUR LABORIS ATQUE IRURE CUMQUE IN DOLOR EUM QUI."}]},
+    "footnote": {
+      "annotation_id": "callout-footnote",
+      "required": false,
+      "omit_if_missing": true,
+      "allowed_kinds": ["text"],
+      "min_words": 2,
+      "max_words": 5,
+      "rules": [{"operation": "annotation_replace_text", "text_anchor": "LOREM IPSUM DOLOR SIT AMET"}]
+    }
+  },
+  "specs-residences": {
+    "price": {
+      "annotation_id": "specs-price",
+      "required": false,
+      "omit_if_missing": false,
+      "allowed_kinds": ["text"],
+      "rules": [{"operation": "annotation_replace_text", "text_anchor": "$500K's"}]
+    }
+  },
+  "pre-footer-cta": {
+    "closing_cta_copy": {"required": true, "allowed_kinds": ["text", "safe_rich_text"], "rules": [{"operation": "replace_text", "anchor": "LOREM IPSUM DOLOR SIT AMET CONSECTETUR ADIPISCING ELIT. AD CONSEQUATUR LABORIS ATQUE IRURE CUMQUE IN DOLOR EUM QUI."}]}
+  },
+  "footer-branded": {
+    "footer_cta": [{"operation": "replace_text", "anchor": "SCHEDULE A PRESENTATION"}]
+  },
+  "footer-outside-broker": {
+    "footer_cta": [{"operation": "replace_text", "anchor": "SCHEDULE A PRESENTATION"}]
+  },
+  "footer-in-house-agent": {
+    "footer_cta": [{"operation": "replace_text", "anchor": "SCHEDULE A PRESENTATION"}]
+  }
+}

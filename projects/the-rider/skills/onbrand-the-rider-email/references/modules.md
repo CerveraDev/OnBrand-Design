@@ -60,3 +60,15 @@ Every static block requires an explicit include/exclude decision. Included stati
 For in-house agent variants, populate the agent area from `data/agents/index.json` and one JSON record per active agent. Resolve each headshot by canonical manifest `dropbox_id` and enforce the agent-footer approval and folder boundary.
 
 For outside-broker variants, expose customization fields for headshot, name, title, phone, and email. Keep Rider project branding, developer/legal content, Equal Housing Opportunity marks, and footer legal copy intact.
+
+## Phase 16 Staged Calibration
+
+The corrected 94-row scaffold, refined metadata, and deterministic slot map are staged beside the current canonical runtime:
+
+- `templates/scaffold/rider-scaffolding.phase16-intake.html`
+- `templates/scaffold/rider-scaffolding.phase16-block-metadata.json`
+- `templates/scaffold/rider-scaffolding.phase16-slot-map.json`
+
+The shared parser and composition planner can load these files using stable metadata IDs and codes. Optional annotated blocks are removed when omitted; required slots fail before rendering; repeating lists use typed arrays; and compatibility rules enforce campaign type, sequence, and exclusion groups.
+
+Do not treat these staged files as the production source until the Phase 16 galleries and branded proof receive owner approval and the canonical paths are deliberately promoted.

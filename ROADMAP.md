@@ -115,7 +115,7 @@ The roadmap applies to the framework and is executed independently for each proj
 - Regenerate the module catalog, labeled galleries, composition plans, cross-platform fingerprints, and representative proof after scaffold calibration.
 - Require owner review of the updated block sequence before replacing the current Phase 15 proof as the creative baseline.
 
-Checkpoint on 2026-10-04: versioned intake, nested parsing, and refined metadata are complete. Slot-map derivation, runtime sequencing, regenerated previews, branded proof, and owner approval remain open.
+Checkpoint on 2026-10-04: versioned intake, nested parsing, refined metadata, deterministic slots, and runtime sequencing are complete. Regenerated previews, branded proof, and owner approval remain open.
 
 ## Deferred Distribution Profiles Gate
 

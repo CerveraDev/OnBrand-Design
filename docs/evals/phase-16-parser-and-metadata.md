@@ -49,7 +49,4 @@ The loader binds metadata to the exact scaffold SHA-256 and verifies full source
 
 ## Next Work
 
-1. Derive the Phase 16 slot map from granular annotation IDs.
-2. Teach runtime composition to resolve stable metadata IDs and compatibility rules.
-3. Generate isolated block previews and sequence options.
-4. Produce a new branded proof for owner review before canonical promotion.
+Deterministic slots and composition rules are now complete. See [Phase 16 slots and composition evidence](phase-16-slots-and-composition.md). Remaining work is to generate and inspect isolated previews and sequence options, then produce a new branded proof for owner review before canonical promotion.

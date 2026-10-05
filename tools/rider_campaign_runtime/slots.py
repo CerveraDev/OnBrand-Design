@@ -33,16 +33,48 @@ def apply_module_slots(
     *,
     manifest_assets: dict[str, dict],
 ) -> tuple[str, list[UsedAsset]]:
-    if not supplied_slots:
-        return row_html, []
     unknown = sorted(set(supplied_slots) - set(slot_defs))
     if unknown:
         raise SlotError(f"{module_id} has unknown slot(s): {', '.join(unknown)}")
+    definitions = {name: _normalize_slot_definition(value) for name, value in slot_defs.items()}
+    missing = sorted(
+        name for name, definition in definitions.items()
+        if definition.get("required") and name not in supplied_slots
+    )
+    if missing:
+        raise SlotError(f"{module_id} is missing required slot(s): {', '.join(missing)}")
     html = row_html
     used: list[UsedAsset] = []
-    for slot_name, value in supplied_slots.items():
-        expected_rules = slot_defs[slot_name]
-        html, slot_assets = _apply_slot(module_id, slot_name, html, expected_rules, value, manifest_assets)
+    for slot_name, definition in definitions.items():
+        if slot_name in supplied_slots or not definition.get("omit_if_missing"):
+            continue
+        anchor = definition.get("annotation_anchor")
+        if not anchor:
+            raise SlotError(f"{module_id}.{slot_name} cannot be omitted without an annotation anchor")
+        html = replace_once(html, anchor, "", f"{module_id}.{slot_name}.omit")
+    for slot_name, definition in definitions.items():
+        if slot_name not in supplied_slots:
+            continue
+        value = supplied_slots[slot_name]
+        allowed_kinds = definition.get("allowed_kinds", [])
+        if allowed_kinds and value.get("kind") not in allowed_kinds:
+            raise SlotError(
+                f"{module_id}.{slot_name} kind must be one of {', '.join(allowed_kinds)}"
+            )
+        if value.get("kind") in {"text", "safe_rich_text"}:
+            word_count = len(re.findall(r"\b[\w'’-]+\b", value.get("value", "")))
+            if definition.get("min_words") is not None and word_count < definition["min_words"]:
+                raise SlotError(f"{module_id}.{slot_name} requires at least {definition['min_words']} words")
+            if definition.get("max_words") is not None and word_count > definition["max_words"]:
+                raise SlotError(f"{module_id}.{slot_name} allows at most {definition['max_words']} words")
+        html, slot_assets = _apply_slot(
+            module_id,
+            slot_name,
+            html,
+            definition,
+            value,
+            manifest_assets,
+        )
         used.extend(slot_assets)
     return html, used
 
@@ -97,13 +129,14 @@ def _apply_slot(
     module_id: str,
     slot_name: str,
     html: str,
-    rules: list[dict],
+    definition: dict,
     value: dict,
     manifest_assets: dict[str, dict],
 ) -> tuple[str, list[UsedAsset]]:
     if not isinstance(value, dict):
         raise CampaignSpecError(f"{module_id}.{slot_name} slot value must be an object")
     kind = value.get("kind")
+    rules = definition["rules"]
     rendered_text = ""
     image_src = ""
     used: list[UsedAsset] = []
@@ -156,6 +189,10 @@ def _apply_slot(
             )
         image_src = src
         rendered_text = safe_attr(src)
+    elif kind == "text_list":
+        _validate_text_list(value, f"{module_id}.{slot_name}")
+    elif kind == "amplified_list":
+        _validate_amplified_list(value, f"{module_id}.{slot_name}")
     else:
         raise CampaignSpecError(f"{module_id}.{slot_name} has unsupported kind {kind!r}")
 
@@ -199,9 +236,134 @@ def _apply_slot(
                 f"background-image: url('{rendered_text}')",
                 label,
             )
+        elif operation == "replace_image_src_first":
+            if kind != "image":
+                raise SlotError(f"{label} requires image")
+            html = rewrite_first_img_by_src(
+                html,
+                rule["anchor"],
+                new_src=image_src,
+                alt=value.get("alt"),
+                title=value.get("title", value.get("alt")),
+                label=label,
+            )
+        elif operation == "annotation_replace_text":
+            if kind not in {"text", "safe_rich_text"}:
+                raise SlotError(f"{label} requires text or safe_rich_text")
+            html = _replace_annotation(
+                html,
+                definition,
+                rule,
+                {rule["text_anchor"]: rendered_text},
+                label,
+            )
+        elif operation == "annotation_replace_image":
+            if kind != "image":
+                raise SlotError(f"{label} requires image")
+            anchor = _annotation_anchor(definition, label)
+            rewritten = rewrite_img_by_src(
+                anchor,
+                rule["anchor"],
+                new_src=image_src,
+                alt=value.get("alt"),
+                title=value.get("title", value.get("alt")),
+                label=label,
+            )
+            html = replace_once(html, anchor, rewritten, label)
+        elif operation == "annotation_repeat_text":
+            if kind != "text_list":
+                raise SlotError(f"{label} requires text_list")
+            anchor = _annotation_anchor(definition, label)
+            repeated = "".join(
+                _replace_exact_once(anchor, rule["text_anchor"], safe_text(item), label)
+                for item in value["items"]
+            )
+            html = replace_once(html, anchor, repeated, label)
+        elif operation == "annotation_repeat_pairs":
+            if kind != "amplified_list":
+                raise SlotError(f"{label} requires amplified_list")
+            anchor = _annotation_anchor(definition, label)
+            blocks = []
+            for item in value["items"]:
+                block = _replace_exact_once(anchor, rule["text_anchor"], safe_text(item["term"]), label)
+                block = _replace_exact_once(
+                    block,
+                    rule["secondary_text_anchor"],
+                    safe_text(item["amplification"]),
+                    label,
+                )
+                blocks.append(block)
+            html = replace_once(html, anchor, "".join(blocks), label)
+        elif operation == "annotation_replace_list":
+            if kind != "text_list":
+                raise SlotError(f"{label} requires text_list")
+            anchor = _annotation_anchor(definition, label)
+            items = "".join(
+                rule["item_template"].replace("{item}", safe_text(item))
+                for item in value["items"]
+            )
+            list_matches = list(re.finditer(r"(<ul\b[^>]*>)(.*?)(</ul>)", anchor, re.I | re.S))
+            if len(list_matches) != 1:
+                raise SlotError(f"{label} annotation must contain exactly one list; found {len(list_matches)}")
+            match = list_matches[0]
+            rewritten = anchor[: match.start(2)] + items + anchor[match.end(2) :]
+            html = replace_once(html, anchor, rewritten, label)
         else:
             raise SlotError(f"{label} uses unknown operation {operation!r}")
     return html, used
+
+
+def _normalize_slot_definition(value) -> dict:
+    if isinstance(value, list):
+        return {"rules": value, "required": False, "omit_if_missing": False}
+    return value
+
+
+def _annotation_anchor(definition: dict, label: str) -> str:
+    anchor = definition.get("annotation_anchor")
+    if not isinstance(anchor, str) or not anchor:
+        raise SlotError(f"{label} requires an annotation anchor")
+    return anchor
+
+
+def _replace_annotation(
+    html: str,
+    definition: dict,
+    rule: dict,
+    replacements: dict[str, str],
+    label: str,
+) -> str:
+    anchor = _annotation_anchor(definition, label)
+    rewritten = anchor
+    for old, new in replacements.items():
+        rewritten = _replace_exact_once(rewritten, old, new, label)
+    return replace_once(html, anchor, rewritten, label)
+
+
+def _replace_exact_once(value: str, anchor: str, replacement: str, label: str) -> str:
+    count = value.count(anchor)
+    if count != 1:
+        raise SlotError(f"{label} annotation anchor must resolve exactly once; found {count}")
+    return value.replace(anchor, replacement, 1)
+
+
+def _validate_text_list(value: dict, label: str) -> None:
+    items = value.get("items")
+    if not isinstance(items, list) or not items or not all(isinstance(item, str) and item for item in items):
+        raise CampaignSpecError(f"{label}.items must be a non-empty array of strings")
+
+
+def _validate_amplified_list(value: dict, label: str) -> None:
+    items = value.get("items")
+    if not isinstance(items, list) or not items:
+        raise CampaignSpecError(f"{label}.items must be a non-empty array")
+    for index, item in enumerate(items):
+        if not isinstance(item, dict) or set(item) != {"term", "amplification"}:
+            raise CampaignSpecError(
+                f"{label}.items[{index}] must contain only term and amplification"
+            )
+        if not all(isinstance(item[field], str) and item[field] for field in item):
+            raise CampaignSpecError(f"{label}.items[{index}] values must be non-empty strings")
 
 
 def _set_attr(tag: str, attr: str, value: str) -> str:
@@ -212,6 +374,28 @@ def _set_attr(tag: str, attr: str, value: str) -> str:
         return pattern.sub(replacement, tag, count=1)
     insert_at = tag.rfind(">")
     return tag[:insert_at] + " " + replacement + tag[insert_at:]
+
+
+def rewrite_first_img_by_src(
+    html: str,
+    old_src: str,
+    *,
+    new_src: str,
+    alt: str | None,
+    title: str | None,
+    label: str,
+) -> str:
+    pattern = re.compile(r"<img\b[^>]*>", re.IGNORECASE)
+    match = next((item for item in pattern.finditer(html) if f'src="{old_src}"' in item.group(0)), None)
+    if match is None:
+        raise SlotError(f"{label} image anchor was not found")
+    tag = match.group(0)
+    rewritten = _set_attr(tag, "src", new_src)
+    if alt is not None:
+        rewritten = _set_attr(rewritten, "alt", alt)
+    if title is not None:
+        rewritten = _set_attr(rewritten, "title", title)
+    return html[: match.start()] + rewritten + html[match.end() :]
 
 
 class _SafeRichTextParser(HTMLParser):

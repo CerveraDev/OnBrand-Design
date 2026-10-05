@@ -1,6 +1,6 @@
 # Phase 16: Scaffold Expansion And Layout Calibration
 
-**Status:** Nested parser and refined block metadata implemented; runtime calibration pending
+**Status:** Nested parser, refined metadata, deterministic slots, and composition rules implemented; preview calibration pending
 
 **Target:** A larger, better-labeled Rider block corpus whose layout intent can be selected and assembled predictably
 
@@ -86,6 +86,8 @@ The 2026-10-04 scaffold submission is preserved and its corrected working copy p
 The structured parser now separates 20 row-level modules from 14 inline annotations, preserves parent-module and parent-annotation relationships, and recognizes the amplification field nested inside the amplified-list field. A marker-removal path deletes row-level and inline authoring markers without deleting their content rows.
 
 The checksum-bound Phase 16 metadata assigns stable IDs and codes, source occurrences, module families, layout roles, theme rules, header behavior, content and image requirements, campaign use, compatibility, and client behavior. Annotation metadata defines editable value type, optionality, repetition, generation policy, constraints, and placeholder handling. See [Phase 16 parser and metadata evidence](../evals/phase-16-parser-and-metadata.md).
+
+The Phase 16 slot map converts those annotations into required, optional-removable, default-preserving, image, text-list, and amplified-list inputs. Runtime composition now enforces stable codes, compatible campaign types, predecessor/successor rules, exclusion groups, at-most-one static message, invite paths that do not require a hero, and filtered header/hero configurations. See [Phase 16 slots and composition evidence](../evals/phase-16-slots-and-composition.md).
 
 ## Non-Goals
 

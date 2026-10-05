@@ -60,7 +60,7 @@
       "content": {"locked": [], "required": ["approved image set"], "optional": []},
       "image": {"count": 3, "aspect_ratio": "retain each source ratio", "crop": "none unless approved", "grounding": "Select mutually compatible approved Rider assets."},
       "campaign_types": ["long-form"],
-      "compatibility": {"predecessors": ["hero", "body"], "successors": ["body", "static", "pre-footer"], "exclusion_group": null},
+      "compatibility": {"predecessors": ["hero", "body"], "successors": ["body", "static", "pre-footer", "footer"], "exclusion_group": null},
       "client_behavior": {"mobile": "Preserve image order and scaffold stacking.", "outlook": "Keep each image in its supplied table cell."}
     },
     {
@@ -99,13 +99,13 @@
       "source": {"label": "INVITE - TWO-COLUMN HEADER - RIDER PLUS COLLABORATING COMPANY", "occurrence": 1, "marker_rows": [19, 22]},
       "label": "Invite Collaboration Header",
       "family": "header",
-      "layout_role": "header",
+      "layout_role": "invite-header",
       "theme": {"default": "dark", "user_selectable": false},
       "includes_header": true,
       "content": {"locked": ["Rider logo"], "required": ["collaborating-company logo"], "optional": []},
       "image": {"count": 1, "aspect_ratio": "logo-native", "crop": "none", "grounding": "Use the approved collaborator logo."},
       "campaign_types": ["invite"],
-      "compatibility": {"predecessors": ["start"], "successors": ["invite-body"], "exclusion_group": "email-header"},
+      "compatibility": {"predecessors": ["start"], "successors": ["hero", "invite-body"], "exclusion_group": "email-header"},
       "client_behavior": {"mobile": "Stack or scale logos according to the scaffold.", "outlook": "Keep logos as ordinary image cells."}
     },
     {
@@ -180,7 +180,7 @@
       "content": {"locked": [], "required": ["body copy"], "optional": ["subheading", "images", "lists", "list payoff", "eyebrow"]},
       "image": {"count": "0-2", "aspect_ratio": "scaffold-defined", "crop": "approved focal crop", "grounding": "Pair each image with its adjacent copy and use approved Rider sources."},
       "campaign_types": ["long-form"],
-      "compatibility": {"predecessors": ["hero", "header"], "successors": ["body", "static", "callout", "specs", "pre-footer"], "exclusion_group": null},
+      "compatibility": {"predecessors": ["hero", "header"], "successors": ["body", "static", "callout", "specs", "pre-footer", "footer"], "exclusion_group": null},
       "client_behavior": {"mobile": "Preserve annotated content order and list hierarchy.", "outlook": "Keep the supplied body tables; theme conversion must change inline colors as a coordinated set."}
     },
     {
@@ -474,7 +474,19 @@
       "repeatable": false,
       "generation": "selected or generated with approval",
       "constraints": ["Place between compatible copy blocks", "Never ship the scaffold placeholder image"],
-      "placeholder_policy": "Replacement is mandatory whenever the block is included."
+      "placeholder_policy": "Replacement is mandatory whenever the block is included.",
+      "composition": {
+        "standalone": true,
+        "code": "I-02",
+        "label": "Between-Copy Image Block, Secondary",
+        "summary": "Optional standalone image row placed between compatible long-form copy blocks; its scaffold placeholder must always be replaced.",
+        "family": "body",
+        "layout_role": "body-image",
+        "theme": {"default": "scaffold-defined", "user_selectable": false},
+        "campaign_types": ["long-form"],
+        "compatibility": {"predecessors": ["body", "callout"], "successors": ["body", "callout", "specs", "static", "pre-footer", "footer"], "exclusion_group": null},
+        "image": {"count": 1, "aspect_ratio": "scaffold-defined", "crop": "approved focal crop", "grounding": "Use an approved Rider asset paired with adjacent copy."}
+      }
     },
     {
       "id": "callout-footnote",

@@ -14,6 +14,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Added
 
+- Phase 16 deterministic annotation slot map, required/optional omission semantics, typed repeating list slots, microcopy limits, placeholder-image safeguards, stable-code composition rules, and 175-test evidence.
 - Backward-compatible Phase 16 marker-element parsing for inline and nested annotations, parent relationships, marker-only removal, checksum-bound refined block metadata, and 166-test regression evidence.
 - Immutable and corrected Phase 16 Rider scaffold intake artifacts plus a hash-bound marker audit covering 34 exact start/end pairs.
 - Phase 16 scaffold expansion and layout calibration specification, including annotated-scaffold intake, richer block metadata, sequence acceptance criteria, and LIM-020.

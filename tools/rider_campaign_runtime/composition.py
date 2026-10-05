@@ -27,12 +27,15 @@ def build_module_catalog(scaffold: Scaffold) -> dict:
     entries = []
     counters: dict[str, int] = {}
     for module_id, rows in catalog(scaffold).items():
-        if module_id in FOOTER_MODULES:
-            continue
         metadata = scaffold.metadata[module_id]
-        prefix = _code_prefix(module_id, metadata.kind, metadata.includes_header)
-        counters[prefix] = counters.get(prefix, 0) + 1
-        code = f"{prefix}-{counters[prefix]:02d}"
+        if metadata.kind == "footer" or module_id in FOOTER_MODULES:
+            continue
+        if metadata.code:
+            code = metadata.code
+        else:
+            prefix = _code_prefix(module_id, metadata.kind, metadata.includes_header)
+            counters[prefix] = counters.get(prefix, 0) + 1
+            code = f"{prefix}-{counters[prefix]:02d}"
         slots = _slot_summary(scaffold.slot_map.get(module_id, {}))
         entries.append(
             {
@@ -40,15 +43,28 @@ def build_module_catalog(scaffold: Scaffold) -> dict:
                 "scaffold_module_id": module_id,
                 "label": metadata.label,
                 "module_type": metadata.kind,
+                "module_family": metadata.family or metadata.kind,
+                "layout_role": metadata.layout_role or metadata.kind,
                 "summary": metadata.summary,
                 "content_rows": list(rows),
                 "includes_header": metadata.includes_header,
                 "locked": metadata.locked,
                 "live_text_support": any(slot["slot_type"] in {"text", "rich_text", "url"} for slot in slots),
                 "image_required": any(slot["slot_type"] == "image" for slot in slots),
-                "image_aspect_ratio": _image_aspect_ratio(metadata.kind, slots),
+                "image_aspect_ratio": (
+                    str((metadata.image or {}).get("aspect_ratio") or "")
+                    if metadata.image is not None
+                    else _image_aspect_ratio(metadata.kind, slots)
+                ),
                 "editable_slots": slots,
-                "companion_rules": _companion_rules(metadata.kind, metadata.includes_header),
+                "companion_rules": (
+                    _metadata_companion_rules(metadata.compatibility)
+                    if metadata.compatibility
+                    else _companion_rules(metadata.kind, metadata.includes_header)
+                ),
+                "theme": metadata.theme or {},
+                "compatibility": metadata.compatibility or {},
+                "campaign_types": list(metadata.campaign_types),
                 "preview": {
                     "type": "isolated-html",
                     "path": f"module-previews/{code}.html",
@@ -112,7 +128,8 @@ def build_hero_configurations(module_catalog: dict) -> dict:
         candidates.append((None, hero))
     for header in headers:
         for hero in non_header_heroes:
-            candidates.append((header, hero))
+            if _header_hero_pair_is_compatible(header, hero):
+                candidates.append((header, hero))
 
     options = []
     for index, (header, hero) in enumerate(candidates, start=1):
@@ -145,6 +162,22 @@ def build_hero_configurations(module_catalog: dict) -> dict:
             }
         )
     return {"gallery_version": GALLERY_VERSION, "option_count": len(options), "options": options}
+
+
+def _header_hero_pair_is_compatible(header: dict, hero: dict) -> bool:
+    if not header.get("compatibility") and not hero.get("compatibility"):
+        return True
+    header_campaigns = set(header.get("campaign_types", []))
+    hero_campaigns = set(hero.get("campaign_types", []))
+    if header_campaigns and hero_campaigns and header_campaigns.isdisjoint(hero_campaigns):
+        return False
+    allowed_successors = set(header.get("compatibility", {}).get("successors", []))
+    if allowed_successors and _entry_tokens(hero).isdisjoint(allowed_successors):
+        return False
+    allowed_predecessors = set(hero.get("compatibility", {}).get("predecessors", []))
+    if allowed_predecessors and _entry_tokens(header).isdisjoint(allowed_predecessors):
+        return False
+    return True
 
 
 def create_composition_plan(scaffold: Scaffold, selection: dict) -> dict:
@@ -214,6 +247,9 @@ def create_composition_plan(scaffold: Scaffold, selection: dict) -> dict:
                 "slot_type": slot["slot_type"],
                 "operations": slot["operations"],
                 "required_approvals": slot["required_approvals"],
+                **({"required": slot["required"]} if "required" in slot else {}),
+                **({"omit_if_missing": slot["omit_if_missing"]} if "omit_if_missing" in slot else {}),
+                **({"annotation_id": slot["annotation_id"]} if slot.get("annotation_id") else {}),
             }
             for entry in selected_entries
             for slot in entry["editable_slots"]
@@ -310,23 +346,37 @@ def _code_prefix(module_id: str, kind: str, includes_header: bool) -> str:
 
 def _slot_summary(slots: dict) -> list[dict]:
     summary = []
-    for name, rules in sorted(slots.items()):
+    for name, definition in sorted(slots.items()):
+        rules = definition.get("rules", []) if isinstance(definition, dict) else definition
         operations = sorted({rule["operation"] for rule in rules})
         required = sorted({rule["required_approval"] for rule in rules if "required_approval" in rule})
-        summary.append(
-            {
-                "name": name,
-                "slot_type": _slot_type(operations),
-                "operations": operations,
-                "required_approvals": required,
-            }
-        )
+        allowed_kinds = definition.get("allowed_kinds", []) if isinstance(definition, dict) else []
+        item = {
+            "name": name,
+            "slot_type": allowed_kinds[0] if len(allowed_kinds) == 1 else _slot_type(operations),
+            "operations": operations,
+            "required_approvals": required,
+        }
+        if isinstance(definition, dict):
+            item.update(
+                required=bool(definition.get("required", False)),
+                omit_if_missing=bool(definition.get("omit_if_missing", False)),
+                annotation_id=definition.get("annotation_id", ""),
+            )
+        summary.append(item)
     return summary
 
 
 def _slot_type(operations: list[str]) -> str:
-    if any(operation in {"replace_image_src", "replace_background_url"} for operation in operations):
+    if any(
+        operation in {"replace_image_src", "replace_background_url", "annotation_replace_image"}
+        for operation in operations
+    ):
         return "image"
+    if "annotation_repeat_pairs" in operations:
+        return "amplified_list"
+    if any(operation in {"annotation_repeat_text", "annotation_replace_list"} for operation in operations):
+        return "text_list"
     if "replace_href" in operations:
         return "url"
     if any(operation.startswith("replace_text") for operation in operations):
@@ -361,8 +411,12 @@ def _validate_selected_codes(selected_codes: list[str], entries_by_code: dict[st
     duplicates = sorted({code for code in selected_codes if selected_codes.count(code) > 1})
     if duplicates:
         raise CompositionError("Duplicate composition module code(s): " + ", ".join(duplicates))
-    if not any(entries_by_code[code]["module_type"] == "hero" for code in selected_codes):
-        raise CompositionError("Composition must include at least one hero module code")
+    if not any(
+        entries_by_code[code]["module_type"] == "hero"
+        or entries_by_code[code].get("layout_role") == "invite-body"
+        for code in selected_codes
+    ):
+        raise CompositionError("Composition must include a hero or complete invite body module code")
 
 
 def _validate_module_compatibility(selected_codes: list[str], entries_by_code: dict[str, dict]) -> None:
@@ -379,6 +433,72 @@ def _validate_module_compatibility(selected_codes: list[str], entries_by_code: d
             "Standalone header code(s) are incompatible with header-bearing hero code(s): "
             + ", ".join(headers + header_bearing_heroes)
         )
+    selected = [entries_by_code[code] for code in selected_codes]
+    if any(entry.get("compatibility") for entry in selected):
+        _validate_refined_sequence(selected)
+
+
+def _validate_refined_sequence(selected: list[dict]) -> None:
+    campaign_sets = [set(entry.get("campaign_types", [])) for entry in selected if entry.get("campaign_types")]
+    if campaign_sets and not set.intersection(*campaign_sets):
+        raise CompositionError("Selected modules do not share a compatible campaign type")
+
+    groups: dict[str, list[dict]] = {}
+    for entry in selected:
+        compatibility = entry.get("compatibility", {})
+        group = compatibility.get("exclusion_group")
+        if group:
+            groups.setdefault(group, []).append(entry)
+    for group, entries in groups.items():
+        limit = min(entry["compatibility"].get("max_from_group", 1) for entry in entries)
+        if len(entries) > limit:
+            raise CompositionError(
+                f"Composition may include at most {limit} module(s) from {group}: "
+                + ", ".join(entry["code"] for entry in entries)
+            )
+
+    for index, entry in enumerate(selected):
+        compatibility = entry.get("compatibility", {})
+        predecessor_tokens = {"start"} if index == 0 else _entry_tokens(selected[index - 1])
+        successor_tokens = {"footer", "end"} if index == len(selected) - 1 else _entry_tokens(selected[index + 1])
+        allowed_predecessors = set(compatibility.get("predecessors", []))
+        allowed_successors = set(compatibility.get("successors", []))
+        if allowed_predecessors and predecessor_tokens.isdisjoint(allowed_predecessors):
+            raise CompositionError(
+                f"{entry['code']} cannot follow {selected[index - 1]['code'] if index else 'start'}"
+            )
+        if allowed_successors and successor_tokens.isdisjoint(allowed_successors):
+            raise CompositionError(
+                f"{entry['code']} cannot precede "
+                f"{selected[index + 1]['code'] if index + 1 < len(selected) else 'footer'}"
+            )
+
+
+def _entry_tokens(entry: dict) -> set[str]:
+    return {
+        entry["code"],
+        entry["scaffold_module_id"],
+        entry["module_type"],
+        entry.get("module_family", ""),
+        entry.get("layout_role", ""),
+    } - {""}
+
+
+def _metadata_companion_rules(compatibility: dict) -> list[str]:
+    rules = []
+    if compatibility.get("predecessors"):
+        rules.append("Allowed after: " + ", ".join(compatibility["predecessors"]) + ".")
+    if compatibility.get("successors"):
+        rules.append("Allowed before: " + ", ".join(compatibility["successors"]) + ".")
+    if compatibility.get("exclusion_group"):
+        rules.append(
+            "At most "
+            + str(compatibility.get("max_from_group", 1))
+            + " from "
+            + compatibility["exclusion_group"]
+            + "."
+        )
+    return rules or ["No additional companion rule."]
 
 
 def _validate_hero_configuration(configuration_id: str, selected_codes: list[str], module_catalog: dict) -> None:
