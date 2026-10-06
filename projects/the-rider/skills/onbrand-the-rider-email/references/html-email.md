@@ -10,11 +10,12 @@
 6. Remove marker rows from generated outputs.
 7. Populate only declared typed slots; every anchor must resolve exactly as defined or the build fails.
 8. Validate the approved composition plan for Composition Preview and Release Build, including stable module codes, static-block decisions, and header/hero compatibility.
-9. Resolve the effective variant set from the explicit build mode and populate only those selected footer variants.
-10. Copy every image used by any variant into the package `images/` directory.
-11. Make package-preview HTML reference copied files with portable relative paths such as `../images/hero.jpg`.
-12. Record source identity, checksum, role, and variant usage in the asset manifest.
-13. Run blocking QA and create the ZIP only after it passes.
+9. For every non-repeating cover-style table background, retain the ordinary CSS declaration, add the legacy table `background` attribute, and wrap the table's content cell in an Outlook-only VML `v:rect`/`v:fill`/`v:textbox` fallback. The runtime performs this transform; do not hand-maintain duplicate markup in the scaffold.
+10. Resolve the effective variant set from the explicit build mode and populate only those selected footer variants.
+11. Copy every image used by any variant into the package `images/` directory.
+12. Make package-preview HTML reference copied files with portable relative paths such as `../images/hero.jpg`.
+13. Record source identity, checksum, role, and variant usage in the asset manifest.
+14. Run blocking QA and create the ZIP only after it passes.
 
 ## Footer Assembly
 
@@ -59,5 +60,7 @@ Avoid ambiguous labels such as `unbranded`.
 Do not leave absolute local filesystem paths, temporary paths, or links into the Rider source corpus in delivered HTML. Keep one packaged copy of a shared image even when several HTML variants use it. Do not duplicate or re-encode an image unless the final designs genuinely require different files.
 
 Relative paths make packaged files locally previewable but are not final production hosting URLs. When the deployment platform requires public image URLs, preserve or produce a deployment-ready HTML set only when those URLs are available, and document the mapping in the manifest rather than inventing URLs.
+
+For native MIME tests, foreground `<img>` files may use CID references. CSS, legacy-attribute, and VML background references must all resolve to the same public HTTPS source from `asset-manifest.json`; never convert those background references to CID.
 
 Run the implementation with `python3 -m tools.rider_campaign_runtime.cli <campaign.json>` from the repository root.

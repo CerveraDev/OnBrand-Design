@@ -4,7 +4,7 @@
 **Campaign:** Rider wellness canonical Composition Preview  
 **Variant:** Branded  
 **HTML SHA-256:** `b82bcc430806bd174e621f379ee4a5ef132bab59900e50c4af1188700580ea60`  
-**Status:** Browser matrix passed; delivered-message and local Outlook retests show that the live-text CSS background block is not safe for native direct-send packaging
+**Status:** Browser matrix passed; initial native background approaches failed; dual CSS/VML remediation is implemented and awaits delivery testing
 
 ## Browser Visual Review
 
@@ -74,11 +74,13 @@ The native-message builder was corrected for a second test candidate. It keeps f
 
 Before any resend, v2 was opened locally in Outlook for Mac. The sauna background still did not render. Two additional local-only experiments added the legacy HTML `background` attribute with an HTTPS source and then with an embedded CID source; neither rendered the background in Outlook for Mac. These experiments were not sent or committed as supported transport behavior.
 
+The owner chose to preserve the live-text overlay instead of adopting a foreground-image/text-band fallback. The runtime now augments every meaningful non-repeating cover-style table background with a legacy `background` attribute and an Outlook-conditional VML `v:rect`/`v:fill`/`v:textbox` layer. QA accounts for every eligible background. The native-message builder restores the CSS, legacy, and VML references to one manifest-bound public HTTPS source while limiting CID conversion to foreground images. The actual wellness proof resolves to one eligible sauna background and one VML layer at the framed 560px content width. This is implemented structure, not yet delivered-client evidence.
+
 ### Findings
 
 - Outlook for Mac and Apple Mail on macOS preserved the main table layout, content hierarchy, live copy, footer, and core embedded imagery in light appearance during import review.
 - The delivered v1 message failed to show the sauna background in both Gmail and Outlook. Outlook also exposed the CSS-referenced sauna and spacer resources as attachments.
-- Gmail officially supports `background-image`, but the first delivered CID-in-CSS form failed there. Outlook for Mac also rejected public HTTPS CSS, legacy HTTPS, and legacy CID background forms during local review. The recommended cross-client remediation is to stop using this live-text background overlay in native-send output: render the sauna as an ordinary `<img>` and place the static message in a separate dark live-text band. Outlook Classic VML remains relevant only if an overlay must be preserved.
+- Gmail officially supports `background-image`, but the first delivered CID-in-CSS form failed there. Outlook for Mac also rejected public HTTPS CSS, legacy HTTPS, and legacy CID background forms during local review. The next candidate keeps the public-HTTPS CSS path and adds Outlook-only VML without flattening or moving the live text.
 - No native dark-mode, Windows Outlook Word-engine, webmail sanitizer, mobile-client, link-click, accessibility, or deployment-platform result is inferred from these checks.
 
 For each client record:
@@ -93,4 +95,4 @@ For each client record:
 
 ## Decision Boundary
 
-The automated and visual browser matrix passes, but the first delivered-message test and Outlook pre-send retests fail the static block's background-image requirement. LIM-005 remains open. The block needs a foreground-image/live-text-band native-send representation before another delivery test. Outlook on Windows, VML fallback behavior, native dark mode, mobile clients, accessibility, legal compliance, and production deployment remain uncertified.
+The automated and visual browser matrix passes, but the first delivered-message test and Outlook pre-send retests fail the static block's background-image requirement. LIM-005 remains open. The dual CSS/VML remediation is implemented and requires a new delivered-message test through a path that preserves the authored MIME and HTML. Outlook on Windows, VML fallback behavior, native dark mode, mobile clients, accessibility, legal compliance, and production deployment remain uncertified.

@@ -63,6 +63,21 @@ def restore_hosted_css_backgrounds(html: str, package_root: Path) -> tuple[str, 
 
     rewritten = CSS_IMAGE_REFERENCE.sub(replace, html)
     unique = list({item["filename"]: item for item in restored}.values())
+    for item in unique:
+        name = re.escape(item["filename"])
+        source = escape(item["source"], quote=True)
+        rewritten = re.sub(
+            rf'(\bbackground=["\'])\.\./images/{name}(["\'])',
+            rf'\g<1>{source}\g<2>',
+            rewritten,
+            flags=re.IGNORECASE,
+        )
+        rewritten = re.sub(
+            rf'(<v:fill\b[^>]*\bsrc=["\'])\.\./images/{name}(["\'])',
+            rf'\g<1>{source}\g<2>',
+            rewritten,
+            flags=re.IGNORECASE,
+        )
     return rewritten, unique
 
 

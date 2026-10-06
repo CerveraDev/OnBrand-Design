@@ -13,6 +13,7 @@ from .agents import load_agents
 from .assets import create_zip, package_documents, rewrite_and_package_assets, write_asset_manifest
 from .composition import validate_composition_contract
 from .copy_allocation import validate_copy_allocation
+from .email_compat import add_bulletproof_backgrounds
 from .footer import render_agent_footer, render_branded_footer, render_outside_broker_footer
 from .grounded_images import validate_grounded_image_workflow
 from .qa import QAResult, run_qa, write_qa_report
@@ -127,6 +128,7 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path, scaffold: Scaffold |
             module.get("slots", {}),
             manifest_assets=manifest_assets,
         )
+        rows, _ = add_bulletproof_backgrounds(rows)
         content_rows.append(rows)
         content_asset_hints.extend(used)
 
@@ -164,7 +166,10 @@ def build_campaign_from_spec(spec: dict, *, base_dir: Path, scaffold: Scaffold |
 
     if not html_by_variant:
         raise RuntimeError("At least one output variant is required")
-    static_content = static_content_html(scaffold)
+    static_content = {
+        module_id: add_bulletproof_backgrounds(html)[0]
+        for module_id, html in static_content_html(scaffold).items()
+    }
     _validate_static_rendering(spec["static_blocks"], static_content, html_by_variant)
 
     campaign = spec["campaign"]

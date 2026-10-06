@@ -51,7 +51,8 @@ Run QA before delivery.
 - No generated output contains marker rows, marker labels, `#55ebb9`, `#ff81fb`, or marker-only `#393d47`.
 - Row 1 shared custom CSS, head CSS, linked fonts, Outlook/VML conditionals, outer wrapper, responsive behavior, original row classes, and complete table structures are preserved.
 - Avoids fragile CSS where possible.
-- Complex overlays are flattened into images unless a safe live structure is known.
+- Non-repeating cover-style table backgrounds include all three compatibility paths: CSS `background-image`, a legacy `background` attribute, and conditional Outlook VML around the same live content.
+- Native MIME output keeps CSS, legacy-attribute, and VML background sources on the same public HTTPS URL; CID remains limited to ordinary foreground images.
 - Footer insertion did not break document structure.
 - No HTML contains an absolute local path, temporary path, or direct path into the source corpus.
 - Every relative local image reference resolves to a file inside the package.
@@ -64,6 +65,7 @@ Run QA before delivery.
 - Asset URL localization is the only permitted packaging transformation inside an included static block.
 - No standalone header appears beside a hero classified as including its own header.
 - Static marker colors `#ffd675` and `#75edff` never appear in generated output.
+- The `bulletproof-backgrounds` QA check accounts for every eligible cover-style background before packaging succeeds.
 
 ## Composition Checks
 

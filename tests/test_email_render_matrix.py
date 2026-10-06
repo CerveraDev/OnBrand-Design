@@ -73,8 +73,10 @@ class EmailRenderMatrixContractTests(unittest.TestCase):
             image_dir.mkdir()
             html_path = html_dir / "test.html"
             html_path.write_text(
-                '<html><body><table style="background-image: url(\'../images/background.jpg\')">'
-                '<tr><td><img src="../images/pixel.gif"></td></tr></table></body></html>',
+                '<html><body><table background="../images/background.jpg" '
+                'style="background-image: url(\'../images/background.jpg\')">'
+                '<tr><td><!--[if gte mso 9]><v:fill src="../images/background.jpg" /><![endif]-->'
+                '<img src="../images/pixel.gif"></td></tr></table></body></html>',
                 encoding="utf-8",
             )
             image_bytes = b"GIF89a"
@@ -125,6 +127,9 @@ class EmailRenderMatrixContractTests(unittest.TestCase):
                 "background-image: url('https://assets.example.com/background.jpg')",
                 html_part.get_content(),
             )
+            self.assertIn('background="https://assets.example.com/background.jpg"', html_part.get_content())
+            self.assertIn('v:fill src="https://assets.example.com/background.jpg"', html_part.get_content())
+            self.assertNotIn("cid:onbrand-", html_part.get_content().split("v:fill", 1)[1].split(">", 1)[0])
             related = [part for part in message.walk() if part.get_content_disposition() == "inline"]
             self.assertEqual(len(related), 1)
             self.assertEqual(related[0].get_filename(), "pixel.gif")

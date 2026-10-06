@@ -7,6 +7,7 @@ from pathlib import Path
 import re
 
 from .assets import extract_image_refs
+from .email_compat import bulletproof_background_counts
 
 
 @dataclass(frozen=True)
@@ -59,6 +60,13 @@ def run_qa(
         _check(checks, f"{label}:unsafe-paths", not _has_unsafe_local_path(html), "no local corpus/temp paths leaked")
         _check(checks, f"{label}:unsafe-schemes", not _has_unsafe_scheme(html), "no unsafe href/src schemes")
         _check(checks, f"{label}:palette", "#000000" in html and "#ffffff" in html, "Rider palette present")
+        eligible_backgrounds, vml_backgrounds = bulletproof_background_counts(html)
+        _check(
+            checks,
+            f"{label}:bulletproof-backgrounds",
+            eligible_backgrounds == vml_backgrounds,
+            f"{vml_backgrounds}/{eligible_backgrounds} cover-style backgrounds include Outlook VML",
+        )
         refs = extract_image_refs(html)
         for ref in refs:
             if ref.startswith("../images/"):
