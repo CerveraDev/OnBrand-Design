@@ -11,6 +11,7 @@ OnBrand Design keeps credentials outside repository files, project packages, cam
 | Dropbox manifest refresh | `tools/dropbox-manifest/.env` on an authorized maintainer's machine | Git, project downloads, campaign packages, or `manifest.json` |
 | Distributed skill asset access | Public manifest and approved public asset URLs | Dropbox app secret, refresh token, or maintainer access token |
 | Optional TypeSafe Jev calibration | `tools/semantic_eval/.env` on an owner-approved evaluation machine | Git, project packages, campaign output, provider receipts, or skill instructions |
+| Native Microsoft 365 email testing | `tools/graph_mail/.env` with a delegated refresh token | Git, campaign packages, MIME files, receipts, prompts, or app client secrets |
 
 ## GitHub Authentication
 
@@ -112,3 +113,43 @@ A live request requires all three conditions:
 The adapter sends only the state fields present in the committed calibration batch. It must not send expected labels, reviewer records, adjudication evidence, agent contact data, credentials, or complete campaign packages. Receipts store hashes, typed answers, model ID, usage, and failures without storing the API key.
 
 Do not enable Jev for production campaign builds. Phase 13 calibration has no production effect, does not replace deterministic QA, and requires a separate owner-approved data-handling decision before any live call.
+
+## Microsoft Graph MIME Testing
+
+Native email tests use a dedicated Microsoft Entra application registration configured as a public client. Do not create or store a client secret. The application requests delegated `Mail.Send` plus `offline_access`; it cannot send until a human signs in and grants or receives administrator approval for that scope.
+
+Copy `tools/graph_mail/.env.example` to the ignored `tools/graph_mail/.env`, then set:
+
+```dotenv
+ONBRAND_GRAPH_TENANT_ID=
+ONBRAND_GRAPH_CLIENT_ID=
+ONBRAND_GRAPH_REFRESH_TOKEN=
+ONBRAND_GRAPH_SENDER=fmendoza@cervera.com
+```
+
+In Microsoft Entra:
+
+1. Register a single-tenant application for OnBrand native email testing.
+2. Under Authentication, enable **Allow public client flows**.
+3. Add the delegated Microsoft Graph permission `Mail.Send`; grant administrator consent only if Cervera policy requires and authorizes it.
+4. Put the Directory (tenant) ID and Application (client) ID in the local `.env`.
+5. Run `python3 -m tools.graph_mail.authorize` and complete the displayed device-code sign-in as the authorized sender.
+
+The authorization helper stores the refresh token atomically with mode `0600` and never prints it. The sender refreshes access tokens locally, rotates the stored refresh token when Microsoft returns one, and submits base64 MIME to Microsoft Graph v1.0 `/me/sendMail`. It refuses mismatched `From` addresses and CID-backed backgrounds. Live delivery requires both `--execute-live` and `--confirm-send`; omission of either performs no send.
+
+Validate a candidate without network delivery:
+
+```bash
+python3 -m tools.graph_mail.send_mime --message path/to/native-test.eml
+```
+
+After reviewing the validation receipt, an authorized maintainer may explicitly send it:
+
+```bash
+python3 -m tools.graph_mail.send_mime \
+  --message path/to/native-test.eml \
+  --execute-live \
+  --confirm-send
+```
+
+Microsoft Graph returns `202 Accepted` when it accepts the message for processing and saves it in Sent Items. That status is not proof of final delivery or client rendering; record the receiving-client evidence separately.

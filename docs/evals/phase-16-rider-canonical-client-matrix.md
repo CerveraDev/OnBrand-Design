@@ -76,6 +76,8 @@ Before any resend, v2 was opened locally in Outlook for Mac. The sauna backgroun
 
 The owner chose to preserve the live-text overlay instead of adopting a foreground-image/text-band fallback. The runtime now augments every meaningful non-repeating cover-style table background with a legacy `background` attribute and an Outlook-conditional VML `v:rect`/`v:fill`/`v:textbox` layer. QA accounts for every eligible background. The native-message builder restores the CSS, legacy, and VML references to one manifest-bound public HTTPS source while limiting CID conversion to foreground images. The actual wellness proof resolves to one eligible sauna background and one VML layer at the framed 560px content width. This is implemented structure, not yet delivered-client evidence.
 
+A delegated Microsoft Graph raw-MIME helper now provides the markup-preserving delivery path for the next test. It validates the sender, recipient, HTML body, VML marker count, and absence of CID-backed backgrounds before sending; strips only the local draft header; requires explicit double opt-in for live delivery; and records a secret-free receipt. Entra application registration and delegated authorization remain required before the v5 candidate can be sent.
+
 ### Findings
 
 - Outlook for Mac and Apple Mail on macOS preserved the main table layout, content hierarchy, live copy, footer, and core embedded imagery in light appearance during import review.
