@@ -1,9 +1,19 @@
 {
-  "evidence_type": "owner-supplied-known-good-delivered-message",
+  "evidence_type": "owner-supplied-known-good-predecessor-scaffold-delivery",
   "client": "Gmail",
   "source_platform": "Beefree test send",
   "source_eml_sha256": "f75784c5bbe1eba22e4205990d8c6fe5df71a1527311429927c024eedf6ca226",
   "source_eml_size_bytes": 418964,
+  "canonical_relationship": {
+    "status": "predecessor-not-canonical",
+    "delivered_html_sha256": "e726a4cc78c590451206c5c2a6d933e5814c88a9cdba6b4e700b6e43a56a04f1",
+    "current_canonical_scaffold_sha256": "4125169e6079965a596f71636c0cb4df3aa336eaf5c101e83a24a73dd4351439",
+    "delivered_background_table_count": 13,
+    "canonical_background_table_count": 14,
+    "exact_shared_background_table_count": 8,
+    "exact_shared_cover_background_table_count": 5,
+    "sauna_background_table_exact_match": true
+  },
   "privacy": "Original EML remains local and ignored because it contains mailbox and delivery metadata.",
   "mime": {
     "top_level_content_type": "text/html",
@@ -27,6 +37,6 @@
     "cid_reference_count": 0,
     "outlook_conditional_count": 13
   },
-  "finding": "Gmail rendered the scaffold correctly when Beefree delivered one remote-asset HTML part. The prior Gmail failure does not demonstrate a scaffold CSS limitation; it demonstrates an incompatible CID-in-CSS transport attempt.",
-  "next_use": "Use this as the Gmail transport baseline. Preserve public HTTPS CSS backgrounds and prefer public HTTPS foreground assets for hosted deployment output. Retain conditional VML as a separate Outlook Classic fallback."
+  "finding": "Gmail rendered this earlier scaffold correctly when Beefree delivered one remote-asset HTML part. The file is not the current canonical scaffold, so it is pattern-level transport evidence rather than canonical-message certification. Its sauna table and all five cover-style background table tags exactly match the current canonical scaffold.",
+  "next_use": "Preserve public HTTPS CSS backgrounds and prefer public HTTPS foreground assets for hosted deployment output. Retain conditional VML as a separate Outlook Classic fallback. Send the current canonical scaffold through Beefree before claiming canonical Gmail compatibility."
 }
