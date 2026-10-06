@@ -78,11 +78,19 @@ The owner chose to preserve the live-text overlay instead of adopting a foregrou
 
 A delegated Microsoft Graph raw-MIME helper now provides the markup-preserving delivery path for the next test. It validates the sender, recipient, HTML body, VML marker count, and absence of CID-backed backgrounds before sending; strips only the local draft header; requires explicit double opt-in for live delivery; and records a secret-free receipt. Entra application registration and delegated authorization remain required before the v5 candidate can be sent.
 
+### Known-Good Beefree Gmail Reference
+
+On 2026-10-06, the owner supplied the original downloaded Gmail message from a flawless Beefree test send. The private EML remains local and ignored; its redacted structural receipt is committed as `beefree-gmail-reference.json`.
+
+The delivered Beefree message is one quoted-printable UTF-8 `text/html` part. It contains no MIME image attachments and no CID references. All 29 foreground images use public HTTPS URLs on Beefree or CloudFront hosts. Its cover backgrounds use the same scaffold pattern already supplied by the owner: inline `background-image: url('https://...')`, `background-repeat: no-repeat`, and `background-size: cover`. The message contains no legacy `background` attributes and no VML rectangles or fills.
+
+This establishes that Gmail can render the scaffold as designed when the delivery path preserves the HTML and every asset is remotely hosted. It also narrows the first Gmail failure to the native v1 transport, which converted CSS backgrounds to CID references. The v5 background path already matches the known-good public-HTTPS pattern. Its remaining transport difference is that ordinary foreground images are embedded by CID because the generated campaign hero does not yet have a public hosted URL.
+
 ### Findings
 
 - Outlook for Mac and Apple Mail on macOS preserved the main table layout, content hierarchy, live copy, footer, and core embedded imagery in light appearance during import review.
 - The delivered v1 message failed to show the sauna background in both Gmail and Outlook. Outlook also exposed the CSS-referenced sauna and spacer resources as attachments.
-- Gmail officially supports `background-image`, but the first delivered CID-in-CSS form failed there. Outlook for Mac also rejected public HTTPS CSS, legacy HTTPS, and legacy CID background forms during local review. The next candidate keeps the public-HTTPS CSS path and adds Outlook-only VML without flattening or moving the live text.
+- Gmail officially supports `background-image`, and the known-good Beefree delivery confirms that the unmodified scaffold pattern renders there with public HTTPS assets. The first delivered CID-in-CSS form failed because of its transport. Outlook for Mac also rejected public HTTPS CSS, legacy HTTPS, and legacy CID background forms during local import review. The next candidate keeps the Gmail-proven public-HTTPS CSS path and adds Outlook-only VML without flattening or moving the live text.
 - No native dark-mode, Windows Outlook Word-engine, webmail sanitizer, mobile-client, link-click, accessibility, or deployment-platform result is inferred from these checks.
 
 For each client record:

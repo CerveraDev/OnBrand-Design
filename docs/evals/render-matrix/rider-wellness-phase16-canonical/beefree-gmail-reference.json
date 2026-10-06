@@ -1,0 +1,32 @@
+{
+  "evidence_type": "owner-supplied-known-good-delivered-message",
+  "client": "Gmail",
+  "source_platform": "Beefree test send",
+  "source_eml_sha256": "f75784c5bbe1eba22e4205990d8c6fe5df71a1527311429927c024eedf6ca226",
+  "source_eml_size_bytes": 418964,
+  "privacy": "Original EML remains local and ignored because it contains mailbox and delivery metadata.",
+  "mime": {
+    "top_level_content_type": "text/html",
+    "charset": "utf-8",
+    "content_transfer_encoding": "quoted-printable",
+    "leaf_part_count": 1,
+    "inline_attachment_count": 0
+  },
+  "html": {
+    "image_count": 29,
+    "image_transport": "public HTTPS",
+    "image_hosts": [
+      "d15k2d11r6t6rl.cloudfront.net",
+      "media.beefree.cloud"
+    ],
+    "unique_background_assets": 4,
+    "background_transport": "public HTTPS inline CSS",
+    "legacy_background_attribute_count": 0,
+    "vml_rect_count": 0,
+    "vml_fill_count": 0,
+    "cid_reference_count": 0,
+    "outlook_conditional_count": 13
+  },
+  "finding": "Gmail rendered the scaffold correctly when Beefree delivered one remote-asset HTML part. The prior Gmail failure does not demonstrate a scaffold CSS limitation; it demonstrates an incompatible CID-in-CSS transport attempt.",
+  "next_use": "Use this as the Gmail transport baseline. Preserve public HTTPS CSS backgrounds and prefer public HTTPS foreground assets for hosted deployment output. Retain conditional VML as a separate Outlook Classic fallback."
+}

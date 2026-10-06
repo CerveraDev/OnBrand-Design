@@ -68,7 +68,7 @@
 - Preserved the owner's 2026-10-05 CSS-corrected scaffold, expanded refined metadata to 17 annotations, and implemented four container-owned conditional list/payoff rows. The regenerated wellness proof retains only the supplied leading-term and paragraph-payoff rows, omits the two unused list families without empty markup, passes 69 runtime QA checks, and the full repository passes 179 tests.
 - Added a practical user guide and README quick start covering explicit invocation, prerequisites, campaign approvals, build modes, CLI operation, portable output packages, optional maintenance dependencies, and current portability/security limitations.
 - Promoted the owner-approved Phase 16 scaffold and sidecars to canonical defaults, archived the Phase 15 trio as regression provenance, migrated live fixtures, regenerated the gallery without overrides, and reproduced the approved proof byte-for-byte with 69 passing QA checks and eight assets. The canonical Release Build also passes 237 QA checks across nine variants and 16 packaged assets.
-- Passed the canonical Phase 16 four-entry Playwright matrix and agent-assisted visual review at desktop/mobile and light/dark browser preferences: zero overflow, 6/6 images loaded, no browser errors, and no visible hierarchy, crop, alignment, footer, clipping, or overlap failures. The first delivered-message test preserved foreground images but failed the sauna CSS background in Gmail and Outlook. Public HTTPS, legacy HTTPS, and legacy CID background candidates also failed Outlook for Mac before resend. The runtime now adds CSS, legacy HTML, and Outlook VML background paths and the native builder preserves their public HTTPS source; native delivery retesting remains open.
+- Passed the canonical Phase 16 four-entry Playwright matrix and agent-assisted visual review at desktop/mobile and light/dark browser preferences: zero overflow, 6/6 images loaded, no browser errors, and no visible hierarchy, crop, alignment, footer, clipping, or overlap failures. The first delivered-message test preserved foreground images but failed the sauna CSS background in Gmail and Outlook. A subsequent owner-supplied Beefree-to-Gmail original rendered flawlessly and proves the scaffold's public-HTTPS CSS background pattern is Gmail-compatible. The runtime now adds that standard CSS path plus legacy HTML and Outlook VML fallbacks; Outlook and an all-remote generated-campaign delivery remain open.
 
 ## Project Portfolio
 
@@ -86,7 +86,7 @@
 
 - Perform representative visual and email-client compatibility review beyond structural QA.
 - Continue campaign-by-campaign visual refinement without turning `SEQ-LF-07` or `CFG-05` into global defaults.
-- Generate and deliver a new bulletproof-background candidate through a markup-preserving transport, then retest Gmail and Outlook. Continue Outlook Classic, native dark-mode, and mobile-client review.
+- Establish a public hosted URL for generated campaign imagery so OnBrand can reproduce Beefree's all-remote Gmail transport, and test the same Beefree delivery directly in Outlook. Continue Outlook Classic, native dark-mode, and mobile-client review.
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 - Obtain live manual invocation evidence on permitted authenticated hosts; deterministic parity does not establish model behavior.
 - Keep [LIMITATIONS.md](LIMITATIONS.md) current when audits, specs, QA runs, or implementation work discover new constraints.
@@ -106,4 +106,4 @@
 
 ## Next Milestone
 
-Generate and send the new dual CSS/VML S-02 candidate, then record Gmail and Outlook results before completing the remaining client matrix. Public manifest configuration, live manual adapter checks, and deferred Phase 12 distribution remain open.
+Send the known-good Beefree scaffold test to Outlook, then compare that delivered original with the Gmail reference. In parallel, select a stable public host for generated campaign images so OnBrand can emit an all-remote deployment profile. Public manifest configuration, live manual adapter checks, and deferred Phase 12 distribution remain open.
