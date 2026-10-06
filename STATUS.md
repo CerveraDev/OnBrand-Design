@@ -94,8 +94,20 @@
 
 ## Waiting On Project Inputs
 
+- Microsoft Entra administrator action: either create the single-tenant `OnBrand Email Client Testing` public-client app and make Felix Mendoza an owner, or assign the Application Developer role. The app needs delegated `Mail.Send`; no client secret is required. After receiving the tenant and client IDs, populate the ignored `tools/graph_mail/.env` and run `python3 -m tools.graph_mail.authorize`.
 - Confirmed public URL for The Rider's canonical Dropbox manifest.
 - Cassia brand standards, canonical HTML, footers, logos, and asset catalog.
+
+## Resume Checkpoint
+
+- Repository checkpoint before pause: `cea01e5` on `main`, synchronized with `origin/main` before this status-only checkpoint.
+- Bulletproof background runtime: committed in `1867e9d`; canonical builds retain public-HTTPS CSS, add a legacy background attribute, and add conditional Outlook VML. Full discovery passed 188 tests after the Graph helper was added.
+- Markup-preserving sender: committed in `3ebe826`; it defaults to validation only and requires both `--execute-live` and `--confirm-send` for an external send.
+- Local private candidate: `docs/evals/render-matrix/rider-wellness-phase16-canonical/rider-wellness-native-test-v5.eml`. It remains ignored because it contains mailbox data. Its dry-run receipt reports sender/recipient validation, one VML-backed background, and no CID-backed backgrounds. No v5 message has been sent.
+- Graph configuration: `tools/graph_mail/.env` exists locally with mode `0600`; the sender address is set, while tenant ID, client ID, and refresh token remain empty pending administrator access.
+- Gmail evidence: the owner-supplied `Rider Scaffold GMAIL.eml` remains local and ignored. It is an earlier scaffold, not canonical. The committed redacted receipt records exact matches for the canonical sauna and five cover-style background tags, so it is transport-pattern evidence only.
+- First action after Entra access: enter `ONBRAND_GRAPH_TENANT_ID` and `ONBRAND_GRAPH_CLIENT_ID`, run `python3 -m tools.graph_mail.authorize`, verify token refresh without sending, then request explicit owner approval immediately before the v5 live-send command.
+- Parallel client test: send the current canonical scaffold through Beefree to both Gmail and Outlook, download each original message, and compare them with the predecessor Gmail reference before claiming canonical client compatibility.
 
 ## Release Blockers
 
