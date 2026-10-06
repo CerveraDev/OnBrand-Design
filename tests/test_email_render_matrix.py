@@ -1,6 +1,11 @@
 import json
 import hashlib
+from email import policy
+from email.parser import BytesParser
 from pathlib import Path
+import subprocess
+import sys
+import tempfile
 import unittest
 
 
@@ -9,6 +14,7 @@ SPEC_PATH = ROOT / "docs/specs/phase-14-email-render-matrix.md"
 PACKAGE_PATH = ROOT / "tools/email_render_matrix/package.json"
 SCHEMA_PATH = ROOT / "tools/email_render_matrix/report.schema.json"
 SCRIPT_PATH = ROOT / "tools/email_render_matrix/render_matrix.cjs"
+EML_SCRIPT_PATH = ROOT / "tools/email_render_matrix/build_native_test_eml.py"
 EVIDENCE_PATH = ROOT / "docs/evals/render-matrix/rider-wellness-v1"
 
 
@@ -57,6 +63,93 @@ class EmailRenderMatrixContractTests(unittest.TestCase):
         by_id = {item["id"]: item for item in report["matrix"]}
         self.assertEqual(by_id["desktop-light"]["screenshot"]["sha256"], by_id["desktop-dark"]["screenshot"]["sha256"])
         self.assertEqual(by_id["mobile-light"]["screenshot"]["sha256"], by_id["mobile-dark"]["screenshot"]["sha256"])
+
+    def test_native_message_builder_embeds_packaged_images_by_cid(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            package = Path(temp_dir) / "campaign"
+            html_dir = package / "html"
+            image_dir = package / "images"
+            html_dir.mkdir(parents=True)
+            image_dir.mkdir()
+            html_path = html_dir / "test.html"
+            html_path.write_text(
+                '<html><body><img src="../images/pixel.gif"></body></html>',
+                encoding="utf-8",
+            )
+            image_bytes = b"GIF89a"
+            (image_dir / "pixel.gif").write_bytes(image_bytes)
+            output_path = package / "test.eml"
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(EML_SCRIPT_PATH),
+                    "--html",
+                    str(html_path),
+                    "--from-address",
+                    "sender@example.com",
+                    "--to-address",
+                    "recipient@example.com",
+                    "--subject",
+                    "Native test",
+                    "--output",
+                    str(output_path),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(result.returncode, 0, result.stderr)
+
+            message = BytesParser(policy=policy.default).parsebytes(output_path.read_bytes())
+            html_part = message.get_body(preferencelist=("html",))
+            self.assertIsNotNone(html_part)
+            self.assertIn("cid:onbrand-", html_part.get_content())
+            self.assertNotIn("../images/", html_part.get_content())
+            related = [part for part in message.walk() if part.get_content_disposition() == "inline"]
+            self.assertEqual(len(related), 1)
+            self.assertEqual(related[0].get_filename(), "pixel.gif")
+            self.assertEqual(related[0].get_payload(decode=True), image_bytes)
+
+            receipt = json.loads(output_path.with_suffix(".json").read_text(encoding="utf-8"))
+            self.assertEqual(receipt["transport_reference_change"], "../images/<name> -> cid:<content-id>")
+            self.assertEqual(receipt["embedded_images"][0]["sha256"], hashlib.sha256(image_bytes).hexdigest())
+            self.assertEqual(receipt["eml_sha256"], hashlib.sha256(output_path.read_bytes()).hexdigest())
+
+    def test_native_message_builder_rejects_missing_packaged_images(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            package = Path(temp_dir) / "campaign"
+            html_dir = package / "html"
+            html_dir.mkdir(parents=True)
+            html_path = html_dir / "test.html"
+            html_path.write_text(
+                '<html><body><img src="../images/missing.png"></body></html>',
+                encoding="utf-8",
+            )
+            output_path = package / "test.eml"
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(EML_SCRIPT_PATH),
+                    "--html",
+                    str(html_path),
+                    "--from-address",
+                    "sender@example.com",
+                    "--to-address",
+                    "recipient@example.com",
+                    "--subject",
+                    "Native test",
+                    "--output",
+                    str(output_path),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("Missing packaged image(s): missing.png", result.stderr)
+            self.assertFalse(output_path.exists())
 
 
 if __name__ == "__main__":

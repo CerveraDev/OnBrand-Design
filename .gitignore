@@ -10,6 +10,10 @@ venv/
 !.env.example
 *.bak
 *.zip
+*.eml
+
+# Native-client receipts can contain test mailbox addresses.
+docs/evals/render-matrix/*/*-native-test.json
 
 # Local Dropbox catalog and credentials are runtime data, not repository source.
 tools/dropbox-manifest/manifest.json

@@ -4,7 +4,7 @@
 **Campaign:** Rider wellness canonical Composition Preview  
 **Variant:** Branded  
 **HTML SHA-256:** `b82bcc430806bd174e621f379ee4a5ef132bab59900e50c4af1188700580ea60`  
-**Status:** Automated and visual browser matrix passed; native email-client evidence pending
+**Status:** Browser matrix passed; Outlook for Mac and Apple Mail macOS checks passed within the tested scope; Gmail and broader native-client coverage remain pending
 
 ## Browser Visual Review
 
@@ -54,12 +54,27 @@ Use the exact branded HTML and packaged assets represented by the hash above. Re
 
 | Client surface | Target | Status | Required review |
 | --- | --- | --- | --- |
-| Gmail web | Current Chrome desktop | Pending | Width, fonts, image loading, buttons, spacing, footer, links |
+| Gmail web | Actual recipient mailbox in current Chrome desktop | Pending | The open Gmail session is a different account and exact-subject search returned no match; test the delivered message in the recipient mailbox |
 | Outlook web | Current Chrome desktop | Pending | Table layout, images, buttons, footer, links |
+| Outlook desktop | Outlook for Mac, macOS | Pass with finding | Core inline images, table layout, hierarchy, copy, and footer rendered; CSS-only background CIDs for the sauna and spacer were also exposed as attachments |
 | Outlook desktop | Current Windows Word engine | Pending | VML/background fallback, stacking, spacing, buttons, footer |
-| Apple Mail | Current macOS | Pending | Fonts, responsive layout, images, dark mode, footer |
+| Apple Mail | Apple Mail, macOS | Pass in imported-message scope | Imported RFC 822 message rendered the complete layout and embedded imagery; delivery, dark mode, and responsive/mobile behavior were not tested |
 | Gmail mobile | Current iOS or Android | Pending | Mobile stacking, readable copy, tap targets, image crops |
 | Apple Mail mobile | Current iOS | Pending | Mobile stacking, automatic dark-mode rewriting, tap targets |
+
+### Native Test Record
+
+On 2026-10-05, a self-contained RFC 822 test message was generated from the exact canonical packaged HTML. The builder changed only local package references from `../images/<name>` to MIME Content-ID references and embedded the eight exact packaged image byte streams. The generated message SHA-256 was `37dec0351a6d80cc92041a164c97904d5a392102c470c20da6b5223873e22d88`.
+
+The message was visually inspected after import into Apple Mail and Outlook for Mac. Outlook then resent the exact message from the owner-specified Cervera mailbox to the owner-specified recipient mailbox. Outlook recorded the sent item at 8:12 PM local time. The local `.eml` and receipt are intentionally ignored because they contain mailbox addresses; the reusable builder and its tests are committed.
+
+The current Chrome Gmail session belongs to a different account than the recipient. An exact-subject search returned no matching message, so Gmail rendering is not claimed and no duplicate message was sent.
+
+### Findings
+
+- Outlook for Mac and Apple Mail on macOS preserved the main table layout, content hierarchy, live copy, footer, and core embedded imagery in light appearance.
+- Outlook for Mac exposed the CSS-referenced sauna background and one-pixel spacer as attachments even though the visible email rendered. This is a transport/client presentation defect to address before production-send certification.
+- No native dark-mode, Windows Outlook Word-engine, webmail sanitizer, mobile-client, link-click, accessibility, or deployment-platform result is inferred from these checks.
 
 For each client record:
 
@@ -73,4 +88,4 @@ For each client record:
 
 ## Decision Boundary
 
-The automated and visual browser matrix passes. It does not close LIM-005 or certify Gmail, Outlook, Apple Mail, accessibility, legal compliance, or production deployment. LIM-005 remains open until representative native-client evidence is committed.
+The automated and visual browser matrix passes, and the first macOS native-client evidence is now recorded. This narrows but does not close LIM-005: Gmail, Outlook on Windows, native dark mode, mobile clients, accessibility, legal compliance, and production deployment remain uncertified, and the Outlook attachment finding remains open.

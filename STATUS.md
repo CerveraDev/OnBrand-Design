@@ -68,7 +68,7 @@
 - Preserved the owner's 2026-10-05 CSS-corrected scaffold, expanded refined metadata to 17 annotations, and implemented four container-owned conditional list/payoff rows. The regenerated wellness proof retains only the supplied leading-term and paragraph-payoff rows, omits the two unused list families without empty markup, passes 69 runtime QA checks, and the full repository passes 179 tests.
 - Added a practical user guide and README quick start covering explicit invocation, prerequisites, campaign approvals, build modes, CLI operation, portable output packages, optional maintenance dependencies, and current portability/security limitations.
 - Promoted the owner-approved Phase 16 scaffold and sidecars to canonical defaults, archived the Phase 15 trio as regression provenance, migrated live fixtures, regenerated the gallery without overrides, and reproduced the approved proof byte-for-byte with 69 passing QA checks and eight assets. The canonical Release Build also passes 237 QA checks across nine variants and 16 packaged assets.
-- Passed the canonical Phase 16 four-entry Playwright matrix and agent-assisted visual review at desktop/mobile and light/dark browser preferences: zero overflow, 6/6 images loaded, no browser errors, and no visible hierarchy, crop, alignment, footer, clipping, or overlap failures. Native-client review remains open.
+- Passed the canonical Phase 16 four-entry Playwright matrix and agent-assisted visual review at desktop/mobile and light/dark browser preferences: zero overflow, 6/6 images loaded, no browser errors, and no visible hierarchy, crop, alignment, footer, clipping, or overlap failures. The exact proof also passed first-scope visual checks in Outlook for Mac and Apple Mail on macOS, and Outlook successfully sent the CID-packaged message. Gmail, Outlook for Windows, mobile, dark-mode, and the Outlook CSS-background attachment finding remain open.
 
 ## Project Portfolio
 
@@ -86,7 +86,7 @@
 
 - Perform representative visual and email-client compatibility review beyond structural QA.
 - Continue campaign-by-campaign visual refinement without turning `SEQ-LF-07` or `CFG-05` into global defaults.
-- Run the real Gmail, Outlook, and Apple Mail matrix against the canonical Phase 16 output.
+- Complete the real-client matrix for Gmail, Outlook for Windows, native dark mode, and mobile clients; remediate the Outlook for Mac CSS-background attachment finding.
 - Calibrate copy voice and watchlist exceptions from each project's approved materials.
 - Obtain live manual invocation evidence on permitted authenticated hosts; deterministic parity does not establish model behavior.
 - Keep [LIMITATIONS.md](LIMITATIONS.md) current when audits, specs, QA runs, or implementation work discover new constraints.
@@ -106,4 +106,4 @@
 
 ## Next Milestone
 
-Validate the canonical Phase 16 output in native Gmail, Outlook, and Apple Mail clients. Public manifest configuration, live manual adapter checks, and deferred Phase 12 distribution remain open.
+Complete the remaining canonical Phase 16 native-client matrix and remediate the Outlook attachment finding. Public manifest configuration, live manual adapter checks, and deferred Phase 12 distribution remain open.
