@@ -4,7 +4,7 @@
 **Campaign:** Rider wellness canonical Composition Preview  
 **Variant:** Branded  
 **HTML SHA-256:** `b82bcc430806bd174e621f379ee4a5ef132bab59900e50c4af1188700580ea60`  
-**Status:** Browser matrix passed; first delivered-message test exposed CSS-background failures in Gmail and Outlook; corrected transport candidate prepared but not yet sent
+**Status:** Browser matrix passed; delivered-message and local Outlook retests show that the live-text CSS background block is not safe for native direct-send packaging
 
 ## Browser Visual Review
 
@@ -70,13 +70,15 @@ The message was visually inspected after import into Apple Mail and Outlook for 
 
 The owner then reviewed the delivered message and reported that the CSS background was absent in Gmail and in the Outlook message body. This confirms that replacing CSS `background-image` URLs with CID references is not a valid cross-client transport, even though ordinary CID-backed `<img>` elements rendered.
 
-The native-message builder has been corrected for a second test candidate. It now keeps foreground package images embedded by CID, restores CSS backgrounds to their original public HTTPS sources through the checksum-bound asset manifest, and blocks generation when a background lacks a public HTTPS source. The v2 candidate embeds six foreground images, restores two unique hosted backgrounds, contains no local package references or CSS CID backgrounds, and has SHA-256 `f2433c7a1668108cafb519e020629742e33dfd86309fb4013711093cc5945135`. It has not been sent, so no client-render pass is claimed.
+The native-message builder was corrected for a second test candidate. It keeps foreground package images embedded by CID, restores CSS backgrounds to their original public HTTPS sources through the checksum-bound asset manifest, and blocks generation when a background lacks a public HTTPS source. The v2 candidate embeds six foreground images, restores two unique hosted backgrounds, contains no local package references or CSS CID backgrounds, and has SHA-256 `f2433c7a1668108cafb519e020629742e33dfd86309fb4013711093cc5945135`.
+
+Before any resend, v2 was opened locally in Outlook for Mac. The sauna background still did not render. Two additional local-only experiments added the legacy HTML `background` attribute with an HTTPS source and then with an embedded CID source; neither rendered the background in Outlook for Mac. These experiments were not sent or committed as supported transport behavior.
 
 ### Findings
 
 - Outlook for Mac and Apple Mail on macOS preserved the main table layout, content hierarchy, live copy, footer, and core embedded imagery in light appearance during import review.
 - The delivered v1 message failed to show the sauna background in both Gmail and Outlook. Outlook also exposed the CSS-referenced sauna and spacer resources as attachments.
-- Gmail officially supports `background-image`, so the corrected direct-send candidate uses the original public HTTPS background source instead of CID-in-CSS. Outlook Classic still requires a fixed-height VML fallback for full support; v2 does not close that separate requirement.
+- Gmail officially supports `background-image`, but the first delivered CID-in-CSS form failed there. Outlook for Mac also rejected public HTTPS CSS, legacy HTTPS, and legacy CID background forms during local review. The recommended cross-client remediation is to stop using this live-text background overlay in native-send output: render the sauna as an ordinary `<img>` and place the static message in a separate dark live-text band. Outlook Classic VML remains relevant only if an overlay must be preserved.
 - No native dark-mode, Windows Outlook Word-engine, webmail sanitizer, mobile-client, link-click, accessibility, or deployment-platform result is inferred from these checks.
 
 For each client record:
@@ -91,4 +93,4 @@ For each client record:
 
 ## Decision Boundary
 
-The automated and visual browser matrix passes, but the first delivered-message test fails its CSS-background requirement in Gmail and Outlook. LIM-005 remains open. A corrected HTTPS-background transport candidate is prepared for retest; Outlook on Windows, VML fallback behavior, native dark mode, mobile clients, accessibility, legal compliance, and production deployment remain uncertified.
+The automated and visual browser matrix passes, but the first delivered-message test and Outlook pre-send retests fail the static block's background-image requirement. LIM-005 remains open. The block needs a foreground-image/live-text-band native-send representation before another delivery test. Outlook on Windows, VML fallback behavior, native dark mode, mobile clients, accessibility, legal compliance, and production deployment remain uncertified.
