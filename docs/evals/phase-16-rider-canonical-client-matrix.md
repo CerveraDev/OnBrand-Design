@@ -4,7 +4,7 @@
 **Campaign:** Rider wellness canonical Composition Preview  
 **Variant:** Branded  
 **HTML SHA-256:** `b82bcc430806bd174e621f379ee4a5ef132bab59900e50c4af1188700580ea60`  
-**Status:** Browser matrix passed; Outlook for Mac and Apple Mail macOS checks passed within the tested scope; Gmail and broader native-client coverage remain pending
+**Status:** Browser matrix passed; first delivered-message test exposed CSS-background failures in Gmail and Outlook; corrected transport candidate prepared but not yet sent
 
 ## Browser Visual Review
 
@@ -54,9 +54,9 @@ Use the exact branded HTML and packaged assets represented by the hash above. Re
 
 | Client surface | Target | Status | Required review |
 | --- | --- | --- | --- |
-| Gmail web | Actual recipient mailbox in current Chrome desktop | Pending | The open Gmail session is a different account and exact-subject search returned no match; test the delivered message in the recipient mailbox |
+| Gmail web | Owner-reviewed delivered message | Fail for v1 background transport | Foreground images and content arrived, but the sauna CSS background did not render |
 | Outlook web | Current Chrome desktop | Pending | Table layout, images, buttons, footer, links |
-| Outlook desktop | Outlook for Mac, macOS | Pass with finding | Core inline images, table layout, hierarchy, copy, and footer rendered; CSS-only background CIDs for the sauna and spacer were also exposed as attachments |
+| Outlook desktop | Outlook for Mac, macOS | Fail for v1 background transport | Core inline images, table layout, hierarchy, copy, and footer rendered, but the sauna CSS background did not render in the sent message; CSS-only background CIDs were exposed as attachments |
 | Outlook desktop | Current Windows Word engine | Pending | VML/background fallback, stacking, spacing, buttons, footer |
 | Apple Mail | Apple Mail, macOS | Pass in imported-message scope | Imported RFC 822 message rendered the complete layout and embedded imagery; delivery, dark mode, and responsive/mobile behavior were not tested |
 | Gmail mobile | Current iOS or Android | Pending | Mobile stacking, readable copy, tap targets, image crops |
@@ -68,12 +68,15 @@ On 2026-10-05, a self-contained RFC 822 test message was generated from the exac
 
 The message was visually inspected after import into Apple Mail and Outlook for Mac. Outlook then resent the exact message from the owner-specified Cervera mailbox to the owner-specified recipient mailbox. Outlook recorded the sent item at 8:12 PM local time. The local `.eml` and receipt are intentionally ignored because they contain mailbox addresses; the reusable builder and its tests are committed.
 
-The current Chrome Gmail session belongs to a different account than the recipient. An exact-subject search returned no matching message, so Gmail rendering is not claimed and no duplicate message was sent.
+The owner then reviewed the delivered message and reported that the CSS background was absent in Gmail and in the Outlook message body. This confirms that replacing CSS `background-image` URLs with CID references is not a valid cross-client transport, even though ordinary CID-backed `<img>` elements rendered.
+
+The native-message builder has been corrected for a second test candidate. It now keeps foreground package images embedded by CID, restores CSS backgrounds to their original public HTTPS sources through the checksum-bound asset manifest, and blocks generation when a background lacks a public HTTPS source. The v2 candidate embeds six foreground images, restores two unique hosted backgrounds, contains no local package references or CSS CID backgrounds, and has SHA-256 `f2433c7a1668108cafb519e020629742e33dfd86309fb4013711093cc5945135`. It has not been sent, so no client-render pass is claimed.
 
 ### Findings
 
-- Outlook for Mac and Apple Mail on macOS preserved the main table layout, content hierarchy, live copy, footer, and core embedded imagery in light appearance.
-- Outlook for Mac exposed the CSS-referenced sauna background and one-pixel spacer as attachments even though the visible email rendered. This is a transport/client presentation defect to address before production-send certification.
+- Outlook for Mac and Apple Mail on macOS preserved the main table layout, content hierarchy, live copy, footer, and core embedded imagery in light appearance during import review.
+- The delivered v1 message failed to show the sauna background in both Gmail and Outlook. Outlook also exposed the CSS-referenced sauna and spacer resources as attachments.
+- Gmail officially supports `background-image`, so the corrected direct-send candidate uses the original public HTTPS background source instead of CID-in-CSS. Outlook Classic still requires a fixed-height VML fallback for full support; v2 does not close that separate requirement.
 - No native dark-mode, Windows Outlook Word-engine, webmail sanitizer, mobile-client, link-click, accessibility, or deployment-platform result is inferred from these checks.
 
 For each client record:
@@ -88,4 +91,4 @@ For each client record:
 
 ## Decision Boundary
 
-The automated and visual browser matrix passes, and the first macOS native-client evidence is now recorded. This narrows but does not close LIM-005: Gmail, Outlook on Windows, native dark mode, mobile clients, accessibility, legal compliance, and production deployment remain uncertified, and the Outlook attachment finding remains open.
+The automated and visual browser matrix passes, but the first delivered-message test fails its CSS-background requirement in Gmail and Outlook. LIM-005 remains open. A corrected HTTPS-background transport candidate is prepared for retest; Outlook on Windows, VML fallback behavior, native dark mode, mobile clients, accessibility, legal compliance, and production deployment remain uncertified.

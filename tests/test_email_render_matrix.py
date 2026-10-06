@@ -73,11 +73,26 @@ class EmailRenderMatrixContractTests(unittest.TestCase):
             image_dir.mkdir()
             html_path = html_dir / "test.html"
             html_path.write_text(
-                '<html><body><img src="../images/pixel.gif"></body></html>',
+                '<html><body><table style="background-image: url(\'../images/background.jpg\')">'
+                '<tr><td><img src="../images/pixel.gif"></td></tr></table></body></html>',
                 encoding="utf-8",
             )
             image_bytes = b"GIF89a"
             (image_dir / "pixel.gif").write_bytes(image_bytes)
+            (image_dir / "background.jpg").write_bytes(b"JPEG")
+            (package / "asset-manifest.json").write_text(
+                json.dumps(
+                    {
+                        "assets": [
+                            {
+                                "package_path": "images/background.jpg",
+                                "source": "https://assets.example.com/background.jpg",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
             output_path = package / "test.eml"
 
             result = subprocess.run(
@@ -106,13 +121,21 @@ class EmailRenderMatrixContractTests(unittest.TestCase):
             self.assertIsNotNone(html_part)
             self.assertIn("cid:onbrand-", html_part.get_content())
             self.assertNotIn("../images/", html_part.get_content())
+            self.assertIn(
+                "background-image: url('https://assets.example.com/background.jpg')",
+                html_part.get_content(),
+            )
             related = [part for part in message.walk() if part.get_content_disposition() == "inline"]
             self.assertEqual(len(related), 1)
             self.assertEqual(related[0].get_filename(), "pixel.gif")
             self.assertEqual(related[0].get_payload(decode=True), image_bytes)
 
             receipt = json.loads(output_path.with_suffix(".json").read_text(encoding="utf-8"))
-            self.assertEqual(receipt["transport_reference_change"], "../images/<name> -> cid:<content-id>")
+            self.assertEqual(
+                receipt["transport_reference_change"]["foreground_images"],
+                "../images/<name> -> cid:<content-id>",
+            )
+            self.assertEqual(receipt["hosted_css_backgrounds"][0]["filename"], "background.jpg")
             self.assertEqual(receipt["embedded_images"][0]["sha256"], hashlib.sha256(image_bytes).hexdigest())
             self.assertEqual(receipt["eml_sha256"], hashlib.sha256(output_path.read_bytes()).hexdigest())
 
@@ -149,6 +172,60 @@ class EmailRenderMatrixContractTests(unittest.TestCase):
             )
             self.assertNotEqual(result.returncode, 0)
             self.assertIn("Missing packaged image(s): missing.png", result.stderr)
+            self.assertFalse(output_path.exists())
+
+    def test_native_message_builder_rejects_unhosted_css_backgrounds(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            package = Path(temp_dir) / "campaign"
+            html_dir = package / "html"
+            image_dir = package / "images"
+            html_dir.mkdir(parents=True)
+            image_dir.mkdir()
+            html_path = html_dir / "test.html"
+            html_path.write_text(
+                '<html><body style="background-image: url(\'../images/background.jpg\')"></body></html>',
+                encoding="utf-8",
+            )
+            (image_dir / "background.jpg").write_bytes(b"JPEG")
+            (package / "asset-manifest.json").write_text(
+                json.dumps(
+                    {
+                        "assets": [
+                            {
+                                "package_path": "images/background.jpg",
+                                "source": "/private/background.jpg",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            output_path = package / "test.eml"
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    str(EML_SCRIPT_PATH),
+                    "--html",
+                    str(html_path),
+                    "--from-address",
+                    "sender@example.com",
+                    "--to-address",
+                    "recipient@example.com",
+                    "--subject",
+                    "Native test",
+                    "--output",
+                    str(output_path),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn(
+                "CSS background image requires a public HTTPS source: images/background.jpg",
+                result.stderr,
+            )
             self.assertFalse(output_path.exists())
 
 
