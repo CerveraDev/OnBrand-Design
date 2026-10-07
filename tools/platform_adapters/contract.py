@@ -12,6 +12,8 @@ from tools.rider_campaign_runtime.runtime import (
 )
 from tools.rider_campaign_runtime.scaffold import load_scaffold
 from tools.rider_campaign_runtime.schema import validate_campaign_spec
+from tools.social_runtime.runtime import build_social_from_spec
+from tools.social_runtime.schema import validate_social_spec
 
 from .json_semantics import json_semantic_equal
 
@@ -35,6 +37,8 @@ def rider_selection(value):
 
 RUNTIMES = {
     "rider-campaign": (VERSION, validate_campaign_spec, build_campaign_from_spec, rider_selection),
+    # A social selection file is the spec's own {template, format} composition object.
+    "social": (VERSION, validate_social_spec, build_social_from_spec, lambda value: value),
 }
 
 

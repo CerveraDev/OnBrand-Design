@@ -21,6 +21,7 @@ The roadmap applies to the framework and is executed independently for each proj
 | 14 | Email render matrix | Browser-preview tool and Rider evidence complete | Canonical four-mode browser matrix and visual review pass; real-client matrix pending | Planned after representative package |
 | 15 | Creative fidelity remediation | Implemented; creative approval pending | CFG-05 and Rider Gym 2 proof generated; further layout refinement requested | Planned after project calibration |
 | 16 | Scaffold expansion and layout calibration | Canonical promotion complete; compatibility follow-up open | Phase 16 canonical and proof reproducible; native-client matrix pending | Planned after project calibration |
+| 17 | Social medium expansion (static and carousel) | Specified; not implemented | Assets curated and overlay committed; runtime not started | Planned after project calibration |
 
 ## Framework Gate
 
@@ -95,6 +96,17 @@ The roadmap applies to the framework and is executed independently for each proj
 - Provider execution defaults disabled, requires environment opt-in plus explicit live authorization, validates typed answers/model/question IDs, and emits non-production receipts without secrets.
 - The owner-approved 17-case live calibration reached 16/17 candidate-action accuracy versus 10/17 for the lexical baseline on the same split. That calibration signal justified, but did not predict, the separately controlled holdout.
 - The separately approved holdout matched 8/9 semantic labels but only 5/9 actions versus 4/9 for the baseline, with one false allow and 44.4% review routing. Version 1 is marked `revise`; the spent holdout cannot validate a revised policy.
+
+## Social Medium Gate
+
+- Social is a sibling medium runtime in the same repository; `tools/rider_campaign_runtime/` is not modified.
+- Shared-core extraction is deferred. `tools/asset_selection/` is already standalone, and social may carry its own thin copy-allocation adapter until the genuinely shared shape is observable.
+- Social approvals are recorded in a committed project overlay with approver provenance, never by hand-editing the generated manifest.
+- Restricted records, specifically in-house agent headshots and likeness references, can never resolve to a social role.
+- Landscape assets are crop sources only; a social format is satisfied by an approved provenance-bearing crop, never by silent reframing.
+- Platform dimensions, slide limits, and safe areas live in a versioned sidecar; an unpinned format fails rather than defaulting.
+- Cross-medium copy repetition between an email surface and a social surface in one campaign must be detectable, which is the principal reason a fork was rejected.
+- Audience capability is enforced by Phase 12 packaging, never by prompt instruction. Reels remain a separate later phase.
 
 ## Public Release Gate
 

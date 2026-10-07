@@ -16,6 +16,15 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Added
 
+- Phase 17 social medium expansion specification, covering the no-fork architecture decision, the in-house and outside-broker capability boundary, a versioned platform-format sidecar, crop provenance, extended copy-allocation channels, and reels deferred to a later phase.
+- The Rider social asset approval overlay: 133 owner-approved image records with roles, clusters, third-party rights flags, approver provenance, and a SHA-256 binding to the manifest state they were approved against.
+- A social approval loader that validates the overlay and merges it under a separate `social_roles` key without mutating `approved_for`, plus 20 tests asserting restricted records can never resolve to a social role, no PDF is social-approved, and landscape assets remain crop sources only.
+- The Rider social asset curation worksheet recording cluster decisions, proposed roles, and the rights questions that only the owner can resolve.
+- `tools/social_runtime/`, a sibling medium runtime for static posts and carousels: spec schema, pinned platform-format sidecar, data-file templates with audience availability and locked content, overlay-based asset resolution, a broker-safe catalog filter, crop provenance validation, social copy allocation, cross-medium repetition detection against an email campaign spec, blocking QA, packaging, and a CLI. It produces composition packages and a review sheet; it does not render slide images.
+- The draft `CAR-01` Feature Carousel template and a Rider Composition Preview spec, plus 35 tests in `tests/test_social_runtime.py`.
+- One additive `social` entry in the platform adapter `RUNTIMES` table. The email runtime is unmodified.
+- LIM-023 for the absent pixel-producing render step and the unverified platform-format values.
+- LIM-021 and LIM-022 for the absent social approval vocabulary and the landscape-dominant library that cannot satisfy social formats by selection alone.
 - Canonical Phase 16 Rider scaffold, refined metadata, deterministic slot map, migrated runtime fixtures, and archived Phase 15 regression provenance after owner approval.
 - Canonical Phase 16 browser/client review evidence, including a fixed 390px responsive harness, desktop/mobile visual findings, the exact outside-sandbox Playwright command, and a native Gmail/Outlook/Apple Mail worksheet.
 - A practical user guide covering prerequisites, explicit Codex and Claude Code invocation, campaign prompts, approval workflow, build modes, CLI commands, package contents, optional maintenance dependencies, and current distribution/portability boundaries.

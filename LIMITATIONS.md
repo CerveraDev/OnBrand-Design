@@ -1,6 +1,6 @@
 # OnBrand Limitations Register
 
-Last updated: 2026-10-05
+Last updated: 2026-10-06
 
 This is the living register for known limitations, evidence gaps, deferred safeguards, and scoring opportunities in the OnBrand framework and project-specific packs. It is intentionally root-level so release planning, implementation, audit, and handoff work all have one durable source of truth before new phase work begins.
 
@@ -52,6 +52,9 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 | LIM-018 | Jev semantic decision value, calibration, privacy approval, and fallback behavior are unverified | P2 | Open | Phase 13 pilot |
 | LIM-019 | Copy QA counts logical slot owners, not every rendered replacement rule | P2 | Open | Phase 10 refinement |
 | LIM-020 | Block metadata does not yet encode enough editorial layout intent | P1 | Mitigated | Phase 16 |
+| LIM-021 | No asset is approved for social use and the vertical/square inventory is thin | P1 | Mitigated | Phase 17 |
+| LIM-022 | A landscape-dominant library cannot satisfy social formats by selection alone | P1 | Mitigated | Phase 17 |
+| LIM-023 | The social runtime emits composition packages, not rendered slides, against unverified format values | P1 | Open | Phase 17 |
 
 ## Detailed Entries
 
@@ -335,6 +338,50 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 - Candidate metrics: Required-content coverage, copy-density fit, image-count fit, adjacent color-transition compatibility, duplicate-purpose count, narrative-role coverage, sequence-rule violations, mobile-height balance, and reviewer selection or correction rate.
 - Closure criteria: Add evidence-backed ranking metrics for multiple valid sequences, implement a coordinated light-body transform if approved for a real campaign, and validate representative layouts in the browser and native email-client matrices.
 
+### LIM-021: No asset is approved for social use and the vertical/square inventory is thin
+
+- Priority: P1
+- Status: Mitigated, 2026-10-06
+- Owner phase: Phase 17
+- Dependencies: Authorized curation of the project asset taxonomy, FR-016 curated-field preservation during manifest refresh, and owner approval of social usage rights per asset.
+- Evidence: [Phase 17 specification](docs/specs/phase-17-social-medium-expansion.md), current local Rider manifest cache of 206 records.
+- Current behavior: The `approved_for` vocabulary is entirely email-role based: `hero`, `body`, `composition`, `agent-footer`, and `image-generation-reference`. Zero records carry any social approval value. Of 145 image records, 29 are square and 16 are portrait. Seven square records are in-house agent headshots approved only for `agent-footer`, and three portrait records are likeness references restricted to the explicit image-generation workflow. The remaining square inventory is concentrated in one interior/residence/unit/kitchen cluster of 14 records plus 7 exterior records.
+- Risk and impact: A social runtime could be implemented and still be unable to produce a single compliant real campaign, because no asset is authorized for the medium. Worse, an implementation under schedule pressure could silently reuse email-role approvals, which would defeat the approval model the framework exists to enforce and could expose agent headshots or restricted likeness references in broker-facing collateral.
+- Current control: None yet. The email runtime's role-based approval gating is the pattern to extend, not to bypass.
+- Scoring could help: Marginally. Approval is a rights and authorization decision, not a measurable property. Scoring may help prioritize which assets to send for curation by predicted social usefulness.
+- Candidate metrics: Count of social-approved assets per format and per category, coverage of required template slots, crop-feasibility rate from landscape sources, and category gaps against planned campaign themes.
+- Current mitigation, 2026-10-06: A committed overlay at `projects/the-rider/asset-approvals.social.json` records 133 owner-approved image records with roles, clusters, approver, date, basis, rights flags, and a SHA-256 binding to the approved manifest state. `tools/asset_selection/social_approvals.py` and 20 tests enforce that restricted records can never resolve to a social role, that no PDF is social-approved, and that landscape assets remain crop sources only. See AUD-099.
+- Closure criteria: Verify that FR-016 preserves social roles across a real manifest refresh, resolve whether square and portrait assets should also carry `social-crop-source`, add the floor-plan PDF conversion pipeline, and demonstrate that every slot in at least one approved carousel template can be satisfied from social-approved records without reusing `agent-footer` or `image-generation-reference` assets.
+
+### LIM-022: A landscape-dominant library cannot satisfy social formats by selection alone
+
+- Priority: P1
+- Status: Mitigated, 2026-10-06
+- Owner phase: Phase 17
+- Dependencies: LIM-021 social approval roles, the Phase 9 grounded-image provenance model, and FR-010 source-asset immutability.
+- Evidence: [Phase 17 specification](docs/specs/phase-17-social-medium-expansion.md), current local Rider manifest cache: 100 landscape, 29 square, and 16 portrait image records.
+- Current behavior: Deterministic asset selection filters by orientation but cannot produce an orientation the library does not contain. Social targets square and vertical formats while the catalog is 69 percent landscape by image count. No crop, reframe, or derived-output capability exists outside the explicit image-generation workflow.
+- Risk and impact: Without an approved derived-crop path, social builds will either fail for lack of inventory or be satisfied by ad hoc manual cropping outside the provenance model. Manual cropping breaks traceability, can silently alter approved subject matter, and can crop a recognizable person, a competitor mark, or required legal content out of or into frame.
+- Current control: FR-010 keeps source assets unmodified, and the Phase 9 provenance pattern already exists for generated imagery. Neither is yet applied to cropping.
+- Scoring could help: Yes, for triage. Deterministic geometry checks should lead; perceptual scoring should flag likely subject loss rather than approve a crop.
+- Candidate metrics: Subject or saliency retention after crop, face or logo intersection with the crop boundary, safe-area compliance, aspect-ratio distortion, effective resolution after crop, and reviewer rejection rate per source category.
+- Closure criteria: Implement a provenance-bearing crop operation that records source reference, crop geometry, output checksum and dimensions, and approval status; block crops whose source is missing or unapproved for social; commit fixtures for an accepted and a rejected crop; and document that automated crop quality scoring remains out of scope under LIM-001.
+- Current mitigation, 2026-10-06: `tools/social_runtime/crops.py` validates a provenance record for a crop produced elsewhere: the source must resolve to a `social-crop-source` record, geometry must sit inside the declared source dimensions and match the format's aspect ratio, the focal point must fall inside the crop, and the output file's checksum, pixel dimensions, and size are verified against the local file. Accepted and rejected cases are covered in `tests/test_social_runtime.py`. The runtime does not perform the crop, and the declared source dimensions are not checked against the source file. See AUD-101 and LIM-023.
+
+### LIM-023: The social runtime emits composition packages, not rendered slides, against unverified format values
+
+- Priority: P1
+- Status: Open
+- Owner phase: Phase 17
+- Dependencies: A decision on how pixels are produced within a standard-library Python stack, verified platform documentation, and LIM-022 crop provenance.
+- Evidence: `tools/social_runtime/README.md`, `tools/social_runtime/platform-formats.json`, AUD-101.
+- Current behavior: A social build writes a package manifest, an asset manifest, a QA report, and an HTML review sheet. It does not crop images and does not composite `on-image-text` onto slides, so no file in the package is a postable image unless an externally produced crop was supplied. Assets used directly are accepted on manifest orientation alone; their pixel dimensions and file sizes are not verified because the manifest does not carry them. Every value in the format sidecar, including dimensions, the 10-slide maximum, text limits, and the file-size ceiling, is a commonly cited figure with no verification date, and safe-area insets are recorded as zero.
+- Risk and impact: A passing Composition Preview could be mistaken for finished collateral. A "square" record that is not exactly 1:1 would be cropped by the platform without review. Text limits and safe areas could be wrong for the live platform.
+- Current control: Release builds are refused while the requested format is unverified. Each build reports the unverified-dimension, draft-template, and draft-copy conditions as warnings in the QA report and on the review sheet.
+- Scoring could help: No. These are missing capabilities and unverified facts, not judgments.
+- Candidate metrics: Share of slides delivered as verified final-dimension images, and count of sidecar formats carrying a verification date and source.
+- Closure criteria: Verify and date every pinned format against platform documentation; add a render step that outputs final-dimension slide images with provenance, or record an explicit decision that rendering happens in a named external tool; and verify the pixel dimensions of directly used assets.
+
 ## Entry Template
 
 Use this template for new limitations:
@@ -385,3 +432,6 @@ Use this template for new limitations:
 - 2026-10-05: The owner accepted the canonical-promotion recommendation. The Phase 16 trio and migrated fixtures now drive ordinary builds, the Phase 15 trio is archived as regression provenance, and the approved proof reproduces byte-for-byte without override flags. LIM-020 is mitigated; sequence ranking, optional full-light transformation, and native-client evidence remain open.
 - 2026-10-05: After the owner rejected the foreground-image fallback, implemented deterministic bulletproof background generation: CSS and legacy HTML for Gmail/modern clients, conditional VML for Outlook, public-HTTPS background transport, blocking QA, and focused regression coverage. LIM-005 remains open until a newly delivered candidate passes the target clients.
 - 2026-10-06: Added and then corrected a redacted receipt for the owner-supplied known-good Beefree Gmail message. The delivered file is a predecessor scaffold, not the canonical Phase 16 scaffold. It provides pattern-level evidence because the sauna and all five cover-style background table tags match exactly, but canonical Gmail delivery remains open. A fully remote hosted deployment profile still needs a public URL for generated campaign imagery.
+- 2026-10-06: Drafted Phase 17 social medium expansion and added LIM-021 and LIM-022 after measuring the current Rider manifest. No asset carries a social approval role, and the image library is 100 landscape against 29 square and 16 portrait, so social requires both authorized curation and a provenance-bearing crop operation before any real build.
+- 2026-10-06: Curated Rider social approvals cluster by cluster with the owner and committed them as a versioned overlay with approver provenance and a manifest hash binding. LIM-021 is mitigated; it stays open until a carousel template demonstrably fills from social-approved records, square/portrait crop-source scope is decided, and the floor-plan PDF pipeline exists. LIM-022 remains open because no crop operation is implemented.
+- 2026-10-06: Built the first `tools/social_runtime/` increment. LIM-022 moved to Mitigated because crop provenance is now validated, though no crop is performed. Added LIM-023 because the runtime emits composition packages rather than rendered slides, accepts directly used assets on orientation alone, and pins format values that have not been verified.

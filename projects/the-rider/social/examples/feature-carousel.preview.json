@@ -1,0 +1,199 @@
+{
+  "schema_version": "1.0",
+  "medium": "social",
+  "campaign": {
+    "slug": "rider-feature-carousel-preview",
+    "project": "the-rider",
+    "output_dir": "../../../../campaign-output/social",
+    "title": "Rider feature carousel composition preview"
+  },
+  "audience": "in-house",
+  "build": {
+    "mode": "composition-preview",
+    "representative_variant": "branded"
+  },
+  "variants": {
+    "branded": {}
+  },
+  "composition": {
+    "template": "CAR-01",
+    "format": "carousel-1x1"
+  },
+  "slides": [
+    {
+      "role": "opener",
+      "image": {
+        "asset": "the-rider-tower-day-front-close-up.jpg"
+      },
+      "text": {
+        "headline": "[Opener headline]",
+        "subhead": "[Opener subhead]"
+      },
+      "alt_text": "[Alt text: tower exterior by day]"
+    },
+    {
+      "role": "feature",
+      "image": {
+        "asset": "01. Kitchen_K1(K1.1_ADA01_ADA01.1)_studio_Rev01.jpg"
+      },
+      "text": {
+        "headline": "[Feature one headline]",
+        "body": "[Feature one body]"
+      },
+      "alt_text": "[Alt text: kitchen K1]"
+    },
+    {
+      "role": "feature",
+      "image": {
+        "asset": "03. Kitchen_K3_studio_Rev01.jpg"
+      },
+      "text": {
+        "headline": "[Feature two headline]",
+        "body": "[Feature two body]"
+      },
+      "alt_text": "[Alt text: kitchen K3]"
+    },
+    {
+      "role": "call-to-action",
+      "image": {
+        "asset": "the-rider-tower-night-front-close-up.jpg"
+      },
+      "text": {
+        "headline": "[Closing headline]",
+        "action": "[Call to action]"
+      },
+      "alt_text": "[Alt text: tower exterior at night]"
+    }
+  ],
+  "caption": "[Caption placeholder]",
+  "copy_allocation": {
+    "version": "1.0",
+    "status": "draft",
+    "content_units": [
+      {
+        "id": "caption",
+        "text": "[Caption placeholder]",
+        "owner": {
+          "channel": "caption"
+        },
+        "approval_status": "draft"
+      },
+      {
+        "id": "s1-headline",
+        "text": "[Opener headline]",
+        "owner": {
+          "channel": "on-image-text",
+          "slide": 1,
+          "slot": "headline"
+        },
+        "approval_status": "draft"
+      },
+      {
+        "id": "s1-subhead",
+        "text": "[Opener subhead]",
+        "owner": {
+          "channel": "on-image-text",
+          "slide": 1,
+          "slot": "subhead"
+        },
+        "approval_status": "draft"
+      },
+      {
+        "id": "s1-alt",
+        "text": "[Alt text: tower exterior by day]",
+        "owner": {
+          "channel": "alt-text",
+          "slide": 1
+        },
+        "approval_status": "draft"
+      },
+      {
+        "id": "s2-headline",
+        "text": "[Feature one headline]",
+        "owner": {
+          "channel": "on-image-text",
+          "slide": 2,
+          "slot": "headline"
+        },
+        "approval_status": "draft"
+      },
+      {
+        "id": "s2-body",
+        "text": "[Feature one body]",
+        "owner": {
+          "channel": "slide-text",
+          "slide": 2,
+          "slot": "body"
+        },
+        "approval_status": "draft"
+      },
+      {
+        "id": "s2-alt",
+        "text": "[Alt text: kitchen K1]",
+        "owner": {
+          "channel": "alt-text",
+          "slide": 2
+        },
+        "approval_status": "draft"
+      },
+      {
+        "id": "s3-headline",
+        "text": "[Feature two headline]",
+        "owner": {
+          "channel": "on-image-text",
+          "slide": 3,
+          "slot": "headline"
+        },
+        "approval_status": "draft"
+      },
+      {
+        "id": "s3-body",
+        "text": "[Feature two body]",
+        "owner": {
+          "channel": "slide-text",
+          "slide": 3,
+          "slot": "body"
+        },
+        "approval_status": "draft"
+      },
+      {
+        "id": "s3-alt",
+        "text": "[Alt text: kitchen K3]",
+        "owner": {
+          "channel": "alt-text",
+          "slide": 3
+        },
+        "approval_status": "draft"
+      },
+      {
+        "id": "s4-headline",
+        "text": "[Closing headline]",
+        "owner": {
+          "channel": "on-image-text",
+          "slide": 4,
+          "slot": "headline"
+        },
+        "approval_status": "draft"
+      },
+      {
+        "id": "s4-action",
+        "text": "[Call to action]",
+        "owner": {
+          "channel": "on-image-text",
+          "slide": 4,
+          "slot": "action"
+        },
+        "approval_status": "draft"
+      },
+      {
+        "id": "s4-alt",
+        "text": "[Alt text: tower exterior at night]",
+        "owner": {
+          "channel": "alt-text",
+          "slide": 4
+        },
+        "approval_status": "draft"
+      }
+    ]
+  }
+}

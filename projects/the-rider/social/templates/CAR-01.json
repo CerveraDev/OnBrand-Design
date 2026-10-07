@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "code": "CAR-01",
+  "label": "Feature Carousel",
+  "kind": "carousel",
+  "formats": ["carousel-1x1", "carousel-4x5"],
+  "approval_status": "draft",
+  "audiences": ["in-house"],
+  "min_slides": 3,
+  "max_slides": 6,
+  "sequence": [
+    {
+      "role": "opener",
+      "min": 1,
+      "max": 1,
+      "image": {"count": 1},
+      "slots": {
+        "headline": {"channel": "on-image-text", "required": true, "max_chars": 40},
+        "subhead": {"channel": "on-image-text", "required": false, "max_chars": 70}
+      },
+      "locked": {"wordmark": "The Rider"}
+    },
+    {
+      "role": "feature",
+      "min": 1,
+      "max": 4,
+      "image": {"count": 1},
+      "slots": {
+        "headline": {"channel": "on-image-text", "required": true, "max_chars": 40},
+        "body": {"channel": "slide-text", "required": false, "max_chars": 110}
+      },
+      "locked": {}
+    },
+    {
+      "role": "call-to-action",
+      "min": 1,
+      "max": 1,
+      "image": {"count": 1},
+      "slots": {
+        "headline": {"channel": "on-image-text", "required": true, "max_chars": 40},
+        "action": {"channel": "on-image-text", "required": true, "max_chars": 30}
+      },
+      "locked": {"wordmark": "The Rider"}
+    }
+  ]
+}
