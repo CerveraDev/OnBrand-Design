@@ -25,6 +25,8 @@ ROOT = Path(__file__).resolve().parents[2]
 RENDERER = Path(__file__).with_name("render_slides.cjs")
 RENDER_REPORT = "render-report.json"
 SLIDES_DIR = "slides"
+# Owner-directed adjustments layered on the imported scaffold; a re-import never touches it.
+OVERRIDES_FILE = "overrides.css"
 JPEG_QUALITY = 92
 
 
@@ -103,7 +105,10 @@ def render_package(
             jobs.append({"output": str(output), "frame": slide["frame"], "images": images, "text": text})
             plan.append((f"{variant}:slide-{slide['index']}", output, frame, slide))
     scale = composition["width"] / next(iter(plan))[2]["canvas"]["width"]
-    job = {"scaffold_html": str(scaffold_dir / "scaffold.html"), "scale": scale, "quality": JPEG_QUALITY, "slides": jobs}
+    overrides = scaffold_dir / OVERRIDES_FILE
+    job = {"scaffold_html": str(scaffold_dir / "scaffold.html"),
+           "overrides_css": str(overrides) if overrides.is_file() else None,
+           "scale": scale, "quality": JPEG_QUALITY, "slides": jobs}
     rendered = (renderer or _run_renderer)(job)["slides"]
 
     checks: list[dict] = []

@@ -31,6 +31,7 @@ async function main() {
     const page = await context.newPage();
     for (const slide of job.slides) {
       await page.goto(pathToFileURL(job.scaffold_html).href, { waitUntil: 'domcontentloaded' });
+      if (job.overrides_css) await page.addStyleTag({ path: job.overrides_css });
       const measured = await page.evaluate(fillInPage, slide);
       if (!measured.error) {
         fs.mkdirSync(path.dirname(slide.output), { recursive: true });
@@ -127,17 +128,23 @@ async function fillInPage(slide) {
     element.replaceChildren();
     entry.value.split('\n').forEach((line, lineIndex) => {
       if (lineIndex) element.append(document.createElement('br'));
-      // In a slot with an italic accent, *word* is set in italics.
+      // In a slot with an italic accent, *word* is set in italics. The italic face
+      // crowds upright neighbours on the same line, so the scaffold's own spacing is
+      // applied: two non-breaking spaces before the word and one after, inside it.
       const parts = entry.italic_accent ? line.split(/\*([^*]+)\*/) : [line];
       parts.forEach((part, partIndex) => {
         if (!part) return;
         if (partIndex % 2) {
           const accent = document.createElement('em');
-          accent.textContent = part;
+          const followed = (parts[partIndex + 1] || '').trim() !== '';
+          accent.textContent = part.trim() + (followed ? '\u00a0' : '');
           element.append(accent);
-        } else {
-          element.append(part);
+          return;
         }
+        let upright = part;
+        if (partIndex > 0) upright = upright.replace(/^ +/, '');
+        if (partIndex < parts.length - 1 && upright.trim() !== '') upright = upright.replace(/ +$/, '') + '\u00a0\u00a0';
+        if (upright) element.append(upright);
       });
     });
   }

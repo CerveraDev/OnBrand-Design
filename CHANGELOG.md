@@ -16,6 +16,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Added
 
+- A project `overrides.css` layered on the social scaffold at render time, used to give every Rider carousel frame the same subheading-to-copy spacing, scaffold-style spacing around italic words, and a five-slide amenities carousel preview example (AUD-106).
 - A social render step: `python3 -m tools.social_runtime.cli render --package <dir>` fills each slide's scaffold frame in Chromium and exports it at the format's pixel size, with a render report covering output size, logo load, and rendered text lines per slot (`tools/social_runtime/render.py`, `render_slides.cjs`, AUD-105).
 - User-supplied images for social templates that allow them: `GAL-01` accepts a local PNG or JPEG per image slot, checked for orientation, packaged under a hash-derived name, and recorded as user-supplied rather than owner-approved (`tools/social_runtime/supplied.py`, AUD-104).
 - Phase 17 social medium expansion specification, covering the no-fork architecture decision, the in-house and outside-broker capability boundary, a versioned platform-format sidecar, crop provenance, extended copy-allocation channels, and reels deferred to a later phase.

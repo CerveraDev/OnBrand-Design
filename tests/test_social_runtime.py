@@ -519,6 +519,11 @@ class RenderTests(SocialRuntimeCase):
                          [f"slides/branded/slide-0{n}.jpg" for n in (1, 2, 3)])
         job = self.jobs[0]
         self.assertEqual(job["scale"], 1080 / 600)
+        self.assertIsNone(job["overrides_css"])
+        overrides = self.project / "social" / "scaffold" / "overrides.css"
+        overrides.write_text("", encoding="utf-8")
+        self.render()
+        self.assertEqual(self.jobs[-1]["overrides_css"], str(overrides))
         self.assertEqual(job["slides"][0]["frame"], "TA-01")
         self.assertEqual(job["slides"][0]["images"], [{"slot": "background", "url": "https://cdn.example.com/sq-1.jpg"}])
         report = json.loads(result.report.read_text())
