@@ -12,7 +12,15 @@ Exit code 0 means blocking QA passed, 1 means QA failed, and 2 means the build w
 
 `<output_dir>/<slug>/` holds `social-package.json` (slides, copy, and image references per variant), `asset-manifest.json` (used records and crop provenance, without Dropbox identifiers or paths), `preview.html` (a review sheet), and `qa-report.json`. A ZIP is written only when QA passes and the mode is not `smoke-test`.
 
-The runtime does not render pixels. It does not crop images or composite on-image text; it records where approved text and approved images go. See LIM-023.
+The build step records where approved text and approved images go. The render step then produces the slide images:
+
+```bash
+python3 -m tools.social_runtime.cli render --package campaign-output/social/<slug>
+```
+
+It fills each slide's frame in the project scaffold (`projects/<slug>/social/scaffold/scaffold.html`) in Chromium and writes `slides/<variant>/slide-NN.jpg` at the format's pixel size, plus `render-report.json`, then rebuilds the ZIP. Exit code 0 means every render check passed, 1 means a check failed, and 2 means the render was refused. It needs Node and the Playwright install described in `tools/email_render_matrix/README.md`, and network access for the logo, fonts, and catalog images.
+
+Render checks: each slide is the format's exact size and under its file-size ceiling, the logo loaded, and every text slot stays within its frame's `max_lines` and inside the slide. In slide text, a line break is a newline, and in a slot with an italic accent `*word*` is set in italics. Every image area cover-fits. The render step does not crop: a planned crop is rendered from its uncropped source and reported as a warning. See LIM-023.
 
 ## Inputs
 
@@ -66,4 +74,5 @@ An `outside-broker` build needs an approved template that lists that audience, r
 - `supplied.py`: format and orientation checks for an image supplied outside the approved catalog.
 - `crops.py`: provenance validation, against the image slot it fills, for a crop produced elsewhere.
 - `copy_allocation.py`: one approved owner per text surface, in-carousel repetition, and cross-medium repetition against an email campaign spec.
+- `render.py`, `render_slides.cjs`: slide export from the scaffold, and the render report.
 - `qa.py`, `runtime.py`, `cli.py`: blocking QA, packaging, and the command line.

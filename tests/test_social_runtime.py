@@ -4,10 +4,12 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 from pathlib import Path
 import struct
 import tempfile
 import unittest
+import zipfile
 
 from tools.platform_adapters.contract import RUNTIMES
 from tools.rider_campaign_runtime import copy_allocation as email_copy
@@ -16,6 +18,7 @@ from tools.social_runtime import copy_allocation as social_copy
 from tools.social_runtime.assets import broker_safe_assets
 from tools.social_runtime.formats import FormatError, load_formats, require_format
 from tools.social_runtime.frames import build_frame_definitions, load_frames
+from tools.social_runtime.render import RenderError, render_package
 from tools.social_runtime.supplied import load_supplied_image
 from tools.social_runtime.templates import TemplateError, load_template, match_slides
 
@@ -477,6 +480,93 @@ class SuppliedImageTests(SocialRuntimeCase):
         self.assertTrue(any("it will be enlarged" in w for w in result.qa.warnings))
 
 
+class RenderTests(SocialRuntimeCase):
+    def setUp(self):
+        super().setUp()
+        scaffold = self.project / "social" / "scaffold"
+        scaffold.mkdir()
+        (scaffold / "scaffold.html").write_text("<!doctype html>", encoding="utf-8")
+        (scaffold / "scaffold.css").write_text("", encoding="utf-8")
+        self.jobs = []
+
+    def renderer(self, *, size=(1080, 1080), lines=1, inside=True, error=None):
+        def run(job: dict) -> dict:
+            self.jobs.append(job)
+            slides = []
+            for slide in job["slides"]:
+                if error:
+                    slides.append({"output": slide["output"], "error": error})
+                    continue
+                Path(slide["output"]).parent.mkdir(parents=True, exist_ok=True)
+                Path(slide["output"]).write_bytes(_png(*size))
+                slides.append({
+                    "output": slide["output"], "logo_loaded": None,
+                    "images": [{"slot": i["slot"], "natural_width": 2000, "natural_height": 2000} for i in slide["images"]],
+                    "text": {t["slot"]: {"lines": lines, "inside_canvas": inside} for t in slide["text"]},
+                })
+            return {"slides": slides}
+        return run
+
+    def render(self, spec=None, **renderer):
+        built = self.build(spec or self.spec())
+        return built, render_package(built.package_dir, project_dir=self.project, formats_path=self.formats,
+                                     renderer=self.renderer(**renderer))
+
+    def test_every_slide_is_rendered_at_the_format_size_and_packaged(self):
+        built, result = self.render()
+        self.assertTrue(result.passed, [c for c in result.checks if not c["passed"]])
+        self.assertEqual([p.relative_to(built.package_dir).as_posix() for p in result.slides],
+                         [f"slides/branded/slide-0{n}.jpg" for n in (1, 2, 3)])
+        job = self.jobs[0]
+        self.assertEqual(job["scale"], 1080 / 600)
+        self.assertEqual(job["slides"][0]["frame"], "TA-01")
+        self.assertEqual(job["slides"][0]["images"], [{"slot": "background", "url": "https://cdn.example.com/sq-1.jpg"}])
+        report = json.loads(result.report.read_text())
+        self.assertTrue(report["passed"])
+        self.assertNotIn(str(self.base), result.report.read_text())
+        with zipfile.ZipFile(result.zip_path) as archive:
+            self.assertIn("demo-carousel/slides/branded/slide-01.jpg", archive.namelist())
+
+    def test_text_that_wraps_past_its_line_limit_or_leaves_the_slide_fails(self):
+        _, result = self.render(lines=3)
+        self.assertFalse(result.passed)
+        self.assertIsNone(result.zip_path)
+        self.assertIn("3 of 2 lines", [c["message"] for c in result.checks if not c["passed"]])
+        _, result = self.render(inside=False)
+        self.assertTrue(any("runs outside the slide" in c["message"] for c in result.checks if not c["passed"]))
+
+    def test_wrong_output_size_and_renderer_errors_fail(self):
+        _, result = self.render(size=(1080, 1350))
+        self.assertFalse(result.passed)
+        _, result = self.render(error="image for slot 'background' could not be loaded")
+        self.assertEqual({c["message"] for c in result.checks}, {"image for slot 'background' could not be loaded"})
+
+    def test_packaged_images_are_passed_as_local_files_and_planned_crops_warn(self):
+        spec = CropTests.crop_spec(self)
+        _, result = self.render(spec)
+        self.assertTrue(self.jobs[0]["slides"][0]["images"][0]["url"].endswith("/images/crop-1.png"))
+        self.assertEqual(result.warnings, [])
+        _, result = self.render(CropTests.crop_spec(self, status="planned"))
+        self.assertEqual(self.jobs[1]["slides"][0]["images"][0]["url"], "https://cdn.example.com/wide-1.jpg")
+        self.assertTrue(all("rendered from its uncropped source" in w for w in result.warnings))
+
+    def test_render_is_refused_for_a_failed_build_or_stale_frame_definitions(self):
+        spec = self.spec()
+        spec["slides"][0]["text"]["headline"] = "x" * 41
+        failed = self.build(self.allocate(spec))
+        with self.assertRaises(RenderError) as caught:
+            render_package(failed.package_dir, project_dir=self.project, formats_path=self.formats, renderer=self.renderer())
+        self.assertIn("failed blocking QA", str(caught.exception))
+        built = self.build(self.spec())
+        frames = self.project / "social" / "templates" / "frames.json"
+        data = json.loads(frames.read_text())
+        data["generated_from"] = {"scaffold_html_sha256": "0" * 64, "scaffold_css_sha256": "0" * 64}
+        frames.write_text(json.dumps(data), encoding="utf-8")
+        with self.assertRaises(RenderError) as caught:
+            render_package(built.package_dir, project_dir=self.project, formats_path=self.formats, renderer=self.renderer())
+        self.assertIn("out of date with scaffold.html", str(caught.exception))
+
+
 class CopyAllocationTests(SocialRuntimeCase):
     def email_campaign(self, headline: str, policy: str = "single-use") -> None:
         (self.base / "email.json").write_text(json.dumps({
@@ -564,6 +654,17 @@ class IntegrationTests(unittest.TestCase):
             manifest = json.loads(result.asset_manifest.read_text())
             self.assertEqual(len(manifest["assets"]), 3)
             self.assertTrue(all("social-carousel" in a["social_roles"] for a in manifest["assets"]))
+
+    @unittest.skipUnless(os.environ.get("ONBRAND_RENDER_TESTS") == "1",
+                         "set ONBRAND_RENDER_TESTS=1 to render in Chromium; needs Node, Playwright, and network")
+    def test_rider_composition_preview_renders_every_slide_from_the_scaffold(self):
+        spec = json.loads(RIDER_PREVIEW.read_text(encoding="utf-8"))
+        with tempfile.TemporaryDirectory() as tmp:
+            spec["campaign"]["output_dir"] = tmp
+            built = build_social_from_spec(spec, base_dir=RIDER_PREVIEW.parent)
+            result = render_package(built.package_dir)
+            self.assertTrue(result.passed, [c for c in result.checks if not c["passed"]])
+            self.assertEqual(len(result.slides), 3)
 
     def test_rider_frame_definitions_are_current_with_the_scaffold_catalog(self):
         catalog = json.loads((RIDER_SOCIAL / "scaffold" / "frame-catalog.json").read_text(encoding="utf-8"))

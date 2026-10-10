@@ -2,6 +2,7 @@
 
 python3 -m tools.social_runtime.cli build --spec <path>
 python3 -m tools.social_runtime.cli frames --project <slug>
+python3 -m tools.social_runtime.cli render --package <directory>
 """
 
 from __future__ import annotations
@@ -12,6 +13,7 @@ from pathlib import Path
 import sys
 
 from .frames import FRAMES_FILE, build_frame_definitions
+from .render import RenderError, render_package
 from .runtime import ROOT, SocialRuntimeError, build_social
 from .schema import SocialSpecError
 
@@ -23,9 +25,13 @@ def main(argv=None) -> int:
     build.add_argument("--spec", required=True, help="Path to the canonical social spec JSON.")
     frames = commands.add_parser("frames", help="Regenerate frame definitions from a project's scaffold catalog.")
     frames.add_argument("--project", required=True, help="Project slug under projects/.")
+    render = commands.add_parser("render", help="Render a built package's slides from the project scaffold.")
+    render.add_argument("--package", required=True, help="Path to a built social package directory.")
     args = parser.parse_args(argv)
     if args.command == "frames":
         return _write_frames(ROOT / "projects" / args.project)
+    if args.command == "render":
+        return _render(args.package)
     try:
         result = build_social(args.spec)
     except (SocialSpecError, SocialRuntimeError, OSError, json.JSONDecodeError) as err:
@@ -44,6 +50,27 @@ def main(argv=None) -> int:
     )
     sys.stdout.write("\n")
     return 0 if result.qa.passed else 1
+
+
+def _render(package: str) -> int:
+    try:
+        result = render_package(package)
+    except RenderError as err:
+        print(f"social render refused: {err}", file=sys.stderr)
+        return 2
+    json.dump(
+        {
+            "passed": result.passed,
+            "slides": [str(path) for path in result.slides],
+            "zip_path": str(result.zip_path) if result.zip_path else None,
+            "render_report": str(result.report),
+            "warnings": result.warnings,
+            "failed_checks": [f"{c['name']}: {c['message']}" for c in result.checks if not c["passed"]],
+        },
+        sys.stdout, indent=2,
+    )
+    sys.stdout.write("\n")
+    return 0 if result.passed else 1
 
 
 def _write_frames(project_dir: Path) -> int:

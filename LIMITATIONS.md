@@ -54,7 +54,7 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 | LIM-020 | Block metadata does not yet encode enough editorial layout intent | P1 | Mitigated | Phase 16 |
 | LIM-021 | No asset is approved for social use and the vertical/square inventory is thin | P1 | Mitigated | Phase 17 |
 | LIM-022 | A landscape-dominant library cannot satisfy social formats by selection alone | P1 | Mitigated | Phase 17 |
-| LIM-023 | The social runtime emits composition packages, not rendered slides, against unverified format values | P1 | Open | Phase 17 |
+| LIM-023 | The social runtime emits composition packages, not rendered slides, against unverified format values | P1 | Mitigated | Phase 17 |
 
 ## Detailed Entries
 
@@ -371,7 +371,7 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 ### LIM-023: The social runtime emits composition packages, not rendered slides, against unverified format values
 
 - Priority: P1
-- Status: Open
+- Status: Mitigated
 - Owner phase: Phase 17
 - Dependencies: A decision on how pixels are produced within a standard-library Python stack, verified platform documentation, and LIM-022 crop provenance.
 - Evidence: `tools/social_runtime/README.md`, `tools/social_runtime/platform-formats.json`, AUD-101.
@@ -380,6 +380,7 @@ This register does not replace phase specs, `STATUS.md`, `ROADMAP.md`, `CHANGELO
 - Current control: Release builds are refused while the requested format is unverified. Each build reports the unverified-dimension, draft-template, and draft-copy conditions as warnings in the QA report and on the review sheet.
 - Scoring could help: No. These are missing capabilities and unverified facts, not judgments.
 - Candidate metrics: Share of slides delivered as verified final-dimension images, and count of sidecar formats carrying a verification date and source.
+- Current mitigation, 2026-10-09: `tools/social_runtime/render.py` and `render_slides.cjs` fill each slide's scaffold frame in Chromium and export it at the format's pixel size as `slides/<variant>/slide-NN.jpg`, with a `render-report.json` that checks output dimensions, file size, logo load, and each text slot's rendered line count and position inside the slide. An image smaller than its area is reported as enlarged. The render step does not crop: a landscape source still needs a crop produced elsewhere, and a planned crop is rendered from its uncropped source with a warning. Format values remain unverified, so release builds remain blocked. The earlier "Current behavior" text describes the build step alone.
 - Closure criteria: Verify and date every pinned format against platform documentation; add a render step that outputs final-dimension slide images with provenance, or record an explicit decision that rendering happens in a named external tool; and verify the pixel dimensions of directly used assets.
 
 ## Entry Template
@@ -435,3 +436,4 @@ Use this template for new limitations:
 - 2026-10-06: Drafted Phase 17 social medium expansion and added LIM-021 and LIM-022 after measuring the current Rider manifest. No asset carries a social approval role, and the image library is 100 landscape against 29 square and 16 portrait, so social requires both authorized curation and a provenance-bearing crop operation before any real build.
 - 2026-10-06: Curated Rider social approvals cluster by cluster with the owner and committed them as a versioned overlay with approver provenance and a manifest hash binding. LIM-021 is mitigated; it stays open until a carousel template demonstrably fills from social-approved records, square/portrait crop-source scope is decided, and the floor-plan PDF pipeline exists. LIM-022 remains open because no crop operation is implemented.
 - 2026-10-06: Built the first `tools/social_runtime/` increment. LIM-022 moved to Mitigated because crop provenance is now validated, though no crop is performed. Added LIM-023 because the runtime emits composition packages rather than rendered slides, accepts directly used assets on orientation alone, and pins format values that have not been verified.
+- 2026-10-09: Added the social render step. LIM-023 moved to Mitigated: slides are now exported as final-dimension images with a render report, but format values are still unverified and no crop is performed.
