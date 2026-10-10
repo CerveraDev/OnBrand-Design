@@ -11,14 +11,40 @@
     "in-house"
   ],
   "image_sources": [
-    "approved"
+    "approved",
+    "user-supplied"
   ],
   "min_slides": 2,
   "max_slides": 10,
   "sequence": [
     {
+      "role": "opener",
+      "min": 0,
+      "max": 1,
+      "frames": [
+        "SP-01",
+        "SP-02",
+        "SP-03",
+        "SP-04",
+        "SP-05",
+        "SP-06",
+        "SP-07",
+        "SP-08",
+        "SP-09",
+        "SP-10",
+        "SP-11",
+        "SP-12",
+        "SP-13",
+        "SP-14",
+        "SP-15",
+        "SP-16",
+        "SP-17",
+        "SP-18"
+      ]
+    },
+    {
       "role": "feature",
-      "min": 2,
+      "min": 1,
       "max": 10,
       "frames": [
         "SC-01",
@@ -27,7 +53,15 @@
         "SC-04",
         "SC-05",
         "SC-06",
-        "SC-07"
+        "SC-07",
+        "SG-01",
+        "SG-02",
+        "SG-03",
+        "SG-04",
+        "SG-05",
+        "SG-06",
+        "SG-07",
+        "SG-08"
       ]
     }
   ]

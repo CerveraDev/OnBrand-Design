@@ -16,8 +16,10 @@ from tools.rider_campaign_runtime import copy_allocation as email_copy
 from tools.social_runtime import SocialRuntimeError, SocialSpecError, build_social_from_spec
 from tools.social_runtime import copy_allocation as social_copy
 from tools.social_runtime.assets import broker_safe_assets
+from tools.social_runtime.catalog import CatalogError, write_catalog
 from tools.social_runtime.formats import FormatError, load_formats, require_format
 from tools.social_runtime.frames import build_frame_definitions, load_frames
+from tools.social_runtime.gallery import GalleryError, write_gallery
 from tools.social_runtime.profile import avatar_path, load_profile
 from tools.social_runtime.render import RenderError, render_package
 from tools.social_runtime.supplied import load_supplied_image
@@ -727,7 +729,7 @@ class IntegrationTests(unittest.TestCase):
             covered |= set(template["frame_definitions"])
         self.assertEqual(covered, set(frames))
 
-    def test_rider_owner_decisions_of_2026_10_09_hold(self):
+    def test_rider_owner_decisions_hold(self):
         formats = load_formats()["formats"]
         for format_id in ("post-4x5", "carousel-4x5"):
             self.assertEqual((formats[format_id]["width"], formats[format_id]["height"]), (1200, 1500))
@@ -735,8 +737,98 @@ class IntegrationTests(unittest.TestCase):
         self.assertEqual({slot["fit"] for frame in frames.values() for slot in frame["image_slots"]}, {"cover"})
         sources = {code: load_template(RIDER_SOCIAL / "templates", code)["image_sources"]
                    for code in ("PST-01", "CAR-01", "GAL-01")}
-        self.assertEqual(sources, {"PST-01": ["approved"], "CAR-01": ["approved"],
-                                   "GAL-01": ["approved", "user-supplied"]})
+        # Owner decision of 2026-10-10: every post type takes the user's own images as well.
+        self.assertEqual(set(map(tuple, sources.values())), {("approved", "user-supplied")})
+
+
+class ImageCatalogTests(SocialRuntimeCase):
+    def catalog(self, fail=()):
+        (self.project / "project.json").write_text(
+            json.dumps({"project_name": "Demo", "project_slug": "demo"}), encoding="utf-8")
+        self.thumb_jobs = []
+
+        def thumbnailer(job):
+            self.thumb_jobs.append(job)
+            items = []
+            for item in job["items"]:
+                if any(name in item["url"] for name in fail):
+                    items.append({"error": "refused"})
+                    continue
+                Path(item["output"]).write_bytes(b"thumb")
+                items.append({"width": 4000, "height": 5000})
+            return {"items": items}
+
+        return write_catalog(self.project, manifest_path=self.manifest, output_dir=self.base / "catalog",
+                             thumbnailer=thumbnailer)
+
+    def test_the_page_lists_every_social_approved_image_and_nothing_else(self):
+        result = self.catalog()
+        approved = sorted(name for name, _, _, roles in ASSETS if roles)
+        page = result.path.read_text()
+        data = json.loads(page.split('<script id="data" type="application/json">')[1].split("</script>")[0])
+        self.assertEqual(sorted(image["name"] for image in data["images"]), approved)
+        self.assertEqual(result.images, len(approved))
+        self.assertEqual(result.without_preview, [])
+        for image in data["images"]:
+            self.assertTrue((result.path.parent / image["thumb"]).is_file())
+            self.assertEqual((image["width"], image["height"]), (4000, 5000))
+        crop_only = {name for name, _, _, roles in ASSETS if roles == ["social-crop-source"]}
+        self.assertEqual({image["name"] for image in data["images"] if image["crop_only"]}, crop_only)
+        self.assertNotIn("SECRET", page)
+        self.assertNotIn("private-folder", page)
+        self.assertNotIn(str(self.base), page)
+
+    def test_previews_are_made_once_and_a_failed_one_is_reported_and_retried(self):
+        approved = sorted(name for name, _, _, roles in ASSETS if roles)
+        result = self.catalog(fail=(approved[0],))
+        self.assertEqual(result.without_preview, [approved[0]])
+        self.assertEqual(len(self.thumb_jobs[0]["items"]), len(approved))
+        result = self.catalog()
+        self.assertEqual(result.without_preview, [])
+        self.assertEqual([item["url"] for item in self.thumb_jobs[0]["items"]], [f"https://cdn.example.com/{approved[0]}"])
+        self.catalog()
+        self.assertEqual(self.thumb_jobs, [])
+
+    def test_a_catalog_with_no_bound_approvals_is_refused(self):
+        self.manifest.write_text("[]", encoding="utf-8")
+        with self.assertRaises(CatalogError):
+            self.catalog()
+
+
+class LayoutGalleryTests(unittest.TestCase):
+    def test_the_committed_rider_gallery_is_current_and_shows_every_frame(self):
+        project = ROOT / "projects" / "the-rider"
+        committed = (project / "social" / "scaffold" / "gallery.html").read_text(encoding="utf-8")
+        page = write_gallery(project).read_text(encoding="utf-8")
+        self.assertEqual(page, committed, "regenerate with: python3 -m tools.social_runtime.cli gallery --project the-rider")
+        data = json.loads(page.split('<script id="data" type="application/json">')[1].split("</script>")[0])
+        frames = load_frames(project / "social" / "templates" / "frames.json")["frames"]
+        self.assertEqual([frame["id"] for frame in data["frames"]], list(frames))
+        for frame in data["frames"]:
+            self.assertTrue((project / "social" / "scaffold" / frame["preview"]).is_file())
+            self.assertTrue(frame["used"], frame["id"])
+        self.assertEqual({t["code"]: t["rule"] for t in data["templates"]}, {
+            "CAR-01": "2 to 10 slides, can open with one SP layout, then SC or SG layouts", "PST-01": "1 slide",
+            "GAL-01": "3 to 10 slides, starts with SG-01, ends with SG-08",
+        })
+        self.assertIn("The Rider Residences social layouts", page)
+        self.assertNotIn(str(ROOT), page)
+
+    def test_the_rider_carousel_opens_with_a_single_post_layout_and_takes_gallery_slides(self):
+        template = load_template(ROOT / "projects" / "the-rider" / "social" / "templates", "CAR-01")
+        slides = lambda *pairs: [{"role": role, "frame": frame} for role, frame in pairs]
+        mixed = match_slides(template, slides(("opener", "SP-04"), ("feature", "SC-02"), ("feature", "SG-03")))
+        self.assertEqual([step["frame"] for step in mixed], ["SP-04", "SC-02", "SG-03"])
+        match_slides(template, slides(("feature", "SC-01"), ("feature", "SG-08")))
+        for refused in (slides(("feature", "SC-01"), ("opener", "SP-04")),
+                        slides(("opener", "SP-04"), ("opener", "SP-05"), ("feature", "SC-01")),
+                        slides(("feature", "SC-01"), ("feature", "SP-04"))):
+            with self.assertRaises(TemplateError):
+                match_slides(template, refused)
+
+    def test_a_project_without_a_scaffold_is_refused(self):
+        with self.assertRaises(GalleryError):
+            write_gallery(ROOT / "projects" / "cassia")
 
 
 if __name__ == "__main__":

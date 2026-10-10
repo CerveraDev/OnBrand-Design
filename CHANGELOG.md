@@ -16,6 +16,8 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Added
 
+- An image catalog page: `python3 -m tools.social_runtime.cli images --project <slug>` writes and opens a browsable page of every image approved for social use, with cached previews, filters, and a selection bar (`tools/social_runtime/catalog.py`, AUD-109).
+- A layout gallery for a project's social scaffold: `python3 -m tools.social_runtime.cli gallery --project <slug>` writes `gallery.html` and opens it in the browser, with every layout's preview, contents, and a sequence checker (`tools/social_runtime/gallery.py`, AUD-108).
 - A feed simulator written by every social render (`simulator.html`): a phone-style preview of the rendered slides with swipe, caption, hashtags, alt text, and dark mode, scaled to the browser window (`tools/social_runtime/simulator.py`, AUD-107).
 - A per-project `profile.json` for admin-entered facts (official name, nickname, phone, email, sales gallery and project site addresses, Instagram handle, avatar), created for every new project and read by the simulator (`tools/social_runtime/profile.py`, AUD-107).
 - A project `overrides.css` layered on the social scaffold at render time, used to give every Rider carousel frame the same subheading-to-copy spacing, scaffold-style spacing around italic words, and a five-slide amenities carousel preview example (AUD-106).
@@ -103,6 +105,8 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Changed
 
+- Rider `CAR-01` carousels may open with one single-post (`SP`) layout and may use photo gallery (`SG`) slides alongside carousel (`SC`) slides (AUD-108).
+- Rider `PST-01` and `CAR-01` accept user-supplied images as well as approved catalog images, matching `GAL-01` (AUD-108).
 - By owner decision of 2026-10-09 (AUD-104): the 4:5 social formats export at 1200x1500 instead of 1080x1350, every frame image slot cover-fits its image including `SP-01`, and social templates declare `image_sources`.
 - The corrected CFG-05 proof is classified as an improved interim baseline after owner review; final creative approval now waits for the annotated expanded scaffold and Phase 16 layout refinement.
 - Phase 15 Workstreams A, B, and C are implemented. The corrected branded proof is retained as an improved interim baseline pending Phase 16 layout refinement; the earlier Phase 14 screenshots remain technical-only evidence.

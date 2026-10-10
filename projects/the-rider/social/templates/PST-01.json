@@ -11,7 +11,8 @@
     "in-house"
   ],
   "image_sources": [
-    "approved"
+    "approved",
+    "user-supplied"
   ],
   "min_slides": 1,
   "max_slides": 1,

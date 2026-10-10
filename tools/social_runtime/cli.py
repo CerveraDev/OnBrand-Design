@@ -3,6 +3,8 @@
 python3 -m tools.social_runtime.cli build --spec <path>
 python3 -m tools.social_runtime.cli frames --project <slug>
 python3 -m tools.social_runtime.cli render --package <directory>
+python3 -m tools.social_runtime.cli gallery --project <slug>
+python3 -m tools.social_runtime.cli images --project <slug>
 """
 
 from __future__ import annotations
@@ -11,8 +13,11 @@ import argparse
 import json
 from pathlib import Path
 import sys
+import webbrowser
 
+from .catalog import CatalogError, write_catalog
 from .frames import FRAMES_FILE, build_frame_definitions
+from .gallery import GalleryError, write_gallery
 from .render import RenderError, render_package
 from .runtime import ROOT, SocialRuntimeError, build_social
 from .schema import SocialSpecError
@@ -27,7 +32,17 @@ def main(argv=None) -> int:
     frames.add_argument("--project", required=True, help="Project slug under projects/.")
     render = commands.add_parser("render", help="Render a built package's slides from the project scaffold.")
     render.add_argument("--package", required=True, help="Path to a built social package directory.")
+    gallery = commands.add_parser("gallery", help="Write a project's layout gallery and open it in the browser.")
+    gallery.add_argument("--project", required=True, help="Project slug under projects/.")
+    gallery.add_argument("--no-open", action="store_true", help="Write the gallery without opening it.")
+    images = commands.add_parser("images", help="Write a project's image catalog page and open it in the browser.")
+    images.add_argument("--project", required=True, help="Project slug under projects/.")
+    images.add_argument("--no-open", action="store_true", help="Write the page without opening it.")
     args = parser.parse_args(argv)
+    if args.command == "images":
+        return _images(ROOT / "projects" / args.project, show=not args.no_open)
+    if args.command == "gallery":
+        return _gallery(ROOT / "projects" / args.project, show=not args.no_open)
     if args.command == "frames":
         return _write_frames(ROOT / "projects" / args.project)
     if args.command == "render":
@@ -72,6 +87,34 @@ def _render(package: str) -> int:
     )
     sys.stdout.write("\n")
     return 0 if result.passed else 1
+
+
+def _gallery(project_dir: Path, *, show: bool) -> int:
+    try:
+        path = write_gallery(project_dir)
+    except GalleryError as err:
+        print(f"layout gallery refused: {err}", file=sys.stderr)
+        return 2
+    if show:
+        webbrowser.open(path.resolve().as_uri())
+    print(f"Layout gallery written to {path.relative_to(ROOT)}" + (" and opened in the browser" if show else ""))
+    return 0
+
+
+def _images(project_dir: Path, *, show: bool) -> int:
+    try:
+        result = write_catalog(project_dir)
+    except CatalogError as err:
+        print(f"image catalog refused: {err}", file=sys.stderr)
+        return 2
+    if show:
+        webbrowser.open(result.path.resolve().as_uri())
+    print(f"Image catalog with {result.images} images written to {result.path.relative_to(ROOT)}"
+          + (" and opened in the browser" if show else ""))
+    if result.without_preview:
+        print(f"{len(result.without_preview)} image(s) have no preview yet; run the command again to retry: "
+              + ", ".join(result.without_preview), file=sys.stderr)
+    return 0
 
 
 def _write_frames(project_dir: Path) -> int:
