@@ -4,7 +4,7 @@
   "source": {
     "url": "http://start-up.local/social-scaffolding/",
     "imported": "2026-10-09",
-    "raw_page_sha256": "e8ed86499a87d9ba06306dbf970d6298945874c373b65078d652d408e7f3577d",
+    "raw_page_sha256": "ac7b177b9645e3dc4663420f1db0ceee03798b178e7805c1f8eb13666f1a211d",
     "viewport": {
       "width": 1512,
       "height": 900
@@ -101,6 +101,8 @@
             "text_transform": "none",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 420,
             "vertical_zone": "top",
             "box": {
               "x": 20,
@@ -187,6 +189,8 @@
             "text_transform": "uppercase",
             "text_align": "center",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 500,
             "vertical_zone": "top",
             "box": {
               "x": 88,
@@ -273,6 +277,8 @@
             "text_transform": "uppercase",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 500,
             "vertical_zone": "bottom",
             "box": {
               "x": 50,
@@ -359,6 +365,8 @@
             "text_transform": "uppercase",
             "text_align": "center",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 500,
             "vertical_zone": "top",
             "box": {
               "x": 88,
@@ -381,6 +389,8 @@
             "text_transform": "none",
             "text_align": "center",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 500,
             "vertical_zone": "top",
             "box": {
               "x": 113,
@@ -469,6 +479,8 @@
             "text_transform": "uppercase",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 500,
             "vertical_zone": "bottom",
             "box": {
               "x": 50,
@@ -491,6 +503,8 @@
             "text_transform": "none",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 500,
             "vertical_zone": "bottom",
             "box": {
               "x": 50,
@@ -579,6 +593,8 @@
             "text_transform": "uppercase",
             "text_align": "center",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 500,
             "vertical_zone": "top",
             "box": {
               "x": 88,
@@ -601,6 +617,8 @@
             "text_transform": "none",
             "text_align": "center",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 500,
             "vertical_zone": "top",
             "box": {
               "x": 113,
@@ -687,6 +705,8 @@
             "text_transform": "uppercase",
             "text_align": "center",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 500,
             "vertical_zone": "bottom",
             "box": {
               "x": 88,
@@ -709,6 +729,8 @@
             "text_transform": "none",
             "text_align": "center",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 500,
             "vertical_zone": "bottom",
             "box": {
               "x": 113,
@@ -795,6 +817,8 @@
             "text_transform": "uppercase",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 500,
             "vertical_zone": "bottom",
             "box": {
               "x": 50,
@@ -817,6 +841,8 @@
             "text_transform": "none",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 500,
             "vertical_zone": "bottom",
             "box": {
               "x": 50,
@@ -904,6 +930,8 @@
             "text_transform": "uppercase",
             "text_align": "center",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 500,
             "vertical_zone": "middle",
             "box": {
               "x": 88,
@@ -926,6 +954,8 @@
             "text_transform": "none",
             "text_align": "center",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 500,
             "vertical_zone": "middle",
             "box": {
               "x": 113,
@@ -1012,6 +1042,8 @@
             "text_transform": "uppercase",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 500,
             "vertical_zone": "bottom",
             "box": {
               "x": 50,
@@ -1034,6 +1066,8 @@
             "text_transform": "none",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 500,
             "vertical_zone": "bottom",
             "box": {
               "x": 50,
@@ -1119,6 +1153,8 @@
             "text_transform": "uppercase",
             "text_align": "center",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 540,
             "vertical_zone": "top",
             "box": {
               "x": 71,
@@ -1209,6 +1245,8 @@
             "text_transform": "uppercase",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 540,
             "vertical_zone": "bottom",
             "box": {
               "x": 30,
@@ -1297,6 +1335,8 @@
             "text_transform": "uppercase",
             "text_align": "center",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 540,
             "vertical_zone": "top",
             "box": {
               "x": 71,
@@ -1319,6 +1359,8 @@
             "text_transform": "none",
             "text_align": "center",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 540,
             "vertical_zone": "middle",
             "box": {
               "x": 98,
@@ -1409,6 +1451,8 @@
             "text_transform": "uppercase",
             "text_align": "center",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 540,
             "vertical_zone": "bottom",
             "box": {
               "x": 71,
@@ -1431,6 +1475,8 @@
             "text_transform": "none",
             "text_align": "center",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 540,
             "vertical_zone": "bottom",
             "box": {
               "x": 98,
@@ -1519,6 +1565,8 @@
             "text_transform": "uppercase",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 540,
             "vertical_zone": "bottom",
             "box": {
               "x": 30,
@@ -1541,6 +1589,8 @@
             "text_transform": "none",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 540,
             "vertical_zone": "bottom",
             "box": {
               "x": 30,
@@ -1628,6 +1678,8 @@
             "text_transform": "uppercase",
             "text_align": "center",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 540,
             "vertical_zone": "middle",
             "box": {
               "x": 71,
@@ -1650,6 +1702,8 @@
             "text_transform": "capitalize",
             "text_align": "center",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 540,
             "vertical_zone": "middle",
             "box": {
               "x": 98,
@@ -1734,6 +1788,8 @@
             "text_transform": "uppercase",
             "text_align": "center",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 540,
             "vertical_zone": "middle",
             "box": {
               "x": 71,
@@ -1756,6 +1812,8 @@
             "text_transform": "capitalize",
             "text_align": "center",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 540,
             "vertical_zone": "middle",
             "box": {
               "x": 98,
@@ -1841,6 +1899,8 @@
             "text_transform": "uppercase",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 540,
             "vertical_zone": "bottom",
             "box": {
               "x": 30,
@@ -1863,6 +1923,8 @@
             "text_transform": "capitalize",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 540,
             "vertical_zone": "bottom",
             "box": {
               "x": 30,
@@ -1943,6 +2005,8 @@
             "text_transform": "uppercase",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 385,
             "vertical_zone": "top",
             "box": {
               "x": 30,
@@ -1966,6 +2030,8 @@
             "text_transform": "capitalize",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 385,
             "vertical_zone": "top",
             "box": {
               "x": 30,
@@ -1988,6 +2054,8 @@
             "text_transform": "none",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 1,
+            "available_width": 385,
             "vertical_zone": "top",
             "box": {
               "x": 30,
@@ -2067,6 +2135,8 @@
             "text_transform": "uppercase",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 1,
+            "available_width": 540,
             "vertical_zone": "top",
             "box": {
               "x": 30,
@@ -2090,6 +2160,8 @@
             "text_transform": "none",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 540,
             "vertical_zone": "top",
             "box": {
               "x": 30,
@@ -2170,6 +2242,8 @@
             "text_transform": "uppercase",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 540,
             "vertical_zone": "bottom",
             "box": {
               "x": 30,
@@ -2193,6 +2267,8 @@
             "text_transform": "none",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 540,
             "vertical_zone": "bottom",
             "box": {
               "x": 30,
@@ -2286,6 +2362,8 @@
             "text_transform": "uppercase",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 3,
+            "available_width": 240,
             "vertical_zone": "bottom",
             "box": {
               "x": 50,
@@ -2310,6 +2388,8 @@
             "text_transform": "none",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 3,
+            "available_width": 240,
             "vertical_zone": "bottom",
             "box": {
               "x": 50,
@@ -2400,6 +2480,8 @@
             "text_transform": "uppercase",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 3,
+            "available_width": 240,
             "vertical_zone": "bottom",
             "box": {
               "x": 310,
@@ -2424,6 +2506,8 @@
             "text_transform": "none",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 3,
+            "available_width": 240,
             "vertical_zone": "bottom",
             "box": {
               "x": 310,
@@ -2514,6 +2598,8 @@
             "text_transform": "uppercase",
             "text_align": "left",
             "color": "rgb(0, 0, 0)",
+            "rendered_lines": 3,
+            "available_width": 250,
             "vertical_zone": "bottom",
             "box": {
               "x": 40,
@@ -2538,6 +2624,8 @@
             "text_transform": "none",
             "text_align": "left",
             "color": "rgb(0, 0, 0)",
+            "rendered_lines": 3,
+            "available_width": 250,
             "vertical_zone": "bottom",
             "box": {
               "x": 40,
@@ -2628,6 +2716,8 @@
             "text_transform": "uppercase",
             "text_align": "left",
             "color": "rgb(0, 0, 0)",
+            "rendered_lines": 3,
+            "available_width": 250,
             "vertical_zone": "bottom",
             "box": {
               "x": 310,
@@ -2652,6 +2742,8 @@
             "text_transform": "none",
             "text_align": "left",
             "color": "rgb(0, 0, 0)",
+            "rendered_lines": 3,
+            "available_width": 250,
             "vertical_zone": "bottom",
             "box": {
               "x": 310,
@@ -2738,6 +2830,8 @@
             "text_transform": "uppercase",
             "text_align": "center",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 540,
             "vertical_zone": "middle",
             "box": {
               "x": 71,
@@ -2760,6 +2854,8 @@
             "text_transform": "uppercase",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 1,
+            "available_width": 540,
             "vertical_zone": "bottom",
             "box": {
               "x": 133,
@@ -2882,6 +2978,8 @@
             "text_transform": "uppercase",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 1,
+            "available_width": 560,
             "vertical_zone": "bottom",
             "box": {
               "x": 133,
@@ -3017,6 +3115,8 @@
             "text_transform": "uppercase",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 1,
+            "available_width": 560,
             "vertical_zone": "bottom",
             "box": {
               "x": 133,
@@ -3139,6 +3239,8 @@
             "text_transform": "uppercase",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 1,
+            "available_width": 560,
             "vertical_zone": "bottom",
             "box": {
               "x": 133,
@@ -3248,6 +3350,8 @@
             "text_transform": "uppercase",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 1,
+            "available_width": 560,
             "vertical_zone": "bottom",
             "box": {
               "x": 133,
@@ -3409,6 +3513,8 @@
             "text_transform": "uppercase",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 1,
+            "available_width": 560,
             "vertical_zone": "bottom",
             "box": {
               "x": 133,
@@ -3544,6 +3650,8 @@
             "text_transform": "uppercase",
             "text_align": "left",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 1,
+            "available_width": 560,
             "vertical_zone": "bottom",
             "box": {
               "x": 133,
@@ -3640,6 +3748,8 @@
             "text_transform": "uppercase",
             "text_align": "center",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 1,
+            "available_width": 560,
             "vertical_zone": "top",
             "box": {
               "x": 62,
@@ -3663,6 +3773,8 @@
             "text_transform": "uppercase",
             "text_align": "center",
             "color": "rgb(255, 255, 255)",
+            "rendered_lines": 2,
+            "available_width": 560,
             "vertical_zone": "bottom",
             "box": {
               "x": 109,

@@ -15,12 +15,15 @@ from tools.social_runtime import SocialRuntimeError, SocialSpecError, build_soci
 from tools.social_runtime import copy_allocation as social_copy
 from tools.social_runtime.assets import broker_safe_assets
 from tools.social_runtime.formats import FormatError, load_formats, require_format
-from tools.social_runtime.templates import TemplateError, match_slides
+from tools.social_runtime.frames import build_frame_definitions, load_frames
+from tools.social_runtime.supplied import load_supplied_image
+from tools.social_runtime.templates import TemplateError, load_template, match_slides
 
 
 ROOT = Path(__file__).resolve().parents[1]
 RUNTIME_DIR = ROOT / "tools" / "social_runtime"
-RIDER_PREVIEW = ROOT / "projects" / "the-rider" / "social" / "examples" / "feature-carousel.preview.json"
+RIDER_SOCIAL = ROOT / "projects" / "the-rider" / "social"
+RIDER_PREVIEW = RIDER_SOCIAL / "examples" / "feature-carousel.preview.json"
 
 ASSETS = (
     ("sq-1.jpg", "square", ["hero"], ["social-post", "social-carousel"]),
@@ -31,6 +34,37 @@ ASSETS = (
     ("agent.jpg", "square", ["agent-footer"], None),
 )
 SLOT_CHANNELS = {"headline": "on-image-text", "body": "slide-text", "action": "on-image-text"}
+BACKGROUND = {"slot": "background", "width": 600, "height": 600, "shape": "square", "fit": "cover"}
+
+
+def _text_slot(channel="on-image-text", required=True, max_chars=40) -> dict:
+    return {"channel": channel, "required": required, "max_lines": 2, "max_chars": max_chars, "italic_accent": False}
+
+
+def _frame(text_slots: dict, *, locked=None, images=(BACKGROUND,)) -> dict:
+    return {"family": "carousel", "canvas": {"width": 600, "height": 600}, "image_slots": list(images),
+            "text_slots": text_slots, "locked": locked or {}}
+
+
+FRAMES = {
+    "TA-01": _frame({"headline": _text_slot(), "subhead": _text_slot(required=False, max_chars=70)},
+                    locked={"wordmark": "The Rider"}),
+    "TB-01": _frame({"headline": _text_slot(), "body": _text_slot("slide-text", False, 110)}),
+    "TC-01": _frame({"headline": _text_slot(), "action": _text_slot(max_chars=30)}, locked={"wordmark": "The Rider"}),
+    "TD-01": _frame({"headline": _text_slot()},
+                    images=(BACKGROUND, {"slot": "image-1", "width": 300, "height": 200, "shape": "landscape", "fit": "cover"})),
+}
+TEMPLATE = {
+    "schema_version": "2.0", "code": "CAR-01", "label": "Feature Carousel", "kind": "carousel",
+    "formats": ["carousel-1x1"], "approval_status": "approved", "audiences": ["in-house", "outside-broker"],
+    "image_sources": ["approved"],
+    "min_slides": 3, "max_slides": 6,
+    "sequence": [
+        {"role": "opener", "min": 1, "max": 1, "frames": ["TA-01"]},
+        {"role": "feature", "min": 1, "max": 4, "frames": ["TB-01", "TD-01"]},
+        {"role": "call-to-action", "min": 1, "max": 1, "frames": ["TC-01"]},
+    ],
+}
 
 
 def _png(width: int, height: int) -> bytes:
@@ -71,10 +105,10 @@ class SocialRuntimeCase(unittest.TestCase):
             "excluded": [],
         }
         self._write_overlay()
-        self.template = json.loads((ROOT / "projects/the-rider/social/templates/CAR-01.json").read_text())
-        self.template["approval_status"] = "approved"
-        self.template["audiences"] = ["in-house", "outside-broker"]
+        self.template = json.loads(json.dumps(TEMPLATE))
         self._write_template()
+        (self.project / "social" / "templates" / "frames.json").write_text(
+            json.dumps({"schema_version": "1.0", "frames": FRAMES}), encoding="utf-8")
         self.formats = self.base / "formats.json"
         sidecar = load_formats()
         for entry in sidecar["formats"].values():
@@ -90,12 +124,13 @@ class SocialRuntimeCase(unittest.TestCase):
 
     def spec(self, **overrides) -> dict:
         slides = [
-            {"role": "opener", "image": {"asset": "sq-1.jpg"}, "text": {"headline": "Arrive at the tower"},
+            {"role": "opener", "frame": "TA-01", "images": {"background": {"asset": "sq-1.jpg"}},
+             "text": {"headline": "Arrive at the tower"},
              "alt_text": "Tower exterior seen from the street"},
-            {"role": "feature", "image": {"asset": "sq-2.jpg"},
+            {"role": "feature", "frame": "TB-01", "images": {"background": {"asset": "sq-2.jpg"}},
              "text": {"headline": "Kitchens built for hosting", "body": "Stone counters and integrated appliances in every plan"},
              "alt_text": "Kitchen with an island and pendant lights"},
-            {"role": "call-to-action", "image": {"asset": "sq-3.jpg"},
+            {"role": "call-to-action", "frame": "TC-01", "images": {"background": {"asset": "sq-3.jpg"}},
              "text": {"headline": "See the residences", "action": "Book a private tour"},
              "alt_text": "Tower entrance at dusk"},
         ]
@@ -143,7 +178,7 @@ class BuildTests(SocialRuntimeCase):
         package = json.loads(result.package_manifest.read_text())
         self.assertEqual(list(package["variants"]), ["branded"])
         self.assertEqual(package["variants"]["branded"]["slides"][0]["locked"], {"wordmark": "The Rider"})
-        self.assertEqual(package["variants"]["branded"]["slides"][1]["image"]["src"], "https://cdn.example.com/sq-2.jpg")
+        self.assertEqual(package["variants"]["branded"]["slides"][1]["images"][0]["src"], "https://cdn.example.com/sq-2.jpg")
 
     def test_delivered_files_carry_no_private_identifiers(self):
         result = self.build(self.spec())
@@ -213,7 +248,33 @@ class FormatAndTemplateTests(SocialRuntimeCase):
         spec["slides"][0], spec["slides"][1] = spec["slides"][1], spec["slides"][0]
         self.refused(self.allocate(spec), "expects role 'opener' at slide 1")
         with self.assertRaises(TemplateError):
-            match_slides(self.template, ["opener", "call-to-action", "call-to-action"])
+            match_slides(load_template(self.project / "social" / "templates", "CAR-01"),
+                         [{"role": "opener", "frame": "TA-01"}] + [{"role": "call-to-action", "frame": "TC-01"}] * 2)
+
+    def test_slide_frame_must_be_one_the_template_allows_for_its_role(self):
+        spec = self.spec()
+        spec["slides"][1]["frame"] = "TC-01"
+        self.refused(spec, "does not allow frame 'TC-01' for role 'feature' at slide 2; allowed: TB-01, TD-01")
+        self.template["sequence"][1]["frames"].append("ZZ-99")
+        self._write_template()
+        self.refused(self.spec(), "names undefined frame(s): ZZ-99")
+
+    def test_frame_canvas_must_fit_the_format(self):
+        self.template["formats"].append("carousel-4x5")
+        self._write_template()
+        spec = self.spec()
+        spec["composition"]["format"] = "carousel-4x5"
+        self.refused(spec, "Frame TA-01 is 600x600 and does not fit format 'carousel-4x5'")
+
+    def test_every_image_slot_of_a_frame_must_be_filled_and_no_other(self):
+        spec = self.spec()
+        spec["slides"][1]["frame"] = "TD-01"
+        del spec["slides"][1]["text"]["body"]
+        self.refused(self.allocate(spec), "Slide 2 leaves image slot(s) empty: image-1")
+        spec["slides"][1]["images"]["image-1"] = {"asset": "sq-3.jpg"}
+        self.refused(self.allocate(spec), "cannot be used directly in the landscape 'image-1' slot")
+        spec["slides"][0]["images"]["image-1"] = {"asset": "sq-3.jpg"}
+        self.refused(self.allocate(spec), "Slide 1 fills image slot(s) frame TA-01 does not define: image-1")
 
     def test_locked_content_and_required_slots_are_enforced(self):
         spec = self.spec()
@@ -227,12 +288,12 @@ class FormatAndTemplateTests(SocialRuntimeCase):
 class AssetTests(SocialRuntimeCase):
     def test_asset_without_social_approval_fails_with_reason(self):
         spec = self.spec()
-        spec["slides"][1]["image"] = {"asset": "plain.jpg"}
+        spec["slides"][1]["images"]["background"] = {"asset": "plain.jpg"}
         self.refused(spec, "'plain.jpg' is not approved for 'social-carousel' (approved for: no social role)")
 
     def test_crop_source_cannot_be_used_directly(self):
         spec = self.spec()
-        spec["slides"][1]["image"] = {"asset": "wide-1.jpg"}
+        spec["slides"][1]["images"]["background"] = {"asset": "wide-1.jpg"}
         self.refused(spec, "is not approved for 'social-carousel'")
 
     def test_restricted_record_can_never_be_approved_into_a_build(self):
@@ -266,7 +327,7 @@ class BrokerTests(SocialRuntimeCase):
 
     def test_broker_build_cannot_reach_an_agent_record(self):
         spec = self.broker_spec()
-        spec["slides"][1]["image"] = {"asset": "agent.jpg"}
+        spec["slides"][1]["images"]["background"] = {"asset": "agent.jpg"}
         self.refused(spec, "'agent.jpg' is not in the social catalog for this audience")
 
     def test_broker_build_needs_an_approved_broker_template(self):
@@ -297,18 +358,17 @@ class CropTests(SocialRuntimeCase):
     def crop_spec(self, mode="composition-preview", status="approved", data=None) -> dict:
         spec = self.spec()
         spec["build"]["mode"] = mode
-        spec["composition"]["format"] = "carousel-4x5"
-        crop = {"id": "crop-1", "source_asset": "wide-1.jpg", "format": "carousel-4x5",
+        crop = {"id": "crop-1", "source_asset": "wide-1.jpg", "format": "carousel-1x1",
                 "source_dimensions": {"width": 3000, "height": 2000},
-                "geometry": {"x": 700, "y": 0, "width": 1600, "height": 2000},
+                "geometry": {"x": 500, "y": 0, "width": 2000, "height": 2000},
                 "focal_point": {"x": 1500, "y": 1000}, "approval_status": status}
         if status == "approved":
-            data = data or _png(1080, 1350)
+            data = data or _png(1080, 1080)
             (self.base / "crop-1.png").write_bytes(data)
-            crop["output"] = {"src": "crop-1.png", "sha256": hashlib.sha256(data).hexdigest(), "width": 1080, "height": 1350}
+            crop["output"] = {"src": "crop-1.png", "sha256": hashlib.sha256(data).hexdigest(), "width": 1080, "height": 1080}
         spec["crops"] = [crop]
         for slide in spec["slides"]:
-            slide["image"] = {"crop": "crop-1"}
+            slide["images"]["background"] = {"crop": "crop-1"}
         return spec
 
     def test_approved_crop_is_verified_and_packaged_with_provenance(self):
@@ -324,15 +384,36 @@ class CropTests(SocialRuntimeCase):
         spec = self.crop_spec()
         spec["crops"][0]["output"]["sha256"] = "0" * 64
         self.refused(spec, "checksum does not match")
-        self.refused(self.crop_spec(data=_png(1080, 1080)), "dimensions do not match the local file")
+        self.refused(self.crop_spec(data=_png(1080, 1350)), "dimensions do not match the local file")
 
-    def test_geometry_must_match_the_format_and_stay_inside_the_source(self):
+    def test_geometry_must_match_the_image_slot_and_stay_inside_the_source(self):
         spec = self.crop_spec()
-        spec["crops"][0]["geometry"]["width"] = 2000
-        self.refused(spec, "does not match the carousel-4x5 aspect ratio")
+        spec["crops"][0]["geometry"]["width"] = 1500
+        self.refused(spec, "does not match the 1080x1080 'background' slot")
         spec = self.crop_spec()
         spec["crops"][0]["geometry"]["x"] = 2000
         self.refused(spec, "extends outside")
+
+    def test_crop_is_sized_to_the_image_slot_it_fills(self):
+        spec = self.spec()
+        spec["slides"][1]["frame"] = "TD-01"
+        del spec["slides"][1]["text"]["body"]
+        data = _png(540, 360)
+        (self.base / "wide-crop.png").write_bytes(data)
+        spec["crops"] = [{"id": "wide-crop", "source_asset": "wide-1.jpg", "format": "carousel-1x1",
+                          "source_dimensions": {"width": 3000, "height": 2000},
+                          "geometry": {"x": 0, "y": 0, "width": 3000, "height": 2000},
+                          "focal_point": {"x": 1500, "y": 1000}, "approval_status": "approved",
+                          "output": {"src": "wide-crop.png", "sha256": hashlib.sha256(data).hexdigest(),
+                                     "width": 540, "height": 360}}]
+        spec["slides"][1]["images"]["image-1"] = {"crop": "wide-crop"}
+        result = self.build(self.allocate(spec))
+        self.assertTrue(result.qa.passed, [c for c in result.qa.checks if not c["passed"]])
+        slide = json.loads(result.package_manifest.read_text())["variants"]["branded"]["slides"][1]
+        self.assertEqual([(i["slot"], i["width"], i["height"]) for i in slide["images"]],
+                         [("background", 1080, 1080), ("image-1", 540, 360)])
+        spec["slides"][0]["images"]["background"] = {"crop": "wide-crop"}
+        self.refused(spec, "Crop 'wide-crop' is used in image slots of different sizes")
 
     def test_crop_source_must_be_approved_as_a_crop_source(self):
         spec = self.crop_spec()
@@ -344,6 +425,56 @@ class CropTests(SocialRuntimeCase):
         self.assertTrue(result.qa.passed)
         self.assertTrue(any("planned" in warning for warning in result.qa.warnings))
         self.refused(self.crop_spec(mode="release", status="planned"), "requires an approved crop with output")
+
+
+class SuppliedImageTests(SocialRuntimeCase):
+    def supplied_spec(self, data=None, name="event.png") -> dict:
+        self.template["image_sources"] = ["approved", "user-supplied"]
+        self._write_template()
+        (self.base / name).write_bytes(data or _png(1600, 1600))
+        spec = self.spec()
+        spec["slides"][1]["images"]["background"] = {"supplied": name}
+        return spec
+
+    def test_supplied_image_is_packaged_and_recorded_as_user_supplied(self):
+        result = self.build(self.supplied_spec())
+        self.assertTrue(result.qa.passed, [c for c in result.qa.checks if not c["passed"]])
+        record = json.loads(result.asset_manifest.read_text())["supplied"][0]
+        self.assertEqual((record["source_name"], record["width"], record["height"]), ("event.png", 1600, 1600))
+        self.assertTrue((result.package_dir / "images" / record["name"]).is_file())
+        self.assertTrue(any("not in the approved catalog" in w for w in result.qa.warnings))
+        delivered = result.package_manifest.read_text() + result.asset_manifest.read_text()
+        self.assertNotIn(str(self.base), delivered)
+
+    def test_template_must_allow_supplied_images(self):
+        spec = self.supplied_spec()
+        self.template["image_sources"] = ["approved"]
+        self._write_template()
+        self.refused(spec, "Template CAR-01 takes approved images only")
+
+    def test_supplied_image_must_match_the_slot_orientation_and_be_readable(self):
+        self.refused(self.supplied_spec(data=_png(2000, 1200)), "is landscape (2000x1200) and cannot fill the square 'background' slot")
+        self.refused(self.supplied_spec(data=b"not an image"), "is not a readable PNG or JPEG")
+        spec = self.supplied_spec()
+        spec["slides"][1]["images"]["background"] = {"supplied": "missing.png"}
+        self.refused(spec, "Supplied image 'missing.png' was not found")
+
+    def test_phone_photo_orientation_tag_decides_the_shape(self):
+        exif = b"Exif\x00\x00MM\x00\x2a\x00\x00\x00\x08\x00\x01\x01\x12\x00\x03\x00\x00\x00\x01\x00\x06\x00\x00"
+        sof = b"\x00\x11\x08" + struct.pack(">HH", 3000, 4000) + b"\x03" + bytes(9)
+        jpeg = (b"\xff\xd8\xff\xe1" + struct.pack(">H", len(exif) + 2) + exif
+                + b"\xff\xc0" + sof + b"\xff\xd9")
+        record = load_supplied_image("phone.jpg", base_dir=self._write("phone.jpg", jpeg),
+                                     slot={"slot": "image-1", "shape": "portrait"})
+        self.assertEqual((record["width"], record["height"]), (3000, 4000))
+
+    def _write(self, name: str, data: bytes) -> Path:
+        (self.base / name).write_bytes(data)
+        return self.base
+
+    def test_small_supplied_image_warns_that_it_will_be_enlarged(self):
+        result = self.build(self.supplied_spec(data=_png(400, 400)))
+        self.assertTrue(any("it will be enlarged" in w for w in result.qa.warnings))
 
 
 class CopyAllocationTests(SocialRuntimeCase):
@@ -431,8 +562,35 @@ class IntegrationTests(unittest.TestCase):
             result = build_social_from_spec(spec, base_dir=RIDER_PREVIEW.parent)
             self.assertTrue(result.qa.passed, [c for c in result.qa.checks if not c["passed"]])
             manifest = json.loads(result.asset_manifest.read_text())
-            self.assertEqual(len(manifest["assets"]), 4)
+            self.assertEqual(len(manifest["assets"]), 3)
             self.assertTrue(all("social-carousel" in a["social_roles"] for a in manifest["assets"]))
+
+    def test_rider_frame_definitions_are_current_with_the_scaffold_catalog(self):
+        catalog = json.loads((RIDER_SOCIAL / "scaffold" / "frame-catalog.json").read_text(encoding="utf-8"))
+        committed = load_frames(RIDER_SOCIAL / "templates" / "frames.json")
+        self.assertEqual(committed, build_frame_definitions(catalog, logo_label="The Rider logo"))
+        self.assertEqual(sorted(committed["frames"]), sorted(frame["id"] for frame in catalog["frames"]))
+
+    def test_rider_templates_cover_every_scaffold_frame_and_stay_draft(self):
+        frames = load_frames(RIDER_SOCIAL / "templates" / "frames.json")["frames"]
+        covered = set()
+        for code in ("PST-01", "CAR-01", "GAL-01"):
+            template = load_template(RIDER_SOCIAL / "templates", code)
+            self.assertEqual(template["approval_status"], "draft")
+            self.assertEqual(template["audiences"], ["in-house"])
+            covered |= set(template["frame_definitions"])
+        self.assertEqual(covered, set(frames))
+
+    def test_rider_owner_decisions_of_2026_10_09_hold(self):
+        formats = load_formats()["formats"]
+        for format_id in ("post-4x5", "carousel-4x5"):
+            self.assertEqual((formats[format_id]["width"], formats[format_id]["height"]), (1200, 1500))
+        frames = load_frames(RIDER_SOCIAL / "templates" / "frames.json")["frames"]
+        self.assertEqual({slot["fit"] for frame in frames.values() for slot in frame["image_slots"]}, {"cover"})
+        sources = {code: load_template(RIDER_SOCIAL / "templates", code)["image_sources"]
+                   for code in ("PST-01", "CAR-01", "GAL-01")}
+        self.assertEqual(sources, {"PST-01": ["approved"], "CAR-01": ["approved"],
+                                   "GAL-01": ["approved", "user-supplied"]})
 
 
 if __name__ == "__main__":

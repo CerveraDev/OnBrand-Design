@@ -22,7 +22,9 @@ class CropError(ValueError):
     """Raised when a derived crop's provenance is incomplete or does not verify."""
 
 
-def validate_crop(crop: dict, *, assets: list[dict], format_id: str, fmt: dict, base_dir: Path, mode: str) -> dict:
+def validate_crop(crop: dict, *, assets: list[dict], format_id: str, target: dict, max_file_bytes: int,
+                  base_dir: Path, mode: str) -> dict:
+    """Validate one crop against `target`, the export-pixel size of the image slot it fills."""
     label = f"crop '{crop.get('id')}'"
     if not isinstance(crop.get("id"), str) or not crop["id"]:
         raise CropError("Every crop needs a non-empty id")
@@ -45,9 +47,9 @@ def validate_crop(crop: dict, *, assets: list[dict], format_id: str, fmt: dict, 
         raise CropError(f"{label}.geometry must give non-negative integer x, y, width, height")
     if geometry["x"] + geometry["width"] > source_w or geometry["y"] + geometry["height"] > source_h:
         raise CropError(f"{label}.geometry extends outside the declared source dimensions")
-    target = fmt["aspect_ratio"][0] / fmt["aspect_ratio"][1]
-    if abs(geometry["width"] / geometry["height"] - target) > ASPECT_TOLERANCE:
-        raise CropError(f"{label}.geometry does not match the {format_id} aspect ratio")
+    size = f"{target['width']}x{target['height']}"
+    if abs(geometry["width"] / geometry["height"] - target["width"] / target["height"]) > ASPECT_TOLERANCE:
+        raise CropError(f"{label}.geometry does not match the {size} '{target['slot']}' slot")
     focal = crop["focal_point"]
     if not isinstance(focal, dict) or set(focal) != {"x", "y"} or any(type(v) is not int for v in focal.values()):
         raise CropError(f"{label}.focal_point must give integer source-pixel x and y")
@@ -66,7 +68,8 @@ def validate_crop(crop: dict, *, assets: list[dict], format_id: str, fmt: dict, 
         "source_dimensions": {"width": source_w, "height": source_h},
         "geometry": dict(geometry),
         "focal_point": dict(focal),
-        "upscaled": geometry["width"] < fmt["width"],
+        "target": dict(target),
+        "upscaled": geometry["width"] < target["width"],
         "approval_status": status,
         "output": None,
     }
@@ -90,11 +93,11 @@ def validate_crop(crop: dict, *, assets: list[dict], format_id: str, fmt: dict, 
     actual = image_dimensions(data)
     if actual != (output["width"], output["height"]):
         raise CropError(f"{label}.output dimensions do not match the local file")
-    if actual != (fmt["width"], fmt["height"]):
+    if actual != (target["width"], target["height"]):
         raise CropError(
-            f"{label}.output is {actual[0]}x{actual[1]}; {format_id} requires {fmt['width']}x{fmt['height']}"
+            f"{label}.output is {actual[0]}x{actual[1]}; the '{target['slot']}' slot requires {size}"
         )
-    if len(data) > fmt["max_file_bytes"]:
+    if len(data) > max_file_bytes:
         raise CropError(f"{label}.output exceeds the {format_id} file-size ceiling")
     record["output"] = {
         "path": path, "name": f"{crop['id']}{path.suffix.lower()}", "sha256": digest,
@@ -124,7 +127,7 @@ def image_dimensions(data: bytes) -> tuple[int, int]:
                 width = int.from_bytes(data[index + 5 : index + 7], "big")
                 return width, height
             index += length
-    raise CropError("Unsupported or unreadable crop output; use PNG or JPEG")
+    raise CropError("Unsupported or unreadable image; use PNG or JPEG")
 
 
 def _size(value: object, label: str) -> tuple[int, int]:

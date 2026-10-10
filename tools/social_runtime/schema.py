@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import re
 
+from .frames import FRAME_ID_RE
 from .templates import AUDIENCES, SLIDE_ROLES
 
 
@@ -72,13 +73,18 @@ def validate_social_spec(spec: object) -> dict:
         raise SocialSpecError("slides must be a non-empty array")
     for index, slide in enumerate(slides):
         label = f"slides[{index}]"
-        _fields(slide, {"role", "image", "text", "alt_text"}, set(), label)
+        _fields(slide, {"role", "frame", "images", "text", "alt_text"}, set(), label)
         if slide["role"] not in SLIDE_ROLES:
             raise SocialSpecError(f"{label}.role must be one of {', '.join(SLIDE_ROLES)}")
-        image = slide["image"]
-        if not isinstance(image, dict) or len(image) != 1 or not set(image) <= {"asset", "crop"}:
-            raise SocialSpecError(f"{label}.image must give exactly one of 'asset' or 'crop'")
-        _text(image, next(iter(image)), f"{label}.image")
+        if not isinstance(slide["frame"], str) or not FRAME_ID_RE.fullmatch(slide["frame"]):
+            raise SocialSpecError(f"{label}.frame must be a frame id such as 'SP-01'")
+        images = slide["images"]
+        if not isinstance(images, dict) or not images:
+            raise SocialSpecError(f"{label}.images must map each image slot to an asset, crop, or supplied image")
+        for slot, image in images.items():
+            if not isinstance(image, dict) or len(image) != 1 or not set(image) <= {"asset", "crop", "supplied"}:
+                raise SocialSpecError(f"{label}.images.{slot} must give exactly one of 'asset', 'crop', or 'supplied'")
+            _text(image, next(iter(image)), f"{label}.images.{slot}")
         if not isinstance(slide["text"], dict):
             raise SocialSpecError(f"{label}.text must be an object")
         for slot in slide["text"]:

@@ -1,0 +1,1270 @@
+{
+  "schema_version": "1.0",
+  "generated_from": {
+    "scaffold_html_sha256": "77fd89db492ff46d4363886656169a1031ed0e3bb73055329e928450f420afdb",
+    "scaffold_css_sha256": "e6d2fe694824b3eefe55e7927bce14beaf3bc90d1ad74bc3afe37ad85f86d114"
+  },
+  "limit_basis": "Estimated from each slot's rendered line count, available width, and font size in the scaffold. Draft pending owner review; a rendered overflow check should replace it.",
+  "frames": {
+    "SP-01": {
+      "family": "post",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "heading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 60,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SP-02": {
+      "family": "post",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 660,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "heading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 46,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SP-03": {
+      "family": "post",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 660,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "heading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 46,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SP-04": {
+      "family": "post",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 660,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "heading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 46,
+          "italic_accent": false
+        },
+        "subheading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 58,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SP-05": {
+      "family": "post",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 660,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "heading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 46,
+          "italic_accent": false
+        },
+        "subheading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 58,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SP-06": {
+      "family": "post",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "heading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 46,
+          "italic_accent": false
+        },
+        "subheading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 58,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SP-07": {
+      "family": "post",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "heading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 46,
+          "italic_accent": false
+        },
+        "subheading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 58,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SP-08": {
+      "family": "post",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "heading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 46,
+          "italic_accent": false
+        },
+        "subheading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 58,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SP-09": {
+      "family": "post",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "heading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 46,
+          "italic_accent": false
+        },
+        "subheading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 58,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SP-10": {
+      "family": "post",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "heading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 46,
+          "italic_accent": false
+        },
+        "subheading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 58,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SP-11": {
+      "family": "post",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "heading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 50,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SP-12": {
+      "family": "post",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "heading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 50,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SP-13": {
+      "family": "post",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "heading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 50,
+          "italic_accent": false
+        },
+        "subheading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 62,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SP-14": {
+      "family": "post",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "heading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 50,
+          "italic_accent": false
+        },
+        "subheading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 62,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SP-15": {
+      "family": "post",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "heading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 50,
+          "italic_accent": false
+        },
+        "subheading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 62,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SP-16": {
+      "family": "post",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "heading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 50,
+          "italic_accent": false
+        },
+        "subheading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 66,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SP-17": {
+      "family": "post",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "heading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 50,
+          "italic_accent": false
+        },
+        "subheading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 66,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SP-18": {
+      "family": "post",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "heading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 50,
+          "italic_accent": false
+        },
+        "subheading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 66,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SC-01": {
+      "family": "carousel",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "heading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 24,
+          "italic_accent": false
+        },
+        "subheading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 48,
+          "italic_accent": false
+        },
+        "copy": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 1,
+          "max_chars": 48,
+          "italic_accent": false
+        }
+      },
+      "locked": {}
+    },
+    "SC-02": {
+      "family": "carousel",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "subheading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 1,
+          "max_chars": 23,
+          "italic_accent": true
+        },
+        "copy": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 134,
+          "italic_accent": false
+        }
+      },
+      "locked": {}
+    },
+    "SC-03": {
+      "family": "carousel",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "subheading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 46,
+          "italic_accent": true
+        },
+        "copy": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 134,
+          "italic_accent": false
+        }
+      },
+      "locked": {}
+    },
+    "SC-04": {
+      "family": "carousel",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "image-1",
+          "width": 500,
+          "height": 315,
+          "shape": "landscape",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-2",
+          "width": 240,
+          "height": 315,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "subheading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 3,
+          "max_chars": 30,
+          "italic_accent": true
+        },
+        "copy": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 3,
+          "max_chars": 90,
+          "italic_accent": false
+        }
+      },
+      "locked": {}
+    },
+    "SC-05": {
+      "family": "carousel",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "image-1",
+          "width": 500,
+          "height": 315,
+          "shape": "landscape",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-2",
+          "width": 240,
+          "height": 315,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "subheading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 3,
+          "max_chars": 30,
+          "italic_accent": true
+        },
+        "copy": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 3,
+          "max_chars": 90,
+          "italic_accent": false
+        }
+      },
+      "locked": {}
+    },
+    "SC-06": {
+      "family": "carousel",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "image-1",
+          "width": 520,
+          "height": 325,
+          "shape": "landscape",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-2",
+          "width": 250,
+          "height": 325,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "subheading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 3,
+          "max_chars": 30,
+          "italic_accent": true
+        },
+        "copy": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 3,
+          "max_chars": 93,
+          "italic_accent": false
+        }
+      },
+      "locked": {}
+    },
+    "SC-07": {
+      "family": "carousel",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "image-1",
+          "width": 520,
+          "height": 325,
+          "shape": "landscape",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-2",
+          "width": 250,
+          "height": 325,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "subheading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 3,
+          "max_chars": 30,
+          "italic_accent": true
+        },
+        "copy": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 3,
+          "max_chars": 93,
+          "italic_accent": false
+        }
+      },
+      "locked": {}
+    },
+    "SG-01": {
+      "family": "gallery",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "heading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 50,
+          "italic_accent": false
+        },
+        "footer-line": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 1,
+          "max_chars": 72,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SG-02": {
+      "family": "gallery",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-1",
+          "width": 274,
+          "height": 180,
+          "shape": "landscape",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-2",
+          "width": 274,
+          "height": 180,
+          "shape": "landscape",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-3",
+          "width": 560,
+          "height": 300,
+          "shape": "landscape",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "footer-line": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 1,
+          "max_chars": 75,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SG-03": {
+      "family": "gallery",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-1",
+          "width": 274,
+          "height": 250,
+          "shape": "landscape",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-2",
+          "width": 274,
+          "height": 250,
+          "shape": "landscape",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-3",
+          "width": 274,
+          "height": 250,
+          "shape": "landscape",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-4",
+          "width": 274,
+          "height": 250,
+          "shape": "landscape",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "footer-line": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 1,
+          "max_chars": 75,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SG-04": {
+      "family": "gallery",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-1",
+          "width": 274,
+          "height": 500,
+          "shape": "portrait",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-2",
+          "width": 274,
+          "height": 245,
+          "shape": "landscape",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-3",
+          "width": 274,
+          "height": 245,
+          "shape": "landscape",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "footer-line": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 1,
+          "max_chars": 75,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SG-05": {
+      "family": "gallery",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-1",
+          "width": 560,
+          "height": 250,
+          "shape": "landscape",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-2",
+          "width": 560,
+          "height": 250,
+          "shape": "landscape",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "footer-line": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 1,
+          "max_chars": 75,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SG-06": {
+      "family": "gallery",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-1",
+          "width": 560,
+          "height": 250,
+          "shape": "landscape",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-2",
+          "width": 104,
+          "height": 250,
+          "shape": "portrait",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-3",
+          "width": 104,
+          "height": 250,
+          "shape": "portrait",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-4",
+          "width": 104,
+          "height": 250,
+          "shape": "portrait",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-5",
+          "width": 104,
+          "height": 250,
+          "shape": "portrait",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-6",
+          "width": 104,
+          "height": 250,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "footer-line": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 1,
+          "max_chars": 75,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SG-07": {
+      "family": "gallery",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-1",
+          "width": 560,
+          "height": 250,
+          "shape": "landscape",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-2",
+          "width": 180,
+          "height": 250,
+          "shape": "portrait",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-3",
+          "width": 180,
+          "height": 250,
+          "shape": "portrait",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-4",
+          "width": 180,
+          "height": 250,
+          "shape": "portrait",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "footer-line": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 1,
+          "max_chars": 75,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    },
+    "SG-08": {
+      "family": "gallery",
+      "canvas": {
+        "width": 600,
+        "height": 750
+      },
+      "image_slots": [
+        {
+          "slot": "background",
+          "width": 600,
+          "height": 750,
+          "shape": "portrait",
+          "fit": "cover"
+        },
+        {
+          "slot": "image-1",
+          "width": 450,
+          "height": 450,
+          "shape": "square",
+          "fit": "cover"
+        }
+      ],
+      "text_slots": {
+        "heading": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 1,
+          "max_chars": 37,
+          "italic_accent": false
+        },
+        "footer-line": {
+          "channel": "on-image-text",
+          "required": true,
+          "max_lines": 2,
+          "max_chars": 150,
+          "italic_accent": false
+        }
+      },
+      "locked": {
+        "logo": "The Rider logo"
+      }
+    }
+  }
+}

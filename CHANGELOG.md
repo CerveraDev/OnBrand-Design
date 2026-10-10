@@ -16,6 +16,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Added
 
+- User-supplied images for social templates that allow them: `GAL-01` accepts a local PNG or JPEG per image slot, checked for orientation, packaged under a hash-derived name, and recorded as user-supplied rather than owner-approved (`tools/social_runtime/supplied.py`, AUD-104).
 - Phase 17 social medium expansion specification, covering the no-fork architecture decision, the in-house and outside-broker capability boundary, a versioned platform-format sidecar, crop provenance, extended copy-allocation channels, and reels deferred to a later phase.
 - The Rider social asset approval overlay: 133 owner-approved image records with roles, clusters, third-party rights flags, approver provenance, and a SHA-256 binding to the manifest state they were approved against.
 - A social approval loader that validates the overlay and merges it under a separate `social_roles` key without mutating `approved_for`, plus 20 tests asserting restricted records can never resolve to a social role, no PDF is social-approved, and landscape assets remain crop sources only.
@@ -24,6 +25,8 @@ All notable project changes are recorded here. Governance decisions and operatio
 - The draft `CAR-01` Feature Carousel template and a Rider Composition Preview spec, plus 35 tests in `tests/test_social_runtime.py`.
 - One additive `social` entry in the platform adapter `RUNTIMES` table. The email runtime is unmodified.
 - The Rider social scaffold at `projects/the-rider/social/scaffold/`: the owner's Elementor page reduced to the HTML and CSS it actually uses, a generated frame catalog with proposed stable IDs and named slots for 33 frames, and a 600x750 preview of each frame.
+- Frame-based social templates for The Rider: `frames.json` with 33 frame definitions generated from the scaffold catalog, and the draft templates `PST-01` Single Post, `CAR-01` Editorial Carousel, and `GAL-01` Photo Gallery Carousel.
+- Multi-image slides in the social runtime: a slide names its frame and fills each image slot, and a crop is validated against the slot it fills.
 - `tools/social_scaffold/import_scaffold.cjs`, which re-imports the scaffold page, drops site scripts and unused CSS, and fails unless the cleaned copy matches the live page element by element, plus 5 tests in `tests/test_social_scaffold.py`.
 - LIM-023 for the absent pixel-producing render step and the unverified platform-format values.
 - LIM-021 and LIM-022 for the absent social approval vocabulary and the landscape-dominant library that cannot satisfy social formats by selection alone.
@@ -96,6 +99,7 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Changed
 
+- By owner decision of 2026-10-09 (AUD-104): the 4:5 social formats export at 1200x1500 instead of 1080x1350, every frame image slot cover-fits its image including `SP-01`, and social templates declare `image_sources`.
 - The corrected CFG-05 proof is classified as an improved interim baseline after owner review; final creative approval now waits for the annotated expanded scaffold and Phase 16 layout refinement.
 - Phase 15 Workstreams A, B, and C are implemented. The corrected branded proof is retained as an improved interim baseline pending Phase 16 layout refinement; the earlier Phase 14 screenshots remain technical-only evidence.
 - All Rider runtime fixtures include approved allocation plans; internal wellness fixture wording removes the historical repetition pattern retained in negative tests.
@@ -155,6 +159,10 @@ All notable project changes are recorded here. Governance decisions and operatio
 - Full unittest discovery passes 61 tests.
 - Manifest-source validation passes for The Rider local-cache fallback with 206 validated manifest assets and no configured public URL.
 - Rider wellness Composition Preview pilot passes with 1 branded variant, approved composition plan `rider-wellness-composition-preview`, 1 grounded image workflow item, 59 QA checks, 9 packaged assets, no external or missing image references, and a valid ZIP.
+
+### Changed
+
+- Social template schema 2.0 replaces role-and-slot steps with frame lists, and social spec slides replace `image` with `frame` and `images`. The first `CAR-01` draft, authored before the scaffold existed, is superseded.
 
 ## [0.1.0] - 2026-09-30
 

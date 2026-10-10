@@ -528,6 +528,11 @@ function catalogInPage() {
         });
       } else {
         const centre = rect.y + rect.height / 2;
+        const range = document.createRange();
+        range.selectNodeContents(el);
+        const lineHeight = parseFloat(style.lineHeight) || parseFloat(style.fontSize) * 1.2;
+        const tops = [...range.getClientRects()].filter((r) => r.width > 0).map((r) => r.top + r.height / 2).sort((a, b) => a - b);
+        const renderedLines = tops.filter((top, i) => i === 0 || top - tops[i - 1] > lineHeight / 2).length;
         text.push({
           slot,
           tag: el.tagName.toLowerCase(),
@@ -540,6 +545,8 @@ function catalogInPage() {
           text_transform: style.textTransform,
           text_align: style.textAlign === 'start' ? 'left' : style.textAlign,
           color: style.color,
+          rendered_lines: renderedLines,
+          available_width: Math.round(el.parentElement.clientWidth - parseFloat(getComputedStyle(el.parentElement).paddingLeft) - parseFloat(getComputedStyle(el.parentElement).paddingRight) - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight)),
           vertical_zone: centre < origin.height / 3 ? 'top' : centre > (origin.height * 2) / 3 ? 'bottom' : 'middle',
           box: rect,
         });

@@ -4,7 +4,7 @@
 **Owner:** Cervera Real Estate, Inc.  
 **Author:** Felix Mendoza  
 **Version:** 0.1.0  
-**Updated:** 2026-10-06
+**Updated:** 2026-10-09
 **Overall status:** Email work is frozen pending Microsoft Entra access. Active workstream is Phase 17 social medium expansion: specification drafted, Rider social asset approvals curated and committed, and a first `tools/social_runtime/` increment built that passes a Rider carousel Composition Preview. The runtime emits composition packages, not rendered slide images.
 
 ## Completed
@@ -78,6 +78,8 @@
 - Evaluated Claude Code Mods, released 2026-10-03, and recorded in AUD-100 that they are not a security boundary and cannot replace Phase 12 packaging.
 - Added `tools/social_runtime/` as a sibling package with a spec schema, a pinned platform-format sidecar, data-file templates, overlay-based asset resolution with a broker-safe catalog filter, crop provenance validation, social copy allocation with cross-medium repetition detection, blocking QA, packaging, and a CLI. It imports nothing from the email runtime. `tools/rider_campaign_runtime/` is unmodified and `contract.py` gained one additive `social` entry in `RUNTIMES`. See AUD-101.
 - Added the draft `CAR-01` Feature Carousel template and a Rider Composition Preview spec with placeholder copy. The preview resolves four slides from social-approved square records and passes blocking QA. Full discovery passes 243 tests, up from 208, with 35 new tests in `tests/test_social_runtime.py`.
+- Imported the owner's social scaffold as cleaned HTML and CSS with a 33-frame catalog (AUD-102), then, after the owner confirmed the frame IDs and slot names, replaced the pre-scaffold `CAR-01` draft with frame-based templates: `frames.json` plus the drafts `PST-01` Single Post, `CAR-01` Editorial Carousel, and `GAL-01` Photo Gallery Carousel (AUD-103). The runtime now supports several images per slide and sizes each crop to its image slot. Full discovery passes 254 tests.
+- Applied the owner's 2026-10-09 decisions (AUD-104): 4:5 social formats export at 1200x1500, every image slot cover-fits, and `GAL-01` accepts images supplied by the person building the post, checked for orientation and recorded as user-supplied. Full discovery passes 260 tests.
 
 ## Project Portfolio
 
@@ -93,7 +95,7 @@
 
 ## In Progress
 
-- Phase 17: `tools/social_runtime/` first increment is built. Remaining: owner review of the `CAR-01` template and the Rider preview, verified and dated platform-format values, a pixel-producing crop and on-image text step (LIM-023), the `onbrand-the-rider-social` skill and generated wrappers, and a way for one project to declare more than one runtime in `adapter.json`.
+- Phase 17: scaffold imported and frame-based templates built. Remaining: owner review of the three draft templates and their estimated text limits, a render step that exports each frame as a finished image from the scaffold HTML (LIM-023), verified and dated platform-format values, the `onbrand-the-rider-social` skill and generated wrappers, and a way for one project to declare more than one runtime in `adapter.json`.
 - Phase 12: promote the deferred distribution-profile plan to an implementable spec, because outside-broker training depends on physical package separation rather than prompt rules.
 - Perform representative visual and email-client compatibility review beyond structural QA.
 - Continue campaign-by-campaign visual refinement without turning `SEQ-LF-07` or `CFG-05` into global defaults.
@@ -106,9 +108,9 @@
 ## Waiting On Project Inputs
 
 - Owner SVG template for converting floor-plan PDFs into social-ready images. 61 PDF records are excluded from social approval until that pipeline exists: 49 residential lines, 8 lanai, and 4 offices. The 19 rendered 3D floor-plan JPGs are already approved as crop sources and need no conversion.
-- Owner review of the Rider social scaffold frame catalog at `projects/the-rider/social/scaffold/frame-catalog.md`. The owner's Elementor scaffold was imported on 2026-10-09 as a cleaned `scaffold.html` and `scaffold.css` with 33 frames (18 single posts, 7 carousel frames, 8 photo gallery frames), all 600x750 px for 2x export. Open for the owner: confirm the proposed `SP`/`SC`/`SG` frame IDs and slot names. Resolved on 2026-10-09: the owner confirmed nine frames are linear scrims, so the importer now rewrites their radial label line to name the actual scrim and its direction; the owner reversed the `SP-13` scrim to darkest at top and added the two image areas to `SG-05`, and both changes are in the re-imported scaffold. The draft `CAR-01` template predates the scaffold, matches none of its frames, and should be replaced by templates derived from it. The scaffold's 1200x1500 export size is not yet reconciled with `tools/social_runtime/platform-formats.json`.
-- Owner review of the draft `CAR-01` template, including its slide roles, slot names, and character limits, and of the Rider Composition Preview built from it. The template is in-house only and cannot be used for a release or broker build until approved.
-- Verified platform-format values. `tools/social_runtime/platform-formats.json` pins 1080x1080 and 1080x1350, a 10-slide carousel maximum, and caption, hashtag, alt-text, and file-size limits as provisional figures with no verification date; release builds are blocked until each format carries a date and source.
+- Owner decisions still open on the frame-based templates (AUD-103, AUD-104): whether the estimated character limits in `projects/the-rider/social/templates/frames.json` are acceptable; whether `CAR-01` should fix a slide order; and whether a build using user-supplied images should be allowed in release mode on a warning alone, as it is now. Decided on 2026-10-09: landscape image areas keep requiring a declared crop, gallery event photography is supplied by the person using the skill, the 4:5 export size is 1200x1500, and every image area cover-fits.
+- The owner's Elementor scaffold page still positions the `SP-01` background (`auto 88%`) instead of cover-fitting it. Frame definitions already record cover; changing the page and re-importing would make the scaffold copy agree.
+- Verified platform-format values. `tools/social_runtime/platform-formats.json` pins 1080x1080 and, by owner decision, 1200x1500 for 4:5, a 10-slide carousel maximum, and caption, hashtag, alt-text, and file-size limits as provisional figures with no verification date; release builds are blocked until each format carries a date and source.
 - Owner decision on whether the 35 square and portrait assets should also carry `social-crop-source`. They are currently approved only for direct use, so a 4:5 carousel built from a square source has no approved crop path.
 
 - Microsoft Entra administrator action: either create the single-tenant `OnBrand Email Client Testing` public-client app and make Felix Mendoza an owner, or assign the Application Developer role. The app needs delegated `Mail.Send`; no client secret is required. After receiving the tenant and client IDs, populate the ignored `tools/graph_mail/.env` and run `python3 -m tools.graph_mail.authorize`.
@@ -126,7 +128,7 @@
 - **Verification state:** full discovery passes 243 tests: 188 email-era, 20 in `tests/test_social_approvals.py`, and 35 in `tests/test_social_runtime.py`. The email suite and the canonical email proof are unchanged.
 - **Social runtime state:** `python3 -m tools.social_runtime.cli build --spec projects/the-rider/social/examples/feature-carousel.preview.json` builds the Rider preview into the ignored `campaign-output/social/` and passes QA with five expected warnings: draft template, unverified format, unverified direct-asset dimensions, draft placeholder copy, and no cross-medium surface declared. See `tools/social_runtime/README.md`.
 - **What the runtime does not do:** it does not crop pixels or composite on-image text (LIM-023); crop provenance is validated for a file produced elsewhere. No `onbrand-the-rider-social` skill or wrapper exists. `adapter.json` declares one runtime per project, so the platform adapter cannot yet route The Rider to the registered `social` runtime; the CLI is the only entry point.
-- **Next step:** owner reviews `CAR-01` and the Rider preview. After that, the choice is between the pixel-producing render step and the implementable Phase 12 distribution-profile spec. Phase 12 is the prerequisite for broker *training*, not for the carousel runtime itself.
+- **Next step:** build the render step that fills `projects/the-rider/social/scaffold/scaffold.html` frames from a built package and exports each slide with Playwright, which closes LIM-023. The three templates stay draft and in-house only until the owner approves them.
 - **Known gaps carried forward:** LIM-021 stays mitigated: the Rider preview fills every `CAR-01` slot from social-approved records, but the template is a draft, the square/portrait crop-source decision is open, and the 61 floor-plan PDFs await the owner's SVG template. LIM-022 is mitigated by crop provenance validation, not closed. LIM-023 is new.
 - **Separate owner activity:** the owner is creating a Claude Code Mod in a new session. Per AUD-100, Mods are not a security boundary and are not on the OnBrand critical path; they may help training ergonomics only.
 
@@ -150,4 +152,4 @@
 
 ## Next Milestone
 
-Obtain owner approval of the `CAR-01` template and the Rider carousel Composition Preview, then either add the Phase 17 render step or write the implementable Phase 12 distribution-profile spec first if outside-broker training is scheduled sooner. Email milestones are frozen pending Entra access.
+Build the Phase 17 render step from the scaffold HTML, obtain owner approval of the `PST-01`, `CAR-01`, and `GAL-01` templates, then write the implementable Phase 12 distribution-profile spec before outside-broker training. Email milestones are frozen pending Entra access.

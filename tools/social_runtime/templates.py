@@ -1,4 +1,9 @@
-"""Social composition templates: slide-sequenced layouts stored as project data."""
+"""Social composition templates: frame sequences stored as project data.
+
+A template says which scaffold frames may appear at each position of a post or
+carousel. The frames themselves, with their image areas and text slots, live in
+the project's frame definitions.
+"""
 
 from __future__ import annotations
 
@@ -6,17 +11,18 @@ import json
 from pathlib import Path
 import re
 
+from .frames import FRAME_ID_RE, FRAMES_FILE, load_frames
 
-TEMPLATE_VERSION = "1.0"
+
+TEMPLATE_VERSION = "2.0"
 AUDIENCES = ("in-house", "outside-broker")
-SLIDE_ROLES = ("opener", "feature", "detail", "proof", "call-to-action")
-TEXT_CHANNELS = ("on-image-text", "slide-text")
+SLIDE_ROLES = ("opener", "feature", "detail", "proof", "call-to-action", "closer")
 TEMPLATE_FIELDS = {
     "schema_version", "code", "label", "kind", "formats", "approval_status",
-    "audiences", "min_slides", "max_slides", "sequence",
+    "audiences", "image_sources", "min_slides", "max_slides", "sequence",
 }
-STEP_FIELDS = {"role", "min", "max", "image", "slots", "locked"}
-SLOT_FIELDS = {"channel", "required", "max_chars"}
+IMAGE_SOURCES = ("approved", "user-supplied")
+STEP_FIELDS = {"role", "min", "max", "frames"}
 
 
 class TemplateError(ValueError):
@@ -24,6 +30,7 @@ class TemplateError(ValueError):
 
 
 def load_template(templates_dir: Path | str, code: str) -> dict:
+    """Return the template with the definitions of its frames attached."""
     if not isinstance(code, str) or not re.fullmatch(r"[A-Z]{3}-\d{2}", code):
         raise TemplateError(f"Invalid social template code: {code!r}")
     path = Path(templates_dir) / f"{code}.json"
@@ -33,7 +40,13 @@ def load_template(templates_dir: Path | str, code: str) -> dict:
         data = json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError as err:
         raise TemplateError(f"Invalid social template JSON ({code}): {err}") from err
-    return validate_template(data, code=code)
+    template = validate_template(data, code=code)
+    frames = load_frames(Path(templates_dir) / FRAMES_FILE)["frames"]
+    wanted = {frame for step in template["sequence"] for frame in step["frames"]}
+    unknown = sorted(wanted - set(frames))
+    if unknown:
+        raise TemplateError(f"template {code} names undefined frame(s): {', '.join(unknown)}")
+    return {**template, "frame_definitions": {frame: frames[frame] for frame in sorted(wanted)}}
 
 
 def validate_template(data: object, *, code: str) -> dict:
@@ -50,7 +63,7 @@ def validate_template(data: object, *, code: str) -> dict:
         raise TemplateError(f"{label} kind must be post or carousel")
     if data["approval_status"] not in ("draft", "approved"):
         raise TemplateError(f"{label} approval_status must be draft or approved")
-    for field, allowed in (("formats", None), ("audiences", AUDIENCES)):
+    for field, allowed in (("formats", None), ("audiences", AUDIENCES), ("image_sources", IMAGE_SOURCES)):
         values = data[field]
         if not isinstance(values, list) or not values or any(not isinstance(v, str) for v in values):
             raise TemplateError(f"{label} {field} must be a non-empty string array")
@@ -71,30 +84,44 @@ def validate_template(data: object, *, code: str) -> dict:
     return data
 
 
-def match_slides(template: dict, roles: list[str]) -> list[dict]:
-    """Return the sequence step governing each slide, or fail with the first mismatch."""
+def match_slides(template: dict, slides: list[dict]) -> list[dict]:
+    """Return the resolved frame governing each slide, or fail with the first mismatch.
+
+    Each returned step carries the slide's role and frame id plus that frame's
+    `images`, text `slots`, `locked` content, and `canvas`.
+    """
     code = template["code"]
-    if not template["min_slides"] <= len(roles) <= template["max_slides"]:
+    if not template["min_slides"] <= len(slides) <= template["max_slides"]:
         raise TemplateError(
             f"Template {code} takes {template['min_slides']}-{template['max_slides']} slides; "
-            f"got {len(roles)}"
+            f"got {len(slides)}"
         )
     steps = []
     position = 0
     for step in template["sequence"]:
         count = 0
-        while position < len(roles) and roles[position] == step["role"] and count < step["max"]:
-            steps.append(step)
+        while position < len(slides) and slides[position]["role"] == step["role"] and count < step["max"]:
+            frame_id = slides[position]["frame"]
+            if frame_id not in step["frames"]:
+                raise TemplateError(
+                    f"Template {code} does not allow frame '{frame_id}' for role '{step['role']}' "
+                    f"at slide {position + 1}; allowed: {', '.join(step['frames'])}"
+                )
+            frame = template["frame_definitions"][frame_id]
+            steps.append({
+                "role": step["role"], "frame": frame_id, "canvas": frame["canvas"],
+                "images": frame["image_slots"], "slots": frame["text_slots"], "locked": frame["locked"],
+            })
             position += 1
             count += 1
         if count < step["min"]:
-            found = roles[position] if position < len(roles) else "end of slides"
+            found = slides[position]["role"] if position < len(slides) else "end of slides"
             raise TemplateError(
                 f"Template {code} expects role '{step['role']}' at slide {position + 1}; found {found}"
             )
-    if position != len(roles):
+    if position != len(slides):
         raise TemplateError(
-            f"Template {code} has no place for role '{roles[position]}' at slide {position + 1}"
+            f"Template {code} has no place for role '{slides[position]['role']}' at slide {position + 1}"
         )
     return steps
 
@@ -106,20 +133,8 @@ def _validate_step(step: object, label: str) -> None:
         raise TemplateError(f"{label} role must be one of {', '.join(SLIDE_ROLES)}")
     if type(step["min"]) is not int or type(step["max"]) is not int or not 0 <= step["min"] <= step["max"] or step["max"] < 1:
         raise TemplateError(f"{label} min/max must satisfy 0 <= min <= max and max >= 1")
-    if step["image"] != {"count": 1}:
-        raise TemplateError(f"{label} image must be {{\"count\": 1}}; multi-image slides are not supported")
-    slots = step["slots"]
-    if not isinstance(slots, dict):
-        raise TemplateError(f"{label} slots must be an object")
-    for name, slot in slots.items():
-        if not isinstance(slot, dict) or set(slot) != SLOT_FIELDS:
-            raise TemplateError(f"{label} slot '{name}' must define exactly: {', '.join(sorted(SLOT_FIELDS))}")
-        if slot["channel"] not in TEXT_CHANNELS or type(slot["required"]) is not bool:
-            raise TemplateError(f"{label} slot '{name}' has an invalid channel or required flag")
-        if type(slot["max_chars"]) is not int or slot["max_chars"] < 1:
-            raise TemplateError(f"{label} slot '{name}' max_chars must be a positive integer")
-    locked = step["locked"]
-    if not isinstance(locked, dict) or any(
-        not isinstance(v, str) or not v for v in locked.values()
-    ) or set(locked) & set(slots):
-        raise TemplateError(f"{label} locked must map names distinct from slots to non-empty strings")
+    frames = step["frames"]
+    if not isinstance(frames, list) or not frames or any(
+        not isinstance(frame, str) or not FRAME_ID_RE.fullmatch(frame) for frame in frames
+    ) or len(set(frames)) != len(frames):
+        raise TemplateError(f"{label} frames must be a non-empty array of unique frame ids")

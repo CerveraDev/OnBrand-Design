@@ -67,13 +67,12 @@ def resolve_social_asset(assets: list[dict], filename: str, *, role: str) -> dic
     return asset
 
 
-def resolve_direct_asset(assets: list[dict], filename: str, *, fmt: dict) -> dict:
-    """Resolve an asset used as-is. Orientation must already fit the format."""
-    asset = resolve_social_asset(assets, filename, role=DIRECT_ROLE[fmt["kind"]])
-    wanted = "square" if fmt["aspect_ratio"][0] == fmt["aspect_ratio"][1] else "portrait"
-    if asset["orientation"] != wanted:
+def resolve_direct_asset(assets: list[dict], filename: str, *, kind: str, slot: dict) -> dict:
+    """Resolve an asset used as-is. Orientation must already fit the image slot."""
+    asset = resolve_social_asset(assets, filename, role=DIRECT_ROLE[kind])
+    if asset["orientation"] != slot["shape"]:
         raise SocialAssetError(
-            f"Asset '{filename}' is {asset['orientation']} and cannot be used directly in a "
-            f"{fmt['aspect_ratio'][0]}:{fmt['aspect_ratio'][1]} format; it needs an approved crop"
+            f"Asset '{filename}' is {asset['orientation']} and cannot be used directly in the "
+            f"{slot['shape']} '{slot['slot']}' slot; it needs an approved crop"
         )
     return asset

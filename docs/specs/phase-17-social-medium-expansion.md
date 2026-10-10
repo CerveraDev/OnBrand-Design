@@ -89,7 +89,7 @@ Platform requirements drift, so target dimensions, slide limits, and safe areas 
 
 The sidecar must record, per format: aspect ratio, pixel dimensions, minimum and maximum slide count, safe-area insets, maximum text length per surface, file-size ceiling, and the date the values were verified. Builds must fail when a requested format is absent from the pinned sidecar version rather than falling back to a default.
 
-Initial formats to pin: 1:1 square post, 4:5 portrait post, and 1:1 and 4:5 carousels. Current commonly cited values are 1080x1080 and 1080x1350, with carousels of up to 10 slides, but every value must be verified and dated before it is treated as authoritative.
+Initial formats to pin: 1:1 square post, 4:5 portrait post, and 1:1 and 4:5 carousels. Current commonly cited values are 1080x1080 and 1080x1350, with carousels of up to 10 slides, but every value must be verified and dated before it is treated as authoritative. Owner decision, 2026-10-09 (AUD-104): 4:5 formats export at 1200x1500, the social scaffold canvas at 2x.
 
 ## Crop And Reframe Provenance
 

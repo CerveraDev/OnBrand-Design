@@ -34,6 +34,7 @@ def run_qa(
     fmt: dict,
     resolved_assets: list[dict],
     crops: list[dict],
+    supplied: list[dict],
     never_social_roles: list[str],
     allocation: dict,
     warnings: list[str],
@@ -54,8 +55,9 @@ def run_qa(
                              if rule["required"] and slot not in slide["text"])
             _check(checks, f"{label}:slots", not missing,
                    "required slots filled" if not missing else "missing: " + ", ".join(missing))
-            _check(checks, f"{label}:image", bool(slide["image"].get("src")) or slide["image"].get("pending") is True,
-                   "image resolved to an approved record or crop")
+            for image in slide["images"]:
+                _check(checks, f"{label}:image:{image['slot']}", bool(image.get("src")) or image.get("pending") is True,
+                       "image resolved to an approved record, a crop, or a supplied file")
             for slot, text in slide["text"].items():
                 limit = step["slots"][slot]["max_chars"]
                 _check(checks, f"{label}:text:{slot}", measured_length(text) <= limit,
@@ -72,10 +74,14 @@ def run_qa(
         if output is None:
             continue
         _check(checks, f"crop:{crop['id']}:output",
-               (output["width"], output["height"]) == (fmt["width"], fmt["height"])
+               (output["width"], output["height"]) == (crop["target"]["width"], crop["target"]["height"])
                and output["bytes"] <= fmt["max_file_bytes"]
                and (package_dir / "images" / output["name"]).is_file(),
                f"{output['width']}x{output['height']}, {output['bytes']} bytes, packaged")
+
+    for image in supplied:
+        _check(checks, f"supplied:{image['name']}:packaged", (package_dir / "images" / image["name"]).is_file(),
+               f"{image['width']}x{image['height']}, {image['bytes']} bytes, user-supplied")
 
     never = set(never_social_roles)
     restricted = sorted(a["filename"] for a in resolved_assets if set(a.get("approved_for") or []) & never)

@@ -17,52 +17,51 @@
   },
   "composition": {
     "template": "CAR-01",
-    "format": "carousel-1x1"
+    "format": "carousel-4x5"
   },
   "slides": [
     {
-      "role": "opener",
-      "image": {
-        "asset": "the-rider-tower-day-front-close-up.jpg"
+      "role": "feature",
+      "frame": "SC-01",
+      "images": {
+        "background": {
+          "asset": "the-rider-tower-apartment-balcony.jpg"
+        }
       },
       "text": {
-        "headline": "[Opener headline]",
-        "subhead": "[Opener subhead]"
+        "heading": "[Opener heading]",
+        "subheading": "[Opener subheading]",
+        "copy": "[Opener line of copy]"
       },
-      "alt_text": "[Alt text: tower exterior by day]"
+      "alt_text": "[Alt text: residence balcony]"
     },
     {
       "role": "feature",
-      "image": {
-        "asset": "01. Kitchen_K1(K1.1_ADA01_ADA01.1)_studio_Rev01.jpg"
+      "frame": "SC-02",
+      "images": {
+        "background": {
+          "asset": "the-rider-rooftop-terrace-tables-sunset.jpg"
+        }
       },
       "text": {
-        "headline": "[Feature one headline]",
-        "body": "[Feature one body]"
+        "subheading": "[Feature one title]",
+        "copy": "[Feature one copy]"
       },
-      "alt_text": "[Alt text: kitchen K1]"
+      "alt_text": "[Alt text: rooftop terrace at sunset]"
     },
     {
       "role": "feature",
-      "image": {
-        "asset": "03. Kitchen_K3_studio_Rev01.jpg"
+      "frame": "SC-03",
+      "images": {
+        "background": {
+          "asset": "the-rider-recovery-sauna.jpg"
+        }
       },
       "text": {
-        "headline": "[Feature two headline]",
-        "body": "[Feature two body]"
+        "subheading": "[Feature two title]",
+        "copy": "[Feature two copy]"
       },
-      "alt_text": "[Alt text: kitchen K3]"
-    },
-    {
-      "role": "call-to-action",
-      "image": {
-        "asset": "the-rider-tower-night-front-close-up.jpg"
-      },
-      "text": {
-        "headline": "[Closing headline]",
-        "action": "[Call to action]"
-      },
-      "alt_text": "[Alt text: tower exterior at night]"
+      "alt_text": "[Alt text: recovery sauna]"
     }
   ],
   "caption": "[Caption placeholder]",
@@ -79,28 +78,38 @@
         "approval_status": "draft"
       },
       {
-        "id": "s1-headline",
-        "text": "[Opener headline]",
+        "id": "s1-heading",
+        "text": "[Opener heading]",
         "owner": {
           "channel": "on-image-text",
           "slide": 1,
-          "slot": "headline"
+          "slot": "heading"
         },
         "approval_status": "draft"
       },
       {
-        "id": "s1-subhead",
-        "text": "[Opener subhead]",
+        "id": "s1-subheading",
+        "text": "[Opener subheading]",
         "owner": {
           "channel": "on-image-text",
           "slide": 1,
-          "slot": "subhead"
+          "slot": "subheading"
+        },
+        "approval_status": "draft"
+      },
+      {
+        "id": "s1-copy",
+        "text": "[Opener line of copy]",
+        "owner": {
+          "channel": "on-image-text",
+          "slide": 1,
+          "slot": "copy"
         },
         "approval_status": "draft"
       },
       {
         "id": "s1-alt",
-        "text": "[Alt text: tower exterior by day]",
+        "text": "[Alt text: residence balcony]",
         "owner": {
           "channel": "alt-text",
           "slide": 1
@@ -108,28 +117,28 @@
         "approval_status": "draft"
       },
       {
-        "id": "s2-headline",
-        "text": "[Feature one headline]",
+        "id": "s2-subheading",
+        "text": "[Feature one title]",
         "owner": {
           "channel": "on-image-text",
           "slide": 2,
-          "slot": "headline"
+          "slot": "subheading"
         },
         "approval_status": "draft"
       },
       {
-        "id": "s2-body",
-        "text": "[Feature one body]",
+        "id": "s2-copy",
+        "text": "[Feature one copy]",
         "owner": {
-          "channel": "slide-text",
+          "channel": "on-image-text",
           "slide": 2,
-          "slot": "body"
+          "slot": "copy"
         },
         "approval_status": "draft"
       },
       {
         "id": "s2-alt",
-        "text": "[Alt text: kitchen K1]",
+        "text": "[Alt text: rooftop terrace at sunset]",
         "owner": {
           "channel": "alt-text",
           "slide": 2
@@ -137,60 +146,31 @@
         "approval_status": "draft"
       },
       {
-        "id": "s3-headline",
-        "text": "[Feature two headline]",
+        "id": "s3-subheading",
+        "text": "[Feature two title]",
         "owner": {
           "channel": "on-image-text",
           "slide": 3,
-          "slot": "headline"
+          "slot": "subheading"
         },
         "approval_status": "draft"
       },
       {
-        "id": "s3-body",
-        "text": "[Feature two body]",
+        "id": "s3-copy",
+        "text": "[Feature two copy]",
         "owner": {
-          "channel": "slide-text",
+          "channel": "on-image-text",
           "slide": 3,
-          "slot": "body"
+          "slot": "copy"
         },
         "approval_status": "draft"
       },
       {
         "id": "s3-alt",
-        "text": "[Alt text: kitchen K3]",
+        "text": "[Alt text: recovery sauna]",
         "owner": {
           "channel": "alt-text",
           "slide": 3
-        },
-        "approval_status": "draft"
-      },
-      {
-        "id": "s4-headline",
-        "text": "[Closing headline]",
-        "owner": {
-          "channel": "on-image-text",
-          "slide": 4,
-          "slot": "headline"
-        },
-        "approval_status": "draft"
-      },
-      {
-        "id": "s4-action",
-        "text": "[Call to action]",
-        "owner": {
-          "channel": "on-image-text",
-          "slide": 4,
-          "slot": "action"
-        },
-        "approval_status": "draft"
-      },
-      {
-        "id": "s4-alt",
-        "text": "[Alt text: tower exterior at night]",
-        "owner": {
-          "channel": "alt-text",
-          "slide": 4
         },
         "approval_status": "draft"
       }
