@@ -16,6 +16,8 @@ All notable project changes are recorded here. Governance decisions and operatio
 
 ### Added
 
+- A feed simulator written by every social render (`simulator.html`): a phone-style preview of the rendered slides with swipe, caption, hashtags, alt text, and dark mode, scaled to the browser window (`tools/social_runtime/simulator.py`, AUD-107).
+- A per-project `profile.json` for admin-entered facts (official name, nickname, phone, email, sales gallery and project site addresses, Instagram handle, avatar), created for every new project and read by the simulator (`tools/social_runtime/profile.py`, AUD-107).
 - A project `overrides.css` layered on the social scaffold at render time, used to give every Rider carousel frame the same subheading-to-copy spacing, scaffold-style spacing around italic words, and a five-slide amenities carousel preview example (AUD-106).
 - A social render step: `python3 -m tools.social_runtime.cli render --package <dir>` fills each slide's scaffold frame in Chromium and exports it at the format's pixel size, with a render report covering output size, logo load, and rendered text lines per slot (`tools/social_runtime/render.py`, `render_slides.cjs`, AUD-105).
 - User-supplied images for social templates that allow them: `GAL-01` accepts a local PNG or JPEG per image slot, checked for orientation, packaged under a hash-derived name, and recorded as user-supplied rather than owner-approved (`tools/social_runtime/supplied.py`, AUD-104).

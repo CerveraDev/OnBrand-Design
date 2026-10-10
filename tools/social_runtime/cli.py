@@ -64,6 +64,7 @@ def _render(package: str) -> int:
             "slides": [str(path) for path in result.slides],
             "zip_path": str(result.zip_path) if result.zip_path else None,
             "render_report": str(result.report),
+            "simulator": str(result.simulator) if result.simulator else None,
             "warnings": result.warnings,
             "failed_checks": [f"{c['name']}: {c['message']}" for c in result.checks if not c["passed"]],
         },

@@ -81,6 +81,7 @@
 - Imported the owner's social scaffold as cleaned HTML and CSS with a 33-frame catalog (AUD-102), then, after the owner confirmed the frame IDs and slot names, replaced the pre-scaffold `CAR-01` draft with frame-based templates: `frames.json` plus the drafts `PST-01` Single Post, `CAR-01` Editorial Carousel, and `GAL-01` Photo Gallery Carousel (AUD-103). The runtime now supports several images per slide and sizes each crop to its image slot. Full discovery passes 254 tests.
 - Applied the owner's 2026-10-09 decisions (AUD-104): 4:5 social formats export at 1200x1500, every image slot cover-fits, and `GAL-01` accepts images supplied by the person building the post, checked for orientation and recorded as user-supplied. Full discovery passes 260 tests.
 - Built the social render step (AUD-105): `python3 -m tools.social_runtime.cli render --package <dir>` exports every slide from the scaffold at the format size with a render report. All 33 frames were rendered and matched the catalog's line counts; the Rider `CAR-01` preview renders three slides. LIM-023 is mitigated.
+- Added the feed simulator and project profiles (AUD-107): every render writes a phone-style `simulator.html`, and each project's `profile.json` holds admin-entered facts; The Rider's is filled in from the owner's values and supplies the simulator's handle and avatar.
 
 ## Project Portfolio
 

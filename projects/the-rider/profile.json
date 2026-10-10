@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "official_name": "The Rider Residences",
+  "nickname": "The Rider",
+  "phone": "305.432.9969",
+  "email": "info@theriderresidences.com",
+  "sales_gallery_address": [
+    "89 NE 27th St. SUITE 105",
+    "Miami, FL 33137"
+  ],
+  "project_site_address": [
+    "94 NE 29th St.",
+    "Miami, FL 33137"
+  ],
+  "social": {
+    "instagram_handle": "theriderresidences",
+    "avatar": "social/rider-avatar.jpg"
+  }
+}

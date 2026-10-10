@@ -18,6 +18,7 @@ from tools.social_runtime import copy_allocation as social_copy
 from tools.social_runtime.assets import broker_safe_assets
 from tools.social_runtime.formats import FormatError, load_formats, require_format
 from tools.social_runtime.frames import build_frame_definitions, load_frames
+from tools.social_runtime.profile import avatar_path, load_profile
 from tools.social_runtime.render import RenderError, render_package
 from tools.social_runtime.supplied import load_supplied_image
 from tools.social_runtime.templates import TemplateError, load_template, match_slides
@@ -526,11 +527,50 @@ class RenderTests(SocialRuntimeCase):
         self.assertEqual(self.jobs[-1]["overrides_css"], str(overrides))
         self.assertEqual(job["slides"][0]["frame"], "TA-01")
         self.assertEqual(job["slides"][0]["images"], [{"slot": "background", "url": "https://cdn.example.com/sq-1.jpg"}])
+        page = result.simulator.read_text()
+        self.assertIn('"src": "slides/branded/slide-01.jpg"', page)
+        self.assertIn("A closer look at life above the city this season", page)
+        self.assertNotIn(str(self.base), page)
         report = json.loads(result.report.read_text())
         self.assertTrue(report["passed"])
         self.assertNotIn(str(self.base), result.report.read_text())
         with zipfile.ZipFile(result.zip_path) as archive:
             self.assertIn("demo-carousel/slides/branded/slide-01.jpg", archive.namelist())
+
+    def test_the_simulator_takes_its_account_and_avatar_from_the_project_profile(self):
+        built, result = self.render()
+        page = result.simulator.read_text()
+        self.assertIn('"avatar": null', page)
+        self.assertIn('"account": "demo"', page)
+        (self.project / "social" / "demo-avatar.JPG").write_bytes(b"picture")
+        profile = {"schema_version": 1, "official_name": "Demo", "later_field": "kept",
+                   "social": {"instagram_handle": "demo.residences", "avatar": "social/demo-avatar.JPG"}}
+        (self.project / "profile.json").write_text(json.dumps(profile), encoding="utf-8")
+        built, result = self.render()
+        page = result.simulator.read_text()
+        self.assertIn('"account": "demo.residences"', page)
+        self.assertIn('"avatar": "avatar.jpg"', page)
+        self.assertEqual((built.package_dir / "avatar.jpg").read_bytes(), b"picture")
+        self.assertEqual(load_profile(self.project)["later_field"], "kept")
+        self.assertIsNone(load_profile(self.project)["phone"])
+        for bad in ({"social": {"instagram_handle": "@demo"}}, {"social": {"avatar": "../elsewhere.jpg"}},
+                    {"social": {"avatar": "social/missing.png"}}, {"sales_gallery_address": "1 Main St."}):
+            (self.project / "profile.json").write_text(json.dumps({"schema_version": 1, **bad}), encoding="utf-8")
+            with self.assertRaises(RenderError):
+                self.render()
+
+    def test_every_project_and_the_starter_carry_a_valid_profile(self):
+        for project in sorted(p for p in (ROOT / "projects").iterdir() if (p / "project.json").is_file()):
+            profile = load_profile(project)
+            self.assertTrue((project / "profile.json").is_file(), project.name)
+            self.assertTrue(profile["official_name"], project.name)
+            avatar_path(project, profile)
+        rider = load_profile(ROOT / "projects" / "the-rider")
+        self.assertEqual(rider["social"]["instagram_handle"], "theriderresidences")
+        self.assertEqual(rider["official_name"], "The Rider Residences")
+        self.assertEqual(rider["project_site_address"], ["94 NE 29th St.", "Miami, FL 33137"])
+        self.assertIsNone(load_profile(ROOT / "projects" / "cassia")["sales_gallery_address"])
+        self.assertEqual(load_profile(ROOT / "templates" / "project-starter")["official_name"], "__PROJECT_NAME__")
 
     def test_text_that_wraps_past_its_line_limit_or_leaves_the_slide_fails(self):
         _, result = self.render(lines=3)

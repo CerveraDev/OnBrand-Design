@@ -19,6 +19,8 @@ import tempfile
 from .crops import CropError, image_dimensions
 from .formats import FORMATS_PATH, FormatError, load_formats, require_format
 from .frames import FRAMES_FILE, FrameError, load_frames
+from .profile import AVATAR_SUFFIXES, ProfileError, avatar_path, load_profile
+from .simulator import write_simulator
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -40,6 +42,7 @@ class RenderResult:
     slides: list[Path]
     report: Path
     zip_path: Path | None
+    simulator: Path | None
     checks: list[dict]
     warnings: list[str]
 
@@ -73,6 +76,11 @@ def render_package(
         expected = definitions.get("generated_from", {}).get(key)
         if expected and hashlib.sha256(path.read_bytes()).hexdigest() != expected:
             raise RenderError(f"Frame definitions are out of date with {name}; regenerate them before rendering")
+    try:
+        profile = load_profile(project_dir)
+        avatar = avatar_path(project_dir, profile)
+    except ProfileError as err:
+        raise RenderError(str(err)) from err
     frames = definitions["frames"]
     composition = package["composition"]
 
@@ -150,10 +158,22 @@ def render_package(
         "slides": [str(path.relative_to(package_dir)) for path in outputs],
         "warnings": warnings, "checks": checks,
     }, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    simulator = None
+    if outputs:
+        by_variant: dict[str, list[str]] = {}
+        for path in outputs:
+            by_variant.setdefault(path.parent.name, []).append(path.relative_to(package_dir).as_posix())
+        for suffix in AVATAR_SUFFIXES:
+            (package_dir / f"avatar{suffix}").unlink(missing_ok=True)
+        packaged = f"avatar{avatar.suffix.lower()}" if avatar else None
+        if avatar:
+            shutil.copyfile(avatar, package_dir / packaged)
+        simulator = write_simulator(package_dir, package, by_variant, passed=passed,
+                                    account=profile["social"]["instagram_handle"], avatar=packaged)
     zip_path = None
     if passed and package["build"]["deliverable"]:
         zip_path = Path(shutil.make_archive(str(package_dir), "zip", root_dir=package_dir.parent, base_dir=package_dir.name))
-    return RenderResult(passed, outputs, report, zip_path, checks, warnings)
+    return RenderResult(passed, outputs, report, zip_path, simulator, checks, warnings)
 
 
 def _run_renderer(job: dict) -> dict:
