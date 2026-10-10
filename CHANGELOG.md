@@ -23,6 +23,8 @@ All notable project changes are recorded here. Governance decisions and operatio
 - `tools/social_runtime/`, a sibling medium runtime for static posts and carousels: spec schema, pinned platform-format sidecar, data-file templates with audience availability and locked content, overlay-based asset resolution, a broker-safe catalog filter, crop provenance validation, social copy allocation, cross-medium repetition detection against an email campaign spec, blocking QA, packaging, and a CLI. It produces composition packages and a review sheet; it does not render slide images.
 - The draft `CAR-01` Feature Carousel template and a Rider Composition Preview spec, plus 35 tests in `tests/test_social_runtime.py`.
 - One additive `social` entry in the platform adapter `RUNTIMES` table. The email runtime is unmodified.
+- The Rider social scaffold at `projects/the-rider/social/scaffold/`: the owner's Elementor page reduced to the HTML and CSS it actually uses, a generated frame catalog with proposed stable IDs and named slots for 33 frames, and a 600x750 preview of each frame.
+- `tools/social_scaffold/import_scaffold.cjs`, which re-imports the scaffold page, drops site scripts and unused CSS, and fails unless the cleaned copy matches the live page element by element, plus 5 tests in `tests/test_social_scaffold.py`.
 - LIM-023 for the absent pixel-producing render step and the unverified platform-format values.
 - LIM-021 and LIM-022 for the absent social approval vocabulary and the landscape-dominant library that cannot satisfy social formats by selection alone.
 - Canonical Phase 16 Rider scaffold, refined metadata, deterministic slot map, migrated runtime fixtures, and archived Phase 15 regression provenance after owner approval.

@@ -1,0 +1,3681 @@
+{
+  "schema_version": "1.0",
+  "tool": "onbrand-social-scaffold-import",
+  "source": {
+    "url": "http://start-up.local/social-scaffolding/",
+    "imported": "2026-10-09",
+    "raw_page_sha256": "e8ed86499a87d9ba06306dbf970d6298945874c373b65078d652d408e7f3577d",
+    "viewport": {
+      "width": 1512,
+      "height": 900
+    }
+  },
+  "files": {
+    "scaffold.html": {
+      "sha256": "77fd89db492ff46d4363886656169a1031ed0e3bb73055329e928450f420afdb",
+      "byte_size": 66483
+    },
+    "scaffold.css": {
+      "sha256": "e6d2fe694824b3eefe55e7927bce14beaf3bc90d1ad74bc3afe37ad85f86d114",
+      "byte_size": 100219
+    }
+  },
+  "cleaning": {
+    "rules_seen": 1753,
+    "rules_kept": 541,
+    "media_blocks_dropped": 69,
+    "custom_properties_dropped": 105
+  },
+  "verification": {
+    "method": "element-by-element box and computed-style comparison against the live page",
+    "elements_compared": 685,
+    "properties_compared": 63,
+    "differences": 0
+  },
+  "owner_review": "pending",
+  "frames": [
+    {
+      "id": "SP-01",
+      "order": 1,
+      "family": "post",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "FRAMED LAYOUT",
+          "TWO-COLUMN HEADER - HEADLINE ON LEFT, LOGO ON RIGHT",
+          "AI GENERATED IMAGE FROM PROMPT OR PROVIDED BY THE USER"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": true,
+        "border": {
+          "width": 20,
+          "color": "rgb(0, 0, 0)"
+        },
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 440,
+            "y": 25,
+            "width": 140,
+            "height": 51
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto 88%",
+            "background_position": "44% 99px",
+            "overlay": null
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "heading",
+            "tag": "h1",
+            "sample": [
+              "THE SKYLINE JUST",
+              "GOT A NEW ATTITUDE"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "28px",
+            "line_height": "28px",
+            "letter_spacing": "normal",
+            "text_transform": "none",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "top",
+            "box": {
+              "x": 20,
+              "y": 20,
+              "width": 420,
+              "height": 56
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [],
+      "review_notes": []
+    },
+    {
+      "id": "SP-02",
+      "order": 2,
+      "family": "post",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "FRAMED LAYOUT",
+          "ONE-COLUMN HEADER - LOGO CENTERED",
+          "AI GENERATED IMAGE BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE",
+          "HEADING TOP CENTER-ALIGNED"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": true,
+        "border": {
+          "width": 20,
+          "color": "rgb(0, 0, 0)"
+        },
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 232,
+            "y": 20,
+            "width": 137,
+            "height": 50
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 90,
+              "width": 600,
+              "height": 660
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "linear-scrim",
+              "darkest_at": "top",
+              "max_opacity": 0.71
+            }
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "heading",
+            "tag": "h1",
+            "sample": [
+              "THIS IS A MULTI-COLUMN ALL-CAP HEADING"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "center",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "top",
+            "box": {
+              "x": 88,
+              "y": 120,
+              "width": 425,
+              "height": 68
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [],
+      "review_notes": []
+    },
+    {
+      "id": "SP-03",
+      "order": 3,
+      "family": "post",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "FRAMED LAYOUT",
+          "ONE-COLUMN HEADER - LOGO CENTERED",
+          "AI GENERATED IMAGE BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE",
+          "HEADING BOTTOM LEFT-ALIGNED"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": true,
+        "border": {
+          "width": 20,
+          "color": "rgb(0, 0, 0)"
+        },
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 232,
+            "y": 20,
+            "width": 137,
+            "height": 50
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 90,
+              "width": 600,
+              "height": 660
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "linear-scrim",
+              "darkest_at": "bottom",
+              "max_opacity": 0.71
+            }
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "heading",
+            "tag": "h1",
+            "sample": [
+              "THIS IS A MULTI-COLUMN ALL-CAP HEADING"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 50,
+              "y": 632,
+              "width": 425,
+              "height": 68
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [],
+      "review_notes": []
+    },
+    {
+      "id": "SP-04",
+      "order": 4,
+      "family": "post",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "FRAMED LAYOUT",
+          "ONE-COLUMN HEADER - LOGO CENTERED",
+          "AI GENERATED IMAGE BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE",
+          "HEADING AND SUBHEADING TOP CENTER-ALIGNED"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": true,
+        "border": {
+          "width": 20,
+          "color": "rgb(0, 0, 0)"
+        },
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 232,
+            "y": 20,
+            "width": 137,
+            "height": 50
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 90,
+              "width": 600,
+              "height": 660
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "linear-scrim",
+              "darkest_at": "top",
+              "max_opacity": 0.71
+            }
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "heading",
+            "tag": "h1",
+            "sample": [
+              "THIS IS A MULTI-COLUMN ALL-CAP HEADING"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "center",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "top",
+            "box": {
+              "x": 88,
+              "y": 120,
+              "width": 425,
+              "height": 68
+            }
+          },
+          {
+            "slot": "subheading",
+            "tag": "h2",
+            "sample": [
+              "This is a Multi-column all-cap Subheading"
+            ],
+            "italic_accent": false,
+            "font_family": "Playfair Display",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "none",
+            "text_align": "center",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "top",
+            "box": {
+              "x": 113,
+              "y": 198,
+              "width": 375,
+              "height": 68
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [
+        "SP-05"
+      ],
+      "review_notes": []
+    },
+    {
+      "id": "SP-05",
+      "order": 5,
+      "family": "post",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "FRAMED LAYOUT",
+          "ONE-COLUMN HEADER - LOGO CENTERED",
+          "AI GENERATED IMAGE BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE",
+          "HEADING AND SUBHEADING TOP CENTER-ALIGNED"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": true,
+        "border": {
+          "width": 20,
+          "color": "rgb(0, 0, 0)"
+        },
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 232,
+            "y": 20,
+            "width": 137,
+            "height": 50
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 90,
+              "width": 600,
+              "height": 660
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "linear-scrim",
+              "darkest_at": "bottom",
+              "max_opacity": 0.71
+            }
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "heading",
+            "tag": "h1",
+            "sample": [
+              "THIS IS A MULTI-COLUMN ALL-CAP HEADING"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 50,
+              "y": 554,
+              "width": 425,
+              "height": 68
+            }
+          },
+          {
+            "slot": "subheading",
+            "tag": "h2",
+            "sample": [
+              "This is a Multi-column all-cap Subheading"
+            ],
+            "italic_accent": false,
+            "font_family": "Playfair Display",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "none",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 50,
+              "y": 632,
+              "width": 375,
+              "height": 68
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [
+        "SP-04"
+      ],
+      "review_notes": []
+    },
+    {
+      "id": "SP-06",
+      "order": 6,
+      "family": "post",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "FRAMED LAYOUT",
+          "ONE-COLUMN LOGO CENTERED, HEADING AND SUBHEADING WITHIN THE BODY",
+          "AI GENERATED IMAGE BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE",
+          "HEADING AND SUBHEADING TOP CENTER-ALIGNED"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": true,
+        "border": {
+          "width": 20,
+          "color": "rgb(0, 0, 0)"
+        },
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 210,
+            "y": 50,
+            "width": 180,
+            "height": 66
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "linear-scrim",
+              "darkest_at": "top",
+              "max_opacity": 0.71
+            }
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "heading",
+            "tag": "h1",
+            "sample": [
+              "THIS IS A MULTI-COLUMN ALL-CAP HEADING"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "center",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "top",
+            "box": {
+              "x": 88,
+              "y": 146,
+              "width": 425,
+              "height": 68
+            }
+          },
+          {
+            "slot": "subheading",
+            "tag": "h2",
+            "sample": [
+              "This is a Multi-column all-cap Subheading"
+            ],
+            "italic_accent": false,
+            "font_family": "Playfair Display",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "none",
+            "text_align": "center",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "top",
+            "box": {
+              "x": 113,
+              "y": 214,
+              "width": 375,
+              "height": 68
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [],
+      "review_notes": []
+    },
+    {
+      "id": "SP-07",
+      "order": 7,
+      "family": "post",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "FRAMED LAYOUT",
+          "ONE-COLUMN LOGO CENTERED, HEADING AND SUBHEADING WITHIN THE BODY",
+          "AI GENERATED IMAGE BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE",
+          "HEADING AND SUBHEADING BOTTOM CENTER-ALIGNED"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": true,
+        "border": {
+          "width": 20,
+          "color": "rgb(0, 0, 0)"
+        },
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 210,
+            "y": 50,
+            "width": 180,
+            "height": 66
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "linear-scrim",
+              "darkest_at": "bottom",
+              "max_opacity": 0.71
+            }
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "heading",
+            "tag": "h1",
+            "sample": [
+              "THIS IS A MULTI-COLUMN ALL-CAP HEADING"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "center",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 88,
+              "y": 564,
+              "width": 425,
+              "height": 68
+            }
+          },
+          {
+            "slot": "subheading",
+            "tag": "h2",
+            "sample": [
+              "This is a Multi-column all-cap Subheading"
+            ],
+            "italic_accent": false,
+            "font_family": "Playfair Display",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "none",
+            "text_align": "center",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 113,
+              "y": 632,
+              "width": 375,
+              "height": 68
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [],
+      "review_notes": []
+    },
+    {
+      "id": "SP-08",
+      "order": 8,
+      "family": "post",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "FRAMED LAYOUT",
+          "ONE-COLUMN LOGO CENTERED, HEADING AND SUBHEADING WITHIN THE BODY",
+          "AI GENERATED IMAGE BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE",
+          "HEADING AND SUBHEADING BOTTOM LEFT-ALIGNED"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": true,
+        "border": {
+          "width": 20,
+          "color": "rgb(0, 0, 0)"
+        },
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 210,
+            "y": 50,
+            "width": 180,
+            "height": 66
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "linear-scrim",
+              "darkest_at": "bottom",
+              "max_opacity": 0.71
+            }
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "heading",
+            "tag": "h1",
+            "sample": [
+              "THIS IS A MULTI-COLUMN ALL-CAP HEADING"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 50,
+              "y": 564,
+              "width": 425,
+              "height": 68
+            }
+          },
+          {
+            "slot": "subheading",
+            "tag": "h2",
+            "sample": [
+              "This is a Multi-column all-cap Subheading"
+            ],
+            "italic_accent": false,
+            "font_family": "Playfair Display",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "none",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 50,
+              "y": 632,
+              "width": 375,
+              "height": 68
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [
+        "SP-10"
+      ],
+      "review_notes": []
+    },
+    {
+      "id": "SP-09",
+      "order": 9,
+      "family": "post",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "FRAMED LAYOUT",
+          "ONE-COLUMN LOGO CENTERED, HEADING AND SUBHEADING WITHIN THE BODY",
+          "AI GENERATED IMAGE BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "CENTERED SCRIM RADIAL GRADIENT OVERLAY ON BACKGROUND IMAGE",
+          "HEADING AND SUBHEADING CENTER-CENTERE"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": true,
+        "border": {
+          "width": 20,
+          "color": "rgb(0, 0, 0)"
+        },
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 210,
+            "y": 50,
+            "width": 180,
+            "height": 66
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "radial-scrim",
+              "max_opacity": 0.71
+            }
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "heading",
+            "tag": "h1",
+            "sample": [
+              "THIS IS A MULTI-COLUMN ALL-CAP HEADING"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "center",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "middle",
+            "box": {
+              "x": 88,
+              "y": 310,
+              "width": 425,
+              "height": 68
+            }
+          },
+          {
+            "slot": "subheading",
+            "tag": "h2",
+            "sample": [
+              "This is a Multi-column all-cap Subheading"
+            ],
+            "italic_accent": false,
+            "font_family": "Playfair Display",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "none",
+            "text_align": "center",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "middle",
+            "box": {
+              "x": 113,
+              "y": 378,
+              "width": 375,
+              "height": 68
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [],
+      "review_notes": []
+    },
+    {
+      "id": "SP-10",
+      "order": 10,
+      "family": "post",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "FRAMED LAYOUT",
+          "ONE-COLUMN LOGO CENTERED, HEADING AND SUBHEADING WITHIN THE BODY",
+          "AI GENERATED IMAGE BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE",
+          "HEADING AND SUBHEADING BOTTOM LEFT-ALIGNED"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": true,
+        "border": {
+          "width": 20,
+          "color": "rgb(0, 0, 0)"
+        },
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 210,
+            "y": 50,
+            "width": 180,
+            "height": 66
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "linear-scrim",
+              "darkest_at": "bottom",
+              "max_opacity": 0.71
+            }
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "heading",
+            "tag": "h1",
+            "sample": [
+              "THIS IS A MULTI-COLUMN ALL-CAP HEADING"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 50,
+              "y": 564,
+              "width": 425,
+              "height": 68
+            }
+          },
+          {
+            "slot": "subheading",
+            "tag": "h2",
+            "sample": [
+              "This is a Multi-column all-cap Subheading"
+            ],
+            "italic_accent": false,
+            "font_family": "Playfair Display",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "none",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 50,
+              "y": 632,
+              "width": 375,
+              "height": 68
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [
+        "SP-08"
+      ],
+      "review_notes": []
+    },
+    {
+      "id": "SP-11",
+      "order": 11,
+      "family": "post",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "UNFRAMED, EDGE-TO-EDGE LAYOUT",
+          "ONE-COLUMN LOGO CENTERED, HEADING AND SUBHEADING WITHIN THE BODY",
+          "AI GENERATED IMAGE BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "LINEAR SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE - DARKEST AT TOP",
+          "HEADING AND SUBHEADING TOP CENTER-ALIGNED"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": false,
+        "border": null,
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 210,
+            "y": 60,
+            "width": 180,
+            "height": 66
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "linear-scrim",
+              "darkest_at": "top",
+              "max_opacity": 0.71
+            }
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "heading",
+            "tag": "h1",
+            "sample": [
+              "THIS IS A MULTI-COLUMN ALL-CAP HEADING"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "center",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "top",
+            "box": {
+              "x": 71,
+              "y": 156,
+              "width": 459,
+              "height": 68
+            }
+          }
+        ]
+      },
+      "label_corrections": [
+        {
+          "from": "CENTERED SCRIM RADIAL GRADIENT OVERLAY ON BACKGROUND IMAGE",
+          "to": "LINEAR SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE - DARKEST AT TOP"
+        }
+      ],
+      "same_label_as": [
+        "SP-13"
+      ],
+      "review_notes": []
+    },
+    {
+      "id": "SP-12",
+      "order": 12,
+      "family": "post",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "UNFRAMED, EDGE-TO-EDGE LAYOUT",
+          "ONE-COLUMN LOGO CENTERED, HEADING AND SUBHEADING WITHIN THE BODY",
+          "AI GENERATED IMAGE BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "LINEAR SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE - DARKEST AT BOTTOM",
+          "HEADING AND SUBHEADING TOP CENTER-ALIGNED"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": false,
+        "border": null,
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 210,
+            "y": 60,
+            "width": 180,
+            "height": 66
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "linear-scrim",
+              "darkest_at": "bottom",
+              "max_opacity": 0.71
+            }
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "heading",
+            "tag": "h1",
+            "sample": [
+              "THIS IS A MULTI-COLUMN ALL-CAP HEADING"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 30,
+              "y": 652,
+              "width": 459,
+              "height": 68
+            }
+          }
+        ]
+      },
+      "label_corrections": [
+        {
+          "from": "CENTERED SCRIM RADIAL GRADIENT OVERLAY ON BACKGROUND IMAGE",
+          "to": "LINEAR SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE - DARKEST AT BOTTOM"
+        }
+      ],
+      "same_label_as": [],
+      "review_notes": []
+    },
+    {
+      "id": "SP-13",
+      "order": 13,
+      "family": "post",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "UNFRAMED, EDGE-TO-EDGE LAYOUT",
+          "ONE-COLUMN LOGO CENTERED, HEADING AND SUBHEADING WITHIN THE BODY",
+          "AI GENERATED IMAGE BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "LINEAR SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE - DARKEST AT TOP",
+          "HEADING AND SUBHEADING TOP CENTER-ALIGNED"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": false,
+        "border": null,
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 210,
+            "y": 60,
+            "width": 180,
+            "height": 66
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "linear-scrim",
+              "darkest_at": "top",
+              "max_opacity": 0.71
+            }
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "heading",
+            "tag": "h1",
+            "sample": [
+              "THIS IS A MULTI-COLUMN ALL-CAP HEADING"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "center",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "top",
+            "box": {
+              "x": 71,
+              "y": 156,
+              "width": 459,
+              "height": 68
+            }
+          },
+          {
+            "slot": "subheading",
+            "tag": "h2",
+            "sample": [
+              "This is a Multi-column all-cap Subheading"
+            ],
+            "italic_accent": false,
+            "font_family": "Playfair Display",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "none",
+            "text_align": "center",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "middle",
+            "box": {
+              "x": 98,
+              "y": 224,
+              "width": 405,
+              "height": 68
+            }
+          }
+        ]
+      },
+      "label_corrections": [
+        {
+          "from": "CENTERED SCRIM RADIAL GRADIENT OVERLAY ON BACKGROUND IMAGE",
+          "to": "LINEAR SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE - DARKEST AT TOP"
+        }
+      ],
+      "same_label_as": [
+        "SP-11"
+      ],
+      "review_notes": []
+    },
+    {
+      "id": "SP-14",
+      "order": 14,
+      "family": "post",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "UNFRAMED, EDGE-TO-EDGE LAYOUT",
+          "ONE-COLUMN LOGO CENTERED, HEADING AND SUBHEADING WITHIN THE BODY",
+          "AI GENERATED IMAGE BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "LINEAR SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE - DARKEST AT BOTTOM",
+          "HEADING AND SUBHEADING BOTTOM CENTER-ALIGNED"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": false,
+        "border": null,
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 210,
+            "y": 60,
+            "width": 180,
+            "height": 66
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "linear-scrim",
+              "darkest_at": "bottom",
+              "max_opacity": 0.71
+            }
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "heading",
+            "tag": "h1",
+            "sample": [
+              "THIS IS A MULTI-COLUMN ALL-CAP HEADING"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "center",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 71,
+              "y": 584,
+              "width": 459,
+              "height": 68
+            }
+          },
+          {
+            "slot": "subheading",
+            "tag": "h2",
+            "sample": [
+              "This is a Multi-column all-cap Subheading"
+            ],
+            "italic_accent": false,
+            "font_family": "Playfair Display",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "none",
+            "text_align": "center",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 98,
+              "y": 652,
+              "width": 405,
+              "height": 68
+            }
+          }
+        ]
+      },
+      "label_corrections": [
+        {
+          "from": "CENTERED SCRIM RADIAL GRADIENT OVERLAY ON BACKGROUND IMAGE",
+          "to": "LINEAR SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE - DARKEST AT BOTTOM"
+        }
+      ],
+      "same_label_as": [],
+      "review_notes": []
+    },
+    {
+      "id": "SP-15",
+      "order": 15,
+      "family": "post",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "UNFRAMED, EDGE-TO-EDGE LAYOUT",
+          "ONE-COLUMN LOGO CENTERED, HEADING AND SUBHEADING WITHIN THE BODY",
+          "AI GENERATED IMAGE BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "LINEAR SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE - DARKEST AT BOTTOM",
+          "HEADING AND SUBHEADING BOTTOM LEFT-ALIGNED"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": false,
+        "border": null,
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 210,
+            "y": 60,
+            "width": 180,
+            "height": 66
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "linear-scrim",
+              "darkest_at": "bottom",
+              "max_opacity": 0.71
+            }
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "heading",
+            "tag": "h1",
+            "sample": [
+              "THIS IS A MULTI-COLUMN ALL-CAP HEADING"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 30,
+              "y": 584,
+              "width": 459,
+              "height": 68
+            }
+          },
+          {
+            "slot": "subheading",
+            "tag": "h2",
+            "sample": [
+              "This is a Multi-column all-cap Subheading"
+            ],
+            "italic_accent": false,
+            "font_family": "Playfair Display",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "none",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 30,
+              "y": 652,
+              "width": 405,
+              "height": 68
+            }
+          }
+        ]
+      },
+      "label_corrections": [
+        {
+          "from": "CENTERED SCRIM RADIAL GRADIENT OVERLAY ON BACKGROUND IMAGE",
+          "to": "LINEAR SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE - DARKEST AT BOTTOM"
+        }
+      ],
+      "same_label_as": [],
+      "review_notes": []
+    },
+    {
+      "id": "SP-16",
+      "order": 16,
+      "family": "post",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "UNFRAMED, EDGE-TO-EDGE LAYOUT",
+          "ONE-COLUMN LOGO CENTERED, HEADING AND SUBHEADING WITHIN THE BODY",
+          "AI GENERATED IMAGE BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "CENTERED SCRIM RADIAL GRADIENT OVERLAY ON BACKGROUND IMAGE",
+          "HEADING AND SUBHEADING CENTER-CENTER"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": false,
+        "border": null,
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 210,
+            "y": 60,
+            "width": 180,
+            "height": 66
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "radial-scrim",
+              "max_opacity": 0.71
+            }
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "heading",
+            "tag": "h1",
+            "sample": [
+              "THIS IS A MULTI-COLUMN ALL-CAP HEADING"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "center",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "middle",
+            "box": {
+              "x": 71,
+              "y": 324,
+              "width": 459,
+              "height": 68
+            }
+          },
+          {
+            "slot": "subheading",
+            "tag": "h2",
+            "sample": [
+              "This Is A Multi-Column All-Cap Subheading"
+            ],
+            "italic_accent": false,
+            "font_family": "Playfair Display",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "-1px",
+            "text_transform": "capitalize",
+            "text_align": "center",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "middle",
+            "box": {
+              "x": 98,
+              "y": 392,
+              "width": 405,
+              "height": 68
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [
+        "SP-17"
+      ],
+      "review_notes": []
+    },
+    {
+      "id": "SP-17",
+      "order": 17,
+      "family": "post",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "UNFRAMED, EDGE-TO-EDGE LAYOUT",
+          "ONE-COLUMN LOGO CENTERED, HEADING AND SUBHEADING WITHIN THE BODY",
+          "AI GENERATED IMAGE BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "CENTERED SCRIM RADIAL GRADIENT OVERLAY ON BACKGROUND IMAGE",
+          "HEADING AND SUBHEADING CENTER-CENTER"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": false,
+        "border": null,
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 210,
+            "y": 60,
+            "width": 180,
+            "height": 66
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "radial-scrim",
+              "max_opacity": 0.71
+            }
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "heading",
+            "tag": "h1",
+            "sample": [
+              "THIS IS A MULTI-COLUMN ALL-CAP HEADING"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "center",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "middle",
+            "box": {
+              "x": 71,
+              "y": 324,
+              "width": 459,
+              "height": 68
+            }
+          },
+          {
+            "slot": "subheading",
+            "tag": "h2",
+            "sample": [
+              "This Is A Multi-Column All-Cap Subheading"
+            ],
+            "italic_accent": false,
+            "font_family": "Playfair Display",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "-1px",
+            "text_transform": "capitalize",
+            "text_align": "center",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "middle",
+            "box": {
+              "x": 98,
+              "y": 392,
+              "width": 405,
+              "height": 68
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [
+        "SP-16"
+      ],
+      "review_notes": []
+    },
+    {
+      "id": "SP-18",
+      "order": 18,
+      "family": "post",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "UNFRAMED, EDGE-TO-EDGE LAYOUT",
+          "PRESS MENTION WITH LOGO, HEADING AND SUBHEADING WITHIN THE BODY",
+          "AI GENERATED IMAGE BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "LINEAR SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE - DARKEST AT BOTTOM",
+          "HEADING AND SUBHEADING BOTTOM LEFT-ALIGNED"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": false,
+        "border": null,
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 30,
+            "y": 539,
+            "width": 96,
+            "height": 35
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "linear-scrim",
+              "darkest_at": "bottom",
+              "max_opacity": 0.71
+            }
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "heading",
+            "tag": "h1",
+            "sample": [
+              "THIS IS A MULTI-COLUMN ALL-CAP HEADING"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 30,
+              "y": 574,
+              "width": 459,
+              "height": 78
+            }
+          },
+          {
+            "slot": "subheading",
+            "tag": "h2",
+            "sample": [
+              "This Is A Multi-Column All-Cap Subheading"
+            ],
+            "italic_accent": false,
+            "font_family": "Playfair Display",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "-1px",
+            "text_transform": "capitalize",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 30,
+              "y": 652,
+              "width": 405,
+              "height": 68
+            }
+          }
+        ]
+      },
+      "label_corrections": [
+        {
+          "from": "CENTERED SCRIM RADIAL GRADIENT OVERLAY ON BACKGROUND IMAGE",
+          "to": "LINEAR SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE - DARKEST AT BOTTOM"
+        }
+      ],
+      "same_label_as": [],
+      "review_notes": []
+    },
+    {
+      "id": "SC-01",
+      "order": 19,
+      "family": "carousel",
+      "owner_label": {
+        "start_marker": "START - CAROUSEL FRAME - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "UNFRAMED, EDGE-TO-EDGE LAYOUT",
+          "NO LOGO, HEADING, SUBHEADING, AND ONE LINE OF COPY WITHIN THE BODY",
+          "AI GENERATED IMAGE BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "LINEAR SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE - DARKEST AT TOP",
+          "HEADING AND SUBHEADING TOP LEFT-ALIGNED"
+        ],
+        "end_marker": "END - CAROUSEL FRAME - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": false,
+        "border": null,
+        "logo": null,
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "linear-scrim",
+              "darkest_at": "top",
+              "max_opacity": 0.71
+            }
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "heading",
+            "tag": "h1",
+            "sample": [
+              "THE RIDER",
+              "RESIDENCES"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "48px",
+            "line_height": "42px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "top",
+            "box": {
+              "x": 30,
+              "y": 30,
+              "width": 385,
+              "height": 84
+            }
+          },
+          {
+            "slot": "subheading",
+            "tag": "h2",
+            "sample": [
+              "Lanai & Penthouse",
+              "Collection"
+            ],
+            "italic_accent": false,
+            "font_family": "Playfair Display",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "-1px",
+            "text_transform": "capitalize",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "top",
+            "box": {
+              "x": 30,
+              "y": 114,
+              "width": 385,
+              "height": 68
+            }
+          },
+          {
+            "slot": "copy",
+            "tag": "h1",
+            "sample": [
+              "Own a limited edition."
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "16px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "none",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "top",
+            "box": {
+              "x": 30,
+              "y": 182,
+              "width": 385,
+              "height": 34
+            }
+          }
+        ]
+      },
+      "label_corrections": [
+        {
+          "from": "CENTERED SCRIM RADIAL GRADIENT OVERLAY ON BACKGROUND IMAGE",
+          "to": "LINEAR SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE - DARKEST AT TOP"
+        }
+      ],
+      "same_label_as": [],
+      "review_notes": []
+    },
+    {
+      "id": "SC-02",
+      "order": 20,
+      "family": "carousel",
+      "owner_label": {
+        "start_marker": "START - CAROUSEL FRAME - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "UNFRAMED, EDGE-TO-EDGE LAYOUT",
+          "NO LOGO, SUBHEADING WITH ITALIC WORD AND A COUPLE OF LINES OF COPY WITHIN THE BODY",
+          "AI GENERATED IMAGE BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "LINEAR SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE - DARKEST AT TOP",
+          "HEADING AND SUBHEADING TOP LEFT-ALIGNED"
+        ],
+        "end_marker": "END - CAROUSEL FRAME - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": false,
+        "border": null,
+        "logo": null,
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "linear-scrim",
+              "darkest_at": "top",
+              "max_opacity": 0.71
+            }
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "subheading",
+            "tag": "h2",
+            "sample": [
+              "THE  LEOPARD ROOM"
+            ],
+            "italic_accent": true,
+            "font_family": "Playfair Display",
+            "font_size": "40px",
+            "line_height": "40px",
+            "letter_spacing": "-3px",
+            "text_transform": "uppercase",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "top",
+            "box": {
+              "x": 30,
+              "y": 30,
+              "width": 358,
+              "height": 40
+            }
+          },
+          {
+            "slot": "copy",
+            "tag": "h1",
+            "sample": [
+              "Private. Soundproof. Owners only.",
+              "Some xperiences aren't meant to be shared."
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "16px",
+            "line_height": "16px",
+            "letter_spacing": "normal",
+            "text_transform": "none",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "top",
+            "box": {
+              "x": 30,
+              "y": 70,
+              "width": 314,
+              "height": 32
+            }
+          }
+        ]
+      },
+      "label_corrections": [
+        {
+          "from": "CENTERED SCRIM RADIAL GRADIENT OVERLAY ON BACKGROUND IMAGE",
+          "to": "LINEAR SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE - DARKEST AT TOP"
+        }
+      ],
+      "same_label_as": [],
+      "review_notes": []
+    },
+    {
+      "id": "SC-03",
+      "order": 21,
+      "family": "carousel",
+      "owner_label": {
+        "start_marker": "START - CAROUSEL FRAME - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "UNFRAMED, EDGE-TO-EDGE LAYOUT",
+          "NO LOGO, SUBHEADING WITH ITALIC WORD AND A COUPLE OF LINES OF COPY WITHIN THE BODY",
+          "AI GENERATED IMAGE BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "LINEAR SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE - DARKEST AT BOTTOM",
+          "HEADING AND SUBHEADING BOTTOM LEFT-ALIGNED"
+        ],
+        "end_marker": "END - CAROUSEL FRAME - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": false,
+        "border": null,
+        "logo": null,
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "linear-scrim",
+              "darkest_at": "bottom",
+              "max_opacity": 0.71
+            }
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "subheading",
+            "tag": "h2",
+            "sample": [
+              "ABOVE",
+              "WYNWOOD"
+            ],
+            "italic_accent": true,
+            "font_family": "Playfair Display",
+            "font_size": "40px",
+            "line_height": "40px",
+            "letter_spacing": "-3px",
+            "text_transform": "uppercase",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 30,
+              "y": 608,
+              "width": 196,
+              "height": 80
+            }
+          },
+          {
+            "slot": "copy",
+            "tag": "h1",
+            "sample": [
+              "Biscayne Bay sightlines.",
+              "Where the rare reside."
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "16px",
+            "line_height": "16px",
+            "letter_spacing": "normal",
+            "text_transform": "none",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 30,
+              "y": 688,
+              "width": 173,
+              "height": 32
+            }
+          }
+        ]
+      },
+      "label_corrections": [
+        {
+          "from": "CENTERED SCRIM RADIAL GRADIENT OVERLAY ON BACKGROUND IMAGE",
+          "to": "LINEAR SCRIM GRADIENT OVERLAY ON BACKGROUND IMAGE - DARKEST AT BOTTOM"
+        }
+      ],
+      "same_label_as": [],
+      "review_notes": []
+    },
+    {
+      "id": "SC-04",
+      "order": 22,
+      "family": "carousel",
+      "owner_label": {
+        "start_marker": "START - CAROUSEL FRAME - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "FRAMED LAYOUT",
+          "NO LOGO, SUBHEADING WITH ITALIC WORD AND A COUPLE OF LINES OF COPY WITHIN THE BODY",
+          "AI GENERATED IMAGES BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "ONE IMAGE LANDSCAPE AND ONE PORTRAIT",
+          "HEADING AND SUBHEADING BOTTOM LEFT-ALIGNED"
+        ],
+        "end_marker": "END - CAROUSEL FRAME - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": true,
+        "border": {
+          "width": 20,
+          "color": "rgb(255, 255, 255)"
+        },
+        "logo": null,
+        "image_slots": [
+          {
+            "slot": "image-1",
+            "box": {
+              "x": 50,
+              "y": 50,
+              "width": 500,
+              "height": 315
+            },
+            "shape": "landscape",
+            "background_size": "cover",
+            "background_position": "50% 100%",
+            "overlay": null
+          },
+          {
+            "slot": "image-2",
+            "box": {
+              "x": 310,
+              "y": 385,
+              "width": 240,
+              "height": 315
+            },
+            "shape": "portrait",
+            "background_size": "cover",
+            "background_position": "50% 100%",
+            "overlay": null
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "subheading",
+            "tag": "h2",
+            "sample": [
+              "THE",
+              "PENTHOUSE",
+              "COLLECTION"
+            ],
+            "italic_accent": true,
+            "font_family": "Playfair Display",
+            "font_size": "40px",
+            "line_height": "40px",
+            "letter_spacing": "-3px",
+            "text_transform": "uppercase",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 50,
+              "y": 492,
+              "width": 240,
+              "height": 160
+            }
+          },
+          {
+            "slot": "copy",
+            "tag": "h1",
+            "sample": [
+              "Unparalleled views.",
+              "Enhanced ceiling heights.",
+              "Zero compromise."
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "16px",
+            "line_height": "16px",
+            "letter_spacing": "normal",
+            "text_transform": "none",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 50,
+              "y": 652,
+              "width": 240,
+              "height": 48
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [
+        "SC-06"
+      ],
+      "review_notes": []
+    },
+    {
+      "id": "SC-05",
+      "order": 23,
+      "family": "carousel",
+      "owner_label": {
+        "start_marker": "START - CAROUSEL FRAME - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "FRAMED LAYOUT",
+          "NO LOGO, SUBHEADING WITH ITALIC WORD AND A COUPLE OF LINES OF COPY WITHIN THE BODY",
+          "AI GENERATED IMAGES BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "ONE IMAGE LANDSCAPE AND ONE PORTRAIT",
+          "HEADING AND SUBHEADING BOTTOM RIGHT-ALIGNED"
+        ],
+        "end_marker": "END - CAROUSEL FRAME - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": true,
+        "border": {
+          "width": 20,
+          "color": "rgb(255, 255, 255)"
+        },
+        "logo": null,
+        "image_slots": [
+          {
+            "slot": "image-1",
+            "box": {
+              "x": 50,
+              "y": 50,
+              "width": 500,
+              "height": 315
+            },
+            "shape": "landscape",
+            "background_size": "cover",
+            "background_position": "50% 100%",
+            "overlay": null
+          },
+          {
+            "slot": "image-2",
+            "box": {
+              "x": 50,
+              "y": 385,
+              "width": 240,
+              "height": 315
+            },
+            "shape": "portrait",
+            "background_size": "cover",
+            "background_position": "50% 100%",
+            "overlay": null
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "subheading",
+            "tag": "h2",
+            "sample": [
+              "THE",
+              "PENTHOUSE",
+              "COLLECTION"
+            ],
+            "italic_accent": true,
+            "font_family": "Playfair Display",
+            "font_size": "40px",
+            "line_height": "40px",
+            "letter_spacing": "-3px",
+            "text_transform": "uppercase",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 310,
+              "y": 492,
+              "width": 240,
+              "height": 160
+            }
+          },
+          {
+            "slot": "copy",
+            "tag": "h1",
+            "sample": [
+              "Unparalleled views.",
+              "Enhanced ceiling heights.",
+              "Zero compromise."
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "16px",
+            "line_height": "16px",
+            "letter_spacing": "normal",
+            "text_transform": "none",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 310,
+              "y": 652,
+              "width": 240,
+              "height": 48
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [
+        "SC-07"
+      ],
+      "review_notes": []
+    },
+    {
+      "id": "SC-06",
+      "order": 24,
+      "family": "carousel",
+      "owner_label": {
+        "start_marker": "START - CAROUSEL FRAME - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "FRAMED LAYOUT",
+          "NO LOGO, SUBHEADING WITH ITALIC WORD AND A COUPLE OF LINES OF COPY WITHIN THE BODY",
+          "AI GENERATED IMAGES BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "ONE IMAGE LANDSCAPE AND ONE PORTRAIT",
+          "HEADING AND SUBHEADING BOTTOM LEFT-ALIGNED"
+        ],
+        "end_marker": "END - CAROUSEL FRAME - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": true,
+        "border": {
+          "width": 20,
+          "color": "rgb(0, 0, 0)"
+        },
+        "logo": null,
+        "image_slots": [
+          {
+            "slot": "image-1",
+            "box": {
+              "x": 40,
+              "y": 40,
+              "width": 520,
+              "height": 325
+            },
+            "shape": "landscape",
+            "background_size": "cover",
+            "background_position": "50% 100%",
+            "overlay": null
+          },
+          {
+            "slot": "image-2",
+            "box": {
+              "x": 310,
+              "y": 385,
+              "width": 250,
+              "height": 325
+            },
+            "shape": "portrait",
+            "background_size": "cover",
+            "background_position": "50% 100%",
+            "overlay": null
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "subheading",
+            "tag": "h2",
+            "sample": [
+              "THE",
+              "PENTHOUSE",
+              "COLLECTION"
+            ],
+            "italic_accent": true,
+            "font_family": "Playfair Display",
+            "font_size": "40px",
+            "line_height": "40px",
+            "letter_spacing": "-3px",
+            "text_transform": "uppercase",
+            "text_align": "left",
+            "color": "rgb(0, 0, 0)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 40,
+              "y": 502,
+              "width": 250,
+              "height": 160
+            }
+          },
+          {
+            "slot": "copy",
+            "tag": "h1",
+            "sample": [
+              "Unparalleled views.",
+              "Enhanced ceiling heights.",
+              "Zero compromise."
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "16px",
+            "line_height": "16px",
+            "letter_spacing": "normal",
+            "text_transform": "none",
+            "text_align": "left",
+            "color": "rgb(0, 0, 0)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 40,
+              "y": 662,
+              "width": 250,
+              "height": 48
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [
+        "SC-04"
+      ],
+      "review_notes": []
+    },
+    {
+      "id": "SC-07",
+      "order": 25,
+      "family": "carousel",
+      "owner_label": {
+        "start_marker": "START - CAROUSEL FRAME - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "FRAMED LAYOUT",
+          "NO LOGO, SUBHEADING WITH ITALIC WORD AND A COUPLE OF LINES OF COPY WITHIN THE BODY",
+          "AI GENERATED IMAGES BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "ONE IMAGE LANDSCAPE AND ONE PORTRAIT",
+          "HEADING AND SUBHEADING BOTTOM RIGHT-ALIGNED"
+        ],
+        "end_marker": "END - CAROUSEL FRAME - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": true,
+        "border": {
+          "width": 20,
+          "color": "rgb(0, 0, 0)"
+        },
+        "logo": null,
+        "image_slots": [
+          {
+            "slot": "image-1",
+            "box": {
+              "x": 40,
+              "y": 40,
+              "width": 520,
+              "height": 325
+            },
+            "shape": "landscape",
+            "background_size": "cover",
+            "background_position": "50% 100%",
+            "overlay": null
+          },
+          {
+            "slot": "image-2",
+            "box": {
+              "x": 40,
+              "y": 385,
+              "width": 250,
+              "height": 325
+            },
+            "shape": "portrait",
+            "background_size": "cover",
+            "background_position": "50% 100%",
+            "overlay": null
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "subheading",
+            "tag": "h2",
+            "sample": [
+              "THE",
+              "PENTHOUSE",
+              "COLLECTION"
+            ],
+            "italic_accent": true,
+            "font_family": "Playfair Display",
+            "font_size": "40px",
+            "line_height": "40px",
+            "letter_spacing": "-3px",
+            "text_transform": "uppercase",
+            "text_align": "left",
+            "color": "rgb(0, 0, 0)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 310,
+              "y": 502,
+              "width": 250,
+              "height": 160
+            }
+          },
+          {
+            "slot": "copy",
+            "tag": "h1",
+            "sample": [
+              "Unparalleled views.",
+              "Enhanced ceiling heights.",
+              "Zero compromise."
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "16px",
+            "line_height": "16px",
+            "letter_spacing": "normal",
+            "text_transform": "none",
+            "text_align": "left",
+            "color": "rgb(0, 0, 0)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 310,
+              "y": 662,
+              "width": 250,
+              "height": 48
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [
+        "SC-05"
+      ],
+      "review_notes": []
+    },
+    {
+      "id": "SG-01",
+      "order": 26,
+      "family": "gallery",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "UNFRAMED, EDGE-TO-EDGE LAYOUT",
+          "FIRST FRAME OF A PHOTO GALLERY POST",
+          "ONE-COLUMN LOGO CENTERED, HEADING AND SUBHEADING WITHIN THE BODY",
+          "AI GENERATED IMAGE BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "50% OPACITY OF BLACK OVERLAY ON BACKGROUND IMAGE",
+          "LOGO TOP CENTER - HEADING CENTER-CENTER - DATE BOTTOM CENTER"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": false,
+        "border": null,
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 210,
+            "y": 60,
+            "width": 180,
+            "height": 66
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "flat",
+              "opacity": 0.5
+            }
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "heading",
+            "tag": "h1",
+            "sample": [
+              "TOP-OFF",
+              "CEREMONY RECAP"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "34px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "center",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "middle",
+            "box": {
+              "x": 71,
+              "y": 380,
+              "width": 459,
+              "height": 68
+            }
+          },
+          {
+            "slot": "footer-line",
+            "tag": "p",
+            "sample": [
+              "THE RIDER RESIDENCES SALES GALLERY - SEPT. 9, 2026"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "12px",
+            "line_height": "18px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 133,
+              "y": 702,
+              "width": 334,
+              "height": 18
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [],
+      "review_notes": []
+    },
+    {
+      "id": "SG-02",
+      "order": 27,
+      "family": "gallery",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "UNFRAMED, EDGE-TO-EDGE LAYOUT",
+          "A FRAME OF PHOTO GALLERY CAROUSEL POST",
+          "THREE IMAGES - ALL LANDSCAPE - TWO ON TOP AND ONE AT BOTTOM",
+          "AI GENERATED IMAGES BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "65% OPACITY OF BLACK OVERLAY ON BACKGROUND IMAGE",
+          "LOGO TOP CENTER - DATE BOTTOM CENTER"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": false,
+        "border": null,
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 210,
+            "y": 60,
+            "width": 180,
+            "height": 66
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "flat",
+              "opacity": 0.65
+            }
+          },
+          {
+            "slot": "image-1",
+            "box": {
+              "x": 20,
+              "y": 168,
+              "width": 274,
+              "height": 180
+            },
+            "shape": "landscape",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          },
+          {
+            "slot": "image-2",
+            "box": {
+              "x": 306,
+              "y": 168,
+              "width": 274,
+              "height": 180
+            },
+            "shape": "landscape",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          },
+          {
+            "slot": "image-3",
+            "box": {
+              "x": 20,
+              "y": 360,
+              "width": 560,
+              "height": 300
+            },
+            "shape": "landscape",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "footer-line",
+            "tag": "p",
+            "sample": [
+              "THE RIDER RESIDENCES SALES GALLERY - SEPT. 9, 2026"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "12px",
+            "line_height": "18px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 133,
+              "y": 702,
+              "width": 334,
+              "height": 18
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [],
+      "review_notes": []
+    },
+    {
+      "id": "SG-03",
+      "order": 28,
+      "family": "gallery",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "UNFRAMED, EDGE-TO-EDGE LAYOUT",
+          "A FRAME OF PHOTO GALLERY CAROUSEL POST",
+          "FOUR SQUARE IMAGES",
+          "AI GENERATED IMAGES BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "65% OPACITY OF BLACK OVERLAY ON BACKGROUND IMAGE",
+          "LOGO TOP CENTER - DATE BOTTOM CENTER"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": false,
+        "border": null,
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 210,
+            "y": 60,
+            "width": 180,
+            "height": 66
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "flat",
+              "opacity": 0.65
+            }
+          },
+          {
+            "slot": "image-1",
+            "box": {
+              "x": 20,
+              "y": 158,
+              "width": 274,
+              "height": 250
+            },
+            "shape": "landscape",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          },
+          {
+            "slot": "image-2",
+            "box": {
+              "x": 306,
+              "y": 158,
+              "width": 274,
+              "height": 250
+            },
+            "shape": "landscape",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          },
+          {
+            "slot": "image-3",
+            "box": {
+              "x": 20,
+              "y": 420,
+              "width": 274,
+              "height": 250
+            },
+            "shape": "landscape",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          },
+          {
+            "slot": "image-4",
+            "box": {
+              "x": 306,
+              "y": 420,
+              "width": 274,
+              "height": 250
+            },
+            "shape": "landscape",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "footer-line",
+            "tag": "p",
+            "sample": [
+              "THE RIDER RESIDENCES SALES GALLERY - SEPT. 9, 2026"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "12px",
+            "line_height": "18px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 133,
+              "y": 702,
+              "width": 334,
+              "height": 18
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [],
+      "review_notes": []
+    },
+    {
+      "id": "SG-04",
+      "order": 29,
+      "family": "gallery",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "UNFRAMED, EDGE-TO-EDGE LAYOUT",
+          "A FRAME OF PHOTO GALLERY CAROUSEL POST",
+          "THREE IMAGES - ONE VERTICAL ON THE LEFT - TWO SQAURE ONES ON THE RIGHT",
+          "AI GENERATED IMAGES BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "65% OPACITY OF BLACK OVERLAY ON BACKGROUND IMAGE",
+          "LOGO TOP CENTER - DATE BOTTOM CENTER"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": false,
+        "border": null,
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 210,
+            "y": 60,
+            "width": 180,
+            "height": 66
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "flat",
+              "opacity": 0.65
+            }
+          },
+          {
+            "slot": "image-1",
+            "box": {
+              "x": 20,
+              "y": 164,
+              "width": 274,
+              "height": 500
+            },
+            "shape": "portrait",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          },
+          {
+            "slot": "image-2",
+            "box": {
+              "x": 306,
+              "y": 164,
+              "width": 274,
+              "height": 245
+            },
+            "shape": "landscape",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          },
+          {
+            "slot": "image-3",
+            "box": {
+              "x": 306,
+              "y": 419,
+              "width": 274,
+              "height": 245
+            },
+            "shape": "landscape",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "footer-line",
+            "tag": "p",
+            "sample": [
+              "THE RIDER RESIDENCES SALES GALLERY - SEPT. 9, 2026"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "12px",
+            "line_height": "18px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 133,
+              "y": 702,
+              "width": 334,
+              "height": 18
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [],
+      "review_notes": []
+    },
+    {
+      "id": "SG-05",
+      "order": 30,
+      "family": "gallery",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "UNFRAMED, EDGE-TO-EDGE LAYOUT",
+          "A FRAME OF PHOTO GALLERY CAROUSEL POST",
+          "TWO LANDSCAPE IMAGES STACKED",
+          "AI GENERATED IMAGES BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "65% OPACITY OF BLACK OVERLAY ON BACKGROUND IMAGE",
+          "LOGO TOP CENTER - DATE BOTTOM CENTER"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": false,
+        "border": null,
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 210,
+            "y": 60,
+            "width": 180,
+            "height": 66
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "flat",
+              "opacity": 0.65
+            }
+          },
+          {
+            "slot": "image-1",
+            "box": {
+              "x": 20,
+              "y": 159,
+              "width": 560,
+              "height": 250
+            },
+            "shape": "landscape",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          },
+          {
+            "slot": "image-2",
+            "box": {
+              "x": 20,
+              "y": 419,
+              "width": 560,
+              "height": 250
+            },
+            "shape": "landscape",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "footer-line",
+            "tag": "p",
+            "sample": [
+              "THE RIDER RESIDENCES SALES GALLERY - SEPT. 9, 2026"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "12px",
+            "line_height": "18px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 133,
+              "y": 702,
+              "width": 334,
+              "height": 18
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [],
+      "review_notes": []
+    },
+    {
+      "id": "SG-06",
+      "order": 31,
+      "family": "gallery",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "UNFRAMED, EDGE-TO-EDGE LAYOUT",
+          "A FRAME OF PHOTO GALLERY CAROUSEL POST",
+          "6 IMAGES IN TOTAL - ONE LANDSCAPE ABOVE AND 5 VERTICAL ONES BELOW",
+          "AI GENERATED IMAGES BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "65% OPACITY OF BLACK OVERLAY ON BACKGROUND IMAGE",
+          "LOGO TOP CENTER - DATE BOTTOM CENTER"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": false,
+        "border": null,
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 210,
+            "y": 60,
+            "width": 180,
+            "height": 66
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "flat",
+              "opacity": 0.65
+            }
+          },
+          {
+            "slot": "image-1",
+            "box": {
+              "x": 20,
+              "y": 159,
+              "width": 560,
+              "height": 250
+            },
+            "shape": "landscape",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          },
+          {
+            "slot": "image-2",
+            "box": {
+              "x": 20,
+              "y": 419,
+              "width": 104,
+              "height": 250
+            },
+            "shape": "portrait",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          },
+          {
+            "slot": "image-3",
+            "box": {
+              "x": 134,
+              "y": 419,
+              "width": 104,
+              "height": 250
+            },
+            "shape": "portrait",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          },
+          {
+            "slot": "image-4",
+            "box": {
+              "x": 248,
+              "y": 419,
+              "width": 104,
+              "height": 250
+            },
+            "shape": "portrait",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          },
+          {
+            "slot": "image-5",
+            "box": {
+              "x": 362,
+              "y": 419,
+              "width": 104,
+              "height": 250
+            },
+            "shape": "portrait",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          },
+          {
+            "slot": "image-6",
+            "box": {
+              "x": 476,
+              "y": 419,
+              "width": 104,
+              "height": 250
+            },
+            "shape": "portrait",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "footer-line",
+            "tag": "p",
+            "sample": [
+              "THE RIDER RESIDENCES SALES GALLERY - SEPT. 9, 2026"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "12px",
+            "line_height": "18px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 133,
+              "y": 702,
+              "width": 334,
+              "height": 18
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [],
+      "review_notes": []
+    },
+    {
+      "id": "SG-07",
+      "order": 32,
+      "family": "gallery",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "UNFRAMED, EDGE-TO-EDGE LAYOUT",
+          "A FRAME OF PHOTO GALLERY CAROUSEL POST",
+          "4 IMAGES IN TOTAL - ONE LANDSCAPE ABOVE AND 3 PORTRAIT ONES BELOW",
+          "AI GENERATED IMAGES BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "65% OPACITY OF BLACK OVERLAY ON BACKGROUND IMAGE",
+          "LOGO TOP CENTER - DATE BOTTOM CENTER"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": false,
+        "border": null,
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 210,
+            "y": 60,
+            "width": 180,
+            "height": 66
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "flat",
+              "opacity": 0.65
+            }
+          },
+          {
+            "slot": "image-1",
+            "box": {
+              "x": 20,
+              "y": 159,
+              "width": 560,
+              "height": 250
+            },
+            "shape": "landscape",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          },
+          {
+            "slot": "image-2",
+            "box": {
+              "x": 20,
+              "y": 419,
+              "width": 180,
+              "height": 250
+            },
+            "shape": "portrait",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          },
+          {
+            "slot": "image-3",
+            "box": {
+              "x": 210,
+              "y": 419,
+              "width": 180,
+              "height": 250
+            },
+            "shape": "portrait",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          },
+          {
+            "slot": "image-4",
+            "box": {
+              "x": 400,
+              "y": 419,
+              "width": 180,
+              "height": 250
+            },
+            "shape": "portrait",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "footer-line",
+            "tag": "p",
+            "sample": [
+              "THE RIDER RESIDENCES SALES GALLERY - SEPT. 9, 2026"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "12px",
+            "line_height": "18px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "left",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 133,
+              "y": 702,
+              "width": 334,
+              "height": 18
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [],
+      "review_notes": []
+    },
+    {
+      "id": "SG-08",
+      "order": 33,
+      "family": "gallery",
+      "owner_label": {
+        "start_marker": "START - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X",
+        "description": [
+          "UNFRAMED, EDGE-TO-EDGE LAYOUT",
+          "LAST FRAME OF PHOTO GALLERY CAROUSEL POST",
+          "1 SQAURE IMAGE ON CENTER",
+          "AI GENERATED IMAGE BASED FROM PROMPT OR PROVIDED BY THE USER",
+          "65% OPACITY OF BLACK OVERLAY ON BACKGROUND IMAGE",
+          "LOGO TOP CENTER - DATE BOTTOM CENTER"
+        ],
+        "end_marker": "END - POST FRAME START - 600X750 PIXELS - EXPORTED AS IMAGE AT 2X"
+      },
+      "canvas": {
+        "width": 600,
+        "height": 750,
+        "export_scale": 2,
+        "export_width": 1200,
+        "export_height": 1500
+      },
+      "observed": {
+        "framed": false,
+        "border": null,
+        "logo": {
+          "slot": "logo",
+          "box": {
+            "x": 210,
+            "y": 60,
+            "width": 180,
+            "height": 66
+          },
+          "src": "https://media.beefree.cloud/pub/bfra/9dgc1zff/q5f/g1q/k7w/The%20Rider-logo-white.png"
+        },
+        "image_slots": [
+          {
+            "slot": "background",
+            "box": {
+              "x": 0,
+              "y": 0,
+              "width": 600,
+              "height": 750
+            },
+            "shape": "portrait",
+            "background_size": "auto, cover",
+            "background_position": "0% 0%, 50% 50%",
+            "overlay": {
+              "type": "flat",
+              "opacity": 0.65
+            }
+          },
+          {
+            "slot": "image-1",
+            "box": {
+              "x": 75,
+              "y": 200,
+              "width": 450,
+              "height": 450
+            },
+            "shape": "square",
+            "background_size": "cover",
+            "background_position": "50% 50%",
+            "overlay": null
+          }
+        ],
+        "text_slots": [
+          {
+            "slot": "heading",
+            "tag": "h1",
+            "sample": [
+              "THANK YOU"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "24px",
+            "line_height": "34px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "center",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "top",
+            "box": {
+              "x": 62,
+              "y": 156,
+              "width": 476,
+              "height": 34
+            }
+          },
+          {
+            "slot": "footer-line",
+            "tag": "p",
+            "sample": [
+              "THE RIDER RESIDENCES  -  TOP-OFF CEREMONY  -  SEPT. 9, 2026",
+              "DELIVERY 2027 - THERIDERRESIDENCES.COM"
+            ],
+            "italic_accent": false,
+            "font_family": "Helvetica",
+            "font_size": "12px",
+            "line_height": "20px",
+            "letter_spacing": "normal",
+            "text_transform": "uppercase",
+            "text_align": "center",
+            "color": "rgb(255, 255, 255)",
+            "vertical_zone": "bottom",
+            "box": {
+              "x": 109,
+              "y": 680,
+              "width": 382,
+              "height": 40
+            }
+          }
+        ]
+      },
+      "label_corrections": [],
+      "same_label_as": [],
+      "review_notes": []
+    }
+  ]
+}

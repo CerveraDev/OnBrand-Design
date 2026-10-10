@@ -1,6 +1,6 @@
 # Phase 17: Social Medium Expansion
 
-**Status:** Drafted; not implemented and not owner-approved
+**Status:** Drafted; first runtime increment implemented (AUD-101); not owner-approved
 
 **Target:** A second medium runtime that produces static social posts and carousels from the same project packs, approval gates, and copy-allocation discipline already proven on email
 

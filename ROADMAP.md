@@ -21,7 +21,7 @@ The roadmap applies to the framework and is executed independently for each proj
 | 14 | Email render matrix | Browser-preview tool and Rider evidence complete | Canonical four-mode browser matrix and visual review pass; real-client matrix pending | Planned after representative package |
 | 15 | Creative fidelity remediation | Implemented; creative approval pending | CFG-05 and Rider Gym 2 proof generated; further layout refinement requested | Planned after project calibration |
 | 16 | Scaffold expansion and layout calibration | Canonical promotion complete; compatibility follow-up open | Phase 16 canonical and proof reproducible; native-client matrix pending | Planned after project calibration |
-| 17 | Social medium expansion (static and carousel) | Specified; not implemented | Assets curated and overlay committed; runtime not started | Planned after project calibration |
+| 17 | Social medium expansion (static and carousel) | Specified; first runtime increment built | Assets curated and overlay committed; `tools/social_runtime/` emits composition packages, no render step (LIM-023) | Planned after project calibration |
 
 ## Framework Gate
 
